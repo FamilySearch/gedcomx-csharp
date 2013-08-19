@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4629BA54-406E-4CD2-9DC6-CDA2C5206EB7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Gedcomx.Model</RootNamespace>
+    <AssemblyName>Gedcomx.Model</AssemblyName>
+    <Description>The basic GEDCOM X model.</Description>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Address.cs" />
+    <Compile Include="Agent.cs" />
+    <Compile Include="Attribution.cs" />
+    <Compile Include="CitationField.cs" />
+    <Compile Include="Collection.cs" />
+    <Compile Include="CollectionContent.cs" />
+    <Compile Include="Conclusion.cs" />
+    <Compile Include="ConfidenceLevel.cs" />
+    <Compile Include="Coverage.cs" />
+    <Compile Include="DateInfo.cs" />
+    <Compile Include="DisplayProperties.cs" />
+    <Compile Include="Document.cs" />
+    <Compile Include="DocumentType.cs" />
+    <Compile Include="Event.cs" />
+    <Compile Include="EventRole.cs" />
+    <Compile Include="EventRoleType.cs" />
+    <Compile Include="EventType.cs" />
+    <Compile Include="EvidenceReference.cs" />
+    <Compile Include="ExtensibleData.cs" />
+    <Compile Include="Facet.cs" />
+    <Compile Include="FacetType.cs" />
+    <Compile Include="FacetValue.cs" />
+    <Compile Include="Fact.cs" />
+    <Compile Include="FactType.cs" />
+    <Compile Include="Field.cs" />
+    <Compile Include="FieldDescriptor.cs" />
+    <Compile Include="FieldDisplay.cs" />
+    <Compile Include="FieldType.cs" />
+    <Compile Include="FieldValue.cs" />
+    <Compile Include="FieldValueType.cs" />
+    <Compile Include="Gedcomx.cs" />
+    <Compile Include="Gender.cs" />
+    <Compile Include="GenderType.cs" />
+    <Compile Include="HypermediaEnabledData.cs" />
+    <Compile Include="Identifier.cs" />
+    <Compile Include="IdentifierType.cs" />
+    <Compile Include="Link.cs" />
+    <Compile Include="Name.cs" />
+    <Compile Include="NameForm.cs" />
+    <Compile Include="NamePart.cs" />
+    <Compile Include="NamePartType.cs" />
+    <Compile Include="NameType.cs" />
+    <Compile Include="Note.cs" />
+    <Compile Include="OnlineAccount.cs" />
+    <Compile Include="Person.cs" />
+    <Compile Include="PlaceDescription.cs" />
+    <Compile Include="PlaceReference.cs" />
+    <Compile Include="Qualifier.cs" />
+    <Compile Include="RecordDescriptor.cs" />
+    <Compile Include="RecordSet.cs" />
+    <Compile Include="Relationship.cs" />
+    <Compile Include="RelationshipType.cs" />
+    <Compile Include="ResourceReference.cs" />
+    <Compile Include="ResourceType.cs" />
+    <Compile Include="SourceCitation.cs" />
+    <Compile Include="SourceDescription.cs" />
+    <Compile Include="SourceReference.cs" />
+    <Compile Include="Subject.cs" />
+    <Compile Include="TextValue.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

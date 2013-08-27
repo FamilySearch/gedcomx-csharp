@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<gx:recordSet xmlns="http://gedcomx.org/v1/" xmlns:gx="http://gedcomx.org/bulk/v1/">
+<gx:records xmlns="http://gedcomx.org/v1/" xmlns:gx="http://gedcomx.org/bulk/v1/">
   <gx:record description="#s1" id="r_113318929">
     <person principal="true" id="p_1">
       <identifier type="http://gedcomx.org/Persistent">http://familysearch.org/pal:/MM9.1.1/JDDL-5TB</identifier>
@@ -2505,4 +2505,4 @@
       </value>
     </field>
   </gx:record>
-</gx:recordSet>
+</gx:records>

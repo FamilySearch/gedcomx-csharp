@@ -1,0 +1,2508 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<gx:recordSet xmlns="http://gedcomx.org/v1/" xmlns:gx="http://gedcomx.org/bulk/v1/">
+  <gx:record description="#s1" id="r_113318929">
+    <person principal="true" id="p_1">
+      <identifier type="http://gedcomx.org/Persistent">http://familysearch.org/pal:/MM9.1.1/JDDL-5TB</identifier>
+      <gender type="http://gedcomx.org/Male">
+        <fieldValue resource="#v4"/>
+      </gender>
+      <name type="http://gedcomx.org/BirthName">
+        <nameForm>
+          <fullText>George John Gerat</fullText>
+          <part type="http://gedcomx.org/Given" value="George John">
+            <fieldValue resource="#v2"/>
+          </part>
+          <part type="http://gedcomx.org/Surname" value="Gerat">
+            <fieldValue resource="#v3"/>
+          </part>
+          <fieldValue resource="#v1"/>
+        </nameForm>
+      </name>
+      <fact primary="true" type="http://gedcomx.org/Death">
+        <date>
+          <original>07 Mar 1912</original>
+          <fieldValue resource="#v5"/>
+        </date>
+        <place>
+          <original>Gadsden, Etowah, Alabama</original>
+          <fieldValue resource="#v6"/>
+        </place>
+      </fact>
+    </person>
+    <sourceDescription about="http://familysearch.org/pal:/MM9.1.2/MQKT-1YK" resourceType="http://gedcomx.org/Record" id="s1">
+      <componentOf description="#s2"/>
+      <identifier type="http://gedcomx.org/Persistent">http://familysearch.org/pal:/MM9.1.2/MQKT-1YK</identifier>
+      <identifier>http://familysearch.org/externalId/easy/record_id/30075927</identifier>
+      <created>2010-03-18T18:00:00-06:00</created>
+      <modified>2011-09-09T18:00:00-06:00</modified>
+      <coverage>
+        <recordType>http://gedcomx.org/Death</recordType>
+        <spatial>
+          <original>Gadsden, Etowah, Alabama</original>
+        </spatial>
+        <temporal>
+          <original>07 Mar 1912</original>
+        </temporal>
+      </coverage>
+    </sourceDescription>
+    <sourceDescription about="https://familysearch.org/collections/1307888" resourceType="http://gedcomx.org/Collection" id="s2">
+      <identifier type="http://gedcomx.org/Primary">https://familysearch.org/collections/1307888</identifier>
+    </sourceDescription>
+    <field type="http://gedcomx.org/Gender">
+      <label>SEX_CODE_STD</label>
+      <value type="http://gedcomx.org/Original" id="v7">
+        <text>M</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v4">
+        <fieldValue resource="#v7"/>
+        <text>Male</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Name">
+      <label>PR_NAME</label>
+      <value type="http://gedcomx.org/Original" id="v8">
+        <text>George John/Gerat</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v1">
+        <fieldValue resource="#v8"/>
+        <text>George John Gerat</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Given">
+      <label>PR_NAME_GN</label>
+      <value type="http://gedcomx.org/Original" id="v9">
+        <text>George John</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v2">
+        <fieldValue resource="#v9"/>
+        <text>George John</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Surname">
+      <label>PR_NAME_SURN</label>
+      <value type="http://gedcomx.org/Original" id="v10">
+        <text>Gerat</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v3">
+        <fieldValue resource="#v10"/>
+        <text>Gerat</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Date">
+      <label>DEATH_DATE_STD</label>
+      <value type="http://gedcomx.org/Original" id="v11">
+        <text>7 Mar 1912</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v5">
+        <fieldValue resource="#v11"/>
+        <text>07 Mar 1912</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Place">
+      <label>DEATH_PLACE</label>
+      <value type="http://gedcomx.org/Original" id="v6">
+        <text>Gadsden, Etowah, Alabama</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/UNIQUE_IDENTIFIER">
+      <label>UNIQUE_IDENTIFIER</label>
+      <value type="http://gedcomx.org/Original" id="v12">
+        <text>30075927</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/IMAGE_ID">
+      <label>IMAGE_ID</label>
+      <value type="http://gedcomx.org/Original" id="v13">
+        <text>dgs:004025604.004025604_00470</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/FOLDER_IMAGE_SEQ">
+      <label>FOLDER_IMAGE_SEQ</label>
+      <value type="http://gedcomx.org/Original" id="v14">
+        <text>470</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/FOLDER">
+      <label>FOLDER</label>
+      <value type="http://gedcomx.org/Original" id="v15">
+        <text>004025604</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/AGE_IN_YEARS">
+      <label>AGE_IN_YEARS</label>
+      <value type="http://gedcomx.org/Original" id="v16">
+        <text>32</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/BATCH_ID">
+      <label>BATCH_ID</label>
+      <value type="http://gedcomx.org/Original" id="v17">
+        <text>250786</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/BATCH_LOCALITY">
+      <label>BATCH_LOCALITY</label>
+      <value type="http://gedcomx.org/Original" id="v18">
+        <text>Alabama, United States</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/DEATH_AGE_ORIG">
+      <label>DEATH_AGE_ORIG</label>
+      <value type="http://gedcomx.org/Original" id="v19">
+        <text>32y</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/DEATH_YEAR">
+      <label>DEATH_YEAR</label>
+      <value type="http://gedcomx.org/Original" id="v20">
+        <text>1912</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/DIGITAL_GS_NUMBER">
+      <label>DIGITAL_GS_NUMBER</label>
+      <value type="http://gedcomx.org/Original" id="v21">
+        <text>4025604</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/ESTIMATED_BIRTH_YEAR">
+      <label>ESTIMATED_BIRTH_YEAR</label>
+      <value type="http://gedcomx.org/Original" id="v22">
+        <text>1880</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/FILM_NUMBER">
+      <label>FILM_NUMBER</label>
+      <value type="http://gedcomx.org/Original" id="v23">
+        <text>1894088</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/IMAGE_NBR">
+      <label>IMAGE_NBR</label>
+      <value type="http://gedcomx.org/Original" id="v24">
+        <text>470</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/PACKET_LTR">
+      <label>PACKET_LTR</label>
+      <value type="http://gedcomx.org/Original" id="v25">
+        <text>A</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/REC_NBR">
+      <label>REC_NBR</label>
+      <value type="http://gedcomx.org/Original" id="v26">
+        <text>461</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/RECORD_GROUP">
+      <label>RECORD_GROUP</label>
+      <value type="http://gedcomx.org/Original" id="v27">
+        <text>Alabama Deaths</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/REF_ID">
+      <label>REF_ID</label>
+      <value type="http://gedcomx.org/Original" id="v28">
+        <text>cn 471</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/UDE_BATCH_NUMBER">
+      <label>UDE_BATCH_NUMBER</label>
+      <value type="http://gedcomx.org/Original" id="v29">
+        <text>B01846-4</text>
+      </value>
+    </field>
+  </gx:record>
+  <gx:record description="#s3" id="r_113318930">
+    <person principal="true" id="p_2">
+      <identifier type="http://gedcomx.org/Persistent">http://familysearch.org/pal:/MM9.1.1/JDDL-F61</identifier>
+      <gender type="http://gedcomx.org/Female">
+        <fieldValue resource="#v33"/>
+      </gender>
+      <name type="http://gedcomx.org/BirthName">
+        <nameForm>
+          <fullText>Mollie Hardy</fullText>
+          <part type="http://gedcomx.org/Given" value="Mollie">
+            <fieldValue resource="#v31"/>
+          </part>
+          <part type="http://gedcomx.org/Surname" value="Hardy">
+            <fieldValue resource="#v32"/>
+          </part>
+          <fieldValue resource="#v30"/>
+        </nameForm>
+      </name>
+      <fact primary="true" type="http://gedcomx.org/Death">
+        <date>
+          <original>10 Dec 1912</original>
+          <fieldValue resource="#v34"/>
+        </date>
+        <place>
+          <original>Eutaw, Greene, Alabama</original>
+          <fieldValue resource="#v35"/>
+        </place>
+      </fact>
+    </person>
+    <sourceDescription about="http://familysearch.org/pal:/MM9.1.2/MQKT-1Y2" resourceType="http://gedcomx.org/Record" id="s3">
+      <componentOf description="#s4"/>
+      <identifier type="http://gedcomx.org/Persistent">http://familysearch.org/pal:/MM9.1.2/MQKT-1Y2</identifier>
+      <identifier>http://familysearch.org/externalId/easy/record_id/30075405</identifier>
+      <created>2010-03-18T18:00:00-06:00</created>
+      <modified>2011-09-09T18:00:00-06:00</modified>
+      <coverage>
+        <recordType>http://gedcomx.org/Death</recordType>
+        <spatial>
+          <original>Eutaw, Greene, Alabama</original>
+        </spatial>
+        <temporal>
+          <original>10 Dec 1912</original>
+        </temporal>
+      </coverage>
+    </sourceDescription>
+    <sourceDescription about="https://familysearch.org/collections/1307888" resourceType="http://gedcomx.org/Collection" id="s4">
+      <identifier type="http://gedcomx.org/Primary">https://familysearch.org/collections/1307888</identifier>
+    </sourceDescription>
+    <field type="http://gedcomx.org/Gender">
+      <label>SEX_CODE_STD</label>
+      <value type="http://gedcomx.org/Original" id="v36">
+        <text>F</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v33">
+        <fieldValue resource="#v36"/>
+        <text>Female</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Name">
+      <label>PR_NAME</label>
+      <value type="http://gedcomx.org/Original" id="v37">
+        <text>Mollie/Hardy</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v30">
+        <fieldValue resource="#v37"/>
+        <text>Mollie Hardy</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Given">
+      <label>PR_NAME_GN</label>
+      <value type="http://gedcomx.org/Original" id="v38">
+        <text>Mollie</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v31">
+        <fieldValue resource="#v38"/>
+        <text>Mollie</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Surname">
+      <label>PR_NAME_SURN</label>
+      <value type="http://gedcomx.org/Original" id="v39">
+        <text>Hardy</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v32">
+        <fieldValue resource="#v39"/>
+        <text>Hardy</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Date">
+      <label>DEATH_DATE_STD</label>
+      <value type="http://gedcomx.org/Original" id="v40">
+        <text>10 Dec 1912</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v34">
+        <fieldValue resource="#v40"/>
+        <text>10 Dec 1912</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Place">
+      <label>DEATH_PLACE</label>
+      <value type="http://gedcomx.org/Original" id="v35">
+        <text>Eutaw, Greene, Alabama</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/UNIQUE_IDENTIFIER">
+      <label>UNIQUE_IDENTIFIER</label>
+      <value type="http://gedcomx.org/Original" id="v41">
+        <text>30075405</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/IMAGE_ID">
+      <label>IMAGE_ID</label>
+      <value type="http://gedcomx.org/Original" id="v42">
+        <text>dgs:004025604.004025604_01071</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/FOLDER_IMAGE_SEQ">
+      <label>FOLDER_IMAGE_SEQ</label>
+      <value type="http://gedcomx.org/Original" id="v43">
+        <text>1071</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/FOLDER">
+      <label>FOLDER</label>
+      <value type="http://gedcomx.org/Original" id="v44">
+        <text>004025604</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/AGE_IN_YEARS">
+      <label>AGE_IN_YEARS</label>
+      <value type="http://gedcomx.org/Original" id="v45">
+        <text>35</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/BATCH_ID">
+      <label>BATCH_ID</label>
+      <value type="http://gedcomx.org/Original" id="v46">
+        <text>250786</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/BATCH_LOCALITY">
+      <label>BATCH_LOCALITY</label>
+      <value type="http://gedcomx.org/Original" id="v47">
+        <text>Alabama, United States</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/DEATH_AGE_ORIG">
+      <label>DEATH_AGE_ORIG</label>
+      <value type="http://gedcomx.org/Original" id="v48">
+        <text>35y</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/DEATH_YEAR">
+      <label>DEATH_YEAR</label>
+      <value type="http://gedcomx.org/Original" id="v49">
+        <text>1912</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/DIGITAL_GS_NUMBER">
+      <label>DIGITAL_GS_NUMBER</label>
+      <value type="http://gedcomx.org/Original" id="v50">
+        <text>4025604</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/ESTIMATED_BIRTH_YEAR">
+      <label>ESTIMATED_BIRTH_YEAR</label>
+      <value type="http://gedcomx.org/Original" id="v51">
+        <text>1877</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/FILM_NUMBER">
+      <label>FILM_NUMBER</label>
+      <value type="http://gedcomx.org/Original" id="v52">
+        <text>1894088</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/IMAGE_NBR">
+      <label>IMAGE_NBR</label>
+      <value type="http://gedcomx.org/Original" id="v53">
+        <text>1071</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/PACKET_LTR">
+      <label>PACKET_LTR</label>
+      <value type="http://gedcomx.org/Original" id="v54">
+        <text>A</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/REC_NBR">
+      <label>REC_NBR</label>
+      <value type="http://gedcomx.org/Original" id="v55">
+        <text>1049</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/RECORD_GROUP">
+      <label>RECORD_GROUP</label>
+      <value type="http://gedcomx.org/Original" id="v56">
+        <text>Alabama Deaths</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/REF_ID">
+      <label>REF_ID</label>
+      <value type="http://gedcomx.org/Original" id="v57">
+        <text>cn 472</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/UDE_BATCH_NUMBER">
+      <label>UDE_BATCH_NUMBER</label>
+      <value type="http://gedcomx.org/Original" id="v58">
+        <text>B01846-4</text>
+      </value>
+    </field>
+  </gx:record>
+  <gx:record description="#s5" id="r_113318931">
+    <person principal="true" id="p_3">
+      <identifier type="http://gedcomx.org/Persistent">http://familysearch.org/pal:/MM9.1.1/JDDL-5T1</identifier>
+      <gender type="http://gedcomx.org/Female">
+        <fieldValue resource="#v62"/>
+      </gender>
+      <name type="http://gedcomx.org/BirthName">
+        <nameForm>
+          <fullText>Mrs. Hare</fullText>
+          <part type="http://gedcomx.org/Given" value="Mrs.">
+            <fieldValue resource="#v60"/>
+          </part>
+          <part type="http://gedcomx.org/Surname" value="Hare">
+            <fieldValue resource="#v61"/>
+          </part>
+          <fieldValue resource="#v59"/>
+        </nameForm>
+      </name>
+      <fact primary="true" type="http://gedcomx.org/Death">
+        <date>
+          <original>16 Jul 1912</original>
+          <fieldValue resource="#v63"/>
+        </date>
+        <place>
+          <original>Gadsden, Etowah, Alabama</original>
+          <fieldValue resource="#v64"/>
+        </place>
+      </fact>
+    </person>
+    <sourceDescription about="http://familysearch.org/pal:/MM9.1.2/MQKT-1YL" resourceType="http://gedcomx.org/Record" id="s5">
+      <componentOf description="#s6"/>
+      <identifier type="http://gedcomx.org/Persistent">http://familysearch.org/pal:/MM9.1.2/MQKT-1YL</identifier>
+      <identifier>http://familysearch.org/externalId/easy/record_id/30075929</identifier>
+      <created>2010-03-18T18:00:00-06:00</created>
+      <modified>2011-09-09T18:00:00-06:00</modified>
+      <coverage>
+        <recordType>http://gedcomx.org/Death</recordType>
+        <spatial>
+          <original>Gadsden, Etowah, Alabama</original>
+        </spatial>
+        <temporal>
+          <original>16 Jul 1912</original>
+        </temporal>
+      </coverage>
+    </sourceDescription>
+    <sourceDescription about="https://familysearch.org/collections/1307888" resourceType="http://gedcomx.org/Collection" id="s6">
+      <identifier type="http://gedcomx.org/Primary">https://familysearch.org/collections/1307888</identifier>
+    </sourceDescription>
+    <field type="http://gedcomx.org/Gender">
+      <label>SEX_CODE_STD</label>
+      <value type="http://gedcomx.org/Original" id="v65">
+        <text>F</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v62">
+        <fieldValue resource="#v65"/>
+        <text>Female</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Name">
+      <label>PR_NAME</label>
+      <value type="http://gedcomx.org/Original" id="v66">
+        <text>Mrs./Hare</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v59">
+        <fieldValue resource="#v66"/>
+        <text>Mrs. Hare</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Given">
+      <label>PR_NAME_GN</label>
+      <value type="http://gedcomx.org/Original" id="v67">
+        <text>Mrs.</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v60">
+        <fieldValue resource="#v67"/>
+        <text>Mrs.</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Surname">
+      <label>PR_NAME_SURN</label>
+      <value type="http://gedcomx.org/Original" id="v68">
+        <text>Hare</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v61">
+        <fieldValue resource="#v68"/>
+        <text>Hare</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Date">
+      <label>DEATH_DATE_STD</label>
+      <value type="http://gedcomx.org/Original" id="v69">
+        <text>16 Jul 1912</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v63">
+        <fieldValue resource="#v69"/>
+        <text>16 Jul 1912</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Place">
+      <label>DEATH_PLACE</label>
+      <value type="http://gedcomx.org/Original" id="v64">
+        <text>Gadsden, Etowah, Alabama</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/UNIQUE_IDENTIFIER">
+      <label>UNIQUE_IDENTIFIER</label>
+      <value type="http://gedcomx.org/Original" id="v70">
+        <text>30075929</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/IMAGE_ID">
+      <label>IMAGE_ID</label>
+      <value type="http://gedcomx.org/Original" id="v71">
+        <text>dgs:004025604.004025604_00472</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/FOLDER_IMAGE_SEQ">
+      <label>FOLDER_IMAGE_SEQ</label>
+      <value type="http://gedcomx.org/Original" id="v72">
+        <text>472</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/FOLDER">
+      <label>FOLDER</label>
+      <value type="http://gedcomx.org/Original" id="v73">
+        <text>004025604</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/AGE_IN_YEARS">
+      <label>AGE_IN_YEARS</label>
+      <value type="http://gedcomx.org/Original" id="v74">
+        <text>25</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/BATCH_ID">
+      <label>BATCH_ID</label>
+      <value type="http://gedcomx.org/Original" id="v75">
+        <text>250786</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/BATCH_LOCALITY">
+      <label>BATCH_LOCALITY</label>
+      <value type="http://gedcomx.org/Original" id="v76">
+        <text>Alabama, United States</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/DEATH_AGE_ORIG">
+      <label>DEATH_AGE_ORIG</label>
+      <value type="http://gedcomx.org/Original" id="v77">
+        <text>25y</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/DEATH_YEAR">
+      <label>DEATH_YEAR</label>
+      <value type="http://gedcomx.org/Original" id="v78">
+        <text>1912</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/DIGITAL_GS_NUMBER">
+      <label>DIGITAL_GS_NUMBER</label>
+      <value type="http://gedcomx.org/Original" id="v79">
+        <text>4025604</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/ESTIMATED_BIRTH_YEAR">
+      <label>ESTIMATED_BIRTH_YEAR</label>
+      <value type="http://gedcomx.org/Original" id="v80">
+        <text>1887</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/FILM_NUMBER">
+      <label>FILM_NUMBER</label>
+      <value type="http://gedcomx.org/Original" id="v81">
+        <text>1894088</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/IMAGE_NBR">
+      <label>IMAGE_NBR</label>
+      <value type="http://gedcomx.org/Original" id="v82">
+        <text>472</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/NOTE_DEATH_DATE">
+      <label>NOTE_DEATH_DATE</label>
+      <value type="http://gedcomx.org/Original" id="v83">
+        <text>Coffin sale date.</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/NOTE_DEATH_PLACE">
+      <label>NOTE_DEATH_PLACE</label>
+      <value type="http://gedcomx.org/Original" id="v84">
+        <text>place of registration.</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/PACKET_LTR">
+      <label>PACKET_LTR</label>
+      <value type="http://gedcomx.org/Original" id="v85">
+        <text>A</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/REC_NBR">
+      <label>REC_NBR</label>
+      <value type="http://gedcomx.org/Original" id="v86">
+        <text>463</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/RECORD_GROUP">
+      <label>RECORD_GROUP</label>
+      <value type="http://gedcomx.org/Original" id="v87">
+        <text>Alabama Deaths</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/REF_ID">
+      <label>REF_ID</label>
+      <value type="http://gedcomx.org/Original" id="v88">
+        <text>cn 473</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/UDE_BATCH_NUMBER">
+      <label>UDE_BATCH_NUMBER</label>
+      <value type="http://gedcomx.org/Original" id="v89">
+        <text>B01846-4</text>
+      </value>
+    </field>
+  </gx:record>
+  <gx:record description="#s7" id="r_113318932">
+    <person principal="true" id="p_4">
+      <identifier type="http://gedcomx.org/Persistent">http://familysearch.org/pal:/MM9.1.1/JDDL-FXM</identifier>
+      <gender type="http://gedcomx.org/Male">
+        <fieldValue resource="#v93"/>
+      </gender>
+      <name type="http://gedcomx.org/BirthName">
+        <nameForm>
+          <fullText>Justice Hays</fullText>
+          <part type="http://gedcomx.org/Given" value="Justice">
+            <fieldValue resource="#v91"/>
+          </part>
+          <part type="http://gedcomx.org/Surname" value="Hays">
+            <fieldValue resource="#v92"/>
+          </part>
+          <fieldValue resource="#v90"/>
+        </nameForm>
+      </name>
+      <fact primary="true" type="http://gedcomx.org/Death">
+        <date>
+          <original>21 Mar 1912</original>
+          <fieldValue resource="#v94"/>
+        </date>
+        <place>
+          <original>Greene, Alabama</original>
+          <fieldValue resource="#v95"/>
+        </place>
+      </fact>
+    </person>
+    <sourceDescription about="http://familysearch.org/pal:/MM9.1.2/MQKT-1YG" resourceType="http://gedcomx.org/Record" id="s7">
+      <componentOf description="#s8"/>
+      <identifier type="http://gedcomx.org/Persistent">http://familysearch.org/pal:/MM9.1.2/MQKT-1YG</identifier>
+      <identifier>http://familysearch.org/externalId/easy/record_id/30075407</identifier>
+      <created>2010-03-18T18:00:00-06:00</created>
+      <modified>2011-09-09T18:00:00-06:00</modified>
+      <coverage>
+        <recordType>http://gedcomx.org/Death</recordType>
+        <spatial>
+          <original>Greene, Alabama</original>
+        </spatial>
+        <temporal>
+          <original>21 Mar 1912</original>
+        </temporal>
+      </coverage>
+    </sourceDescription>
+    <sourceDescription about="https://familysearch.org/collections/1307888" resourceType="http://gedcomx.org/Collection" id="s8">
+      <identifier type="http://gedcomx.org/Primary">https://familysearch.org/collections/1307888</identifier>
+    </sourceDescription>
+    <field type="http://gedcomx.org/Gender">
+      <label>SEX_CODE_STD</label>
+      <value type="http://gedcomx.org/Original" id="v96">
+        <text>M</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v93">
+        <fieldValue resource="#v96"/>
+        <text>Male</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Name">
+      <label>PR_NAME</label>
+      <value type="http://gedcomx.org/Original" id="v97">
+        <text>Justice/Hays</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v90">
+        <fieldValue resource="#v97"/>
+        <text>Justice Hays</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Given">
+      <label>PR_NAME_GN</label>
+      <value type="http://gedcomx.org/Original" id="v98">
+        <text>Justice</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v91">
+        <fieldValue resource="#v98"/>
+        <text>Justice</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Surname">
+      <label>PR_NAME_SURN</label>
+      <value type="http://gedcomx.org/Original" id="v99">
+        <text>Hays</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v92">
+        <fieldValue resource="#v99"/>
+        <text>Hays</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Date">
+      <label>DEATH_DATE_STD</label>
+      <value type="http://gedcomx.org/Original" id="v100">
+        <text>21 Mar 1912</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v94">
+        <fieldValue resource="#v100"/>
+        <text>21 Mar 1912</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Place">
+      <label>DEATH_PLACE</label>
+      <value type="http://gedcomx.org/Original" id="v95">
+        <text>Greene, Alabama</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/UNIQUE_IDENTIFIER">
+      <label>UNIQUE_IDENTIFIER</label>
+      <value type="http://gedcomx.org/Original" id="v101">
+        <text>30075407</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/IMAGE_ID">
+      <label>IMAGE_ID</label>
+      <value type="http://gedcomx.org/Original" id="v102">
+        <text>dgs:004025604.004025604_01073</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/FOLDER_IMAGE_SEQ">
+      <label>FOLDER_IMAGE_SEQ</label>
+      <value type="http://gedcomx.org/Original" id="v103">
+        <text>1073</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/FOLDER">
+      <label>FOLDER</label>
+      <value type="http://gedcomx.org/Original" id="v104">
+        <text>004025604</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/BATCH_ID">
+      <label>BATCH_ID</label>
+      <value type="http://gedcomx.org/Original" id="v105">
+        <text>250786</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/BATCH_LOCALITY">
+      <label>BATCH_LOCALITY</label>
+      <value type="http://gedcomx.org/Original" id="v106">
+        <text>Alabama, United States</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/DEATH_YEAR">
+      <label>DEATH_YEAR</label>
+      <value type="http://gedcomx.org/Original" id="v107">
+        <text>1912</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/DIGITAL_GS_NUMBER">
+      <label>DIGITAL_GS_NUMBER</label>
+      <value type="http://gedcomx.org/Original" id="v108">
+        <text>4025604</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/FILM_NUMBER">
+      <label>FILM_NUMBER</label>
+      <value type="http://gedcomx.org/Original" id="v109">
+        <text>1894088</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/IMAGE_NBR">
+      <label>IMAGE_NBR</label>
+      <value type="http://gedcomx.org/Original" id="v110">
+        <text>1073</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/NOTE_DEATH_DATE">
+      <label>NOTE_DEATH_DATE</label>
+      <value type="http://gedcomx.org/Original" id="v111">
+        <text>Coffin sale date.</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/NOTE_DEATH_PLACE">
+      <label>NOTE_DEATH_PLACE</label>
+      <value type="http://gedcomx.org/Original" id="v112">
+        <text>Health Officer statement.</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/PACKET_LTR">
+      <label>PACKET_LTR</label>
+      <value type="http://gedcomx.org/Original" id="v113">
+        <text>A</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/REC_NBR">
+      <label>REC_NBR</label>
+      <value type="http://gedcomx.org/Original" id="v114">
+        <text>1051</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/RECORD_GROUP">
+      <label>RECORD_GROUP</label>
+      <value type="http://gedcomx.org/Original" id="v115">
+        <text>Alabama Deaths</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/REF_ID">
+      <label>REF_ID</label>
+      <value type="http://gedcomx.org/Original" id="v116">
+        <text>cn 474</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/UDE_BATCH_NUMBER">
+      <label>UDE_BATCH_NUMBER</label>
+      <value type="http://gedcomx.org/Original" id="v117">
+        <text>B01846-4</text>
+      </value>
+    </field>
+  </gx:record>
+  <gx:record description="#s9" id="r_113318933">
+    <person principal="true" id="p_5">
+      <identifier type="http://gedcomx.org/Persistent">http://familysearch.org/pal:/MM9.1.1/JDDL-FX9</identifier>
+      <gender type="http://gedcomx.org/Female">
+        <fieldValue resource="#v121"/>
+      </gender>
+      <name type="http://gedcomx.org/BirthName">
+        <nameForm>
+          <fullText>Mrs. Epsey Halls</fullText>
+          <part type="http://gedcomx.org/Given" value="Mrs. Epsey">
+            <fieldValue resource="#v119"/>
+          </part>
+          <part type="http://gedcomx.org/Surname" value="Halls">
+            <fieldValue resource="#v120"/>
+          </part>
+          <fieldValue resource="#v118"/>
+        </nameForm>
+      </name>
+      <fact primary="true" type="http://gedcomx.org/Death">
+        <date>
+          <original>10 Jun 1912</original>
+          <fieldValue resource="#v122"/>
+        </date>
+        <place>
+          <original>West Greene, Alabama</original>
+          <fieldValue resource="#v123"/>
+        </place>
+      </fact>
+    </person>
+    <person id="p_6">
+      <identifier type="http://gedcomx.org/Persistent">http://familysearch.org/pal:/MM9.1.1/JDDL-FXS</identifier>
+      <gender type="http://gedcomx.org/Male"/>
+      <name type="http://gedcomx.org/BirthName">
+        <nameForm>
+          <fullText>Epsey Halls</fullText>
+          <part type="http://gedcomx.org/Given" value="Epsey">
+            <fieldValue resource="#v125"/>
+          </part>
+          <part type="http://gedcomx.org/Surname" value="Halls">
+            <fieldValue resource="#v126"/>
+          </part>
+          <fieldValue resource="#v124"/>
+        </nameForm>
+      </name>
+    </person>
+    <relationship type="http://gedcomx.org/Couple">
+      <person1 resource="#p_6"/>
+      <person2 resource="#p_5"/>
+    </relationship>
+    <sourceDescription about="http://familysearch.org/pal:/MM9.1.2/MQKT-1YP" resourceType="http://gedcomx.org/Record" id="s9">
+      <componentOf description="#s10"/>
+      <identifier type="http://gedcomx.org/Persistent">http://familysearch.org/pal:/MM9.1.2/MQKT-1YP</identifier>
+      <identifier>http://familysearch.org/externalId/easy/record_id/30075408</identifier>
+      <created>2010-03-18T18:00:00-06:00</created>
+      <modified>2011-09-09T18:00:00-06:00</modified>
+      <coverage>
+        <recordType>http://gedcomx.org/Death</recordType>
+        <spatial>
+          <original>West Greene, Alabama</original>
+        </spatial>
+        <temporal>
+          <original>10 Jun 1912</original>
+        </temporal>
+      </coverage>
+    </sourceDescription>
+    <sourceDescription about="https://familysearch.org/collections/1307888" resourceType="http://gedcomx.org/Collection" id="s10">
+      <identifier type="http://gedcomx.org/Primary">https://familysearch.org/collections/1307888</identifier>
+    </sourceDescription>
+    <field type="http://gedcomx.org/Gender">
+      <label>SEX_CODE_STD</label>
+      <value type="http://gedcomx.org/Original" id="v127">
+        <text>F</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v121">
+        <fieldValue resource="#v127"/>
+        <text>Female</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Name">
+      <label>PR_NAME</label>
+      <value type="http://gedcomx.org/Original" id="v128">
+        <text>Mrs. Epsey/Halls</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v118">
+        <fieldValue resource="#v128"/>
+        <text>Mrs. Epsey Halls</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Given">
+      <label>PR_NAME_GN</label>
+      <value type="http://gedcomx.org/Original" id="v129">
+        <text>Mrs. Epsey</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v119">
+        <fieldValue resource="#v129"/>
+        <text>Mrs. Epsey</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Surname">
+      <label>PR_NAME_SURN</label>
+      <value type="http://gedcomx.org/Original" id="v130">
+        <text>Halls</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v120">
+        <fieldValue resource="#v130"/>
+        <text>Halls</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Date">
+      <label>DEATH_DATE_STD</label>
+      <value type="http://gedcomx.org/Original" id="v131">
+        <text>10 Jun 1912</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v122">
+        <fieldValue resource="#v131"/>
+        <text>10 Jun 1912</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Place">
+      <label>DEATH_PLACE</label>
+      <value type="http://gedcomx.org/Original" id="v123">
+        <text>West Greene, Alabama</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Name">
+      <label>SPOUSE_NAME</label>
+      <value type="http://gedcomx.org/Original" id="v132">
+        <text>Epsey/Halls</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v124">
+        <fieldValue resource="#v132"/>
+        <text>Epsey Halls</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Given">
+      <label>SPOUSE_NAME_GN</label>
+      <value type="http://gedcomx.org/Original" id="v133">
+        <text>Epsey</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v125">
+        <fieldValue resource="#v133"/>
+        <text>Epsey</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Surname">
+      <label>SPOUSE_NAME_SURN</label>
+      <value type="http://gedcomx.org/Original" id="v134">
+        <text>Halls</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v126">
+        <fieldValue resource="#v134"/>
+        <text>Halls</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/UNIQUE_IDENTIFIER">
+      <label>UNIQUE_IDENTIFIER</label>
+      <value type="http://gedcomx.org/Original" id="v135">
+        <text>30075408</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/IMAGE_ID">
+      <label>IMAGE_ID</label>
+      <value type="http://gedcomx.org/Original" id="v136">
+        <text>dgs:004025604.004025604_01074</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/FOLDER_IMAGE_SEQ">
+      <label>FOLDER_IMAGE_SEQ</label>
+      <value type="http://gedcomx.org/Original" id="v137">
+        <text>1074</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/FOLDER">
+      <label>FOLDER</label>
+      <value type="http://gedcomx.org/Original" id="v138">
+        <text>004025604</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/AGE_IN_YEARS">
+      <label>AGE_IN_YEARS</label>
+      <value type="http://gedcomx.org/Original" id="v139">
+        <text>60</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/BATCH_ID">
+      <label>BATCH_ID</label>
+      <value type="http://gedcomx.org/Original" id="v140">
+        <text>250786</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/BATCH_LOCALITY">
+      <label>BATCH_LOCALITY</label>
+      <value type="http://gedcomx.org/Original" id="v141">
+        <text>Alabama, United States</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/DEATH_AGE_ORIG">
+      <label>DEATH_AGE_ORIG</label>
+      <value type="http://gedcomx.org/Original" id="v142">
+        <text>60y</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/DEATH_YEAR">
+      <label>DEATH_YEAR</label>
+      <value type="http://gedcomx.org/Original" id="v143">
+        <text>1912</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/DIGITAL_GS_NUMBER">
+      <label>DIGITAL_GS_NUMBER</label>
+      <value type="http://gedcomx.org/Original" id="v144">
+        <text>4025604</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/ESTIMATED_BIRTH_YEAR">
+      <label>ESTIMATED_BIRTH_YEAR</label>
+      <value type="http://gedcomx.org/Original" id="v145">
+        <text>1852</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/FILM_NUMBER">
+      <label>FILM_NUMBER</label>
+      <value type="http://gedcomx.org/Original" id="v146">
+        <text>1894088</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/IMAGE_NBR">
+      <label>IMAGE_NBR</label>
+      <value type="http://gedcomx.org/Original" id="v147">
+        <text>1074</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/NOTE_DEATH_DATE">
+      <label>NOTE_DEATH_DATE</label>
+      <value type="http://gedcomx.org/Original" id="v148">
+        <text>Coffin sale date.</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/NOTE_DEATH_PLACE">
+      <label>NOTE_DEATH_PLACE</label>
+      <value type="http://gedcomx.org/Original" id="v149">
+        <text>Health Officer statement.</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/PACKET_LTR">
+      <label>PACKET_LTR</label>
+      <value type="http://gedcomx.org/Original" id="v150">
+        <text>A</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/REC_NBR">
+      <label>REC_NBR</label>
+      <value type="http://gedcomx.org/Original" id="v151">
+        <text>1052</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/RECORD_GROUP">
+      <label>RECORD_GROUP</label>
+      <value type="http://gedcomx.org/Original" id="v152">
+        <text>Alabama Deaths</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/REF_ID">
+      <label>REF_ID</label>
+      <value type="http://gedcomx.org/Original" id="v153">
+        <text>cn 475</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/UDE_BATCH_NUMBER">
+      <label>UDE_BATCH_NUMBER</label>
+      <value type="http://gedcomx.org/Original" id="v154">
+        <text>B01846-4</text>
+      </value>
+    </field>
+  </gx:record>
+  <gx:record description="#s11" id="r_113318934">
+    <person principal="true" id="p_7">
+      <identifier type="http://gedcomx.org/Persistent">http://familysearch.org/pal:/MM9.1.1/JDDL-FX3</identifier>
+      <gender type="http://gedcomx.org/Female">
+        <fieldValue resource="#v158"/>
+      </gender>
+      <name type="http://gedcomx.org/BirthName">
+        <nameForm>
+          <fullText>Susan Hutton</fullText>
+          <part type="http://gedcomx.org/Given" value="Susan">
+            <fieldValue resource="#v156"/>
+          </part>
+          <part type="http://gedcomx.org/Surname" value="Hutton">
+            <fieldValue resource="#v157"/>
+          </part>
+          <fieldValue resource="#v155"/>
+        </nameForm>
+      </name>
+      <fact primary="true" type="http://gedcomx.org/Death">
+        <date>
+          <original>05 Jun 1912</original>
+          <fieldValue resource="#v159"/>
+        </date>
+        <place>
+          <original>Greene Co, Alabama</original>
+          <fieldValue resource="#v160"/>
+        </place>
+      </fact>
+    </person>
+    <sourceDescription about="http://familysearch.org/pal:/MM9.1.2/MQKT-1Y5" resourceType="http://gedcomx.org/Record" id="s11">
+      <componentOf description="#s12"/>
+      <identifier type="http://gedcomx.org/Persistent">http://familysearch.org/pal:/MM9.1.2/MQKT-1Y5</identifier>
+      <identifier>http://familysearch.org/externalId/easy/record_id/30075409</identifier>
+      <created>2010-03-18T18:00:00-06:00</created>
+      <modified>2011-09-09T18:00:00-06:00</modified>
+      <coverage>
+        <recordType>http://gedcomx.org/Death</recordType>
+        <spatial>
+          <original>Greene Co, Alabama</original>
+        </spatial>
+        <temporal>
+          <original>05 Jun 1912</original>
+        </temporal>
+      </coverage>
+    </sourceDescription>
+    <sourceDescription about="https://familysearch.org/collections/1307888" resourceType="http://gedcomx.org/Collection" id="s12">
+      <identifier type="http://gedcomx.org/Primary">https://familysearch.org/collections/1307888</identifier>
+    </sourceDescription>
+    <field type="http://gedcomx.org/Gender">
+      <label>SEX_CODE_STD</label>
+      <value type="http://gedcomx.org/Original" id="v161">
+        <text>F</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v158">
+        <fieldValue resource="#v161"/>
+        <text>Female</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Name">
+      <label>PR_NAME</label>
+      <value type="http://gedcomx.org/Original" id="v162">
+        <text>Susan/Hutton</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v155">
+        <fieldValue resource="#v162"/>
+        <text>Susan Hutton</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Given">
+      <label>PR_NAME_GN</label>
+      <value type="http://gedcomx.org/Original" id="v163">
+        <text>Susan</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v156">
+        <fieldValue resource="#v163"/>
+        <text>Susan</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Surname">
+      <label>PR_NAME_SURN</label>
+      <value type="http://gedcomx.org/Original" id="v164">
+        <text>Hutton</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v157">
+        <fieldValue resource="#v164"/>
+        <text>Hutton</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Date">
+      <label>DEATH_DATE_STD</label>
+      <value type="http://gedcomx.org/Original" id="v165">
+        <text>5 Jun 1912</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v159">
+        <fieldValue resource="#v165"/>
+        <text>05 Jun 1912</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Place">
+      <label>DEATH_PLACE</label>
+      <value type="http://gedcomx.org/Original" id="v160">
+        <text>Greene Co, Alabama</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/UNIQUE_IDENTIFIER">
+      <label>UNIQUE_IDENTIFIER</label>
+      <value type="http://gedcomx.org/Original" id="v166">
+        <text>30075409</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/IMAGE_ID">
+      <label>IMAGE_ID</label>
+      <value type="http://gedcomx.org/Original" id="v167">
+        <text>dgs:004025604.004025604_01075</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/FOLDER_IMAGE_SEQ">
+      <label>FOLDER_IMAGE_SEQ</label>
+      <value type="http://gedcomx.org/Original" id="v168">
+        <text>1075</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/FOLDER">
+      <label>FOLDER</label>
+      <value type="http://gedcomx.org/Original" id="v169">
+        <text>004025604</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/AGE_IN_YEARS">
+      <label>AGE_IN_YEARS</label>
+      <value type="http://gedcomx.org/Original" id="v170">
+        <text>93</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/BATCH_ID">
+      <label>BATCH_ID</label>
+      <value type="http://gedcomx.org/Original" id="v171">
+        <text>250786</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/BATCH_LOCALITY">
+      <label>BATCH_LOCALITY</label>
+      <value type="http://gedcomx.org/Original" id="v172">
+        <text>Alabama, United States</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/DEATH_AGE_ORIG">
+      <label>DEATH_AGE_ORIG</label>
+      <value type="http://gedcomx.org/Original" id="v173">
+        <text>About 93</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/DEATH_YEAR">
+      <label>DEATH_YEAR</label>
+      <value type="http://gedcomx.org/Original" id="v174">
+        <text>1912</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/DIGITAL_GS_NUMBER">
+      <label>DIGITAL_GS_NUMBER</label>
+      <value type="http://gedcomx.org/Original" id="v175">
+        <text>4025604</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/ESTIMATED_BIRTH_YEAR">
+      <label>ESTIMATED_BIRTH_YEAR</label>
+      <value type="http://gedcomx.org/Original" id="v176">
+        <text>1819</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/FILM_NUMBER">
+      <label>FILM_NUMBER</label>
+      <value type="http://gedcomx.org/Original" id="v177">
+        <text>1894088</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/IMAGE_NBR">
+      <label>IMAGE_NBR</label>
+      <value type="http://gedcomx.org/Original" id="v178">
+        <text>1075</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/NOTE_DEATH_DATE">
+      <label>NOTE_DEATH_DATE</label>
+      <value type="http://gedcomx.org/Original" id="v179">
+        <text>Coffin sale date.</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/NOTE_DEATH_PLACE">
+      <label>NOTE_DEATH_PLACE</label>
+      <value type="http://gedcomx.org/Original" id="v180">
+        <text>Health Officer statement.</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/PACKET_LTR">
+      <label>PACKET_LTR</label>
+      <value type="http://gedcomx.org/Original" id="v181">
+        <text>A</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/REC_NBR">
+      <label>REC_NBR</label>
+      <value type="http://gedcomx.org/Original" id="v182">
+        <text>1053</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/RECORD_GROUP">
+      <label>RECORD_GROUP</label>
+      <value type="http://gedcomx.org/Original" id="v183">
+        <text>Alabama Deaths</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/REF_ID">
+      <label>REF_ID</label>
+      <value type="http://gedcomx.org/Original" id="v184">
+        <text>cn 476</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/UDE_BATCH_NUMBER">
+      <label>UDE_BATCH_NUMBER</label>
+      <value type="http://gedcomx.org/Original" id="v185">
+        <text>B01846-4</text>
+      </value>
+    </field>
+  </gx:record>
+  <gx:record description="#s13" id="r_113318935">
+    <person principal="true" id="p_8">
+      <identifier type="http://gedcomx.org/Persistent">http://familysearch.org/pal:/MM9.1.1/JDDL-5YM</identifier>
+      <gender type="http://gedcomx.org/Female">
+        <fieldValue resource="#v189"/>
+      </gender>
+      <name type="http://gedcomx.org/BirthName">
+        <nameForm>
+          <fullText>Maruria Hammets</fullText>
+          <part type="http://gedcomx.org/Given" value="Maruria">
+            <fieldValue resource="#v187"/>
+          </part>
+          <part type="http://gedcomx.org/Surname" value="Hammets">
+            <fieldValue resource="#v188"/>
+          </part>
+          <fieldValue resource="#v186"/>
+        </nameForm>
+      </name>
+      <fact primary="true" type="http://gedcomx.org/Death">
+        <date>
+          <original>05 Apr 1912</original>
+          <fieldValue resource="#v190"/>
+        </date>
+        <place>
+          <original>Gadsden, Etowah, Alabama</original>
+          <fieldValue resource="#v191"/>
+        </place>
+      </fact>
+    </person>
+    <person id="p_9">
+      <identifier type="http://gedcomx.org/Persistent">http://familysearch.org/pal:/MM9.1.1/JDDL-5Y9</identifier>
+      <gender type="http://gedcomx.org/Male"/>
+      <name type="http://gedcomx.org/BirthName">
+        <nameForm>
+          <fullText>Wessly Man</fullText>
+          <part type="http://gedcomx.org/Given" value="Wessly">
+            <fieldValue resource="#v193"/>
+          </part>
+          <part type="http://gedcomx.org/Surname" value="Man">
+            <fieldValue resource="#v194"/>
+          </part>
+          <fieldValue resource="#v192"/>
+        </nameForm>
+      </name>
+    </person>
+    <person id="p_10">
+      <identifier type="http://gedcomx.org/Persistent">http://familysearch.org/pal:/MM9.1.1/JDDL-5YS</identifier>
+      <gender type="http://gedcomx.org/Female"/>
+      <name type="http://gedcomx.org/BirthName">
+        <nameForm>
+          <fullText>Man</fullText>
+          <part type="http://gedcomx.org/Surname" value="Man">
+            <fieldValue resource="#v196"/>
+          </part>
+          <fieldValue resource="#v195"/>
+        </nameForm>
+      </name>
+    </person>
+    <relationship type="http://gedcomx.org/ParentChild">
+      <person1 resource="#p_9"/>
+      <person2 resource="#p_8"/>
+    </relationship>
+    <relationship type="http://gedcomx.org/ParentChild">
+      <person1 resource="#p_10"/>
+      <person2 resource="#p_8"/>
+    </relationship>
+    <relationship type="http://gedcomx.org/Couple">
+      <person1 resource="#p_9"/>
+      <person2 resource="#p_10"/>
+    </relationship>
+    <sourceDescription about="http://familysearch.org/pal:/MM9.1.2/MQKT-1YR" resourceType="http://gedcomx.org/Record" id="s13">
+      <componentOf description="#s14"/>
+      <identifier type="http://gedcomx.org/Persistent">http://familysearch.org/pal:/MM9.1.2/MQKT-1YR</identifier>
+      <identifier>http://familysearch.org/externalId/easy/record_id/30075930</identifier>
+      <created>2010-03-18T18:00:00-06:00</created>
+      <modified>2011-09-09T18:00:00-06:00</modified>
+      <coverage>
+        <recordType>http://gedcomx.org/Death</recordType>
+        <spatial>
+          <original>Gadsden, Etowah, Alabama</original>
+        </spatial>
+        <temporal>
+          <original>05 Apr 1912</original>
+        </temporal>
+      </coverage>
+    </sourceDescription>
+    <sourceDescription about="https://familysearch.org/collections/1307888" resourceType="http://gedcomx.org/Collection" id="s14">
+      <identifier type="http://gedcomx.org/Primary">https://familysearch.org/collections/1307888</identifier>
+    </sourceDescription>
+    <field type="http://gedcomx.org/Gender">
+      <label>SEX_CODE_STD</label>
+      <value type="http://gedcomx.org/Original" id="v197">
+        <text>F</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v189">
+        <fieldValue resource="#v197"/>
+        <text>Female</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Name">
+      <label>PR_NAME</label>
+      <value type="http://gedcomx.org/Original" id="v198">
+        <text>Maruria/Hammets</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v186">
+        <fieldValue resource="#v198"/>
+        <text>Maruria Hammets</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Given">
+      <label>PR_NAME_GN</label>
+      <value type="http://gedcomx.org/Original" id="v199">
+        <text>Maruria</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v187">
+        <fieldValue resource="#v199"/>
+        <text>Maruria</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Surname">
+      <label>PR_NAME_SURN</label>
+      <value type="http://gedcomx.org/Original" id="v200">
+        <text>Hammets</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v188">
+        <fieldValue resource="#v200"/>
+        <text>Hammets</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Date">
+      <label>DEATH_DATE_STD</label>
+      <value type="http://gedcomx.org/Original" id="v201">
+        <text>5 Apr 1912</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v190">
+        <fieldValue resource="#v201"/>
+        <text>05 Apr 1912</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Place">
+      <label>DEATH_PLACE</label>
+      <value type="http://gedcomx.org/Original" id="v191">
+        <text>Gadsden, Etowah, Alabama</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Name">
+      <label>FTHR_NAME</label>
+      <value type="http://gedcomx.org/Original" id="v202">
+        <text>Wessly/Man</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v192">
+        <fieldValue resource="#v202"/>
+        <text>Wessly Man</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Given">
+      <label>FTHR_NAME_GN</label>
+      <value type="http://gedcomx.org/Original" id="v203">
+        <text>Wessly</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v193">
+        <fieldValue resource="#v203"/>
+        <text>Wessly</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Surname">
+      <label>FTHR_NAME_SURN</label>
+      <value type="http://gedcomx.org/Original" id="v204">
+        <text>Man</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v194">
+        <fieldValue resource="#v204"/>
+        <text>Man</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Name">
+      <label>MTHR_NAME</label>
+      <value type="http://gedcomx.org/Original" id="v205">
+        <text>/Man</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v195">
+        <fieldValue resource="#v205"/>
+        <text>Man</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Surname">
+      <label>MTHR_NAME_SURN</label>
+      <value type="http://gedcomx.org/Original" id="v206">
+        <text>Man</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v196">
+        <fieldValue resource="#v206"/>
+        <text>Man</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/UNIQUE_IDENTIFIER">
+      <label>UNIQUE_IDENTIFIER</label>
+      <value type="http://gedcomx.org/Original" id="v207">
+        <text>30075930</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/IMAGE_ID">
+      <label>IMAGE_ID</label>
+      <value type="http://gedcomx.org/Original" id="v208">
+        <text>dgs:004025604.004025604_00475</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/FOLDER_IMAGE_SEQ">
+      <label>FOLDER_IMAGE_SEQ</label>
+      <value type="http://gedcomx.org/Original" id="v209">
+        <text>475</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/FOLDER">
+      <label>FOLDER</label>
+      <value type="http://gedcomx.org/Original" id="v210">
+        <text>004025604</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/AGE_IN_YEARS">
+      <label>AGE_IN_YEARS</label>
+      <value type="http://gedcomx.org/Original" id="v211">
+        <text>30</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/BATCH_ID">
+      <label>BATCH_ID</label>
+      <value type="http://gedcomx.org/Original" id="v212">
+        <text>250786</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/BATCH_LOCALITY">
+      <label>BATCH_LOCALITY</label>
+      <value type="http://gedcomx.org/Original" id="v213">
+        <text>Alabama, United States</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/DEATH_AGE_ORIG">
+      <label>DEATH_AGE_ORIG</label>
+      <value type="http://gedcomx.org/Original" id="v214">
+        <text>30y 3m 20d</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/DEATH_YEAR">
+      <label>DEATH_YEAR</label>
+      <value type="http://gedcomx.org/Original" id="v215">
+        <text>1912</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/DIGITAL_GS_NUMBER">
+      <label>DIGITAL_GS_NUMBER</label>
+      <value type="http://gedcomx.org/Original" id="v216">
+        <text>4025604</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/ESTIMATED_BIRTH_YEAR">
+      <label>ESTIMATED_BIRTH_YEAR</label>
+      <value type="http://gedcomx.org/Original" id="v217">
+        <text>1882</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/FILM_NUMBER">
+      <label>FILM_NUMBER</label>
+      <value type="http://gedcomx.org/Original" id="v218">
+        <text>1894088</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/IMAGE_NBR">
+      <label>IMAGE_NBR</label>
+      <value type="http://gedcomx.org/Original" id="v219">
+        <text>475</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/PACKET_LTR">
+      <label>PACKET_LTR</label>
+      <value type="http://gedcomx.org/Original" id="v220">
+        <text>A</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/REC_NBR">
+      <label>REC_NBR</label>
+      <value type="http://gedcomx.org/Original" id="v221">
+        <text>464</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/RECORD_GROUP">
+      <label>RECORD_GROUP</label>
+      <value type="http://gedcomx.org/Original" id="v222">
+        <text>Alabama Deaths</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/REF_ID">
+      <label>REF_ID</label>
+      <value type="http://gedcomx.org/Original" id="v223">
+        <text>cn 476</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/UDE_BATCH_NUMBER">
+      <label>UDE_BATCH_NUMBER</label>
+      <value type="http://gedcomx.org/Original" id="v224">
+        <text>B01846-4</text>
+      </value>
+    </field>
+  </gx:record>
+  <gx:record description="#s15" id="r_113318936">
+    <person principal="true" id="p_11">
+      <identifier type="http://gedcomx.org/Persistent">http://familysearch.org/pal:/MM9.1.1/JDDL-FXQ</identifier>
+      <gender type="http://gedcomx.org/Male">
+        <fieldValue resource="#v228"/>
+      </gender>
+      <name type="http://gedcomx.org/BirthName">
+        <nameForm>
+          <fullText>John William Head</fullText>
+          <part type="http://gedcomx.org/Given" value="John William">
+            <fieldValue resource="#v226"/>
+          </part>
+          <part type="http://gedcomx.org/Surname" value="Head">
+            <fieldValue resource="#v227"/>
+          </part>
+          <fieldValue resource="#v225"/>
+        </nameForm>
+      </name>
+      <fact primary="true" type="http://gedcomx.org/Death">
+        <date>
+          <original>11 Oct 1912</original>
+          <fieldValue resource="#v229"/>
+        </date>
+        <place>
+          <original>Clinton, Greene, Alabama</original>
+          <fieldValue resource="#v230"/>
+        </place>
+      </fact>
+    </person>
+    <person id="p_12">
+      <identifier type="http://gedcomx.org/Persistent">http://familysearch.org/pal:/MM9.1.1/JDDL-FX7</identifier>
+      <gender type="http://gedcomx.org/Male"/>
+      <name type="http://gedcomx.org/BirthName">
+        <nameForm>
+          <fullText>James B. Head</fullText>
+          <part type="http://gedcomx.org/Given" value="James B.">
+            <fieldValue resource="#v232"/>
+          </part>
+          <part type="http://gedcomx.org/Surname" value="Head">
+            <fieldValue resource="#v233"/>
+          </part>
+          <fieldValue resource="#v231"/>
+        </nameForm>
+      </name>
+    </person>
+    <person id="p_13">
+      <identifier type="http://gedcomx.org/Persistent">http://familysearch.org/pal:/MM9.1.1/JDDL-FXW</identifier>
+      <gender type="http://gedcomx.org/Female"/>
+      <name type="http://gedcomx.org/BirthName">
+        <nameForm>
+          <fullText>Margaret Rose Head</fullText>
+          <part type="http://gedcomx.org/Given" value="Margaret Rose">
+            <fieldValue resource="#v235"/>
+          </part>
+          <part type="http://gedcomx.org/Surname" value="Head">
+            <fieldValue resource="#v236"/>
+          </part>
+          <fieldValue resource="#v234"/>
+        </nameForm>
+      </name>
+    </person>
+    <relationship type="http://gedcomx.org/ParentChild">
+      <person1 resource="#p_12"/>
+      <person2 resource="#p_11"/>
+    </relationship>
+    <relationship type="http://gedcomx.org/ParentChild">
+      <person1 resource="#p_13"/>
+      <person2 resource="#p_11"/>
+    </relationship>
+    <relationship type="http://gedcomx.org/Couple">
+      <person1 resource="#p_12"/>
+      <person2 resource="#p_13"/>
+    </relationship>
+    <sourceDescription about="http://familysearch.org/pal:/MM9.1.2/MQKT-1YT" resourceType="http://gedcomx.org/Record" id="s15">
+      <componentOf description="#s16"/>
+      <identifier type="http://gedcomx.org/Persistent">http://familysearch.org/pal:/MM9.1.2/MQKT-1YT</identifier>
+      <identifier>http://familysearch.org/externalId/easy/record_id/30075410</identifier>
+      <created>2010-03-18T18:00:00-06:00</created>
+      <modified>2011-09-09T18:00:00-06:00</modified>
+      <coverage>
+        <recordType>http://gedcomx.org/Death</recordType>
+        <spatial>
+          <original>Clinton, Greene, Alabama</original>
+        </spatial>
+        <temporal>
+          <original>11 Oct 1912</original>
+        </temporal>
+      </coverage>
+    </sourceDescription>
+    <sourceDescription about="https://familysearch.org/collections/1307888" resourceType="http://gedcomx.org/Collection" id="s16">
+      <identifier type="http://gedcomx.org/Primary">https://familysearch.org/collections/1307888</identifier>
+    </sourceDescription>
+    <field type="http://gedcomx.org/Gender">
+      <label>SEX_CODE_STD</label>
+      <value type="http://gedcomx.org/Original" id="v237">
+        <text>M</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v228">
+        <fieldValue resource="#v237"/>
+        <text>Male</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Name">
+      <label>PR_NAME</label>
+      <value type="http://gedcomx.org/Original" id="v238">
+        <text>John William/Head</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v225">
+        <fieldValue resource="#v238"/>
+        <text>John William Head</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Given">
+      <label>PR_NAME_GN</label>
+      <value type="http://gedcomx.org/Original" id="v239">
+        <text>John William</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v226">
+        <fieldValue resource="#v239"/>
+        <text>John William</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Surname">
+      <label>PR_NAME_SURN</label>
+      <value type="http://gedcomx.org/Original" id="v240">
+        <text>Head</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v227">
+        <fieldValue resource="#v240"/>
+        <text>Head</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Date">
+      <label>DEATH_DATE_STD</label>
+      <value type="http://gedcomx.org/Original" id="v241">
+        <text>11 Oct 1912</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v229">
+        <fieldValue resource="#v241"/>
+        <text>11 Oct 1912</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Place">
+      <label>DEATH_PLACE</label>
+      <value type="http://gedcomx.org/Original" id="v230">
+        <text>Clinton, Greene, Alabama</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Name">
+      <label>FTHR_NAME</label>
+      <value type="http://gedcomx.org/Original" id="v242">
+        <text>James B./Head</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v231">
+        <fieldValue resource="#v242"/>
+        <text>James B. Head</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Given">
+      <label>FTHR_NAME_GN</label>
+      <value type="http://gedcomx.org/Original" id="v243">
+        <text>James B.</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v232">
+        <fieldValue resource="#v243"/>
+        <text>James B.</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Surname">
+      <label>FTHR_NAME_SURN</label>
+      <value type="http://gedcomx.org/Original" id="v244">
+        <text>Head</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v233">
+        <fieldValue resource="#v244"/>
+        <text>Head</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Name">
+      <label>MTHR_NAME</label>
+      <value type="http://gedcomx.org/Original" id="v245">
+        <text>Margaret Rose/Head</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v234">
+        <fieldValue resource="#v245"/>
+        <text>Margaret Rose Head</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Given">
+      <label>MTHR_NAME_GN</label>
+      <value type="http://gedcomx.org/Original" id="v246">
+        <text>Margaret Rose</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v235">
+        <fieldValue resource="#v246"/>
+        <text>Margaret Rose</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Surname">
+      <label>MTHR_NAME_SURN</label>
+      <value type="http://gedcomx.org/Original" id="v247">
+        <text>Head</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v236">
+        <fieldValue resource="#v247"/>
+        <text>Head</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/UNIQUE_IDENTIFIER">
+      <label>UNIQUE_IDENTIFIER</label>
+      <value type="http://gedcomx.org/Original" id="v248">
+        <text>30075410</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/IMAGE_ID">
+      <label>IMAGE_ID</label>
+      <value type="http://gedcomx.org/Original" id="v249">
+        <text>dgs:004025604.004025604_01076</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/FOLDER_IMAGE_SEQ">
+      <label>FOLDER_IMAGE_SEQ</label>
+      <value type="http://gedcomx.org/Original" id="v250">
+        <text>1076</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/FOLDER">
+      <label>FOLDER</label>
+      <value type="http://gedcomx.org/Original" id="v251">
+        <text>004025604</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/AGE_IN_YEARS">
+      <label>AGE_IN_YEARS</label>
+      <value type="http://gedcomx.org/Original" id="v252">
+        <text>7</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/BATCH_ID">
+      <label>BATCH_ID</label>
+      <value type="http://gedcomx.org/Original" id="v253">
+        <text>250786</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/BATCH_LOCALITY">
+      <label>BATCH_LOCALITY</label>
+      <value type="http://gedcomx.org/Original" id="v254">
+        <text>Alabama, United States</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/DEATH_AGE_ORIG">
+      <label>DEATH_AGE_ORIG</label>
+      <value type="http://gedcomx.org/Original" id="v255">
+        <text>7y 7m 8d</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/DEATH_YEAR">
+      <label>DEATH_YEAR</label>
+      <value type="http://gedcomx.org/Original" id="v256">
+        <text>1912</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/DIGITAL_GS_NUMBER">
+      <label>DIGITAL_GS_NUMBER</label>
+      <value type="http://gedcomx.org/Original" id="v257">
+        <text>4025604</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/ESTIMATED_BIRTH_YEAR">
+      <label>ESTIMATED_BIRTH_YEAR</label>
+      <value type="http://gedcomx.org/Original" id="v258">
+        <text>1905</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/FILM_NUMBER">
+      <label>FILM_NUMBER</label>
+      <value type="http://gedcomx.org/Original" id="v259">
+        <text>1894088</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/IMAGE_NBR">
+      <label>IMAGE_NBR</label>
+      <value type="http://gedcomx.org/Original" id="v260">
+        <text>1076</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/PACKET_LTR">
+      <label>PACKET_LTR</label>
+      <value type="http://gedcomx.org/Original" id="v261">
+        <text>A</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/REC_NBR">
+      <label>REC_NBR</label>
+      <value type="http://gedcomx.org/Original" id="v262">
+        <text>1054</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/RECORD_GROUP">
+      <label>RECORD_GROUP</label>
+      <value type="http://gedcomx.org/Original" id="v263">
+        <text>Alabama Deaths</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/REF_ID">
+      <label>REF_ID</label>
+      <value type="http://gedcomx.org/Original" id="v264">
+        <text>cn 477</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/UDE_BATCH_NUMBER">
+      <label>UDE_BATCH_NUMBER</label>
+      <value type="http://gedcomx.org/Original" id="v265">
+        <text>B01846-4</text>
+      </value>
+    </field>
+  </gx:record>
+  <gx:record description="#s17" id="r_113318937">
+    <person principal="true" id="p_14">
+      <identifier type="http://gedcomx.org/Persistent">http://familysearch.org/pal:/MM9.1.1/JDDL-5Y3</identifier>
+      <gender type="http://gedcomx.org/Female">
+        <fieldValue resource="#v269"/>
+      </gender>
+      <name type="http://gedcomx.org/BirthName">
+        <nameForm>
+          <fullText>Ala Haley</fullText>
+          <part type="http://gedcomx.org/Given" value="Ala">
+            <fieldValue resource="#v267"/>
+          </part>
+          <part type="http://gedcomx.org/Surname" value="Haley">
+            <fieldValue resource="#v268"/>
+          </part>
+          <fieldValue resource="#v266"/>
+        </nameForm>
+      </name>
+      <fact primary="true" type="http://gedcomx.org/Death">
+        <date>
+          <original>18 Sep 1912</original>
+          <fieldValue resource="#v270"/>
+        </date>
+        <place>
+          <original>Gadsden, Etowah, Alabama</original>
+          <fieldValue resource="#v271"/>
+        </place>
+      </fact>
+    </person>
+    <person id="p_15">
+      <identifier type="http://gedcomx.org/Persistent">http://familysearch.org/pal:/MM9.1.1/JDDL-5YQ</identifier>
+      <gender type="http://gedcomx.org/Male"/>
+      <name type="http://gedcomx.org/BirthName">
+        <nameForm>
+          <fullText>John Haley</fullText>
+          <part type="http://gedcomx.org/Given" value="John">
+            <fieldValue resource="#v273"/>
+          </part>
+          <part type="http://gedcomx.org/Surname" value="Haley">
+            <fieldValue resource="#v274"/>
+          </part>
+          <fieldValue resource="#v272"/>
+        </nameForm>
+      </name>
+    </person>
+    <relationship type="http://gedcomx.org/ParentChild">
+      <person1 resource="#p_15"/>
+      <person2 resource="#p_14"/>
+    </relationship>
+    <sourceDescription about="http://familysearch.org/pal:/MM9.1.2/MQKT-1YY" resourceType="http://gedcomx.org/Record" id="s17">
+      <componentOf description="#s18"/>
+      <identifier type="http://gedcomx.org/Persistent">http://familysearch.org/pal:/MM9.1.2/MQKT-1YY</identifier>
+      <identifier>http://familysearch.org/externalId/easy/record_id/30075931</identifier>
+      <created>2010-03-18T18:00:00-06:00</created>
+      <modified>2011-09-09T18:00:00-06:00</modified>
+      <coverage>
+        <recordType>http://gedcomx.org/Death</recordType>
+        <spatial>
+          <original>Gadsden, Etowah, Alabama</original>
+        </spatial>
+        <temporal>
+          <original>18 Sep 1912</original>
+        </temporal>
+      </coverage>
+    </sourceDescription>
+    <sourceDescription about="https://familysearch.org/collections/1307888" resourceType="http://gedcomx.org/Collection" id="s18">
+      <identifier type="http://gedcomx.org/Primary">https://familysearch.org/collections/1307888</identifier>
+    </sourceDescription>
+    <field type="http://gedcomx.org/Gender">
+      <label>SEX_CODE_STD</label>
+      <value type="http://gedcomx.org/Original" id="v275">
+        <text>F</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v269">
+        <fieldValue resource="#v275"/>
+        <text>Female</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Name">
+      <label>PR_NAME</label>
+      <value type="http://gedcomx.org/Original" id="v276">
+        <text>Ala/Haley</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v266">
+        <fieldValue resource="#v276"/>
+        <text>Ala Haley</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Given">
+      <label>PR_NAME_GN</label>
+      <value type="http://gedcomx.org/Original" id="v277">
+        <text>Ala</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v267">
+        <fieldValue resource="#v277"/>
+        <text>Ala</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Surname">
+      <label>PR_NAME_SURN</label>
+      <value type="http://gedcomx.org/Original" id="v278">
+        <text>Haley</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v268">
+        <fieldValue resource="#v278"/>
+        <text>Haley</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Date">
+      <label>DEATH_DATE_STD</label>
+      <value type="http://gedcomx.org/Original" id="v279">
+        <text>18 Sep 1912</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v270">
+        <fieldValue resource="#v279"/>
+        <text>18 Sep 1912</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Place">
+      <label>DEATH_PLACE</label>
+      <value type="http://gedcomx.org/Original" id="v271">
+        <text>Gadsden, Etowah, Alabama</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Name">
+      <label>FTHR_NAME</label>
+      <value type="http://gedcomx.org/Original" id="v280">
+        <text>John/Haley</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v272">
+        <fieldValue resource="#v280"/>
+        <text>John Haley</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Given">
+      <label>FTHR_NAME_GN</label>
+      <value type="http://gedcomx.org/Original" id="v281">
+        <text>John</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v273">
+        <fieldValue resource="#v281"/>
+        <text>John</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Surname">
+      <label>FTHR_NAME_SURN</label>
+      <value type="http://gedcomx.org/Original" id="v282">
+        <text>Haley</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v274">
+        <fieldValue resource="#v282"/>
+        <text>Haley</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/UNIQUE_IDENTIFIER">
+      <label>UNIQUE_IDENTIFIER</label>
+      <value type="http://gedcomx.org/Original" id="v283">
+        <text>30075931</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/IMAGE_ID">
+      <label>IMAGE_ID</label>
+      <value type="http://gedcomx.org/Original" id="v284">
+        <text>dgs:004025604.004025604_00476</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/FOLDER_IMAGE_SEQ">
+      <label>FOLDER_IMAGE_SEQ</label>
+      <value type="http://gedcomx.org/Original" id="v285">
+        <text>476</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/FOLDER">
+      <label>FOLDER</label>
+      <value type="http://gedcomx.org/Original" id="v286">
+        <text>004025604</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/AGE_IN_YEARS">
+      <label>AGE_IN_YEARS</label>
+      <value type="http://gedcomx.org/Original" id="v287">
+        <text>5</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/BATCH_ID">
+      <label>BATCH_ID</label>
+      <value type="http://gedcomx.org/Original" id="v288">
+        <text>250786</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/BATCH_LOCALITY">
+      <label>BATCH_LOCALITY</label>
+      <value type="http://gedcomx.org/Original" id="v289">
+        <text>Alabama, United States</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/DEATH_AGE_ORIG">
+      <label>DEATH_AGE_ORIG</label>
+      <value type="http://gedcomx.org/Original" id="v290">
+        <text>5y</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/DEATH_YEAR">
+      <label>DEATH_YEAR</label>
+      <value type="http://gedcomx.org/Original" id="v291">
+        <text>1912</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/DIGITAL_GS_NUMBER">
+      <label>DIGITAL_GS_NUMBER</label>
+      <value type="http://gedcomx.org/Original" id="v292">
+        <text>4025604</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/ESTIMATED_BIRTH_YEAR">
+      <label>ESTIMATED_BIRTH_YEAR</label>
+      <value type="http://gedcomx.org/Original" id="v293">
+        <text>1907</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/FILM_NUMBER">
+      <label>FILM_NUMBER</label>
+      <value type="http://gedcomx.org/Original" id="v294">
+        <text>1894088</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/IMAGE_NBR">
+      <label>IMAGE_NBR</label>
+      <value type="http://gedcomx.org/Original" id="v295">
+        <text>476</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/PACKET_LTR">
+      <label>PACKET_LTR</label>
+      <value type="http://gedcomx.org/Original" id="v296">
+        <text>A</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/REC_NBR">
+      <label>REC_NBR</label>
+      <value type="http://gedcomx.org/Original" id="v297">
+        <text>465</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/RECORD_GROUP">
+      <label>RECORD_GROUP</label>
+      <value type="http://gedcomx.org/Original" id="v298">
+        <text>Alabama Deaths</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/REF_ID">
+      <label>REF_ID</label>
+      <value type="http://gedcomx.org/Original" id="v299">
+        <text>cn 477</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/UDE_BATCH_NUMBER">
+      <label>UDE_BATCH_NUMBER</label>
+      <value type="http://gedcomx.org/Original" id="v300">
+        <text>B01846-4</text>
+      </value>
+    </field>
+  </gx:record>
+  <gx:record description="#s19" id="r_113318938">
+    <person principal="true" id="p_16">
+      <identifier type="http://gedcomx.org/Persistent">http://familysearch.org/pal:/MM9.1.1/JDDL-FX4</identifier>
+      <gender type="http://gedcomx.org/Female">
+        <fieldValue resource="#v304"/>
+      </gender>
+      <name type="http://gedcomx.org/BirthName">
+        <nameForm>
+          <fullText>Nancy Henderson</fullText>
+          <part type="http://gedcomx.org/Given" value="Nancy">
+            <fieldValue resource="#v302"/>
+          </part>
+          <part type="http://gedcomx.org/Surname" value="Henderson">
+            <fieldValue resource="#v303"/>
+          </part>
+          <fieldValue resource="#v301"/>
+        </nameForm>
+      </name>
+      <fact primary="true" type="http://gedcomx.org/Death">
+        <date>
+          <original>27 Jul 1912</original>
+          <fieldValue resource="#v305"/>
+        </date>
+        <place>
+          <original>Eutaw, Greene, Alabama</original>
+          <fieldValue resource="#v306"/>
+        </place>
+      </fact>
+    </person>
+    <person id="p_17">
+      <identifier type="http://gedcomx.org/Persistent">http://familysearch.org/pal:/MM9.1.1/JDDL-FXH</identifier>
+      <gender type="http://gedcomx.org/Male"/>
+      <name type="http://gedcomx.org/BirthName">
+        <nameForm>
+          <fullText>Morgan Henderson</fullText>
+          <part type="http://gedcomx.org/Given" value="Morgan">
+            <fieldValue resource="#v308"/>
+          </part>
+          <part type="http://gedcomx.org/Surname" value="Henderson">
+            <fieldValue resource="#v309"/>
+          </part>
+          <fieldValue resource="#v307"/>
+        </nameForm>
+      </name>
+    </person>
+    <relationship type="http://gedcomx.org/ParentChild">
+      <person1 resource="#p_17"/>
+      <person2 resource="#p_16"/>
+    </relationship>
+    <sourceDescription about="http://familysearch.org/pal:/MM9.1.2/MQKT-1YB" resourceType="http://gedcomx.org/Record" id="s19">
+      <componentOf description="#s20"/>
+      <identifier type="http://gedcomx.org/Persistent">http://familysearch.org/pal:/MM9.1.2/MQKT-1YB</identifier>
+      <identifier>http://familysearch.org/externalId/easy/record_id/30075411</identifier>
+      <created>2010-03-18T18:00:00-06:00</created>
+      <modified>2011-09-09T18:00:00-06:00</modified>
+      <coverage>
+        <recordType>http://gedcomx.org/Death</recordType>
+        <spatial>
+          <original>Eutaw, Greene, Alabama</original>
+        </spatial>
+        <temporal>
+          <original>27 Jul 1912</original>
+        </temporal>
+      </coverage>
+    </sourceDescription>
+    <sourceDescription about="https://familysearch.org/collections/1307888" resourceType="http://gedcomx.org/Collection" id="s20">
+      <identifier type="http://gedcomx.org/Primary">https://familysearch.org/collections/1307888</identifier>
+    </sourceDescription>
+    <field type="http://gedcomx.org/Gender">
+      <label>SEX_CODE_STD</label>
+      <value type="http://gedcomx.org/Original" id="v310">
+        <text>F</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v304">
+        <fieldValue resource="#v310"/>
+        <text>Female</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Name">
+      <label>PR_NAME</label>
+      <value type="http://gedcomx.org/Original" id="v311">
+        <text>Nancy/Henderson</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v301">
+        <fieldValue resource="#v311"/>
+        <text>Nancy Henderson</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Given">
+      <label>PR_NAME_GN</label>
+      <value type="http://gedcomx.org/Original" id="v312">
+        <text>Nancy</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v302">
+        <fieldValue resource="#v312"/>
+        <text>Nancy</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Surname">
+      <label>PR_NAME_SURN</label>
+      <value type="http://gedcomx.org/Original" id="v313">
+        <text>Henderson</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v303">
+        <fieldValue resource="#v313"/>
+        <text>Henderson</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Date">
+      <label>DEATH_DATE_STD</label>
+      <value type="http://gedcomx.org/Original" id="v314">
+        <text>27 Jul 1912</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v305">
+        <fieldValue resource="#v314"/>
+        <text>27 Jul 1912</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Place">
+      <label>DEATH_PLACE</label>
+      <value type="http://gedcomx.org/Original" id="v306">
+        <text>Eutaw, Greene, Alabama</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Name">
+      <label>FTHR_NAME</label>
+      <value type="http://gedcomx.org/Original" id="v315">
+        <text>Morgan/Henderson</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v307">
+        <fieldValue resource="#v315"/>
+        <text>Morgan Henderson</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Given">
+      <label>FTHR_NAME_GN</label>
+      <value type="http://gedcomx.org/Original" id="v316">
+        <text>Morgan</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v308">
+        <fieldValue resource="#v316"/>
+        <text>Morgan</text>
+      </value>
+    </field>
+    <field type="http://gedcomx.org/Surname">
+      <label>FTHR_NAME_SURN</label>
+      <value type="http://gedcomx.org/Original" id="v317">
+        <text>Henderson</text>
+      </value>
+      <value type="http://gedcomx.org/Interpreted" id="v309">
+        <fieldValue resource="#v317"/>
+        <text>Henderson</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/UNIQUE_IDENTIFIER">
+      <label>UNIQUE_IDENTIFIER</label>
+      <value type="http://gedcomx.org/Original" id="v318">
+        <text>30075411</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/IMAGE_ID">
+      <label>IMAGE_ID</label>
+      <value type="http://gedcomx.org/Original" id="v319">
+        <text>dgs:004025604.004025604_01077</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/FOLDER_IMAGE_SEQ">
+      <label>FOLDER_IMAGE_SEQ</label>
+      <value type="http://gedcomx.org/Original" id="v320">
+        <text>1077</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/FOLDER">
+      <label>FOLDER</label>
+      <value type="http://gedcomx.org/Original" id="v321">
+        <text>004025604</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/AGE_IN_YEARS">
+      <label>AGE_IN_YEARS</label>
+      <value type="http://gedcomx.org/Original" id="v322">
+        <text>22</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/BATCH_ID">
+      <label>BATCH_ID</label>
+      <value type="http://gedcomx.org/Original" id="v323">
+        <text>250786</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/BATCH_LOCALITY">
+      <label>BATCH_LOCALITY</label>
+      <value type="http://gedcomx.org/Original" id="v324">
+        <text>Alabama, United States</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/DEATH_AGE_ORIG">
+      <label>DEATH_AGE_ORIG</label>
+      <value type="http://gedcomx.org/Original" id="v325">
+        <text>22y</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/DEATH_YEAR">
+      <label>DEATH_YEAR</label>
+      <value type="http://gedcomx.org/Original" id="v326">
+        <text>1912</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/DIGITAL_GS_NUMBER">
+      <label>DIGITAL_GS_NUMBER</label>
+      <value type="http://gedcomx.org/Original" id="v327">
+        <text>4025604</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/ESTIMATED_BIRTH_YEAR">
+      <label>ESTIMATED_BIRTH_YEAR</label>
+      <value type="http://gedcomx.org/Original" id="v328">
+        <text>1890</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/FILM_NUMBER">
+      <label>FILM_NUMBER</label>
+      <value type="http://gedcomx.org/Original" id="v329">
+        <text>1894088</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/IMAGE_NBR">
+      <label>IMAGE_NBR</label>
+      <value type="http://gedcomx.org/Original" id="v330">
+        <text>1077</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/PACKET_LTR">
+      <label>PACKET_LTR</label>
+      <value type="http://gedcomx.org/Original" id="v331">
+        <text>A</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/REC_NBR">
+      <label>REC_NBR</label>
+      <value type="http://gedcomx.org/Original" id="v332">
+        <text>1055</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/RECORD_GROUP">
+      <label>RECORD_GROUP</label>
+      <value type="http://gedcomx.org/Original" id="v333">
+        <text>Alabama Deaths</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/REF_ID">
+      <label>REF_ID</label>
+      <value type="http://gedcomx.org/Original" id="v334">
+        <text>cn 478</text>
+      </value>
+    </field>
+    <field type="https://familysearch.org/types/fact/UDE_BATCH_NUMBER">
+      <label>UDE_BATCH_NUMBER</label>
+      <value type="http://gedcomx.org/Original" id="v335">
+        <text>B01846-4</text>
+      </value>
+    </field>
+  </gx:record>
+</gx:recordSet>

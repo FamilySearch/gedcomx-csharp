@@ -14,9 +14,9 @@ namespace Gx.Records {
   ///  The GEDCOM X bulk record media types are used to exchange bulk genealogical data sets, grouped into records.
   /// </summary>
   [System.SerializableAttribute()]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://gedcomx.org/bulk/v1/",TypeName="RecordSet")]
-  [System.Xml.Serialization.SoapTypeAttribute(Namespace="http://gedcomx.org/bulk/v1/",TypeName="RecordSet")]
-  [System.Xml.Serialization.XmlRootAttribute(Namespace="http://gedcomx.org/bulk/v1/",ElementName="records")]
+  [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://gedcomx.org/v1/",TypeName="RecordSet")]
+  [System.Xml.Serialization.SoapTypeAttribute(Namespace="http://gedcomx.org/v1/",TypeName="RecordSet")]
+  [System.Xml.Serialization.XmlRootAttribute(Namespace="http://gedcomx.org/v1/",ElementName="records")]
   public partial class RecordSet : Gx.Links.HypermediaEnabledData {
 
     private string _lang;
@@ -38,7 +38,7 @@ namespace Gx.Records {
     /// <summary>
     ///  Metadata about this record set; shared among all records in the set.
     /// </summary>
-    [System.Xml.Serialization.XmlElementAttribute(ElementName="metadata",Namespace="http://gedcomx.org/bulk/v1/")]
+    [System.Xml.Serialization.XmlElementAttribute(ElementName="metadata",Namespace="http://gedcomx.org/v1/")]
     [System.Xml.Serialization.SoapElementAttribute(ElementName="metadata")]
     public Gx.Gedcomx Metadata {
       get {
@@ -51,7 +51,7 @@ namespace Gx.Records {
     /// <summary>
     ///  The records included in this genealogical data set.
     /// </summary>
-    [System.Xml.Serialization.XmlElementAttribute(ElementName="record",Namespace="http://gedcomx.org/bulk/v1/")]
+    [System.Xml.Serialization.XmlElementAttribute(ElementName="record",Namespace="http://gedcomx.org/v1/")]
     [System.Xml.Serialization.SoapElementAttribute(ElementName="record")]
     public System.Collections.Generic.List<Gx.Gedcomx> Records {
       get {

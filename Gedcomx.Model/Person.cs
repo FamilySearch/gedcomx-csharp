@@ -28,6 +28,7 @@ namespace Gx.Conclusion {
     private Gx.Conclusion.Gender _gender;
     private System.Collections.Generic.List<Gx.Conclusion.Name> _names;
     private System.Collections.Generic.List<Gx.Conclusion.Fact> _facts;
+    private System.Collections.Generic.List<Gx.Records.Field> _fields;
     private Gx.Conclusion.DisplayProperties _displayExtension;
     /// <summary>
     ///  Whether this person is the &quot;principal&quot; person extracted from the record.
@@ -156,6 +157,19 @@ namespace Gx.Conclusion {
       }
       set {
         this._facts = value;
+      }
+    }
+    /// <summary>
+    ///  The references to the record fields being used as evidence.
+    /// </summary>
+    [System.Xml.Serialization.XmlElementAttribute(ElementName="field",Namespace="http://gedcomx.org/v1/")]
+    [System.Xml.Serialization.SoapElementAttribute(ElementName="field")]
+    public System.Collections.Generic.List<Gx.Records.Field> Fields {
+      get {
+        return this._fields;
+      }
+      set {
+        this._fields = value;
       }
     }
     /// <summary>

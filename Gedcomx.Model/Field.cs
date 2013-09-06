@@ -18,9 +18,22 @@ namespace Gx.Records {
   [System.Xml.Serialization.SoapTypeAttribute(Namespace="http://gedcomx.org/v1/",TypeName="Field")]
   public partial class Field : Gx.Links.HypermediaEnabledData {
 
+    private string _fieldId;
     private string _type;
-    private string _label;
     private System.Collections.Generic.List<Gx.Records.FieldValue> _values;
+    /// <summary>
+    ///  A unique label for the field.
+    /// </summary>
+    [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="fieldId")]
+    [System.Xml.Serialization.SoapAttributeAttribute(AttributeName="fieldId")]
+    public string FieldId {
+      get {
+        return this._fieldId;
+      }
+      set {
+        this._fieldId = value;
+      }
+    }
     /// <summary>
     ///  The type of the gender.
     /// </summary>
@@ -45,19 +58,6 @@ namespace Gx.Records {
       }
       set {
         this._type = Gx.Types.FieldTypeQNameUtil.ConvertToKnownQName(value);
-      }
-    }
-    /// <summary>
-    ///  A unique label for the field.
-    /// </summary>
-    [System.Xml.Serialization.XmlElementAttribute(ElementName="label",Namespace="http://gedcomx.org/v1/")]
-    [System.Xml.Serialization.SoapElementAttribute(ElementName="label")]
-    public string Label {
-      get {
-        return this._label;
-      }
-      set {
-        this._label = value;
       }
     }
     /// <summary>

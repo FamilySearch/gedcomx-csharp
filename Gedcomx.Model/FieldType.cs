@@ -243,6 +243,151 @@ namespace Gx.Types {
     Surname,
 
     /// <summary>
+    ///  (no documentation provided)
+    /// </summary>
+    Abusua,
+
+    /// <summary>
+    ///  (no documentation provided)
+    /// </summary>
+    BatchNumber,
+
+    /// <summary>
+    ///  (no documentation provided)
+    /// </summary>
+    Caste,
+
+    /// <summary>
+    ///  (no documentation provided)
+    /// </summary>
+    Clan,
+
+    /// <summary>
+    ///  (no documentation provided)
+    /// </summary>
+    CommonLawMarriage,
+
+    /// <summary>
+    ///  (no documentation provided)
+    /// </summary>
+    Education,
+
+    /// <summary>
+    ///  (no documentation provided)
+    /// </summary>
+    Ethnicity,
+
+    /// <summary>
+    ///  (no documentation provided)
+    /// </summary>
+    FatherBirthPlace,
+
+    /// <summary>
+    ///  (no documentation provided)
+    /// </summary>
+    NeverHadChildren,
+
+    /// <summary>
+    ///  (no documentation provided)
+    /// </summary>
+    NeverMarried,
+
+    /// <summary>
+    ///  (no documentation provided)
+    /// </summary>
+    NumberOfChildren,
+
+    /// <summary>
+    ///  (no documentation provided)
+    /// </summary>
+    NumberOfMarriages,
+
+    /// <summary>
+    ///  (no documentation provided)
+    /// </summary>
+    Household,
+
+    /// <summary>
+    ///  (no documentation provided)
+    /// </summary>
+    IsHeadOfHousehold,
+
+    /// <summary>
+    ///  (no documentation provided)
+    /// </summary>
+    MaritalStatus,
+
+    /// <summary>
+    ///  (no documentation provided)
+    /// </summary>
+    MotherBirthPlace,
+
+    /// <summary>
+    ///  (no documentation provided)
+    /// </summary>
+    MultipleBirth,
+
+    /// <summary>
+    ///  (no documentation provided)
+    /// </summary>
+    NameSake,
+
+    /// <summary>
+    ///  (no documentation provided)
+    /// </summary>
+    NationalId,
+
+    /// <summary>
+    ///  (no documentation provided)
+    /// </summary>
+    Nationality,
+
+    /// <summary>
+    ///  (no documentation provided)
+    /// </summary>
+    Occupation,
+
+    /// <summary>
+    ///  (no documentation provided)
+    /// </summary>
+    PhysicalDescription,
+
+    /// <summary>
+    ///  (no documentation provided)
+    /// </summary>
+    Property,
+
+    /// <summary>
+    ///  (no documentation provided)
+    /// </summary>
+    Race,
+
+    /// <summary>
+    ///  (no documentation provided)
+    /// </summary>
+    Religion,
+
+    /// <summary>
+    ///  (no documentation provided)
+    /// </summary>
+    RelationshipToHead,
+
+    /// <summary>
+    ///  (no documentation provided)
+    /// </summary>
+    Stillbirth,
+
+    /// <summary>
+    ///  (no documentation provided)
+    /// </summary>
+    TitleOfNobility,
+
+    /// <summary>
+    ///  (no documentation provided)
+    /// </summary>
+    Tribe,
+
+    /// <summary>
     ///   Custom
     /// </summary>
     OTHER
@@ -393,6 +538,93 @@ namespace Gx.Types {
         if ("http://gedcomx.org/Surname".Equals(qname)) {
           return FieldType.Surname;
         }
+        if ("http://gedcomx.org/Abusua".Equals(qname)) {
+          return FieldType.Abusua;
+        }
+        if ("http://gedcomx.org/BatchNumber".Equals(qname)) {
+          return FieldType.BatchNumber;
+        }
+        if ("http://gedcomx.org/Caste".Equals(qname)) {
+          return FieldType.Caste;
+        }
+        if ("http://gedcomx.org/Clan".Equals(qname)) {
+          return FieldType.Clan;
+        }
+        if ("http://gedcomx.org/CommonLawMarriage".Equals(qname)) {
+          return FieldType.CommonLawMarriage;
+        }
+        if ("http://gedcomx.org/Education".Equals(qname)) {
+          return FieldType.Education;
+        }
+        if ("http://gedcomx.org/Ethnicity".Equals(qname)) {
+          return FieldType.Ethnicity;
+        }
+        if ("http://gedcomx.org/FatherBirthPlace".Equals(qname)) {
+          return FieldType.FatherBirthPlace;
+        }
+        if ("http://gedcomx.org/NeverHadChildren".Equals(qname)) {
+          return FieldType.NeverHadChildren;
+        }
+        if ("http://gedcomx.org/NeverMarried".Equals(qname)) {
+          return FieldType.NeverMarried;
+        }
+        if ("http://gedcomx.org/NumberOfChildren".Equals(qname)) {
+          return FieldType.NumberOfChildren;
+        }
+        if ("http://gedcomx.org/NumberOfMarriages".Equals(qname)) {
+          return FieldType.NumberOfMarriages;
+        }
+        if ("http://gedcomx.org/Household".Equals(qname)) {
+          return FieldType.Household;
+        }
+        if ("http://gedcomx.org/IsHeadOfHousehold".Equals(qname)) {
+          return FieldType.IsHeadOfHousehold;
+        }
+        if ("http://gedcomx.org/MaritalStatus".Equals(qname)) {
+          return FieldType.MaritalStatus;
+        }
+        if ("http://gedcomx.org/MotherBirthPlace".Equals(qname)) {
+          return FieldType.MotherBirthPlace;
+        }
+        if ("http://gedcomx.org/MultipleBirth".Equals(qname)) {
+          return FieldType.MultipleBirth;
+        }
+        if ("http://gedcomx.org/NameSake".Equals(qname)) {
+          return FieldType.NameSake;
+        }
+        if ("http://gedcomx.org/NationalId".Equals(qname)) {
+          return FieldType.NationalId;
+        }
+        if ("http://gedcomx.org/Nationality".Equals(qname)) {
+          return FieldType.Nationality;
+        }
+        if ("http://gedcomx.org/Occupation".Equals(qname)) {
+          return FieldType.Occupation;
+        }
+        if ("http://gedcomx.org/PhysicalDescription".Equals(qname)) {
+          return FieldType.PhysicalDescription;
+        }
+        if ("http://gedcomx.org/Property".Equals(qname)) {
+          return FieldType.Property;
+        }
+        if ("http://gedcomx.org/Race".Equals(qname)) {
+          return FieldType.Race;
+        }
+        if ("http://gedcomx.org/Religion".Equals(qname)) {
+          return FieldType.Religion;
+        }
+        if ("http://gedcomx.org/RelationshipToHead".Equals(qname)) {
+          return FieldType.RelationshipToHead;
+        }
+        if ("http://gedcomx.org/Stillbirth".Equals(qname)) {
+          return FieldType.Stillbirth;
+        }
+        if ("http://gedcomx.org/TitleOfNobility".Equals(qname)) {
+          return FieldType.TitleOfNobility;
+        }
+        if ("http://gedcomx.org/Tribe".Equals(qname)) {
+          return FieldType.Tribe;
+        }
       }
       return FieldType.OTHER;
     }
@@ -490,6 +722,64 @@ namespace Gx.Types {
           return "http://gedcomx.org/Given";
         case FieldType.Surname:
           return "http://gedcomx.org/Surname";
+        case FieldType.Abusua:
+          return "http://gedcomx.org/Abusua";
+        case FieldType.BatchNumber:
+          return "http://gedcomx.org/BatchNumber";
+        case FieldType.Caste:
+          return "http://gedcomx.org/Caste";
+        case FieldType.Clan:
+          return "http://gedcomx.org/Clan";
+        case FieldType.CommonLawMarriage:
+          return "http://gedcomx.org/CommonLawMarriage";
+        case FieldType.Education:
+          return "http://gedcomx.org/Education";
+        case FieldType.Ethnicity:
+          return "http://gedcomx.org/Ethnicity";
+        case FieldType.FatherBirthPlace:
+          return "http://gedcomx.org/FatherBirthPlace";
+        case FieldType.NeverHadChildren:
+          return "http://gedcomx.org/NeverHadChildren";
+        case FieldType.NeverMarried:
+          return "http://gedcomx.org/NeverMarried";
+        case FieldType.NumberOfChildren:
+          return "http://gedcomx.org/NumberOfChildren";
+        case FieldType.NumberOfMarriages:
+          return "http://gedcomx.org/NumberOfMarriages";
+        case FieldType.Household:
+          return "http://gedcomx.org/Household";
+        case FieldType.IsHeadOfHousehold:
+          return "http://gedcomx.org/IsHeadOfHousehold";
+        case FieldType.MaritalStatus:
+          return "http://gedcomx.org/MaritalStatus";
+        case FieldType.MotherBirthPlace:
+          return "http://gedcomx.org/MotherBirthPlace";
+        case FieldType.MultipleBirth:
+          return "http://gedcomx.org/MultipleBirth";
+        case FieldType.NameSake:
+          return "http://gedcomx.org/NameSake";
+        case FieldType.NationalId:
+          return "http://gedcomx.org/NationalId";
+        case FieldType.Nationality:
+          return "http://gedcomx.org/Nationality";
+        case FieldType.Occupation:
+          return "http://gedcomx.org/Occupation";
+        case FieldType.PhysicalDescription:
+          return "http://gedcomx.org/PhysicalDescription";
+        case FieldType.Property:
+          return "http://gedcomx.org/Property";
+        case FieldType.Race:
+          return "http://gedcomx.org/Race";
+        case FieldType.Religion:
+          return "http://gedcomx.org/Religion";
+        case FieldType.RelationshipToHead:
+          return "http://gedcomx.org/RelationshipToHead";
+        case FieldType.Stillbirth:
+          return "http://gedcomx.org/Stillbirth";
+        case FieldType.TitleOfNobility:
+          return "http://gedcomx.org/TitleOfNobility";
+        case FieldType.Tribe:
+          return "http://gedcomx.org/Tribe";
         default:
           throw new System.ArgumentException("No known QName for: " + known, "known");
       }

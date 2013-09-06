@@ -35,6 +35,19 @@ namespace Gx.Source {
         this._recordType = value;
       }
     }
+
+    /// <summary>
+    ///  Convenience property for treating RecordType as an enum. See Gx.Types.RecordTypeQNameUtil for details on getter/setter functionality.
+    /// </summary>
+    [System.Xml.Serialization.XmlIgnoreAttribute]
+    public Gx.Types.RecordType KnownRecordType {
+      get {
+        return Gx.Types.RecordTypeQNameUtil.ConvertFromKnownQName(this._recordType);
+      }
+      set {
+        this._recordType = Gx.Types.RecordTypeQNameUtil.ConvertToKnownQName(value);
+      }
+    }
     /// <summary>
     ///  Spatial coverage.
     /// </summary>

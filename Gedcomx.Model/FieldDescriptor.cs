@@ -18,21 +18,21 @@ namespace Gx.Records {
   [System.Xml.Serialization.SoapTypeAttribute(Namespace="http://gedcomx.org/v1/",TypeName="FieldDescriptor")]
   public partial class FieldDescriptor {
 
-    private string _systemLabel;
+    private string _fieldId;
     private string _originalLabel;
     private System.Collections.Generic.List<Gx.Records.FieldDisplay> _display;
     private System.Collections.Generic.List<Gx.Common.TextValue> _description;
     /// <summary>
     ///  A system-assigned label for the field.
     /// </summary>
-    [System.Xml.Serialization.XmlElementAttribute(ElementName="systemLabel",Namespace="http://gedcomx.org/v1/")]
-    [System.Xml.Serialization.SoapElementAttribute(ElementName="systemLabel")]
-    public string SystemLabel {
+    [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="fieldId")]
+    [System.Xml.Serialization.SoapAttributeAttribute(AttributeName="fieldId")]
+    public string FieldId {
       get {
-        return this._systemLabel;
+        return this._fieldId;
       }
       set {
-        this._systemLabel = value;
+        this._fieldId = value;
       }
     }
     /// <summary>

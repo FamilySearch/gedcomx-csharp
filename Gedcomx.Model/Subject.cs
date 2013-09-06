@@ -11,13 +11,13 @@ namespace Gx.Conclusion {
   ///  The &lt;tt&gt;Subject&lt;/tt&gt; data type defines the abstract concept of a genealogical &lt;em&gt;subject&lt;/em&gt;. A &lt;em&gt;subject&lt;/em&gt; is something with a unique and
   ///  intrinsic identity, e.g., a person, a location on the surface of the earth. We identify that &lt;em&gt;subject&lt;/em&gt; in time and space using various supporting
   ///  &lt;em&gt;conclusions&lt;/em&gt;, e.g. for a person: things like name, birth date, age, address, etc. We aggregate these supporting &lt;em&gt;conclusions&lt;/em&gt; to form an
-  ///  apparently-unique identity by which we can distinguish our&lt;em&gt;subject&lt;/em&gt; from all other possible &lt;em&gt;subjects&lt;/em&gt;.
+  ///  apparently-unique identity by which we can distinguish our &lt;em&gt;subject&lt;/em&gt; from all other possible &lt;em&gt;subjects&lt;/em&gt;.
   /// </remarks>
   /// <summary>
   ///  The &lt;tt&gt;Subject&lt;/tt&gt; data type defines the abstract concept of a genealogical &lt;em&gt;subject&lt;/em&gt;. A &lt;em&gt;subject&lt;/em&gt; is something with a unique and
   ///  intrinsic identity, e.g., a person, a location on the surface of the earth. We identify that &lt;em&gt;subject&lt;/em&gt; in time and space using various supporting
   ///  &lt;em&gt;conclusions&lt;/em&gt;, e.g. for a person: things like name, birth date, age, address, etc. We aggregate these supporting &lt;em&gt;conclusions&lt;/em&gt; to form an
-  ///  apparently-unique identity by which we can distinguish our&lt;em&gt;subject&lt;/em&gt; from all other possible &lt;em&gt;subjects&lt;/em&gt;.
+  ///  apparently-unique identity by which we can distinguish our &lt;em&gt;subject&lt;/em&gt; from all other possible &lt;em&gt;subjects&lt;/em&gt;.
   /// </summary>
   [System.SerializableAttribute()]
   [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://gedcomx.org/v1/",TypeName="Subject")]

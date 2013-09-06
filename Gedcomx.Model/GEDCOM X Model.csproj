@@ -94,6 +94,7 @@
     <Compile Include="SourceReference.cs" />
     <Compile Include="Subject.cs" />
     <Compile Include="TextValue.cs" />
+    <Compile Include="RecordType.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

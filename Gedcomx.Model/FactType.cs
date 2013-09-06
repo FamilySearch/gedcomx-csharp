@@ -118,9 +118,14 @@ namespace Gx.Types {
     Death,
 
     /// <summary>
-    ///   A fact of an education or an educational achievement (e.g. diploma, graduation, scholarship, etc.) of a person.
+    ///   A fact of an education of a person.
     /// </summary>
     Education,
+
+    /// <summary>
+    ///   A fact of a person's enrollment in an educational program or institution.
+    /// </summary>
+    EducationEnrollment,
 
     /// <summary>
     ///   A fact of the emigration of a person.
@@ -151,6 +156,11 @@ namespace Gx.Types {
     ///   A fact of a person's gender change.
     /// </summary>
     GenderChange,
+
+    /// <summary>
+    ///   A fact of a person's graduation from a scholastic institution.
+    /// </summary>
+    Graduation,
 
     /// <summary>
     ///   A fact of a person's immigration.
@@ -302,6 +312,11 @@ namespace Gx.Types {
     ///   A fact of a person's stillbirth.
     /// </summary>
     Stillbirth,
+
+    /// <summary>
+    ///   A fact of a person's tax assessment.
+    /// </summary>
+    TaxAssessment,
 
     /// <summary>
     ///   A fact of a person's will.
@@ -497,6 +512,9 @@ namespace Gx.Types {
         if ("http://gedcomx.org/Education".Equals(qname)) {
           return FactType.Education;
         }
+        if ("http://gedcomx.org/EducationEnrollment".Equals(qname)) {
+          return FactType.EducationEnrollment;
+        }
         if ("http://gedcomx.org/Emigration".Equals(qname)) {
           return FactType.Emigration;
         }
@@ -514,6 +532,9 @@ namespace Gx.Types {
         }
         if ("http://gedcomx.org/GenderChange".Equals(qname)) {
           return FactType.GenderChange;
+        }
+        if ("http://gedcomx.org/Graduation".Equals(qname)) {
+          return FactType.Graduation;
         }
         if ("http://gedcomx.org/Immigration".Equals(qname)) {
           return FactType.Immigration;
@@ -604,6 +625,9 @@ namespace Gx.Types {
         }
         if ("http://gedcomx.org/Stillbirth".Equals(qname)) {
           return FactType.Stillbirth;
+        }
+        if ("http://gedcomx.org/TaxAssessment".Equals(qname)) {
+          return FactType.TaxAssessment;
         }
         if ("http://gedcomx.org/Will".Equals(qname)) {
           return FactType.Will;
@@ -723,6 +747,8 @@ namespace Gx.Types {
           return "http://gedcomx.org/Death";
         case FactType.Education:
           return "http://gedcomx.org/Education";
+        case FactType.EducationEnrollment:
+          return "http://gedcomx.org/EducationEnrollment";
         case FactType.Emigration:
           return "http://gedcomx.org/Emigration";
         case FactType.Ethnicity:
@@ -735,6 +761,8 @@ namespace Gx.Types {
           return "http://gedcomx.org/Funeral";
         case FactType.GenderChange:
           return "http://gedcomx.org/GenderChange";
+        case FactType.Graduation:
+          return "http://gedcomx.org/Graduation";
         case FactType.Immigration:
           return "http://gedcomx.org/Immigration";
         case FactType.Imprisonment:
@@ -795,6 +823,8 @@ namespace Gx.Types {
           return "http://gedcomx.org/Retirement";
         case FactType.Stillbirth:
           return "http://gedcomx.org/Stillbirth";
+        case FactType.TaxAssessment:
+          return "http://gedcomx.org/TaxAssessment";
         case FactType.Will:
           return "http://gedcomx.org/Will";
         case FactType.Visit:

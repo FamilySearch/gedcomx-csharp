@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GEDCOM X Command Line Inter
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gedcomx.CLI.Test", "Gedcomx.CLI.Test\Gedcomx.CLI.Test.csproj", "{2DB621CF-0164-43A6-A31D-811BE8BF3527}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GEDCOM X Utilities", "Gedcomx.Util\GEDCOM X Utilities.csproj", "{876EA5FA-FAE0-4280-9409-3754F3C8AAA4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{4629BA54-406E-4CD2-9DC6-CDA2C5206EB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4629BA54-406E-4CD2-9DC6-CDA2C5206EB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4629BA54-406E-4CD2-9DC6-CDA2C5206EB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{876EA5FA-FAE0-4280-9409-3754F3C8AAA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{876EA5FA-FAE0-4280-9409-3754F3C8AAA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{876EA5FA-FAE0-4280-9409-3754F3C8AAA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{876EA5FA-FAE0-4280-9409-3754F3C8AAA4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Gedcomx.CLI\GEDCOM X Command Line Interface.csproj

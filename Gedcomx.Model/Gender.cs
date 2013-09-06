@@ -20,7 +20,7 @@ namespace Gx.Conclusion {
   public partial class Gender : Gx.Conclusion.Conclusion {
 
     private string _type;
-    private System.Collections.Generic.List<Gx.Common.EvidenceReference> _fieldValueReferences;
+    private System.Collections.Generic.List<Gx.Records.Field> _fields;
     /// <summary>
     ///  The type of the gender.
     /// </summary>
@@ -48,16 +48,16 @@ namespace Gx.Conclusion {
       }
     }
     /// <summary>
-    ///  The references to the record field values being used as evidence.
+    ///  The references to the record fields being used as evidence.
     /// </summary>
-    [System.Xml.Serialization.XmlElementAttribute(ElementName="fieldValue",Namespace="http://gedcomx.org/v1/")]
-    [System.Xml.Serialization.SoapElementAttribute(ElementName="fieldValue")]
-    public System.Collections.Generic.List<Gx.Common.EvidenceReference> FieldValueReferences {
+    [System.Xml.Serialization.XmlElementAttribute(ElementName="field",Namespace="http://gedcomx.org/v1/")]
+    [System.Xml.Serialization.SoapElementAttribute(ElementName="field")]
+    public System.Collections.Generic.List<Gx.Records.Field> Fields {
       get {
-        return this._fieldValueReferences;
+        return this._fields;
       }
       set {
-        this._fieldValueReferences = value;
+        this._fields = value;
       }
     }
   }

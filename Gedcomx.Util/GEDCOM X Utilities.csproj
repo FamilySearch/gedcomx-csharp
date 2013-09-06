@@ -36,6 +36,7 @@
     <Compile Include="IGedcomxModelVisitor.cs" />
     <Compile Include="GedcomxModelVisitorBase.cs" />
     <Compile Include="GedcomxIdDictionary.cs" />
+    <Compile Include="RecordHelper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

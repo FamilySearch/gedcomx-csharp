@@ -11,135 +11,130 @@ using System.Collections.Generic;
 
 namespace Gx.Util
 {
-	/// <summary>
-	/// A dictionary for looking up GEDCOM X data elements by their local id (i.e. "fragment identifier").
-	/// </summary>
+    /// <summary>
+    /// A dictionary for looking up GEDCOM X data elements by their local id (i.e. "fragment identifier").
+    /// </summary>
     public class GedcomxIdDictionary : GedcomxModelVisitorBase
     {
         private readonly Dictionary<string, object> dictionary = new Dictionary<string, object> ();
-		
-		/// <summary>
-		/// Initializes an id dictionary for the specified data set.
-		/// </summary>
-		/// <param name='gx'>
-		/// The data set.
-		/// </param>
+     
+        /// <summary>
+        /// Initializes an id dictionary for the specified data set.
+        /// </summary>
+        /// <param name='gx'>
+        /// The data set.
+        /// </param>
         public GedcomxIdDictionary (Gedcomx gx)
         {
             VisitGedcomx (gx);
         }
-		
-		/// <summary>
-		/// Initializes an id dictionary for the specified record set.
-		/// </summary>
-		/// <param name='rs'>
-		/// The record set.
-		/// </param>
+     
+        /// <summary>
+        /// Initializes an id dictionary for the specified record set.
+        /// </summary>
+        /// <param name='rs'>
+        /// The record set.
+        /// </param>
         public GedcomxIdDictionary (RecordSet rs)
         {
             VisitRecordSet (rs);
         }
-		
-		/// <summary>
-		/// Gets or sets the dictionary with an element of the specified id. If the specified key is not 
-		/// found, a get operation throws a KeyNotFoundException, and a set operation creates a new element 
-		/// with the specified key.
-		/// </summary>
-		/// <param name='key'>
-		/// The id.
-		/// </param>
-		public object this[string key]
-		{
-			get
-			{
-				return dictionary[key];
-			}
-			
-			set
-			{
-				dictionary[key] = value;
-			}
-		}
-		
-		/// <summary>
-		/// Whether the dictionary contains the specified key.
-		/// </summary>
-		/// <returns>
-		/// Whether the dictionary contains the specified key.
-		/// </returns>
-		/// <param name='key'>
-		/// The key to test.
-		/// </param>
-		public bool ContainsKey(string key)
-		{
-			return dictionary.ContainsKey(key);
-		}
-		
-		/// <summary>
-		/// Gets the value associated with the specified id.
-		/// </summary>
-		/// <returns>
-		/// The data of the specified id.
-		/// </returns>
-		/// <param name='key'>
-		/// The id of the value to get.
-		/// </param>
-		/// <param name='value'>
-		/// When this method returns, contains the value associated with the specified key, if the key is found; 
-		/// otherwise, the default value for the type of the value parameter. This parameter is passed uninitialized.
-		/// </param>
-		public bool TryGetValue(string key, out object value)
-		{
-			return dictionary.TryGetValue(key, out value);
-		}
-		
-		/// <summary>
-		/// Resolve the value referenced by the specified URI. If the object is not resolved, a 
-		/// KeyNotFoundException is thrown.
-		/// </summary>
-		/// <param name='uri'>
-		/// The URI.
-		/// </param>
-		public object Resolve(string uri)
-		{
-			int fragmentIndex = uri.IndexOf('#');
-			if (fragmentIndex >= 0) {
-				return this[uri.Substring(fragmentIndex)];
-			}
-			else {
-				throw new KeyNotFoundException();
-			}
-		}
-				
-		/// <summary>
-		/// Attempts to resolve the value referenced by the specified URI.
-		/// </summary>
-		/// <param name='uri'>
-		/// The URI.
-		/// </param>
-		/// <param name='value'>
-		/// When this method returns, contains the resolved value, if it is resolved; 
-		/// otherwise, the default value for the type of the value parameter. 
-		/// This parameter is passed uninitialized.
-		/// </param>
-		public bool TryResolveValue(string uri, out object value)
-		{
-			value = null;
-			int fragmentIndex = uri.IndexOf('#');
-			if (fragmentIndex >= 0) {
-				return TryGetValue(uri.Substring(fragmentIndex), out value);
-			}
-			else {
-				return false;
-			}
-		}
-				
+     
+        /// <summary>
+        /// Gets or sets the dictionary with an element of the specified id. If the specified key is not 
+        /// found, a get operation throws a KeyNotFoundException, and a set operation creates a new element 
+        /// with the specified key.
+        /// </summary>
+        /// <param name='key'>
+        /// The id.
+        /// </param>
+        public object this [string key] {
+            get {
+                return dictionary [key];
+            }
+         
+            set {
+                dictionary [key] = value;
+            }
+        }
+     
+        /// <summary>
+        /// Whether the dictionary contains the specified key.
+        /// </summary>
+        /// <returns>
+        /// Whether the dictionary contains the specified key.
+        /// </returns>
+        /// <param name='key'>
+        /// The key to test.
+        /// </param>
+        public bool ContainsKey (string key)
+        {
+            return dictionary.ContainsKey (key);
+        }
+     
+        /// <summary>
+        /// Gets the value associated with the specified id.
+        /// </summary>
+        /// <returns>
+        /// The data of the specified id.
+        /// </returns>
+        /// <param name='key'>
+        /// The id of the value to get.
+        /// </param>
+        /// <param name='value'>
+        /// When this method returns, contains the value associated with the specified key, if the key is found; 
+        /// otherwise, the default value for the type of the value parameter. This parameter is passed uninitialized.
+        /// </param>
+        public bool TryGetValue (string key, out object value)
+        {
+            return dictionary.TryGetValue (key, out value);
+        }
+     
+        /// <summary>
+        /// Resolve the value referenced by the specified URI. If the object is not resolved, a 
+        /// KeyNotFoundException is thrown.
+        /// </summary>
+        /// <param name='uri'>
+        /// The URI.
+        /// </param>
+        public object Resolve (string uri)
+        {
+            int fragmentIndex = uri.IndexOf ('#');
+            if (fragmentIndex >= 0) {
+                return this [uri.Substring (fragmentIndex)];
+            } else {
+                throw new KeyNotFoundException ();
+            }
+        }
+             
+        /// <summary>
+        /// Attempts to resolve the value referenced by the specified URI.
+        /// </summary>
+        /// <param name='uri'>
+        /// The URI.
+        /// </param>
+        /// <param name='value'>
+        /// When this method returns, contains the resolved value, if it is resolved; 
+        /// otherwise, the default value for the type of the value parameter. 
+        /// This parameter is passed uninitialized.
+        /// </param>
+        public bool TryResolveValue (string uri, out object value)
+        {
+            value = null;
+            int fragmentIndex = uri.IndexOf ('#');
+            if (fragmentIndex >= 0) {
+                return TryGetValue (uri.Substring (fragmentIndex), out value);
+            } else {
+                return false;
+            }
+        }
+             
         new public void VisitRecordSet (RecordSet rs)
         {
             if (rs.Id != null) {
                 this.dictionary.Add (rs.Id, rs);
             }
-			
+         
             base.VisitRecordSet (rs);
         }
 
@@ -334,8 +329,8 @@ namespace Gx.Util
             }
             base.VisitNote (note);
         }
-		
-		
+     
+     
     }
 }
 

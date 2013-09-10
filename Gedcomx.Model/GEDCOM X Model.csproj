@@ -95,6 +95,7 @@
     <Compile Include="Subject.cs" />
     <Compile Include="TextValue.cs" />
     <Compile Include="RecordType.cs" />
+    <Compile Include="FieldValueDescriptor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

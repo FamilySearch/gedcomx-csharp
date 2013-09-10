@@ -16,12 +16,12 @@ namespace Gx.Records {
   [System.SerializableAttribute()]
   [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://gedcomx.org/v1/",TypeName="FieldDescriptor")]
   [System.Xml.Serialization.SoapTypeAttribute(Namespace="http://gedcomx.org/v1/",TypeName="FieldDescriptor")]
-  public partial class FieldDescriptor {
+  public partial class FieldDescriptor : Gx.Links.HypermediaEnabledData {
 
     private string _fieldId;
     private string _originalLabel;
-    private System.Collections.Generic.List<Gx.Records.FieldDisplay> _display;
     private System.Collections.Generic.List<Gx.Common.TextValue> _description;
+    private System.Collections.Generic.List<Gx.Records.FieldValueDescriptor> _values;
     /// <summary>
     ///  A system-assigned label for the field.
     /// </summary>
@@ -49,19 +49,6 @@ namespace Gx.Records {
       }
     }
     /// <summary>
-    ///  The ways the field can be displayed.
-    /// </summary>
-    [System.Xml.Serialization.XmlElementAttribute(ElementName="display",Namespace="http://gedcomx.org/v1/")]
-    [System.Xml.Serialization.SoapElementAttribute(ElementName="display")]
-    public System.Collections.Generic.List<Gx.Records.FieldDisplay> Display {
-      get {
-        return this._display;
-      }
-      set {
-        this._display = value;
-      }
-    }
-    /// <summary>
     ///  The description of the field.
     /// </summary>
     [System.Xml.Serialization.XmlElementAttribute(ElementName="description",Namespace="http://gedcomx.org/v1/")]
@@ -72,6 +59,19 @@ namespace Gx.Records {
       }
       set {
         this._description = value;
+      }
+    }
+    /// <summary>
+    ///  Descriptors of the values that are applicable to the field.
+    /// </summary>
+    [System.Xml.Serialization.XmlElementAttribute(ElementName="value",Namespace="http://gedcomx.org/v1/")]
+    [System.Xml.Serialization.SoapElementAttribute(ElementName="value")]
+    public System.Collections.Generic.List<Gx.Records.FieldValueDescriptor> Values {
+      get {
+        return this._values;
+      }
+      set {
+        this._values = value;
       }
     }
   }

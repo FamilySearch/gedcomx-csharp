@@ -35,11 +35,12 @@
       <HintPath>..\..\..\..\..\usr\local\lib\ndesk-options\NDesk.Options.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
+    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="ParseRecordSet.cs" />
-    <Compile Include="RecordSetParser.cs" />
+    <Compile Include="RecordSetTransformer.cs" />
+    <Compile Include="RecordSetToCSV.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
@@ -53,6 +54,10 @@
     <ProjectReference Include="..\Gedcomx.Model\GEDCOM X Model.csproj">
       <Project>{4629BA54-406E-4CD2-9DC6-CDA2C5206EB7}</Project>
       <Name>GEDCOM X Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Gedcomx.Util\GEDCOM X Utilities.csproj">
+      <Project>{876EA5FA-FAE0-4280-9409-3754F3C8AAA4}</Project>
+      <Name>GEDCOM X Utilities</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

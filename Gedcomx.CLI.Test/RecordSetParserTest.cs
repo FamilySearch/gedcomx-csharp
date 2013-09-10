@@ -12,11 +12,9 @@ namespace Gx.CLI.Test
 		[Test]
 		public void ParseTest ()
 		{
-			RecordSetParser parser = new RecordSetParser();
 			Assembly a = Assembly.GetExecutingAssembly();
 			Stream records1307888 = a.GetManifestResourceStream("Gedcomx.CLI.Test.recordset-1307888.xml");
-			int count = parser.Parse(records1307888);
-			Assert.AreEqual(10, count);
+            RecordSetTransformer.WriteCSV(records1307888, System.Console.Out);
 		}
 	}
 }

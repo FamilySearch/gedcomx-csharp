@@ -21,7 +21,7 @@ namespace Gx.Records {
     private string _resource;
     private string _datatype;
     private string _type;
-    private System.Collections.Generic.List<Gx.Common.EvidenceReference> _fieldValueReferences;
+    private string _labelId;
     private string _text;
     /// <summary>
     ///  URI that resolves to the value of the field.
@@ -76,16 +76,16 @@ namespace Gx.Records {
       }
     }
     /// <summary>
-    ///  The references to the record field values being used as evidence.
+    ///  The id of the label applicable to this field value.
     /// </summary>
-    [System.Xml.Serialization.XmlElementAttribute(ElementName="fieldValue",Namespace="http://gedcomx.org/v1/")]
-    [System.Xml.Serialization.SoapElementAttribute(ElementName="fieldValue")]
-    public System.Collections.Generic.List<Gx.Common.EvidenceReference> FieldValueReferences {
+    [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="labelId")]
+    [System.Xml.Serialization.SoapAttributeAttribute(AttributeName="labelId")]
+    public string LabelId {
       get {
-        return this._fieldValueReferences;
+        return this._labelId;
       }
       set {
-        this._fieldValueReferences = value;
+        this._labelId = value;
       }
     }
     /// <summary>

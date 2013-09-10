@@ -34,7 +34,7 @@ namespace Gx.Records {
       }
     }
     /// <summary>
-    ///  The fields that are applicable to this record.
+    ///  Descriptors of the fields that are applicable to this record.
     /// </summary>
     [System.Xml.Serialization.XmlElementAttribute(ElementName="field",Namespace="http://gedcomx.org/v1/")]
     [System.Xml.Serialization.SoapElementAttribute(ElementName="field")]

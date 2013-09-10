@@ -3,7 +3,7 @@ using NDesk.Options;
 
 namespace Gx.CLI
 {
-	class ParseRecordSet
+	class RecordSetToCSV
 	{
 		public static void Main (string[] args)
 		{
@@ -19,8 +19,7 @@ namespace Gx.CLI
 				return;
 			}
 			
-			RecordSetParser parser = new RecordSetParser();
-			parser.Parse(file);
+            RecordSetTransformer.WriteCSV( file, System.Console.Out );
 		}
 		
 		static void ShowHelp(OptionSet options) 

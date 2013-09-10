@@ -12,7 +12,7 @@ namespace Gx.CLI
     /// Utilities for transforming streams of record sets to other formats.
     /// </summary>
     public static class RecordSetTransformer
-	{
+    {
         /// <summary>
         /// Reads a record set file and outputs a CSV.
         /// </summary>
@@ -22,10 +22,11 @@ namespace Gx.CLI
         /// <param name='outWriter'>
         /// Where to write the CSV.
         /// </param>
-		public static void WriteCSV(String inFile, TextWriter outWriter) {
-			WriteCSV (new FileStream(inFile, FileMode.Open), outWriter);
-		}
-		
+        public static void WriteCSV (String inFile, TextWriter outWriter)
+        {
+            WriteCSV (new FileStream (inFile, FileMode.Open), outWriter);
+        }
+     
         /// <summary>
         /// Reads a record set file and outputs a CSV.
         /// </summary>
@@ -35,29 +36,30 @@ namespace Gx.CLI
         /// <param name='outWriter'>
         /// Where to write the CSV.
         /// </param>
-		public static void WriteCSV(Stream inStream, TextWriter outWriter) {
-			XmlSerializer serializer = new XmlSerializer(typeof(RecordSet));
-			RecordSet records = (RecordSet) serializer.Deserialize(inStream);
-            DataTable table = RecordHelper.BuildTableOfRecords(records);
+        public static void WriteCSV (Stream inStream, TextWriter outWriter)
+        {
+            XmlSerializer serializer = new XmlSerializer (typeof(RecordSet));
+            RecordSet records = (RecordSet)serializer.Deserialize (inStream);
+            DataTable table = RecordHelper.BuildTableOfRecords (records);
             int columnCount = table.Columns.Count;
             foreach (DataColumn column in table.Columns) {
-                outWriter.Write(column.ColumnName);
+                outWriter.Write (column.ColumnName);
                 if (--columnCount > 0) {
-                    outWriter.Write(",");
+                    outWriter.Write (",");
                 }
             }
-            outWriter.WriteLine();
+            outWriter.WriteLine ();
             foreach (DataRow row in table.Rows) {
                 columnCount = table.Columns.Count;
                 foreach (DataColumn column in table.Columns) {
-                    outWriter.Write(row[column]);
+                    outWriter.Write (row [column]);
                     if (--columnCount > 0) {
                         outWriter.Write (",");
                     }
                 }
             }
             
-		}
-	}
+        }
+    }
 }
 

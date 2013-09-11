@@ -9,7 +9,7 @@ namespace Gx.CLI
         {
             string file = null;
          
-            OptionSet options = new OptionSet () {
+            var options = new OptionSet {
               { "f|file=", o => file = o }
             };
             options.Parse (args);
@@ -19,13 +19,19 @@ namespace Gx.CLI
                 return;
             }
          
-            RecordSetTransformer.WriteCSV (file, System.Console.Out);
+            RecordSetTransformer.WriteCSV (file, Console.Out);
+
+            Console.WriteLine("Press any key...");
+            Console.ReadKey();
         }
      
         static void ShowHelp (OptionSet options)
         {
             Console.WriteLine ("Options:");
             options.WriteOptionDescriptions (Console.Out);
+
+            Console.WriteLine("Press any key...");
+            Console.ReadKey();
         }
     }
 }

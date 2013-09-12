@@ -19,7 +19,7 @@ namespace Gx.CLI
                 return;
             }
          
-            RecordSetTransformer.WriteCSV (file, Console.Out);
+            RecordSetTransformer.WriteCSV (file, Console.Out, Console.Out);
 
             Console.WriteLine("Press any key...");
             Console.ReadKey();

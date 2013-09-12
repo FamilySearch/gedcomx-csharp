@@ -22,9 +22,21 @@ namespace Gx.CLI
         /// <param name='outWriter'>
         /// Where to write the CSV.
         /// </param>
-        public static void WriteCSV (String inFile, TextWriter outWriter)
+        /// <param name="statusWriter">
+        /// Where to write the status of the procedure
+        /// </param>
+        public static void WriteCSV(String inFile, TextWriter outWriter, TextWriter statusWriter)
         {
-            WriteCSV (new FileStream (inFile, FileMode.Open), outWriter);
+            try
+            {
+                WriteCSV (new FileStream (inFile, FileMode.Open), outWriter);
+                statusWriter.WriteLine("Finished");
+            }
+            catch (Exception exception)
+            {
+                statusWriter.Write(exception.Message);
+            }
+            
         }
      
         /// <summary>
@@ -38,10 +50,10 @@ namespace Gx.CLI
         /// </param>
         public static void WriteCSV (Stream inStream, TextWriter outWriter)
         {
-            XmlSerializer serializer = new XmlSerializer (typeof(RecordSet));
-            RecordSet records = (RecordSet)serializer.Deserialize (inStream);
-            DataTable table = RecordHelper.BuildTableOfRecords (records);
-            int columnCount = table.Columns.Count;
+            var serializer = new XmlSerializer (typeof(RecordSet));
+            var records = (RecordSet)serializer.Deserialize (inStream);
+            var table = RecordHelper.BuildTableOfRecords (records);
+            var columnCount = table.Columns.Count;
             foreach (DataColumn column in table.Columns) {
                 outWriter.Write (column.ColumnName);
                 if (--columnCount > 0) {

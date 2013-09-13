@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using Gx;
 using Gx.Records;
 using Gx.Conclusion;
 using Gx.Types;
@@ -53,17 +52,17 @@ namespace Gx.Util
         /// </param>
         public static DataTable BuildTableOfRecords (RecordSet recordSet)
         {
-            DataTable table = new DataTable ();
-            FieldValueTableBuildingVisitor values = new FieldValueTableBuildingVisitor( recordSet );
+            var table = new DataTable ();
+            var values = new FieldValueTableBuildingVisitor( recordSet );
             foreach (string column in values.ColumnNames) {
                 table.Columns.Add(column, typeof(string));
             }
             foreach (Dictionary<string, string> fieldSet in values.Rows) {
+                DataRow row = table.NewRow();
                 foreach (KeyValuePair<string, string> entry in fieldSet) {
-                    DataRow row = table.NewRow();
-                    row[entry.Key] = entry.Value;
-                    table.Rows.Add(row);
+                    row[entry.Key] = string.Format("\"{0}\"", entry.Value.Replace("\"", "\\\""));
                 }
+                table.Rows.Add(row);
             }
             return table;
         }
@@ -108,86 +107,86 @@ namespace Gx.Util
         /// </summary>
         private class FieldValueTableBuildingVisitor : GedcomxModelVisitorBase
         {
-            private HashSet<string> columnNames = new HashSet<string> ();
-            private List<Dictionary<string, string>> rows = new List<Dictionary<string, string>> ();
-            private Dictionary<string, string> currentRecord = null;
-            private List<Dictionary<string, string>> subrecords = null;
-            private bool parsingCensus = false;
+            private readonly HashSet<string> _columnNames = new HashSet<string> ();
+            private readonly List<Dictionary<string, string>> _rows = new List<Dictionary<string, string>> ();
+            private Dictionary<string, string> _currentRecord;
+            private List<Dictionary<string, string>> _subrecords;
+            private bool _parsingCensus;
             
             public FieldValueTableBuildingVisitor (RecordSet records)
             {
                 VisitRecordSet (records);
             }
             
-            new public void VisitGedcomx (Gedcomx gx)
+            public override void VisitGedcomx (Gedcomx gx)
             {
                 if ( IsCensusRecord (gx)) {
-                    this.parsingCensus = true;
+                    _parsingCensus = true;
                 }
                 
-                this.currentRecord = new Dictionary<string, string>();
-                this.subrecords = new List<Dictionary<string, string>>();
+                _currentRecord = new Dictionary<string, string>();
+                _subrecords = new List<Dictionary<string, string>>();
                 
                 base.VisitGedcomx( gx );
                 
-                if (this.subrecords.Count > 0) {
+                if (_subrecords.Count > 0) {
                     //if we have any subrecords, the field values list only contains the field values
                     //that are applicable to all subrecords. So iterate through each subrecord and add 
                     //the values of the parent record to them.
-                    foreach (Dictionary<string, string> subrecord in this.subrecords) {
-                        foreach (KeyValuePair<string, string> entry in this.currentRecord) {
+                    foreach (Dictionary<string, string> subrecord in _subrecords) {
+                        foreach (KeyValuePair<string, string> entry in _currentRecord) {
                             subrecord[entry.Key] = entry.Value;
                         }
-                        this.rows.Add(subrecord);
+                        _rows.Add(subrecord);
                     }
                 }
                 else {
                     //no subrecords; just add the record fields.
-                    this.rows.Add(currentRecord);
+                    _rows.Add(_currentRecord);
                 }
                 
-                this.parsingCensus = false;
-                this.currentRecord = null;
-                this.subrecords = null;
+                _parsingCensus = false;
+                _currentRecord = null;
+                _subrecords = null;
             }
 
-            new public void VisitFieldValue (FieldValue fieldValue)
+            public override void VisitFieldValue(FieldValue fieldValue)
             {
                 if (fieldValue.LabelId != null) {
-                    this.columnNames.Add( fieldValue.LabelId );
-                    this.currentRecord[ fieldValue.LabelId ] = fieldValue.Text;
+                    _columnNames.Add( fieldValue.LabelId );
+                    _currentRecord[ fieldValue.LabelId ] = fieldValue.Text;
                 }
                 else {
                     //todo: throw some error? log some warning?
                 }
             }
 
-            new public void VisitPerson (Gx.Conclusion.Person person)
+            public override void VisitPerson (Person person)
             {
-                Dictionary<string, string> recordFieldValues = this.currentRecord;
-                if (parsingCensus) {
-                    this.currentRecord = new Dictionary<string, string>();
+                Dictionary<string, string> recordFieldValues = _currentRecord;
+                if (_parsingCensus) {
+                    _currentRecord = new Dictionary<string, string>();
                 }
                 
                 base.VisitPerson( person );
                 
-                if (parsingCensus) {
+                if (_parsingCensus) {
                     //add the person as a subrecord...
-                    this.subrecords.Add(this.currentRecord);
+                    _subrecords.Add(_currentRecord);
                     //...and put the record back.
-                    this.currentRecord = recordFieldValues;
+                    _currentRecord = recordFieldValues;
                 }
             }
             
-            public HashSet<string> ColumnNames {
+            public IEnumerable<string> ColumnNames {
                 get {
-                    return this.columnNames;
+                    return _columnNames;
                 }
             }
 
-            public List<Dictionary<string, string>> Rows {
+            public IEnumerable<Dictionary<string, string>> Rows {
                 get {
-                    return this.rows;
+                    return _rows;
                 }
             }
             
@@ -196,9 +195,9 @@ namespace Gx.Util
         /// <summary>
         /// Visitor that gathers all fields in a record.
         /// </summary>
-        private class FieldGatheringVisitor : GedcomxModelVisitorBase
+        private sealed class FieldGatheringVisitor : GedcomxModelVisitorBase
         {            
-            private List<Field> fields = new List<Field> ();
+            private readonly List<Field> _fields = new List<Field> ();
             
             public FieldGatheringVisitor (Gedcomx record)
             {
@@ -207,13 +206,13 @@ namespace Gx.Util
             
             public List<Field> Fields {
                 get {
-                    return this.fields;
+                    return _fields;
                 }
             }
-            
-            new public void VisitField (Field field)
+
+            public override void VisitField(Field field)
             {
-                this.fields.Add (field);
+                _fields.Add (field);
             }
             
         }
@@ -221,30 +220,30 @@ namespace Gx.Util
         /// <summary>
         /// Visitor that gathers all fields in a census record.
         /// </summary>
-        private class CensusFieldGatheringVisitor : GedcomxModelVisitorBase
+        private sealed class CensusFieldGatheringVisitor : GedcomxModelVisitorBase
         {            
         
-            private Dictionary<Person, List<Field>> fieldsByPerson = new Dictionary<Person, List<Field>> ();
-            private List<Field> commonFields = new List<Field> ();
+            private readonly Dictionary<Person, List<Field>> _fieldsByPerson = new Dictionary<Person, List<Field>> ();
+            private readonly List<Field> _commonFields = new List<Field> ();
             
             public CensusFieldGatheringVisitor (Gedcomx record)
             {
                 VisitGedcomx (record);
-                foreach (List<Field> fields in this.fieldsByPerson.Values) {
-                    fields.AddRange (this.commonFields);
+                foreach (List<Field> fields in _fieldsByPerson.Values) {
+                    fields.AddRange (_commonFields);
                 }
             }
             
             public Dictionary<Person, List<Field>> FieldsByPerson {
                 get {
-                    return this.fieldsByPerson;
+                    return _fieldsByPerson;
                 }
             }
 
-            new public void VisitField (Field field)
+            public override void VisitField(Field field)
             {
                 Person person = null;
-                foreach (object item in this.contextStack) {
+                foreach (object item in contextStack) {
                     if (item is Person) {
                         person = item as Person;
                         break;
@@ -252,14 +251,14 @@ namespace Gx.Util
                 }
                 
                 if (person == null) {
-                    this.commonFields.Add (field);
+                    _commonFields.Add (field);
                 } else {
                     List<Field> personFields;
-                    if (this.fieldsByPerson.ContainsKey (person)) {
-                        personFields = this.fieldsByPerson [person];
+                    if (_fieldsByPerson.ContainsKey (person)) {
+                        personFields = _fieldsByPerson [person];
                     } else {
                         personFields = new List<Field> ();
-                        this.fieldsByPerson.Add (person, personFields);
+                        _fieldsByPerson.Add (person, personFields);
                     }
                     
                     personFields.Add (field);

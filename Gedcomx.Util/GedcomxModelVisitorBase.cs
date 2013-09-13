@@ -35,7 +35,7 @@ namespace Gx.Util
             this.contextStack.Pop ();
         }
 
-        public void VisitGedcomx (Gedcomx gx)
+        public virtual void VisitGedcomx (Gedcomx gx)
         {
             this.contextStack.Push (gx);
 			
@@ -122,21 +122,21 @@ namespace Gx.Util
             this.contextStack.Pop ();
         }
 
-        public void VisitDocument (Document document)
+        public virtual void VisitDocument(Document document)
         {
             this.contextStack.Push (document);
             VisitConclusion (document);
             this.contextStack.Pop ();
         }
-		
-        public void VisitPlaceDescription (PlaceDescription place)
+
+        public virtual void VisitPlaceDescription(PlaceDescription place)
         {
             this.contextStack.Push (place);
             VisitSubject (place);
             this.contextStack.Pop ();
         }
-		
-        public void VisitEvent (Event e)
+
+        public virtual void VisitEvent(Event e)
         {
             this.contextStack.Push (e);
 			
@@ -160,20 +160,20 @@ namespace Gx.Util
 			
             this.contextStack.Pop ();
         }
-		
-        public void VisitEventRole (EventRole role)
+
+        public virtual void VisitEventRole(EventRole role)
         {
             this.contextStack.Push (role);
             VisitConclusion (role);
             this.contextStack.Pop ();
         }
-		
-        public void VisitAgent (Gx.Agent.Agent agent)
+
+        public virtual void VisitAgent(Gx.Agent.Agent agent)
         {
             //no-op.
         }
-		
-        public void VisitSourceDescription (SourceDescription sourceDescription)
+
+        public virtual void VisitSourceDescription(SourceDescription sourceDescription)
         {
             this.contextStack.Push (sourceDescription);
             if (sourceDescription.Sources != null) {
@@ -195,13 +195,13 @@ namespace Gx.Util
             }
             this.contextStack.Pop ();
         }
-		
-        public void VisitSourceCitation (SourceCitation citation)
+
+        public virtual void VisitSourceCitation(SourceCitation citation)
         {
             //no-op.
         }
-		
-        public void VisitCollection (Collection collection)
+
+        public virtual void VisitCollection(Collection collection)
         {
             this.contextStack.Push (collection);
             if (collection.Facets != null) {
@@ -211,8 +211,8 @@ namespace Gx.Util
             }
             this.contextStack.Pop ();
         }
-		
-        public void VisitFacet (Facet facet)
+
+        public virtual void VisitFacet(Facet facet)
         {
             this.contextStack.Push (facet);
             if (facet.Facets != null) {
@@ -222,13 +222,13 @@ namespace Gx.Util
             }
             this.contextStack.Pop ();
         }
-		
-        public void VisitRecordDescriptor (RecordDescriptor recordDescriptor)
+
+        public virtual void VisitRecordDescriptor(RecordDescriptor recordDescriptor)
         {
             //no-op.
         }
-		
-        public void VisitField (Field field)
+
+        public virtual void VisitField(Field field)
         {
             this.contextStack.Push (field);
 		
@@ -241,14 +241,14 @@ namespace Gx.Util
             this.contextStack.Pop ();
         }
 
-        public void VisitFieldValue (FieldValue fieldValue)
+        public virtual void VisitFieldValue (FieldValue fieldValue)
         {
             this.contextStack.Push (fieldValue);
             VisitConclusion (fieldValue);
             this.contextStack.Pop ();
         }
-		
-        public void VisitRelationship (Relationship relationship)
+
+        public virtual void VisitRelationship(Relationship relationship)
         {
             this.contextStack.Push (relationship);
             VisitSubject (relationship);
@@ -268,7 +268,7 @@ namespace Gx.Util
             this.contextStack.Pop ();
         }
 		
-        public void VisitPerson (Person person)
+        public virtual void VisitPerson (Person person)
         {
             this.contextStack.Push (person);
             VisitSubject (person);
@@ -296,8 +296,8 @@ namespace Gx.Util
             }
             this.contextStack.Pop ();
         }
-		
-        public void VisitFact (Fact fact)
+
+        public virtual void VisitFact(Fact fact)
         {
             this.contextStack.Push (fact);
             VisitConclusion (fact);
@@ -317,8 +317,8 @@ namespace Gx.Util
 
             this.contextStack.Pop ();
         }
-		
-        public void VisitPlaceReference (PlaceReference place)
+
+        public virtual void VisitPlaceReference(PlaceReference place)
         {
             this.contextStack.Push (place);
             if (place.Fields != null) {
@@ -328,8 +328,8 @@ namespace Gx.Util
             }
             this.contextStack.Pop ();
         }
-		
-        public void VisitDate (DateInfo date)
+
+        public virtual void VisitDate(DateInfo date)
         {
             this.contextStack.Push (date);
             if (date.Fields != null) {
@@ -339,8 +339,8 @@ namespace Gx.Util
             }
             this.contextStack.Pop ();
         }
-		
-        public void VisitName (Name name)
+
+        public virtual void VisitName(Name name)
         {
             this.contextStack.Push (name);
             VisitConclusion (name);
@@ -352,8 +352,8 @@ namespace Gx.Util
             }
             this.contextStack.Pop ();
         }
-		
-        public void VisitNameForm (NameForm form)
+
+        public virtual void VisitNameForm(NameForm form)
         {
             this.contextStack.Push (form);
             if (form.Parts != null) {
@@ -369,8 +369,8 @@ namespace Gx.Util
             }
             this.contextStack.Pop ();
         }
-		
-        public void VisitNamePart (NamePart part)
+
+        public virtual void VisitNamePart(NamePart part)
         {
             this.contextStack.Push (part);
             if (part.Fields != null) {
@@ -380,8 +380,8 @@ namespace Gx.Util
             }
             this.contextStack.Pop ();
         }
-		
-        public void VisitGender (Gender gender)
+
+        public virtual void VisitGender(Gender gender)
         {
             this.contextStack.Push (gender);
             VisitConclusion (gender);
@@ -395,13 +395,13 @@ namespace Gx.Util
             this.contextStack.Pop ();
 
         }
-		
-        public void VisitSourceReference (SourceReference sourceReference)
+
+        public virtual void VisitSourceReference(SourceReference sourceReference)
         {
             //no-op.
         }
-		
-        public void VisitNote (Note note)
+
+        public virtual void VisitNote(Note note)
         {
             //no-op.
         }

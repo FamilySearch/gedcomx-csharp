@@ -69,8 +69,8 @@ namespace Gx.CLI
                         outWriter.Write (",");
                     }
                 }
+                outWriter.WriteLine();
             }
-            
         }
     }
 }

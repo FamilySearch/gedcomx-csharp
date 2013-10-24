@@ -9,6 +9,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Gx.Fs</RootNamespace>
     <AssemblyName>Gedcomx.Model.Fs</AssemblyName>
+    <Description>FamilySearch-specific extensions to the GEDCOM X model.</Description>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

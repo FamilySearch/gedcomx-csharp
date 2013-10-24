@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{A171B653-434F-494D-BDA9-0DC2FCD86BA6}</ProjectGuid>
+    <ProjectGuid>{6C4454BD-26BF-43AD-9732-9F1CE4B1CB87}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Gx.Rs</RootNamespace>
-    <AssemblyName>Gedcomx.Model.Rs</AssemblyName>
-    <Description>REST-specific extensions to the GEDCOM X model.</Description>
+    <RootNamespace>Gx.Rs.Api</RootNamespace>
+    <AssemblyName>Gedcomx.Rs.Api</AssemblyName>
+    <Description>Library for accessing a GEDCOM X-compliant API.</Description>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,25 +31,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MyClass.cs" />
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="Category.cs" />
-    <Compile Include="CommonAttributes.cs" />
-    <Compile Include="Content.cs" />
-    <Compile Include="Entry.cs" />
-    <Compile Include="ExtensibleElement.cs" />
-    <Compile Include="Feed.cs" />
-    <Compile Include="Generator.cs" />
-    <Compile Include="Person.cs" />
-    <Compile Include="ResultConfidence.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <ProjectReference Include="..\Gedcomx.Model\GEDCOM X Model.csproj">
-      <Project>{4629BA54-406E-4CD2-9DC6-CDA2C5206EB7}</Project>
-      <Name>GEDCOM X Model</Name>
-    </ProjectReference>
-  </ItemGroup>
 </Project>

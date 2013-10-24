@@ -45,5 +45,13 @@
       <Project>{4629BA54-406E-4CD2-9DC6-CDA2C5206EB7}</Project>
       <Name>GEDCOM X Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Gedcomx.Model.Fs\GEDCOM X FamilySearch Model Extensions.csproj">
+      <Project>{FCC74CF5-AD92-4AB2-BECC-CE2882A77796}</Project>
+      <Name>GEDCOM X FamilySearch Model Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Gedcomx.Model.Rs\GEDCOM X REST Model Extensions.csproj">
+      <Project>{A171B653-434F-494D-BDA9-0DC2FCD86BA6}</Project>
+      <Name>GEDCOM X REST Model Extensions</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

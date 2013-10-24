@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gedcomx.CLI.Test", "Gedcomx
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GEDCOM X Utilities", "Gedcomx.Util\GEDCOM X Utilities.csproj", "{876EA5FA-FAE0-4280-9409-3754F3C8AAA4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GEDCOM X FamilySearch Model Extensions", "Gedcomx.Model.Fs\GEDCOM X FamilySearch Model Extensions.csproj", "{FCC74CF5-AD92-4AB2-BECC-CE2882A77796}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GEDCOM X REST Model Extensions", "Gedcomx.Model.Rs\GEDCOM X REST Model Extensions.csproj", "{A171B653-434F-494D-BDA9-0DC2FCD86BA6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +35,14 @@ Global
 		{876EA5FA-FAE0-4280-9409-3754F3C8AAA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{876EA5FA-FAE0-4280-9409-3754F3C8AAA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{876EA5FA-FAE0-4280-9409-3754F3C8AAA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A171B653-434F-494D-BDA9-0DC2FCD86BA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A171B653-434F-494D-BDA9-0DC2FCD86BA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A171B653-434F-494D-BDA9-0DC2FCD86BA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A171B653-434F-494D-BDA9-0DC2FCD86BA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCC74CF5-AD92-4AB2-BECC-CE2882A77796}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCC74CF5-AD92-4AB2-BECC-CE2882A77796}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCC74CF5-AD92-4AB2-BECC-CE2882A77796}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCC74CF5-AD92-4AB2-BECC-CE2882A77796}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Gedcomx.CLI\GEDCOM X Command Line Interface.csproj

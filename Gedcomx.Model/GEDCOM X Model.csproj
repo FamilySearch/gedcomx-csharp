@@ -61,7 +61,6 @@
     <Compile Include="FactType.cs" />
     <Compile Include="Field.cs" />
     <Compile Include="FieldDescriptor.cs" />
-    <Compile Include="FieldDisplay.cs" />
     <Compile Include="FieldType.cs" />
     <Compile Include="FieldValue.cs" />
     <Compile Include="FieldValueType.cs" />

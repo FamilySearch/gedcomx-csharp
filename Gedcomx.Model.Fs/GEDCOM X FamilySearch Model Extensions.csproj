@@ -5,10 +5,10 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{2DB621CF-0164-43A6-A31D-811BE8BF3527}</ProjectGuid>
+    <ProjectGuid>{FCC74CF5-AD92-4AB2-BECC-CE2882A77796}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Gedcomx.CLI.Test</RootNamespace>
-    <AssemblyName>Gedcomx.CLI.Test</AssemblyName>
+    <RootNamespace>Gx.Fs</RootNamespace>
+    <AssemblyName>Gedcomx.Model.Fs</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,41 +30,42 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="nunit.framework, Version=2.5.10.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77">
-      <Private>False</Private>
-      <Package>nunit</Package>
-    </Reference>
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="RecordSetParserTest.cs" />
+    <Compile Include="ArtifactMetadata.cs" />
+    <Compile Include="ArtifactType.cs" />
+    <Compile Include="ChangeInfo.cs" />
+    <Compile Include="ChangeObjectModifier.cs" />
+    <Compile Include="ChangeObjectType.cs" />
+    <Compile Include="ChangeOperation.cs" />
+    <Compile Include="ChildAndParentsRelationship.cs" />
+    <Compile Include="Comment.cs" />
+    <Compile Include="Discussion.cs" />
+    <Compile Include="DiscussionReference.cs" />
+    <Compile Include="Error.cs" />
+    <Compile Include="FamilySearchPlatform.cs" />
+    <Compile Include="Feature.cs" />
+    <Compile Include="HealthConfig.cs" />
+    <Compile Include="MatchInfo.cs" />
+    <Compile Include="MatchResolution.cs" />
+    <Compile Include="MatchSystem.cs" />
+    <Compile Include="Merge.cs" />
+    <Compile Include="MergeAnalysis.cs" />
+    <Compile Include="MergeConflict.cs" />
+    <Compile Include="Tag.cs" />
+    <Compile Include="User.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\Gedcomx.CLI\GEDCOM X Command Line Interface.csproj">
-      <Project>{26AEBDF3-DCC8-4FE9-8BC4-796F306E4CA2}</Project>
-      <Name>GEDCOM X Command Line Interface</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Gedcomx.Model\GEDCOM X Model.csproj">
       <Project>{4629BA54-406E-4CD2-9DC6-CDA2C5206EB7}</Project>
       <Name>GEDCOM X Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Gedcomx.Model.Fs\GEDCOM X FamilySearch Model Extensions.csproj">
-      <Project>{FCC74CF5-AD92-4AB2-BECC-CE2882A77796}</Project>
-      <Name>GEDCOM X FamilySearch Model Extensions</Name>
     </ProjectReference>
     <ProjectReference Include="..\Gedcomx.Model.Rs\GEDCOM X REST Model Extensions.csproj">
       <Project>{A171B653-434F-494D-BDA9-0DC2FCD86BA6}</Project>
       <Name>GEDCOM X REST Model Extensions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Gedcomx.Util\GEDCOM X Utilities.csproj">
-      <Project>{876EA5FA-FAE0-4280-9409-3754F3C8AAA4}</Project>
-      <Name>GEDCOM X Utilities</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="recordset-1307888.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
   </ItemGroup>
 </Project>

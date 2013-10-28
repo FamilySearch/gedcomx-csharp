@@ -15,10 +15,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GEDCOM X REST Model Extensi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gedcomx.Rs.Api", "Gedcomx.Rs.Api\Gedcomx.Rs.Api.csproj", "{6C4454BD-26BF-43AD-9732-9F1CE4B1CB87}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gedcomx.Rs.Api.Test", "Gedcomx.Rs.Api.Test\Gedcomx.Rs.Api.Test.csproj", "{E1599FF7-1CC2-4AB3-9165-2740CFF03425}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+		Default|Any CPU = Default|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{26AEBDF3-DCC8-4FE9-8BC4-796F306E4CA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -45,6 +48,12 @@ Global
 		{A171B653-434F-494D-BDA9-0DC2FCD86BA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A171B653-434F-494D-BDA9-0DC2FCD86BA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A171B653-434F-494D-BDA9-0DC2FCD86BA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1599FF7-1CC2-4AB3-9165-2740CFF03425}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1599FF7-1CC2-4AB3-9165-2740CFF03425}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1599FF7-1CC2-4AB3-9165-2740CFF03425}.Default|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1599FF7-1CC2-4AB3-9165-2740CFF03425}.Default|Any CPU.Build.0 = Debug|Any CPU
+		{E1599FF7-1CC2-4AB3-9165-2740CFF03425}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1599FF7-1CC2-4AB3-9165-2740CFF03425}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FCC74CF5-AD92-4AB2-BECC-CE2882A77796}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FCC74CF5-AD92-4AB2-BECC-CE2882A77796}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCC74CF5-AD92-4AB2-BECC-CE2882A77796}.Release|Any CPU.ActiveCfg = Release|Any CPU

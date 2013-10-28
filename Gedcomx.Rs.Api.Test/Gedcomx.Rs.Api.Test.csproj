@@ -5,10 +5,10 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{876EA5FA-FAE0-4280-9409-3754F3C8AAA4}</ProjectGuid>
+    <ProjectGuid>{E1599FF7-1CC2-4AB3-9165-2740CFF03425}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Gx.Util</RootNamespace>
-    <AssemblyName>Gedcomx.Util</AssemblyName>
+    <RootNamespace>Gedcomx.Rs.Api.Test</RootNamespace>
+    <AssemblyName>Gedcomx.Rs.Api.Test</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -22,7 +22,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
-    <Optimize>False</Optimize>
+    <Optimize>True</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -30,28 +30,42 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Data" />
+    <Reference Include="nunit.framework, Version=2.6.0.12051, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\packages\RestSharp.104.3.3\lib\net4\RestSharp.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="IGedcomxModelVisitor.cs" />
-    <Compile Include="GedcomxModelVisitorBase.cs" />
-    <Compile Include="GedcomxIdDictionary.cs" />
-    <Compile Include="RecordHelper.cs" />
+    <Compile Include="GedcomxApiDescriptorTest.cs" />
+    <Compile Include="BasicGedcomxApiTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\Gedcomx.Model\GEDCOM X Model.csproj">
-      <Project>{4629BA54-406E-4CD2-9DC6-CDA2C5206EB7}</Project>
-      <Name>GEDCOM X Model</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Gedcomx.Model.Fs\GEDCOM X FamilySearch Model Extensions.csproj">
       <Project>{FCC74CF5-AD92-4AB2-BECC-CE2882A77796}</Project>
       <Name>GEDCOM X FamilySearch Model Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Gedcomx.Model\GEDCOM X Model.csproj">
+      <Project>{4629BA54-406E-4CD2-9DC6-CDA2C5206EB7}</Project>
+      <Name>GEDCOM X Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\Gedcomx.Model.Rs\GEDCOM X REST Model Extensions.csproj">
       <Project>{A171B653-434F-494D-BDA9-0DC2FCD86BA6}</Project>
       <Name>GEDCOM X REST Model Extensions</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Gedcomx.Util\GEDCOM X Utilities.csproj">
+      <Project>{876EA5FA-FAE0-4280-9409-3754F3C8AAA4}</Project>
+      <Name>GEDCOM X Utilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Gedcomx.Rs.Api\Gedcomx.Rs.Api.csproj">
+      <Project>{6C4454BD-26BF-43AD-9732-9F1CE4B1CB87}</Project>
+      <Name>Gedcomx.Rs.Api</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

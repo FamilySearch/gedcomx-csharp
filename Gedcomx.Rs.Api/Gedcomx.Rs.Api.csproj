@@ -38,9 +38,29 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="GedcomxApi.cs" />
+    <Compile Include="GedcomxApiDescriptor.cs" />
+    <Compile Include="BasicGedcomxApi.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Gedcomx.Model.Fs\GEDCOM X FamilySearch Model Extensions.csproj">
+      <Project>{FCC74CF5-AD92-4AB2-BECC-CE2882A77796}</Project>
+      <Name>GEDCOM X FamilySearch Model Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Gedcomx.Model\GEDCOM X Model.csproj">
+      <Project>{4629BA54-406E-4CD2-9DC6-CDA2C5206EB7}</Project>
+      <Name>GEDCOM X Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Gedcomx.Model.Rs\GEDCOM X REST Model Extensions.csproj">
+      <Project>{A171B653-434F-494D-BDA9-0DC2FCD86BA6}</Project>
+      <Name>GEDCOM X REST Model Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Gedcomx.Util\GEDCOM X Utilities.csproj">
+      <Project>{876EA5FA-FAE0-4280-9409-3754F3C8AAA4}</Project>
+      <Name>GEDCOM X Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

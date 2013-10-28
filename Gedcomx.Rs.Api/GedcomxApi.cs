@@ -2,11 +2,12 @@ using System;
 
 namespace Gx.Rs.Api
 {
-    public class MyClass
+	/// <summary>
+	/// The basic interface for a GEDCOM X API.
+	/// </summary>
+    public interface GedcomxApi
     {
-        public MyClass ()
-        {
-        }
+
     }
 }
 

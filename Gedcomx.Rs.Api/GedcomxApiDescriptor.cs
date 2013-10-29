@@ -8,8 +8,9 @@ namespace Gx.Rs.Api
 {
 	public class GedcomxApiDescriptor
 	{
-		private readonly Dictionary<string, Link> links;
-		private readonly Uri source;
+		private Dictionary<string, Link> links;
+		private Uri source;
+		private DateTime expiration;
 
 		/// <summary>
 		/// Initialize an API descriptor from the specified discovery URI.
@@ -22,17 +23,35 @@ namespace Gx.Rs.Api
 		/// </param>
 		public GedcomxApiDescriptor (RestClient client, string discoveryPath)
 		{
+			Initialize (client, discoveryPath);
+		}
+
+		void Initialize (RestClient client, string discoveryPath)
+		{
 			var request = new RestRequest ();
 			request.Resource = discoveryPath;
 			request.AddHeader ("Accept", "application/atom+xml");
-
 			this.source = client.BuildUri (request);
+			DateTime now = DateTime.Now;
 			var response = client.Execute<Feed> (request);
+			if (response.ResponseStatus != ResponseStatus.Completed) {
+				throw new HttpException(response.StatusCode);
+			}
+
 			if (response.ErrorException != null) {
 				throw response.ErrorException;
 			}
+
 			Feed feed = response.Data;
-			this.links = BuildLinkLookup ( feed != null ? feed.Links : null );
+			DateTime expiration = DateTime.MaxValue;
+			foreach (Parameter header in response.Headers) {
+				if ("cache-control".Equals (header.Name.ToLowerInvariant ())) {
+					CacheControl cacheControl = CacheControl.Parse (header.Value.ToString ());
+					expiration = now.AddSeconds (cacheControl.MaxAge);
+				}
+			}
+			this.expiration = expiration;
+			this.links = BuildLinkLookup (feed != null ? feed.Links : null);
 		}
 
 		/// <summary>
@@ -70,6 +89,7 @@ namespace Gx.Rs.Api
 		{
 			this.source = source;
 			this.links = BuildLinkLookup (links);
+			this.expiration = DateTime.MaxValue;
 		}
 
 		/// <summary>
@@ -129,6 +149,50 @@ namespace Gx.Rs.Api
 		}
 
 		/// <summary>
+		/// Gets or sets the expiration of this descriptor.
+		/// </summary>
+		/// <value>
+		/// The expiration.
+		/// </value>
+		public DateTime Expiration {
+			get {
+				return this.expiration;
+			}
+			set {
+				expiration = value;
+			}
+		}
+
+		/// <summary>
+		/// Whether this descriptor is expired.
+		/// </summary>
+		/// <value>
+		/// <c>true</c> if expired; otherwise, <c>false</c>.
+		/// </value>
+		public bool Expired {
+			get {
+				return DateTime.Now > this.expiration;
+			}
+		}
+
+		/// <summary>
+		/// Refresh this descriptor using the specified client.
+		/// </summary>
+		/// <param name='client'>
+		/// The client.
+		/// </param>
+		public bool Refresh(RestClient client)
+		{
+			try {
+				Initialize(client, new Uri(client.BaseUrl).MakeRelativeUri(this.source).ToString());
+				return true;
+			}
+			catch (Exception) {
+				return false;
+			}
+		}
+
+		/// <summary>
 		/// Gets the OAuth2 authorization URI for this API.
 		/// </summary>
 		/// <value>
@@ -143,6 +207,24 @@ namespace Gx.Rs.Api
 					TryUriResolution(authorizationLink.Href, out authorizationUri);
 				}
 				return authorizationUri;
+			}
+		}
+
+		/// <summary>
+		/// Gets the OAuth2 token URI for this API.
+		/// </summary>
+		/// <value>
+		/// The OAuth2 token URI.
+		/// </value>
+		public Uri OAuth2TokenUri {
+			get {
+				Uri tokenUri = null;
+				Link tokenLink;
+				this.Links.TryGetValue(@"http://oauth.net/core/2.0/endpoint/token", out tokenLink);
+				if (tokenLink != null && tokenLink.Href != null) {
+					TryUriResolution(tokenLink.Href, out tokenUri);
+				}
+				return tokenUri;
 			}
 		}
 

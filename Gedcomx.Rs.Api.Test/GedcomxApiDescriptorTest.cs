@@ -14,9 +14,12 @@ namespace Gedcomx.Rs.Api.Test
 		{
 			//make sure we accept any ssl certificates.
 			ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
-			RestClient client = new RestClient("https://familysearch.org");
+			RestClient client = new RestClient("https://sandbox.familysearch.org");
 			GedcomxApiDescriptor description = new GedcomxApiDescriptor(client, ".well-known/app-meta");
 			Assert.IsTrue(description.Links.Count > 0);
+			Assert.IsFalse(description.Expired);
+			Assert.IsTrue(description.Expiration > DateTime.Now);
+			Assert.IsTrue(description.Refresh(client));
 		}
 	}
 }

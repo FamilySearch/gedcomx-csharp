@@ -40,6 +40,8 @@
     <Compile Include="GedcomxApi.cs" />
     <Compile Include="GedcomxApiDescriptor.cs" />
     <Compile Include="BasicGedcomxApi.cs" />
+    <Compile Include="CacheControl.cs" />
+    <Compile Include="HttpException.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

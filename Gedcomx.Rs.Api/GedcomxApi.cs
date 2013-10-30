@@ -7,7 +7,10 @@ namespace Gx.Rs.Api
 	/// </summary>
     public interface GedcomxApi
     {
-
+		Uri BuildOAuth2AuthorizationUri(string clientId, string redirectUri);
+		bool TryOAuth2Authentication(string username, string password, string clientId);
+		GedcomxApiResponse<Person> GetPerson(String pid);
+		//todo: fill in the methods as needed.
     }
 
 	public static class Rel

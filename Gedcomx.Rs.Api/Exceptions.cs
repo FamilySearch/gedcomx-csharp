@@ -18,5 +18,13 @@ namespace Gx.Rs.Api
 			}
 		}
 	}
+
+	public class ApiNonConformanceException : System.Exception
+	{
+		public ApiNonConformanceException(string message) : base(message)
+		{
+
+		}
+	}
 }
 

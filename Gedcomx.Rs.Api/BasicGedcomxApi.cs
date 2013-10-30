@@ -2,12 +2,14 @@ using System;
 using RestSharp;
 using System.Text;
 using System.Collections.Generic;
+using Gx.Conclusion;
+using RestSharp.Extensions;
 
 namespace Gx.Rs.Api
 {
 	public class BasicGedcomxApi : GedcomxApi
 	{
-		private readonly RestClient client;
+
 		private readonly GedcomxApiDescriptor descriptor;
 		private string accessToken;
 
@@ -15,19 +17,12 @@ namespace Gx.Rs.Api
 		{
 		}
 
-		public BasicGedcomxApi ( RestClient client, string discoveryPath ) : this ( client, new GedcomxApiDescriptor (client, discoveryPath) )
+		public BasicGedcomxApi ( RestClient client, string discoveryPath ) : this ( new GedcomxApiDescriptor (client, discoveryPath) )
 		{
 		}
 
-		public BasicGedcomxApi ( RestClient client, GedcomxApiDescriptor descriptor ) {
-			this.client = client;
+		public BasicGedcomxApi ( GedcomxApiDescriptor descriptor ) {
 			this.descriptor = descriptor;
-		}
-
-		public RestClient Client {
-			get {
-				return this.client;
-			}
 		}
 
 		public GedcomxApiDescriptor Descriptor {
@@ -36,13 +31,22 @@ namespace Gx.Rs.Api
 			}
 		}
 
+		public string CurrentAccessToken {
+			get {
+				return this.accessToken;
+			}
+			set {
+				this.accessToken = value;
+			}
+		}
+
 		public Uri BuildOAuth2AuthorizationUri(string clientId, string redirectUri) 
 		{
 			if (this.descriptor.Expired) {
-				this.descriptor.Refresh(this.client);
+				this.descriptor.Refresh();
 			}
 
-			Uri authorizationBase = this.descriptor.OAuth2AuthorizationUri;
+			Uri authorizationBase = this.descriptor.GetOAuth2AuthorizationUri();
 			if (authorizationBase != null) {
 				UriBuilder builder = new UriBuilder(authorizationBase);
 				StringBuilder query = new StringBuilder("response_type=code&client_id=")
@@ -60,17 +64,18 @@ namespace Gx.Rs.Api
 		public bool TryOAuth2Authentication(string username, string password, string clientId)
 		{
 			if (this.descriptor.Expired) {
-				this.descriptor.Refresh(this.client);
+				this.descriptor.Refresh();
 			}
 
-			Uri tokenUri = this.descriptor.OAuth2TokenUri;
-			if (tokenUri != null) {
-				RestRequest request = new RestRequest(tokenUri, Method.POST);
+			RestClient client;
+			RestRequest request;
+			if (this.descriptor.GetOAuth2TokenRequest(out client, out request)) {
+				request.Method = Method.POST;
 				request.AddParameter("grant_type", "password");
 				request.AddParameter("username", username);
 				request.AddParameter("password", password);
 				request.AddParameter("client_id", clientId);
-				var response = this.client.Execute<Dictionary<string, object>>(request);
+				var response = client.Execute<Dictionary<string, object>>(request);
 				if (response.ErrorException != null) {
 					return false;
 				}
@@ -88,9 +93,41 @@ namespace Gx.Rs.Api
 			}
 		}
 
-		string CurrentAccessToken {
-			get {
-				return this.accessToken;
+		public GedcomxApiResponse<Person> GetPerson(String pid) {
+			if (this.descriptor.Expired) {
+				this.descriptor.Refresh();
+			}
+
+			RestClient client;
+			RestRequest request;
+			if (this.descriptor.GetPersonRequest(pid, out client, out request)) {
+				request.Method = Method.GET;
+				request.AddHeader("Accept", MediaTypes.GedcomxXml);
+				request.AddHeader("Authorization", string.Format("Bearer {0}", this.accessToken));
+				var response = client.Execute<Gedcomx>(request);
+
+				if (response.ResponseStatus != ResponseStatus.Completed) {
+					throw new HttpException (response.StatusCode);
+				}
+
+				//todo: think about moved? unauthorized? access denied?
+				if (response.StatusCode < System.Net.HttpStatusCode.OK || response.StatusCode >= System.Net.HttpStatusCode.MultipleChoices) {
+					throw new HttpException (response.StatusCode);
+				}
+				
+				if (response.ErrorException != null) {
+					throw response.ErrorException;
+				}
+
+				Gedcomx data = response.Data;
+				if (data.Persons == null || data.Persons.Count < 1) {
+					throw new ApiNonConformanceException("Expected a person returned from the server.");
+				}
+
+				return GedcomxApiResponse<Person>.Wrap(response, response.Data.Persons[0]);
+			}
+			else {
+				throw new NotSupportedException("The API descriptor doesn't have a link to the GEDCOM X person resource.");
 			}
 		}
 	}

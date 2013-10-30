@@ -34,6 +34,9 @@
     <Reference Include="RestSharp">
       <HintPath>..\packages\RestSharp.104.3.3\lib\net4\RestSharp.dll</HintPath>
     </Reference>
+    <Reference Include="Tavis.UriTemplates">
+      <HintPath>..\packages\Tavis.UriTemplates.0.1.1\lib\NET40\Tavis.UriTemplates.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
@@ -41,7 +44,8 @@
     <Compile Include="GedcomxApiDescriptor.cs" />
     <Compile Include="BasicGedcomxApi.cs" />
     <Compile Include="CacheControl.cs" />
-    <Compile Include="HttpException.cs" />
+    <Compile Include="Exceptions.cs" />
+    <Compile Include="GedcomxApiResponse.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

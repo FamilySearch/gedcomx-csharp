@@ -3,14 +3,21 @@ using RestSharp;
 using Gx.Atom;
 using Gx.Links;
 using System.Collections.Generic;
+using Tavis.UriTemplates;
 
 namespace Gx.Rs.Api
 {
 	public class GedcomxApiDescriptor
 	{
+		private RestClient sourceClient;
+		private string sourcePath;
+		private Dictionary<string, RestClient> clients = new Dictionary<string, RestClient>();
 		private Dictionary<string, Link> links;
-		private Uri source;
 		private DateTime expiration;
+
+		public GedcomxApiDescriptor (String host, string discoveryPath) : this(new RestClient(host), discoveryPath)
+		{
+		}
 
 		/// <summary>
 		/// Initialize an API descriptor from the specified discovery URI.
@@ -30,12 +37,12 @@ namespace Gx.Rs.Api
 		{
 			var request = new RestRequest ();
 			request.Resource = discoveryPath;
-			request.AddHeader ("Accept", "application/atom+xml");
-			this.source = client.BuildUri (request);
+			request.AddHeader ("Accept", MediaTypes.AtomXml);
+
 			DateTime now = DateTime.Now;
 			var response = client.Execute<Feed> (request);
 			if (response.ResponseStatus != ResponseStatus.Completed) {
-				throw new HttpException(response.StatusCode);
+				throw new HttpException (response.StatusCode);
 			}
 
 			if (response.ErrorException != null) {
@@ -50,56 +57,12 @@ namespace Gx.Rs.Api
 					expiration = now.AddSeconds (cacheControl.MaxAge);
 				}
 			}
+
 			this.expiration = expiration;
 			this.links = BuildLinkLookup (feed != null ? feed.Links : null);
-		}
-
-		/// <summary>
-		/// Inintialize a descriptor directly from a feed.
-		/// </summary>
-		/// <param name='feed'>
-		/// The feed.
-		/// </param>
-		/// <param name='source'>
-		/// The source of the feed.
-		/// </param>
-		public GedcomxApiDescriptor (Feed feed, Uri source) : this (feed != null ? feed.Links : null, source) {
-		}
-
-		/// <summary>
-		/// Inintialize a descriptor directly from a feed.
-		/// </summary>
-		/// <param name='feed'>
-		/// The feed.
-		/// </param>
-		public GedcomxApiDescriptor (Feed feed) : this (feed != null ? feed.Links : null, null)
-		{
-		}
-
-		/// <summary>
-		/// Initializes a descriptor from a list of links.
-		/// </summary>
-		/// <param name='links'>
-		/// The links.
-		/// </param>
-		/// <param name='source'>
-		/// The source of the links.
-		/// </param>
-		public GedcomxApiDescriptor (List<Link> links, Uri source)
-		{
-			this.source = source;
-			this.links = BuildLinkLookup (links);
-			this.expiration = DateTime.MaxValue;
-		}
-
-		/// <summary>
-		/// Initializes a descriptor from a list of links.
-		/// </summary>
-		/// <param name='links'>
-		/// The links.
-		/// </param>
-		public GedcomxApiDescriptor (List<Link> links) : this( links, null )
-		{
+			this.sourceClient = client;
+			this.sourcePath = discoveryPath;
+			this.clients.Add (client.BaseUrl, client);
 		}
 
 		/// <summary>
@@ -125,6 +88,214 @@ namespace Gx.Rs.Api
 		}
 
 		/// <summary>
+		/// Tries to resolve a relative or absolute URI.
+		/// </summary>
+		/// <returns>
+		/// <c>true</c>, if URI resolution was successful, <c>false</c> otherwise.
+		/// </returns>
+		/// <param name='relativeOrAbsoluteUri'>
+		/// Relative or absolute URI.
+		/// </param>
+		/// <param name='result'>
+		/// Result.
+		/// </param>
+		bool TryUriResolution (string relativeOrAbsoluteUri, out Uri result)
+		{
+			if (!Uri.TryCreate (relativeOrAbsoluteUri, UriKind.Absolute, out result)) {
+				if (Uri.TryCreate (new Uri(this.sourceClient.BaseUrl), relativeOrAbsoluteUri, out result)) {
+					return true;
+				}
+			} else {
+				return true;
+			}
+			
+			return false;
+		}
+
+		public bool GetRequestByRel(string rel, out RestClient client, out string requestPath)
+		{
+			Link link;
+			if (this.links.TryGetValue(rel, out link)) {
+				return GetRequest(link, out client, out requestPath);
+			}
+			else {
+				client = null;
+				requestPath = null;
+				return false;
+			}
+		}
+		
+		public bool GetRequest(Link link, out RestClient client, out string requestPath)
+		{
+			if (link == null) {
+				client = null;
+				requestPath = null;
+				return false;
+			}
+			else {
+				return GetRequest(link.Href, out client, out requestPath);
+			}
+		}
+
+		public bool GetRequest (string uri, out RestClient client, out string requestPath)
+		{
+			if (uri == null) {
+				client = null;
+				requestPath = null;
+				return false;
+			}
+
+			Uri parsed;
+			if (TryUriResolution(uri, out parsed)) {
+				return GetRequest(parsed, out client, out requestPath);
+			}
+			else {
+				client = null;
+				requestPath = null;
+				return false;
+			}
+		}
+
+		public bool GetRequest (Uri uri, out RestClient client, out string requestPath)
+		{
+			if (uri == null) {
+				client = null;
+				requestPath = null;
+				return false;
+			} else if (uri.IsAbsoluteUri) {
+				string uriValue = uri.ToString ();
+				string host = uri.Host;
+				var splitHostIndex = uriValue.IndexOf (host) + host.Length;
+				client = GetClient (uriValue.Substring (0, splitHostIndex));
+				requestPath = uriValue.Length > splitHostIndex + 1 ? uriValue.Substring (splitHostIndex + 1) : "/";
+				return true;
+			} else {
+				client = this.sourceClient;
+				requestPath = uri.ToString ();
+				return true;
+			}
+		}
+
+		RestClient GetClient (string baseUri)
+		{
+			RestClient client;
+			if (!this.clients.TryGetValue (baseUri, out client)) {
+				client = new RestClient (baseUri);
+				this.clients.Add (baseUri, client);
+			}
+			return client;
+		}
+
+		public bool GetRequest (Uri uri, out RestClient client, out RestRequest request)
+		{
+			String requestPath;
+			if (GetRequest(uri, out client, out requestPath)) {
+				request = new RestRequest(requestPath);
+				return true;
+			}
+			else {
+				client = null;
+				request = null;
+				return false;
+			}
+		}
+
+		public bool GetRequest (string uri, out RestClient client, out RestRequest request)
+		{
+			String requestPath;
+			if (GetRequest(uri, out client, out requestPath)) {
+				request = new RestRequest(requestPath);
+				return true;
+			}
+			else {
+				client = null;
+				request = null;
+				return false;
+			}
+		}
+		
+		public bool GetRequest (Link link, out RestClient client, out RestRequest request)
+		{
+			String requestPath;
+			if (GetRequest(link, out client, out requestPath)) {
+				request = new RestRequest(requestPath);
+				return true;
+			}
+			else {
+				client = null;
+				request = null;
+				return false;
+			}
+		}
+		
+		public bool GetRequestByRel(string rel, out RestClient client, out RestRequest request)
+		{
+			Link link;
+			if (this.links.TryGetValue(rel, out link)) {
+				return GetRequest(link, out client, out request);
+			}
+			else {
+				client = null;
+				request = null;
+				return false;
+			}
+		}
+
+		public bool GetTemplatedRequest (string uri, Dictionary<string, string> templateVariables, out RestClient client, out RestRequest request)
+		{
+			String requestPath;
+			if (GetRequest(uri, out client, out requestPath)) {
+				UriTemplate template = new UriTemplate(requestPath);
+				foreach(KeyValuePair<string, string> entry in templateVariables) {
+					template.SetParameter(entry.Key, entry.Value);
+				}
+				request = new RestRequest(template.Resolve());
+				return true;
+			}
+			else {
+				client = null;
+				request = null;
+				return false;
+			}
+		}
+		
+		public bool GetTemplatedRequest (Link link, Dictionary<string, string> templateVariables, out RestClient client, out RestRequest request)
+		{
+			if (link == null) {
+				client = null;
+				request = null;
+				return false;
+			}
+			String requestPath;
+			if (GetRequest(link.Template, out client, out requestPath)) {
+				UriTemplate template = new UriTemplate(requestPath);
+				foreach(KeyValuePair<string, string> entry in templateVariables) {
+					template.SetParameter(entry.Key, entry.Value);
+				}
+				request = new RestRequest(template.Resolve());
+				return true;
+			}
+			else {
+				client = null;
+				request = null;
+				return false;
+			}
+		}
+
+		public bool GetTemplatedRequestByRel(string rel, Dictionary<string, string> templateVariables, out RestClient client, out RestRequest request)
+		{
+			Link link;
+			if (this.links.TryGetValue(rel, out link)) {
+				return GetTemplatedRequest(link, templateVariables, out client, out request);
+			}
+			else {
+				client = null;
+				request = null;
+				return false;
+			}
+		}
+
+		/// <summary>
 		/// The links that describe the API.
 		/// </summary>
 		/// <value>
@@ -133,18 +304,6 @@ namespace Gx.Rs.Api
 		public Dictionary<string, Link> Links {
 			get {
 				return this.links;
-			}
-		}
-
-		/// <summary>
-		/// The source of this descriptor.
-		/// </summary>
-		/// <value>
-		/// The source.
-		/// </value>
-		public Uri Source {
-			get {
-				return this.source;
 			}
 		}
 
@@ -181,77 +340,37 @@ namespace Gx.Rs.Api
 		/// <param name='client'>
 		/// The client.
 		/// </param>
-		public bool Refresh(RestClient client)
+		public bool Refresh ()
 		{
 			try {
-				Initialize(client, new Uri(client.BaseUrl).MakeRelativeUri(this.source).ToString());
+				Initialize (this.sourceClient, this.sourcePath);
 				return true;
-			}
-			catch (Exception) {
+			} catch (Exception) {
 				return false;
 			}
 		}
 
-		/// <summary>
-		/// Gets the OAuth2 authorization URI for this API.
-		/// </summary>
-		/// <value>
-		/// The OAuth2 authorization URI.
-		/// </value>
-		public Uri OAuth2AuthorizationUri {
-			get {
-				Uri authorizationUri = null;
-				Link authorizationLink;
-				this.Links.TryGetValue(@"http://oauth.net/core/2.0/endpoint/authorize", out authorizationLink);
-				if (authorizationLink != null && authorizationLink.Href != null) {
-					TryUriResolution(authorizationLink.Href, out authorizationUri);
-				}
-				return authorizationUri;
-			}
-		}
-
-		/// <summary>
-		/// Gets the OAuth2 token URI for this API.
-		/// </summary>
-		/// <value>
-		/// The OAuth2 token URI.
-		/// </value>
-		public Uri OAuth2TokenUri {
-			get {
-				Uri tokenUri = null;
-				Link tokenLink;
-				this.Links.TryGetValue(@"http://oauth.net/core/2.0/endpoint/token", out tokenLink);
-				if (tokenLink != null && tokenLink.Href != null) {
-					TryUriResolution(tokenLink.Href, out tokenUri);
-				}
-				return tokenUri;
-			}
-		}
-
-		/// <summary>
-		/// Tries to resolve a relative or absolute URI.
-		/// </summary>
-		/// <returns>
-		/// <c>true</c>, if URI resolution was successful, <c>false</c> otherwise.
-		/// </returns>
-		/// <param name='relativeOrAbsoluteUri'>
-		/// Relative or absolute URI.
-		/// </param>
-		/// <param name='result'>
-		/// Result.
-		/// </param>
-		bool TryUriResolution(string relativeOrAbsoluteUri, out Uri result)
+		public Uri GetOAuth2AuthorizationUri ()
 		{
-			if (!Uri.TryCreate(relativeOrAbsoluteUri, UriKind.Absolute, out result)) {
-				if (Uri.TryCreate(this.source, relativeOrAbsoluteUri, out result)) {
-					return true;
-				}
+			Uri authorizationUri = null;
+			Link authorizationLink;
+			this.Links.TryGetValue (Rel.OAuth2Authorization, out authorizationLink);
+			if (authorizationLink != null && authorizationLink.Href != null) {
+				TryUriResolution (authorizationLink.Href, out authorizationUri);
 			}
-			else {
-				return true;
-			}
+			return authorizationUri;
+		}
 
-			return false;
+		public bool GetOAuth2TokenRequest (out RestClient client, out RestRequest request)
+		{
+			return GetRequestByRel(Rel.OAuth2Token, out client, out request);
+		}
+
+		public bool GetPersonRequest (string personId, out RestClient client, out RestRequest request)
+		{
+			Dictionary<string, string> variables = new Dictionary<string, string>();
+			variables.Add(TemplateVariables.PersonId, personId);
+			return GetTemplatedRequestByRel(Rel.PersonTemplate, variables, out client, out request);
 		}
 	}
 }

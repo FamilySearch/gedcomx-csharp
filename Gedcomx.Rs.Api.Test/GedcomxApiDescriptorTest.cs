@@ -19,7 +19,7 @@ namespace Gedcomx.Rs.Api.Test
 			Assert.IsTrue(description.Links.Count > 0);
 			Assert.IsFalse(description.Expired);
 			Assert.IsTrue(description.Expiration > DateTime.Now);
-			Assert.IsTrue(description.Refresh(client));
+			Assert.IsTrue(description.Refresh());
 		}
 	}
 }

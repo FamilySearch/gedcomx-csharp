@@ -61,7 +61,12 @@ namespace Gx.Rs.Api
 			}
 		}
 
-		public bool TryOAuth2Authentication(string username, string password, string clientId)
+		public bool TryPasswordOAuth2Authentication(string username, string password, string clientId)
+		{
+			return TryPasswordOAuth2Authentication(username, password, clientId, null);
+		}
+
+		public bool TryPasswordOAuth2Authentication(string username, string password, string clientId, string clientSecret)
 		{
 			if (this.descriptor.Expired) {
 				this.descriptor.Refresh();
@@ -75,6 +80,9 @@ namespace Gx.Rs.Api
 				request.AddParameter("username", username);
 				request.AddParameter("password", password);
 				request.AddParameter("client_id", clientId);
+				if (clientSecret != null) {
+					request.AddParameter("client_secret", clientSecret);
+				}
 				var response = client.Execute<Dictionary<string, object>>(request);
 				if (response.ErrorException != null) {
 					return false;
@@ -93,6 +101,46 @@ namespace Gx.Rs.Api
 			}
 		}
 
+		public bool TryAuthCodeOAuth2Authentication(string authCode, string clientId, string redirectUri)
+		{
+			return TryAuthCodeOAuth2Authentication(authCode, clientId, redirectUri, null);
+		}
+
+		public bool TryAuthCodeOAuth2Authentication(string authCode, string clientId, string redirectUri, string clientSecret)
+		{
+			if (this.descriptor.Expired) {
+				this.descriptor.Refresh();
+			}
+			
+			RestClient client;
+			RestRequest request;
+			if (this.descriptor.GetOAuth2TokenRequest(out client, out request)) {
+				request.Method = Method.POST;
+				request.AddParameter("code", authCode);
+				request.AddParameter("client_id", clientId);
+				request.AddParameter("grant_type", "authorization_code");
+				request.AddParameter("redirect_uri", redirectUri);
+				if (clientSecret != null) {
+					request.AddParameter("client_secret", clientSecret);
+				}
+				var response = client.Execute<Dictionary<string, object>>(request);
+				if (response.ErrorException != null) {
+					return false;
+				}
+				
+				Dictionary<string, object> result = response.Data;
+				if (result.ContainsKey("access_token")) {
+					this.accessToken = (string) result["access_token"];
+					return true;
+				}
+				
+				return false;
+			}
+			else {
+				return false;
+			}
+		}
+		
 		public GedcomxApiResponse<Person> GetPerson(String pid) {
 			if (this.descriptor.Expired) {
 				this.descriptor.Refresh();

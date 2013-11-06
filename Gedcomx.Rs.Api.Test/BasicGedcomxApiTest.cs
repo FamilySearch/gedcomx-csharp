@@ -46,6 +46,14 @@ namespace Gedcomx.Rs.Api.Test
 		}
 		
 		[Test]
+		[Ignore("The test below depends on a signature with a private key that we can't really check in to VCS, so we don't really have a way to test this right now...")]
+		public void TestTryClientCredentialsOAuth2Authentication ()
+		{
+			Assert.IsTrue(api.TryClientCredentialsOAuth2Authentication("DEV_KEY_NOREFRESH_CALLBACK0_CONFIDENTIAL_FS",
+			                                                           "PjEJyUZlkTgbkQHXbOIVBfK/usUt4Gr2olnzDnhpJwswUkpdaNAXXKoxL0Gj2oZ3rn8u+fo4pbhyxiS3cTmjU42eOv4CGjr9xt6NpU+dwL5mD8Scx2S5eqzGjKeA1hHkn/IbYc7tiyzDuI4LFXU9dystnjB3yhGvE+qQWE9uzEw=:1383762019420"));
+		}
+		
+		[Test]
 		[Ignore("Until we can get the password flow working (see above), we can't really get a valid access token, so this test needs a session id pasted in.")]
 		public void TestGetPerson()
 		{

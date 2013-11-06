@@ -13,6 +13,7 @@ namespace Gx.Rs.Api
 		bool TryPasswordOAuth2Authentication(string username, string password, string clientId, string clientSecret);
 		bool TryAuthCodeOAuth2Authentication(string username, string password, string clientId);
 		bool TryAuthCodeOAuth2Authentication(string username, string password, string clientId, string clientSecret);
+		bool TryClientCredentialsOAuth2Authentication(string clientId, string clientSecret);
 		GedcomxApiResponse<Person> GetPerson(String pid);
 		//todo: fill in the methods as needed.
     }

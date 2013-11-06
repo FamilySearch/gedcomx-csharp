@@ -141,6 +141,39 @@ namespace Gx.Rs.Api
 			}
 		}
 		
+		public bool TryClientCredentialsOAuth2Authentication(string clientId, string clientSecret)
+		{
+			if (this.descriptor.Expired) {
+				this.descriptor.Refresh();
+			}
+			
+			RestClient client;
+			RestRequest request;
+			if (this.descriptor.GetOAuth2TokenRequest(out client, out request)) {
+				request.Method = Method.POST;
+				request.AddParameter("client_id", clientId);
+				request.AddParameter("grant_type", "client_credentials");
+				if (clientSecret != null) {
+					request.AddParameter("client_secret", clientSecret);
+				}
+				var response = client.Execute<Dictionary<string, object>>(request);
+				if (response.ErrorException != null) {
+					return false;
+				}
+				
+				Dictionary<string, object> result = response.Data;
+				if (result.ContainsKey("token")) {
+					this.accessToken = (string) result["token"];
+					return true;
+				}
+				
+				return false;
+			}
+			else {
+				return false;
+			}
+		}
+		
 		public GedcomxApiResponse<Person> GetPerson(String pid) {
 			if (this.descriptor.Expired) {
 				this.descriptor.Refresh();

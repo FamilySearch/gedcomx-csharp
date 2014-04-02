@@ -54,12 +54,12 @@ namespace Gx.Util
         {
             var table = new DataTable ();
             var values = new FieldValueTableBuildingVisitor( recordSet );
-            foreach (string column in values.ColumnNames) {
+            foreach (var column in values.ColumnNames) {
                 table.Columns.Add(column, typeof(string));
             }
-            foreach (Dictionary<string, string> fieldSet in values.Rows) {
-                DataRow row = table.NewRow();
-                foreach (KeyValuePair<string, string> entry in fieldSet) {
+            foreach (var fieldSet in values.Rows) {
+                var row = table.NewRow();
+                foreach (var entry in fieldSet) {
                     row[entry.Key] = string.Format("\"{0}\"", entry.Value.Replace("\"", "\\\""));
                 }
                 table.Rows.Add(row);
@@ -78,16 +78,16 @@ namespace Gx.Util
         /// </param>
         public static bool IsCensusRecord (Gedcomx record)
         {
-            String uri = record.DescriptionRef;
+            var uri = record.DescriptionRef;
             if (uri != null) {
-                int hashIndex = uri.IndexOf ('#');
+                var hashIndex = uri.IndexOf ('#');
                 if (hashIndex >= 0) {
-                    string id = uri.Substring (hashIndex);
+                    var id = uri.Substring (hashIndex);
                     if (record.SourceDescriptions != null) {
-                        foreach (SourceDescription source in record.SourceDescriptions) {
+                        foreach (var source in record.SourceDescriptions) {
                             if (id.Equals (source.Id)) {
                                 if (source.Coverage != null) {
-                                    foreach (Coverage coverage in source.Coverage) {
+                                    foreach (var coverage in source.Coverage) {
                                         if (coverage.KnownRecordType == RecordType.Census) {
                                             return true;
                                         }
@@ -133,8 +133,8 @@ namespace Gx.Util
                     //if we have any subrecords, the field values list only contains the field values
                     //that are applicable to all subrecords. So iterate through each subrecord and add 
                     //the values of the parent record to them.
-                    foreach (Dictionary<string, string> subrecord in _subrecords) {
-                        foreach (KeyValuePair<string, string> entry in _currentRecord) {
+                    foreach (var subrecord in _subrecords) {
+                        foreach (var entry in _currentRecord) {
                             subrecord[entry.Key] = entry.Value;
                         }
                         _rows.Add(subrecord);
@@ -163,7 +163,7 @@ namespace Gx.Util
 
             public override void VisitPerson (Person person)
             {
-                Dictionary<string, string> recordFieldValues = _currentRecord;
+                var recordFieldValues = _currentRecord;
                 if (_parsingCensus) {
                     _currentRecord = new Dictionary<string, string>();
                 }
@@ -229,7 +229,7 @@ namespace Gx.Util
             public CensusFieldGatheringVisitor (Gedcomx record)
             {
                 VisitGedcomx (record);
-                foreach (List<Field> fields in _fieldsByPerson.Values) {
+                foreach (var fields in _fieldsByPerson.Values) {
                     fields.AddRange (_commonFields);
                 }
             }
@@ -243,7 +243,7 @@ namespace Gx.Util
             public override void VisitField(Field field)
             {
                 Person person = null;
-                foreach (object item in contextStack) {
+                foreach (var item in contextStack) {
                     if (item is Person) {
                         person = item as Person;
                         break;

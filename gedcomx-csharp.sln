@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.30110.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GEDCOM X Model", "Gedcomx.Model\GEDCOM X Model.csproj", "{4629BA54-406E-4CD2-9DC6-CDA2C5206EB7}"
 EndProject
@@ -18,13 +18,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gedcomx.Rs.Api", "Gedcomx.Rs.Api\Gedcomx.Rs.Api.csproj", "{6C4454BD-26BF-43AD-9732-9F1CE4B1CB87}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gedcomx.Rs.Api.Test", "Gedcomx.Rs.Api.Test\Gedcomx.Rs.Api.Test.csproj", "{E1599FF7-1CC2-4AB3-9165-2740CFF03425}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{C4ED137E-D897-4E0F-8A59-33B82125E2AC}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

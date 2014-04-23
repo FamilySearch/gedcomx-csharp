@@ -32,7 +32,7 @@ namespace Gedcomx.Rs.Api.Test
 		[Ignore("There's a bug in the FamilySearch implementation of OAuth2 password flow. This test needs to be disabled until then.")]
 		public void TestTryPasswordOAuth2Authentication ()
 		{
-			Assert.IsTrue(api.TryPasswordOAuth2Authentication("heatonra", "1234cispass", "WCQY-7J1Q-GKVV-7DNM-SQ5M-9Q5H-JX3H-CMJK"));
+			Assert.IsTrue(api.TryPasswordOAuth2Authentication("sdktester", "1234sdkpass", "WCQY-7J1Q-GKVV-7DNM-SQ5M-9Q5H-JX3H-CMJK"));
 		}
 
 		[Test]

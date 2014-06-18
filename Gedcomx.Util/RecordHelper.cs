@@ -177,6 +177,16 @@ namespace Gx.Util
                     _currentRecord = recordFieldValues;
                 }
             }
+
+			public override void VisitSourceDescription(SourceDescription sourceDescription)
+			{
+				if ((sourceDescription.KnownResourceType == ResourceType.DigitalArtifact) && (sourceDescription.About != null)) {
+					_columnNames.Add( "IMAGE_URI" );
+					_currentRecord[ "IMAGE_URI" ] = sourceDescription.About;
+				}
+
+				base.VisitSourceDescription(sourceDescription);
+			}
             
             public IEnumerable<string> ColumnNames {
                 get {

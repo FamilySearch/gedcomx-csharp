@@ -65,6 +65,39 @@ namespace Gx.Rs.Api
 			this.clients.Add (client.BaseUrl, client);
 		}
 
+		public bool RefreshWithAuthentication(string token)
+		{
+			var request = new RestRequest ();
+			request.Resource = this.sourcePath;
+			request.AddHeader ("Accept", MediaTypes.AtomXml);
+			request.AddHeader("Authorization", string.Format("Bearer {0}", token));
+
+			DateTime now = DateTime.Now;
+			var response = this.sourceClient.Execute<Feed> (request);
+			if (response.ResponseStatus != ResponseStatus.Completed) {
+				//throw new HttpException (response.StatusCode);
+				return false;
+			}
+
+			if (response.ErrorException != null) {
+				//throw response.ErrorException;
+				return false;
+			}
+
+			Feed feed = response.Data;
+			DateTime expiration = DateTime.MaxValue;
+			foreach (Parameter header in response.Headers) {
+				if ("cache-control".Equals (header.Name.ToLowerInvariant ())) {
+					CacheControl cacheControl = CacheControl.Parse (header.Value.ToString ());
+					expiration = now.AddSeconds (cacheControl.MaxAge);
+				}
+			}
+			
+			this.expiration = expiration;
+			this.links = BuildLinkLookup (feed != null ? feed.Links : null);
+			return true;
+		}
+
 		/// <summary>
 		/// Builds the link lookup table.
 		/// </summary>

@@ -40,6 +40,11 @@ namespace Gx.Rs.Api
 			}
 		}
 
+		public bool RefreshWithAuthentication ()
+		{
+			return descriptor.RefreshWithAuthentication (accessToken);
+		}
+
 		public Uri BuildOAuth2AuthorizationUri(string clientId, string redirectUri) 
 		{
 			if (this.descriptor.Expired) {

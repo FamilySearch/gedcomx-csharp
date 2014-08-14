@@ -3,7 +3,6 @@ using RestSharp;
 using System.Text;
 using System.Collections.Generic;
 using Gx.Conclusion;
-using RestSharp.Extensions;
 
 namespace Gx.Rs.Api
 {
@@ -23,7 +22,10 @@ namespace Gx.Rs.Api
 
 		public BasicGedcomxApi ( GedcomxApiDescriptor descriptor ) {
 			this.descriptor = descriptor;
+			Timeout = 10000;
 		}
+
+		public int Timeout { get; set; }
 
 		public GedcomxApiDescriptor Descriptor {
 			get {
@@ -85,6 +87,7 @@ namespace Gx.Rs.Api
 				request.AddParameter("username", username);
 				request.AddParameter("password", password);
 				request.AddParameter("client_id", clientId);
+				request.Timeout = Timeout;
 				if (clientSecret != null) {
 					request.AddParameter("client_secret", clientSecret);
 				}
@@ -125,6 +128,7 @@ namespace Gx.Rs.Api
 				request.AddParameter("client_id", clientId);
 				request.AddParameter("grant_type", "authorization_code");
 				request.AddParameter("redirect_uri", redirectUri);
+				request.Timeout = Timeout;
 				if (clientSecret != null) {
 					request.AddParameter("client_secret", clientSecret);
 				}
@@ -158,6 +162,7 @@ namespace Gx.Rs.Api
 				request.Method = Method.POST;
 				request.AddParameter("client_id", clientId);
 				request.AddParameter("grant_type", "client_credentials");
+				request.Timeout = Timeout;
 				if (clientSecret != null) {
 					request.AddParameter("client_secret", clientSecret);
 				}
@@ -190,6 +195,7 @@ namespace Gx.Rs.Api
 				request.Method = Method.GET;
 				request.AddHeader("Accept", MediaTypes.GedcomxXml);
 				request.AddHeader("Authorization", string.Format("Bearer {0}", this.accessToken));
+				request.Timeout = Timeout;
 				var response = client.Execute<Gedcomx>(request);
 
 				if (response.ResponseStatus != ResponseStatus.Completed) {

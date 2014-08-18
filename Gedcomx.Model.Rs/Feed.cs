@@ -8,13 +8,13 @@ using System;
 namespace Gx.Atom {
 
   /// <remarks>
-  ///  &lt;p&gt;The Atom media types provide a format for web content and metadata syndication. The XML media type is defined by
-  ///  &lt;a href=&quot;http://tools.ietf.org/html/rfc4287#section-4&quot;&gt;RFC 4287&lt;/a&gt;. The JSON media type is specific to GEDCOM X and is a
+  ///  &lt;p&gt;The Atom data formats provide a format for web content and metadata syndication. The XML media type is defined by
+  ///  &lt;a href=&quot;http://tools.ietf.org/html/rfc4287#section-4&quot;&gt;RFC 4287&lt;/a&gt;. The JSON data format is specific to GEDCOM X and is a
   ///  translation to JSON from the XML.&lt;/p&gt;
   /// </remarks>
   /// <summary>
-  ///  &lt;p&gt;The Atom media types provide a format for web content and metadata syndication. The XML media type is defined by
-  ///  &lt;a href=&quot;http://tools.ietf.org/html/rfc4287#section-4&quot;&gt;RFC 4287&lt;/a&gt;. The JSON media type is specific to GEDCOM X and is a
+  ///  &lt;p&gt;The Atom data formats provide a format for web content and metadata syndication. The XML media type is defined by
+  ///  &lt;a href=&quot;http://tools.ietf.org/html/rfc4287#section-4&quot;&gt;RFC 4287&lt;/a&gt;. The JSON data format is specific to GEDCOM X and is a
   ///  translation to JSON from the XML.&lt;/p&gt;
   /// </summary>
   [System.SerializableAttribute()]
@@ -40,7 +40,7 @@ namespace Gx.Atom {
     private DateTime? _updated;
     private bool _updatedSpecified;
     private System.Collections.Generic.List<Gx.Atom.Entry> _entries;
-    private System.Collections.Generic.List<Gx.Records.Facet> _facets;
+    private System.Collections.Generic.List<Gx.Records.Field> _facets;
     /// <summary>
     ///  The author of the feed.
     /// </summary>
@@ -279,7 +279,7 @@ namespace Gx.Atom {
     /// </summary>
     [System.Xml.Serialization.XmlElementAttribute(ElementName="facet",Namespace="http://www.w3.org/2005/Atom")]
     [System.Xml.Serialization.SoapElementAttribute(ElementName="facet")]
-    public System.Collections.Generic.List<Gx.Records.Facet> Facets {
+    public System.Collections.Generic.List<Gx.Records.Field> Facets {
       get {
         return this._facets;
       }

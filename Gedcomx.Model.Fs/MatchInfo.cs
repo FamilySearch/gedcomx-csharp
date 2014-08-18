@@ -19,58 +19,45 @@ namespace Gx.Fs.Tree {
   [System.Xml.Serialization.XmlRootAttribute(Namespace="http://familysearch.org/v1/",ElementName="matchInfo")]
   public partial class MatchInfo {
 
-    private string _system;
-    private string _resolution;
-    /// <summary>
-    ///  The system in which this match was found.
-    /// </summary>
-    [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="system")]
-    [System.Xml.Serialization.SoapAttributeAttribute(AttributeName="system")]
-    public string System {
-      get {
-        return this._system;
-      }
-      set {
-        this._system = value;
-      }
-    }
-
-    /// <summary>
-    ///  Convenience property for treating System as an enum. See Gx.Fs.Tree.MatchSystemQNameUtil for details on getter/setter functionality.
-    /// </summary>
-    [System.Xml.Serialization.XmlIgnoreAttribute]
-    public Gx.Fs.Tree.MatchSystem KnownSystem {
-      get {
-        return Gx.Fs.Tree.MatchSystemQNameUtil.ConvertFromKnownQName(this._system);
-      }
-      set {
-        this._system = Gx.Fs.Tree.MatchSystemQNameUtil.ConvertToKnownQName(value);
-      }
-    }
+    private string _status;
+    private string _collection;
     /// <summary>
     ///  The way this match has been resolved.
     /// </summary>
-    [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="resolution")]
-    [System.Xml.Serialization.SoapAttributeAttribute(AttributeName="resolution")]
-    public string Resolution {
+    [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="status")]
+    [System.Xml.Serialization.SoapAttributeAttribute(AttributeName="status")]
+    public string Status {
       get {
-        return this._resolution;
+        return this._status;
       }
       set {
-        this._resolution = value;
+        this._status = value;
       }
     }
 
     /// <summary>
-    ///  Convenience property for treating Resolution as an enum. See Gx.Fs.Tree.MatchResolutionQNameUtil for details on getter/setter functionality.
+    ///  Convenience property for treating Status as an enum. See Gx.Fs.Tree.MatchStatusQNameUtil for details on getter/setter functionality.
     /// </summary>
     [System.Xml.Serialization.XmlIgnoreAttribute]
-    public Gx.Fs.Tree.MatchResolution KnownResolution {
+    public Gx.Fs.Tree.MatchStatus KnownStatus {
       get {
-        return Gx.Fs.Tree.MatchResolutionQNameUtil.ConvertFromKnownQName(this._resolution);
+        return Gx.Fs.Tree.MatchStatusQNameUtil.ConvertFromKnownQName(this._status);
       }
       set {
-        this._resolution = Gx.Fs.Tree.MatchResolutionQNameUtil.ConvertToKnownQName(value);
+        this._status = Gx.Fs.Tree.MatchStatusQNameUtil.ConvertToKnownQName(value);
+      }
+    }
+    /// <summary>
+    ///  The collection in which this match was found.
+    /// </summary>
+    [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="collection")]
+    [System.Xml.Serialization.SoapAttributeAttribute(AttributeName="collection")]
+    public string Collection {
+      get {
+        return this._collection;
+      }
+      set {
+        this._collection = value;
       }
     }
   }

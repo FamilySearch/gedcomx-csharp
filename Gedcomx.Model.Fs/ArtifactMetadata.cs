@@ -21,6 +21,10 @@ namespace Gx.Fs.Artifacts {
 
     private string _artifactType;
     private string _filename;
+    private int? _height;
+    private bool _heightSpecified;
+    private int? _width;
+    private bool _widthSpecified;
     /// <summary>
     ///  The type of the gender.
     /// </summary>
@@ -60,5 +64,65 @@ namespace Gx.Fs.Artifacts {
         this._filename = value;
       }
     }
+    /// <summary>
+    ///  The height of the artifact (presumably an image).
+    /// </summary>
+    [System.Xml.Serialization.XmlElementAttribute(ElementName="height",Namespace="http://familysearch.org/v1/")]
+    [System.Xml.Serialization.SoapElementAttribute(ElementName="height")]
+    public int Height {
+      get {
+        return this._height.GetValueOrDefault();
+      }
+      set {
+        this._height = value;
+        this._heightSpecified = true;
+      }
+    }
+
+    /// <summary>
+    ///  Property for the XML serializer indicating whether the "Height" property should be included in the output.
+    /// </summary>
+    [System.Xml.Serialization.XmlIgnoreAttribute]
+    [System.Xml.Serialization.SoapIgnoreAttribute]
+    [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+    public bool HeightSpecified {
+      get {
+        return this._heightSpecified;
+      }
+      set {
+        this._heightSpecified = value;
+      }
+    }
+
+    /// <summary>
+    ///  The width of the artifact (presumably an image).
+    /// </summary>
+    [System.Xml.Serialization.XmlElementAttribute(ElementName="width",Namespace="http://familysearch.org/v1/")]
+    [System.Xml.Serialization.SoapElementAttribute(ElementName="width")]
+    public int Width {
+      get {
+        return this._width.GetValueOrDefault();
+      }
+      set {
+        this._width = value;
+        this._widthSpecified = true;
+      }
+    }
+
+    /// <summary>
+    ///  Property for the XML serializer indicating whether the "Width" property should be included in the output.
+    /// </summary>
+    [System.Xml.Serialization.XmlIgnoreAttribute]
+    [System.Xml.Serialization.SoapIgnoreAttribute]
+    [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+    public bool WidthSpecified {
+      get {
+        return this._widthSpecified;
+      }
+      set {
+        this._widthSpecified = value;
+      }
+    }
+
   }
 }  

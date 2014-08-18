@@ -8,13 +8,13 @@ using System;
 namespace Gx.Fs {
 
   /// <remarks>
-  ///  &lt;p&gt;The FamilySearch media types define serialization formats that are specific the FamilySearch developer platform. These
-  ///  media types are extensions of the &lt;a href=&quot;http://gedcomx.org&quot;&gt;GEDCOM X&lt;/a&gt; media types and provide concepts and data types
+  ///  &lt;p&gt;The FamilySearch data types define serialization formats that are specific the FamilySearch developer platform. These
+  ///  data formats are extensions of the &lt;a href=&quot;http://gedcomx.org&quot;&gt;GEDCOM X&lt;/a&gt; media types and provide concepts and data types
   ///  that are specific to FamilySearch and therefore haven't been adopted into a formal, more general specification.&lt;/p&gt;
   /// </remarks>
   /// <summary>
-  ///  &lt;p&gt;The FamilySearch media types define serialization formats that are specific the FamilySearch developer platform. These
-  ///  media types are extensions of the &lt;a href=&quot;http://gedcomx.org&quot;&gt;GEDCOM X&lt;/a&gt; media types and provide concepts and data types
+  ///  &lt;p&gt;The FamilySearch data types define serialization formats that are specific the FamilySearch developer platform. These
+  ///  data formats are extensions of the &lt;a href=&quot;http://gedcomx.org&quot;&gt;GEDCOM X&lt;/a&gt; media types and provide concepts and data types
   ///  that are specific to FamilySearch and therefore haven't been adopted into a formal, more general specification.&lt;/p&gt;
   /// </summary>
   [System.SerializableAttribute()]

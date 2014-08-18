@@ -33,9 +33,9 @@ namespace Gx.Fs.Tree {
     Couple,
 
     /// <summary>
-    ///   A couple-child relationship was changed.
+    ///   A child-and-parents relationship was changed.
     /// </summary>
-    CoupleChildRelationship,
+    ChildAndParentsRelationship,
 
     /// <summary>
     ///   The man in a couple relationship was changed.
@@ -68,9 +68,24 @@ namespace Gx.Fs.Tree {
     SourceReference,
 
     /// <summary>
+    ///   A discussion reference was changed.
+    /// </summary>
+    DiscussionReference,
+
+    /// <summary>
+    ///   An evidence reference was changed.
+    /// </summary>
+    EvidenceReference,
+
+    /// <summary>
     ///   An affiliation fact was changed.
     /// </summary>
     Affiliation,
+
+    /// <summary>
+    ///   An annulment fact was changed.
+    /// </summary>
+    Annulment,
 
     /// <summary>
     ///   A bar mitzvah was changed.
@@ -103,9 +118,24 @@ namespace Gx.Fs.Tree {
     Cremation,
 
     /// <summary>
+    ///   A common law marriage fact was changed.
+    /// </summary>
+    CommonLawMarriage,
+
+    /// <summary>
     ///   A death fact was changed.
     /// </summary>
     Death,
+
+    /// <summary>
+    ///   A divorce fact was changed.
+    /// </summary>
+    Divorce,
+
+    /// <summary>
+    ///   A marriage fact was changed.
+    /// </summary>
+    Marriage,
 
     /// <summary>
     ///   A military service fact was changed.
@@ -223,9 +253,24 @@ namespace Gx.Fs.Tree {
     BirthOrder,
 
     /// <summary>
+    ///   A life sketch was changed.
+    /// </summary>
+    LifeSketch,
+
+    /// <summary>
+    ///   A living status was changed.
+    /// </summary>
+    LivingStatus,
+
+    /// <summary>
     ///   A title of nobility fact was changed.
     /// </summary>
-    TitleOfNobility
+    TitleOfNobility,
+
+    /// <summary>
+    ///   A not-a-match declaration
+    /// </summary>
+    NotAMatch
   }
 
   /// <remarks>
@@ -247,8 +292,8 @@ namespace Gx.Fs.Tree {
         if ("http://gedcomx.org/Couple".Equals(qname)) {
           return ChangeObjectType.Couple;
         }
-        if ("http://familysearch.org/v1/CoupleChildRelationship".Equals(qname)) {
-          return ChangeObjectType.CoupleChildRelationship;
+        if ("http://familysearch.org/v1/ChildAndParentsRelationship".Equals(qname)) {
+          return ChangeObjectType.ChildAndParentsRelationship;
         }
         if ("http://familysearch.org/v1/Man".Equals(qname)) {
           return ChangeObjectType.Man;
@@ -268,8 +313,17 @@ namespace Gx.Fs.Tree {
         if ("http://gedcomx.org/SourceReference".Equals(qname)) {
           return ChangeObjectType.SourceReference;
         }
+        if ("http://familysearch.org/v1/DiscussionReference".Equals(qname)) {
+          return ChangeObjectType.DiscussionReference;
+        }
+        if ("http://familysearch.org/v1/EvidenceReference".Equals(qname)) {
+          return ChangeObjectType.EvidenceReference;
+        }
         if ("http://familysearch.org/v1/Affiliation".Equals(qname)) {
           return ChangeObjectType.Affiliation;
+        }
+        if ("http://gedcomx.org/Annulment".Equals(qname)) {
+          return ChangeObjectType.Annulment;
         }
         if ("http://gedcomx.org/BarMitzvah".Equals(qname)) {
           return ChangeObjectType.BarMitzvah;
@@ -289,8 +343,17 @@ namespace Gx.Fs.Tree {
         if ("http://gedcomx.org/Cremation".Equals(qname)) {
           return ChangeObjectType.Cremation;
         }
+        if ("http://gedcomx.org/CommonLawMarriage".Equals(qname)) {
+          return ChangeObjectType.CommonLawMarriage;
+        }
         if ("http://gedcomx.org/Death".Equals(qname)) {
           return ChangeObjectType.Death;
+        }
+        if ("http://gedcomx.org/Divorce".Equals(qname)) {
+          return ChangeObjectType.Divorce;
+        }
+        if ("http://gedcomx.org/Marriage".Equals(qname)) {
+          return ChangeObjectType.Marriage;
         }
         if ("http://gedcomx.org/MilitaryService".Equals(qname)) {
           return ChangeObjectType.MilitaryService;
@@ -361,8 +424,17 @@ namespace Gx.Fs.Tree {
         if ("http://familysearch.org/v1/BirthOrder".Equals(qname)) {
           return ChangeObjectType.BirthOrder;
         }
+        if ("http://familysearch.org/v1/LifeSketch".Equals(qname)) {
+          return ChangeObjectType.LifeSketch;
+        }
+        if ("http://familysearch.org/v1/LivingStatus".Equals(qname)) {
+          return ChangeObjectType.LivingStatus;
+        }
         if ("http://familysearch.org/v1/TitleOfNobility".Equals(qname)) {
           return ChangeObjectType.TitleOfNobility;
+        }
+        if ("http://familysearch.org/v1/NotAMatch".Equals(qname)) {
+          return ChangeObjectType.NotAMatch;
         }
       }
       return ChangeObjectType.NULL;
@@ -377,8 +449,8 @@ namespace Gx.Fs.Tree {
           return "http://gedcomx.org/Person";
         case ChangeObjectType.Couple:
           return "http://gedcomx.org/Couple";
-        case ChangeObjectType.CoupleChildRelationship:
-          return "http://familysearch.org/v1/CoupleChildRelationship";
+        case ChangeObjectType.ChildAndParentsRelationship:
+          return "http://familysearch.org/v1/ChildAndParentsRelationship";
         case ChangeObjectType.Man:
           return "http://familysearch.org/v1/Man";
         case ChangeObjectType.Woman:
@@ -391,8 +463,14 @@ namespace Gx.Fs.Tree {
           return "http://familysearch.org/v1/Child";
         case ChangeObjectType.SourceReference:
           return "http://gedcomx.org/SourceReference";
+        case ChangeObjectType.DiscussionReference:
+          return "http://familysearch.org/v1/DiscussionReference";
+        case ChangeObjectType.EvidenceReference:
+          return "http://familysearch.org/v1/EvidenceReference";
         case ChangeObjectType.Affiliation:
           return "http://familysearch.org/v1/Affiliation";
+        case ChangeObjectType.Annulment:
+          return "http://gedcomx.org/Annulment";
         case ChangeObjectType.BarMitzvah:
           return "http://gedcomx.org/BarMitzvah";
         case ChangeObjectType.BatMitzvah:
@@ -405,8 +483,14 @@ namespace Gx.Fs.Tree {
           return "http://gedcomx.org/Christening";
         case ChangeObjectType.Cremation:
           return "http://gedcomx.org/Cremation";
+        case ChangeObjectType.CommonLawMarriage:
+          return "http://gedcomx.org/CommonLawMarriage";
         case ChangeObjectType.Death:
           return "http://gedcomx.org/Death";
+        case ChangeObjectType.Divorce:
+          return "http://gedcomx.org/Divorce";
+        case ChangeObjectType.Marriage:
+          return "http://gedcomx.org/Marriage";
         case ChangeObjectType.MilitaryService:
           return "http://gedcomx.org/MilitaryService";
         case ChangeObjectType.Naturalization:
@@ -453,8 +537,14 @@ namespace Gx.Fs.Tree {
           return "http://familysearch.org/v1/TribeName";
         case ChangeObjectType.BirthOrder:
           return "http://familysearch.org/v1/BirthOrder";
+        case ChangeObjectType.LifeSketch:
+          return "http://familysearch.org/v1/LifeSketch";
+        case ChangeObjectType.LivingStatus:
+          return "http://familysearch.org/v1/LivingStatus";
         case ChangeObjectType.TitleOfNobility:
           return "http://familysearch.org/v1/TitleOfNobility";
+        case ChangeObjectType.NotAMatch:
+          return "http://familysearch.org/v1/NotAMatch";
         default:
           throw new System.ArgumentException("No known QName for: " + known, "known");
       }

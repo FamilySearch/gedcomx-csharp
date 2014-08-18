@@ -23,9 +23,19 @@ namespace Gx.Fs.Artifacts {
     NULL,
 
     /// <summary>
-    ///   The artifact is a photo.
+    ///   The artifact is an audio.
     /// </summary>
-    Photo,
+    Audio,
+
+    /// <summary>
+    ///   The artifact is an image of a document.
+    /// </summary>
+    Document,
+
+    /// <summary>
+    ///   The artifact is an image.
+    /// </summary>
+    Image,
 
     /// <summary>
     ///   The artifact is a portrait.
@@ -36,6 +46,11 @@ namespace Gx.Fs.Artifacts {
     ///   The artifact is a story.
     /// </summary>
     Story,
+
+    /// <summary>
+    ///   The artifact is a video.
+    /// </summary>
+    Video,
 
     /// <summary>
     ///   Custom
@@ -56,14 +71,23 @@ namespace Gx.Fs.Artifacts {
     /// </summary>
     public static ArtifactType ConvertFromKnownQName(string qname) {
       if (qname != null) {
-        if ("http://familysearch.org/v1/Photo".Equals(qname)) {
-          return ArtifactType.Photo;
+        if ("http://familysearch.org/v1/Audio".Equals(qname)) {
+          return ArtifactType.Audio;
+        }
+        if ("http://familysearch.org/v1/Document".Equals(qname)) {
+          return ArtifactType.Document;
+        }
+        if ("http://familysearch.org/v1/Image".Equals(qname)) {
+          return ArtifactType.Image;
         }
         if ("http://familysearch.org/v1/Portrait".Equals(qname)) {
           return ArtifactType.Portrait;
         }
         if ("http://familysearch.org/v1/Story".Equals(qname)) {
           return ArtifactType.Story;
+        }
+        if ("http://familysearch.org/v1/Video".Equals(qname)) {
+          return ArtifactType.Video;
         }
       }
       return ArtifactType.OTHER;
@@ -74,12 +98,18 @@ namespace Gx.Fs.Artifacts {
     /// </summary>
     public static string ConvertToKnownQName(ArtifactType known) {
       switch (known) {
-        case ArtifactType.Photo:
-          return "http://familysearch.org/v1/Photo";
+        case ArtifactType.Audio:
+          return "http://familysearch.org/v1/Audio";
+        case ArtifactType.Document:
+          return "http://familysearch.org/v1/Document";
+        case ArtifactType.Image:
+          return "http://familysearch.org/v1/Image";
         case ArtifactType.Portrait:
           return "http://familysearch.org/v1/Portrait";
         case ArtifactType.Story:
           return "http://familysearch.org/v1/Story";
+        case ArtifactType.Video:
+          return "http://familysearch.org/v1/Video";
         default:
           throw new System.ArgumentException("No known QName for: " + known, "known");
       }

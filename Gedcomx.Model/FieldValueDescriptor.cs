@@ -82,8 +82,8 @@ namespace Gx.Records {
     /// <summary>
     ///  The id of the label applicable to the field value
     /// </summary>
-    [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="labelId",Namespace="http://www.w3.org/XML/1998/namespace")]
-    [System.Xml.Serialization.SoapAttributeAttribute(AttributeName="labelId",Namespace="http://www.w3.org/XML/1998/namespace")]
+    [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="labelId")]
+    [System.Xml.Serialization.SoapAttributeAttribute(AttributeName="labelId")]
     public string LabelId {
       get {
         return this._labelId;

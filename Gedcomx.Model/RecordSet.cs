@@ -8,10 +8,10 @@ using System;
 namespace Gx.Records {
 
   /// <remarks>
-  ///  The GEDCOM X bulk record media types are used to exchange bulk genealogical data sets, grouped into records.
+  ///  The GEDCOM X bulk record data formats are used to exchange bulk genealogical data sets, grouped into records.
   /// </remarks>
   /// <summary>
-  ///  The GEDCOM X bulk record media types are used to exchange bulk genealogical data sets, grouped into records.
+  ///  The GEDCOM X bulk record data formats are used to exchange bulk genealogical data sets, grouped into records.
   /// </summary>
   [System.SerializableAttribute()]
   [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://gedcomx.org/v1/",TypeName="RecordSet")]

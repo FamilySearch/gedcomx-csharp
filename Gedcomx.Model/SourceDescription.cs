@@ -20,7 +20,9 @@ namespace Gx.Source {
   public partial class SourceDescription : Gx.Links.HypermediaEnabledData {
 
     private string _about;
+    private string _lang;
     private string _mediaType;
+    private string _sortKey;
     private string _resourceType;
     private System.Collections.Generic.List<Gx.Source.SourceCitation> _citations;
     private Gx.Common.ResourceReference _mediator;
@@ -28,16 +30,18 @@ namespace Gx.Source {
     private Gx.Common.ResourceReference _analysis;
     private Gx.Source.SourceReference _componentOf;
     private System.Collections.Generic.List<Gx.Common.TextValue> _titles;
+    private Gx.Common.TextValue _titleLabel;
     private System.Collections.Generic.List<Gx.Common.Note> _notes;
     private Gx.Common.Attribution _attribution;
-    private string _sortKey;
-    private System.Collections.Generic.List<Gx.Common.TextValue> _description;
+    private System.Collections.Generic.List<Gx.Common.TextValue> _descriptions;
     private System.Collections.Generic.List<Gx.Conclusion.Identifier> _identifiers;
     private DateTime? _created;
     private bool _createdSpecified;
     private DateTime? _modified;
     private bool _modifiedSpecified;
     private System.Collections.Generic.List<Gx.Source.Coverage> _coverage;
+    private System.Collections.Generic.List<string> _rights;
+    private System.Collections.Generic.List<Gx.Records.Field> _fields;
     private Gx.Common.ResourceReference _repository;
     private Gx.Common.ResourceReference _descriptorRef;
     /// <summary>
@@ -54,6 +58,19 @@ namespace Gx.Source {
       }
     }
     /// <summary>
+    ///  The language of the genealogical data.
+    /// </summary>
+    [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="lang",Namespace="http://www.w3.org/XML/1998/namespace")]
+    [System.Xml.Serialization.SoapAttributeAttribute(AttributeName="lang",Namespace="http://www.w3.org/XML/1998/namespace")]
+    public string Lang {
+      get {
+        return this._lang;
+      }
+      set {
+        this._lang = value;
+      }
+    }
+    /// <summary>
     ///  Hint about the media (MIME) type of the resource being described.
     /// </summary>
     [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="mediaType")]
@@ -64,6 +81,19 @@ namespace Gx.Source {
       }
       set {
         this._mediaType = value;
+      }
+    }
+    /// <summary>
+    ///  A sort key to be used in determining the position of this source relative to other sources in the same collection.
+    /// </summary>
+    [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="sortKey")]
+    [System.Xml.Serialization.SoapAttributeAttribute(AttributeName="sortKey")]
+    public string SortKey {
+      get {
+        return this._sortKey;
+      }
+      set {
+        this._sortKey = value;
       }
     }
     /// <summary>
@@ -171,6 +201,19 @@ namespace Gx.Source {
       }
     }
     /// <summary>
+    ///  A label for the title of this description.
+    /// </summary>
+    [System.Xml.Serialization.XmlElementAttribute(ElementName="titleLabel",Namespace="http://gedcomx.org/v1/")]
+    [System.Xml.Serialization.SoapElementAttribute(ElementName="titleLabel")]
+    public Gx.Common.TextValue TitleLabel {
+      get {
+        return this._titleLabel;
+      }
+      set {
+        this._titleLabel = value;
+      }
+    }
+    /// <summary>
     ///  Notes about a source.
     /// </summary>
     [System.Xml.Serialization.XmlElementAttribute(ElementName="note",Namespace="http://gedcomx.org/v1/")]
@@ -197,29 +240,16 @@ namespace Gx.Source {
       }
     }
     /// <summary>
-    ///  A sort key to be used in determining the position of this source relative to other sources in the same collection.
-    /// </summary>
-    [System.Xml.Serialization.XmlElementAttribute(ElementName="sortKey",Namespace="http://gedcomx.org/v1/")]
-    [System.Xml.Serialization.SoapElementAttribute(ElementName="sortKey")]
-    public string SortKey {
-      get {
-        return this._sortKey;
-      }
-      set {
-        this._sortKey = value;
-      }
-    }
-    /// <summary>
     ///  Human-readable descriptions of the source.
     /// </summary>
     [System.Xml.Serialization.XmlElementAttribute(ElementName="description",Namespace="http://gedcomx.org/v1/")]
     [System.Xml.Serialization.SoapElementAttribute(ElementName="description")]
-    public System.Collections.Generic.List<Gx.Common.TextValue> Description {
+    public System.Collections.Generic.List<Gx.Common.TextValue> Descriptions {
       get {
-        return this._description;
+        return this._descriptions;
       }
       set {
-        this._description = value;
+        this._descriptions = value;
       }
     }
     /// <summary>
@@ -306,6 +336,32 @@ namespace Gx.Source {
       }
       set {
         this._coverage = value;
+      }
+    }
+    /// <summary>
+    ///  The rights for this source.
+    /// </summary>
+    [System.Xml.Serialization.XmlElementAttribute(ElementName="rights",Namespace="http://gedcomx.org/v1/")]
+    [System.Xml.Serialization.SoapElementAttribute(ElementName="rights")]
+    public System.Collections.Generic.List<string> Rights {
+      get {
+        return this._rights;
+      }
+      set {
+        this._rights = value;
+      }
+    }
+    /// <summary>
+    ///  The fields that are applicable to the resource being described.
+    /// </summary>
+    [System.Xml.Serialization.XmlElementAttribute(ElementName="field",Namespace="http://gedcomx.org/v1/")]
+    [System.Xml.Serialization.SoapElementAttribute(ElementName="field")]
+    public System.Collections.Generic.List<Gx.Records.Field> Fields {
+      get {
+        return this._fields;
+      }
+      set {
+        this._fields = value;
       }
     }
     /// <summary>

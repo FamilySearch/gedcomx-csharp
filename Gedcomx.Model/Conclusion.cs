@@ -19,6 +19,7 @@ namespace Gx.Conclusion {
   public abstract partial class Conclusion : Gx.Links.HypermediaEnabledData {
 
     private string _confidence;
+    private string _sortKey;
     private string _lang;
     private Gx.Common.Attribution _attribution;
     private System.Collections.Generic.List<Gx.Source.SourceReference> _sources;
@@ -48,6 +49,19 @@ namespace Gx.Conclusion {
       }
       set {
         this._confidence = Gx.Types.ConfidenceLevelQNameUtil.ConvertToKnownQName(value);
+      }
+    }
+    /// <summary>
+    ///  A sort key in relation to other facts for display purposes.
+    /// </summary>
+    [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="sortKey")]
+    [System.Xml.Serialization.SoapAttributeAttribute(AttributeName="sortKey")]
+    public string SortKey {
+      get {
+        return this._sortKey;
+      }
+      set {
+        this._sortKey = value;
       }
     }
     /// <summary>

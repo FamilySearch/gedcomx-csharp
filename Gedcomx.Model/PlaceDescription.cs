@@ -30,6 +30,9 @@ namespace Gx.Conclusion {
     private double? _longitude;
     private bool _longitudeSpecified;
     private Gx.Common.ResourceReference _spatialDescription;
+    private Gx.Common.ResourceReference _place;
+    private Gx.Common.ResourceReference _jurisdiction;
+    private Gx.Conclusion.PlaceDisplayProperties _displayExtension;
     /// <summary>
     ///  An implementation-specific uniform resource identifier (URI) used to identify the type of a place (e.g., address, city, county, province, state, country, etc.).
     /// </summary>
@@ -140,6 +143,45 @@ namespace Gx.Conclusion {
       }
       set {
         this._spatialDescription = value;
+      }
+    }
+    /// <summary>
+    ///  A reference to the place being described.
+    /// </summary>
+    [System.Xml.Serialization.XmlElementAttribute(ElementName="place",Namespace="http://gedcomx.org/v1/")]
+    [System.Xml.Serialization.SoapElementAttribute(ElementName="place")]
+    public Gx.Common.ResourceReference Place {
+      get {
+        return this._place;
+      }
+      set {
+        this._place = value;
+      }
+    }
+    /// <summary>
+    ///  A reference to a description of the jurisdiction this place.
+    /// </summary>
+    [System.Xml.Serialization.XmlElementAttribute(ElementName="jurisdiction",Namespace="http://gedcomx.org/v1/")]
+    [System.Xml.Serialization.SoapElementAttribute(ElementName="jurisdiction")]
+    public Gx.Common.ResourceReference Jurisdiction {
+      get {
+        return this._jurisdiction;
+      }
+      set {
+        this._jurisdiction = value;
+      }
+    }
+    /// <summary>
+    ///  Display properties for the place. Display properties are not specified by GEDCOM X core, but as extension elements by GEDCOM X RS.
+    /// </summary>
+    [System.Xml.Serialization.XmlElementAttribute(ElementName="display",Namespace="http://gedcomx.org/v1/")]
+    [System.Xml.Serialization.SoapElementAttribute(ElementName="display")]
+    public Gx.Conclusion.PlaceDisplayProperties DisplayExtension {
+      get {
+        return this._displayExtension;
+      }
+      set {
+        this._displayExtension = value;
       }
     }
   }

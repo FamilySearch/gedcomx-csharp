@@ -8,7 +8,7 @@ using System;
 namespace Gx {
 
   /// <remarks>
-  ///  &lt;p&gt;The GEDCOM X media types define the serialization formats of the GEDCOM X conceptual model. The canonical documentation
+  ///  &lt;p&gt;The GEDCOM X data formats define the serialization formats of the GEDCOM X conceptual model. The canonical documentation
   ///  is provided by the formal specification documents:&lt;/p&gt;
   ///  
   ///  &lt;ul&gt;
@@ -20,7 +20,7 @@ namespace Gx {
   ///  &lt;p&gt;This documentation is provided as a non-normative reference guide.&lt;/p&gt;
   /// </remarks>
   /// <summary>
-  ///  &lt;p&gt;The GEDCOM X media types define the serialization formats of the GEDCOM X conceptual model. The canonical documentation
+  ///  &lt;p&gt;The GEDCOM X data formats define the serialization formats of the GEDCOM X conceptual model. The canonical documentation
   ///  is provided by the formal specification documents:&lt;/p&gt;
   ///  
   ///  &lt;ul&gt;
@@ -39,6 +39,7 @@ namespace Gx {
 
     private string _lang;
     private string _descriptionRef;
+    private string _profile;
     private Gx.Common.Attribution _attribution;
     private System.Collections.Generic.List<Gx.Conclusion.Person> _persons;
     private System.Collections.Generic.List<Gx.Conclusion.Relationship> _relationships;
@@ -74,6 +75,19 @@ namespace Gx {
       }
       set {
         this._descriptionRef = value;
+      }
+    }
+    /// <summary>
+    ///  A reference to the profile that describes this data set.
+    /// </summary>
+    [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="profile")]
+    [System.Xml.Serialization.SoapAttributeAttribute(AttributeName="profile")]
+    public string Profile {
+      get {
+        return this._profile;
+      }
+      set {
+        this._profile = value;
       }
     }
     /// <summary>

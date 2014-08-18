@@ -30,6 +30,8 @@ namespace Gx.Conclusion {
     private string _descendancyNumber;
     private string _gender;
     private string _lifespan;
+    private string _marriageDate;
+    private string _marriagePlace;
     private string _name;
     /// <summary>
     ///  The context-specific ascendancy number for the person in relation to the other persons in the request. The ancestry number is defined using the Ahnentafel numbering system.
@@ -133,6 +135,32 @@ namespace Gx.Conclusion {
       }
       set {
         this._lifespan = value;
+      }
+    }
+    /// <summary>
+    ///  The displayable label for the marriage date of the person.
+    /// </summary>
+    [System.Xml.Serialization.XmlElementAttribute(ElementName="marriageDate",Namespace="http://gedcomx.org/v1/")]
+    [System.Xml.Serialization.SoapElementAttribute(ElementName="marriageDate")]
+    public string MarriageDate {
+      get {
+        return this._marriageDate;
+      }
+      set {
+        this._marriageDate = value;
+      }
+    }
+    /// <summary>
+    ///  The displayable label for the marriage place of the person.
+    /// </summary>
+    [System.Xml.Serialization.XmlElementAttribute(ElementName="marriagePlace",Namespace="http://gedcomx.org/v1/")]
+    [System.Xml.Serialization.SoapElementAttribute(ElementName="marriagePlace")]
+    public string MarriagePlace {
+      get {
+        return this._marriagePlace;
+      }
+      set {
+        this._marriagePlace = value;
       }
     }
     /// <summary>

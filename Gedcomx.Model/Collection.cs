@@ -24,7 +24,6 @@ namespace Gx.Records {
     private int? _size;
     private bool _sizeSpecified;
     private System.Collections.Generic.List<Gx.Records.CollectionContent> _content;
-    private System.Collections.Generic.List<Gx.Records.Facet> _facets;
     private Gx.Common.Attribution _attribution;
     /// <summary>
     ///  The language of this description of the collection
@@ -93,19 +92,6 @@ namespace Gx.Records {
       }
       set {
         this._content = value;
-      }
-    }
-    /// <summary>
-    ///  The list of facets for the collection, used for convenience in browsing and filtering.
-    /// </summary>
-    [System.Xml.Serialization.XmlElementAttribute(ElementName="facet",Namespace="http://gedcomx.org/v1/")]
-    [System.Xml.Serialization.SoapElementAttribute(ElementName="facet")]
-    public System.Collections.Generic.List<Gx.Records.Facet> Facets {
-      get {
-        return this._facets;
-      }
-      set {
-        this._facets = value;
       }
     }
     /// <summary>

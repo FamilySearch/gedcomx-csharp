@@ -20,6 +20,7 @@ namespace Gx.Conclusion {
 
     private string _descriptionRef;
     private string _original;
+    private System.Collections.Generic.List<Gx.Common.TextValue> _normalizedExtensions;
     private System.Collections.Generic.List<Gx.Records.Field> _fields;
     /// <summary>
     ///  A reference to a description of the place being referenced.
@@ -45,6 +46,20 @@ namespace Gx.Conclusion {
       }
       set {
         this._original = value;
+      }
+    }
+    /// <summary>
+    ///  The list of normalized values for the place, provided for display purposes by the application. Normalized values
+    ///  are not specified by GEDCOM X core, but as extension elements by GEDCOM X RS.
+    /// </summary>
+    [System.Xml.Serialization.XmlElementAttribute(ElementName="normalized",Namespace="http://gedcomx.org/v1/")]
+    [System.Xml.Serialization.SoapElementAttribute(ElementName="normalized")]
+    public System.Collections.Generic.List<Gx.Common.TextValue> NormalizedExtensions {
+      get {
+        return this._normalizedExtensions;
+      }
+      set {
+        this._normalizedExtensions = value;
       }
     }
     /// <summary>

@@ -25,6 +25,9 @@ namespace Gx.Agent {
     private string _street;
     private string _street2;
     private string _street3;
+    private string _street4;
+    private string _street5;
+    private string _street6;
     private string _value;
     /// <summary>
     ///  The city.
@@ -115,6 +118,45 @@ namespace Gx.Agent {
       }
       set {
         this._street3 = value;
+      }
+    }
+    /// <summary>
+    ///  Additional street information.
+    /// </summary>
+    [System.Xml.Serialization.XmlElementAttribute(ElementName="street4",Namespace="http://gedcomx.org/v1/")]
+    [System.Xml.Serialization.SoapElementAttribute(ElementName="street4")]
+    public string Street4 {
+      get {
+        return this._street4;
+      }
+      set {
+        this._street4 = value;
+      }
+    }
+    /// <summary>
+    ///  Additional street information.
+    /// </summary>
+    [System.Xml.Serialization.XmlElementAttribute(ElementName="street5",Namespace="http://gedcomx.org/v1/")]
+    [System.Xml.Serialization.SoapElementAttribute(ElementName="street5")]
+    public string Street5 {
+      get {
+        return this._street5;
+      }
+      set {
+        this._street5 = value;
+      }
+    }
+    /// <summary>
+    ///  Additional street information.
+    /// </summary>
+    [System.Xml.Serialization.XmlElementAttribute(ElementName="street6",Namespace="http://gedcomx.org/v1/")]
+    [System.Xml.Serialization.SoapElementAttribute(ElementName="street6")]
+    public string Street6 {
+      get {
+        return this._street6;
+      }
+      set {
+        this._street6 = value;
       }
     }
     /// <summary>

@@ -18,23 +18,9 @@ namespace Gx.Records {
   [System.Xml.Serialization.SoapTypeAttribute(Namespace="http://gedcomx.org/v1/",TypeName="FieldDescriptor")]
   public partial class FieldDescriptor : Gx.Links.HypermediaEnabledData {
 
-    private string _fieldId;
     private string _originalLabel;
-    private System.Collections.Generic.List<Gx.Common.TextValue> _description;
+    private System.Collections.Generic.List<Gx.Common.TextValue> _descriptions;
     private System.Collections.Generic.List<Gx.Records.FieldValueDescriptor> _values;
-    /// <summary>
-    ///  A system-assigned label for the field.
-    /// </summary>
-    [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="fieldId")]
-    [System.Xml.Serialization.SoapAttributeAttribute(AttributeName="fieldId")]
-    public string FieldId {
-      get {
-        return this._fieldId;
-      }
-      set {
-        this._fieldId = value;
-      }
-    }
     /// <summary>
     ///  The original label for the field, as stated on the original record.
     /// </summary>
@@ -53,12 +39,12 @@ namespace Gx.Records {
     /// </summary>
     [System.Xml.Serialization.XmlElementAttribute(ElementName="description",Namespace="http://gedcomx.org/v1/")]
     [System.Xml.Serialization.SoapElementAttribute(ElementName="description")]
-    public System.Collections.Generic.List<Gx.Common.TextValue> Description {
+    public System.Collections.Generic.List<Gx.Common.TextValue> Descriptions {
       get {
-        return this._description;
+        return this._descriptions;
       }
       set {
-        this._description = value;
+        this._descriptions = value;
       }
     }
     /// <summary>

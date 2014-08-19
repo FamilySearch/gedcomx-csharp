@@ -204,11 +204,6 @@ namespace Gx.Util
         public virtual void VisitCollection(Collection collection)
         {
             this.contextStack.Push (collection);
-            if (collection.Facets != null) {
-                foreach (Facet facet in collection.Facets) {
-                    VisitFacet (facet);
-                }
-            }
             this.contextStack.Pop ();
         }
 

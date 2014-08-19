@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -30,10 +30,10 @@
     <Externalconsole>True</Externalconsole>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
     <Reference Include="NDesk.Options">
-      <HintPath>..\..\..\..\..\usr\local\lib\ndesk-options\NDesk.Options.dll</HintPath>
+      <HintPath>..\packages\NDesk.Options.0.2.1\lib\NDesk.Options.dll</HintPath>
     </Reference>
+    <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Data" />
   </ItemGroup>
@@ -67,5 +67,8 @@
       <Project>{FCC74CF5-AD92-4AB2-BECC-CE2882A77796}</Project>
       <Name>GEDCOM X FamilySearch Model Extensions</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

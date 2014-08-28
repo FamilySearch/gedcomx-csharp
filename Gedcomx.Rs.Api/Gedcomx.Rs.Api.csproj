@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -10,6 +10,8 @@
     <RootNamespace>Gx.Rs.Api</RootNamespace>
     <AssemblyName>Gedcomx.Rs.Api</AssemblyName>
     <Description>Library for accessing a GEDCOM X-compliant API.</Description>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -20,6 +22,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
+    <Prefer32Bit>false</Prefer32Bit>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -28,27 +32,90 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="RestSharp">
       <HintPath>..\packages\RestSharp.104.3.3\lib\net4\RestSharp.dll</HintPath>
     </Reference>
-    <Reference Include="Tavis.UriTemplates">
-      <HintPath>..\packages\Tavis.UriTemplates.0.1.1\lib\NET40\Tavis.UriTemplates.dll</HintPath>
+    <Reference Include="System.IO">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.6\lib\net40\System.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http, Version=2.2.18.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.18\lib\net40\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.18\lib\net40\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.18\lib\net40\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest, Version=2.2.18.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.18\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.6\lib\net40\System.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.6\lib\net40\System.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Tavis.UriTemplates, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Tavis.UriTemplates.0.4\lib\Net35\Tavis.UriTemplates.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AgentState.cs" />
+    <Compile Include="AncestryResultsState.cs" />
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="CollectionsState.cs" />
+    <Compile Include="CollectionState.cs" />
+    <Compile Include="DescendancyResultsState.cs" />
     <Compile Include="GedcomxApi.cs" />
     <Compile Include="GedcomxApiDescriptor.cs" />
-    <Compile Include="BasicGedcomxApi.cs" />
+    <Compile Include="GedcomxApplicationException.cs" />
+    <Compile Include="GedcomxApplicationState.cs" />
     <Compile Include="CacheControl.cs" />
     <Compile Include="Exceptions.cs" />
     <Compile Include="GedcomxApiResponse.cs" />
+    <Compile Include="PersonChildrenState.cs" />
+    <Compile Include="PersonParentsState.cs" />
+    <Compile Include="PersonSearchResultsState.cs" />
+    <Compile Include="PersonSpousesState.cs" />
+    <Compile Include="PersonsState.cs" />
+    <Compile Include="PersonState.cs" />
+    <Compile Include="PlaceDescriptionsState.cs" />
+    <Compile Include="PlaceDescriptionState.cs" />
+    <Compile Include="PlaceGroupState.cs" />
+    <Compile Include="PlaceSearchResultsState.cs" />
+    <Compile Include="RecordsState.cs" />
+    <Compile Include="RecordState.cs" />
+    <Compile Include="RelationshipsState.cs" />
+    <Compile Include="RelationshipState.cs" />
+    <Compile Include="SourceDescriptionsState.cs" />
+    <Compile Include="SourceDescriptionState.cs" />
+    <Compile Include="StateFactory.cs" />
+    <Compile Include="StateTransitionOption.cs" />
+    <Compile Include="Util\DataSource.cs" />
+    <Compile Include="Util\EmbeddedLinkLoader.cs" />
+    <Compile Include="Util\GedcomxPersonSearchQueryBuilder.cs" />
+    <Compile Include="Util\GedcomxPlaceSearchQueryBuilder.cs" />
+    <Compile Include="Util\LinkHeader.cs" />
+    <Compile Include="Util\LinkParserExtensions.cs" />
+    <Compile Include="Util\RestClientExtensions.cs" />
+    <Compile Include="VocabElementListState.cs" />
+    <Compile Include="VocabElementState.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -68,5 +135,14 @@
       <Project>{876EA5FA-FAE0-4280-9409-3754F3C8AAA4}</Project>
       <Name>GEDCOM X Utilities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Link\src\Link\Link.csproj">
+      <Project>{960dce2c-22fa-4a2f-9a5e-513575b389d5}</Project>
+      <Name>Link</Name>
+    </ProjectReference>
   </ItemGroup>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
 </Project>

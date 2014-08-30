@@ -228,7 +228,7 @@ namespace Gx.Rs.Api
 			RestRequest request;
 			if (this.descriptor.GetPersonRequest(pid, out client, out request)) {
 				request.Method = Method.GET;
-				request.AddHeader("Accept", MediaTypes.GedcomxXml);
+				request.AddHeader("Accept", MediaTypes.GEDCOMX_XML_MEDIA_TYPE);
 				request.AddHeader("Authorization", string.Format("Bearer {0}", this.accessToken));
 				request.Timeout = Timeout;
 				var response = client.Execute<Gedcomx>(request);

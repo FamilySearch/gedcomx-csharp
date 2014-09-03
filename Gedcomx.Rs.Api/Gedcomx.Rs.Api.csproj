@@ -10,7 +10,7 @@
     <RootNamespace>Gx.Rs.Api</RootNamespace>
     <AssemblyName>Gedcomx.Rs.Api</AssemblyName>
     <Description>Library for accessing a GEDCOM X-compliant API.</Description>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -79,12 +79,10 @@
     <Compile Include="CollectionState.cs" />
     <Compile Include="DescendancyResultsState.cs" />
     <Compile Include="GedcomxApi.cs" />
-    <Compile Include="GedcomxApiDescriptor.cs" />
     <Compile Include="GedcomxApplicationException.cs" />
     <Compile Include="GedcomxApplicationState.cs" />
     <Compile Include="CacheControl.cs" />
     <Compile Include="Exceptions.cs" />
-    <Compile Include="GedcomxApiResponse.cs" />
     <Compile Include="PersonChildrenState.cs" />
     <Compile Include="PersonParentsState.cs" />
     <Compile Include="PersonSearchResultsState.cs" />
@@ -105,11 +103,14 @@
     <Compile Include="StateTransitionOption.cs" />
     <Compile Include="Util\DataSource.cs" />
     <Compile Include="Util\EmbeddedLinkLoader.cs" />
+    <Compile Include="Util\GedcomxBaseSearchQueryBuilder.cs" />
     <Compile Include="Util\GedcomxPersonSearchQueryBuilder.cs" />
     <Compile Include="Util\GedcomxPlaceSearchQueryBuilder.cs" />
-    <Compile Include="Util\LinkHeader.cs" />
+    <Compile Include="Util\HypermediaEnabledDataExtensions.cs" />
+    <Compile Include="Util\HypermediaSerializer.cs" />
     <Compile Include="Util\LinkParserExtensions.cs" />
     <Compile Include="Util\RestClientExtensions.cs" />
+    <Compile Include="Util\UriTemplateExtensions.cs" />
     <Compile Include="VocabElementListState.cs" />
     <Compile Include="VocabElementState.cs" />
   </ItemGroup>

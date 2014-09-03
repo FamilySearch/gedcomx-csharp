@@ -3,21 +3,6 @@ using Gx.Conclusion;
 
 namespace Gx.Rs.Api
 {
-    /// <summary>
-    /// The basic interface for a GEDCOM X API.
-    /// </summary>
-    public interface GedcomxApi
-    {
-        Uri BuildOAuth2AuthorizationUri(string clientId, string redirectUri);
-        bool TryPasswordOAuth2Authentication(string username, string password, string clientId);
-        bool TryPasswordOAuth2Authentication(string username, string password, string clientId, string clientSecret);
-        bool TryAuthCodeOAuth2Authentication(string username, string password, string clientId);
-        bool TryAuthCodeOAuth2Authentication(string username, string password, string clientId, string clientSecret);
-        bool TryClientCredentialsOAuth2Authentication(string clientId, string clientSecret);
-        GedcomxApiResponse<Person> GetPerson(String pid);
-        //todo: fill in the methods as needed.
-    }
-
     public class Rel
     {
         protected Rel() { }
@@ -107,6 +92,18 @@ namespace Gx.Rs.Api
         public static readonly String APPLICATION_OCTET_STREAM = "application/octet-stream";
         public static readonly String APPLICATION_JSON_TYPE = "application/json";
         public static readonly String APPLICATION_FORM_URLENCODED_TYPE = "application/x-www-form-urlencoded";
+
+        public static readonly String MEDIA_TYPE_WILDCARD = "*";
+        public static readonly String WILDCARD_TYPE = "*/*";
+        public static readonly String APPLICATION_XML_TYPE = "application/xml";
+        public static readonly String APPLICATION_ATOM_XML_TYPE = "application/atom+xml";
+        public static readonly String APPLICATION_XHTML_XML_TYPE = "application/xhtml+xml";
+        public static readonly String APPLICATION_SVG_XML_TYPE = "application/svg+xml";
+        public static readonly String MULTIPART_FORM_DATA_TYPE = "multipart/form-data";
+        public static readonly String APPLICATION_OCTET_STREAM_TYPE = "application/octet-stream";
+        public static readonly String TEXT_PLAIN_TYPE = "text/plain";
+        public static readonly String TEXT_XML_TYPE = "text/xml";
+        public static readonly String TEXT_HTML_TYPE = "text/html";
     }
 }
 

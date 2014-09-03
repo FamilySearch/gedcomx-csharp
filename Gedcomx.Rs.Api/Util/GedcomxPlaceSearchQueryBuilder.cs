@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Gx.Rs.Api.Util
 {
-    public class GedcomxPlaceSearchQueryBuilder
+    public class GedcomxPlaceSearchQueryBuilder : GedcomxBaseSearchQueryBuilder
     {
     }
 }

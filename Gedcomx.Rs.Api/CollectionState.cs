@@ -52,18 +52,6 @@ namespace Gx.Rs.Api
             return new CollectionState(request, response, client, this.CurrentAccessToken, this.stateFactory);
         }
 
-        protected override Gedcomx LoadEntity(IRestResponse response)
-        {
-            Gedcomx result = null;
-
-            if (response != null)
-            {
-                result = response.ToIRestResponse<Gedcomx>().Data;
-            }
-
-            return result;
-        }
-
         protected override SupportsLinks MainDataElement
         {
             get

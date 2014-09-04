@@ -32,7 +32,17 @@ namespace Gx.Rs.Api
         public IRestResponse Response { get; private set; }
         public T Entity { get; private set; }
         protected abstract GedcomxApplicationState Clone(IRestRequest request, IRestResponse response, IRestClient client);
-        protected abstract T LoadEntity(IRestResponse response);
+        protected virtual T LoadEntity(IRestResponse response)
+        {
+            T result = null;
+
+            if (response != null)
+            {
+                result = response.ToIRestResponse<T>().Data;
+            }
+
+            return result;
+        }
         protected abstract SupportsLinks MainDataElement { get; }
         private IRestRequest lastEmbeddedRequest;
         private IRestResponse lastEmbeddedResponse;

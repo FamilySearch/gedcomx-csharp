@@ -11,7 +11,6 @@ namespace Gx.Rs.Api
         private RestSharp.IRestRequest request;
         private RestSharp.IRestResponse response;
         private string accessToken;
-        private StateFactory stateFactory;
 
         public RecordsState(RestSharp.IRestRequest request, RestSharp.IRestResponse response, IRestClient client, string accessToken, StateFactory stateFactory)
         {
@@ -19,15 +18,9 @@ namespace Gx.Rs.Api
             this.request = request;
             this.response = response;
             this.accessToken = accessToken;
-            this.stateFactory = stateFactory;
         }
 
         protected override GedcomxApplicationState Clone(IRestRequest request, IRestResponse response, IRestClient client)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override Gedcomx LoadEntity(IRestResponse response)
         {
             throw new NotImplementedException();
         }

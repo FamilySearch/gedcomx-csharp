@@ -24,18 +24,6 @@ namespace Gx.Rs.Api
             return new PersonSearchResultsState(request, response, client, this.CurrentAccessToken, this.stateFactory);
         }
 
-        protected override Feed LoadEntity(IRestResponse response)
-        {
-            Feed result = null;
-
-            if (response != null)
-            {
-                result = response.ToIRestResponse<Feed>().Data;
-            }
-
-            return result;
-        }
-
         protected override SupportsLinks MainDataElement
         {
             get

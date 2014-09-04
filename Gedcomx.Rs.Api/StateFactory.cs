@@ -100,7 +100,7 @@ namespace Gx.Rs.Api
 
         internal CollectionsState NewCollectionsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
-            return new CollectionsState(request, response, accessToken, this);
+            return new CollectionsState(request, response, client, accessToken, this);
         }
 
         internal CollectionState NewCollectionState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)

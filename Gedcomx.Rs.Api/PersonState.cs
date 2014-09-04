@@ -893,7 +893,7 @@ namespace Gx.Rs.Api
             }
 
             IRestRequest request = CreateAuthenticatedGedcomxRequest().Build(link.Href, Method.GET);
-            return this.stateFactory.NewPersonParentsState(request, Invoke(request, options), this.CurrentAccessToken);
+            return this.stateFactory.NewPersonParentsState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
         public RelationshipState AddParent(PersonState person, params StateTransitionOption[] options)

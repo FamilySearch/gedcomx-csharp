@@ -118,9 +118,9 @@ namespace Gx.Rs.Api
             return new PersonChildrenState(request, response, client, accessToken, this);
         }
 
-        internal PersonParentsState NewPersonParentsState(IRestRequest request, IRestResponse response, String accessToken)
+        internal PersonParentsState NewPersonParentsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
-            return new PersonParentsState(request, response, accessToken, this);
+            return new PersonParentsState(request, response, client, accessToken, this);
         }
 
         internal PersonSearchResultsState NewPersonSearchResultsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)

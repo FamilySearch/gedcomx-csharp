@@ -23,14 +23,6 @@ namespace Gx.Rs.Api
             return new CollectionsState(request, response, client, this.CurrentAccessToken, this.stateFactory);
         }
 
-        protected override SupportsLinks MainDataElement
-        {
-            get
-            {
-                return Entity;
-            }
-        }
-
         public List<Collection> Collections
         {
             get

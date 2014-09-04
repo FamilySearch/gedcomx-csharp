@@ -43,7 +43,13 @@ namespace Gx.Rs.Api
 
             return result;
         }
-        protected abstract SupportsLinks MainDataElement { get; }
+        protected virtual SupportsLinks MainDataElement
+        {
+            get
+            {
+                return (SupportsLinks)Entity;
+            }
+        }
         private IRestRequest lastEmbeddedRequest;
         private IRestResponse lastEmbeddedResponse;
 

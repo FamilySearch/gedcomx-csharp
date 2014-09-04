@@ -22,14 +22,6 @@ namespace Gx.Rs.Api
             return new PersonsState(request, response, client, this.CurrentAccessToken, this.stateFactory);
         }
 
-        protected override SupportsLinks MainDataElement
-        {
-            get
-            {
-                return Entity;
-            }
-        }
-
         public CollectionState ReadCollection(params StateTransitionOption[] options)
         {
             Link link = GetLink(Rel.COLLECTION);

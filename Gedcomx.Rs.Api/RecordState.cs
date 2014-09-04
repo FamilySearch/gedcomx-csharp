@@ -25,10 +25,5 @@ namespace Gx.Rs.Api
         {
             throw new NotImplementedException();
         }
-
-        protected override SupportsLinks MainDataElement
-        {
-            get { throw new NotImplementedException(); }
-        }
     }
 }

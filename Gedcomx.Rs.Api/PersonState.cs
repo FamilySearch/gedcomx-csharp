@@ -850,7 +850,7 @@ namespace Gx.Rs.Api
             }
 
             IRestRequest request = CreateAuthenticatedGedcomxRequest().Build(link.Href, Method.GET);
-            return this.stateFactory.NewPersonChildrenState(request, Invoke(request, options), this.CurrentAccessToken);
+            return this.stateFactory.NewPersonChildrenState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
         public RelationshipState AddChild(PersonState person, params StateTransitionOption[] options)

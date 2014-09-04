@@ -113,9 +113,9 @@ namespace Gx.Rs.Api
             return new DescendancyResultsState(request, response, accessToken, this);
         }
 
-        internal PersonChildrenState NewPersonChildrenState(IRestRequest request, IRestResponse response, String accessToken)
+        internal PersonChildrenState NewPersonChildrenState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
-            return new PersonChildrenState(request, response, accessToken, this);
+            return new PersonChildrenState(request, response, client, accessToken, this);
         }
 
         internal PersonParentsState NewPersonParentsState(IRestRequest request, IRestResponse response, String accessToken)

@@ -165,7 +165,7 @@ namespace Gx.Rs.Api
 
         internal PersonsState NewPersonsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
-            return new PersonsState(request, response, accessToken, this);
+            return new PersonsState(request, response, client, accessToken, this);
         }
 
         internal PersonState NewPersonState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)

@@ -33,7 +33,7 @@ namespace Gx.Rs.Api
         }
 
         private CollectionState(Uri uri, IRestClient client, StateFactory stateFactory)
-            : this(new RestRequest(uri, Method.GET).SetDataFormat(DataFormat.Xml), client, stateFactory) // XML format is used since JSON fails to parse Links correctly
+            : this(new RestRequest(uri, Method.GET).Accept(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE), client, stateFactory) // XML format is used since JSON fails to parse Links correctly
         {
         }
 

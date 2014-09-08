@@ -12,7 +12,7 @@ namespace Gedcomx.Rs.Api.Test
     [TestFixture]
     public class AuthenticationTests
     {
-        public static readonly String SANDBOX_URI = "https://sandbox.familysearch.org/platform/collections/tree";
+        private static readonly String SANDBOX_URI = "https://sandbox.familysearch.org/platform/collections/tree";
 
         [Test]
         public void TestAuthenticateViaOAuth2Password()

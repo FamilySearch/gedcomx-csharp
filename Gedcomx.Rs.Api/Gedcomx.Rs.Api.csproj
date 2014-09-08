@@ -92,7 +92,6 @@
     <Compile Include="Util\GedcomxPersonSearchQueryBuilder.cs" />
     <Compile Include="Util\GedcomxPlaceSearchQueryBuilder.cs" />
     <Compile Include="Util\HypermediaEnabledDataExtensions.cs" />
-    <Compile Include="Util\HypermediaSerializer.cs" />
     <Compile Include="Util\LinkParserExtensions.cs" />
     <Compile Include="Util\RestClientExtensions.cs" />
     <Compile Include="Util\UriTemplateExtensions.cs" />

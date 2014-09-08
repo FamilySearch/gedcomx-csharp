@@ -28,7 +28,7 @@ namespace Gx.Rs.Api
         }
 
         private PersonState(Uri uri, IRestClient client, StateFactory stateFactory)
-            : this(new RestRequest(uri, Method.GET).SetDataFormat(DataFormat.Json), client, stateFactory)
+            : this(new RestRequest(uri, Method.GET).Accept(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE), client, stateFactory)
         {
         }
 
@@ -60,6 +60,14 @@ namespace Gx.Rs.Api
             get
             {
                 return Entity == null ? null : Entity.Persons == null ? null : Entity.Persons.FirstOrDefault();
+            }
+        }
+
+        public Person Person
+        {
+            get
+            {
+                return (Person)MainDataElement;
             }
         }
 

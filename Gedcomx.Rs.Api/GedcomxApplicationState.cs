@@ -94,11 +94,12 @@ namespace Gx.Rs.Api
         protected List<Link> LoadLinks(IRestResponse response, T entity, DataFormat contentFormat)
         {
             List<Link> links = new List<Link>();
+            var location = response.Headers.FirstOrDefault(x => x.Name == "Location");
 
             //if there's a location, we'll consider it a "self" link.
-            if (response.ResponseUri != null)
+            if (location != null && location.Value != null)
             {
-                links.Add(new Link() { Rel = Rel.SELF, Href = response.ResponseUri.ToString() });
+                links.Add(new Link() { Rel = Rel.SELF, Href = location.Value.ToString() });
             }
 
             //initialize links with link headers
@@ -134,6 +135,7 @@ namespace Gx.Rs.Api
 
         public string GetUri()
         {
+#warning This is not working. Need to fix
             return this.Client.BaseUrl + this.Request.Resource;
         }
 
@@ -154,11 +156,6 @@ namespace Gx.Rs.Api
             bool restore = false;
             IRestResponse result;
 
-            foreach (StateTransitionOption option in options)
-            {
-                option.Apply(request);
-            }
-
             Uri uri;
             if (Uri.TryCreate(request.Resource, UriKind.RelativeOrAbsolute, out uri))
             {
@@ -168,6 +165,11 @@ namespace Gx.Rs.Api
                     this.Client.BaseUrl = uri.GetLeftPart(UriPartial.Authority);
                     request.Resource = uri.GetComponents(UriComponents.PathAndQuery, UriFormat.UriEscaped);
                 }
+            }
+
+            foreach (StateTransitionOption option in options)
+            {
+                option.Apply(request);
             }
 
             result = this.Client.Execute(request);
@@ -225,9 +227,10 @@ namespace Gx.Rs.Api
         {
             IRestRequest request = CreateAuthenticatedRequest();
             Parameter accept = this.Request.Parameters.FirstOrDefault(x => x.Type == ParameterType.HttpHeader && x.Name == "Accept");
+
             if (accept != null)
             {
-                request.AddParameter(accept);
+                request.Accept(accept.Value);
             }
 
             request.Resource = GetSelfUri().ToString();
@@ -269,8 +272,7 @@ namespace Gx.Rs.Api
 
             request.Resource = GetSelfUri().ToString();
             request.Method = Method.PUT;
-#warning Need to resolve "builder.entity(entity)" pattern
-            request.AddObject(entity);
+            request.SetEntity(entity);
 
             return Clone(request, Invoke(request, options), this.Client);
         }
@@ -293,8 +295,7 @@ namespace Gx.Rs.Api
 
             request.Resource = GetSelfUri().ToString();
             request.Method = Method.POST;
-#warning Need to resolve "builder.entity(entity)" pattern
-            request.AddObject(entity);
+            request.SetEntity(entity);
 
             return Clone(request, Invoke(request, options), this.Client);
         }
@@ -365,13 +366,9 @@ namespace Gx.Rs.Api
 
             IRestRequest request = CreateRequest();
 
-            request.SetDataFormat(DataFormat.Json);
-            request.AddHeader("Content-Type", MediaTypes.APPLICATION_FORM_URLENCODED_TYPE);
-#warning Need to resolve ".entity(formData)" pattern
-            foreach (var key in formData.Keys)
-            {
-                request.AddParameter(key, formData[key]);
-            }
+            request.Accept(MediaTypes.APPLICATION_JSON_TYPE);
+            request.ContentType(MediaTypes.APPLICATION_FORM_URLENCODED_TYPE);
+            request.SetEntity(formData);
 
             request.Resource = tokenLink.Href.ToString();
             request.Method = Method.POST;
@@ -381,7 +378,6 @@ namespace Gx.Rs.Api
             // TODO: Confirm response status SUCCESS = ResponseStatus.Completed
             if (response.ResponseStatus == ResponseStatus.Completed)
             {
-#warning Once entity is encoded correctly, need to confirm retrieval pattern
                 var accessToken = JsonConvert.DeserializeObject<IDictionary<string, object>>(response.Content);
                 String access_token = null;
 
@@ -454,7 +450,7 @@ namespace Gx.Rs.Api
 
         protected IRestRequest CreateAuthenticatedFeedRequest()
         {
-            return CreateAuthenticatedRequest().SetDataFormat(DataFormat.Json);
+            return CreateAuthenticatedRequest().Accept(MediaTypes.ATOM_GEDCOMX_JSON_MEDIA_TYPE);
         }
 
         protected void IncludeEmbeddedResources(Gedcomx entity, params StateTransitionOption[] options)
@@ -486,11 +482,10 @@ namespace Gx.Rs.Api
                 lastEmbeddedResponse = Invoke(lastEmbeddedRequest, options);
                 if (lastEmbeddedResponse.StatusCode == HttpStatusCode.OK)
                 {
-                    //entity.Embed(lastEmbeddedResponse.Data as Gedcomx);
+                    entity.Embed(lastEmbeddedResponse.ToIRestResponse<T>().Data as Gedcomx);
                 }
                 else if (lastEmbeddedResponse.HasServerError())
                 {
-                    // TODO: Confirm lastEmbeddedResponse.StatusDescription gives good human readable status; otherwise, revert to lastEmbeddedResponse.StatusCode.ToString() (the enum name)
                     throw new GedcomxApplicationException(String.Format("Unable to load embedded resources: server says \"{0}\" at {1}.", lastEmbeddedResponse.StatusDescription, lastEmbeddedRequest.Resource), lastEmbeddedResponse);
                 }
                 else
@@ -552,12 +547,7 @@ namespace Gx.Rs.Api
 
         internal IRestRequest CreateAuthenticatedGedcomxRequest()
         {
-            IRestRequest result = CreateAuthenticatedRequest();
-
-            result.SetDataFormat(DataFormat.Json);
-            result.AddHeader("Content-Type", MediaTypes.GEDCOMX_JSON_MEDIA_TYPE);
-
-            return result;
+            return CreateAuthenticatedRequest().Accept(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE).ContentType(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE);
         }
 
         protected IRestRequest CreateRequest()

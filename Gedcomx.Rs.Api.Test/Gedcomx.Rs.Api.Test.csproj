@@ -66,6 +66,7 @@
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="AuthenticationTests.cs" />
     <Compile Include="PersonTests.cs" />
+    <Compile Include="TestBacking.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

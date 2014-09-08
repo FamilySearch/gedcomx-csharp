@@ -5,32 +5,49 @@
 // </auto-generated>
 using System;
 
-namespace Gx.Common {
+namespace Gx.Common
+{
 
-  /// <remarks>
-  ///  A data qualifier. Qualifiers are used to &quot;qualify&quot; certain data elements to provide additional context, information, or details.
-  /// </remarks>
-  /// <summary>
-  ///  A data qualifier. Qualifiers are used to &quot;qualify&quot; certain data elements to provide additional context, information, or details.
-  /// </summary>
-  [System.SerializableAttribute()]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://gedcomx.org/v1/",TypeName="Qualifier")]
-  [System.Xml.Serialization.SoapTypeAttribute(Namespace="http://gedcomx.org/v1/",TypeName="Qualifier")]
-  public sealed class Qualifier {
-
-    private string _value;
-
+    /// <remarks>
+    ///  A data qualifier. Qualifiers are used to &quot;qualify&quot; certain data elements to provide additional context, information, or details.
+    /// </remarks>
     /// <summary>
-    ///  The value of the qualifier.
+    ///  A data qualifier. Qualifiers are used to &quot;qualify&quot; certain data elements to provide additional context, information, or details.
     /// </summary>
-    [System.Xml.Serialization.XmlTextAttribute()]
-    public string Value {
-      get {
-        return this._value;
-      }
-      set {
-        this._value = value;
-      }
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Qualifier")]
+    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Qualifier")]
+    public sealed class Qualifier
+    {
+        private string _name;
+        private string _value;
+
+        public string Name
+        {
+            get
+            {
+                return this._name;
+            }
+            set
+            {
+                this._name = value;
+            }
+        }
+
+        /// <summary>
+        ///  The value of the qualifier.
+        /// </summary>
+        [System.Xml.Serialization.XmlTextAttribute()]
+        public string Value
+        {
+            get
+            {
+                return this._value;
+            }
+            set
+            {
+                this._value = value;
+            }
+        }
     }
-  }
 }

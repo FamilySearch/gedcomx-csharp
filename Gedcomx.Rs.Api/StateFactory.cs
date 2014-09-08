@@ -24,7 +24,7 @@ namespace Gx.Rs.Api
 
         public CollectionState NewCollectionState(Uri discoveryUri, IRestClient client, Method method)
         {
-            IRestRequest request = new RestRequest(discoveryUri, method).SetDataFormat(DataFormat.Json);
+            IRestRequest request = new RestRequest(discoveryUri, method).Accept(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE);
             return NewCollectionState(request, client.Execute(request), client, null);
         }
 
@@ -40,7 +40,7 @@ namespace Gx.Rs.Api
 
         public PersonState NewPersonState(Uri discoveryUri, IRestClient client, Method method)
         {
-            IRestRequest request = new RestRequest(discoveryUri, method).SetDataFormat(DataFormat.Json);
+            IRestRequest request = new RestRequest(discoveryUri, method).Accept(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE);
             return NewPersonState(request, client.Execute(request), client, null);
         }
 
@@ -56,7 +56,7 @@ namespace Gx.Rs.Api
 
         public RecordState NewRecordState(Uri discoveryUri, IRestClient client, Method method)
         {
-            IRestRequest request = new RestRequest(discoveryUri, method).SetDataFormat(DataFormat.Json);
+            IRestRequest request = new RestRequest(discoveryUri, method).Accept(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE);
             return NewRecordState(request, client.Execute(request), null);
         }
 
@@ -73,6 +73,8 @@ namespace Gx.Rs.Api
             {
                 client = new RestClient();
             }
+
+            ((RestClient)client).FollowRedirects = false;
 
             if (!bool.TryParse(Environment.GetEnvironmentVariable(ENABLE_JERSEY_LOGGING_ENV_NAME), out enableJerseyLogging))
             {

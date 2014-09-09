@@ -13,7 +13,7 @@ namespace Gedcomx.Rs.Api.Test
 {
     public static class TestBacking
     {
-        public static Person GetCreatePerson()
+        public static Person GetCreateMalePerson()
         {
             return new Person()
             {
@@ -21,6 +21,126 @@ namespace Gedcomx.Rs.Api.Test
                 Gender = new Gender()
                 {
                     KnownType = Gx.Types.GenderType.Male
+                },
+                Names = new List<Name>()
+                {
+                    new Name()
+                    {
+                        KnownType = Gx.Types.NameType.BirthName,
+                        NameForms = new List<NameForm>()
+                        {
+                            new NameForm()
+                            {
+                                FullText = "GedcomX User",
+                                Parts = new List<NamePart>()
+                                {
+                                    new NamePart()
+                                    {
+                                        KnownType = Gx.Types.NamePartType.Given,
+                                        Value = "GedcomX",
+                                    },
+                                    new NamePart()
+                                    {
+                                        KnownType = Gx.Types.NamePartType.Surname,
+                                        Value = "User",
+                                    }
+                                }
+                            },
+                            new NameForm()
+                            {
+                                FullText = "GedcomX2 User",
+                                Parts = new List<NamePart>()
+                                {
+                                    new NamePart()
+                                    {
+                                        KnownType = Gx.Types.NamePartType.Given,
+                                        Value = "GedcomX2",
+                                    },
+                                    new NamePart()
+                                    {
+                                        KnownType = Gx.Types.NamePartType.Surname,
+                                        Value = "User",
+                                    }
+                                }
+                            },
+                        },
+                        Preferred = true,
+                    }
+                },
+                Facts = new List<Fact>()
+                {
+                    new Fact()
+                    {
+                        KnownType = Gx.Types.FactType.Birth,
+                        Date = new DateInfo()
+                        {
+                            Original = "June 1800",
+                        },
+                        Place = new PlaceReference()
+                        {
+                            Original = "Provo, Utah, Utah, United States",
+                        },
+                    },
+                    new Fact()
+                    {
+                        KnownType = Gx.Types.FactType.Christening,
+                        Date = new DateInfo()
+                        {
+                            Original = "1802",
+                        },
+                        Place = new PlaceReference()
+                        {
+                            Original = "American Fork, Utah, Utah, United States",
+                        },
+                    },
+                    new Fact()
+                    {
+                        KnownType = Gx.Types.FactType.Residence,
+                        Date = new DateInfo()
+                        {
+                            Original = "4 Jan 1896",
+                        },
+                        Place = new PlaceReference()
+                        {
+                            Original = "Provo, Utah, Utah, United States",
+                        },
+                    },
+                    new Fact()
+                    {
+                        KnownType = Gx.Types.FactType.Death,
+                        Date = new DateInfo()
+                        {
+                            Original = "July 14, 1900",
+                        },
+                        Place = new PlaceReference()
+                        {
+                            Original = "Provo, Utah, Utah, United States",
+                        },
+                    },
+                    new Fact()
+                    {
+                        KnownType = Gx.Types.FactType.Burial,
+                        Date = new DateInfo()
+                        {
+                            Original = "1900",
+                        },
+                        Place = new PlaceReference()
+                        {
+                            Original = "Sandy, Salt Lake, Utah, United States",
+                        },
+                    }
+                }
+            };
+        }
+
+        public static Person GetCreateFemalePerson()
+        {
+            return new Person()
+            {
+                Living = false,
+                Gender = new Gender()
+                {
+                    KnownType = Gx.Types.GenderType.Female,
                 },
                 Names = new List<Name>()
                 {

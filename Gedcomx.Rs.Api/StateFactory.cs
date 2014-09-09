@@ -160,9 +160,9 @@ namespace Gx.Rs.Api
             return new VocabElementListState(request, response, accessToken, this);
         }
 
-        internal PersonSpousesState NewPersonSpousesState(IRestRequest request, IRestResponse response, String accessToken)
+        internal PersonSpousesState NewPersonSpousesState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
-            return new PersonSpousesState(request, response, accessToken, this);
+            return new PersonSpousesState(request, response, client, accessToken, this);
         }
 
         internal PersonsState NewPersonsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
@@ -192,7 +192,7 @@ namespace Gx.Rs.Api
 
         internal RelationshipState NewRelationshipState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
-            return new RelationshipState(request, response, accessToken, this);
+            return new RelationshipState(request, response, client, accessToken, this);
         }
 
         internal SourceDescriptionsState NewSourceDescriptionsState(IRestRequest request, IRestResponse response, String accessToken)

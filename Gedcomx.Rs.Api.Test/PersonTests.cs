@@ -23,7 +23,6 @@ namespace Gedcomx.Rs.Api.Test
         private static readonly String READ_PERSON_URI = "https://sandbox.familysearch.org/platform/tree/persons/KWQ7-Y57";
         private static readonly String PERSON_WITH_DATA_URI = "https://sandbox.familysearch.org/platform/tree/persons/KWWD-CMF";
         private CollectionState collection;
-        private Person testPerson;
 
         [TestFixtureSetUp]
         public void Initialize()
@@ -32,13 +31,12 @@ namespace Gedcomx.Rs.Api.Test
             collection.AuthenticateViaOAuth2Password("sdktester", "1234sdkpass", "WCQY-7J1Q-GKVV-7DNM-SQ5M-9Q5H-JX3H-CMJK");
             Assert.DoesNotThrow(() => collection.IfSuccessful());
             Assert.IsNotNullOrEmpty(collection.CurrentAccessToken);
-            testPerson = TestBacking.GetCreatePerson();
         }
 
         [Test]
         public void TestCreatePerson()
         {
-            var result = collection.AddPerson(testPerson);
+            var result = collection.AddPerson(TestBacking.GetCreateMalePerson());
             Assert.DoesNotThrow(() => result.IfSuccessful());
             var person = (PersonState)result.Get();
             Assert.IsNotNull(person.Person);
@@ -48,7 +46,7 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestPersonSourceReference()
         {
-            var result = collection.AddPerson(testPerson);
+            var result = collection.AddPerson(TestBacking.GetCreateMalePerson());
             Assert.DoesNotThrow(() => result.IfSuccessful());
             var state = (PersonState)result.Get();
             var result2 = state.AddSourceReference(TestBacking.GetPersonSourceReference());
@@ -232,11 +230,17 @@ namespace Gedcomx.Rs.Api.Test
             Assert.IsTrue(state2.Persons.Count > 0);
         }
 
-        [Test(Description="PersonSpousesState is not yet implemented, but ReadSpouses() is implemented. No assertions made in this test.")]
+        [Test]
         public void TestReadSpousesOfAPerson()
         {
             var state = collection.ReadPerson(new Uri(PERSON_WITH_DATA_URI));
             var state2 = state.ReadSpouses();
+
+            Assert.DoesNotThrow(() => state2.IfSuccessful());
+            Assert.IsNotNull(state2.Persons);
+            Assert.IsNotNull(state2.Relationships);
+            Assert.IsTrue(state2.Persons.Count > 0);
+            Assert.IsTrue(state2.Relationships.Count > 0);
         }
 
         [Test]
@@ -300,7 +304,7 @@ namespace Gedcomx.Rs.Api.Test
         public void TestDeletePerson()
         {
             // Assume the ability to add a person is working
-            var state = collection.AddPerson(TestBacking.GetCreatePerson());
+            var state = collection.AddPerson(TestBacking.GetCreateMalePerson());
             var state2 = (PersonState)state.Delete();
 
             Assert.DoesNotThrow(() => state2.IfSuccessful());
@@ -311,7 +315,7 @@ namespace Gedcomx.Rs.Api.Test
         public void TestDeletePersonSourceReference()
         {
             // Assume the ability to add a person is working
-            var state = collection.AddPerson(TestBacking.GetCreatePerson());
+            var state = collection.AddPerson(TestBacking.GetCreateMalePerson());
             state = (PersonState)state.Get();
             // Assume the ability to add a source reference is working
             state.AddSourceReference(TestBacking.GetPersonSourceReference());
@@ -326,7 +330,7 @@ namespace Gedcomx.Rs.Api.Test
         public void TestDeletePersonConclusion()
         {
             // Assume the ability to add a person is working
-            var state = collection.AddPerson(TestBacking.GetCreatePerson());
+            var state = collection.AddPerson(TestBacking.GetCreateMalePerson());
             state = (PersonState)state.Get();
             state = state.DeleteFact(state.Person.Facts.FirstOrDefault());
             Assert.DoesNotThrow(() => state.IfSuccessful());
@@ -338,7 +342,7 @@ namespace Gedcomx.Rs.Api.Test
         {
             var parameters = new ApplyParameters();
             // Assume the ability to add a person is working
-            var state = collection.AddPerson(TestBacking.GetCreatePerson());
+            var state = collection.AddPerson(TestBacking.GetCreateMalePerson());
             state = (PersonState)state.Get();
             var value = DateTime.UtcNow.ToString("ddd, dd MMM yyyy HH:mm:ss G\\MT");
 #warning Need to address ETag precondition issue
@@ -365,9 +369,37 @@ namespace Gedcomx.Rs.Api.Test
         public void TestRestorePerson()
         {
             // Assume the ability to add a person is working
-            var state = collection.AddPerson(TestBacking.GetCreatePerson());
+            var state = collection.AddPerson(TestBacking.GetCreateMalePerson());
             state = (PersonState)state.Delete();
 
+            throw new NotImplementedException();
+        }
+
+        [Test]
+        [Ignore("PersonMatchResultsState is defined in extension. Not ready to test.")]
+        public void TestUpdatePersonNotAMatchDeclarations()
+        {
+            throw new NotImplementedException();
+        }
+
+        [Test]
+        [Ignore("FamilyTreePersonState is defined in extension. Not ready to test.")]
+        public void TestReadPreferredSpouseRelationship()
+        {
+            throw new NotImplementedException();
+        }
+
+        [Test]
+        [Ignore("FamilyTreePersonState is defined in extension. Not ready to test.")]
+        public void TestUpdatePreferredSpouseRelationship()
+        {
+            throw new NotImplementedException();
+        }
+
+        [Test]
+        [Ignore("FamilyTreePersonState is defined in extension. Not ready to test.")]
+        public void TestDeletePreferredSpouseRelationship()
+        {
             throw new NotImplementedException();
         }
 

@@ -2,6 +2,7 @@
 using Gx.Conclusion;
 using Gx.Links;
 using Gx.Rs.Api;
+using Gx.Rs.Api.Options;
 using Gx.Rs.Api.Util;
 using Gx.Source;
 using KellermanSoftware.CompareNetObjects;
@@ -197,14 +198,12 @@ namespace Gedcomx.Rs.Api.Test
             Assert.IsTrue(state.Response.StatusCode == HttpStatusCode.NotFound);
         }
 
-        [Test(Description = "Does not test implementations of StateTransitionOption. Need to implement StateTransitionOptions.")]
+        [Test]
         public void TestReadNotModifiedPerson()
         {
-            var parameters = new ApplyParameters();
             var state = collection.ReadPerson(new Uri(READ_PERSON_URI));
-            var etag = state.Response.Headers.Single(x => x.Name == "ETag");
-            parameters.Parameters.Add(new RestSharp.Parameter() { Name = "If-None-Match", Type = RestSharp.ParameterType.HttpHeader, Value = etag.Value });
-            var state2 = collection.ReadPerson(new Uri(READ_PERSON_URI), parameters);
+            var cache = new CacheDirectives(state);
+            var state2 = collection.ReadPerson(new Uri(READ_PERSON_URI), cache);
             Assert.DoesNotThrow(() => state2.IfSuccessful());
             Assert.IsTrue(state2.Response.StatusCode == HttpStatusCode.NotModified);
         }
@@ -282,20 +281,17 @@ namespace Gedcomx.Rs.Api.Test
             Assert.DoesNotThrow(() => state2.IfSuccessful());
         }
 
-        [Test(Description = "Does not test implementations of StateTransitionOption. Need to implement StateTransitionOptions.")]
+        [Test]
         public void TestUpdatePersonWithPreconditions()
         {
-            var parameters = new ApplyParameters();
             var state = collection.ReadPerson(new Uri(PERSON_WITH_DATA_URI));
-            var value = DateTime.UtcNow.ToString("ddd, dd MMM yyyy HH:mm:ss G\\MT");
-#warning Need to address ETag precondition issue
-            parameters.Parameters.Add(new RestSharp.Parameter() { Name = "If-Unmodified-Since", Type = RestSharp.ParameterType.HttpHeader, Value = value });
-            var state2 = state.UpdateFacts(state.Person.Facts.ToArray(), parameters);
+            var cond = new Preconditions(state.LastModified);
+            var state2 = state.UpdateFacts(state.Person.Facts.ToArray(), cond);
             Assert.DoesNotThrow(() => state2.IfSuccessful());
             Assert.IsTrue(state2.Response.StatusCode == HttpStatusCode.NoContent);
 
             state = collection.ReadPerson(new Uri(PERSON_WITH_DATA_URI));
-            var state3 = state.UpdateFacts(state.Person.Facts.ToArray(), parameters);
+            var state3 = state.UpdateFacts(state.Person.Facts.ToArray(), cond);
             Assert.Throws<GedcomxApplicationException>(() => state3.IfSuccessful());
             Assert.IsTrue(state3.Response.StatusCode == HttpStatusCode.PreconditionFailed);
         }
@@ -337,22 +333,19 @@ namespace Gedcomx.Rs.Api.Test
             Assert.IsTrue(state.Response.StatusCode == HttpStatusCode.NoContent);
         }
 
-        [Test(Description = "Does not test implementations of StateTransitionOption. Need to implement StateTransitionOptions.")]
+        [Test]
         public void TestDeletePersonWithPreconditions()
         {
-            var parameters = new ApplyParameters();
             // Assume the ability to add a person is working
             var state = collection.AddPerson(TestBacking.GetCreateMalePerson());
             state = (PersonState)state.Get();
-            var value = DateTime.UtcNow.ToString("ddd, dd MMM yyyy HH:mm:ss G\\MT");
-#warning Need to address ETag precondition issue
-            parameters.Parameters.Add(new RestSharp.Parameter() { Name = "If-Unmodified-Since", Type = RestSharp.ParameterType.HttpHeader, Value = value });
+            var cond = new Preconditions(state.LastModified);
 
             // Touch the record since the above date
             state.Update(state.Person);
 
             // This should fail
-            var state2 = (PersonState)state.Delete(parameters);
+            var state2 = (PersonState)state.Delete(cond);
             Assert.Throws<GedcomxApplicationException>(() => state2.IfSuccessful());
             Assert.IsTrue(state2.Response.StatusCode == HttpStatusCode.PreconditionFailed);
         }

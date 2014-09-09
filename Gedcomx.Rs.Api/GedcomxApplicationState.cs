@@ -16,6 +16,30 @@ namespace Gx.Rs.Api
 {
     public abstract class GedcomxApplicationState : HypermediaEnabledData
     {
+        public IRestClient Client { get; protected set; }
+        public String CurrentAccessToken { get; set; }
+        protected Tavis.LinkFactory linkFactory;
+        protected Tavis.LinkHeaderParser linkHeaderParser;
+        public bool IsAuthenticated { get { return CurrentAccessToken != null; } }
+        public IRestRequest Request { get; protected set; }
+        public IRestResponse Response { get; protected set; }
+
+        public string ETag
+        {
+            get
+            {
+#warning ETag is causing HTTP 412 on all requests
+                return this.Response != null ? this.Response.Headers.Where(x => x.Type == ParameterType.HttpHeader && x.Name == "ETag").Select(x => x.Value.ToString()).FirstOrDefault() : null;
+            }
+        }
+
+        public DateTime? LastModified
+        {
+            get
+            {
+                return this.Response != null ? this.Response.Headers.Where(x => x.Type == ParameterType.HttpHeader && x.Name == "Last-Modified").Select(x => (DateTime?)DateTime.Parse(x.Value.ToString())).FirstOrDefault() : null;
+            }
+        }
     }
 
     public abstract class GedcomxApplicationState<T> : GedcomxApplicationState where T : class, new()
@@ -23,13 +47,6 @@ namespace Gx.Rs.Api
         protected static readonly EmbeddedLinkLoader DEFAULT_EMBEDDED_LINK_LOADER = new EmbeddedLinkLoader();
 
         internal readonly StateFactory stateFactory;
-        public IRestClient Client { get; private set; }
-        public String CurrentAccessToken { get; set; }
-        private Tavis.LinkFactory linkFactory;
-        private Tavis.LinkHeaderParser linkHeaderParser;
-        public bool IsAuthenticated { get { return CurrentAccessToken != null; } }
-        public IRestRequest Request { get; private set; }
-        public IRestResponse Response { get; private set; }
         public T Entity { get; private set; }
         protected abstract GedcomxApplicationState Clone(IRestRequest request, IRestResponse response, IRestClient client);
         protected virtual T LoadEntity(IRestResponse response)

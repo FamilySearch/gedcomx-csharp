@@ -68,6 +68,10 @@
     <Compile Include="GedcomxApplicationState.cs" />
     <Compile Include="CacheControl.cs" />
     <Compile Include="Exceptions.cs" />
+    <Compile Include="Options\CacheDirectives.cs" />
+    <Compile Include="Options\HeaderParameter.cs" />
+    <Compile Include="Options\Preconditions.cs" />
+    <Compile Include="Options\QueryParameter.cs" />
     <Compile Include="PersonChildrenState.cs" />
     <Compile Include="PersonParentsState.cs" />
     <Compile Include="PersonSearchResultsState.cs" />
@@ -94,6 +98,7 @@
     <Compile Include="Util\HypermediaEnabledDataExtensions.cs" />
     <Compile Include="Util\LinkParserExtensions.cs" />
     <Compile Include="Util\RestClientExtensions.cs" />
+    <Compile Include="Util\ServiceHelper.cs" />
     <Compile Include="Util\UriTemplateExtensions.cs" />
     <Compile Include="VocabElementListState.cs" />
     <Compile Include="VocabElementState.cs" />

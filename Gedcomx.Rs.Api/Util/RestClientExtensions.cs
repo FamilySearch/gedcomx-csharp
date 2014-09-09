@@ -156,6 +156,11 @@ namespace Gx.Rs.Api.Util
             return result;
         }
 
+        public static IEnumerable<Parameter> Get(this IEnumerable<Parameter> @this, String name)
+        {
+            return @this.Where(x => x.Name == name);
+        }
+
         private static DataFormat GetDataFormat(this IRestResponse @this)
         {
             DataFormat result = default(DataFormat);

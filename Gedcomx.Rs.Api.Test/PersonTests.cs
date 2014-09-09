@@ -394,22 +394,5 @@ namespace Gedcomx.Rs.Api.Test
         {
             throw new NotImplementedException();
         }
-
-        [Test]
-        public void TestSearchForPersonsAndReadPerson()
-        {
-            GedcomxPersonSearchQueryBuilder query = new GedcomxPersonSearchQueryBuilder()
-                .Name("John Smith")
-                .BirthDate("1 January 1900")
-                .FatherName("Peter Smith");
-
-            PersonSearchResultsState results = collection.SearchForPersons(query);
-
-            Assert.DoesNotThrow(() => results.IfSuccessful());
-            PersonState person = results.ReadPerson(results.Results.Entries.FirstOrDefault());
-
-            Assert.IsNotNull(person);
-            Assert.DoesNotThrow(() => person.IfSuccessful());
-        }
     }
 }

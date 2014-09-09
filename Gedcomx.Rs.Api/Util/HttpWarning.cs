@@ -1,16 +1,30 @@
-﻿using System;
+﻿using RestSharp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Gx.Rs.Api.Util
 {
     public class HttpWarning
     {
+        private static Regex regex = new Regex("\\w+[\\s]+\\w+[\\s]+\\\"[^\"]+\\\"", RegexOptions.Compiled);
         private readonly int? code;
         private readonly String application;
         private readonly String message;
+
+        public static IEnumerable<HttpWarning> Parse(Parameter header)
+        {
+            if (header != null && header.Value != null)
+            {
+                foreach (Match match in regex.Matches(header.Value.ToString()))
+                {
+                    yield return HttpWarning.Parse(match.Value);
+                }
+            }
+        }
 
         public static HttpWarning Parse(String headerValue)
         {

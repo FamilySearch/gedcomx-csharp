@@ -317,6 +317,24 @@ namespace Gx.Rs.Api
             return Clone(request, Invoke(request, options), this.Client);
         }
 
+        public List<HttpWarning> Warnings
+        {
+            get
+            {
+                List<HttpWarning> warnings = new List<HttpWarning>();
+                IEnumerable<Parameter> warningValues = this.Response.Headers.Get("Warning");
+                if (warningValues != null)
+                {
+                    foreach (Parameter warningValue in warningValues)
+                    {
+                        warnings.AddRange(HttpWarning.Parse(warningValue));
+                    }
+                }
+                return warnings;
+            }
+        }
+
+
         public virtual GedcomxApplicationState AuthenticateViaOAuth2Password(String username, String password, String clientId)
         {
             return AuthenticateViaOAuth2Password(username, password, clientId, null);
@@ -421,7 +439,7 @@ namespace Gx.Rs.Api
             }
         }
 
-        protected GedcomxApplicationState ReadPage(String rel, params StateTransitionOption[] options)
+        public GedcomxApplicationState ReadPage(String rel, params StateTransitionOption[] options)
         {
             Link link = this.GetLink(rel);
             if (link == null || link.Href == null)
@@ -445,22 +463,22 @@ namespace Gx.Rs.Api
             return Clone(request, Invoke(request, options), this.Client);
         }
 
-        protected GedcomxApplicationState ReadNextPage(params StateTransitionOption[] options)
+        public GedcomxApplicationState ReadNextPage(params StateTransitionOption[] options)
         {
             return ReadPage(Rel.NEXT);
         }
 
-        protected GedcomxApplicationState ReadPreviousPage(params StateTransitionOption[] options)
+        public GedcomxApplicationState ReadPreviousPage(params StateTransitionOption[] options)
         {
             return ReadPage(Rel.PREVIOUS);
         }
 
-        protected GedcomxApplicationState ReadFirstPage(params StateTransitionOption[] options)
+        public GedcomxApplicationState ReadFirstPage(params StateTransitionOption[] options)
         {
             return ReadPage(Rel.FIRST);
         }
 
-        protected GedcomxApplicationState ReadLastPage(params StateTransitionOption[] options)
+        public GedcomxApplicationState ReadLastPage(params StateTransitionOption[] options)
         {
             return ReadPage(Rel.LAST);
         }

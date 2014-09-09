@@ -12,7 +12,6 @@ namespace Gx.Rs.Api
     [Serializable]
     public class GedcomxApplicationException : Exception
     {
-        private static Regex regex = new Regex("\\w+[\\s]+\\w+[\\s]+\\\"[^\"]+\\\"", RegexOptions.Compiled);
         public IRestResponse Response { get; private set; }
 
         protected GedcomxApplicationException(SerializationInfo info, StreamingContext context)
@@ -110,16 +109,13 @@ namespace Gx.Rs.Api
 
                 if (this.Response != null)
                 {
-                    List<String> values = this.Response.Headers.Where(x => x.Name == "Warning").Select(x => x.Value.ToString()).ToList();
+                    IEnumerable<Parameter> values = this.Response.Headers.Get("Warning");
                     if (values != null && values.Any())
                     {
-                        warnings = new List<HttpWarning>(values.Count);
-                        foreach (String value in values)
+                        warnings = new List<HttpWarning>();
+                        foreach (Parameter value in values)
                         {
-                            foreach (Match match in regex.Matches(value))
-                            {
-                                warnings.Add(HttpWarning.Parse(match.Value));
-                            }
+                            warnings.AddRange(HttpWarning.Parse(value));
                         }
                     }
                 }

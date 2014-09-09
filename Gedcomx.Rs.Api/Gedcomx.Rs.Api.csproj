@@ -95,6 +95,7 @@
     <Compile Include="Util\GedcomxBaseSearchQueryBuilder.cs" />
     <Compile Include="Util\GedcomxPersonSearchQueryBuilder.cs" />
     <Compile Include="Util\GedcomxPlaceSearchQueryBuilder.cs" />
+    <Compile Include="Util\HttpWarning.cs" />
     <Compile Include="Util\HypermediaEnabledDataExtensions.cs" />
     <Compile Include="Util\LinkParserExtensions.cs" />
     <Compile Include="Util\RestClientExtensions.cs" />

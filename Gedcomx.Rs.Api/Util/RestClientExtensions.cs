@@ -134,19 +134,22 @@ namespace Gx.Rs.Api.Util
         {
             IRestResponse<T> result = null;
 
-            if (@this != null && !string.IsNullOrEmpty(@this.Content) && @this.Request != null)
+            if (@this != null)
             {
                 result = @this.toAsyncResponse<T>();
                 var format = @this.GetDataFormat();
 
-                if (format == DataFormat.Json)
+                if (@this.Content != null)
                 {
-                    result.Data = JsonConvert.DeserializeObject<T>(@this.Content, jsonSettings);
-                }
-                else if (format == DataFormat.Xml)
-                {
-                    var deserializer = new RestSharp.Deserializers.XmlDeserializer();
-                    result.Data = deserializer.Deserialize<T>(@this);
+                    if (format == DataFormat.Json)
+                    {
+                        result.Data = JsonConvert.DeserializeObject<T>(@this.Content, jsonSettings);
+                    }
+                    else if (format == DataFormat.Xml)
+                    {
+                        var deserializer = new RestSharp.Deserializers.XmlDeserializer();
+                        result.Data = deserializer.Deserialize<T>(@this);
+                    }
                 }
             }
 
@@ -162,7 +165,7 @@ namespace Gx.Rs.Api.Util
             {
                 result = GetDataFormat(contentType.Value.ToString(), result);
             }
-            else
+            else if (@this.Request != null)
             {
                 result = @this.Request.GetDataFormat();
             }

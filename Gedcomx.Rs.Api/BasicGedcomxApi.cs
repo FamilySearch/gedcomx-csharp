@@ -184,6 +184,41 @@ namespace Gx.Rs.Api
 			}
 		}
 		
+		public bool TryGetAccessTokenWithoutAuthentication(string ipAddress, string clientId, string clientSecret = null)
+		{
+			if (this.descriptor.Expired) {
+				this.descriptor.Refresh();
+			}
+
+			RestClient client;
+			RestRequest request;
+			if (this.descriptor.GetOAuth2TokenRequest(out client, out request)) {
+				request.Method = Method.POST;
+				request.AddParameter("client_id", clientId);
+				request.AddParameter("grant_type", "unauthenticated_session");
+				request.AddParameter("ip_address", ipAddress);
+				request.Timeout = Timeout;
+				if (clientSecret != null) {
+					request.AddParameter("client_secret", clientSecret);
+				}
+				var response = client.Execute<Dictionary<string, object>>(request);
+				if (response.ErrorException != null) {
+					return false;
+				}
+
+				Dictionary<string, object> result = response.Data;
+				if (result.ContainsKey("token")) {
+					this.accessToken = (string) result["token"];
+					return true;
+				}
+
+				return false;
+			}
+			else {
+				return false;
+			}
+		}
+
 		public GedcomxApiResponse<Person> GetPerson(String pid) {
 			if (this.descriptor.Expired) {
 				this.descriptor.Refresh();
@@ -193,7 +228,7 @@ namespace Gx.Rs.Api
 			RestRequest request;
 			if (this.descriptor.GetPersonRequest(pid, out client, out request)) {
 				request.Method = Method.GET;
-				request.AddHeader("Accept", MediaTypes.GedcomxXml);
+				request.AddHeader("Accept", MediaTypes.GEDCOMX_XML_MEDIA_TYPE);
 				request.AddHeader("Authorization", string.Format("Bearer {0}", this.accessToken));
 				request.Timeout = Timeout;
 				var response = client.Execute<Gedcomx>(request);

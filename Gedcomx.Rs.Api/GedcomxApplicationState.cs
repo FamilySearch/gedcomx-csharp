@@ -9,30 +9,66 @@ using System.Net;
 using System.Linq;
 using Newtonsoft.Json;
 using Gx.Records;
+using Gx.Common;
+using Gedcomx.Model;
 
 namespace Gx.Rs.Api
 {
-    public abstract class GedcomxApplicationState
+    public abstract class GedcomxApplicationState : HypermediaEnabledData
     {
+        public IRestClient Client { get; protected set; }
+        public String CurrentAccessToken { get; set; }
+        protected Tavis.LinkFactory linkFactory;
+        protected Tavis.LinkHeaderParser linkHeaderParser;
+        public bool IsAuthenticated { get { return CurrentAccessToken != null; } }
+        public IRestRequest Request { get; protected set; }
+        public IRestResponse Response { get; protected set; }
+
+        public string ETag
+        {
+            get
+            {
+#warning ETag is causing HTTP 412 on all requests
+                return this.Response != null ? this.Response.Headers.Where(x => x.Type == ParameterType.HttpHeader && x.Name == "ETag").Select(x => x.Value.ToString()).FirstOrDefault() : null;
+            }
+        }
+
+        public DateTime? LastModified
+        {
+            get
+            {
+                return this.Response != null ? this.Response.Headers.Where(x => x.Type == ParameterType.HttpHeader && x.Name == "Last-Modified").Select(x => (DateTime?)DateTime.Parse(x.Value.ToString())).FirstOrDefault() : null;
+            }
+        }
     }
 
     public abstract class GedcomxApplicationState<T> : GedcomxApplicationState where T : class, new()
     {
         protected static readonly EmbeddedLinkLoader DEFAULT_EMBEDDED_LINK_LOADER = new EmbeddedLinkLoader();
 
-        protected readonly StateFactory stateFactory;
-        protected readonly Dictionary<String, Link> links;
-        public IRestClient Client { get; private set; }
-        public String CurrentAccessToken { get; set; }
-        private Tavis.LinkFactory linkFactory;
-        private Tavis.LinkHeaderParser linkHeaderParser;
-        public bool IsAuthenticated { get { return CurrentAccessToken != null; } }
-        public IRestRequest Request { get; private set; }
-        public IRestResponse<T> Response { get; private set; }
+        internal readonly StateFactory stateFactory;
         public T Entity { get; private set; }
-        protected abstract GedcomxApplicationState Clone(IRestRequest request, IRestResponse<T> response, IRestClient client);
-        protected abstract T LoadEntity(IRestResponse<T> response);
-        protected abstract Collection MainDataElement { get; }
+        protected abstract GedcomxApplicationState Clone(IRestRequest request, IRestResponse response, IRestClient client);
+        protected virtual T LoadEntity(IRestResponse response)
+        {
+            T result = null;
+
+            if (response != null)
+            {
+                result = response.ToIRestResponse<T>().Data;
+            }
+
+            return result;
+        }
+        protected virtual SupportsLinks MainDataElement
+        {
+            get
+            {
+                return (SupportsLinks)Entity;
+            }
+        }
+        private IRestRequest lastEmbeddedRequest;
+        private IRestResponse lastEmbeddedResponse;
 
 
         protected GedcomxApplicationState()
@@ -41,7 +77,7 @@ namespace Gx.Rs.Api
             linkHeaderParser = new Tavis.LinkHeaderParser(linkFactory);
         }
 
-        protected GedcomxApplicationState(IRestRequest request, IRestResponse<T> response, IRestClient client, String accessToken, StateFactory stateFactory)
+        protected GedcomxApplicationState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken, StateFactory stateFactory)
             : this()
         {
             this.Request = request;
@@ -51,14 +87,11 @@ namespace Gx.Rs.Api
             this.stateFactory = stateFactory;
             this.Entity = LoadEntityConditionally(this.Response);
             List<Link> links = LoadLinks(this.Response, this.Entity, this.Request.RequestFormat);
-            this.links = new Dictionary<String, Link>();
-            foreach (Link link in links)
-            {
-                this.links[link.Rel] = link;
-            }
+            this.Links = new List<Link>();
+            this.Links.AddRange(links);
         }
 
-        protected T LoadEntityConditionally(IRestResponse<T> response)
+        protected T LoadEntityConditionally(IRestResponse response)
         {
             if (Request.Method != Method.HEAD && Request.Method != Method.OPTIONS && response.StatusCode == HttpStatusCode.OK)
             {
@@ -78,11 +111,12 @@ namespace Gx.Rs.Api
         protected List<Link> LoadLinks(IRestResponse response, T entity, DataFormat contentFormat)
         {
             List<Link> links = new List<Link>();
+            var location = response.Headers.FirstOrDefault(x => x.Name == "Location");
 
             //if there's a location, we'll consider it a "self" link.
-            if (response.ResponseUri != null)
+            if (location != null && location.Value != null)
             {
-                links.Add(new Link() { Rel = Rel.SELF, Href = response.ResponseUri.ToString() });
+                links.Add(new Link() { Rel = Rel.SELF, Href = location.Value.ToString() });
             }
 
             //initialize links with link headers
@@ -99,7 +133,7 @@ namespace Gx.Rs.Api
             }
 
             //load the links from the main data element
-            Collection mainElement = MainDataElement;
+            SupportsLinks mainElement = MainDataElement;
             if (mainElement != null && mainElement.Links != null)
             {
                 links.AddRange(mainElement.Links);
@@ -116,14 +150,15 @@ namespace Gx.Rs.Api
             return links;
         }
 
-        public Uri GetUri()
+        public string GetUri()
         {
-            return new Uri(this.Client.BaseUrl + this.Request.Resource);
+#warning This is not working. Need to fix
+            return this.Client.BaseUrl + this.Request.Resource;
         }
 
         public bool HasError()
         {
-            return this.Response.ResponseStatus == ResponseStatus.Error;
+            return this.Response.HasClientError() || this.Response.HasServerError();
         }
 
         public bool HasStatus(ResponseStatus status)
@@ -131,17 +166,12 @@ namespace Gx.Rs.Api
             return this.Response.ResponseStatus == status;
         }
 
-        protected IRestResponse<T> Invoke(IRestRequest request, params StateTransitionOption[] options)
+        internal IRestResponse Invoke(IRestRequest request, params StateTransitionOption[] options)
         {
             string originalBaseUrl = this.Client.BaseUrl;
             string originalResource = request.Resource;
             bool restore = false;
-            IRestResponse<T> result;
-
-            foreach (StateTransitionOption option in options)
-            {
-                option.Apply(request);
-            }
+            IRestResponse result;
 
             Uri uri;
             if (Uri.TryCreate(request.Resource, UriKind.RelativeOrAbsolute, out uri))
@@ -150,11 +180,16 @@ namespace Gx.Rs.Api
                 {
                     restore = true;
                     this.Client.BaseUrl = uri.GetLeftPart(UriPartial.Authority);
-                    request.Resource = uri.GetComponents(UriComponents.PathAndQuery, UriFormat.Unescaped);
+                    request.Resource = uri.GetComponents(UriComponents.PathAndQuery, UriFormat.UriEscaped);
                 }
             }
 
-            result = this.Client.Execute<T>(request);
+            foreach (StateTransitionOption option in options)
+            {
+                option.Apply(request);
+            }
+
+            result = this.Client.Execute(request);
 
             if (restore)
             {
@@ -209,9 +244,10 @@ namespace Gx.Rs.Api
         {
             IRestRequest request = CreateAuthenticatedRequest();
             Parameter accept = this.Request.Parameters.FirstOrDefault(x => x.Type == ParameterType.HttpHeader && x.Name == "Accept");
+
             if (accept != null)
             {
-                request.AddParameter(accept);
+                request.Accept(accept.Value);
             }
 
             request.Resource = GetSelfUri().ToString();
@@ -253,8 +289,7 @@ namespace Gx.Rs.Api
 
             request.Resource = GetSelfUri().ToString();
             request.Method = Method.PUT;
-#warning Need to resolve "builder.entity(entity)" pattern
-            request.AddObject(entity);
+            request.SetEntity(entity);
 
             return Clone(request, Invoke(request, options), this.Client);
         }
@@ -277,18 +312,35 @@ namespace Gx.Rs.Api
 
             request.Resource = GetSelfUri().ToString();
             request.Method = Method.POST;
-#warning Need to resolve "builder.entity(entity)" pattern
-            request.AddObject(entity);
+            request.SetEntity(entity);
 
             return Clone(request, Invoke(request, options), this.Client);
         }
 
-        protected virtual GedcomxApplicationState AuthenticateViaOAuth2Password(String username, String password, String clientId)
+        public List<HttpWarning> Warnings
+        {
+            get
+            {
+                List<HttpWarning> warnings = new List<HttpWarning>();
+                IEnumerable<Parameter> warningValues = this.Response.Headers.Get("Warning");
+                if (warningValues != null)
+                {
+                    foreach (Parameter warningValue in warningValues)
+                    {
+                        warnings.AddRange(HttpWarning.Parse(warningValue));
+                    }
+                }
+                return warnings;
+            }
+        }
+
+
+        public virtual GedcomxApplicationState AuthenticateViaOAuth2Password(String username, String password, String clientId)
         {
             return AuthenticateViaOAuth2Password(username, password, clientId, null);
         }
 
-        protected virtual GedcomxApplicationState AuthenticateViaOAuth2Password(String username, String password, String clientId, String clientSecret)
+        public virtual GedcomxApplicationState AuthenticateViaOAuth2Password(String username, String password, String clientId, String clientSecret)
         {
             IDictionary<String, String> formData = new Dictionary<String, String>();
             formData.Add("grant_type", "password");
@@ -302,12 +354,12 @@ namespace Gx.Rs.Api
             return AuthenticateViaOAuth2(formData);
         }
 
-        protected GedcomxApplicationState AuthenticateViaOAuth2AuthCode(String authCode, String redirect, String clientId)
+        public GedcomxApplicationState AuthenticateViaOAuth2AuthCode(String authCode, String redirect, String clientId)
         {
             return AuthenticateViaOAuth2Password(authCode, authCode, clientId, null);
         }
 
-        protected GedcomxApplicationState AuthenticateViaOAuth2AuthCode(String authCode, String redirect, String clientId, String clientSecret)
+        public GedcomxApplicationState AuthenticateViaOAuth2AuthCode(String authCode, String redirect, String clientId, String clientSecret)
         {
             IDictionary<String, String> formData = new Dictionary<String, String>();
             formData.Add("grant_type", "authorization_code");
@@ -321,7 +373,7 @@ namespace Gx.Rs.Api
             return AuthenticateViaOAuth2(formData);
         }
 
-        protected GedcomxApplicationState AuthenticateViaOAuth2ClientCredentials(String clientId, String clientSecret)
+        public GedcomxApplicationState AuthenticateViaOAuth2ClientCredentials(String clientId, String clientSecret)
         {
             IDictionary<String, String> formData = new Dictionary<String, String>();
             formData.Add("grant_type", "client_credentials");
@@ -333,15 +385,15 @@ namespace Gx.Rs.Api
             return AuthenticateViaOAuth2(formData);
         }
 
-        protected GedcomxApplicationState AuthenticateWithAccessToken(String accessToken)
+        public GedcomxApplicationState AuthenticateWithAccessToken(String accessToken)
         {
             this.CurrentAccessToken = accessToken;
             return this;
         }
 
-        protected GedcomxApplicationState AuthenticateViaOAuth2(IDictionary<String, String> formData, params StateTransitionOption[] options)
+        public GedcomxApplicationState AuthenticateViaOAuth2(IDictionary<String, String> formData, params StateTransitionOption[] options)
         {
-            Link tokenLink = GetLink(Rel.OAUTH2_TOKEN);
+            Link tokenLink = this.GetLink(Rel.OAUTH2_TOKEN);
             if (tokenLink == null || tokenLink.Href == null)
             {
                 throw new GedcomxApplicationException(String.Format("No OAuth2 token URI supplied for resource at {0}.", GetUri()));
@@ -349,15 +401,11 @@ namespace Gx.Rs.Api
 
             IRestRequest request = CreateRequest();
 
-            request.SetDataFormat(DataFormat.Json);
-            request.AddHeader("Content-Type", MediaTypes.APPLICATION_FORM_URLENCODED_TYPE);
-#warning Need to resolve ".entity(formData)" pattern
-            foreach (var key in formData.Keys)
-            {
-                request.AddParameter(key, formData[key]);
-            }
+            request.Accept(MediaTypes.APPLICATION_JSON_TYPE);
+            request.ContentType(MediaTypes.APPLICATION_FORM_URLENCODED_TYPE);
+            request.SetEntity(formData);
 
-            request.Resource = tokenLink.Href;
+            request.Resource = tokenLink.Href.ToString();
             request.Method = Method.POST;
 
             IRestResponse response = Invoke(request, options);
@@ -365,7 +413,6 @@ namespace Gx.Rs.Api
             // TODO: Confirm response status SUCCESS = ResponseStatus.Completed
             if (response.ResponseStatus == ResponseStatus.Completed)
             {
-#warning Once entity is encoded correctly, need to confirm retrieval pattern
                 var accessToken = JsonConvert.DeserializeObject<IDictionary<string, object>>(response.Content);
                 String access_token = null;
 
@@ -392,6 +439,137 @@ namespace Gx.Rs.Api
             }
         }
 
+        public GedcomxApplicationState ReadPage(String rel, params StateTransitionOption[] options)
+        {
+            Link link = this.GetLink(rel);
+            if (link == null || link.Href == null)
+            {
+                return null;
+            }
+
+            IRestRequest request = CreateAuthenticatedRequest();
+            request.Resource = link.Href.ToString();
+            request.Method = Method.GET;
+            Parameter accept = this.Request.Parameters.FirstOrDefault(x => x.Type == ParameterType.HttpHeader && x.Name == "Accept");
+            Parameter contentType = this.Request.Parameters.FirstOrDefault(x => x.Type == ParameterType.HttpHeader && x.Name == "Content-Type");
+            if (accept != null)
+            {
+                request.AddHeader(accept.Name, accept.Value as string);
+            }
+            if (contentType != null)
+            {
+                request.AddHeader(contentType.Name, contentType.Value as string);
+            }
+            return Clone(request, Invoke(request, options), this.Client);
+        }
+
+        public GedcomxApplicationState ReadNextPage(params StateTransitionOption[] options)
+        {
+            return ReadPage(Rel.NEXT);
+        }
+
+        public GedcomxApplicationState ReadPreviousPage(params StateTransitionOption[] options)
+        {
+            return ReadPage(Rel.PREVIOUS);
+        }
+
+        public GedcomxApplicationState ReadFirstPage(params StateTransitionOption[] options)
+        {
+            return ReadPage(Rel.FIRST);
+        }
+
+        public GedcomxApplicationState ReadLastPage(params StateTransitionOption[] options)
+        {
+            return ReadPage(Rel.LAST);
+        }
+
+        protected IRestRequest CreateAuthenticatedFeedRequest()
+        {
+            return CreateAuthenticatedRequest().Accept(MediaTypes.ATOM_GEDCOMX_JSON_MEDIA_TYPE);
+        }
+
+        protected void IncludeEmbeddedResources(Gedcomx entity, params StateTransitionOption[] options)
+        {
+            Embed(EmbeddedLinkLoader.LoadEmbeddedLinks(entity), entity, options);
+        }
+
+        protected void Embed(IEnumerable<Link> links, Gedcomx entity, params StateTransitionOption[] options)
+        {
+            foreach (Link link in links)
+            {
+                Embed(link, entity, options);
+            }
+        }
+
+        protected EmbeddedLinkLoader EmbeddedLinkLoader
+        {
+            get
+            {
+                return DEFAULT_EMBEDDED_LINK_LOADER;
+            }
+        }
+
+        protected void Embed(Link link, Gedcomx entity, params StateTransitionOption[] options)
+        {
+            if (link.Href != null)
+            {
+                lastEmbeddedRequest = CreateRequestForEmbeddedResource(link.Rel).Build(link.Href, Method.GET);
+                lastEmbeddedResponse = Invoke(lastEmbeddedRequest, options);
+                if (lastEmbeddedResponse.StatusCode == HttpStatusCode.OK)
+                {
+                    entity.Embed(lastEmbeddedResponse.ToIRestResponse<T>().Data as Gedcomx);
+                }
+                else if (lastEmbeddedResponse.HasServerError())
+                {
+                    throw new GedcomxApplicationException(String.Format("Unable to load embedded resources: server says \"{0}\" at {1}.", lastEmbeddedResponse.StatusDescription, lastEmbeddedRequest.Resource), lastEmbeddedResponse);
+                }
+                else
+                {
+                    //todo: log a warning? throw an error?
+                }
+            }
+        }
+
+        protected IRestRequest CreateRequestForEmbeddedResource(String rel)
+        {
+            return CreateAuthenticatedGedcomxRequest();
+        }
+
+        public AgentState ReadContributor(params StateTransitionOption[] options)
+        {
+            var scope = MainDataElement;
+            if (scope is Attributable)
+            {
+                return ReadContributor((Attributable)scope, options);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public AgentState ReadContributor(Attributable attributable, params StateTransitionOption[] options)
+        {
+            Attribution attribution = attributable.Attribution;
+            if (attribution == null)
+            {
+                return null;
+            }
+
+            return ReadContributor(attribution.Contributor, options);
+        }
+
+        public AgentState ReadContributor(ResourceReference contributor, params StateTransitionOption[] options)
+        {
+            if (contributor == null || contributor.Resource == null)
+            {
+                return null;
+            }
+
+            IRestRequest request = CreateAuthenticatedGedcomxRequest().Build(contributor.Resource, Method.GET);
+            return this.stateFactory.NewAgentState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
+        }
+
         protected IRestRequest CreateAuthenticatedRequest()
         {
             IRestRequest request = CreateRequest();
@@ -402,15 +580,9 @@ namespace Gx.Rs.Api
             return request;
         }
 
-        protected IRestRequest CreateAuthenticatedGedcomxRequest()
+        internal IRestRequest CreateAuthenticatedGedcomxRequest()
         {
-            IRestRequest result = CreateAuthenticatedRequest();
-
-            // TODO: Confirm headers are replaced and not added twice
-            result.AddHeader("Accept", MediaTypes.GEDCOMX_JSON_MEDIA_TYPE);
-            result.AddHeader("Content-Type", MediaTypes.GEDCOMX_JSON_MEDIA_TYPE);
-
-            return result;
+            return CreateAuthenticatedRequest().Accept(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE).ContentType(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE);
         }
 
         protected IRestRequest CreateRequest()
@@ -418,27 +590,25 @@ namespace Gx.Rs.Api
             return new RestRequest();
         }
 
-        public Uri GetSelfUri()
+        public string GetSelfUri()
         {
-            String selfRel = GetSelfRel();
+            String selfRel = SelfRel;
             Link link = null;
             if (selfRel != null)
             {
-                link = GetLink(selfRel);
+                link = this.GetLink(selfRel);
             }
-            link = link == null ? GetLink(Rel.SELF) : link;
-            Uri self = link == null ? null : link.Href == null ? null : new Uri(link.Href);
+            link = link == null ? this.GetLink(Rel.SELF) : link;
+            String self = link == null ? null : link.Href == null ? null : link.Href;
             return self == null ? GetUri() : self;
         }
 
-        public String GetSelfRel()
+        public virtual String SelfRel
         {
-            return null;
-        }
-
-        public Link GetLink(String rel)
-        {
-            return this.links.Where(x => x.Key == rel).Select(x => x.Value).FirstOrDefault();
+            get
+            {
+                return null;
+            }
         }
     }
 }

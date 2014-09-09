@@ -10,6 +10,8 @@
     <RootNamespace>Gedcomx.Model</RootNamespace>
     <AssemblyName>Gedcomx.Model</AssemblyName>
     <Description>The basic GEDCOM X model.</Description>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -21,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
     <UseVSHostingProcess>false</UseVSHostingProcess>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -29,15 +32,22 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Address.cs" />
     <Compile Include="Agent.cs" />
+    <Compile Include="Attributable.cs" />
     <Compile Include="Attribution.cs" />
     <Compile Include="CitationField.cs" />
     <Compile Include="Collection.cs" />
@@ -71,6 +81,7 @@
     <Compile Include="HypermediaEnabledData.cs" />
     <Compile Include="Identifier.cs" />
     <Compile Include="IdentifierType.cs" />
+    <Compile Include="Util\JsonHypermediaLinksConverter.cs" />
     <Compile Include="Link.cs" />
     <Compile Include="Name.cs" />
     <Compile Include="NameForm.cs" />
@@ -94,9 +105,16 @@
     <Compile Include="SourceDescription.cs" />
     <Compile Include="SourceReference.cs" />
     <Compile Include="Subject.cs" />
+    <Compile Include="SupportsLinks.cs" />
     <Compile Include="TextValue.cs" />
     <Compile Include="RecordType.cs" />
     <Compile Include="FieldValueDescriptor.cs" />
+    <Compile Include="Util\JsonIdentifiersConverter.cs" />
+    <Compile Include="Util\CamelCaseContractResolver.cs" />
+    <Compile Include="Util\JsonUnixTimestampConverter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,8 +1,10 @@
-﻿using RestSharp;
+﻿using Gx.Atom;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Gx.Rs.Api.Util;
 
 namespace Gx.Rs.Api
 {
@@ -10,58 +12,69 @@ namespace Gx.Rs.Api
     {
         protected static readonly String ENABLE_JERSEY_LOGGING_ENV_NAME = "enableJerseyLogging";        // env variable/property to set
 
-        public CollectionState newCollectionState(Uri discoveryUri)
+        public CollectionState NewCollectionState(Uri discoveryUri)
         {
-            return newCollectionState(discoveryUri, LoadDefaultClient(discoveryUri));
+            return NewCollectionState(discoveryUri, LoadDefaultClient(discoveryUri));
         }
 
-        public CollectionState newCollectionState(Uri discoveryUri, IRestClient client)
+        public CollectionState NewCollectionState(Uri discoveryUri, IRestClient client)
         {
-            return newCollectionState(discoveryUri, client, Method.GET);
+            return NewCollectionState(discoveryUri, client, Method.GET);
         }
 
-        public CollectionState newCollectionState(Uri discoveryUri, IRestClient client, Method method)
+        public CollectionState NewCollectionState(Uri discoveryUri, IRestClient client, Method method)
         {
-            IRestRequest request = new RestRequest(discoveryUri, method).AddHeader("Accept", MediaTypes.GEDCOMX_JSON_MEDIA_TYPE);
-            return newCollectionState(request, client.Execute<Gedcomx>(request), client, null);
+            IRestRequest request = new RestRequest(discoveryUri, method).Accept(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE);
+            return NewCollectionState(request, client.Execute(request), client, null);
         }
 
-        public PersonState newPersonState(Uri discoveryUri)
+        public PersonState NewPersonState(Uri discoveryUri)
         {
-            return newPersonState(discoveryUri, LoadDefaultClient(discoveryUri));
+            return NewPersonState(discoveryUri, LoadDefaultClient(discoveryUri));
         }
 
-        public PersonState newPersonState(Uri discoveryUri, IRestClient client)
+        public PersonState NewPersonState(Uri discoveryUri, IRestClient client)
         {
-            return newPersonState(discoveryUri, client, Method.GET);
+            return NewPersonState(discoveryUri, client, Method.GET);
         }
 
-        public PersonState newPersonState(Uri discoveryUri, IRestClient client, Method method)
+        public PersonState NewPersonState(Uri discoveryUri, IRestClient client, Method method)
         {
-            IRestRequest request = new RestRequest(discoveryUri, method).AddHeader("Accept", MediaTypes.GEDCOMX_JSON_MEDIA_TYPE);
-            return newPersonState(request, client.Execute(request), null);
+            IRestRequest request = new RestRequest(discoveryUri, method).Accept(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE);
+            return NewPersonState(request, client.Execute(request), client, null);
         }
 
-        public RecordState newRecordState(Uri discoveryUri)
+        public RecordState NewRecordState(Uri discoveryUri)
         {
-            return newRecordState(discoveryUri, LoadDefaultClient(discoveryUri));
+            return NewRecordState(discoveryUri, LoadDefaultClient(discoveryUri));
         }
 
-        public RecordState newRecordState(Uri discoveryUri, IRestClient client)
+        public RecordState NewRecordState(Uri discoveryUri, IRestClient client)
         {
-            return newRecordState(discoveryUri, client, Method.GET);
+            return NewRecordState(discoveryUri, client, Method.GET);
         }
 
-        public RecordState newRecordState(Uri discoveryUri, IRestClient client, Method method)
+        public RecordState NewRecordState(Uri discoveryUri, IRestClient client, Method method)
         {
-            IRestRequest request = new RestRequest(discoveryUri, method).AddHeader("Accept", MediaTypes.GEDCOMX_JSON_MEDIA_TYPE);
-            return newRecordState(request, client.Execute(request), null);
+            IRestRequest request = new RestRequest(discoveryUri, method).Accept(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE);
+            return NewRecordState(request, client.Execute(request), null);
         }
 
         internal IRestClient LoadDefaultClient(Uri baseUri)
         {
-            IRestClient client = new RestClient(baseUri.GetLeftPart(UriPartial.Authority));
+            IRestClient client;
             bool enableJerseyLogging;
+
+            if (baseUri != null)
+            {
+                client = new RestClient(baseUri.GetLeftPart(UriPartial.Authority));
+            }
+            else
+            {
+                client = new RestClient();
+            }
+
+            ((RestClient)client).FollowRedirects = false;
 
             if (!bool.TryParse(Environment.GetEnvironmentVariable(ENABLE_JERSEY_LOGGING_ENV_NAME), out enableJerseyLogging))
             {
@@ -77,117 +90,117 @@ namespace Gx.Rs.Api
             return client;
         }
 
-        protected AgentState newAgentState(IRestRequest request, IRestResponse response, String accessToken)
+        internal AgentState NewAgentState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new AgentState(request, response, accessToken, this);
         }
 
-        protected AncestryResultsState newAncestryResultsState(IRestRequest request, IRestResponse response, String accessToken)
+        internal AncestryResultsState NewAncestryResultsState(IRestRequest request, IRestResponse response, String accessToken)
         {
             return new AncestryResultsState(request, response, accessToken, this);
         }
 
-        protected CollectionsState newCollectionsState(IRestRequest request, IRestResponse response, String accessToken)
+        internal CollectionsState NewCollectionsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
-            return new CollectionsState(request, response, accessToken, this);
+            return new CollectionsState(request, response, client, accessToken, this);
         }
 
-        protected CollectionState newCollectionState(IRestRequest request, IRestResponse<Gedcomx> response, IRestClient client, String accessToken)
+        internal CollectionState NewCollectionState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new CollectionState(request, response, client, accessToken, this);
         }
 
-        protected DescendancyResultsState newDescendancyResultsState(IRestRequest request, IRestResponse response, String accessToken)
+        internal DescendancyResultsState NewDescendancyResultsState(IRestRequest request, IRestResponse response, String accessToken)
         {
             return new DescendancyResultsState(request, response, accessToken, this);
         }
 
-        protected PersonChildrenState newPersonChildrenState(IRestRequest request, IRestResponse response, String accessToken)
+        internal PersonChildrenState NewPersonChildrenState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
-            return new PersonChildrenState(request, response, accessToken, this);
+            return new PersonChildrenState(request, response, client, accessToken, this);
         }
 
-        protected PersonParentsState newPersonParentsState(IRestRequest request, IRestResponse response, String accessToken)
+        internal PersonParentsState NewPersonParentsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
-            return new PersonParentsState(request, response, accessToken, this);
+            return new PersonParentsState(request, response, client, accessToken, this);
         }
 
-        protected PersonSearchResultsState newPersonSearchResultsState(IRestRequest request, IRestResponse response, String accessToken)
+        internal PersonSearchResultsState NewPersonSearchResultsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
-            return new PersonSearchResultsState(request, response, accessToken, this);
+            return new PersonSearchResultsState(request, response, client, accessToken, this);
         }
 
-        protected PlaceSearchResultsState newPlaceSearchResultsState(IRestRequest request, IRestResponse response, String accessToken)
+        internal PlaceSearchResultsState NewPlaceSearchResultsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new PlaceSearchResultsState(request, response, accessToken, this);
         }
 
-        protected PlaceDescriptionState newPlaceDescriptionState(IRestRequest request, IRestResponse response, String accessToken)
+        protected PlaceDescriptionState NewPlaceDescriptionState(IRestRequest request, IRestResponse response, String accessToken)
         {
             return new PlaceDescriptionState(request, response, accessToken, this);
         }
 
-        protected PlaceDescriptionsState newPlaceDescriptionsState(IRestRequest request, IRestResponse response, String accessToken)
+        protected PlaceDescriptionsState NewPlaceDescriptionsState(IRestRequest request, IRestResponse response, String accessToken)
         {
             return new PlaceDescriptionsState(request, response, accessToken, this);
         }
 
-        public PlaceGroupState newPlaceGroupState(IRestRequest request, IRestResponse response, String accessToken)
+        protected PlaceGroupState NewPlaceGroupState(IRestRequest request, IRestResponse response, String accessToken)
         {
             return new PlaceGroupState(request, response, accessToken, this);
         }
 
-        public VocabElementState newVocabElementState(IRestRequest request, IRestResponse response, String accessToken)
+        protected VocabElementState NewVocabElementState(IRestRequest request, IRestResponse response, String accessToken)
         {
             return new VocabElementState(request, response, accessToken, this);
         }
 
-        public VocabElementListState newVocabElementListState(IRestRequest request, IRestResponse response, String accessToken)
+        protected VocabElementListState NewVocabElementListState(IRestRequest request, IRestResponse response, String accessToken)
         {
             return new VocabElementListState(request, response, accessToken, this);
         }
 
-        protected PersonSpousesState newPersonSpousesState(IRestRequest request, IRestResponse response, String accessToken)
+        internal PersonSpousesState NewPersonSpousesState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
-            return new PersonSpousesState(request, response, accessToken, this);
+            return new PersonSpousesState(request, response, client, accessToken, this);
         }
 
-        protected PersonsState newPersonsState(IRestRequest request, IRestResponse response, String accessToken)
+        internal PersonsState NewPersonsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
-            return new PersonsState(request, response, accessToken, this);
+            return new PersonsState(request, response, client, accessToken, this);
         }
 
-        protected PersonState newPersonState(IRestRequest request, IRestResponse response, String accessToken)
+        internal PersonState NewPersonState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
-            return new PersonState(request, response, accessToken, this);
+            return new PersonState(request, response, client, accessToken, this);
         }
 
-        protected RecordsState newRecordsState(IRestRequest request, IRestResponse response, String accessToken)
+        internal RecordsState NewRecordsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
-            return new RecordsState(request, response, accessToken, this);
+            return new RecordsState(request, response, client, accessToken, this);
         }
 
-        protected RecordState newRecordState(IRestRequest request, IRestResponse response, String accessToken)
+        internal RecordState NewRecordState(IRestRequest request, IRestResponse response, String accessToken)
         {
             return new RecordState(request, response, accessToken, this);
         }
 
-        protected RelationshipsState newRelationshipsState(IRestRequest request, IRestResponse response, String accessToken)
+        internal RelationshipsState NewRelationshipsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
-            return new RelationshipsState(request, response, accessToken, this);
+            return new RelationshipsState(request, response, client, accessToken, this);
         }
 
-        protected RelationshipState newRelationshipState(IRestRequest request, IRestResponse response, String accessToken)
+        internal RelationshipState NewRelationshipState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
-            return new RelationshipState(request, response, accessToken, this);
+            return new RelationshipState(request, response, client, accessToken, this);
         }
 
-        protected SourceDescriptionsState newSourceDescriptionsState(IRestRequest request, IRestResponse response, String accessToken)
+        internal SourceDescriptionsState NewSourceDescriptionsState(IRestRequest request, IRestResponse response, String accessToken)
         {
             return new SourceDescriptionsState(request, response, accessToken, this);
         }
 
-        protected SourceDescriptionState newSourceDescriptionState(IRestRequest request, IRestResponse response, String accessToken)
+        internal SourceDescriptionState NewSourceDescriptionState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new SourceDescriptionState(request, response, accessToken, this);
         }

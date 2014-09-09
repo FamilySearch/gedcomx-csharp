@@ -1,9 +1,11 @@
-﻿using RestSharp;
+﻿using Gx.Rs.Api.Util;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Gx.Rs.Api
 {
@@ -56,6 +58,70 @@ namespace Gx.Rs.Api
             : base(message, innerException)
         {
             Response = response;
+        }
+
+        public override string Message
+        {
+            get
+            {
+                String message = base.Message;
+                StringBuilder builder = new StringBuilder(message == null ? "Error processing GEDCOM X request." : message);
+                List<HttpWarning> warnings = Warnings;
+                if (message != null || warnings.Count > 0)
+                {
+                    if (warnings != null)
+                    {
+                        foreach (HttpWarning warning in warnings)
+                        {
+                            builder.Append("\nWarning: ").Append(warning.Message);
+                        }
+                    }
+                }
+
+                String body = null;
+                if (this.Response != null)
+                {
+                    try
+                    {
+                        // TODO: Make sure this works
+                        body = this.Response.ToIRestResponse<String>().Data;
+                    }
+                    catch (Exception e)
+                    {
+                        //unable to get the response body...
+                        body = "(error response body unavailable)";
+                    }
+                }
+                if (body != null)
+                {
+                    builder.Append('\n').Append(body);
+                }
+
+                return builder.ToString();
+            }
+        }
+
+        public List<HttpWarning> Warnings
+        {
+            get
+            {
+                List<HttpWarning> warnings = null;
+
+                if (this.Response != null)
+                {
+                    IEnumerable<Parameter> values = this.Response.Headers.Get("Warning");
+                    if (values != null && values.Any())
+                    {
+                        warnings = new List<HttpWarning>();
+                        foreach (Parameter value in values)
+                        {
+                            warnings.AddRange(HttpWarning.Parse(value));
+                        }
+                    }
+                }
+
+                return warnings;
+            }
         }
     }
 }

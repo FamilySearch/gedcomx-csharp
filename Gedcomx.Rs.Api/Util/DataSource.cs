@@ -8,9 +8,7 @@ namespace Gx.Rs.Api.Util
 {
     public interface DataSource
     {
-        Stream InputStream { get; }
-
-        Stream OutputStream { get; }
+        Byte[] InputBytes { get; }
 
         String ContentType { get; }
 

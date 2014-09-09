@@ -460,7 +460,7 @@ namespace Gx.Rs.Api
             return ReadPage(Rel.FIRST);
         }
 
-        protected GedcomxApplicationState readLastPage(params StateTransitionOption[] options)
+        protected GedcomxApplicationState ReadLastPage(params StateTransitionOption[] options)
         {
             return ReadPage(Rel.LAST);
         }

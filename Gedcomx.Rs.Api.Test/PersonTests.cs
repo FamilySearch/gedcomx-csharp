@@ -164,10 +164,9 @@ namespace Gedcomx.Rs.Api.Test
         [Test(Description = "Matches example request here https://familysearch.org/developers/docs/api/tree/Read_Relationships_To_Spouses_with_Persons_usecase, but is either unneeded or the SDK needs to be updated to support this more directly.")]
         public void TestReadRelationshipsToSpousesWithPersons()
         {
-            var parameters = new ApplyParameters();
-            parameters.Parameters.Add(new RestSharp.Parameter() { Name = "persons", Type = RestSharp.ParameterType.QueryString, Value = string.Empty });
+            var query = new QueryParameter("persons", "");
             var state = collection.ReadPerson(new Uri(READ_PERSON_URI));
-            var state2 = state.LoadSpouseRelationships(parameters);
+            var state2 = state.LoadSpouseRelationships(query);
             Assert.DoesNotThrow(() => state2.IfSuccessful());
             Assert.IsNotNull(state2.Entity != null);
             Assert.IsNotNull(state2.Entity.Persons);

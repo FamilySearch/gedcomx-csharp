@@ -378,19 +378,4 @@ namespace Gedcomx.Rs.Api.Test
             };
         }
     }
-
-    public class ApplyParameters : StateTransitionOption
-    {
-        public List<Parameter> Parameters { get; private set; }
-
-        public ApplyParameters()
-        {
-            Parameters = new List<Parameter>();
-        }
-
-        public void Apply(IRestRequest request)
-        {
-            request.Parameters.AddRange(Parameters);
-        }
-    }
 }

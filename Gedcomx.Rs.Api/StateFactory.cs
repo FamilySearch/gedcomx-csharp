@@ -187,7 +187,7 @@ namespace Gx.Rs.Api
 
         internal RelationshipsState NewRelationshipsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
-            return new RelationshipsState(request, response, accessToken, this);
+            return new RelationshipsState(request, response, client, accessToken, this);
         }
 
         internal RelationshipState NewRelationshipState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)

@@ -66,7 +66,7 @@ namespace Gedcomx.Rs.Api.Test
         }
 
         [Test]
-        [Ignore("May depend on discussions. Also need to resolve discussion-references element.")]
+        [Ignore("DiscussionReference is defined in extension. Not ready to test.")]
         public void TestCreateDiscussionReference()
         {
             var state = collection.ReadPerson(new Uri(READ_PERSON_URI));
@@ -174,7 +174,7 @@ namespace Gedcomx.Rs.Api.Test
         }
 
         [Test]
-        [Ignore("Discussions are not implemented yet.")]
+        [Ignore("DiscussionReference is defined in extension. Not ready to test.")]
         public void TestReadDiscussionReferences()
         {
             throw new NotImplementedException();
@@ -350,14 +350,14 @@ namespace Gedcomx.Rs.Api.Test
         }
 
         [Test]
-        [Ignore("Unable to create discussion references (part of extensions).")]
+        [Ignore("DiscussionReference is defined in extension. Not ready to test.")]
         public void TestDeleteDiscussionReference()
         {
             throw new NotImplementedException();
         }
 
         [Test]
-        [Ignore("Unable to test restore (part of extensions).")]
+        [Ignore("Restore is defined in extension. Not ready to test.")]
         public void TestRestorePerson()
         {
             // Assume the ability to add a person is working

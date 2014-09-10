@@ -211,7 +211,7 @@ namespace Gx.Rs.Api
             }
 
             IRestRequest request = CreateAuthenticatedGedcomxRequest().Build(link.Href, Method.GET);
-            return this.stateFactory.NewAncestryResultsState(request, Invoke(request, options), this.CurrentAccessToken);
+			return this.stateFactory.NewAncestryResultsState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
         public DescendancyResultsState ReadDescendancy(params StateTransitionOption[] options)

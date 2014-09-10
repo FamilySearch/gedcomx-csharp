@@ -86,7 +86,7 @@ namespace Gx.Rs.Api
                         // TODO: Make sure this works
                         body = this.Response.ToIRestResponse<String>().Data;
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
                         //unable to get the response body...
                         body = "(error response body unavailable)";

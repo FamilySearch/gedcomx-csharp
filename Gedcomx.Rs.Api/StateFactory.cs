@@ -24,7 +24,7 @@ namespace Gx.Rs.Api
 
         public CollectionState NewCollectionState(Uri discoveryUri, IRestClient client, Method method)
         {
-            IRestRequest request = new RestRequest(discoveryUri, method).Accept(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE);
+            IRestRequest request = new RestRequest().Accept(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE).Build(discoveryUri, method);
             return NewCollectionState(request, client.Execute(request), client, null);
         }
 
@@ -40,7 +40,7 @@ namespace Gx.Rs.Api
 
         public PersonState NewPersonState(Uri discoveryUri, IRestClient client, Method method)
         {
-            IRestRequest request = new RestRequest(discoveryUri, method).Accept(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE);
+            IRestRequest request = new RestRequest().Accept(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE).Build(discoveryUri, method);
             return NewPersonState(request, client.Execute(request), client, null);
         }
 
@@ -56,25 +56,19 @@ namespace Gx.Rs.Api
 
         public RecordState NewRecordState(Uri discoveryUri, IRestClient client, Method method)
         {
-            IRestRequest request = new RestRequest(discoveryUri, method).Accept(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE);
+            IRestRequest request = new RestRequest().Accept(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE).Build(discoveryUri, method);
             return NewRecordState(request, client.Execute(request), null);
         }
 
-        internal IRestClient LoadDefaultClient(Uri baseUri)
+        internal IRestClient LoadDefaultClient(Uri uri)
         {
             IRestClient client;
             bool enableJerseyLogging;
 
-            if (baseUri != null)
+            client = new RestClient(uri.GetBaseUrl())
             {
-                client = new RestClient(baseUri.GetLeftPart(UriPartial.Authority));
-            }
-            else
-            {
-                client = new RestClient();
-            }
-
-            ((RestClient)client).FollowRedirects = false;
+                FollowRedirects = false,
+            };
 
             if (!bool.TryParse(Environment.GetEnvironmentVariable(ENABLE_JERSEY_LOGGING_ENV_NAME), out enableJerseyLogging))
             {

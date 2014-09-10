@@ -1,4 +1,5 @@
-﻿using RestSharp;
+﻿using Flurl;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,25 +19,31 @@ namespace Gx.Rs.Api.Options
 
         private readonly bool replace;
         private readonly String name;
-        private readonly String[] value;
+        private readonly String[] values;
 
-        public QueryParameter(String name, params String[] value)
-            : this(false, name, value)
+        public QueryParameter(String name, params String[] values)
+            : this(false, name, values)
         {
         }
 
-        public QueryParameter(bool replace, String name, params String[] value)
+        public QueryParameter(bool replace, String name, params String[] values)
         {
             this.replace = replace;
             this.name = name;
-            this.value = value.Length > 0 ? value : new String[] { };
+            this.values = values.Length > 0 ? values : new String[] { };
         }
 
         public void Apply(IRestRequest request)
         {
-            UriTemplate builder = new UriTemplate(request.Resource);
-            builder.SetParameter(this.name, this.value);
-            request.Resource = builder.Resolve();
+            var url = new Url(request.Resource);
+            var query = url.QueryParams.ToList();
+
+            foreach (var value in values)
+            {
+                query.Add(new KeyValuePair<string, object>(this.name, value));
+            }
+
+            request.Resource = url.Path + "?" + String.Join("&", query.Select(x => x.Key + "=" + x.Value));
         }
 
         public static QueryParameter accessToken(String value)

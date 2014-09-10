@@ -67,8 +67,8 @@ namespace Gx.Rs.Api
                 return (SupportsLinks)Entity;
             }
         }
-        private IRestRequest lastEmbeddedRequest;
-        private IRestResponse lastEmbeddedResponse;
+        public IRestRequest LastEmbeddedRequest { get; set; }
+        public IRestResponse LastEmbeddedResponse { get; set; }
 
 
         protected GedcomxApplicationState()
@@ -152,7 +152,6 @@ namespace Gx.Rs.Api
 
         public string GetUri()
         {
-#warning This is not working. Need to fix
             return this.Client.BaseUrl + this.Request.Resource;
         }
 
@@ -168,21 +167,7 @@ namespace Gx.Rs.Api
 
         internal IRestResponse Invoke(IRestRequest request, params StateTransitionOption[] options)
         {
-            string originalBaseUrl = this.Client.BaseUrl;
-            string originalResource = request.Resource;
-            bool restore = false;
             IRestResponse result;
-
-            Uri uri;
-            if (Uri.TryCreate(request.Resource, UriKind.RelativeOrAbsolute, out uri))
-            {
-                if (uri.IsAbsoluteUri)
-                {
-                    restore = true;
-                    this.Client.BaseUrl = uri.GetLeftPart(UriPartial.Authority);
-                    request.Resource = uri.GetComponents(UriComponents.PathAndQuery, UriFormat.UriEscaped);
-                }
-            }
 
             foreach (StateTransitionOption option in options)
             {
@@ -190,12 +175,6 @@ namespace Gx.Rs.Api
             }
 
             result = this.Client.Execute(request);
-
-            if (restore)
-            {
-                this.Client.BaseUrl = originalBaseUrl;
-                request.Resource = originalResource;
-            }
 
             return result;
         }
@@ -212,108 +191,85 @@ namespace Gx.Rs.Api
         public virtual GedcomxApplicationState Head(params StateTransitionOption[] options)
         {
             IRestRequest request = CreateAuthenticatedRequest();
-
-            Parameter accept = this.Request.Parameters.FirstOrDefault(x => x.Type == ParameterType.HttpHeader && x.Name == "Accept");
+            Parameter accept = this.Request.GetHeaders().Get("Accept").FirstOrDefault();
             if (accept != null)
             {
-                request.AddParameter(accept);
+                request.Accept(accept.Value as string);
             }
 
-            request.Resource = GetSelfUri().ToString();
-            request.Method = Method.HEAD;
-
+            request.Build(GetSelfUri(), Method.HEAD);
             return Clone(request, Invoke(request, options), this.Client);
         }
 
         public virtual GedcomxApplicationState Options(params StateTransitionOption[] options)
         {
             IRestRequest request = CreateAuthenticatedRequest();
-            Parameter accept = this.Request.Parameters.FirstOrDefault(x => x.Type == ParameterType.HttpHeader && x.Name == "Accept");
+            Parameter accept = this.Request.GetHeaders().Get("Accept").FirstOrDefault();
             if (accept != null)
             {
-                request.AddParameter(accept);
+                request.Accept(accept.Value as string);
             }
-
-            request.Resource = GetSelfUri().ToString();
-            request.Method = Method.OPTIONS;
-
+            request.Build(GetSelfUri(), Method.OPTIONS);
             return Clone(request, Invoke(request, options), this.Client);
         }
 
         public virtual GedcomxApplicationState Get(params StateTransitionOption[] options)
         {
             IRestRequest request = CreateAuthenticatedRequest();
-            Parameter accept = this.Request.Parameters.FirstOrDefault(x => x.Type == ParameterType.HttpHeader && x.Name == "Accept");
-
+            Parameter accept = this.Request.GetHeaders().Get("Accept").FirstOrDefault();
             if (accept != null)
             {
-                request.Accept(accept.Value);
+                request.Accept(accept.Value as string);
             }
 
-            request.Resource = GetSelfUri().ToString();
-            request.Method = Method.GET;
-
+            request.Build(GetSelfUri(), Method.GET);
+            IRestResponse response = Invoke(request, options);
             return Clone(request, Invoke(request, options), this.Client);
         }
 
         public virtual GedcomxApplicationState Delete(params StateTransitionOption[] options)
         {
             IRestRequest request = CreateAuthenticatedRequest();
-            Parameter accept = this.Request.Parameters.FirstOrDefault(x => x.Type == ParameterType.HttpHeader && x.Name == "Accept");
+            Parameter accept = this.Request.GetHeaders().Get("Accept").FirstOrDefault();
             if (accept != null)
             {
-                request.AddParameter(accept);
+                request.Accept(accept.Value as string);
             }
-
-            request.Resource = GetSelfUri().ToString();
-            request.Method = Method.DELETE;
-
+            request.Build(GetSelfUri(), Method.DELETE);
             return Clone(request, Invoke(request, options), this.Client);
         }
 
         public virtual GedcomxApplicationState Put(T entity, params StateTransitionOption[] options)
         {
             IRestRequest request = CreateAuthenticatedRequest();
-            Parameter accept = this.Request.Parameters.FirstOrDefault(x => x.Type == ParameterType.HttpHeader && x.Name == "Accept");
-            Parameter contentType = this.Request.Parameters.FirstOrDefault(x => x.Type == ParameterType.HttpHeader && x.Name == "Content-Type");
-
+            Parameter accept = this.Request.GetHeaders().Get("Accept").FirstOrDefault();
+            Parameter contentType = this.Request.GetHeaders().Get("Content-Type").FirstOrDefault();
             if (accept != null)
             {
-                request.AddParameter(accept);
+                request.Accept(accept.Value as string);
             }
-
             if (contentType != null)
             {
-                request.AddParameter(contentType);
+                request.ContentType(contentType.Value as string);
             }
-
-            request.Resource = GetSelfUri().ToString();
-            request.Method = Method.PUT;
-            request.SetEntity(entity);
-
+            request.SetEntity(entity).Build(GetSelfUri(), Method.PUT);
             return Clone(request, Invoke(request, options), this.Client);
         }
 
         public virtual GedcomxApplicationState Post(T entity, params StateTransitionOption[] options)
         {
             IRestRequest request = CreateAuthenticatedRequest();
-            Parameter accept = this.Request.Parameters.FirstOrDefault(x => x.Type == ParameterType.HttpHeader && x.Name == "Accept");
-            Parameter contentType = this.Request.Parameters.FirstOrDefault(x => x.Type == ParameterType.HttpHeader && x.Name == "Content-Type");
-
+            Parameter accept = this.Request.GetHeaders().Get("Accept").FirstOrDefault();
+            Parameter contentType = this.Request.GetHeaders().Get("Content-Type").FirstOrDefault();
             if (accept != null)
             {
-                request.AddParameter(accept);
+                request.Accept(accept.Value as string);
             }
-
             if (contentType != null)
             {
-                request.AddParameter(contentType);
+                request.ContentType(contentType.Value as string);
             }
-
-            request.Resource = GetSelfUri().ToString();
-            request.Method = Method.POST;
-            request.SetEntity(entity);
-
+            request.SetEntity(entity).Build(GetSelfUri(), Method.POST);
             return Clone(request, Invoke(request, options), this.Client);
         }
 
@@ -399,15 +355,11 @@ namespace Gx.Rs.Api
                 throw new GedcomxApplicationException(String.Format("No OAuth2 token URI supplied for resource at {0}.", GetUri()));
             }
 
-            IRestRequest request = CreateRequest();
-
-            request.Accept(MediaTypes.APPLICATION_JSON_TYPE);
-            request.ContentType(MediaTypes.APPLICATION_FORM_URLENCODED_TYPE);
-            request.SetEntity(formData);
-
-            request.Resource = tokenLink.Href.ToString();
-            request.Method = Method.POST;
-
+            IRestRequest request = CreateRequest()
+                .Accept(MediaTypes.APPLICATION_JSON_TYPE)
+                .ContentType(MediaTypes.APPLICATION_FORM_URLENCODED_TYPE)
+                .SetEntity(formData)
+                .Build(tokenLink.Href, Method.POST);
             IRestResponse response = Invoke(request, options);
 
             // TODO: Confirm response status SUCCESS = ResponseStatus.Completed
@@ -441,25 +393,24 @@ namespace Gx.Rs.Api
 
         public GedcomxApplicationState ReadPage(String rel, params StateTransitionOption[] options)
         {
-            Link link = this.GetLink(rel);
+            Link link = GetLink(rel);
             if (link == null || link.Href == null)
             {
                 return null;
             }
 
             IRestRequest request = CreateAuthenticatedRequest();
-            request.Resource = link.Href.ToString();
-            request.Method = Method.GET;
-            Parameter accept = this.Request.Parameters.FirstOrDefault(x => x.Type == ParameterType.HttpHeader && x.Name == "Accept");
-            Parameter contentType = this.Request.Parameters.FirstOrDefault(x => x.Type == ParameterType.HttpHeader && x.Name == "Content-Type");
+            Parameter accept = this.Request.GetHeaders().Get("Accept").FirstOrDefault();
+            Parameter contentType = this.Request.GetHeaders().Get("Content-Type").FirstOrDefault();
             if (accept != null)
             {
-                request.AddHeader(accept.Name, accept.Value as string);
+                request.Accept(accept.Value as string);
             }
             if (contentType != null)
             {
-                request.AddHeader(contentType.Name, contentType.Value as string);
+                request.ContentType(contentType.Value as string);
             }
+            request.Build(link.Href, Method.GET);
             return Clone(request, Invoke(request, options), this.Client);
         }
 
@@ -513,15 +464,15 @@ namespace Gx.Rs.Api
         {
             if (link.Href != null)
             {
-                lastEmbeddedRequest = CreateRequestForEmbeddedResource(link.Rel).Build(link.Href, Method.GET);
-                lastEmbeddedResponse = Invoke(lastEmbeddedRequest, options);
-                if (lastEmbeddedResponse.StatusCode == HttpStatusCode.OK)
+                LastEmbeddedRequest = CreateRequestForEmbeddedResource(link.Rel).Build(link.Href, Method.GET);
+                LastEmbeddedResponse = Invoke(LastEmbeddedRequest, options);
+                if (LastEmbeddedResponse.StatusCode == HttpStatusCode.OK)
                 {
-                    entity.Embed(lastEmbeddedResponse.ToIRestResponse<T>().Data as Gedcomx);
+                    entity.Embed(LastEmbeddedResponse.ToIRestResponse<T>().Data as Gedcomx);
                 }
-                else if (lastEmbeddedResponse.HasServerError())
+                else if (LastEmbeddedResponse.HasServerError())
                 {
-                    throw new GedcomxApplicationException(String.Format("Unable to load embedded resources: server says \"{0}\" at {1}.", lastEmbeddedResponse.StatusDescription, lastEmbeddedRequest.Resource), lastEmbeddedResponse);
+                    throw new GedcomxApplicationException(String.Format("Unable to load embedded resources: server says \"{0}\" at {1}.", LastEmbeddedResponse.StatusDescription, LastEmbeddedRequest.Resource), LastEmbeddedResponse);
                 }
                 else
                 {

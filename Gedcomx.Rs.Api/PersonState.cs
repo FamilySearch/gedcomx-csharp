@@ -28,7 +28,7 @@ namespace Gx.Rs.Api
         }
 
         private PersonState(Uri uri, IRestClient client, StateFactory stateFactory)
-            : this(new RestRequest(uri, Method.GET).Accept(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE), client, stateFactory)
+            : this(new RestRequest().Accept(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE).Build(uri, Method.GET), client, stateFactory)
         {
         }
 

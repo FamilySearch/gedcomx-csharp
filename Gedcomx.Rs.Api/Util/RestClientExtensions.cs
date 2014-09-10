@@ -55,15 +55,15 @@ namespace Gx.Rs.Api.Util
             return @this;
         }
 
-        public static IRestRequest Build(this IRestRequest @this, Uri href, Method method)
-        {
-            return @this.Build(href.ToString(), method);
-        }
-
         public static IRestRequest Build(this IRestRequest @this, string href, Method method)
         {
+            return @this.Build(new Uri(href), method);
+        }
+
+        public static IRestRequest Build(this IRestRequest @this, Uri uri, Method method)
+        {
             @this.RequestFormat = @this.GetDataFormat();
-            @this.Resource = href;
+            @this.Resource = uri.PathAndQuery;
             @this.Method = method;
 
             return @this;
@@ -159,6 +159,11 @@ namespace Gx.Rs.Api.Util
         public static IEnumerable<Parameter> Get(this IEnumerable<Parameter> @this, String name)
         {
             return @this.Where(x => x.Name == name);
+        }
+
+        public static IEnumerable<Parameter> GetHeaders(this IRestRequest @this)
+        {
+            return @this.Parameters.Where(x => x.Type == ParameterType.HttpHeader);
         }
 
         private static DataFormat GetDataFormat(this IRestResponse @this)

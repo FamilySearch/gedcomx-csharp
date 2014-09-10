@@ -89,9 +89,9 @@ namespace Gx.Rs.Api
             return new AgentState(request, response, accessToken, this);
         }
 
-        internal AncestryResultsState NewAncestryResultsState(IRestRequest request, IRestResponse response, String accessToken)
+        internal AncestryResultsState NewAncestryResultsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
-            return new AncestryResultsState(request, response, accessToken, this);
+			return new AncestryResultsState(request, response, client, accessToken, this);
         }
 
         internal CollectionsState NewCollectionsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)

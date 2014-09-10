@@ -341,6 +341,19 @@ namespace Gx.Rs.Api
             return AuthenticateViaOAuth2(formData);
         }
 
+		public GedcomxApplicationState UnauthenticatedAccess(string ipAddress, string clientId, string clientSecret = null)
+		{
+			IDictionary<String, String> formData = new Dictionary<String, String>();
+			formData.Add("grant_type", "unauthenticated_session");
+			formData.Add("client_id", clientId);
+			formData.Add("ip_address", ipAddress);
+			if (clientSecret != null)
+			{
+				formData.Add("client_secret", clientSecret);
+			}
+			return AuthenticateViaOAuth2(formData);
+		}
+
         public GedcomxApplicationState AuthenticateWithAccessToken(String accessToken)
         {
             this.CurrentAccessToken = accessToken;

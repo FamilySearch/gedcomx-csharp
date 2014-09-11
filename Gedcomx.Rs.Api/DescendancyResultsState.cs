@@ -1,24 +1,27 @@
-﻿using System;
+﻿using RestSharp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Gx.Rs.Api.Util;
 
 namespace Gx.Rs.Api
 {
-    public class DescendancyResultsState
+    public class DescendancyResultsState : GedcomxApplicationState<Gedcomx>
     {
-        private RestSharp.IRestRequest request;
-        private RestSharp.IRestResponse response;
-        private string accessToken;
-        private StateFactory stateFactory;
-
-        public DescendancyResultsState(RestSharp.IRestRequest request, RestSharp.IRestResponse response, string accessToken, StateFactory stateFactory)
+        internal DescendancyResultsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken, StateFactory stateFactory)
+            : base(request, response, client, accessToken, stateFactory)
         {
-            // TODO: Complete member initialization
-            this.request = request;
-            this.response = response;
-            this.accessToken = accessToken;
-            this.stateFactory = stateFactory;
+        }
+
+        protected override GedcomxApplicationState Clone(IRestRequest request, IRestResponse response, IRestClient client)
+        {
+            return new DescendancyResultsState(request, response, client, this.CurrentAccessToken, this.stateFactory);
+        }
+
+        public DescendancyTree getTree()
+        {
+            return Entity != null ? new DescendancyTree(Entity) : null;
         }
     }
 }

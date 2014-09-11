@@ -86,7 +86,7 @@ namespace Gx.Rs.Api
             }
 
             IRestRequest request = CreateAuthenticatedGedcomxRequest().SetEntity(record).Build(link.Href, Method.POST);
-            return this.stateFactory.NewRecordState(request, Invoke(request, options), this.CurrentAccessToken);
+            return this.stateFactory.NewRecordState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
         public PersonsState ReadPersons(params StateTransitionOption[] options)
@@ -326,7 +326,7 @@ namespace Gx.Rs.Api
             }
 
             IRestRequest request = CreateAuthenticatedGedcomxRequest().Build(link.Href, Method.GET);
-            return this.stateFactory.NewSourceDescriptionsState(request, Invoke(request, options), this.CurrentAccessToken);
+            return this.stateFactory.NewSourceDescriptionsState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
         public SourceDescriptionState AddSourceDescription(SourceDescription source, params StateTransitionOption[] options)
@@ -388,7 +388,7 @@ namespace Gx.Rs.Api
             }
 
             IRestRequest request = CreateAuthenticatedGedcomxRequest().Build(link.Href, Method.GET);
-            return this.stateFactory.NewSourceDescriptionsState(request, Invoke(request, options), this.CurrentAccessToken);
+            return this.stateFactory.NewSourceDescriptionsState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
         public List<SourceDescription> GetSourceDescriptions()

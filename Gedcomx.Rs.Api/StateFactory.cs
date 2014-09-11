@@ -57,7 +57,7 @@ namespace Gx.Rs.Api
         public RecordState NewRecordState(Uri discoveryUri, IRestClient client, Method method)
         {
             IRestRequest request = new RestRequest().Accept(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE).Build(discoveryUri, method);
-            return NewRecordState(request, client.Execute(request), null);
+            return NewRecordState(request, client.Execute(request), client, null);
         }
 
         internal IRestClient LoadDefaultClient(Uri uri)
@@ -86,12 +86,12 @@ namespace Gx.Rs.Api
 
         internal AgentState NewAgentState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
-            return new AgentState(request, response, accessToken, this);
+            return new AgentState(request, response, client, accessToken, this);
         }
 
-        internal AncestryResultsState NewAncestryResultsState(IRestRequest request, IRestResponse response, String accessToken)
+        internal AncestryResultsState NewAncestryResultsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
-            return new AncestryResultsState(request, response, accessToken, this);
+            return new AncestryResultsState(request, response, client, accessToken, this);
         }
 
         internal CollectionsState NewCollectionsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
@@ -104,9 +104,9 @@ namespace Gx.Rs.Api
             return new CollectionState(request, response, client, accessToken, this);
         }
 
-        internal DescendancyResultsState NewDescendancyResultsState(IRestRequest request, IRestResponse response, String accessToken)
+        internal DescendancyResultsState NewDescendancyResultsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
-            return new DescendancyResultsState(request, response, accessToken, this);
+            return new DescendancyResultsState(request, response, client, accessToken, this);
         }
 
         internal PersonChildrenState NewPersonChildrenState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
@@ -126,30 +126,30 @@ namespace Gx.Rs.Api
 
         internal PlaceSearchResultsState NewPlaceSearchResultsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
-            return new PlaceSearchResultsState(request, response, accessToken, this);
+            return new PlaceSearchResultsState(request, response, client, accessToken, this);
         }
 
-        protected PlaceDescriptionState NewPlaceDescriptionState(IRestRequest request, IRestResponse response, String accessToken)
+        internal PlaceDescriptionState NewPlaceDescriptionState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
-            return new PlaceDescriptionState(request, response, accessToken, this);
+            return new PlaceDescriptionState(request, response, client, accessToken, this);
         }
 
-        protected PlaceDescriptionsState NewPlaceDescriptionsState(IRestRequest request, IRestResponse response, String accessToken)
+        internal PlaceDescriptionsState NewPlaceDescriptionsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
-            return new PlaceDescriptionsState(request, response, accessToken, this);
+            return new PlaceDescriptionsState(request, response, client, accessToken, this);
         }
 
-        protected PlaceGroupState NewPlaceGroupState(IRestRequest request, IRestResponse response, String accessToken)
+        public PlaceGroupState NewPlaceGroupState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
-            return new PlaceGroupState(request, response, accessToken, this);
+            return new PlaceGroupState(request, response, client, accessToken, this);
         }
 
-        protected VocabElementState NewVocabElementState(IRestRequest request, IRestResponse response, String accessToken)
+        public VocabElementState NewVocabElementState(IRestRequest request, IRestResponse response, String accessToken)
         {
             return new VocabElementState(request, response, accessToken, this);
         }
 
-        protected VocabElementListState NewVocabElementListState(IRestRequest request, IRestResponse response, String accessToken)
+        public VocabElementListState NewVocabElementListState(IRestRequest request, IRestResponse response, String accessToken)
         {
             return new VocabElementListState(request, response, accessToken, this);
         }
@@ -174,9 +174,9 @@ namespace Gx.Rs.Api
             return new RecordsState(request, response, client, accessToken, this);
         }
 
-        internal RecordState NewRecordState(IRestRequest request, IRestResponse response, String accessToken)
+        internal RecordState NewRecordState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
-            return new RecordState(request, response, accessToken, this);
+            return new RecordState(request, response, client, accessToken, this);
         }
 
         internal RelationshipsState NewRelationshipsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
@@ -189,14 +189,14 @@ namespace Gx.Rs.Api
             return new RelationshipState(request, response, client, accessToken, this);
         }
 
-        internal SourceDescriptionsState NewSourceDescriptionsState(IRestRequest request, IRestResponse response, String accessToken)
+        internal SourceDescriptionsState NewSourceDescriptionsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
-            return new SourceDescriptionsState(request, response, accessToken, this);
+            return new SourceDescriptionsState(request, response, client, accessToken, this);
         }
 
         internal SourceDescriptionState NewSourceDescriptionState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
-            return new SourceDescriptionState(request, response, accessToken, this);
+            return new SourceDescriptionState(request, response, client, accessToken, this);
         }
     }
 }

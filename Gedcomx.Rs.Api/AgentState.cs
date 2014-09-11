@@ -1,24 +1,47 @@
-﻿using System;
+﻿using RestSharp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Gx.Rs.Api.Util;
+using Gedcomx.Model;
 
 namespace Gx.Rs.Api
 {
-    public class AgentState
+    public class AgentState : GedcomxApplicationState<Gedcomx>
     {
-        private RestSharp.IRestRequest request;
-        private RestSharp.IRestResponse response;
-        private string accessToken;
-        private StateFactory stateFactory;
-
-        public AgentState(RestSharp.IRestRequest request, RestSharp.IRestResponse response, string accessToken, StateFactory stateFactory)
+        internal AgentState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken, StateFactory stateFactory)
+            : base(request, response, client, accessToken, stateFactory)
         {
-            // TODO: Complete member initialization
-            this.request = request;
-            this.response = response;
-            this.accessToken = accessToken;
-            this.stateFactory = stateFactory;
+        }
+
+        protected override GedcomxApplicationState Clone(IRestRequest request, IRestResponse response, IRestClient client)
+        {
+            return new AgentState(request, response, client, this.CurrentAccessToken, this.stateFactory);
+        }
+
+        public override String SelfRel
+        {
+            get
+            {
+                return Rel.AGENT;
+            }
+        }
+
+        protected override SupportsLinks MainDataElement
+        {
+            get
+            {
+                return Agent;
+            }
+        }
+
+        public Agent.Agent Agent
+        {
+            get
+            {
+                return Entity == null ? null : Entity.Agents == null ? null : Entity.Agents.FirstOrDefault();
+            }
         }
     }
 }

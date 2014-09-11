@@ -29,7 +29,7 @@ namespace Gx.Rs.Api
             get
             {
 #warning ETag is causing HTTP 412 on all requests
-                return this.Response != null ? this.Response.Headers.Where(x => x.Type == ParameterType.HttpHeader && x.Name == "ETag").Select(x => x.Value.ToString()).FirstOrDefault() : null;
+                return this.Response != null ? this.Response.Headers.Get("ETag").Select(x => x.Value.ToString()).FirstOrDefault() : null;
             }
         }
 
@@ -37,7 +37,7 @@ namespace Gx.Rs.Api
         {
             get
             {
-                return this.Response != null ? this.Response.Headers.Where(x => x.Type == ParameterType.HttpHeader && x.Name == "Last-Modified").Select(x => (DateTime?)DateTime.Parse(x.Value.ToString())).FirstOrDefault() : null;
+                return this.Response != null ? this.Response.Headers.Get("Last-Modified").Select(x => (DateTime?)DateTime.Parse(x.Value.ToString())).FirstOrDefault() : null;
             }
         }
     }
@@ -290,7 +290,6 @@ namespace Gx.Rs.Api
             }
         }
 
-
         public virtual GedcomxApplicationState AuthenticateViaOAuth2Password(String username, String password, String clientId)
         {
             return AuthenticateViaOAuth2Password(username, password, clientId, null);
@@ -362,8 +361,7 @@ namespace Gx.Rs.Api
                 .Build(tokenLink.Href, Method.POST);
             IRestResponse response = Invoke(request, options);
 
-            // TODO: Confirm response status SUCCESS = ResponseStatus.Completed
-            if (response.ResponseStatus == ResponseStatus.Completed)
+            if ((int)response.StatusCode >= 200 && (int)response.StatusCode < 300)
             {
                 var accessToken = JsonConvert.DeserializeObject<IDictionary<string, object>>(response.Content);
                 String access_token = null;
@@ -539,6 +537,14 @@ namespace Gx.Rs.Api
         protected IRestRequest CreateRequest()
         {
             return new RestRequest();
+        }
+
+        public IList<Parameter> Headers
+        {
+            get
+            {
+                return Response.Headers;
+            }
         }
 
         public string GetSelfUri()

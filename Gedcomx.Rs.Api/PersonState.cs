@@ -211,7 +211,7 @@ namespace Gx.Rs.Api
             }
 
             IRestRequest request = CreateAuthenticatedGedcomxRequest().Build(link.Href, Method.GET);
-            return this.stateFactory.NewAncestryResultsState(request, Invoke(request, options), this.CurrentAccessToken);
+            return this.stateFactory.NewAncestryResultsState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
         public DescendancyResultsState ReadDescendancy(params StateTransitionOption[] options)
@@ -223,7 +223,7 @@ namespace Gx.Rs.Api
             }
 
             IRestRequest request = CreateAuthenticatedGedcomxRequest().Build(link.Href, Method.GET);
-            return this.stateFactory.NewDescendancyResultsState(request, Invoke(request, options), this.CurrentAccessToken);
+            return this.stateFactory.NewDescendancyResultsState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
         public PersonState LoadEmbeddedResources(params StateTransitionOption[] options)
@@ -522,7 +522,7 @@ namespace Gx.Rs.Api
             }
 
             IRestRequest request = CreateAuthenticatedGedcomxRequest().Build(link.Href, Method.GET);
-            return this.stateFactory.NewSourceDescriptionsState(request, Invoke(request, options), this.CurrentAccessToken);
+            return this.stateFactory.NewSourceDescriptionsState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
         public SourceDescriptionState AddArtifact(DataSource artifact, params StateTransitionOption[] options)

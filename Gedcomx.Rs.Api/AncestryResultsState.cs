@@ -1,24 +1,63 @@
-﻿using System;
+﻿using RestSharp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Gx.Rs.Api.Util;
+using Gx.Links;
 
 namespace Gx.Rs.Api
 {
-    public class AncestryResultsState
+    public class AncestryResultsState : GedcomxApplicationState<Gedcomx>
     {
-        private RestSharp.IRestRequest request;
-        private RestSharp.IRestResponse response;
-        private string accessToken;
-        private StateFactory stateFactory;
-
-        public AncestryResultsState(RestSharp.IRestRequest request, RestSharp.IRestResponse response, string accessToken, StateFactory stateFactory)
+        internal AncestryResultsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken, StateFactory stateFactory)
+            : base(request, response, client, accessToken, stateFactory)
         {
-            // TODO: Complete member initialization
-            this.request = request;
-            this.response = response;
-            this.accessToken = accessToken;
-            this.stateFactory = stateFactory;
+        }
+
+        protected override GedcomxApplicationState Clone(IRestRequest request, IRestResponse response, IRestClient client)
+        {
+            return new AncestryResultsState(request, response, client, this.CurrentAccessToken, this.stateFactory);
+        }
+
+        public override String SelfRel
+        {
+            get
+            {
+                return Rel.ANCESTRY;
+            }
+        }
+
+        public AncestryTree Tree
+        {
+            get
+            {
+                return Entity != null ? new AncestryTree(Entity) : null;
+            }
+        }
+
+        public PersonState ReadPerson(int ancestorNumber, params StateTransitionOption[] options)
+        {
+            AncestryTree.AncestryNode ancestor = Tree.GetAncestor(ancestorNumber);
+            if (ancestor == null)
+            {
+                return null;
+            }
+
+            Link selfLink = ancestor.Person.GetLink(Rel.PERSON);
+            if (selfLink == null || selfLink.Href == null)
+            {
+                selfLink = ancestor.Person.GetLink(Rel.SELF);
+            }
+
+            String personUri = selfLink == null || selfLink.Href == null ? null : selfLink.Href;
+            if (personUri == null)
+            {
+                return null;
+            }
+
+            IRestRequest request = CreateAuthenticatedGedcomxRequest().Build(personUri, Method.GET);
+            return this.stateFactory.NewPersonState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
     }
 }

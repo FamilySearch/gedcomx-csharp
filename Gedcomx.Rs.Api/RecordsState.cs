@@ -3,31 +3,69 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Gx.Rs.Api.Util;
+using Gx.Atom;
+using Gx.Links;
 
 namespace Gx.Rs.Api
 {
-    public class RecordsState : GedcomxApplicationState<Gedcomx>
+    public class RecordsState : GedcomxApplicationState<Feed>
     {
-        private RestSharp.IRestRequest request;
-        private RestSharp.IRestResponse response;
-        private string accessToken;
-
-        public RecordsState(RestSharp.IRestRequest request, RestSharp.IRestResponse response, IRestClient client, string accessToken, StateFactory stateFactory)
+        internal RecordsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken, StateFactory stateFactory)
+            : base(request, response, client, accessToken, stateFactory)
         {
-            // TODO: Complete member initialization
-            this.request = request;
-            this.response = response;
-            this.accessToken = accessToken;
         }
 
         protected override GedcomxApplicationState Clone(IRestRequest request, IRestResponse response, IRestClient client)
         {
-            throw new NotImplementedException();
+            return new RecordsState(request, response, client, this.CurrentAccessToken, this.stateFactory);
         }
 
-        protected override global::Gedcomx.Model.SupportsLinks MainDataElement
+        public List<Gedcomx> Records
         {
-            get { throw new NotImplementedException(); }
+            get
+            {
+                List<Gedcomx> records = null;
+
+                Feed feed = Entity;
+                if (feed != null && feed.Entries != null && feed.Entries.Count > 0)
+                {
+                    records = new List<Gedcomx>();
+                    foreach (Entry entry in feed.Entries)
+                    {
+                        if (entry.Content != null && entry.Content.Gedcomx != null)
+                        {
+                            records.Add(entry.Content.Gedcomx);
+                        }
+                    }
+                }
+
+                return records;
+            }
+        }
+
+        public RecordState ReadRecord(Entry entry, params StateTransitionOption[] options)
+        {
+            Link link = entry.GetLink(Rel.RECORD);
+            if (link == null || link.Href == null)
+            {
+                return null;
+            }
+
+            IRestRequest request = CreateAuthenticatedGedcomxRequest().Build(link.Href, Method.GET);
+            return this.stateFactory.NewRecordState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
+        }
+
+        public RecordState ReadRecord(Gedcomx record, params StateTransitionOption[] options)
+        {
+            Link link = record.GetLink(Rel.RECORD);
+            if (link == null || link.Href == null)
+            {
+                return null;
+            }
+
+            IRestRequest request = CreateAuthenticatedGedcomxRequest().Build(link.Href, Method.GET);
+            return this.stateFactory.NewRecordState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
     }
 }

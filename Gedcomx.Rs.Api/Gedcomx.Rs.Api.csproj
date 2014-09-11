@@ -94,7 +94,9 @@
     <Compile Include="SourceDescriptionState.cs" />
     <Compile Include="StateFactory.cs" />
     <Compile Include="StateTransitionOption.cs" />
+    <Compile Include="Util\AncestryTree.cs" />
     <Compile Include="Util\DataSource.cs" />
+    <Compile Include="Util\DescendancyTree.cs" />
     <Compile Include="Util\EmbeddedLinkLoader.cs" />
     <Compile Include="Util\GedcomxBaseSearchQueryBuilder.cs" />
     <Compile Include="Util\GedcomxPersonSearchQueryBuilder.cs" />
@@ -102,10 +104,12 @@
     <Compile Include="Util\HttpWarning.cs" />
     <Compile Include="Util\HypermediaEnabledDataExtensions.cs" />
     <Compile Include="Util\LinkParserExtensions.cs" />
+    <Compile Include="Util\PagedFeedEnumerator.cs" />
     <Compile Include="Util\RestClientExtensions.cs" />
     <Compile Include="Util\ServiceHelper.cs" />
     <Compile Include="Util\UriExtensions.cs" />
     <Compile Include="Util\UriTemplateExtensions.cs" />
+    <Compile Include="Util\VocabConstants.cs" />
     <Compile Include="VocabElementListState.cs" />
     <Compile Include="VocabElementState.cs" />
   </ItemGroup>

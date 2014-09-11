@@ -55,7 +55,7 @@ namespace Gx.Rs.Api
             }
 
             IRestRequest request = CreateAuthenticatedGedcomxRequest().Build(link.Href, Method.GET);
-            return this.stateFactory.NewRecordState(request, Invoke(request, options), this.CurrentAccessToken);
+            return this.stateFactory.NewRecordState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
         public PersonState ReadPerson(Gx.Conclusion.Person person, params StateTransitionOption[] options)

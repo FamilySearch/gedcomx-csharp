@@ -45,7 +45,7 @@ namespace Gedcomx.Rs.Api.Test
         }
 
         [Test]
-        public void TestPersonSourceReference()
+        public void TestCreatePersonSourceReference()
         {
             var result = collection.AddPerson(TestBacking.GetCreateMalePerson());
             Assert.DoesNotThrow(() => result.IfSuccessful());

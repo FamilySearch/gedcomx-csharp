@@ -42,7 +42,7 @@ namespace Gx.Rs.Api
         {
         }
 
-        internal CollectionState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken, StateFactory stateFactory)
+        protected internal CollectionState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken, StateFactory stateFactory)
             : base(request, response, client, accessToken, stateFactory)
         {
         }

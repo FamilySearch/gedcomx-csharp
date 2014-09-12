@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gedcomx.Rs.Api.Test", "Gedc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Link", "Link\src\Link\Link.csproj", "{960DCE2C-22FA-4A2F-9A5E-513575B389D5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilySearch.Api", "FamilySearch.Api\FamilySearch.Api.csproj", "{BB8A28F0-E46B-4E36-AAF8-05F472B1C850}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -82,6 +84,12 @@ Global
 		{960DCE2C-22FA-4A2F-9A5E-513575B389D5}.Default|Any CPU.Build.0 = Debug|Any CPU
 		{960DCE2C-22FA-4A2F-9A5E-513575B389D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{960DCE2C-22FA-4A2F-9A5E-513575B389D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB8A28F0-E46B-4E36-AAF8-05F472B1C850}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB8A28F0-E46B-4E36-AAF8-05F472B1C850}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB8A28F0-E46B-4E36-AAF8-05F472B1C850}.Default|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB8A28F0-E46B-4E36-AAF8-05F472B1C850}.Default|Any CPU.Build.0 = Debug|Any CPU
+		{BB8A28F0-E46B-4E36-AAF8-05F472B1C850}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB8A28F0-E46B-4E36-AAF8-05F472B1C850}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

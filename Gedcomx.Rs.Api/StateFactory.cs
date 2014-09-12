@@ -60,7 +60,7 @@ namespace Gx.Rs.Api
             return NewRecordState(request, client.Execute(request), client, null);
         }
 
-        internal IRestClient LoadDefaultClient(Uri uri)
+        protected internal virtual IRestClient LoadDefaultClient(Uri uri)
         {
             IRestClient client;
             bool enableJerseyLogging;
@@ -164,7 +164,7 @@ namespace Gx.Rs.Api
             return new PersonsState(request, response, client, accessToken, this);
         }
 
-        internal PersonState NewPersonState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected internal PersonState NewPersonState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new PersonState(request, response, client, accessToken, this);
         }

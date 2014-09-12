@@ -104,6 +104,8 @@ namespace Gx.Rs.Api
         public static readonly String TEXT_PLAIN_TYPE = "text/plain";
         public static readonly String TEXT_XML_TYPE = "text/xml";
         public static readonly String TEXT_HTML_TYPE = "text/html";
+
+        public static readonly String TEXT_PLAIN = "text/plain";
     }
 }
 

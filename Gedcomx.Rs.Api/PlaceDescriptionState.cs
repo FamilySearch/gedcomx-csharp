@@ -12,7 +12,7 @@ namespace Gx.Rs.Api
 {
     public class PlaceDescriptionState : GedcomxApplicationState<Gedcomx>
     {
-        internal PlaceDescriptionState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken, StateFactory stateFactory)
+        protected internal PlaceDescriptionState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken, StateFactory stateFactory)
             : base(request, response, client, accessToken, stateFactory)
         {
         }

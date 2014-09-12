@@ -394,5 +394,11 @@ namespace Gedcomx.Rs.Api.Test
         {
             throw new NotImplementedException();
         }
+
+        [Test]
+        public void TestReadPersonWithRelationships()
+        {
+            // Get a person, call GetLink("person-with-relationships")
+        }
     }
 }

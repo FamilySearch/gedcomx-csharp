@@ -46,7 +46,7 @@ namespace Gx.Rs.Api
     {
         protected static readonly EmbeddedLinkLoader DEFAULT_EMBEDDED_LINK_LOADER = new EmbeddedLinkLoader();
 
-        internal readonly StateFactory stateFactory;
+        protected internal readonly StateFactory stateFactory;
         public T Entity { get; private set; }
         protected abstract GedcomxApplicationState Clone(IRestRequest request, IRestResponse response, IRestClient client);
         protected virtual T LoadEntity(IRestResponse response)
@@ -165,7 +165,7 @@ namespace Gx.Rs.Api
             return this.Response.ResponseStatus == status;
         }
 
-        internal IRestResponse Invoke(IRestRequest request, params StateTransitionOption[] options)
+        protected internal IRestResponse Invoke(IRestRequest request, params StateTransitionOption[] options)
         {
             IRestResponse result;
 

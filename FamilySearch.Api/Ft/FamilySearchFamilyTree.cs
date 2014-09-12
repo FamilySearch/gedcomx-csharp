@@ -22,8 +22,6 @@ namespace FamilySearch.Api.Ft
     {
         public static readonly String URI = "https://familysearch.org/platform/collections/tree";
         public static readonly String SANDBOX_URI = "https://sandbox.familysearch.org/platform/collections/tree";
-        private string accessToken;
-        private FamilyTreeStateFactory familyTreeStateFactory;
 
         public FamilySearchFamilyTree()
             : this(false)
@@ -123,7 +121,7 @@ namespace FamilySearch.Api.Ft
             entity.ChildAndParentsRelationships = new List<ChildAndParentsRelationship>() { chap };
             IRestRequest request = RequestUtil.ApplyFamilySearchConneg(CreateAuthenticatedRequest()).Build(link.Href, Method.POST);
             request.SetEntity(entity);
-            return ((FamilyTreeStateFactory)this.stateFactory).NewChildAndParentsRelationshipState(request, Invoke(request, options), this.Client, this.accessToken);
+            return ((FamilyTreeStateFactory)this.stateFactory).NewChildAndParentsRelationshipState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
         public RelationshipsState AddChildAndParentsRelationships(List<ChildAndParentsRelationship> chaps, params StateTransitionOption[] options)
@@ -138,7 +136,7 @@ namespace FamilySearch.Api.Ft
             entity.ChildAndParentsRelationships = chaps;
             IRestRequest request = RequestUtil.ApplyFamilySearchConneg(CreateAuthenticatedRequest()).Build(link.Href, Method.POST);
             request.SetEntity(entity);
-            return ((FamilyTreeStateFactory)this.stateFactory).NewRelationshipsState(request, Invoke(request, options), this.Client, this.accessToken);
+            return ((FamilyTreeStateFactory)this.stateFactory).NewRelationshipsState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
         public FamilyTreePersonState ReadPersonById(String id, params StateTransitionOption[] options)
@@ -153,7 +151,7 @@ namespace FamilySearch.Api.Ft
             String uri = new UriTemplate(template).AddParameter("pid", id).Resolve();
 
             IRestRequest request = RequestUtil.ApplyFamilySearchConneg(CreateAuthenticatedRequest()).Build(uri, Method.GET);
-            return ((FamilyTreeStateFactory)this.stateFactory).NewPersonState(request, Invoke(request, options), this.Client, this.accessToken);
+            return ((FamilyTreeStateFactory)this.stateFactory).NewPersonState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
         public FamilyTreePersonState ReadPersonWithRelationshipsById(String id, params StateTransitionOption[] options)
@@ -168,7 +166,7 @@ namespace FamilySearch.Api.Ft
             String uri = new UriTemplate(template).AddParameter("person", id).Resolve();
 
             IRestRequest request = RequestUtil.ApplyFamilySearchConneg(CreateAuthenticatedRequest()).Build(uri, Method.GET);
-            return ((FamilyTreeStateFactory)this.stateFactory).NewPersonState(request, Invoke(request, options), this.Client, this.accessToken);
+            return ((FamilyTreeStateFactory)this.stateFactory).NewPersonState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
         public PreferredRelationshipState ReadPreferredSpouseRelationship(UserState user, FamilyTreePersonState person, params StateTransitionOption[] options)
@@ -282,7 +280,7 @@ namespace FamilySearch.Api.Ft
             String uri = new UriTemplate(template).AddParameter("pid", personId).AddParameter("uid", treeUserId).Resolve();
 
             IRestRequest request = RequestUtil.ApplyFamilySearchConneg(CreateAuthenticatedRequest()).AddHeader("Location", relationshipState.GetSelfUri()).Build(uri, Method.PUT);
-            return ((FamilyTreeStateFactory)this.stateFactory).NewPersonState(request, Invoke(request, options), this.Client, this.accessToken);
+            return ((FamilyTreeStateFactory)this.stateFactory).NewPersonState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
         public FamilyTreePersonState DeletePreferredSpouseRelationship(UserState user, FamilyTreePersonState person, params StateTransitionOption[] options)
@@ -331,7 +329,7 @@ namespace FamilySearch.Api.Ft
             String uri = new UriTemplate(template).AddParameter("pid", personId).AddParameter("uid", treeUserId).Resolve();
 
             IRestRequest request = RequestUtil.ApplyFamilySearchConneg(CreateAuthenticatedRequest()).Build(uri, Method.DELETE);
-            return ((FamilyTreeStateFactory)this.stateFactory).NewPersonState(request, Invoke(request, options), this.Client, this.accessToken);
+            return ((FamilyTreeStateFactory)this.stateFactory).NewPersonState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
     }
 }

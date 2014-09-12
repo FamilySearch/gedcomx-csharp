@@ -35,12 +35,12 @@ namespace FamilySearch.Api.Ft
             return new FamilyTreeRelationshipsState(request, response, client, accessToken, this);
         }
 
-        protected FamilySearchFamilyTree NewCollectionState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        new protected FamilySearchFamilyTree NewCollectionState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new FamilySearchFamilyTree(request, response, client, accessToken, this);
         }
 
-        protected internal FamilyTreePersonState NewPersonState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        new protected internal FamilyTreePersonState NewPersonState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new FamilyTreePersonState(request, response, client, accessToken, this);
         }
@@ -60,27 +60,27 @@ namespace FamilySearch.Api.Ft
             return new FamilyTreePersonChildrenState(request, response, client, accessToken, this);
         }
 
-        protected PersonNonMatchesState NewPersonNonMatchesState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        new protected internal PersonNonMatchesState NewPersonNonMatchesState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return base.NewPersonNonMatchesState(request, response, client, accessToken);
         }
 
-        protected ChangeHistoryState NewChangeHistoryState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected internal ChangeHistoryState NewChangeHistoryState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new ChangeHistoryState(request, response, client, accessToken, this);
         }
 
-        protected PersonMatchResultsState NewPersonMatchResultsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        new protected PersonMatchResultsState NewPersonMatchResultsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return base.NewPersonMatchResultsState(request, response, client, accessToken);
         }
 
-        protected PersonMergeState NewPersonMergeState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        new protected internal PersonMergeState NewPersonMergeState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return base.NewPersonMergeState(request, response, client, accessToken);
         }
 
-        protected SourceDescriptionsState NewSourceDescriptionsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        new protected internal SourceDescriptionsState NewSourceDescriptionsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return base.NewSourceDescriptionsState(request, response, client, accessToken);
         }

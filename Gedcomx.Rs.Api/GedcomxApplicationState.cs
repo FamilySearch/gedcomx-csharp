@@ -91,7 +91,7 @@ namespace Gx.Rs.Api
             this.Links.AddRange(links);
         }
 
-        protected T LoadEntityConditionally(IRestResponse response)
+        protected virtual T LoadEntityConditionally(IRestResponse response)
         {
             if (Request.Method != Method.HEAD && Request.Method != Method.OPTIONS && response.StatusCode == HttpStatusCode.OK)
             {
@@ -479,7 +479,7 @@ namespace Gx.Rs.Api
             }
         }
 
-        protected IRestRequest CreateRequestForEmbeddedResource(String rel)
+        protected virtual IRestRequest CreateRequestForEmbeddedResource(String rel)
         {
             return CreateAuthenticatedGedcomxRequest();
         }
@@ -529,7 +529,7 @@ namespace Gx.Rs.Api
             return request;
         }
 
-        internal IRestRequest CreateAuthenticatedGedcomxRequest()
+        protected internal IRestRequest CreateAuthenticatedGedcomxRequest()
         {
             return CreateAuthenticatedRequest().Accept(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE).ContentType(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE);
         }

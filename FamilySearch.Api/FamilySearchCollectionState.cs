@@ -18,9 +18,6 @@ namespace FamilySearch.Api
 {
     public class FamilySearchCollectionState : CollectionState
     {
-        private string accessToken;
-        private FamilySearchStateFactory familySearchStateFactory;
-
         public FamilySearchCollectionState(Uri uri)
             : this(uri, new FamilySearchStateFactory())
         {
@@ -48,7 +45,7 @@ namespace FamilySearch.Api
 
         protected override GedcomxApplicationState Clone(IRestRequest request, IRestResponse response, IRestClient client)
         {
-            return new FamilySearchCollectionState(request, response, client, this.accessToken, (FamilySearchStateFactory)this.stateFactory);
+            return new FamilySearchCollectionState(request, response, client, this.CurrentAccessToken, (FamilySearchStateFactory)this.stateFactory);
         }
 
         public DateInfo NormalizeDate(String date, params StateTransitionOption[] options)
@@ -82,7 +79,7 @@ namespace FamilySearch.Api
             }
 
             IRestRequest request = RequestUtil.ApplyFamilySearchConneg(CreateAuthenticatedRequest()).Build(link.Href, Method.GET);
-            return ((FamilySearchStateFactory)this.stateFactory).NewUserState(request, Invoke(request, options), this.Client, this.accessToken);
+            return ((FamilySearchStateFactory)this.stateFactory).NewUserState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
         public PersonMatchResultsState SearchForPersonMatches(GedcomxPersonSearchQueryBuilder query, params StateTransitionOption[] options)
@@ -102,7 +99,7 @@ namespace FamilySearch.Api
             String uri = new UriTemplate(template).AddParameter("q", query).Resolve();
 
             IRestRequest request = CreateAuthenticatedFeedRequest().Build(uri, Method.GET);
-            return ((FamilySearchStateFactory)this.stateFactory).NewPersonMatchResultsState(request, Invoke(request, options), this.Client, this.accessToken);
+            return ((FamilySearchStateFactory)this.stateFactory).NewPersonMatchResultsState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
         public DiscussionsState ReadDiscussions(params StateTransitionOption[] options)
@@ -114,7 +111,7 @@ namespace FamilySearch.Api
             }
 
             IRestRequest request = RequestUtil.ApplyFamilySearchConneg(CreateAuthenticatedRequest()).Build(link.Href, Method.GET);
-            return ((FamilySearchStateFactory)this.stateFactory).NewDiscussionsState(request, Invoke(request, options), this.Client, this.accessToken);
+            return ((FamilySearchStateFactory)this.stateFactory).NewDiscussionsState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
         public DiscussionState AddDiscussion(Discussion discussion, params StateTransitionOption[] options)
@@ -128,7 +125,7 @@ namespace FamilySearch.Api
             FamilySearchPlatform entity = new FamilySearchPlatform();
             entity.AddDiscussion(discussion);
             IRestRequest request = RequestUtil.ApplyFamilySearchConneg(CreateAuthenticatedRequest()).SetEntity(entity).Build(link.Href, Method.POST);
-            return ((FamilySearchStateFactory)this.stateFactory).NewDiscussionState(request, Invoke(request, options), this.Client, this.accessToken);
+            return ((FamilySearchStateFactory)this.stateFactory).NewDiscussionState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
     }
 }

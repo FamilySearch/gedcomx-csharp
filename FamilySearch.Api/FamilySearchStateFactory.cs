@@ -88,7 +88,7 @@ namespace FamilySearch.Api
             return new FamilySearchSourceDescriptionState(request, response, client, accessToken, this);
         }
 
-        protected PersonState NewPersonState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        new protected virtual PersonState NewPersonState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return base.NewPersonState(request, response, client, accessToken);
         }

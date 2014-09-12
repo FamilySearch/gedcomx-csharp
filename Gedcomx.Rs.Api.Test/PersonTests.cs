@@ -32,6 +32,7 @@ namespace Gedcomx.Rs.Api.Test
         public void Initialize()
         {
             collection = new CollectionState(new Uri(SANDBOX_URI));
+            collection.AuthenticateViaOAuth2Password("sdktester", "1234sdkpass", "WCQY-7J1Q-GKVV-7DNM-SQ5M-9Q5H-JX3H-CMJK");
             Assert.DoesNotThrow(() => collection.IfSuccessful());
             Assert.IsNotNullOrEmpty(collection.CurrentAccessToken);
 
@@ -403,8 +404,12 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestReadPersonWithRelationships()
         {
-            // Get a person, call GetLink("person-with-relationships")
-            var state = tree.ReadPersonWithRelationshipsById("KWQ7-Y57");
+            var state = tree.ReadPersonWithRelationshipsById("KWWD-CMF");
+
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.IsNotNull(state.Person);
+            Assert.IsNotNull(state.ChildAndParentsRelationships);
+            Assert.IsTrue(state.ChildAndParentsRelationships.Count > 0);
         }
     }
 }

@@ -1,0 +1,88 @@
+﻿using Gx.Rs.Api;
+using RestSharp;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FamilySearch.Api.Ft
+{
+    public class FamilyTreeStateFactory : FamilySearchStateFactory
+    {
+        public FamilySearchFamilyTree NewFamilyTreeState()
+        {
+            return NewFamilyTreeState(true);
+        }
+
+        public FamilySearchFamilyTree NewFamilyTreeState(bool production)
+        {
+            return (FamilySearchFamilyTree)NewCollectionState(new Uri(production ? FamilySearchFamilyTree.URI : FamilySearchFamilyTree.SANDBOX_URI));
+        }
+
+        public FamilySearchFamilyTree NewFamilyTreeState(Uri discoveryUri)
+        {
+            return (FamilySearchFamilyTree)base.NewCollectionState(discoveryUri);
+        }
+
+        protected internal ChildAndParentsRelationshipState NewChildAndParentsRelationshipState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        {
+            return new ChildAndParentsRelationshipState(request, response, client, accessToken, this);
+        }
+
+        protected internal FamilyTreeRelationshipsState NewRelationshipsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        {
+            return new FamilyTreeRelationshipsState(request, response, client, accessToken, this);
+        }
+
+        protected FamilySearchFamilyTree NewCollectionState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        {
+            return new FamilySearchFamilyTree(request, response, client, accessToken, this);
+        }
+
+        protected internal FamilyTreePersonState NewPersonState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        {
+            return new FamilyTreePersonState(request, response, client, accessToken, this);
+        }
+
+        protected internal FamilyTreeRelationshipState NewRelationshipState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        {
+            return new FamilyTreeRelationshipState(request, response, client, accessToken, this);
+        }
+
+        protected FamilyTreePersonParentsState NewPersonParentsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        {
+            return new FamilyTreePersonParentsState(request, response, client, accessToken, this);
+        }
+
+        protected FamilyTreePersonChildrenState NewPersonChildrenState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        {
+            return new FamilyTreePersonChildrenState(request, response, client, accessToken, this);
+        }
+
+        protected PersonNonMatchesState NewPersonNonMatchesState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        {
+            return base.NewPersonNonMatchesState(request, response, client, accessToken);
+        }
+
+        protected ChangeHistoryState NewChangeHistoryState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        {
+            return new ChangeHistoryState(request, response, client, accessToken, this);
+        }
+
+        protected PersonMatchResultsState NewPersonMatchResultsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        {
+            return base.NewPersonMatchResultsState(request, response, client, accessToken);
+        }
+
+        protected PersonMergeState NewPersonMergeState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        {
+            return base.NewPersonMergeState(request, response, client, accessToken);
+        }
+
+        protected SourceDescriptionsState NewSourceDescriptionsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        {
+            return base.NewSourceDescriptionsState(request, response, client, accessToken);
+        }
+    }
+}

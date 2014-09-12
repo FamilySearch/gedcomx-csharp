@@ -189,7 +189,7 @@ namespace Gx.Rs.Api
             return new RelationshipState(request, response, client, accessToken, this);
         }
 
-        internal SourceDescriptionsState NewSourceDescriptionsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected internal SourceDescriptionsState NewSourceDescriptionsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new SourceDescriptionsState(request, response, client, accessToken, this);
         }

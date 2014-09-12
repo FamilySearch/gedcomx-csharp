@@ -53,6 +53,16 @@
     <Compile Include="FamilySearchPlaceState.cs" />
     <Compile Include="FamilySearchSourceDescriptionState.cs" />
     <Compile Include="FamilySearchStateFactory.cs" />
+    <Compile Include="Ft\ChangeHistoryState.cs" />
+    <Compile Include="Ft\ChildAndParentsRelationshipState.cs" />
+    <Compile Include="Ft\FamilySearchFamilyTree.cs" />
+    <Compile Include="Ft\FamilyTreePersonChildrenState.cs" />
+    <Compile Include="Ft\FamilyTreePersonParentsState.cs" />
+    <Compile Include="Ft\FamilyTreePersonState.cs" />
+    <Compile Include="Ft\FamilyTreeRelationshipsState.cs" />
+    <Compile Include="Ft\FamilyTreeRelationshipState.cs" />
+    <Compile Include="Ft\FamilyTreeStateFactory.cs" />
+    <Compile Include="Ft\PreferredRelationshipState.cs" />
     <Compile Include="PersonMatchResultsState.cs" />
     <Compile Include="PersonMergeState.cs" />
     <Compile Include="PersonNonMatchesState.cs" />

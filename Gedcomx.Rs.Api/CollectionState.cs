@@ -223,7 +223,7 @@ namespace Gx.Rs.Api
             return AddRelationship(relationship, options);
         }
 
-        public RelationshipState AddRelationship(Relationship relationship, params StateTransitionOption[] options)
+        public virtual RelationshipState AddRelationship(Relationship relationship, params StateTransitionOption[] options)
         {
             Link link = this.GetLink(Rel.RELATIONSHIPS);
             if (link == null || link.Href == null)
@@ -237,7 +237,7 @@ namespace Gx.Rs.Api
             return this.stateFactory.NewRelationshipState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
-        public RelationshipsState AddRelationships(List<Relationship> relationships, params StateTransitionOption[] options)
+        public virtual RelationshipsState AddRelationships(List<Relationship> relationships, params StateTransitionOption[] options)
         {
             Link link = this.GetLink(Rel.RELATIONSHIPS);
             if (link == null || link.Href == null)

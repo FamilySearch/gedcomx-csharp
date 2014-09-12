@@ -1,4 +1,6 @@
-﻿using Gx.Common;
+﻿using FamilySearch.Api;
+using FamilySearch.Api.Ft;
+using Gx.Common;
 using Gx.Conclusion;
 using Gx.Links;
 using Gx.Rs.Api;
@@ -24,14 +26,17 @@ namespace Gedcomx.Rs.Api.Test
         private static readonly String READ_PERSON_URI = "https://sandbox.familysearch.org/platform/tree/persons/KWQ7-Y57";
         private static readonly String PERSON_WITH_DATA_URI = "https://sandbox.familysearch.org/platform/tree/persons/KWWD-CMF";
         private CollectionState collection;
+        private FamilySearchFamilyTree tree;
 
         [TestFixtureSetUp]
         public void Initialize()
         {
             collection = new CollectionState(new Uri(SANDBOX_URI));
-            collection.AuthenticateViaOAuth2Password("sdktester", "1234sdkpass", "WCQY-7J1Q-GKVV-7DNM-SQ5M-9Q5H-JX3H-CMJK");
             Assert.DoesNotThrow(() => collection.IfSuccessful());
             Assert.IsNotNullOrEmpty(collection.CurrentAccessToken);
+
+            tree = new FamilySearchFamilyTree(true);
+            tree.AuthenticateWithAccessToken(collection.CurrentAccessToken);
         }
 
         [Test]
@@ -399,6 +404,7 @@ namespace Gedcomx.Rs.Api.Test
         public void TestReadPersonWithRelationships()
         {
             // Get a person, call GetLink("person-with-relationships")
+            var state = tree.ReadPersonWithRelationshipsById("KWQ7-Y57");
         }
     }
 }

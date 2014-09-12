@@ -15,7 +15,7 @@ namespace Gx.Rs.Api
     public class RelationshipState : GedcomxApplicationState<Gedcomx>
     {
 
-        internal RelationshipState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken, StateFactory stateFactory)
+        protected internal RelationshipState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken, StateFactory stateFactory)
             : base(request, response, client, accessToken, stateFactory)
         {
         }

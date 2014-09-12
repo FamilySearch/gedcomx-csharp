@@ -72,6 +72,10 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
+    <ProjectReference Include="..\FamilySearch.Api\FamilySearch.Api.csproj">
+      <Project>{bb8a28f0-e46b-4e36-aaf8-05f472b1c850}</Project>
+      <Name>FamilySearch.Api</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Gedcomx.Model.Fs\GEDCOM X FamilySearch Model Extensions.csproj">
       <Project>{FCC74CF5-AD92-4AB2-BECC-CE2882A77796}</Project>
       <Name>GEDCOM X FamilySearch Model Extensions</Name>

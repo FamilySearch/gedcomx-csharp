@@ -83,7 +83,7 @@ namespace FamilySearch.Api
             return new FamilySearchCollectionState(request, response, client, accessToken, this);
         }
 
-        protected FamilySearchSourceDescriptionState NewSourceDescriptionState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected internal FamilySearchSourceDescriptionState NewSourceDescriptionState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new FamilySearchSourceDescriptionState(request, response, client, accessToken, this);
         }

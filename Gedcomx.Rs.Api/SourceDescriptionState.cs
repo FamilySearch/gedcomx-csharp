@@ -13,7 +13,7 @@ namespace Gx.Rs.Api
 {
     public class SourceDescriptionState : GedcomxApplicationState<Gedcomx>
     {
-        internal SourceDescriptionState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken, StateFactory stateFactory)
+        protected internal SourceDescriptionState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken, StateFactory stateFactory)
             : base(request, response, client, accessToken, stateFactory)
         {
         }

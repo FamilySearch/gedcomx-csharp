@@ -78,7 +78,7 @@ namespace FamilySearch.Api
             return new FamilySearchPlaces(request, response, client, accessToken, this);
         }
 
-        protected FamilySearchCollectionState NewCollectionState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected internal FamilySearchCollectionState NewCollectionState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new FamilySearchCollectionState(request, response, client, accessToken, this);
         }

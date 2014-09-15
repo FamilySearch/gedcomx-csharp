@@ -1,26 +1,48 @@
-﻿using System;
+﻿using Gx.Fs;
+using Gx.Rs.Api;
+using RestSharp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Gx.Rs.Api.Util;
+using System.Net;
+using Gedcomx.Model;
+using Gx.Fs.Users;
 
 namespace FamilySearch.Api
 {
-    public class UserState
+    public class UserState : GedcomxApplicationState<FamilySearchPlatform>
     {
-        private RestSharp.IRestRequest request;
-        private RestSharp.IRestResponse response;
-        private RestSharp.IRestClient client;
-        private string accessToken;
-        private FamilySearchStateFactory familySearchStateFactory;
-
-        public UserState(RestSharp.IRestRequest request, RestSharp.IRestResponse response, RestSharp.IRestClient client, string accessToken, FamilySearchStateFactory familySearchStateFactory)
+        public UserState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken, FamilySearchStateFactory stateFactory)
+            : base(request, response, client, accessToken, stateFactory)
         {
-            // TODO: Complete member initialization
-            this.request = request;
-            this.response = response;
-            this.client = client;
-            this.accessToken = accessToken;
-            this.familySearchStateFactory = familySearchStateFactory;
+        }
+
+        protected override GedcomxApplicationState Clone(IRestRequest request, IRestResponse response, IRestClient client)
+        {
+            return new UserState(request, response, client, this.CurrentAccessToken, (FamilySearchStateFactory)this.stateFactory);
+        }
+
+        protected override FamilySearchPlatform LoadEntity(IRestResponse response)
+        {
+            return response.StatusCode == HttpStatusCode.OK ? response.ToIRestResponse<FamilySearchPlatform>().Data : null;
+        }
+
+        protected override SupportsLinks MainDataElement
+        {
+            get
+            {
+                return User;
+            }
+        }
+
+        public User User
+        {
+            get
+            {
+                return Entity == null ? null : Entity.Users.FirstOrDefault();
+            }
         }
     }
 }

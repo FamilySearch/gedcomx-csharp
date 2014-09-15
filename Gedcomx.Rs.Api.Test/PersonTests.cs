@@ -388,21 +388,19 @@ namespace Gedcomx.Rs.Api.Test
         }
 
         [Test]
-        [Ignore("FamilyTreePersonState is defined in extension. Not ready to test.")]
         public void TestReadPreferredSpouseRelationship()
         {
-            throw new NotImplementedException();
+            var me = tree.ReadCurrentUser();
+            var state = tree.ReadPreferredSpouseRelationship(me.User.TreeUserId, "KW7G-28J");
         }
 
         [Test]
-        [Ignore("FamilyTreePersonState is defined in extension. Not ready to test.")]
         public void TestUpdatePreferredSpouseRelationship()
         {
             throw new NotImplementedException();
         }
 
         [Test]
-        [Ignore("FamilyTreePersonState is defined in extension. Not ready to test.")]
         public void TestDeletePreferredSpouseRelationship()
         {
             throw new NotImplementedException();

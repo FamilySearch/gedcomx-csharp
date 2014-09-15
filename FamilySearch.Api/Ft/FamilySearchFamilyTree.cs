@@ -171,26 +171,22 @@ namespace FamilySearch.Api.Ft
 
         public PreferredRelationshipState ReadPreferredSpouseRelationship(UserState user, FamilyTreePersonState person, params StateTransitionOption[] options)
         {
-            throw new NotImplementedException();
-            // TODO: return ReadPreferredRelationship(Rel.PREFERRED_SPOUSE_RELATIONSHIP, user.User.TreeUserId, person.Person.Id, options);
+            return ReadPreferredRelationship(Rel.PREFERRED_SPOUSE_RELATIONSHIP, user.User.TreeUserId, person.Person.Id, options);
         }
 
         public PreferredRelationshipState ReadPreferredParentRelationship(UserState user, FamilyTreePersonState person, params StateTransitionOption[] options)
         {
-            throw new NotImplementedException();
-            // TODO: return ReadPreferredRelationship(Rel.PREFERRED_PARENT_RELATIONSHIP, user.User.TreeUserId, person.Person.Id, options);
+            return ReadPreferredRelationship(Rel.PREFERRED_PARENT_RELATIONSHIP, user.User.TreeUserId, person.Person.Id, options);
         }
 
         public PreferredRelationshipState ReadPreferredSpouseRelationship(String treeUserId, FamilyTreePersonState person, params StateTransitionOption[] options)
         {
-            throw new NotImplementedException();
-            // TODO: return ReadPreferredRelationship(Rel.PREFERRED_SPOUSE_RELATIONSHIP, treeUserId, person.Person.Id, options);
+            return ReadPreferredRelationship(Rel.PREFERRED_SPOUSE_RELATIONSHIP, treeUserId, person.Person.Id, options);
         }
 
         public PreferredRelationshipState ReadPreferredParentRelationship(String treeUserId, FamilyTreePersonState person, params StateTransitionOption[] options)
         {
-            throw new NotImplementedException();
-            // TODO: return ReadPreferredRelationship(Rel.PREFERRED_PARENT_RELATIONSHIP, treeUserId, person.Person.Id, options);
+            return ReadPreferredRelationship(Rel.PREFERRED_PARENT_RELATIONSHIP, treeUserId, person.Person.Id, options);
         }
 
         public PreferredRelationshipState ReadPreferredSpouseRelationship(String treeUserId, String personId, params StateTransitionOption[] options)
@@ -234,26 +230,22 @@ namespace FamilySearch.Api.Ft
 
         public FamilyTreePersonState UpdatePreferredSpouseRelationship(UserState user, FamilyTreePersonState person, PreferredRelationshipState relationshipState, params StateTransitionOption[] options)
         {
-            throw new NotImplementedException();
-            // TODO: return UpdatePreferredRelationship(Rel.PREFERRED_SPOUSE_RELATIONSHIP, user.User.TreeUserId, person.Person.Id, relationshipState, options);
+            return UpdatePreferredRelationship(Rel.PREFERRED_SPOUSE_RELATIONSHIP, user.User.TreeUserId, person.Person.Id, relationshipState, options);
         }
 
         public FamilyTreePersonState UpdatePreferredParentRelationship(UserState user, FamilyTreePersonState person, PreferredRelationshipState relationshipState, params StateTransitionOption[] options)
         {
-            throw new NotImplementedException();
-            // TODO: return UpdatePreferredRelationship(Rel.PREFERRED_PARENT_RELATIONSHIP, user.User.TreeUserId, person.Person.Id, relationshipState, options);
+            return UpdatePreferredRelationship(Rel.PREFERRED_PARENT_RELATIONSHIP, user.User.TreeUserId, person.Person.Id, relationshipState, options);
         }
 
         public FamilyTreePersonState UpdatePreferredSpouseRelationship(String treeUserId, FamilyTreePersonState person, PreferredRelationshipState relationshipState, params StateTransitionOption[] options)
         {
-            throw new NotImplementedException();
-            // TODO: return UpdatePreferredRelationship(Rel.PREFERRED_SPOUSE_RELATIONSHIP, treeUserId, person.Person.Id, relationshipState, options);
+            return UpdatePreferredRelationship(Rel.PREFERRED_SPOUSE_RELATIONSHIP, treeUserId, person.Person.Id, relationshipState, options);
         }
 
         public FamilyTreePersonState UpdatePreferredParentRelationship(String treeUserId, FamilyTreePersonState person, PreferredRelationshipState relationshipState, params StateTransitionOption[] options)
         {
-            throw new NotImplementedException();
-            // TODO: return UpdatePreferredRelationship(Rel.PREFERRED_PARENT_RELATIONSHIP, treeUserId, person.Person.Id, relationshipState, options);
+            return UpdatePreferredRelationship(Rel.PREFERRED_PARENT_RELATIONSHIP, treeUserId, person.Person.Id, relationshipState, options);
         }
 
         public FamilyTreePersonState UpdatePreferredSpouseRelationship(String treeUserId, String personId, PreferredRelationshipState relationshipState, params StateTransitionOption[] options)
@@ -264,8 +256,7 @@ namespace FamilySearch.Api.Ft
 
         public FamilyTreePersonState UpdatePreferredParentRelationship(String treeUserId, String personId, PreferredRelationshipState relationshipState, params StateTransitionOption[] options)
         {
-            throw new NotImplementedException();
-            // TODO: return UpdatePreferredRelationship(Rel.PREFERRED_PARENT_RELATIONSHIP, treeUserId, personId, relationshipState, options);
+            return UpdatePreferredRelationship(Rel.PREFERRED_PARENT_RELATIONSHIP, treeUserId, personId, relationshipState, options);
         }
 
         protected FamilyTreePersonState UpdatePreferredRelationship(String rel, String treeUserId, String personId, PreferredRelationshipState relationshipState, StateTransitionOption[] options)
@@ -285,26 +276,22 @@ namespace FamilySearch.Api.Ft
 
         public FamilyTreePersonState DeletePreferredSpouseRelationship(UserState user, FamilyTreePersonState person, params StateTransitionOption[] options)
         {
-            throw new NotImplementedException();
-            // TODO: return DeletePreferredRelationship(user.User.TreeUserId, person.Person.Id, Rel.PREFERRED_SPOUSE_RELATIONSHIP, options);
+            return DeletePreferredRelationship(user.User.TreeUserId, person.Person.Id, Rel.PREFERRED_SPOUSE_RELATIONSHIP, options);
         }
 
         public FamilyTreePersonState DeletePreferredParentRelationship(UserState user, FamilyTreePersonState person, params StateTransitionOption[] options)
         {
-            throw new NotImplementedException();
-            // TODO: return DeletePreferredRelationship(user.User.TreeUserId, person.Person.Id, Rel.PREFERRED_PARENT_RELATIONSHIP, options);
+            return DeletePreferredRelationship(user.User.TreeUserId, person.Person.Id, Rel.PREFERRED_PARENT_RELATIONSHIP, options);
         }
 
         public FamilyTreePersonState DeletePreferredSpouseRelationship(String treeUserId, FamilyTreePersonState person, params StateTransitionOption[] options)
         {
-            throw new NotImplementedException();
-            // TODO: return DeletePreferredRelationship(treeUserId, person.Person.Id, Rel.PREFERRED_SPOUSE_RELATIONSHIP, options);
+            return DeletePreferredRelationship(treeUserId, person.Person.Id, Rel.PREFERRED_SPOUSE_RELATIONSHIP, options);
         }
 
         public FamilyTreePersonState DeletePreferredParentRelationship(String treeUserId, FamilyTreePersonState person, params StateTransitionOption[] options)
         {
-            throw new NotImplementedException();
-            // TODO: return DeletePreferredRelationship(treeUserId, person.Person.Id, Rel.PREFERRED_PARENT_RELATIONSHIP, options);
+            return DeletePreferredRelationship(treeUserId, person.Person.Id, Rel.PREFERRED_PARENT_RELATIONSHIP, options);
         }
 
         public FamilyTreePersonState DeletePreferredSpouseRelationship(String treeUserId, String personId, params StateTransitionOption[] options)

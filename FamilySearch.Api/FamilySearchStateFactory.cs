@@ -98,7 +98,7 @@ namespace FamilySearch.Api
             return new PersonNonMatchesState(request, response, client, accessToken, this);
         }
 
-        protected FamilySearchPlaceState NewPlaceState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected internal FamilySearchPlaceState NewPlaceState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new FamilySearchPlaceState(request, response, client, accessToken, this);
         }

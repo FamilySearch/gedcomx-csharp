@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FamilySearch.Api.Ct
+namespace Gx.Fs.Ct
 {
     public enum MatchCollection
     {

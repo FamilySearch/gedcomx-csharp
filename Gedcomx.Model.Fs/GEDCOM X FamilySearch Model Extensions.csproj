@@ -52,6 +52,7 @@
     <Compile Include="ChangeOperation.cs" />
     <Compile Include="ChildAndParentsRelationship.cs" />
     <Compile Include="Comment.cs" />
+    <Compile Include="Ct\MatchCollection.cs" />
     <Compile Include="Discussion.cs" />
     <Compile Include="DiscussionReference.cs" />
     <Compile Include="Error.cs" />

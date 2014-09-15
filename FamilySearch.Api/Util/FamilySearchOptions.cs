@@ -1,5 +1,5 @@
-﻿using FamilySearch.Api.Ct;
-using Gx.Fs.Artifacts;
+﻿using Gx.Fs.Artifacts;
+using Gx.Fs.Ct;
 using Gx.Fs.Tree;
 using Gx.Rs.Api.Options;
 using Gx.Types;

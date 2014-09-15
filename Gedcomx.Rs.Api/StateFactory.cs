@@ -144,12 +144,12 @@ namespace Gx.Rs.Api
             return new PlaceGroupState(request, response, client, accessToken, this);
         }
 
-        public VocabElementState NewVocabElementState(IRestRequest request, IRestResponse response, String accessToken)
+        public VocabElementState NewVocabElementState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new VocabElementState(request, response, accessToken, this);
         }
 
-        public VocabElementListState NewVocabElementListState(IRestRequest request, IRestResponse response, String accessToken)
+        public VocabElementListState NewVocabElementListState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new VocabElementListState(request, response, accessToken, this);
         }

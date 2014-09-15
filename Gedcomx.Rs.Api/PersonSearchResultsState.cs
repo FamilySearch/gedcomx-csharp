@@ -14,7 +14,7 @@ namespace Gx.Rs.Api
     public class PersonSearchResultsState : GedcomxApplicationState<Feed>
     {
 
-        internal PersonSearchResultsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken, StateFactory stateFactory)
+        protected internal PersonSearchResultsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken, StateFactory stateFactory)
             : base(request, response, client, accessToken, stateFactory)
         {
         }

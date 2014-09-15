@@ -23,8 +23,10 @@ namespace Gedcomx.Rs.Api.Test
     public class PersonTests
     {
         private static readonly String SANDBOX_URI = "https://sandbox.familysearch.org/platform/collections/tree";
-        private static readonly String READ_PERSON_URI = "https://sandbox.familysearch.org/platform/tree/persons/KWQ7-Y57";
-        private static readonly String PERSON_WITH_DATA_URI = "https://sandbox.familysearch.org/platform/tree/persons/KWWD-CMF";
+        private static readonly String READ_PERSON_ID = "KWQ7-Y57";
+        private static readonly String READ_PERSON_URI = "https://sandbox.familysearch.org/platform/tree/persons/" + READ_PERSON_ID;
+        private static readonly String PERSON_WITH_DATA_ID = "KWWD-CMF";
+        private static readonly String PERSON_WITH_DATA_URI = "https://sandbox.familysearch.org/platform/tree/persons/" + PERSON_WITH_DATA_ID;
         private CollectionState collection;
         private FamilySearchFamilyTree tree;
 
@@ -263,7 +265,7 @@ namespace Gedcomx.Rs.Api.Test
             // TODO: Is an ID needed? Is this the correct pattern? Was unable to get working via self-discovery.
             var state = collection.ReadPerson(new Uri(PERSON_WITH_DATA_URI));
             state.Person.Sources = new List<SourceReference>();
-            state.Person.Sources.Add(TestBacking.GetPersonSourceReference("????-???"));
+            state.Person.Sources.Add(TestBacking.GetPersonSourceReference("MMH1-PNF"));
             var state2 = state.UpdateSourceReferences(state.Person);
             Assert.DoesNotThrow(() => state2.IfSuccessful());
         }
@@ -363,14 +365,19 @@ namespace Gedcomx.Rs.Api.Test
         }
 
         [Test]
-        [Ignore("Restore is defined in extension. Not ready to test.")]
         public void TestRestorePerson()
         {
-            // Assume the ability to add a person is working
+            // Assume the ability to add/delete a person works
             var state = collection.AddPerson(TestBacking.GetCreateMalePerson());
-            state = (PersonState)state.Delete();
+            var id = state.Headers.Get("X-ENTITY-ID").First().Value.ToString();
+            state.Delete();
 
-            throw new NotImplementedException();
+            var deletedPerson = tree.ReadPersonById(id);
+            Assert.IsTrue(deletedPerson.Response.StatusCode == HttpStatusCode.Gone); // Ensure we have a deleted person
+            var testState = deletedPerson.Restore();
+            Assert.DoesNotThrow(() => testState.IfSuccessful());
+            Assert.IsTrue(testState.Response.StatusCode == HttpStatusCode.NoContent);
+            deletedPerson.Delete();
         }
 
         [Test]
@@ -404,12 +411,23 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestReadPersonWithRelationships()
         {
-            var state = tree.ReadPersonWithRelationshipsById("KWWD-CMF");
+            var state = tree.ReadPersonWithRelationshipsById(PERSON_WITH_DATA_ID);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.IsNotNull(state.Person);
             Assert.IsNotNull(state.ChildAndParentsRelationships);
             Assert.IsTrue(state.ChildAndParentsRelationships.Count > 0);
+        }
+
+        [Test]
+        [Ignore("AddNonMatch() is not ready for testing yet.")]
+        public void TestAddPersonNotAMatchDeclaration()
+        {
+            var possibleMatches = tree.ReadPersonById(PERSON_WITH_DATA_ID).ReadMatches();
+            var notAMatchPerson = possibleMatches.Results.Entries.First();
+            var state = possibleMatches.AddNonMatch(notAMatchPerson);
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.IsTrue(state.Response.StatusCode == HttpStatusCode.Created);
         }
     }
 }

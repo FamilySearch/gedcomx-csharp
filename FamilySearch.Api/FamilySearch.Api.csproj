@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Flurl, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Flurl.1.0.2\lib\portable-net40+sl50+win+wpa81+wp80+MonoAndroid10+MonoTouch10\Flurl.dll</HintPath>
+    </Reference>
     <Reference Include="RestSharp">
       <HintPath>..\packages\RestSharp.104.3.3\lib\net4\RestSharp.dll</HintPath>
     </Reference>
@@ -53,6 +57,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ct\MatchCollection.cs" />
     <Compile Include="DiscussionsState.cs" />
     <Compile Include="DiscussionState.cs" />
     <Compile Include="FamilySearchCollectionState.cs" />
@@ -77,12 +82,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rel.cs" />
     <Compile Include="UserState.cs" />
+    <Compile Include="Util\FamilySearchOptions.cs" />
+    <Compile Include="Util\MergeAnalysisFilter.cs" />
     <Compile Include="Util\RequestUtil.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Gedcomx.Model.Fs\GEDCOM X FamilySearch Model Extensions.csproj">
       <Project>{fcc74cf5-ad92-4ab2-becc-ce2882a77796}</Project>
       <Name>GEDCOM X FamilySearch Model Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Gedcomx.Model.Rs\GEDCOM X REST Model Extensions.csproj">
+      <Project>{a171b653-434f-494d-bda9-0dc2fcd86ba6}</Project>
+      <Name>GEDCOM X REST Model Extensions</Name>
     </ProjectReference>
     <ProjectReference Include="..\Gedcomx.Model\GEDCOM X Model.csproj">
       <Project>{4629ba54-406e-4cd2-9dc6-cda2c5206eb7}</Project>

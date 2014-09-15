@@ -26,7 +26,7 @@ namespace FamilySearch.Api
             return new UserState(request, response, client, accessToken, this);
         }
 
-        protected PersonMergeState NewPersonMergeState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected internal PersonMergeState NewPersonMergeState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new PersonMergeState(request, response, client, accessToken, this);
         }
@@ -88,12 +88,12 @@ namespace FamilySearch.Api
             return new FamilySearchSourceDescriptionState(request, response, client, accessToken, this);
         }
 
-        new protected virtual PersonState NewPersonState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        new protected internal virtual PersonState NewPersonState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return base.NewPersonState(request, response, client, accessToken);
         }
 
-        protected PersonNonMatchesState NewPersonNonMatchesState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected internal PersonNonMatchesState NewPersonNonMatchesState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new PersonNonMatchesState(request, response, client, accessToken, this);
         }

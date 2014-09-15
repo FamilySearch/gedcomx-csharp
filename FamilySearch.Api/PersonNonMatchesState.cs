@@ -1,26 +1,43 @@
-﻿using System;
+﻿using RestSharp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Gx.Rs.Api.Util;
+using Gx.Rs.Api;
+using Gx.Conclusion;
+using Gx.Links;
+using FamilySearch.Api.Util;
 
 namespace FamilySearch.Api
 {
-    public class PersonNonMatchesState
+    public class PersonNonMatchesState : PersonsState
     {
-        private RestSharp.IRestRequest request;
-        private RestSharp.IRestResponse response;
-        private RestSharp.IRestClient client;
-        private string accessToken;
-        private FamilySearchStateFactory familySearchStateFactory;
-
-        public PersonNonMatchesState(RestSharp.IRestRequest request, RestSharp.IRestResponse response, RestSharp.IRestClient client, string accessToken, FamilySearchStateFactory familySearchStateFactory)
+        protected internal PersonNonMatchesState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken, StateFactory stateFactory)
+            : base(request, response, client, accessToken, stateFactory)
         {
-            // TODO: Complete member initialization
-            this.request = request;
-            this.response = response;
-            this.client = client;
-            this.accessToken = accessToken;
-            this.familySearchStateFactory = familySearchStateFactory;
+        }
+
+        protected override GedcomxApplicationState Clone(IRestRequest request, IRestResponse response, IRestClient client)
+        {
+            return new PersonNonMatchesState(request, response, client, this.CurrentAccessToken, this.stateFactory);
+        }
+
+        public PersonNonMatchesState AddNonMatch(Person person, params StateTransitionOption[] options)
+        {
+            return (PersonNonMatchesState)Post(new Gx.Gedcomx() { Persons = new List<Person>() { person } }, options);
+        }
+
+        public PersonNonMatchesState RemoveNonMatch(Person nonMatch, params StateTransitionOption[] options)
+        {
+            Link link = nonMatch.GetLink(Rel.NOT_A_MATCH);
+            if (link == null || link.Href == null)
+            {
+                return null;
+            }
+
+            IRestRequest request = RequestUtil.ApplyFamilySearchConneg(CreateAuthenticatedRequest()).Build(link.Href, Method.DELETE);
+            return ((FamilySearchStateFactory)this.stateFactory).NewPersonNonMatchesState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
     }
 }

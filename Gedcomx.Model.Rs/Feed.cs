@@ -287,6 +287,7 @@ namespace Gx.Atom
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "updated", Namespace = "http://www.w3.org/2005/Atom")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "updated")]
+        [JsonConverter(typeof(JsonUnixTimestampConverter))]
         public DateTime Updated
         {
             get

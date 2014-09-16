@@ -457,5 +457,14 @@ namespace Gedcomx.Rs.Api.Test
             Assert.IsNotNull(response.Headers.Get("Location").Single().Value);
             Assert.IsTrue(response.Headers.Get("Location").Single().Value.ToString().Equals(location));
         }
+
+        [Test]
+        public void TestReadPersonChangeSummary()
+        {
+            var person = tree.ReadPersonById(READ_PERSON_ID);
+            var state = person.ReadChangeHistory();
+
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+        }
     }
 }

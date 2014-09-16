@@ -1,3 +1,4 @@
+using Gedcomx.Model.Rt;
 using Gx.Conclusion;
 using Gx.Links;
 using Gx.Records;
@@ -736,5 +737,14 @@ namespace Gx
             }
         }
 
+        /**
+         * Accept a visitor.
+         *
+         * @param visitor The visitor.
+         */
+        public void Accept(GedcomxModelVisitor visitor)
+        {
+            visitor.VisitGedcomx(this);
+        }
     }
 }

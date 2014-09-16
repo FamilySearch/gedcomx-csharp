@@ -81,6 +81,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rel.cs" />
     <Compile Include="UserState.cs" />
+    <Compile Include="Util\ChangeEntry.cs" />
+    <Compile Include="Util\ChangeHistoryPage.cs" />
     <Compile Include="Util\FamilySearchOptions.cs" />
     <Compile Include="Util\MergeAnalysisFilter.cs" />
     <Compile Include="Util\RequestUtil.cs" />

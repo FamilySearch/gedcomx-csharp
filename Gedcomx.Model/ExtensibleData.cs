@@ -64,5 +64,28 @@ namespace Gx.Common
                 this._extensionElements.AddRange(data._extensionElements);
             }
         }
+
+        /**
+         * Find the extensions of a specified type.
+         *
+         * @param clazz The type.
+         * @return The extensions, possibly empty but not null.
+         */
+        public List<T> FindExtensionsOfType<T>()
+        {
+            List<T> ext = new List<T>();
+            if (this._extensionElements != null)
+            {
+                foreach (Object extension in _extensionElements)
+                {
+                    if (typeof(T).IsAssignableFrom(extension.GetType()))
+                    {
+                        ext.Add((T)extension);
+                    }
+                }
+            }
+
+            return ext;
+        }
     }
 }

@@ -427,5 +427,35 @@ namespace Gedcomx.Rs.Api.Test
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.IsTrue(state.Response.StatusCode == HttpStatusCode.Created);
         }
+
+        [Test]
+        public void TestReadPersonPortrait()
+        {
+            // Assume the ability to read a person by ID is working
+            var person = tree.ReadPersonById(READ_PERSON_ID);
+
+            // This is BETA, and does not yet return a state. Test is based exclusively off response data.
+            var response = person.ReadPortrait();
+            Assert.IsTrue(!response.HasClientError() && !response.HasServerError());
+            // NOTE: The READ_PERSON_ID user does not have images, thus the response should be 204.
+            Assert.IsTrue(response.StatusCode == HttpStatusCode.NoContent);
+        }
+
+        [Test]
+        public void TestReadPersonPortraitWithDefault()
+        {
+            var person = tree.ReadPersonById(READ_PERSON_ID);
+            var location = "http://i.imgur.com/d9J0gYA.jpg";
+            var options = new QueryParameter("default", location);
+
+            // This is BETA, and does not yet return a state. Test is based exclusively off response data.
+            var response = person.ReadPortrait(options);
+            Assert.IsTrue(!response.HasClientError() && !response.HasServerError());
+            // NOTE: The READ_PERSON_ID user does not have images, but a default is specified, thus the response should be 307.
+            Assert.IsTrue(response.StatusCode == HttpStatusCode.TemporaryRedirect);
+            Assert.IsTrue(response.Headers.Get("Location").Any());
+            Assert.IsNotNull(response.Headers.Get("Location").Single().Value);
+            Assert.IsTrue(response.Headers.Get("Location").Single().Value.ToString().Equals(location));
+        }
     }
 }

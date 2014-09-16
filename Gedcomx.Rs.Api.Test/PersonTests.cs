@@ -330,17 +330,6 @@ namespace Gedcomx.Rs.Api.Test
         }
 
         [Test]
-        public void TestDeletePersonConclusion()
-        {
-            // Assume the ability to add a person is working
-            var state = collection.AddPerson(TestBacking.GetCreateMalePerson());
-            state = (PersonState)state.Get();
-            state = state.DeleteFact(state.Person.Facts.FirstOrDefault());
-            Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.IsTrue(state.Response.StatusCode == HttpStatusCode.NoContent);
-        }
-
-        [Test]
         public void TestDeletePersonWithPreconditions()
         {
             // Assume the ability to add a person is working
@@ -467,7 +456,6 @@ namespace Gedcomx.Rs.Api.Test
             Assert.DoesNotThrow(() => state.IfSuccessful());
         }
 
-
         [Test]
         public void TestReadPersonPortraits()
         {
@@ -477,6 +465,54 @@ namespace Gedcomx.Rs.Api.Test
             var state = person.ReadPortraits();
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.IsTrue(state.Response.StatusCode == HttpStatusCode.OK);
+        }
+
+        [Test]
+        public void TestCreatePersonLifeSketch()
+        {
+            var person = tree.ReadPersonById(PERSON_WITH_DATA_ID);
+            var state = (FamilyTreePersonState)person.Post(TestBacking.GetCreatePersonLifeSketch(PERSON_WITH_DATA_ID));
+
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.IsTrue(state.Response.StatusCode == HttpStatusCode.NoContent);
+        }
+
+        [Test]
+        public void TestUpdatePersonLifeSketch()
+        {
+            var person = tree.ReadPersonById(PERSON_WITH_DATA_ID);
+            var factId = TestBacking.GetFactId(person.Person, "http://familysearch.org/v1/LifeSketch");
+            if (factId == null)
+            {
+                TestCreatePersonLifeSketch();
+                person = tree.ReadPersonById(PERSON_WITH_DATA_ID);
+                factId = TestBacking.GetFactId(person.Person, "http://familysearch.org/v1/LifeSketch");
+            }
+            var state = (FamilyTreePersonState)person.Post(TestBacking.GetUpdatePersonLifeSketch(PERSON_WITH_DATA_ID, factId));
+
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.IsTrue(state.Response.StatusCode == HttpStatusCode.NoContent);
+        }
+
+        [Test]
+        public void TestDeletePersonConclusion()
+        {
+            var person = tree.ReadPersonById(PERSON_WITH_DATA_ID);
+            var sketchToDelete = person.Person.Facts.Where(x => x.Type == "http://familysearch.org/v1/LifeSketch").FirstOrDefault();
+
+            if (sketchToDelete == null)
+            {
+                TestCreatePersonLifeSketch();
+                person = tree.ReadPersonById(PERSON_WITH_DATA_ID);
+                sketchToDelete = person.Person.Facts.Where(x => x.Type == "http://familysearch.org/v1/LifeSketch").FirstOrDefault();
+            }
+
+            Assert.IsNotNull(sketchToDelete);
+
+            var state = person.DeleteFact(sketchToDelete);
+
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.IsTrue(state.Response.StatusCode == HttpStatusCode.NoContent);
         }
     }
 }

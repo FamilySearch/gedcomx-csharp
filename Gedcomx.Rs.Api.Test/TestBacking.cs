@@ -377,5 +377,52 @@ namespace Gedcomx.Rs.Api.Test
                 },
             };
         }
+
+        public static Gx.Gedcomx GetCreatePersonLifeSketch(string personId)
+        {
+            return new Gx.Gedcomx()
+            {
+                Persons = new List<Person>()
+                {
+                    new Person()
+                    {
+                        Id = personId,
+                        Facts = new List<Fact>()
+                        {
+                            new Fact()
+                            {
+                                Attribution = new Attribution()
+                                {
+                                    ChangeMessage = "...change message...",
+                                },
+                                Type = "http://familysearch.org/v1/LifeSketch",
+                                Value = "What a long and colorful life this person had!\nDetails are numerous and humorous.",
+                            },
+                        },
+                    },
+                },
+            };
+        }
+
+        public static Gx.Gedcomx GetUpdatePersonLifeSketch(string personId, string factId)
+        {
+            var result = GetCreatePersonLifeSketch(personId);
+
+            result.Persons[0].Facts[0].Id = factId;
+
+            return result;
+        }
+
+        public static string GetFactId(Person person, string factType)
+        {
+            string result = null;
+
+            if (person != null && person.Facts != null)
+            {
+                result = person.Facts.Where(x => x.Type == factType).Select(x => x.Id).FirstOrDefault();
+            }
+
+            return result;
+        }
     }
 }

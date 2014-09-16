@@ -22,6 +22,10 @@ namespace Gx.Common
         private string _lang;
         private string _value;
 
+        public TextValue()
+        {
+        }
+
         public TextValue(String value)
         {
             this._value = value;

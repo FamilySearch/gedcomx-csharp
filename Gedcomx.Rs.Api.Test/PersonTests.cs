@@ -377,19 +377,22 @@ namespace Gedcomx.Rs.Api.Test
         }
 
         [Test]
+        [Ignore("Pending issue resolution. All calls are returning HTTP 204.")]
         public void TestReadPreferredSpouseRelationship()
         {
             var me = tree.ReadCurrentUser();
-            var state = tree.ReadPreferredSpouseRelationship(me.User.TreeUserId, "KW7G-28J");
+            var state = tree.ReadPreferredSpouseRelationship(me.User.TreeUserId, PERSON_WITH_DATA_ID);
         }
 
         [Test]
+        [Ignore("Pending issue resolution. All calls are returning HTTP 204.")]
         public void TestUpdatePreferredSpouseRelationship()
         {
             throw new NotImplementedException();
         }
 
         [Test]
+        [Ignore("Pending issue resolution. All calls are returning HTTP 204.")]
         public void TestDeletePreferredSpouseRelationship()
         {
             throw new NotImplementedException();

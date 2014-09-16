@@ -466,5 +466,17 @@ namespace Gedcomx.Rs.Api.Test
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
         }
+
+
+        [Test]
+        public void TestReadPersonPortraits()
+        {
+            // Assume the ability to read a person by ID is working
+            var person = tree.ReadPersonById(READ_PERSON_ID);
+
+            var state = person.ReadPortraits();
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.IsTrue(state.Response.StatusCode == HttpStatusCode.OK);
+        }
     }
 }

@@ -83,6 +83,7 @@
     <Compile Include="IdentifierType.cs" />
     <Compile Include="Rt\GedcomxModelVisitor.cs" />
     <Compile Include="Rt\GedcomxModelVisitorBase.cs" />
+    <Compile Include="Tag.cs" />
     <Compile Include="Util\JsonHypermediaLinksConverter.cs" />
     <Compile Include="Link.cs" />
     <Compile Include="Name.cs" />

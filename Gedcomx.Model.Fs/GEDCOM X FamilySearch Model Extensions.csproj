@@ -69,7 +69,6 @@
     <Compile Include="Rt\FamilySearchPlatformLocalReferenceResolver.cs" />
     <Compile Include="Rt\FamilySearchPlatformModelVisitor.cs" />
     <Compile Include="Rt\FamilySearchPlatformModelVisitorBase.cs" />
-    <Compile Include="Tag.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

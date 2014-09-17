@@ -26,6 +26,7 @@ namespace Gx.Source
         private string _descriptionRef;
         private Gx.Common.Attribution _attribution;
         private System.Collections.Generic.List<Gx.Common.Qualifier> _qualifiers;
+        private System.Collections.Generic.List<Gx.Source.Tag> _tags;
         /// <summary>
         ///  A reference to a description of the source being referenced.
         /// </summary>
@@ -73,6 +74,22 @@ namespace Gx.Source
             set
             {
                 this._qualifiers = value;
+            }
+        }
+        /// <summary>
+        ///  The tags associated with this source reference.
+        /// </summary>
+        [System.Xml.Serialization.XmlElementAttribute(ElementName = "tags", Namespace = "http://gedcomx.org/v1/")]
+        [System.Xml.Serialization.SoapElementAttribute(ElementName = "tags")]
+        public System.Collections.Generic.List<Gx.Source.Tag> Tags
+        {
+            get
+            {
+                return this._tags;
+            }
+            set
+            {
+                this._tags = value;
             }
         }
 

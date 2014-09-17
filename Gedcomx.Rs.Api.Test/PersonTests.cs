@@ -259,15 +259,19 @@ namespace Gedcomx.Rs.Api.Test
         }
 
         [Test]
-        [Ignore("Need clarification on this before this is ready.")]
         public void TestUpdatePersonSourceReference()
         {
-            // TODO: Is an ID needed? Is this the correct pattern? Was unable to get working via self-discovery.
             var state = collection.ReadPerson(new Uri(PERSON_WITH_DATA_URI));
-            state.Person.Sources = new List<SourceReference>();
-            state.Person.Sources.Add(TestBacking.GetPersonSourceReference("MMH1-PNF"));
+            state = state.LoadSourceReferences();
+            var tag = state.Person.Sources[0].Tags.First();
+            state.Person.Sources[0].Tags.Remove(tag);
             var state2 = state.UpdateSourceReferences(state.Person);
             Assert.DoesNotThrow(() => state2.IfSuccessful());
+            Assert.IsTrue(state2.Response.StatusCode == HttpStatusCode.NoContent);
+            state.Person.Sources[0].Tags.Add(tag);
+            state2 = state.UpdateSourceReferences(state.Person);
+            Assert.DoesNotThrow(() => state2.IfSuccessful());
+            Assert.IsTrue(state2.Response.StatusCode == HttpStatusCode.NoContent);
         }
 
         [Test]

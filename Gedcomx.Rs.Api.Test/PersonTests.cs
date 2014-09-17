@@ -374,13 +374,6 @@ namespace Gedcomx.Rs.Api.Test
         }
 
         [Test]
-        [Ignore("PersonMatchResultsState is defined in extension. Not ready to test.")]
-        public void TestUpdatePersonNotAMatchDeclarations()
-        {
-            throw new NotImplementedException();
-        }
-
-        [Test]
         [Ignore("Pending issue resolution. All calls are returning HTTP 204.")]
         public void TestReadPreferredSpouseRelationship()
         {
@@ -414,11 +407,22 @@ namespace Gedcomx.Rs.Api.Test
         }
 
         [Test]
-        public void TestAddPersonNotAMatchDeclaration()
+        public void TestUpdatePersonNotAMatchDeclarations()
         {
             var person1 = tree.ReadPersonById("KWWD-CMF");
             var person2 = tree.ReadPersonById("KW73-MB6");
             var state = person1.AddNonMatch(person2);
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.IsTrue(state.Response.StatusCode == HttpStatusCode.NoContent);
+        }
+
+        [Test]
+        public void TestDeletePersonNotAMatch()
+        {
+            var person1 = tree.ReadPersonById("KWWD-CMF");
+            var person2 = tree.ReadPersonById("KW73-MB6");
+            var state = (PersonNonMatchesState)person1.AddNonMatch(person2).Get();
+            state = state.RemoveNonMatch(state.Persons[0]);
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.IsTrue(state.Response.StatusCode == HttpStatusCode.NoContent);
         }

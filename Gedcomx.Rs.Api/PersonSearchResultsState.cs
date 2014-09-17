@@ -19,7 +19,7 @@ namespace Gx.Rs.Api
         {
         }
 
-        protected override GedcomxApplicationState Clone(IRestRequest request, IRestResponse response, IRestClient client)
+        protected override GedcomxApplicationState<Feed> Clone(IRestRequest request, IRestResponse response, IRestClient client)
         {
             return new PersonSearchResultsState(request, response, client, this.CurrentAccessToken, this.stateFactory);
         }

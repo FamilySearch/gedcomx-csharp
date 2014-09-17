@@ -24,7 +24,7 @@ namespace Gx.Rs.Api
             }
         }
 
-        protected override GedcomxApplicationState Clone(IRestRequest request, IRestResponse response, IRestClient client)
+        protected override GedcomxApplicationState<Gedcomx> Clone(IRestRequest request, IRestResponse response, IRestClient client)
         {
             return new PlaceGroupState(request, response, client, this.CurrentAccessToken, this.stateFactory);
         }

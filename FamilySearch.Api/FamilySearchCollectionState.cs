@@ -43,7 +43,7 @@ namespace FamilySearch.Api
         {
         }
 
-        protected override GedcomxApplicationState Clone(IRestRequest request, IRestResponse response, IRestClient client)
+        protected override GedcomxApplicationState<Gx.Gedcomx> Clone(IRestRequest request, IRestResponse response, IRestClient client)
         {
             return new FamilySearchCollectionState(request, response, client, this.CurrentAccessToken, (FamilySearchStateFactory)this.stateFactory);
         }

@@ -54,7 +54,7 @@ namespace Gx.Rs.Api
 
         protected internal readonly StateFactory stateFactory;
         public T Entity { get; private set; }
-        protected abstract GedcomxApplicationState Clone(IRestRequest request, IRestResponse response, IRestClient client);
+        protected abstract GedcomxApplicationState<T> Clone(IRestRequest request, IRestResponse response, IRestClient client);
         protected virtual T LoadEntity(IRestResponse response)
         {
             T result = null;
@@ -109,7 +109,7 @@ namespace Gx.Rs.Api
             }
         }
 
-        public GedcomxApplicationState Inject(IRestRequest request)
+        public GedcomxApplicationState<T> Inject(IRestRequest request)
         {
             return Clone(request, Invoke(request), this.Client);
         }
@@ -166,9 +166,9 @@ namespace Gx.Rs.Api
             return this.Response.HasClientError() || this.Response.HasServerError();
         }
 
-        public bool HasStatus(ResponseStatus status)
+        public bool HasStatus(HttpStatusCode status)
         {
-            return this.Response.ResponseStatus == status;
+            return this.Response.StatusCode == status;
         }
 
         protected internal IRestResponse Invoke(IRestRequest request, params StateTransitionOption[] options)
@@ -185,7 +185,7 @@ namespace Gx.Rs.Api
             return result;
         }
 
-        public virtual GedcomxApplicationState IfSuccessful()
+        public virtual GedcomxApplicationState<T> IfSuccessful()
         {
             if (HasError())
             {
@@ -194,7 +194,7 @@ namespace Gx.Rs.Api
             return this;
         }
 
-        public virtual GedcomxApplicationState Head(params StateTransitionOption[] options)
+        public virtual GedcomxApplicationState<T> Head(params StateTransitionOption[] options)
         {
             IRestRequest request = CreateAuthenticatedRequest();
             Parameter accept = this.Request.GetHeaders().Get("Accept").FirstOrDefault();
@@ -207,7 +207,7 @@ namespace Gx.Rs.Api
             return Clone(request, Invoke(request, options), this.Client);
         }
 
-        public virtual GedcomxApplicationState Options(params StateTransitionOption[] options)
+        public virtual GedcomxApplicationState<T> Options(params StateTransitionOption[] options)
         {
             IRestRequest request = CreateAuthenticatedRequest();
             Parameter accept = this.Request.GetHeaders().Get("Accept").FirstOrDefault();
@@ -219,7 +219,7 @@ namespace Gx.Rs.Api
             return Clone(request, Invoke(request, options), this.Client);
         }
 
-        public virtual GedcomxApplicationState Get(params StateTransitionOption[] options)
+        public virtual GedcomxApplicationState<T> Get(params StateTransitionOption[] options)
         {
             IRestRequest request = CreateAuthenticatedRequest();
             Parameter accept = this.Request.GetHeaders().Get("Accept").FirstOrDefault();
@@ -233,7 +233,7 @@ namespace Gx.Rs.Api
             return Clone(request, Invoke(request, options), this.Client);
         }
 
-        public virtual GedcomxApplicationState Delete(params StateTransitionOption[] options)
+        public virtual GedcomxApplicationState<T> Delete(params StateTransitionOption[] options)
         {
             IRestRequest request = CreateAuthenticatedRequest();
             Parameter accept = this.Request.GetHeaders().Get("Accept").FirstOrDefault();
@@ -245,7 +245,7 @@ namespace Gx.Rs.Api
             return Clone(request, Invoke(request, options), this.Client);
         }
 
-        public virtual GedcomxApplicationState Put(T entity, params StateTransitionOption[] options)
+        public virtual GedcomxApplicationState<T> Put(T entity, params StateTransitionOption[] options)
         {
             IRestRequest request = CreateAuthenticatedRequest();
             Parameter accept = this.Request.GetHeaders().Get("Accept").FirstOrDefault();
@@ -262,7 +262,7 @@ namespace Gx.Rs.Api
             return Clone(request, Invoke(request, options), this.Client);
         }
 
-        public virtual GedcomxApplicationState Post(T entity, params StateTransitionOption[] options)
+        public virtual GedcomxApplicationState<T> Post(T entity, params StateTransitionOption[] options)
         {
             IRestRequest request = CreateAuthenticatedRequest();
             Parameter accept = this.Request.GetHeaders().Get("Accept").FirstOrDefault();
@@ -296,12 +296,12 @@ namespace Gx.Rs.Api
             }
         }
 
-        public virtual GedcomxApplicationState AuthenticateViaOAuth2Password(String username, String password, String clientId)
+        public virtual GedcomxApplicationState<T> AuthenticateViaOAuth2Password(String username, String password, String clientId)
         {
             return AuthenticateViaOAuth2Password(username, password, clientId, null);
         }
 
-        public virtual GedcomxApplicationState AuthenticateViaOAuth2Password(String username, String password, String clientId, String clientSecret)
+        public virtual GedcomxApplicationState<T> AuthenticateViaOAuth2Password(String username, String password, String clientId, String clientSecret)
         {
             IDictionary<String, String> formData = new Dictionary<String, String>();
             formData.Add("grant_type", "password");
@@ -315,12 +315,12 @@ namespace Gx.Rs.Api
             return AuthenticateViaOAuth2(formData);
         }
 
-        public GedcomxApplicationState AuthenticateViaOAuth2AuthCode(String authCode, String redirect, String clientId)
+        public GedcomxApplicationState<T> AuthenticateViaOAuth2AuthCode(String authCode, String redirect, String clientId)
         {
             return AuthenticateViaOAuth2Password(authCode, authCode, clientId, null);
         }
 
-        public GedcomxApplicationState AuthenticateViaOAuth2AuthCode(String authCode, String redirect, String clientId, String clientSecret)
+        public GedcomxApplicationState<T> AuthenticateViaOAuth2AuthCode(String authCode, String redirect, String clientId, String clientSecret)
         {
             IDictionary<String, String> formData = new Dictionary<String, String>();
             formData.Add("grant_type", "authorization_code");
@@ -334,7 +334,7 @@ namespace Gx.Rs.Api
             return AuthenticateViaOAuth2(formData);
         }
 
-        public GedcomxApplicationState AuthenticateViaOAuth2ClientCredentials(String clientId, String clientSecret)
+        public GedcomxApplicationState<T> AuthenticateViaOAuth2ClientCredentials(String clientId, String clientSecret)
         {
             IDictionary<String, String> formData = new Dictionary<String, String>();
             formData.Add("grant_type", "client_credentials");
@@ -346,7 +346,7 @@ namespace Gx.Rs.Api
             return AuthenticateViaOAuth2(formData);
         }
 
-		public GedcomxApplicationState UnauthenticatedAccess(string ipAddress, string clientId, string clientSecret = null)
+		public GedcomxApplicationState<T> UnauthenticatedAccess(string ipAddress, string clientId, string clientSecret = null)
 		{
 			IDictionary<String, String> formData = new Dictionary<String, String>();
 			formData.Add("grant_type", "unauthenticated_session");
@@ -359,13 +359,13 @@ namespace Gx.Rs.Api
 			return AuthenticateViaOAuth2(formData);
 		}
 
-        public GedcomxApplicationState AuthenticateWithAccessToken(String accessToken)
+        public GedcomxApplicationState<T> AuthenticateWithAccessToken(String accessToken)
         {
             this.CurrentAccessToken = accessToken;
             return this;
         }
 
-        public GedcomxApplicationState AuthenticateViaOAuth2(IDictionary<String, String> formData, params StateTransitionOption[] options)
+        public GedcomxApplicationState<T> AuthenticateViaOAuth2(IDictionary<String, String> formData, params StateTransitionOption[] options)
         {
             Link tokenLink = this.GetLink(Rel.OAUTH2_TOKEN);
             if (tokenLink == null || tokenLink.Href == null)
@@ -408,7 +408,7 @@ namespace Gx.Rs.Api
             }
         }
 
-        public GedcomxApplicationState ReadPage(String rel, params StateTransitionOption[] options)
+        public GedcomxApplicationState<T> ReadPage(String rel, params StateTransitionOption[] options)
         {
             Link link = GetLink(rel);
             if (link == null || link.Href == null)
@@ -431,22 +431,22 @@ namespace Gx.Rs.Api
             return Clone(request, Invoke(request, options), this.Client);
         }
 
-        public GedcomxApplicationState ReadNextPage(params StateTransitionOption[] options)
+        public GedcomxApplicationState<T> ReadNextPage(params StateTransitionOption[] options)
         {
             return ReadPage(Rel.NEXT);
         }
 
-        public GedcomxApplicationState ReadPreviousPage(params StateTransitionOption[] options)
+        public GedcomxApplicationState<T> ReadPreviousPage(params StateTransitionOption[] options)
         {
             return ReadPage(Rel.PREVIOUS);
         }
 
-        public GedcomxApplicationState ReadFirstPage(params StateTransitionOption[] options)
+        public GedcomxApplicationState<T> ReadFirstPage(params StateTransitionOption[] options)
         {
             return ReadPage(Rel.FIRST);
         }
 
-        public GedcomxApplicationState ReadLastPage(params StateTransitionOption[] options)
+        public GedcomxApplicationState<T> ReadLastPage(params StateTransitionOption[] options)
         {
             return ReadPage(Rel.LAST);
         }

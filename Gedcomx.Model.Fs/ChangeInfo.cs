@@ -5,170 +5,208 @@
 // </auto-generated>
 using System;
 
-namespace Gx.Fs.Tree {
+namespace Gx.Fs.Tree
+{
 
-  /// <remarks>
-  ///  Information about a change.
-  /// </remarks>
-  /// <summary>
-  ///  Information about a change.
-  /// </summary>
-  [System.SerializableAttribute()]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://familysearch.org/v1/",TypeName="ChangeInfo")]
-  [System.Xml.Serialization.SoapTypeAttribute(Namespace="http://familysearch.org/v1/",TypeName="ChangeInfo")]
-  [System.Xml.Serialization.XmlRootAttribute(Namespace="http://familysearch.org/v1/",ElementName="changeInfo")]
-  public partial class ChangeInfo {
+    /// <remarks>
+    ///  Information about a change.
+    /// </remarks>
+    /// <summary>
+    ///  Information about a change.
+    /// </summary>
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://familysearch.org/v1/", TypeName = "ChangeInfo")]
+    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://familysearch.org/v1/", TypeName = "ChangeInfo")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://familysearch.org/v1/", ElementName = "changeInfo")]
+    public partial class ChangeInfo
+    {
 
-    private string _objectModifier;
-    private string _operation;
-    private string _reason;
-    private string _objectType;
-    private Gx.Common.ResourceReference _original;
-    private Gx.Common.ResourceReference _parent;
-    private Gx.Common.ResourceReference _removed;
-    private Gx.Common.ResourceReference _resulting;
-    /// <summary>
-    ///  An optional modifier for the object to which the operation applies.
-    /// </summary>
-    [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="objectModifier")]
-    [System.Xml.Serialization.SoapAttributeAttribute(AttributeName="objectModifier")]
-    public string ObjectModifier {
-      get {
-        return this._objectModifier;
-      }
-      set {
-        this._objectModifier = value;
-      }
-    }
+        private string _objectModifier;
+        private string _operation;
+        private string _reason;
+        private string _objectType;
+        private Gx.Common.ResourceReference _original;
+        private Gx.Common.ResourceReference _parent;
+        private Gx.Common.ResourceReference _removed;
+        private Gx.Common.ResourceReference _resulting;
+        /// <summary>
+        ///  An optional modifier for the object to which the operation applies.
+        /// </summary>
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "objectModifier")]
+        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "objectModifier")]
+        public string ObjectModifier
+        {
+            get
+            {
+                return this._objectModifier;
+            }
+            set
+            {
+                this._objectModifier = value;
+            }
+        }
 
-    /// <summary>
-    ///  Convenience property for treating ObjectModifier as an enum. See Gx.Fs.Tree.ChangeObjectModifierQNameUtil for details on getter/setter functionality.
-    /// </summary>
-    [System.Xml.Serialization.XmlIgnoreAttribute]
-    public Gx.Fs.Tree.ChangeObjectModifier KnownObjectModifier {
-      get {
-        return Gx.Fs.Tree.ChangeObjectModifierQNameUtil.ConvertFromKnownQName(this._objectModifier);
-      }
-      set {
-        this._objectModifier = Gx.Fs.Tree.ChangeObjectModifierQNameUtil.ConvertToKnownQName(value);
-      }
-    }
-    /// <summary>
-    ///  The operation of the change.
-    /// </summary>
-    [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="operation")]
-    [System.Xml.Serialization.SoapAttributeAttribute(AttributeName="operation")]
-    public string Operation {
-      get {
-        return this._operation;
-      }
-      set {
-        this._operation = value;
-      }
-    }
+        /// <summary>
+        ///  Convenience property for treating ObjectModifier as an enum. See Gx.Fs.Tree.ChangeObjectModifierQNameUtil for details on getter/setter functionality.
+        /// </summary>
+        [System.Xml.Serialization.XmlIgnoreAttribute]
+        [Newtonsoft.Json.JsonIgnore]
+        public Gx.Fs.Tree.ChangeObjectModifier KnownObjectModifier
+        {
+            get
+            {
+                return Gx.Fs.Tree.ChangeObjectModifierQNameUtil.ConvertFromKnownQName(this._objectModifier);
+            }
+            set
+            {
+                this._objectModifier = Gx.Fs.Tree.ChangeObjectModifierQNameUtil.ConvertToKnownQName(value);
+            }
+        }
+        /// <summary>
+        ///  The operation of the change.
+        /// </summary>
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "operation")]
+        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "operation")]
+        public string Operation
+        {
+            get
+            {
+                return this._operation;
+            }
+            set
+            {
+                this._operation = value;
+            }
+        }
 
-    /// <summary>
-    ///  Convenience property for treating Operation as an enum. See Gx.Fs.Tree.ChangeOperationQNameUtil for details on getter/setter functionality.
-    /// </summary>
-    [System.Xml.Serialization.XmlIgnoreAttribute]
-    public Gx.Fs.Tree.ChangeOperation KnownOperation {
-      get {
-        return Gx.Fs.Tree.ChangeOperationQNameUtil.ConvertFromKnownQName(this._operation);
-      }
-      set {
-        this._operation = Gx.Fs.Tree.ChangeOperationQNameUtil.ConvertToKnownQName(value);
-      }
-    }
-    /// <summary>
-    ///  The reason for the change.
-    /// </summary>
-    [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="reason")]
-    [System.Xml.Serialization.SoapAttributeAttribute(AttributeName="reason")]
-    public string Reason {
-      get {
-        return this._reason;
-      }
-      set {
-        this._reason = value;
-      }
-    }
-    /// <summary>
-    ///  The type of the object to which the operation applies.
-    /// </summary>
-    [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="objectType")]
-    [System.Xml.Serialization.SoapAttributeAttribute(AttributeName="objectType")]
-    public string ObjectType {
-      get {
-        return this._objectType;
-      }
-      set {
-        this._objectType = value;
-      }
-    }
+        /// <summary>
+        ///  Convenience property for treating Operation as an enum. See Gx.Fs.Tree.ChangeOperationQNameUtil for details on getter/setter functionality.
+        /// </summary>
+        [System.Xml.Serialization.XmlIgnoreAttribute]
+        [Newtonsoft.Json.JsonIgnore]
+        public Gx.Fs.Tree.ChangeOperation KnownOperation
+        {
+            get
+            {
+                return Gx.Fs.Tree.ChangeOperationQNameUtil.ConvertFromKnownQName(this._operation);
+            }
+            set
+            {
+                this._operation = Gx.Fs.Tree.ChangeOperationQNameUtil.ConvertToKnownQName(value);
+            }
+        }
+        /// <summary>
+        ///  The reason for the change.
+        /// </summary>
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "reason")]
+        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "reason")]
+        public string Reason
+        {
+            get
+            {
+                return this._reason;
+            }
+            set
+            {
+                this._reason = value;
+            }
+        }
+        /// <summary>
+        ///  The type of the object to which the operation applies.
+        /// </summary>
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "objectType")]
+        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "objectType")]
+        public string ObjectType
+        {
+            get
+            {
+                return this._objectType;
+            }
+            set
+            {
+                this._objectType = value;
+            }
+        }
 
-    /// <summary>
-    ///  Convenience property for treating ObjectType as an enum. See Gx.Fs.Tree.ChangeObjectTypeQNameUtil for details on getter/setter functionality.
-    /// </summary>
-    [System.Xml.Serialization.XmlIgnoreAttribute]
-    public Gx.Fs.Tree.ChangeObjectType KnownObjectType {
-      get {
-        return Gx.Fs.Tree.ChangeObjectTypeQNameUtil.ConvertFromKnownQName(this._objectType);
-      }
-      set {
-        this._objectType = Gx.Fs.Tree.ChangeObjectTypeQNameUtil.ConvertToKnownQName(value);
-      }
+        /// <summary>
+        ///  Convenience property for treating ObjectType as an enum. See Gx.Fs.Tree.ChangeObjectTypeQNameUtil for details on getter/setter functionality.
+        /// </summary>
+        [System.Xml.Serialization.XmlIgnoreAttribute]
+        [Newtonsoft.Json.JsonIgnore]
+        public Gx.Fs.Tree.ChangeObjectType KnownObjectType
+        {
+            get
+            {
+                return Gx.Fs.Tree.ChangeObjectTypeQNameUtil.ConvertFromKnownQName(this._objectType);
+            }
+            set
+            {
+                this._objectType = Gx.Fs.Tree.ChangeObjectTypeQNameUtil.ConvertToKnownQName(value);
+            }
+        }
+        /// <summary>
+        ///  The subject representing the original value(s) that existed before the change.
+        /// </summary>
+        [System.Xml.Serialization.XmlElementAttribute(ElementName = "original", Namespace = "http://familysearch.org/v1/")]
+        [System.Xml.Serialization.SoapElementAttribute(ElementName = "original")]
+        public Gx.Common.ResourceReference Original
+        {
+            get
+            {
+                return this._original;
+            }
+            set
+            {
+                this._original = value;
+            }
+        }
+        /// <summary>
+        ///  The parent change that triggered, caused, or included this change.
+        /// </summary>
+        [System.Xml.Serialization.XmlElementAttribute(ElementName = "parent", Namespace = "http://familysearch.org/v1/")]
+        [System.Xml.Serialization.SoapElementAttribute(ElementName = "parent")]
+        public Gx.Common.ResourceReference Parent
+        {
+            get
+            {
+                return this._parent;
+            }
+            set
+            {
+                this._parent = value;
+            }
+        }
+        /// <summary>
+        ///  The subject representing the removed value(s) that existed before the change.
+        /// </summary>
+        [System.Xml.Serialization.XmlElementAttribute(ElementName = "removed", Namespace = "http://familysearch.org/v1/")]
+        [System.Xml.Serialization.SoapElementAttribute(ElementName = "removed")]
+        public Gx.Common.ResourceReference Removed
+        {
+            get
+            {
+                return this._removed;
+            }
+            set
+            {
+                this._removed = value;
+            }
+        }
+        /// <summary>
+        ///  The subject representing the result of the change.
+        /// </summary>
+        [System.Xml.Serialization.XmlElementAttribute(ElementName = "resulting", Namespace = "http://familysearch.org/v1/")]
+        [System.Xml.Serialization.SoapElementAttribute(ElementName = "resulting")]
+        public Gx.Common.ResourceReference Resulting
+        {
+            get
+            {
+                return this._resulting;
+            }
+            set
+            {
+                this._resulting = value;
+            }
+        }
     }
-    /// <summary>
-    ///  The subject representing the original value(s) that existed before the change.
-    /// </summary>
-    [System.Xml.Serialization.XmlElementAttribute(ElementName="original",Namespace="http://familysearch.org/v1/")]
-    [System.Xml.Serialization.SoapElementAttribute(ElementName="original")]
-    public Gx.Common.ResourceReference Original {
-      get {
-        return this._original;
-      }
-      set {
-        this._original = value;
-      }
-    }
-    /// <summary>
-    ///  The parent change that triggered, caused, or included this change.
-    /// </summary>
-    [System.Xml.Serialization.XmlElementAttribute(ElementName="parent",Namespace="http://familysearch.org/v1/")]
-    [System.Xml.Serialization.SoapElementAttribute(ElementName="parent")]
-    public Gx.Common.ResourceReference Parent {
-      get {
-        return this._parent;
-      }
-      set {
-        this._parent = value;
-      }
-    }
-    /// <summary>
-    ///  The subject representing the removed value(s) that existed before the change.
-    /// </summary>
-    [System.Xml.Serialization.XmlElementAttribute(ElementName="removed",Namespace="http://familysearch.org/v1/")]
-    [System.Xml.Serialization.SoapElementAttribute(ElementName="removed")]
-    public Gx.Common.ResourceReference Removed {
-      get {
-        return this._removed;
-      }
-      set {
-        this._removed = value;
-      }
-    }
-    /// <summary>
-    ///  The subject representing the result of the change.
-    /// </summary>
-    [System.Xml.Serialization.XmlElementAttribute(ElementName="resulting",Namespace="http://familysearch.org/v1/")]
-    [System.Xml.Serialization.SoapElementAttribute(ElementName="resulting")]
-    public Gx.Common.ResourceReference Resulting {
-      get {
-        return this._resulting;
-      }
-      set {
-        this._resulting = value;
-      }
-    }
-  }
-}  
+}

@@ -51,6 +51,7 @@ namespace Gx.Conclusion
         ///  Convenience property for treating Confidence as an enum. See Gx.Types.ConfidenceLevelQNameUtil for details on getter/setter functionality.
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute]
+        [Newtonsoft.Json.JsonIgnore]
         public Gx.Types.ConfidenceLevel KnownConfidence
         {
             get

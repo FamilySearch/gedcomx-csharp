@@ -46,6 +46,7 @@ namespace Gx.Conclusion
         ///  Convenience property for treating Type as an enum. See Gx.Types.IdentifierTypeQNameUtil for details on getter/setter functionality.
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute]
+        [Newtonsoft.Json.JsonIgnore]
         public Gx.Types.IdentifierType KnownType
         {
             get

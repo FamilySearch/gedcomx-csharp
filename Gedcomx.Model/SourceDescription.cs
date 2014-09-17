@@ -134,6 +134,7 @@ namespace Gx.Source
         ///  Convenience property for treating ResourceType as an enum. See Gx.Types.ResourceTypeQNameUtil for details on getter/setter functionality.
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute]
+        [Newtonsoft.Json.JsonIgnore]
         public Gx.Types.ResourceType KnownResourceType
         {
             get
@@ -346,6 +347,7 @@ namespace Gx.Source
         [System.Xml.Serialization.XmlIgnoreAttribute]
         [System.Xml.Serialization.SoapIgnoreAttribute]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        [Newtonsoft.Json.JsonIgnore]
         public bool CreatedSpecified
         {
             get
@@ -383,6 +385,7 @@ namespace Gx.Source
         [System.Xml.Serialization.XmlIgnoreAttribute]
         [System.Xml.Serialization.SoapIgnoreAttribute]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        [Newtonsoft.Json.JsonIgnore]
         public bool ModifiedSpecified
         {
             get

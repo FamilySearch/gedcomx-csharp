@@ -5,60 +5,72 @@
 // </auto-generated>
 using System;
 
-namespace Gx.Fs.Tree {
+namespace Gx.Fs.Tree
+{
 
-  /// <remarks>
-  ///  Information about a match.
-  /// </remarks>
-  /// <summary>
-  ///  Information about a match.
-  /// </summary>
-  [System.SerializableAttribute()]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://familysearch.org/v1/",TypeName="MatchInfo")]
-  [System.Xml.Serialization.SoapTypeAttribute(Namespace="http://familysearch.org/v1/",TypeName="MatchInfo")]
-  [System.Xml.Serialization.XmlRootAttribute(Namespace="http://familysearch.org/v1/",ElementName="matchInfo")]
-  public partial class MatchInfo {
+    /// <remarks>
+    ///  Information about a match.
+    /// </remarks>
+    /// <summary>
+    ///  Information about a match.
+    /// </summary>
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://familysearch.org/v1/", TypeName = "MatchInfo")]
+    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://familysearch.org/v1/", TypeName = "MatchInfo")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://familysearch.org/v1/", ElementName = "matchInfo")]
+    public partial class MatchInfo
+    {
 
-    private string _status;
-    private string _collection;
-    /// <summary>
-    ///  The way this match has been resolved.
-    /// </summary>
-    [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="status")]
-    [System.Xml.Serialization.SoapAttributeAttribute(AttributeName="status")]
-    public string Status {
-      get {
-        return this._status;
-      }
-      set {
-        this._status = value;
-      }
-    }
+        private string _status;
+        private string _collection;
+        /// <summary>
+        ///  The way this match has been resolved.
+        /// </summary>
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "status")]
+        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "status")]
+        public string Status
+        {
+            get
+            {
+                return this._status;
+            }
+            set
+            {
+                this._status = value;
+            }
+        }
 
-    /// <summary>
-    ///  Convenience property for treating Status as an enum. See Gx.Fs.Tree.MatchStatusQNameUtil for details on getter/setter functionality.
-    /// </summary>
-    [System.Xml.Serialization.XmlIgnoreAttribute]
-    public Gx.Fs.Tree.MatchStatus KnownStatus {
-      get {
-        return Gx.Fs.Tree.MatchStatusQNameUtil.ConvertFromKnownQName(this._status);
-      }
-      set {
-        this._status = Gx.Fs.Tree.MatchStatusQNameUtil.ConvertToKnownQName(value);
-      }
+        /// <summary>
+        ///  Convenience property for treating Status as an enum. See Gx.Fs.Tree.MatchStatusQNameUtil for details on getter/setter functionality.
+        /// </summary>
+        [System.Xml.Serialization.XmlIgnoreAttribute]
+        [Newtonsoft.Json.JsonIgnore]
+        public Gx.Fs.Tree.MatchStatus KnownStatus
+        {
+            get
+            {
+                return Gx.Fs.Tree.MatchStatusQNameUtil.ConvertFromKnownQName(this._status);
+            }
+            set
+            {
+                this._status = Gx.Fs.Tree.MatchStatusQNameUtil.ConvertToKnownQName(value);
+            }
+        }
+        /// <summary>
+        ///  The collection in which this match was found.
+        /// </summary>
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "collection")]
+        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "collection")]
+        public string Collection
+        {
+            get
+            {
+                return this._collection;
+            }
+            set
+            {
+                this._collection = value;
+            }
+        }
     }
-    /// <summary>
-    ///  The collection in which this match was found.
-    /// </summary>
-    [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="collection")]
-    [System.Xml.Serialization.SoapAttributeAttribute(AttributeName="collection")]
-    public string Collection {
-      get {
-        return this._collection;
-      }
-      set {
-        this._collection = value;
-      }
-    }
-  }
-}  
+}

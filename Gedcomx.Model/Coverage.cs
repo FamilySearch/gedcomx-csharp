@@ -5,74 +5,89 @@
 // </auto-generated>
 using System;
 
-namespace Gx.Source {
+namespace Gx.Source
+{
 
-  /// <remarks>
-  ///  A description of the coverage of a resource.
-  /// </remarks>
-  /// <summary>
-  ///  A description of the coverage of a resource.
-  /// </summary>
-  [System.SerializableAttribute()]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://gedcomx.org/v1/",TypeName="Coverage")]
-  [System.Xml.Serialization.SoapTypeAttribute(Namespace="http://gedcomx.org/v1/",TypeName="Coverage")]
-  [System.Xml.Serialization.XmlRootAttribute(Namespace="http://gedcomx.org/v1/",ElementName="coverage")]
-  public partial class Coverage : Gx.Links.HypermediaEnabledData {
+    /// <remarks>
+    ///  A description of the coverage of a resource.
+    /// </remarks>
+    /// <summary>
+    ///  A description of the coverage of a resource.
+    /// </summary>
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Coverage")]
+    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Coverage")]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://gedcomx.org/v1/", ElementName = "coverage")]
+    public partial class Coverage : Gx.Links.HypermediaEnabledData
+    {
 
-    private string _recordType;
-    private Gx.Conclusion.PlaceReference _spatial;
-    private Gx.Conclusion.DateInfo _temporal;
-    /// <summary>
-    ///  The type of record being covered.
-    /// </summary>
-    [System.Xml.Serialization.XmlElementAttribute(ElementName="recordType",Namespace="http://gedcomx.org/v1/")]
-    [System.Xml.Serialization.SoapElementAttribute(ElementName="recordType")]
-    public string RecordType {
-      get {
-        return this._recordType;
-      }
-      set {
-        this._recordType = value;
-      }
-    }
+        private string _recordType;
+        private Gx.Conclusion.PlaceReference _spatial;
+        private Gx.Conclusion.DateInfo _temporal;
+        /// <summary>
+        ///  The type of record being covered.
+        /// </summary>
+        [System.Xml.Serialization.XmlElementAttribute(ElementName = "recordType", Namespace = "http://gedcomx.org/v1/")]
+        [System.Xml.Serialization.SoapElementAttribute(ElementName = "recordType")]
+        public string RecordType
+        {
+            get
+            {
+                return this._recordType;
+            }
+            set
+            {
+                this._recordType = value;
+            }
+        }
 
-    /// <summary>
-    ///  Convenience property for treating RecordType as an enum. See Gx.Types.RecordTypeQNameUtil for details on getter/setter functionality.
-    /// </summary>
-    [System.Xml.Serialization.XmlIgnoreAttribute]
-    public Gx.Types.RecordType KnownRecordType {
-      get {
-        return Gx.Types.RecordTypeQNameUtil.ConvertFromKnownQName(this._recordType);
-      }
-      set {
-        this._recordType = Gx.Types.RecordTypeQNameUtil.ConvertToKnownQName(value);
-      }
+        /// <summary>
+        ///  Convenience property for treating RecordType as an enum. See Gx.Types.RecordTypeQNameUtil for details on getter/setter functionality.
+        /// </summary>
+        [System.Xml.Serialization.XmlIgnoreAttribute]
+        [Newtonsoft.Json.JsonIgnore]
+        public Gx.Types.RecordType KnownRecordType
+        {
+            get
+            {
+                return Gx.Types.RecordTypeQNameUtil.ConvertFromKnownQName(this._recordType);
+            }
+            set
+            {
+                this._recordType = Gx.Types.RecordTypeQNameUtil.ConvertToKnownQName(value);
+            }
+        }
+        /// <summary>
+        ///  Spatial coverage.
+        /// </summary>
+        [System.Xml.Serialization.XmlElementAttribute(ElementName = "spatial", Namespace = "http://gedcomx.org/v1/")]
+        [System.Xml.Serialization.SoapElementAttribute(ElementName = "spatial")]
+        public Gx.Conclusion.PlaceReference Spatial
+        {
+            get
+            {
+                return this._spatial;
+            }
+            set
+            {
+                this._spatial = value;
+            }
+        }
+        /// <summary>
+        ///  Temporal coverage.
+        /// </summary>
+        [System.Xml.Serialization.XmlElementAttribute(ElementName = "temporal", Namespace = "http://gedcomx.org/v1/")]
+        [System.Xml.Serialization.SoapElementAttribute(ElementName = "temporal")]
+        public Gx.Conclusion.DateInfo Temporal
+        {
+            get
+            {
+                return this._temporal;
+            }
+            set
+            {
+                this._temporal = value;
+            }
+        }
     }
-    /// <summary>
-    ///  Spatial coverage.
-    /// </summary>
-    [System.Xml.Serialization.XmlElementAttribute(ElementName="spatial",Namespace="http://gedcomx.org/v1/")]
-    [System.Xml.Serialization.SoapElementAttribute(ElementName="spatial")]
-    public Gx.Conclusion.PlaceReference Spatial {
-      get {
-        return this._spatial;
-      }
-      set {
-        this._spatial = value;
-      }
-    }
-    /// <summary>
-    ///  Temporal coverage.
-    /// </summary>
-    [System.Xml.Serialization.XmlElementAttribute(ElementName="temporal",Namespace="http://gedcomx.org/v1/")]
-    [System.Xml.Serialization.SoapElementAttribute(ElementName="temporal")]
-    public Gx.Conclusion.DateInfo Temporal {
-      get {
-        return this._temporal;
-      }
-      set {
-        this._temporal = value;
-      }
-    }
-  }
-}  
+}

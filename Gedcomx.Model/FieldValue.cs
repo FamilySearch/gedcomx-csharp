@@ -79,6 +79,7 @@ namespace Gx.Records
         ///  Convenience property for treating Type as an enum. See Gx.Types.FieldValueTypeQNameUtil for details on getter/setter functionality.
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute]
+        [Newtonsoft.Json.JsonIgnore]
         public Gx.Types.FieldValueType KnownType
         {
             get

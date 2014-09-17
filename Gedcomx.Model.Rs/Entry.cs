@@ -98,6 +98,7 @@ namespace Gx.Atom
         [System.Xml.Serialization.XmlIgnoreAttribute]
         [System.Xml.Serialization.SoapIgnoreAttribute]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        [Newtonsoft.Json.JsonIgnore]
         public bool ConfidenceSpecified
         {
             get
@@ -201,6 +202,7 @@ namespace Gx.Atom
         [System.Xml.Serialization.XmlIgnoreAttribute]
         [System.Xml.Serialization.SoapIgnoreAttribute]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        [Newtonsoft.Json.JsonIgnore]
         public bool PublishedSpecified
         {
             get
@@ -253,6 +255,7 @@ namespace Gx.Atom
         [System.Xml.Serialization.XmlIgnoreAttribute]
         [System.Xml.Serialization.SoapIgnoreAttribute]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        [Newtonsoft.Json.JsonIgnore]
         public bool ScoreSpecified
         {
             get
@@ -306,6 +309,7 @@ namespace Gx.Atom
         [System.Xml.Serialization.XmlIgnoreAttribute]
         [System.Xml.Serialization.SoapIgnoreAttribute]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        [Newtonsoft.Json.JsonIgnore]
         public bool UpdatedSpecified
         {
             get

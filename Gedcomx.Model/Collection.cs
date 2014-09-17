@@ -84,6 +84,7 @@ namespace Gx.Records
         [System.Xml.Serialization.XmlIgnoreAttribute]
         [System.Xml.Serialization.SoapIgnoreAttribute]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        [Newtonsoft.Json.JsonIgnore]
         public bool SizeSpecified
         {
             get

@@ -5,105 +5,127 @@
 // </auto-generated>
 using System;
 
-namespace Gx.Records {
+namespace Gx.Records
+{
 
-  /// <remarks>
-  ///  A way a field is to be displayed to a user.
-  /// </remarks>
-  /// <summary>
-  ///  A way a field is to be displayed to a user.
-  /// </summary>
-  [System.SerializableAttribute()]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://gedcomx.org/v1/",TypeName="FieldValueDescriptor")]
-  [System.Xml.Serialization.SoapTypeAttribute(Namespace="http://gedcomx.org/v1/",TypeName="FieldValueDescriptor")]
-  public partial class FieldValueDescriptor : Gx.Links.HypermediaEnabledData {
+    /// <remarks>
+    ///  A way a field is to be displayed to a user.
+    /// </remarks>
+    /// <summary>
+    ///  A way a field is to be displayed to a user.
+    /// </summary>
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "FieldValueDescriptor")]
+    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "FieldValueDescriptor")]
+    public partial class FieldValueDescriptor : Gx.Links.HypermediaEnabledData
+    {
 
-    private bool? _optional;
-    private bool _optionalSpecified;
-    private string _type;
-    private string _labelId;
-    private System.Collections.Generic.List<Gx.Common.TextValue> _displayLabels;
-    /// <summary>
-    ///  Whether the treatment of the field value is optional. Used to determine whether it should be displayed even if the value is empty.
-    /// </summary>
-    [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="optional")]
-    [System.Xml.Serialization.SoapAttributeAttribute(AttributeName="optional")]
-    public bool Optional {
-      get {
-        return this._optional.GetValueOrDefault();
-      }
-      set {
-        this._optional = value;
-        this._optionalSpecified = true;
-      }
-    }
+        private bool? _optional;
+        private bool _optionalSpecified;
+        private string _type;
+        private string _labelId;
+        private System.Collections.Generic.List<Gx.Common.TextValue> _displayLabels;
+        /// <summary>
+        ///  Whether the treatment of the field value is optional. Used to determine whether it should be displayed even if the value is empty.
+        /// </summary>
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "optional")]
+        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "optional")]
+        public bool Optional
+        {
+            get
+            {
+                return this._optional.GetValueOrDefault();
+            }
+            set
+            {
+                this._optional = value;
+                this._optionalSpecified = true;
+            }
+        }
 
-    /// <summary>
-    ///  Property for the XML serializer indicating whether the "Optional" property should be included in the output.
-    /// </summary>
-    [System.Xml.Serialization.XmlIgnoreAttribute]
-    [System.Xml.Serialization.SoapIgnoreAttribute]
-    [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
-    public bool OptionalSpecified {
-      get {
-        return this._optionalSpecified;
-      }
-      set {
-        this._optionalSpecified = value;
-      }
-    }
+        /// <summary>
+        ///  Property for the XML serializer indicating whether the "Optional" property should be included in the output.
+        /// </summary>
+        [System.Xml.Serialization.XmlIgnoreAttribute]
+        [System.Xml.Serialization.SoapIgnoreAttribute]
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        [Newtonsoft.Json.JsonIgnore]
+        public bool OptionalSpecified
+        {
+            get
+            {
+                return this._optionalSpecified;
+            }
+            set
+            {
+                this._optionalSpecified = value;
+            }
+        }
 
-    /// <summary>
-    ///  The type of the field value.
-    /// </summary>
-    [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="type")]
-    [System.Xml.Serialization.SoapAttributeAttribute(AttributeName="type")]
-    public string Type {
-      get {
-        return this._type;
-      }
-      set {
-        this._type = value;
-      }
-    }
+        /// <summary>
+        ///  The type of the field value.
+        /// </summary>
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "type")]
+        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "type")]
+        public string Type
+        {
+            get
+            {
+                return this._type;
+            }
+            set
+            {
+                this._type = value;
+            }
+        }
 
-    /// <summary>
-    ///  Convenience property for treating Type as an enum. See Gx.Types.FieldValueTypeQNameUtil for details on getter/setter functionality.
-    /// </summary>
-    [System.Xml.Serialization.XmlIgnoreAttribute]
-    public Gx.Types.FieldValueType KnownType {
-      get {
-        return Gx.Types.FieldValueTypeQNameUtil.ConvertFromKnownQName(this._type);
-      }
-      set {
-        this._type = Gx.Types.FieldValueTypeQNameUtil.ConvertToKnownQName(value);
-      }
+        /// <summary>
+        ///  Convenience property for treating Type as an enum. See Gx.Types.FieldValueTypeQNameUtil for details on getter/setter functionality.
+        /// </summary>
+        [System.Xml.Serialization.XmlIgnoreAttribute]
+        [Newtonsoft.Json.JsonIgnore]
+        public Gx.Types.FieldValueType KnownType
+        {
+            get
+            {
+                return Gx.Types.FieldValueTypeQNameUtil.ConvertFromKnownQName(this._type);
+            }
+            set
+            {
+                this._type = Gx.Types.FieldValueTypeQNameUtil.ConvertToKnownQName(value);
+            }
+        }
+        /// <summary>
+        ///  The id of the label applicable to the field value
+        /// </summary>
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "labelId")]
+        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "labelId")]
+        public string LabelId
+        {
+            get
+            {
+                return this._labelId;
+            }
+            set
+            {
+                this._labelId = value;
+            }
+        }
+        /// <summary>
+        ///  The labels to be used for display purposes.
+        /// </summary>
+        [System.Xml.Serialization.XmlElementAttribute(ElementName = "label", Namespace = "http://gedcomx.org/v1/")]
+        [System.Xml.Serialization.SoapElementAttribute(ElementName = "label")]
+        public System.Collections.Generic.List<Gx.Common.TextValue> DisplayLabels
+        {
+            get
+            {
+                return this._displayLabels;
+            }
+            set
+            {
+                this._displayLabels = value;
+            }
+        }
     }
-    /// <summary>
-    ///  The id of the label applicable to the field value
-    /// </summary>
-    [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="labelId")]
-    [System.Xml.Serialization.SoapAttributeAttribute(AttributeName="labelId")]
-    public string LabelId {
-      get {
-        return this._labelId;
-      }
-      set {
-        this._labelId = value;
-      }
-    }
-    /// <summary>
-    ///  The labels to be used for display purposes.
-    /// </summary>
-    [System.Xml.Serialization.XmlElementAttribute(ElementName="label",Namespace="http://gedcomx.org/v1/")]
-    [System.Xml.Serialization.SoapElementAttribute(ElementName="label")]
-    public System.Collections.Generic.List<Gx.Common.TextValue> DisplayLabels {
-      get {
-        return this._displayLabels;
-      }
-      set {
-        this._displayLabels = value;
-      }
-    }
-  }
-}  
+}

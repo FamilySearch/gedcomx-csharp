@@ -59,6 +59,7 @@ namespace Gx.Conclusion
         [System.Xml.Serialization.XmlIgnoreAttribute]
         [System.Xml.Serialization.SoapIgnoreAttribute]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        [Newtonsoft.Json.JsonIgnore]
         public bool PrincipalSpecified
         {
             get
@@ -95,6 +96,7 @@ namespace Gx.Conclusion
         [System.Xml.Serialization.XmlIgnoreAttribute]
         [System.Xml.Serialization.SoapIgnoreAttribute]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        [Newtonsoft.Json.JsonIgnore]
         public bool PrivateSpecified
         {
             get
@@ -131,6 +133,7 @@ namespace Gx.Conclusion
         [System.Xml.Serialization.XmlIgnoreAttribute]
         [System.Xml.Serialization.SoapIgnoreAttribute]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        [Newtonsoft.Json.JsonIgnore]
         public bool LivingSpecified
         {
             get

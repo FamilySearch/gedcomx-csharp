@@ -104,6 +104,7 @@ namespace Gx.Links
         [System.Xml.Serialization.XmlIgnoreAttribute]
         [System.Xml.Serialization.SoapIgnoreAttribute]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        [Newtonsoft.Json.JsonIgnore]
         public bool CountSpecified
         {
             get
@@ -204,6 +205,7 @@ namespace Gx.Links
         [System.Xml.Serialization.XmlIgnoreAttribute]
         [System.Xml.Serialization.SoapIgnoreAttribute]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        [Newtonsoft.Json.JsonIgnore]
         public bool ResultsSpecified
         {
             get
@@ -256,6 +258,7 @@ namespace Gx.Links
         [System.Xml.Serialization.XmlIgnoreAttribute]
         [System.Xml.Serialization.SoapIgnoreAttribute]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        [Newtonsoft.Json.JsonIgnore]
         public bool OffsetSpecified
         {
             get

@@ -16,6 +16,7 @@ namespace Gx.Rs.Api
 {
     public abstract class GedcomxApplicationState : HypermediaEnabledData
     {
+        private readonly String gzipSuffix = "-gzip";
         public IRestClient Client { get; protected set; }
         public String CurrentAccessToken { get; set; }
         protected Tavis.LinkFactory linkFactory;
@@ -29,7 +30,12 @@ namespace Gx.Rs.Api
             get
             {
 #warning ETag is causing HTTP 412 on all requests
-                return this.Response != null ? this.Response.Headers.Get("ETag").Select(x => x.Value.ToString()).FirstOrDefault() : null;
+                var result = this.Response != null ? this.Response.Headers.Get("ETag").Select(x => x.Value.ToString()).FirstOrDefault() : null;
+                if (result != null && result.IndexOf(gzipSuffix) != -1)
+                {
+                    result = result.Replace(gzipSuffix, String.Empty);
+                }
+                return result;
             }
         }
 

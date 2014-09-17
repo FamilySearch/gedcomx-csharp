@@ -20,7 +20,7 @@ namespace FamilySearch.Api
         {
         }
 
-        protected override GedcomxApplicationState Clone(IRestRequest request, IRestResponse response, IRestClient client)
+        protected override GedcomxApplicationState<FamilySearchPlatform> Clone(IRestRequest request, IRestResponse response, IRestClient client)
         {
             return new PersonMergeState(request, response, client, this.CurrentAccessToken, (FamilySearchStateFactory)this.stateFactory);
         }

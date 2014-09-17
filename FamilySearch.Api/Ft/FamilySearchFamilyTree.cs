@@ -58,7 +58,7 @@ namespace FamilySearch.Api.Ft
         {
         }
 
-        protected override GedcomxApplicationState Clone(IRestRequest request, IRestResponse response, IRestClient client)
+        protected override GedcomxApplicationState<Gx.Gedcomx> Clone(IRestRequest request, IRestResponse response, IRestClient client)
         {
             return new FamilySearchFamilyTree(request, response, client, this.CurrentAccessToken, (FamilyTreeStateFactory)this.stateFactory);
         }

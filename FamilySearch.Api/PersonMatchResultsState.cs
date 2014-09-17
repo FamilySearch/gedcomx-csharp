@@ -21,7 +21,7 @@ namespace FamilySearch.Api
         {
         }
 
-        protected override GedcomxApplicationState Clone(IRestRequest request, IRestResponse response, IRestClient client)
+        protected override GedcomxApplicationState<Gx.Atom.Feed> Clone(IRestRequest request, IRestResponse response, IRestClient client)
         {
             return new PersonMatchResultsState(request, response, client, this.CurrentAccessToken, (FamilySearchStateFactory)this.stateFactory);
         }

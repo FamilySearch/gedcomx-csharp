@@ -414,14 +414,13 @@ namespace Gedcomx.Rs.Api.Test
         }
 
         [Test]
-        [Ignore("AddNonMatch() is not ready for testing yet.")]
         public void TestAddPersonNotAMatchDeclaration()
         {
-            var possibleMatches = tree.ReadPersonById(PERSON_WITH_DATA_ID).ReadMatches();
-            var notAMatchPerson = possibleMatches.Results.Entries.First();
-            var state = possibleMatches.AddNonMatch(notAMatchPerson);
+            var person1 = tree.ReadPersonById("KWWD-CMF");
+            var person2 = tree.ReadPersonById("KW73-MB6");
+            var state = person1.AddNonMatch(person2);
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.IsTrue(state.Response.StatusCode == HttpStatusCode.Created);
+            Assert.IsTrue(state.Response.StatusCode == HttpStatusCode.NoContent);
         }
 
         [Test]

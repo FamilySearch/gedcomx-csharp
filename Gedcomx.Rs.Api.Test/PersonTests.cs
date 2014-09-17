@@ -1,5 +1,6 @@
 ﻿using FamilySearch.Api;
 using FamilySearch.Api.Ft;
+using FamilySearch.Api.Memories;
 using Gx.Common;
 using Gx.Conclusion;
 using Gx.Links;
@@ -523,6 +524,13 @@ namespace Gedcomx.Rs.Api.Test
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.IsTrue(state.Response.StatusCode == HttpStatusCode.NoContent);
+        }
+
+        [Test]
+        public void TestReadPersonMemories()
+        {
+            var memories = new FamilySearchMemories(true);
+            memories.ToString();
         }
     }
 }

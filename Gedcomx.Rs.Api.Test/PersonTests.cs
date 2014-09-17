@@ -527,10 +527,10 @@ namespace Gedcomx.Rs.Api.Test
         }
 
         [Test]
+        [Ignore("Pending rel link.")]
         public void TestReadPersonMemories()
         {
-            var memories = new FamilySearchMemories(true);
-            memories.ToString();
+            throw new NotImplementedException();
         }
     }
 }

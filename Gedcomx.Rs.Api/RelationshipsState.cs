@@ -61,7 +61,7 @@ namespace Gx.Rs.Api
             return AddRelationship(relationship, options);
         }
 
-        public RelationshipState AddRelationship(Relationship relationship, params StateTransitionOption[] options)
+        public virtual RelationshipState AddRelationship(Relationship relationship, params StateTransitionOption[] options)
         {
             Gedcomx entity = new Gedcomx();
             entity.AddRelationship(relationship);

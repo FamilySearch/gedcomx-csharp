@@ -14,7 +14,7 @@ namespace Gx.Rs.Api
     public class PersonChildrenState : GedcomxApplicationState<Gedcomx>
     {
 
-        internal PersonChildrenState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken, StateFactory stateFactory)
+        protected internal PersonChildrenState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken, StateFactory stateFactory)
             : base(request, response, client, accessToken, stateFactory)
         {
         }

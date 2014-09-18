@@ -164,5 +164,20 @@ namespace Gx.Fs
                 _merges.Add(merge);
             }
         }
+
+        /**
+         * Add a childAndParentsRelationship to the data set.
+         *
+         * @param childAndParentsRelationship The childAndParentsRelationship to be added.
+         */
+        public void AddChildAndParentsRelationship(ChildAndParentsRelationship childAndParentsRelationship)
+        {
+            if (childAndParentsRelationship != null)
+            {
+                if (_childAndParentsRelationships == null)
+                    _childAndParentsRelationships = new List<ChildAndParentsRelationship>();
+                _childAndParentsRelationships.Add(childAndParentsRelationship);
+            }
+        }
     }
 }

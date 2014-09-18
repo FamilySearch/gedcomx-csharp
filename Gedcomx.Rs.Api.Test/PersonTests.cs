@@ -532,5 +532,13 @@ namespace Gedcomx.Rs.Api.Test
         {
             throw new NotImplementedException();
         }
+
+        [Test]
+        public void TestReadPreferredParentRelationship()
+        {
+            var me = tree.ReadCurrentUser();
+            var relationshipState = tree.ReadPreferredParentRelationship(me.User.TreeUserId, PERSON_WITH_DATA_ID);
+            //tree.UpdatePreferredParentRelationship(me.User.TreeUserId, PERSON_WITH_DATA_ID, )
+        }
     }
 }

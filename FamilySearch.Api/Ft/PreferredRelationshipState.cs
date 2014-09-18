@@ -5,11 +5,8 @@ using System.Text;
 
 namespace FamilySearch.Api.Ft
 {
-    public class PreferredRelationshipState
+    public interface PreferredRelationshipState
     {
-        internal string GetSelfUri()
-        {
-            throw new NotImplementedException();
-        }
+        string GetSelfUri();
     }
 }

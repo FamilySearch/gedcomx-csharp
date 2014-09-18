@@ -250,8 +250,7 @@ namespace FamilySearch.Api.Ft
 
         public FamilyTreePersonState UpdatePreferredSpouseRelationship(String treeUserId, String personId, PreferredRelationshipState relationshipState, params StateTransitionOption[] options)
         {
-            throw new NotImplementedException();
-            //return UpdatePreferredRelationship(Rel.PREFERRED_SPOUSE_RELATIONSHIP, treeUserId, personId, relationshipState, options);
+            return UpdatePreferredRelationship(Rel.PREFERRED_SPOUSE_RELATIONSHIP, treeUserId, personId, relationshipState, options);
         }
 
         public FamilyTreePersonState UpdatePreferredParentRelationship(String treeUserId, String personId, PreferredRelationshipState relationshipState, params StateTransitionOption[] options)

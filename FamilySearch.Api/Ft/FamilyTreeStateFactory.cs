@@ -30,39 +30,44 @@ namespace FamilySearch.Api.Ft
             return new ChildAndParentsRelationshipState(request, response, client, accessToken, this);
         }
 
-        protected internal FamilyTreeRelationshipsState NewRelationshipsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected override RelationshipsState NewRelationshipsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new FamilyTreeRelationshipsState(request, response, client, accessToken, this);
         }
 
-        new protected FamilySearchFamilyTree NewCollectionState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        internal virtual RelationshipsState NewRelationshipsStateInt(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        {
+            return this.NewRelationshipsState(request, response, client, accessToken);
+        }
+
+        protected override CollectionState NewCollectionState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new FamilySearchFamilyTree(request, response, client, accessToken, this);
         }
 
-        new protected internal FamilyTreePersonState NewPersonState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected override PersonState NewPersonState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new FamilyTreePersonState(request, response, client, accessToken, this);
         }
 
-        protected internal FamilyTreeRelationshipState NewRelationshipState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected override RelationshipState NewRelationshipState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new FamilyTreeRelationshipState(request, response, client, accessToken, this);
         }
 
-        protected FamilyTreePersonParentsState NewPersonParentsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        internal virtual RelationshipState NewRelationshipStateInt(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        {
+            return this.NewRelationshipState(request, response, client, accessToken);
+        }
+
+        protected override PersonParentsState NewPersonParentsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new FamilyTreePersonParentsState(request, response, client, accessToken, this);
         }
 
-        protected FamilyTreePersonChildrenState NewPersonChildrenState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected override PersonChildrenState NewPersonChildrenState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new FamilyTreePersonChildrenState(request, response, client, accessToken, this);
-        }
-
-        new protected internal PersonNonMatchesState NewPersonNonMatchesState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
-        {
-            return base.NewPersonNonMatchesState(request, response, client, accessToken);
         }
 
         protected internal ChangeHistoryState NewChangeHistoryState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
@@ -70,19 +75,9 @@ namespace FamilySearch.Api.Ft
             return new ChangeHistoryState(request, response, client, accessToken, this);
         }
 
-        new protected PersonMatchResultsState NewPersonMatchResultsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        internal virtual SourceDescriptionsState NewSourceDescriptionsStateInt(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
-            return base.NewPersonMatchResultsState(request, response, client, accessToken);
-        }
-
-        new protected internal PersonMergeState NewPersonMergeState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
-        {
-            return base.NewPersonMergeState(request, response, client, accessToken);
-        }
-
-        new protected internal SourceDescriptionsState NewSourceDescriptionsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
-        {
-            return base.NewSourceDescriptionsState(request, response, client, accessToken);
+            return this.NewSourceDescriptionsState(request, response, client, accessToken);
         }
     }
 }

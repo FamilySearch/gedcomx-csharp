@@ -41,7 +41,7 @@ namespace FamilySearch.Api
             }
 
             IRestRequest request = CreateAuthenticatedGedcomxRequest().Build(link.Href, Method.GET);
-            return ((FamilySearchStateFactory)this.stateFactory).NewCollectionState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
+            return ((FamilySearchStateFactory)this.stateFactory).NewCollectionStateInt(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
         public DiscussionState AddDiscussion(Discussion discussion, params StateTransitionOption[] options)

@@ -72,7 +72,7 @@ namespace FamilySearch.Api.Ft
             return ((FamilyTreeStateFactory)this.stateFactory).NewChangeHistoryState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
-        public FamilyTreeRelationshipState restore(params StateTransitionOption[] options)
+        public FamilyTreeRelationshipState Restore(params StateTransitionOption[] options)
         {
             Link link = GetLink(Rel.RESTORE);
             if (link == null || link.Href == null)
@@ -81,7 +81,7 @@ namespace FamilySearch.Api.Ft
             }
 
             IRestRequest request = RequestUtil.ApplyFamilySearchConneg(CreateAuthenticatedRequest()).Build(link.Href, Method.POST);
-            return ((FamilyTreeStateFactory)this.stateFactory).NewRelationshipState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
-        }
+            return (FamilyTreeRelationshipState)((FamilyTreeStateFactory)this.stateFactory).NewRelationshipStateInt(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
+        }        
     }
 }

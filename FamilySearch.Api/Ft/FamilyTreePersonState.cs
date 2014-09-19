@@ -24,7 +24,7 @@ namespace FamilySearch.Api.Ft
         }
 
         private FamilyTreePersonState(Uri uri, FamilyTreeStateFactory stateFactory)
-            : this(uri, stateFactory.LoadDefaultClient(uri), stateFactory)
+            : this(uri, stateFactory.LoadDefaultClientInt(uri), stateFactory)
         {
         }
 
@@ -151,7 +151,7 @@ namespace FamilySearch.Api.Ft
             }
 
             IRestRequest request = CreateAuthenticatedGedcomxRequest().Build(link.Href, Method.GET);
-            return ((FamilyTreeStateFactory)this.stateFactory).NewSourceDescriptionsState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
+            return ((FamilyTreeStateFactory)this.stateFactory).NewSourceDescriptionsStateInt(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
         public IRestResponse ReadPortrait(params StateTransitionOption[] options)
@@ -215,7 +215,7 @@ namespace FamilySearch.Api.Ft
             Gx.Gedcomx gx = new Gx.Gedcomx();
             gx.Persons = new List<Person>() { person };
             IRestRequest request = RequestUtil.ApplyFamilySearchConneg(CreateAuthenticatedGedcomxRequest()).SetEntity(gx).Build(target, Method.POST);
-            return ((FamilyTreeStateFactory)this.stateFactory).NewPersonState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
+            return (FamilyTreePersonState)((FamilyTreeStateFactory)this.stateFactory).NewPersonStateInt(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
         public FamilyTreePersonState DeleteDiscussionReference(DiscussionReference reference, params StateTransitionOption[] options)
@@ -228,7 +228,7 @@ namespace FamilySearch.Api.Ft
             }
 
             IRestRequest request = RequestUtil.ApplyFamilySearchConneg(CreateAuthenticatedGedcomxRequest()).Build(link.Href, Method.DELETE);
-            return ((FamilyTreeStateFactory)this.stateFactory).NewPersonState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
+            return (FamilyTreePersonState)((FamilyTreeStateFactory)this.stateFactory).NewPersonStateInt(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
         public ChildAndParentsRelationshipState ReadChildAndParentsRelationship(ChildAndParentsRelationship relationship, params StateTransitionOption[] options)
@@ -277,7 +277,7 @@ namespace FamilySearch.Api.Ft
             }
 
             IRestRequest request = RequestUtil.ApplyFamilySearchConneg(CreateAuthenticatedRequest()).Build(link.Href, Method.POST);
-            return ((FamilyTreeStateFactory)this.stateFactory).NewPersonState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
+            return (FamilyTreePersonState)((FamilyTreeStateFactory)this.stateFactory).NewPersonStateInt(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
         public PersonMergeState ReadMergeOptions(FamilyTreePersonState candidate, params StateTransitionOption[] options)

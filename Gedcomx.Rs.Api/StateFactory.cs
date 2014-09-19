@@ -84,57 +84,57 @@ namespace Gx.Rs.Api
             return client;
         }
 
-        internal AgentState NewAgentState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected internal virtual AgentState NewAgentState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new AgentState(request, response, client, accessToken, this);
         }
 
-        internal AncestryResultsState NewAncestryResultsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected internal virtual AncestryResultsState NewAncestryResultsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new AncestryResultsState(request, response, client, accessToken, this);
         }
 
-        internal CollectionsState NewCollectionsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected internal virtual CollectionsState NewCollectionsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new CollectionsState(request, response, client, accessToken, this);
         }
 
-        internal CollectionState NewCollectionState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected internal virtual CollectionState NewCollectionState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new CollectionState(request, response, client, accessToken, this);
         }
 
-        internal DescendancyResultsState NewDescendancyResultsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected internal virtual DescendancyResultsState NewDescendancyResultsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new DescendancyResultsState(request, response, client, accessToken, this);
         }
 
-        internal PersonChildrenState NewPersonChildrenState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected internal virtual PersonChildrenState NewPersonChildrenState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new PersonChildrenState(request, response, client, accessToken, this);
         }
 
-        internal PersonParentsState NewPersonParentsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected internal virtual PersonParentsState NewPersonParentsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new PersonParentsState(request, response, client, accessToken, this);
         }
 
-        internal PersonSearchResultsState NewPersonSearchResultsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected internal virtual PersonSearchResultsState NewPersonSearchResultsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new PersonSearchResultsState(request, response, client, accessToken, this);
         }
 
-        internal PlaceSearchResultsState NewPlaceSearchResultsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected internal virtual PlaceSearchResultsState NewPlaceSearchResultsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new PlaceSearchResultsState(request, response, client, accessToken, this);
         }
 
-        internal PlaceDescriptionState NewPlaceDescriptionState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected internal virtual PlaceDescriptionState NewPlaceDescriptionState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new PlaceDescriptionState(request, response, client, accessToken, this);
         }
 
-        internal PlaceDescriptionsState NewPlaceDescriptionsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected internal virtual PlaceDescriptionsState NewPlaceDescriptionsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new PlaceDescriptionsState(request, response, client, accessToken, this);
         }
@@ -154,47 +154,47 @@ namespace Gx.Rs.Api
             return new VocabElementListState(request, response, accessToken, this);
         }
 
-        internal PersonSpousesState NewPersonSpousesState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected internal virtual PersonSpousesState NewPersonSpousesState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new PersonSpousesState(request, response, client, accessToken, this);
         }
 
-        internal PersonsState NewPersonsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected internal virtual PersonsState NewPersonsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new PersonsState(request, response, client, accessToken, this);
         }
 
-        protected internal PersonState NewPersonState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected internal virtual PersonState NewPersonState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new PersonState(request, response, client, accessToken, this);
         }
 
-        internal RecordsState NewRecordsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected internal virtual RecordsState NewRecordsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new RecordsState(request, response, client, accessToken, this);
         }
 
-        internal RecordState NewRecordState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected internal virtual RecordState NewRecordState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new RecordState(request, response, client, accessToken, this);
         }
 
-        internal RelationshipsState NewRelationshipsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected internal virtual RelationshipsState NewRelationshipsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new RelationshipsState(request, response, client, accessToken, this);
         }
 
-        internal RelationshipState NewRelationshipState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected internal virtual RelationshipState NewRelationshipState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new RelationshipState(request, response, client, accessToken, this);
         }
 
-        protected internal SourceDescriptionsState NewSourceDescriptionsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected internal virtual SourceDescriptionsState NewSourceDescriptionsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new SourceDescriptionsState(request, response, client, accessToken, this);
         }
 
-        internal SourceDescriptionState NewSourceDescriptionState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected internal virtual SourceDescriptionState NewSourceDescriptionState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new SourceDescriptionState(request, response, client, accessToken, this);
         }

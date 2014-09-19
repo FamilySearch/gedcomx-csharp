@@ -32,7 +32,7 @@ namespace FamilySearch.Api
         }
 
         private FamilySearchPlaces(Uri uri, FamilySearchStateFactory stateFactory)
-            : this(uri, stateFactory.LoadDefaultClient(uri), stateFactory)
+            : this(uri, stateFactory.LoadDefaultClientInt(uri), stateFactory)
         {
         }
 

@@ -35,7 +35,7 @@ namespace FamilySearch.Api
             }
 
             IRestRequest request = CreateAuthenticatedGedcomxRequest().Build(link.Href, Method.GET);
-            return ((FamilySearchStateFactory)this.stateFactory).NewPersonState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
+            return ((FamilySearchStateFactory)this.stateFactory).NewPersonStateInt(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
         public PersonMergeState ReadMergeOptions(Gx.Atom.Entry entry, params StateTransitionOption[] options)

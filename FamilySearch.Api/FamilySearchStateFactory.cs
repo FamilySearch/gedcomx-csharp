@@ -73,27 +73,42 @@ namespace FamilySearch.Api
             return NewPlacesState(request, client.Execute(request), client, null);
         }
 
-        protected FamilySearchPlaces NewPlacesState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected internal FamilySearchPlaces NewPlacesState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new FamilySearchPlaces(request, response, client, accessToken, this);
         }
 
-        protected internal FamilySearchCollectionState NewCollectionState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected override CollectionState NewCollectionState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new FamilySearchCollectionState(request, response, client, accessToken, this);
         }
 
-        protected internal FamilySearchSourceDescriptionState NewSourceDescriptionState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        internal virtual CollectionState NewCollectionStateInt(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        {
+            return this.NewCollectionStateInt(request, response, client, accessToken);
+        }
+
+        protected override SourceDescriptionState NewSourceDescriptionState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new FamilySearchSourceDescriptionState(request, response, client, accessToken, this);
         }
 
-        new protected internal virtual PersonState NewPersonState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        internal virtual SourceDescriptionState NewSourceDescriptionStateInt(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        {
+            return this.NewSourceDescriptionState(request, response, client, accessToken);
+        }
+
+        protected override PersonState NewPersonState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return base.NewPersonState(request, response, client, accessToken);
         }
 
-        protected internal PersonNonMatchesState NewPersonNonMatchesState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        internal virtual PersonState NewPersonStateInt(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        {
+            return this.NewPersonState(request, response, client, accessToken);
+        }
+
+        protected internal virtual PersonNonMatchesState NewPersonNonMatchesState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new PersonNonMatchesState(request, response, client, accessToken, this);
         }
@@ -103,15 +118,20 @@ namespace FamilySearch.Api
             return new FamilySearchPlaceState(request, response, client, accessToken, this);
         }
 
-        protected PlaceDescriptionState NewPlaceDescriptionState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected override PlaceDescriptionState NewPlaceDescriptionState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
         {
             return new FamilySearchPlaceDescriptionState(request, response, client, accessToken, this);
         }
 
         // TODO: Determine if the core LoadDefaultClient() has missing functionality. If so, implement here; otherwise, remove this method.
-        new protected internal IRestClient LoadDefaultClient(Uri uri)
+        protected override IRestClient LoadDefaultClient(Uri uri)
         {
             return base.LoadDefaultClient(uri);
+        }
+
+        internal virtual IRestClient LoadDefaultClientInt(Uri uri)
+        {
+            return this.LoadDefaultClient(uri);
         }
     }
 }

@@ -31,7 +31,7 @@ namespace FamilySearch.Api.Memories
         }
 
         private FamilySearchMemories(Uri uri, FamilySearchStateFactory stateFactory)
-            : this(uri, stateFactory.LoadDefaultClient(uri), stateFactory)
+            : this(uri, stateFactory.LoadDefaultClientInt(uri), stateFactory)
         {
         }
 

@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace FamilySearch.Api.Ft
+namespace Gx.Rs.Api
 {
     public interface PreferredRelationshipState
     {

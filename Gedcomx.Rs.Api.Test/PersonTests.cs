@@ -375,25 +375,47 @@ namespace Gedcomx.Rs.Api.Test
         }
 
         [Test]
-        [Ignore("Pending issue resolution. All calls are returning HTTP 204.")]
         public void TestReadPreferredSpouseRelationship()
         {
             var me = tree.ReadCurrentUser();
-            var state = tree.ReadPreferredSpouseRelationship(me.User.TreeUserId, PERSON_WITH_DATA_ID);
+            var person = tree.ReadPersonById(PERSON_WITH_DATA_ID);
+
+            // Ensure the target relationship exists
+            person.LoadSpouseRelationships();
+            var state = (PreferredRelationshipState)person.ReadRelationship(person.Entity.Relationships[0]);
+            tree.UpdatePreferredSpouseRelationship(me.User.TreeUserId, PERSON_WITH_DATA_ID, state);
+
+            var state2 = (FamilyTreeRelationshipState)tree.ReadPreferredSpouseRelationship(me.User.TreeUserId, PERSON_WITH_DATA_ID);
+            Assert.AreEqual(HttpStatusCode.SeeOther, state2.Response.StatusCode);
+            Assert.IsNotNull(state2.Headers.Get("Location").Single());
         }
 
         [Test]
-        [Ignore("Pending issue resolution. All calls are returning HTTP 204.")]
         public void TestUpdatePreferredSpouseRelationship()
         {
-            throw new NotImplementedException();
+            var me = tree.ReadCurrentUser();
+            var person = tree.ReadPersonById(PERSON_WITH_DATA_ID);
+
+            person.LoadSpouseRelationships();
+            var state = (PreferredRelationshipState)person.ReadRelationship(person.Entity.Relationships[0]);
+            var state2 = tree.UpdatePreferredSpouseRelationship(me.User.TreeUserId, PERSON_WITH_DATA_ID, state);
+            Assert.AreEqual(HttpStatusCode.NoContent, state2.Response.StatusCode);
         }
 
         [Test]
-        [Ignore("Pending issue resolution. All calls are returning HTTP 204.")]
         public void TestDeletePreferredSpouseRelationship()
         {
-            throw new NotImplementedException();
+            var me = tree.ReadCurrentUser();
+            var person = tree.ReadPersonById(PERSON_WITH_DATA_ID);
+
+            // Ensure the target relationship exists
+            person.LoadSpouseRelationships();
+            var state = (PreferredRelationshipState)person.ReadRelationship(person.Entity.Relationships[0]);
+            tree.UpdatePreferredSpouseRelationship(me.User.TreeUserId, PERSON_WITH_DATA_ID, state);
+
+            var state2 = tree.DeletePreferredSpouseRelationship(me.User.TreeUserId, PERSON_WITH_DATA_ID);
+            Assert.AreEqual(HttpStatusCode.NoContent, state2.Response.StatusCode);
+            Assert.IsNotNull(state2.Headers.Get("Content-Location").Single());
         }
 
         [Test]
@@ -537,8 +559,47 @@ namespace Gedcomx.Rs.Api.Test
         public void TestReadPreferredParentRelationship()
         {
             var me = tree.ReadCurrentUser();
-            var relationshipState = tree.ReadPreferredParentRelationship(me.User.TreeUserId, PERSON_WITH_DATA_ID);
-            //tree.UpdatePreferredParentRelationship(me.User.TreeUserId, PERSON_WITH_DATA_ID, )
+            var person = tree.ReadPersonById(PERSON_WITH_DATA_ID);
+
+            // Ensure the target relationship exists
+            var relationship = ((FamilyTreePersonParentsState)person.ReadParents()).ChildAndParentsRelationships.First();
+            var state = person.ReadChildAndParentsRelationship(relationship);
+            tree.UpdatePreferredParentRelationship(me.User.TreeUserId, PERSON_WITH_DATA_ID, state);
+
+            var state2 = (FamilyTreeRelationshipState)tree.ReadPreferredParentRelationship(me.User.TreeUserId, PERSON_WITH_DATA_ID);
+            Assert.AreEqual(HttpStatusCode.SeeOther, state2.Response.StatusCode);
+            Assert.IsNotNull(state2.Headers.Get("Location").Single());
+        }
+
+        [Test]
+        public void TestUpdatePreferredParentRelationship()
+        {
+            var me = tree.ReadCurrentUser();
+            var person = tree.ReadPersonById(PERSON_WITH_DATA_ID);
+
+            // Ensure the target relationship exists
+            var relationship = ((FamilyTreePersonParentsState)person.ReadParents()).ChildAndParentsRelationships.First();
+            var state = person.ReadChildAndParentsRelationship(relationship);
+
+
+            var state2 = tree.UpdatePreferredParentRelationship(me.User.TreeUserId, PERSON_WITH_DATA_ID, state);
+            Assert.AreEqual(HttpStatusCode.NoContent, state2.Response.StatusCode);
+        }
+
+        [Test]
+        public void TestDeletePreferredParentRelationship()
+        {
+            var me = tree.ReadCurrentUser();
+            var person = tree.ReadPersonById(PERSON_WITH_DATA_ID);
+
+            // Ensure the target relationship exists
+            var relationship = ((FamilyTreePersonParentsState)person.ReadParents()).ChildAndParentsRelationships.First();
+            var state = person.ReadChildAndParentsRelationship(relationship);
+            tree.UpdatePreferredParentRelationship(me.User.TreeUserId, PERSON_WITH_DATA_ID, state);
+
+            var state2 = tree.DeletePreferredParentRelationship(me.User.TreeUserId, PERSON_WITH_DATA_ID);
+            Assert.AreEqual(HttpStatusCode.NoContent, state2.Response.StatusCode);
+            Assert.IsNotNull(state2.Headers.Get("Content-Location").Single());
         }
     }
 }

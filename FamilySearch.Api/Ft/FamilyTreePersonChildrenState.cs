@@ -39,7 +39,7 @@ namespace FamilySearch.Api.Ft
             }
         }
 
-        protected Gx.Gedcomx LoadEntity(IRestResponse response)
+        protected override Gx.Gedcomx LoadEntity(IRestResponse response)
         {
             return response.ToIRestResponse<FamilySearchPlatform>().Data;
         }

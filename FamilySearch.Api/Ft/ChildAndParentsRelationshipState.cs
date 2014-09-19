@@ -138,7 +138,7 @@ namespace FamilySearch.Api.Ft
             }
 
             IRestRequest request = CreateAuthenticatedGedcomxRequest().Build(link.Href, Method.GET);
-            return (FamilySearchFamilyTree)((FamilyTreeStateFactory)this.stateFactory).NewCollectionState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
+            return (FamilySearchFamilyTree)((FamilyTreeStateFactory)this.stateFactory).NewCollectionStateInt(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
         protected override IRestRequest CreateRequestForEmbeddedResource(String rel)
@@ -537,7 +537,7 @@ namespace FamilySearch.Api.Ft
             }
 
             IRestRequest request = RequestUtil.ApplyFamilySearchConneg(CreateAuthenticatedRequest()).Build(child.Resource, Method.GET);
-            return ((FamilyTreeStateFactory)this.stateFactory).NewPersonState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
+            return ((FamilyTreeStateFactory)this.stateFactory).NewPersonStateInt(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
         public PersonState ReadFather(params StateTransitionOption[] options)
@@ -555,7 +555,7 @@ namespace FamilySearch.Api.Ft
             }
 
             IRestRequest request = RequestUtil.ApplyFamilySearchConneg(CreateAuthenticatedRequest()).Build(father.Resource, Method.GET);
-            return ((FamilyTreeStateFactory)this.stateFactory).NewPersonState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
+            return ((FamilyTreeStateFactory)this.stateFactory).NewPersonStateInt(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
         public ChildAndParentsRelationshipState UpdateFather(PersonState father, params StateTransitionOption[] options)
@@ -600,7 +600,7 @@ namespace FamilySearch.Api.Ft
             }
 
             IRestRequest request = RequestUtil.ApplyFamilySearchConneg(CreateAuthenticatedRequest()).Build(mother.Resource, Method.GET);
-            return ((FamilyTreeStateFactory)this.stateFactory).NewPersonState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
+            return ((FamilyTreeStateFactory)this.stateFactory).NewPersonStateInt(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
         public ChildAndParentsRelationshipState UpdateMother(PersonState mother, params StateTransitionOption[] options)

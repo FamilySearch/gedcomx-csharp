@@ -24,7 +24,7 @@ namespace FamilySearch.Api
         }
 
         private FamilySearchCollectionState(Uri uri, FamilySearchStateFactory stateFactory)
-            : this(uri, stateFactory.LoadDefaultClient(uri), stateFactory)
+            : this(uri, stateFactory.LoadDefaultClientInt(uri), stateFactory)
         {
         }
 

@@ -75,7 +75,6 @@
     <Compile Include="Ft\FamilyTreeRelationshipsState.cs" />
     <Compile Include="Ft\FamilyTreeRelationshipState.cs" />
     <Compile Include="Ft\FamilyTreeStateFactory.cs" />
-    <Compile Include="Ft\PreferredRelationshipState.cs" />
     <Compile Include="Memories\FamilySearchMemories.cs" />
     <Compile Include="PersonMatchResultsState.cs" />
     <Compile Include="PersonMergeState.cs" />

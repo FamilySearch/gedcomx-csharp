@@ -601,5 +601,41 @@ namespace Gedcomx.Rs.Api.Test
             Assert.AreEqual(HttpStatusCode.NoContent, state2.Response.StatusCode);
             Assert.IsNotNull(state2.Headers.Get("Content-Location").Single());
         }
+
+        [Test]
+        public void TestReadPersonMergeAnalysis()
+        {
+            var person1 = tree.ReadPersonById(PERSON_WITH_DATA_ID);
+            var person2 = tree.ReadPersonById("KWWX-JKF");
+
+            var state = person1.ReadMergeAnalysis(person2);
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
+            Assert.IsNotNull(state.Analysis);
+        }
+
+        [Test]
+        public void TestReadPersonMergeConstraintCanMergeAnyOrder()
+        {
+            var person1 = tree.ReadPersonById(PERSON_WITH_DATA_ID);
+            var person2 = tree.ReadPersonById("KWWX-JKF");
+
+            var state = person1.ReadMergeOptions(person2);
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
+            Assert.IsNotNull(state.GetLink(FamilySearch.Api.Rel.MERGE_MIRROR));
+        }
+
+        [Test]
+        public void TestReadPersonMergeConstraintCanMergeOtherOrderOnly()
+        {
+            var person1 = tree.ReadPersonById(PERSON_WITH_DATA_ID);
+            var person2 = tree.ReadPersonById("KWW6-BR2");
+
+            var state = person1.ReadMergeOptions(person2);
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
+            Assert.IsFalse(state.IsAllowed);
+        }
     }
 }

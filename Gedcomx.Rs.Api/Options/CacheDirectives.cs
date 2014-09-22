@@ -19,7 +19,7 @@ namespace Gx.Rs.Api.Options
         {
         }
 
-        public CacheDirectives(DateTime lastModified)
+        public CacheDirectives(DateTime? lastModified)
             : this(null, lastModified)
         {
         }

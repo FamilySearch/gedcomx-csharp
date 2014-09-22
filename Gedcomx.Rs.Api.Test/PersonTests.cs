@@ -279,7 +279,7 @@ namespace Gedcomx.Rs.Api.Test
         public void TestUpdatePersonConclusion()
         {
             var state = collection.ReadPerson(new Uri(READ_PERSON_URI));
-            state.Person.Facts.Add(TestBacking.GetNewFact());
+            state.Person.Facts.Add(TestBacking.GetBirthFact());
             var state2 = state.UpdateConclusions(state.Person);
             Assert.DoesNotThrow(() => state2.IfSuccessful());
         }

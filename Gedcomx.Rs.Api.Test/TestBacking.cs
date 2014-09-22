@@ -1,5 +1,6 @@
 ﻿using Gx.Common;
 using Gx.Conclusion;
+using Gx.Links;
 using Gx.Rs.Api;
 using Gx.Source;
 using RestSharp;
@@ -336,7 +337,7 @@ namespace Gedcomx.Rs.Api.Test
             };
         }
 
-        public static Fact GetNewFact()
+        public static Fact GetBirthFact()
         {
             return new Fact()
             {
@@ -423,6 +424,42 @@ namespace Gedcomx.Rs.Api.Test
             }
 
             return result;
+        }
+
+        public static Fact GetMarriageFact()
+        {
+            return new Fact()
+            {
+                Attribution = new Attribution()
+                {
+                    ChangeMessage = "Change message",
+                },
+                KnownType = Gx.Types.FactType.Marriage,
+                Date = new DateInfo()
+                {
+                    Original = "3 Apr 1930",
+                    Formal = "+1930",
+                },
+                Place = new PlaceReference()
+                {
+                    Original = "Moscow, Russia",
+                },
+            };
+        }
+
+        public static Relationship GetCreateInvalidRelationship()
+        {
+            return new Relationship()
+            {
+                Links = new List<Link>()
+                {
+                    new Link()
+                    {
+                        Rel = "relationship",
+                        Href = "https://sandbox.familysearch.org/platform/tree/couple-relationships/INVALID",
+                    },
+                },
+            };
         }
     }
 }

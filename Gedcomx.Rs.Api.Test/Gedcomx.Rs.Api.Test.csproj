@@ -69,6 +69,7 @@
     <Compile Include="PersonSearchTests.cs" />
     <Compile Include="PersonTests.cs" />
     <Compile Include="RelationshipTests.cs" />
+    <Compile Include="SpouseTests.cs" />
     <Compile Include="TestBacking.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

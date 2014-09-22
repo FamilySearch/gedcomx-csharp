@@ -179,7 +179,7 @@ namespace Gx.Rs.Api
             return LoadEmbeddedResources(new String[] { Rel.SOURCE_REFERENCES }, options);
         }
 
-        public RelationshipState loadMediaReferences(params StateTransitionOption[] options)
+        public RelationshipState LoadMediaReferences(params StateTransitionOption[] options)
         {
             return LoadEmbeddedResources(new String[] { Rel.MEDIA_REFERENCES }, options);
         }

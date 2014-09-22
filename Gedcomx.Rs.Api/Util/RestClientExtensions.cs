@@ -89,9 +89,9 @@ namespace Gx.Rs.Api.Util
             }
             else
             {
-                var contentType = @this.Parameters.FirstOrDefault(x => x.Name == "Content-Type" && x.Type == ParameterType.HttpHeader);
+                var formatHeader = @this.GetHeaders().Get("Content-Type").FirstOrDefault() ?? @this.GetHeaders().Get("Accept").FirstOrDefault();
 
-                if (contentType != null && contentType.Value != null)
+                if (formatHeader != null && formatHeader.Value != null)
                 {
                     DataFormat format = @this.GetDataFormat();
                     String value = null;
@@ -105,10 +105,11 @@ namespace Gx.Rs.Api.Util
                         value = @this.XmlSerializer.Serialize(entity);
                     }
 
-                    @this.AddParameter(new Parameter() { Name = contentType.Value.ToString(), Type = ParameterType.RequestBody, Value = value });
+                    @this.AddParameter(new Parameter() { Name = formatHeader.Value.ToString(), Type = ParameterType.RequestBody, Value = value });
                 }
                 else
                 {
+                    // This is a backup option, but is probably a bad idea. Throw exception?
                     @this.AddBody(entity);
                 }
             }

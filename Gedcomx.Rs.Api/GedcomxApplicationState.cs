@@ -230,7 +230,7 @@ namespace Gx.Rs.Api
 
             request.Build(GetSelfUri(), Method.GET);
             IRestResponse response = Invoke(request, options);
-            return Clone(request, Invoke(request, options), this.Client);
+            return Clone(request, response, this.Client);
         }
 
         public virtual GedcomxApplicationState<T> Delete(params StateTransitionOption[] options)

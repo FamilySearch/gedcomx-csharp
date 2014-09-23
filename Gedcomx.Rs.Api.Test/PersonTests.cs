@@ -549,10 +549,10 @@ namespace Gedcomx.Rs.Api.Test
         }
 
         [Test]
-        [Ignore("Pending rel link.")]
         public void TestReadPersonMemories()
         {
-            throw new NotImplementedException();
+            var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            var dataSource = TestBacking.GetDataSource("Sample Memory", MediaTypes.TEXT_PLAIN_TYPE, Resources.Memory);
         }
 
         [Test]

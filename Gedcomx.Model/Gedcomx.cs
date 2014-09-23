@@ -417,7 +417,7 @@ namespace Gx
             }
         }
 
-        public void Embed(Gedcomx gedcomx)
+        public virtual void Embed(Gedcomx gedcomx)
         {
             List<Link> links = gedcomx.Links;
             if (links != null)

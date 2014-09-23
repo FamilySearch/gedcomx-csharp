@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="AuthenticationTests.cs" />
+    <Compile Include="ParentsAndChildrenTest.cs" />
     <Compile Include="PersonSearchTests.cs" />
     <Compile Include="PersonTests.cs" />
     <Compile Include="RelationshipTests.cs" />

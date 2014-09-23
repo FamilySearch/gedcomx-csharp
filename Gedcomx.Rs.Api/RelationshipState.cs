@@ -152,7 +152,7 @@ namespace Gx.Rs.Api
 
         public RelationshipState LoadEmbeddedResources(params StateTransitionOption[] options)
         {
-            IncludeEmbeddedResources(this.Entity);
+            IncludeEmbeddedResources<Gedcomx>(this.Entity);
             return this;
         }
 
@@ -163,7 +163,7 @@ namespace Gx.Rs.Api
                 Link link = GetLink(rel);
                 if (this.Entity != null && link != null && link.Href != null)
                 {
-                    Embed(link, this.Entity, options);
+                    Embed<Gedcomx>(link, this.Entity, options);
                 }
             }
             return this;

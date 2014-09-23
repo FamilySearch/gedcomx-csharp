@@ -56,7 +56,7 @@ namespace Gx.Common
             }
         }
 
-        internal virtual void Embed(ExtensibleData data)
+        protected internal virtual void Embed(ExtensibleData data)
         {
             if (data._extensionElements != null)
             {

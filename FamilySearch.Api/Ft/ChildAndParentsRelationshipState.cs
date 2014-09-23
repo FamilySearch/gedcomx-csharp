@@ -148,7 +148,7 @@ namespace FamilySearch.Api.Ft
 
         public ChildAndParentsRelationshipState LoadEmbeddedResources(params StateTransitionOption[] options)
         {
-            IncludeEmbeddedResources(this.Entity, options);
+            IncludeEmbeddedResources<FamilySearchPlatform>(this.Entity, options);
             return this;
         }
 
@@ -159,7 +159,7 @@ namespace FamilySearch.Api.Ft
                 Link link = GetLink(rel);
                 if (this.Entity != null && link != null && link.Href != null)
                 {
-                    Embed(link, this.Entity, options);
+                    Embed<FamilySearchPlatform>(link, this.Entity, options);
                 }
             }
             return this;
@@ -432,7 +432,7 @@ namespace FamilySearch.Api.Ft
             return ((FamilyTreeStateFactory)this.stateFactory).NewChildAndParentsRelationshipState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
-        public ChildAndParentsRelationshipState deleteEvidenceReference(EvidenceReference reference, params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState DeleteEvidenceReference(EvidenceReference reference, params StateTransitionOption[] options)
         {
             Link link = reference.GetLink(Rel.EVIDENCE_REFERENCE);
             link = link == null ? reference.GetLink(Rel.SELF) : link;

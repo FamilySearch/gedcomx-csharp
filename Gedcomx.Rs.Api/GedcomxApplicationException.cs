@@ -1,4 +1,5 @@
 ﻿using Gx.Rs.Api.Util;
+using Newtonsoft.Json.Linq;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -83,8 +84,7 @@ namespace Gx.Rs.Api
                 {
                     try
                     {
-                        // TODO: Make sure this works
-                        body = this.Response.ToIRestResponse<String>().Data;
+                        body = this.Response.ToIRestResponse<JObject>().Data.ToString();
                     }
                     catch (Exception)
                     {

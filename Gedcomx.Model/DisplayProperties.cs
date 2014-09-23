@@ -213,7 +213,7 @@ namespace Gx.Conclusion
             }
         }
 
-        internal override void Embed(ExtensibleData data)
+        protected internal override void Embed(ExtensibleData data)
         {
             var value = (DisplayProperties)data;
             this._name = this._name == null ? value._name : this._name;

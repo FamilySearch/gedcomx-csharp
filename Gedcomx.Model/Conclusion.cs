@@ -160,7 +160,7 @@ namespace Gx.Conclusion
             }
         }
 
-        internal override void Embed(ExtensibleData conclusion)
+        protected internal override void Embed(ExtensibleData conclusion)
         {
             var value = (Conclusion)conclusion;
             this._lang = this._lang == null ? value._lang : this._lang;

@@ -228,7 +228,7 @@ namespace Gx.Rs.Api
 
         public PersonState LoadEmbeddedResources(params StateTransitionOption[] options)
         {
-            IncludeEmbeddedResources(this.Entity, options);
+            IncludeEmbeddedResources<Gedcomx>(this.Entity, options);
             return this;
         }
 
@@ -239,7 +239,7 @@ namespace Gx.Rs.Api
                 Link link = this.GetLink(rel);
                 if (this.Entity != null && link != null && link.Href != null)
                 {
-                    Embed(link, this.Entity, options);
+                    Embed<Gedcomx>(link, this.Entity, options);
                 }
             }
             return this;

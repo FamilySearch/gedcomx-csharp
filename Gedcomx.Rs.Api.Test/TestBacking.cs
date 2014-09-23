@@ -1,5 +1,6 @@
 ﻿using Gx.Common;
 using Gx.Conclusion;
+using Gx.Fs.Tree;
 using Gx.Links;
 using Gx.Rs.Api;
 using Gx.Source;
@@ -254,28 +255,15 @@ namespace Gedcomx.Rs.Api.Test
             };
         }
 
-        public static SourceReference GetPersonSourceReference(string id = null)
+        public static SourceReference GetPersonSourceReference()
         {
             return new SourceReference()
             {
-                Id = id,
                 Attribution = new Attribution()
                 {
                     ChangeMessage = "Family is at the same address found in other sources associated with this family.  Names are a good match.  Estimated births are reasonable.",
                 },
                 DescriptionRef = "https://sandbox.familysearch.org/platform/sources/descriptions/MMH1-PNF",
-            };
-        }
-
-        public static SourceReference GetPersonSourceReference2()
-        {
-            return new SourceReference()
-            {
-                Attribution = new Attribution()
-                {
-                    ChangeMessage = "Family is at the same address found in other sources associated with this family.  Names are a good match.  Estimated births are reasonable.",
-                },
-                DescriptionRef = "https://sandbox.familysearch.org/platform/sources/descriptions/MMH1-PP4",
             };
         }
 
@@ -459,6 +447,40 @@ namespace Gedcomx.Rs.Api.Test
                         Href = "https://sandbox.familysearch.org/platform/tree/couple-relationships/INVALID",
                     },
                 },
+            };
+        }
+
+        public static ChildAndParentsRelationship GetCreateChildAndParentsRelationship(PersonState father = null, PersonState mother = null, PersonState child = null)
+        {
+            var result = new ChildAndParentsRelationship();
+
+            if (father != null)
+            {
+                result.Father = new ResourceReference(father.GetSelfUri());
+            }
+
+            if (mother != null)
+            {
+                result.Mother = new ResourceReference(mother.GetSelfUri());
+            }
+
+            if (child != null)
+            {
+                result.Child = new ResourceReference(child.GetSelfUri());
+            }
+
+            return result;
+        }
+
+        public static Fact GetBiologicalParentFact()
+        {
+            return new Fact()
+            {
+                Attribution = new Attribution()
+                {
+                    ChangeMessage = "Change message",
+                },
+                KnownType = Gx.Types.FactType.BiologicalParent,
             };
         }
     }

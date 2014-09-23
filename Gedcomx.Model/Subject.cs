@@ -123,7 +123,7 @@ namespace Gx.Conclusion
             }
         }
 
-        internal override void Embed(ExtensibleData subject)
+        protected internal override void Embed(ExtensibleData subject)
         {
             var value = (Subject)subject;
             this._extracted = this._extracted == null ? value._extracted : this._extracted;
@@ -146,6 +146,5 @@ namespace Gx.Conclusion
 
             base.Embed(subject);
         }
-
     }
 }

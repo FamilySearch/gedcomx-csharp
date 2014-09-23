@@ -6,6 +6,8 @@
 using System;
 using Gx.Fs;
 using Gx.Fs.Rt;
+using Gx.Common;
+using System.Collections.Generic;
 
 namespace Gx.Fs.Discussions
 {
@@ -217,6 +219,60 @@ namespace Gx.Fs.Discussions
         public void Accept(FamilySearchPlatformModelVisitor visitor)
         {
             visitor.VisitDiscussion(this);
+        }
+
+        protected override void Embed(ExtensibleData value)
+        {
+            Discussion discussion = value as Discussion;
+            List<Comment> comments = discussion.Comments;
+            if (comments != null)
+            {
+                foreach (Comment comment in comments)
+                {
+                    bool found = false;
+                    if (comment.Id != null)
+                    {
+                        if (Comments != null)
+                        {
+                            foreach (Comment target in Comments)
+                            {
+                                if (comment.Id.Equals(target.Id))
+                                {
+                                    target.EmbedInt(comment);
+                                    found = true;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    if (!found)
+                    {
+                        AddComment(comment);
+                    }
+                }
+            }
+
+            base.Embed(discussion);
+        }
+
+        internal void EmbedInt(ExtensibleData value)
+        {
+            this.Embed(value);
+        }
+
+        /**
+         * Add a comment.
+         *
+         * @param comment The comment to add.
+         */
+        public void AddComment(Comment comment)
+        {
+            if (_comments == null)
+            {
+                _comments = new List<Comment>();
+            }
+            _comments.Add(comment);
         }
     }
 }

@@ -16,6 +16,7 @@ namespace Gx.Rs.Api
 {
     public abstract class GedcomxApplicationState : HypermediaEnabledData
     {
+        protected static readonly EmbeddedLinkLoader DEFAULT_EMBEDDED_LINK_LOADER = new EmbeddedLinkLoader();
         private readonly String gzipSuffix = "-gzip";
         public IRestClient Client { get; protected set; }
         public String CurrentAccessToken { get; set; }
@@ -24,6 +25,8 @@ namespace Gx.Rs.Api
         public bool IsAuthenticated { get { return CurrentAccessToken != null; } }
         public IRestRequest Request { get; protected set; }
         public IRestResponse Response { get; protected set; }
+        public IRestRequest LastEmbeddedRequest { get; set; }
+        public IRestResponse LastEmbeddedResponse { get; set; }
 
         public string ETag
         {
@@ -46,12 +49,91 @@ namespace Gx.Rs.Api
                 return this.Response != null ? this.Response.Headers.Get("Last-Modified").Select(x => (DateTime?)DateTime.Parse(x.Value.ToString())).FirstOrDefault() : null;
             }
         }
+
+        protected EmbeddedLinkLoader EmbeddedLinkLoader
+        {
+            get
+            {
+                return DEFAULT_EMBEDDED_LINK_LOADER;
+            }
+        }
+
+        protected void Embed<T>(Link link, Gedcomx entity, params StateTransitionOption[] options) where T : Gedcomx
+        {
+            if (link.Href != null)
+            {
+                LastEmbeddedRequest = CreateRequestForEmbeddedResource(link.Rel).Build(link.Href, Method.GET);
+                LastEmbeddedResponse = Invoke(LastEmbeddedRequest, options);
+                if (LastEmbeddedResponse.StatusCode == HttpStatusCode.OK)
+                {
+                    entity.Embed(LastEmbeddedResponse.ToIRestResponse<T>().Data);
+                }
+                else if (LastEmbeddedResponse.HasServerError())
+                {
+                    throw new GedcomxApplicationException(String.Format("Unable to load embedded resources: server says \"{0}\" at {1}.", LastEmbeddedResponse.StatusDescription, LastEmbeddedRequest.Resource), LastEmbeddedResponse);
+                }
+                else
+                {
+                    //todo: log a warning? throw an error?
+                }
+            }
+        }
+
+        protected virtual IRestRequest CreateRequestForEmbeddedResource(String rel)
+        {
+            return CreateAuthenticatedGedcomxRequest();
+        }
+
+        protected internal IRestResponse Invoke(IRestRequest request, params StateTransitionOption[] options)
+        {
+            IRestResponse result;
+
+            foreach (StateTransitionOption option in options)
+            {
+                option.Apply(request);
+            }
+
+            result = this.Client.Execute(request);
+
+            return result;
+        }
+
+        protected internal IRestRequest CreateAuthenticatedGedcomxRequest()
+        {
+            return CreateAuthenticatedRequest().Accept(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE).ContentType(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE);
+        }
+
+        protected IRestRequest CreateAuthenticatedRequest()
+        {
+            IRestRequest request = CreateRequest();
+            if (this.CurrentAccessToken != null)
+            {
+                request = request.AddHeader("Authorization", "Bearer " + this.CurrentAccessToken);
+            }
+            return request;
+        }
+
+        protected IRestRequest CreateRequest()
+        {
+            return new RestRequest();
+        }
+
+        protected void IncludeEmbeddedResources<T>(Gedcomx entity, params StateTransitionOption[] options) where T : Gedcomx
+        {
+            Embed<T>(EmbeddedLinkLoader.LoadEmbeddedLinks(entity), entity, options);
+        }
+
+        protected void Embed<T>(IEnumerable<Link> links, Gedcomx entity, params StateTransitionOption[] options) where T : Gedcomx
+        {
+            foreach (Link link in links)
+            {
+                Embed<T>(link, entity, options);
+            }
+        }
     }
 
     public abstract class GedcomxApplicationState<T> : GedcomxApplicationState where T : class, new()
     {
-        protected static readonly EmbeddedLinkLoader DEFAULT_EMBEDDED_LINK_LOADER = new EmbeddedLinkLoader();
-
         protected internal readonly StateFactory stateFactory;
         public T Entity { get; private set; }
         protected abstract GedcomxApplicationState<T> Clone(IRestRequest request, IRestResponse response, IRestClient client);
@@ -73,9 +155,6 @@ namespace Gx.Rs.Api
                 return (SupportsLinks)Entity;
             }
         }
-        public IRestRequest LastEmbeddedRequest { get; set; }
-        public IRestResponse LastEmbeddedResponse { get; set; }
-
 
         protected GedcomxApplicationState()
         {
@@ -169,20 +248,6 @@ namespace Gx.Rs.Api
         public bool HasStatus(HttpStatusCode status)
         {
             return this.Response.StatusCode == status;
-        }
-
-        protected internal IRestResponse Invoke(IRestRequest request, params StateTransitionOption[] options)
-        {
-            IRestResponse result;
-
-            foreach (StateTransitionOption option in options)
-            {
-                option.Apply(request);
-            }
-
-            result = this.Client.Execute(request);
-
-            return result;
         }
 
         public virtual GedcomxApplicationState<T> IfSuccessful()
@@ -456,53 +521,6 @@ namespace Gx.Rs.Api
             return CreateAuthenticatedRequest().Accept(MediaTypes.ATOM_GEDCOMX_JSON_MEDIA_TYPE);
         }
 
-        protected void IncludeEmbeddedResources(Gedcomx entity, params StateTransitionOption[] options)
-        {
-            Embed(EmbeddedLinkLoader.LoadEmbeddedLinks(entity), entity, options);
-        }
-
-        protected void Embed(IEnumerable<Link> links, Gedcomx entity, params StateTransitionOption[] options)
-        {
-            foreach (Link link in links)
-            {
-                Embed(link, entity, options);
-            }
-        }
-
-        protected EmbeddedLinkLoader EmbeddedLinkLoader
-        {
-            get
-            {
-                return DEFAULT_EMBEDDED_LINK_LOADER;
-            }
-        }
-
-        protected void Embed(Link link, Gedcomx entity, params StateTransitionOption[] options)
-        {
-            if (link.Href != null)
-            {
-                LastEmbeddedRequest = CreateRequestForEmbeddedResource(link.Rel).Build(link.Href, Method.GET);
-                LastEmbeddedResponse = Invoke(LastEmbeddedRequest, options);
-                if (LastEmbeddedResponse.StatusCode == HttpStatusCode.OK)
-                {
-                    entity.Embed(LastEmbeddedResponse.ToIRestResponse<T>().Data as Gedcomx);
-                }
-                else if (LastEmbeddedResponse.HasServerError())
-                {
-                    throw new GedcomxApplicationException(String.Format("Unable to load embedded resources: server says \"{0}\" at {1}.", LastEmbeddedResponse.StatusDescription, LastEmbeddedRequest.Resource), LastEmbeddedResponse);
-                }
-                else
-                {
-                    //todo: log a warning? throw an error?
-                }
-            }
-        }
-
-        protected virtual IRestRequest CreateRequestForEmbeddedResource(String rel)
-        {
-            return CreateAuthenticatedGedcomxRequest();
-        }
-
         public AgentState ReadContributor(params StateTransitionOption[] options)
         {
             var scope = MainDataElement;
@@ -536,26 +554,6 @@ namespace Gx.Rs.Api
 
             IRestRequest request = CreateAuthenticatedGedcomxRequest().Build(contributor.Resource, Method.GET);
             return this.stateFactory.NewAgentState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
-        }
-
-        protected IRestRequest CreateAuthenticatedRequest()
-        {
-            IRestRequest request = CreateRequest();
-            if (this.CurrentAccessToken != null)
-            {
-                request = request.AddHeader("Authorization", "Bearer " + this.CurrentAccessToken);
-            }
-            return request;
-        }
-
-        protected internal IRestRequest CreateAuthenticatedGedcomxRequest()
-        {
-            return CreateAuthenticatedRequest().Accept(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE).ContentType(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE);
-        }
-
-        protected IRestRequest CreateRequest()
-        {
-            return new RestRequest();
         }
 
         public IList<Parameter> Headers

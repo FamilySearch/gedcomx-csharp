@@ -278,7 +278,7 @@ namespace FamilySearch.Api.Ft
                 throw new GedcomxApplicationException("Conclusion cannot be deleted: missing link.");
             }
 
-            IRestRequest request = CreateAuthenticatedGedcomxRequest().Build(link.Href, Method.DELETE);
+            IRestRequest request = RequestUtil.ApplyFamilySearchConneg(CreateAuthenticatedGedcomxRequest()).Build(link.Href, Method.DELETE);
             return ((FamilyTreeStateFactory)this.stateFactory).NewChildAndParentsRelationshipState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 

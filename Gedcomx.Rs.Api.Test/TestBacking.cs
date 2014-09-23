@@ -3,10 +3,12 @@ using Gx.Conclusion;
 using Gx.Fs.Tree;
 using Gx.Links;
 using Gx.Rs.Api;
+using Gx.Rs.Api.Util;
 using Gx.Source;
 using RestSharp;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -482,6 +484,51 @@ namespace Gedcomx.Rs.Api.Test
                 },
                 KnownType = Gx.Types.FactType.BiologicalParent,
             };
+        }
+
+        public static DataSource GetDataSource(String name, String contentType, String filePath)
+        {
+            DataSource result = null;
+
+            if (File.Exists(filePath))
+            {
+                result = new DataSourceTestImpl(name, contentType, new StreamReader(filePath).BaseStream);
+            }
+
+            return result;
+        }
+
+        public static DataSource GetDataSource(String name, String contentType, Byte[] bytes)
+        {
+            return new DataSourceTestImpl(name, contentType, new MemoryStream(bytes));
+        }
+    }
+
+    public class DataSourceTestImpl : DataSource
+    {
+        public DataSourceTestImpl(String name, String contentType, Stream inputStream)
+        {
+            Name = name;
+            ContentType = contentType;
+            InputStream = inputStream;
+        }
+
+        public Stream InputStream
+        {
+            get;
+            private set;
+        }
+
+        public String ContentType
+        {
+            get;
+            private set;
+        }
+
+        public String Name
+        {
+            get;
+            private set;
         }
     }
 }

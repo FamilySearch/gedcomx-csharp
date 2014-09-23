@@ -308,7 +308,7 @@ namespace Gx.Rs.Api
                 mediaType = MediaTypes.APPLICATION_OCTET_STREAM;//default to octet stream?
             }
 
-            Byte[] inputBytes = artifact.InputBytes;
+            Byte[] inputBytes = GetBytes(artifact.InputStream);
             if (artifact.Name != null)
             {
                 request.AddFile("artifact", inputBytes, artifact.Name, mediaType);
@@ -394,6 +394,18 @@ namespace Gx.Rs.Api
         public List<SourceDescription> GetSourceDescriptions()
         {
             return this.Entity == null ? null : this.Entity.SourceDescriptions;
+        }
+
+        private static Byte[] GetBytes(Stream stream)
+        {
+            Byte[] result = null;
+
+            if (stream != null && stream.CanRead)
+            {
+                result = stream.ReadAsBytes();
+            }
+
+            return result;
         }
     }
 }

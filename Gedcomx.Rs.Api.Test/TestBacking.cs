@@ -5,6 +5,7 @@ using Gx.Links;
 using Gx.Rs.Api;
 using Gx.Rs.Api.Util;
 using Gx.Source;
+using Gx.Types;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -501,6 +502,44 @@ namespace Gedcomx.Rs.Api.Test
         public static DataSource GetDataSource(String name, String contentType, Byte[] bytes)
         {
             return new DataSourceTestImpl(name, contentType, new MemoryStream(bytes));
+        }
+
+        public static Name GetCreateName(String name, NameType type, bool preferred)
+        {
+            var nameParts = GetNameParts(name);
+            return new Name()
+            {
+                KnownType = type,
+                NameForms = new List<NameForm>()
+                {
+                    new NameForm()
+                    {
+                        FullText = name,
+                        Parts = nameParts,
+                    },
+                },
+                Preferred = preferred,
+            };
+        }
+
+        public static List<NamePart> GetNameParts(String name)
+        {
+            var result = new List<NamePart>();
+            var parts = name.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (var part in parts)
+            {
+                if (result.Count < parts.Length - 1)
+                {
+                    result.Add(new NamePart() { KnownType = NamePartType.Given, Value = part });
+                }
+                else
+                {
+                    result.Add(new NamePart() { KnownType = NamePartType.Surname, Value = part });
+                }
+            }
+
+            return result;
         }
     }
 

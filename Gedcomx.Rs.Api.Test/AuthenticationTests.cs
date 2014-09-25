@@ -8,6 +8,7 @@ using Gx.Rs.Api.Util;
 using NUnit.Framework;
 using Gx.Links;
 using System.Net;
+using CsQuery;
 
 namespace Gedcomx.Rs.Api.Test
 {
@@ -73,6 +74,66 @@ namespace Gedcomx.Rs.Api.Test
             var state = collection.UnauthenticatedAccess(ip, "WCQY-7J1Q-GKVV-7DNM-SQ5M-9Q5H-JX3H-CMJK");
             Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
             Assert.IsNotNullOrEmpty(state.CurrentAccessToken);
+        }
+
+        [Test]
+        public void TestInitiateAuthorizationGet()
+        {
+            var collection = new CollectionState(new Uri(SANDBOX_URI));
+            Link tokenLink = collection.GetLink(Rel.OAUTH2_AUTHORIZE);
+            IDictionary<String, String> formData = new Dictionary<String, String>();
+            formData.Add("response_type", "code");
+            formData.Add("client_id", "ABCD-EFGH-JKLM-NOPQ-RSTU-VWXY-0123-4567");
+            formData.Add("redirect_uri", "https://familysearch.org/developers/sandbox-oauth2-redirect");
+            IRestRequest request = new RestRequest()
+                .SetEntity(formData)
+                .Build(tokenLink.Href, Method.GET);
+            IRestResponse response = collection.Client.Execute(request);
+
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+            var cq = new CQ(response.Content);
+            Assert.AreEqual(1, cq.Select("input#userName").Length);
+            Assert.AreEqual(1, cq.Select("input#password").Length);
+        }
+
+        [Test]
+        public void TestInitiateAuthorizationInvalidParameter()
+        {
+            var collection = new CollectionState(new Uri(SANDBOX_URI));
+            Link tokenLink = collection.GetLink(Rel.OAUTH2_AUTHORIZE);
+            IDictionary<String, String> formData = new Dictionary<String, String>();
+            formData.Add("response_type", "authorize_me");
+            formData.Add("client_id", "ABCD-EFGH-JKLM-NOPQ-RSTU-VWXY-0123-4567");
+            formData.Add("redirect_uri", "https://familysearch.org/developers/sandbox-oauth2-redirect");
+            IRestRequest request = new RestRequest()
+                .ContentType(MediaTypes.APPLICATION_FORM_URLENCODED_TYPE)
+                .SetEntity(formData)
+                .Build(tokenLink.Href, Method.POST);
+            IRestResponse response = collection.Client.Execute(request);
+
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+            var cq = new CQ(response.Content);
+            Assert.AreEqual(1, cq.Select("p#error").Length);
+        }
+
+        [Test]
+        public void TestInitiateAuthorizationPost()
+        {
+            var collection = new CollectionState(new Uri(SANDBOX_URI));
+            Link tokenLink = collection.GetLink(Rel.OAUTH2_AUTHORIZE);
+            IDictionary<String, String> formData = new Dictionary<String, String>();
+            formData.Add("response_type", "code");
+            formData.Add("client_id", "ABCD-EFGH-JKLM-NOPQ-RSTU-VWXY-0123-4567");
+            formData.Add("redirect_uri", "https://familysearch.org/developers/sandbox-oauth2-redirect");
+            IRestRequest request = new RestRequest()
+                .SetEntity(formData)
+                .Build(tokenLink.Href, Method.POST);
+            IRestResponse response = collection.Client.Execute(request);
+
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+            var cq = new CQ(response.Content);
+            Assert.AreEqual(1, cq.Select("input#userName").Length);
+            Assert.AreEqual(1, cq.Select("input#password").Length);
         }
     }
 }

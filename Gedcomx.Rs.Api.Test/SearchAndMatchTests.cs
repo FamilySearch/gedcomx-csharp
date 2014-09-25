@@ -85,5 +85,14 @@ namespace Gedcomx.Rs.Api.Test
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
         }
+
+        [Test]
+        public void TestReadPersonNotAMatchDeclarations()
+        {
+            var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            var matches = person.ReadMatches();
+            person.AddNonMatch(tree.ReadPersonById(matches.Results.Entries[0].Id));
+            var state = person.ReadNonMatches();
+        }
     }
 }

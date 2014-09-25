@@ -338,5 +338,17 @@ namespace FamilySearch.Api.Ft
             IRestRequest request = RequestUtil.ApplyFamilySearchConneg(CreateAuthenticatedRequest()).SetEntity(entity).Build(link.Href, Method.POST);
             return ((FamilyTreeStateFactory)this.stateFactory).NewPersonNonMatchesState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
+
+        public PersonNonMatchesState ReadNonMatches(params StateTransitionOption[] options)
+        {
+            Link link = GetLink(Rel.NOT_A_MATCHES);
+            if (link == null || link.Href == null)
+            {
+                return null;
+            }
+
+            IRestRequest request = RequestUtil.ApplyFamilySearchConneg(CreateAuthenticatedRequest()).Build(link.Href, Method.GET);
+            return ((FamilyTreeStateFactory)this.stateFactory).NewPersonNonMatchesState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
+        }
     }
 }

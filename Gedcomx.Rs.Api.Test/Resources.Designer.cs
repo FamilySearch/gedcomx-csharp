@@ -61,11 +61,21 @@ namespace Gedcomx.Rs.Api.Test {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PersonImage {
+            get {
+                object obj = ResourceManager.GetObject("PersonImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] Memory {
+        internal static byte[] PersonMemory {
             get {
-                object obj = ResourceManager.GetObject("Memory", resourceCulture);
+                object obj = ResourceManager.GetObject("PersonMemory", resourceCulture);
                 return ((byte[])(obj));
             }
         }

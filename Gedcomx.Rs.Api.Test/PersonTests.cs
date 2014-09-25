@@ -14,6 +14,8 @@ using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -552,7 +554,41 @@ namespace Gedcomx.Rs.Api.Test
         public void TestReadPersonMemories()
         {
             var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
-            var dataSource = TestBacking.GetDataSource("Sample Memory", MediaTypes.TEXT_PLAIN_TYPE, Resources.Memory);
+            var dataSource = TestBacking.GetDataSource("Sample Memory", MediaTypes.TEXT_PLAIN_TYPE, Resources.PersonMemory);
+            person.AddArtifact(dataSource);
+            person = (FamilyTreePersonState)person.Get();
+            var state = person.ReadArtifacts();
+
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
+        }
+
+        [Test]
+        public void TestReadPersonMemoriesByType()
+        {
+            var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            var dataSource = TestBacking.GetDataSource("Sample Memory", MediaTypes.TEXT_PLAIN_TYPE, Resources.PersonMemory);
+            person.AddArtifact(dataSource);
+            person = (FamilyTreePersonState)person.Get();
+            var options = new QueryParameter[] { new QueryParameter("type", "story") };
+            var state = person.ReadArtifacts(options);
+
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
+        }
+
+        [Test]
+        [Ignore("Need to resolve RDF serialization issue.")]
+        public void TestUploadPhotoForPerson()
+        {
+            var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            var converter = new ImageConverter();
+            var bytes = (Byte[])converter.ConvertTo(Resources.PersonImage, typeof(Byte[]));
+            var dataSource = TestBacking.GetDataSource("PersonImage", "image/jpeg", bytes);
+            var state = person.AddArtifact(new SourceDescription() { Titles = new List<TextValue>() { new TextValue("PersonImage") }, Citations = new List<SourceCitation>() { new SourceCitation() { Value = "Citation for PersonImage" } } }, dataSource);
+
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
         }
 
         [Test]

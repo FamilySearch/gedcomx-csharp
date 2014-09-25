@@ -328,6 +328,7 @@ namespace Gx.Source
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "created", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "created")]
+        [JsonConverter(typeof(JsonUnixTimestampConverter))]
         public DateTime Created
         {
             get

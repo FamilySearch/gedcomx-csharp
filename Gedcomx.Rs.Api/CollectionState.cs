@@ -271,7 +271,7 @@ namespace Gx.Rs.Api
 
             String mediaType = artifact.ContentType;
             IRestRequest request = state.CreateAuthenticatedGedcomxRequest()
-                .AddHeader("Content-Type", MediaTypes.MULTIPART_FORM_DATA_TYPE)
+                .ContentType(MediaTypes.MULTIPART_FORM_DATA_TYPE)
                 .Build(link.Href, Method.POST);
 
             if (description != null)
@@ -280,21 +280,21 @@ namespace Gx.Rs.Api
                 {
                     foreach (TextValue value in description.Titles)
                     {
-                        request.AddParameter("title", value.Value, ParameterType.RequestBody);
+                        request.AddFile("title", Encoding.UTF8.GetBytes(value.Value), null, MediaTypes.TEXT_PLAIN_TYPE);
                     }
                 }
                 if (description.Descriptions != null)
                 {
                     foreach (TextValue value in description.Descriptions)
                     {
-                        request.AddParameter("description", value.Value, ParameterType.RequestBody);
+                        request.AddFile("description", Encoding.UTF8.GetBytes(value.Value), null, MediaTypes.TEXT_PLAIN_TYPE);
                     }
                 }
                 if (description.Citations != null)
                 {
                     foreach (SourceCitation citation in description.Citations)
                     {
-                        request.AddParameter("citation", citation.Value, ParameterType.RequestBody);
+                        request.AddFile("citation", Encoding.UTF8.GetBytes(citation.Value), null, MediaTypes.TEXT_PLAIN_TYPE);
                     }
                 }
                 if (description.MediaType != null)
@@ -311,7 +311,21 @@ namespace Gx.Rs.Api
             Byte[] inputBytes = GetBytes(artifact.InputStream);
             if (artifact.Name != null)
             {
-                request.AddFile("artifact", inputBytes, artifact.Name, mediaType);
+                //request.AddFile("artifact", inputBytes, ParameterType.RequestBody);
+                request.Files.Add(new FileParameter()
+                {
+                    Name = "artifact",
+                    FileName = artifact.Name,
+                    ContentType = artifact.ContentType,
+                    Writer = new Action<Stream>(s =>
+                    {
+                        using (var ms = new MemoryStream(inputBytes))
+                        using (var reader = new StreamReader(ms))
+                        {
+                            reader.BaseStream.CopyTo(s);
+                        }
+                    })
+                });
             }
 
             return state.stateFactory.NewSourceDescriptionState(request, state.Invoke(request, options), state.Client, state.CurrentAccessToken);
@@ -402,6 +416,11 @@ namespace Gx.Rs.Api
 
             if (stream != null && stream.CanRead)
             {
+                if (stream.CanSeek)
+                {
+                    stream.Seek(0, SeekOrigin.Begin);
+                }
+
                 result = stream.ReadAsBytes();
             }
 

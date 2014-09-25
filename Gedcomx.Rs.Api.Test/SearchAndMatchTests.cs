@@ -1,8 +1,9 @@
 ﻿using FamilySearch.Api.Ft;
 using Gx.Fs.Tree;
-//using Gx.Rs.Api;
 using Gx.Rs.Api.Options;
+using Gx.Rs.Api.Util;
 using NUnit.Framework;
+using System;
 using System.Net;
 
 namespace Gedcomx.Rs.Api.Test
@@ -93,6 +94,49 @@ namespace Gedcomx.Rs.Api.Test
             var matches = person.ReadMatches();
             person.AddNonMatch(tree.ReadPersonById(matches.Results.Entries[0].Id));
             var state = person.ReadNonMatches();
+        }
+
+        [Test]
+        public void TestReadMatchScoresForPersons()
+        {
+            var query = new GedcomxPersonSearchQueryBuilder()
+                .GivenName("GedcomX")
+                .Surname("User")
+                .Gender("Male")
+                .BirthDate("June 1800")
+                .BirthPlace("Provo, Utah, Utah, United States")
+                .DeathDate("July 14, 1900")
+                .DeathPlace("Provo, Utah, Utah, United States");
+            var state = tree.SearchForPersonMatches(query);
+
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.IsNotNull(state.Results);
+            Assert.IsNotNull(state.Results.Entries);
+            Assert.Greater(state.Results.Entries.Count, 0);
+            Assert.Greater(state.Results.Entries[0].Score, 0);
+        }
+
+        [Test]
+        public void TestSearchForPersonMatches()
+        {
+            var query = new GedcomxPersonSearchQueryBuilder()
+                .FatherSurname("Heaton")
+                .SpouseSurname("Cox")
+                .Surname("Heaton")
+                .GivenName("Israel")
+                .BirthPlace("Orderville, UT")
+                .DeathDate("29 August 1936")
+                .DeathPlace("Kanab, Kane, UT")
+                .SpouseGivenName("Charlotte")
+                .MotherGivenName("Clarissa")
+                .MotherSurname("Hoyt")
+                .Gender("Male")
+                .BirthDate("30 January 1880")
+                .FatherGivenName("Jonathan");
+            var state = tree.SearchForPersonMatches(query);
+
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
         }
     }
 }

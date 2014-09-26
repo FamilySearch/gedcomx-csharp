@@ -5,45 +5,55 @@
 // </auto-generated>
 using System;
 
-namespace Gx.Source {
+namespace Gx.Source
+{
 
-  /// <remarks>
-  ///  Represents a citation field -- its name and value.
-  /// </remarks>
-  /// <summary>
-  ///  Represents a citation field -- its name and value.
-  /// </summary>
-  [System.SerializableAttribute()]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://gedcomx.org/v1/",TypeName="CitationField")]
-  [System.Xml.Serialization.SoapTypeAttribute(Namespace="http://gedcomx.org/v1/",TypeName="CitationField")]
-  public partial class CitationField {
+    /// <remarks>
+    ///  Represents a citation field -- its name and value.
+    /// </remarks>
+    /// <summary>
+    ///  Represents a citation field -- its name and value.
+    /// </summary>
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "CitationField")]
+    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "CitationField")]
+    public partial class CitationField
+    {
 
-    private string _name;
-    private string _value;
-    /// <summary>
-    ///  The citation field's name.
-    /// </summary>
-    [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="name")]
-    [System.Xml.Serialization.SoapAttributeAttribute(AttributeName="name")]
-    public string Name {
-      get {
-        return this._name;
-      }
-      set {
-        this._name = value;
-      }
+        private string _name;
+        private string _value;
+        /// <summary>
+        ///  The citation field's name.
+        /// </summary>
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "name")]
+        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "name")]
+        [Newtonsoft.Json.JsonProperty("name")]
+        public string Name
+        {
+            get
+            {
+                return this._name;
+            }
+            set
+            {
+                this._name = value;
+            }
+        }
+        /// <summary>
+        ///  The citation field's value.
+        /// </summary>
+        [System.Xml.Serialization.XmlTextAttribute()]
+        [Newtonsoft.Json.JsonProperty("value")]
+        public string Value
+        {
+            get
+            {
+                return this._value;
+            }
+            set
+            {
+                this._value = value;
+            }
+        }
     }
-    /// <summary>
-    ///  The citation field's value.
-    /// </summary>
-    [System.Xml.Serialization.XmlTextAttribute()]
-    public string Value {
-      get {
-        return this._value;
-      }
-      set {
-        this._value = value;
-      }
-    }
-  }
-}  
+}

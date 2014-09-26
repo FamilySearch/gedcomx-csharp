@@ -5,46 +5,56 @@
 // </auto-generated>
 using System;
 
-namespace Gx.Atom {
+namespace Gx.Atom
+{
 
-  /// <remarks>
-  ///  
-  /// </remarks>
-  /// <summary>
-  ///  
-  /// </summary>
-  [System.SerializableAttribute()]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2005/Atom",TypeName="CommonAttributes")]
-  [System.Xml.Serialization.SoapTypeAttribute(Namespace="http://www.w3.org/2005/Atom",TypeName="CommonAttributes")]
-  public abstract partial class CommonAttributes {
+    /// <remarks>
+    ///  
+    /// </remarks>
+    /// <summary>
+    ///  
+    /// </summary>
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.w3.org/2005/Atom", TypeName = "CommonAttributes")]
+    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://www.w3.org/2005/Atom", TypeName = "CommonAttributes")]
+    public abstract partial class CommonAttributes
+    {
 
-    private string _base;
-    private string _lang;
-    /// <summary>
-    ///  The base.
-    /// </summary>
-    [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="base")]
-    [System.Xml.Serialization.SoapAttributeAttribute(AttributeName="base")]
-    public string Base {
-      get {
-        return this._base;
-      }
-      set {
-        this._base = value;
-      }
+        private string _base;
+        private string _lang;
+        /// <summary>
+        ///  The base.
+        /// </summary>
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "base")]
+        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "base")]
+        [Newtonsoft.Json.JsonProperty("base")]
+        public string Base
+        {
+            get
+            {
+                return this._base;
+            }
+            set
+            {
+                this._base = value;
+            }
+        }
+        /// <summary>
+        ///  The language.
+        /// </summary>
+        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "lang", Namespace = "http://www.w3.org/XML/1998/namespace")]
+        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "lang", Namespace = "http://www.w3.org/XML/1998/namespace")]
+        [Newtonsoft.Json.JsonProperty("lang")]
+        public string Lang
+        {
+            get
+            {
+                return this._lang;
+            }
+            set
+            {
+                this._lang = value;
+            }
+        }
     }
-    /// <summary>
-    ///  The language.
-    /// </summary>
-    [System.Xml.Serialization.XmlAttributeAttribute(AttributeName="lang",Namespace="http://www.w3.org/XML/1998/namespace")]
-    [System.Xml.Serialization.SoapAttributeAttribute(AttributeName="lang",Namespace="http://www.w3.org/XML/1998/namespace")]
-    public string Lang {
-      get {
-        return this._lang;
-      }
-      set {
-        this._lang = value;
-      }
-    }
-  }
-}  
+}

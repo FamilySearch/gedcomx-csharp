@@ -34,6 +34,7 @@ namespace Gx.Fs.Tree
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "objectModifier")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "objectModifier")]
+        [Newtonsoft.Json.JsonProperty("objectModifier")]
         public string ObjectModifier
         {
             get
@@ -67,6 +68,7 @@ namespace Gx.Fs.Tree
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "operation")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "operation")]
+        [Newtonsoft.Json.JsonProperty("operation")]
         public string Operation
         {
             get
@@ -100,6 +102,7 @@ namespace Gx.Fs.Tree
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "reason")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "reason")]
+        [Newtonsoft.Json.JsonProperty("reason")]
         public string Reason
         {
             get
@@ -116,6 +119,7 @@ namespace Gx.Fs.Tree
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "objectType")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "objectType")]
+        [Newtonsoft.Json.JsonProperty("objectType")]
         public string ObjectType
         {
             get
@@ -149,6 +153,7 @@ namespace Gx.Fs.Tree
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "original", Namespace = "http://familysearch.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "original")]
+        [Newtonsoft.Json.JsonProperty("original")]
         public Gx.Common.ResourceReference Original
         {
             get
@@ -165,6 +170,7 @@ namespace Gx.Fs.Tree
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "parent", Namespace = "http://familysearch.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "parent")]
+        [Newtonsoft.Json.JsonProperty("parent")]
         public Gx.Common.ResourceReference Parent
         {
             get
@@ -181,6 +187,7 @@ namespace Gx.Fs.Tree
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "removed", Namespace = "http://familysearch.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "removed")]
+        [Newtonsoft.Json.JsonProperty("removed")]
         public Gx.Common.ResourceReference Removed
         {
             get
@@ -197,6 +204,7 @@ namespace Gx.Fs.Tree
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "resulting", Namespace = "http://familysearch.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "resulting")]
+        [Newtonsoft.Json.JsonProperty("resulting")]
         public Gx.Common.ResourceReference Resulting
         {
             get

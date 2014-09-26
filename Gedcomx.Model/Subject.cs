@@ -41,6 +41,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "extracted")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "extracted")]
+        [Newtonsoft.Json.JsonProperty("extracted")]
         public bool Extracted
         {
             get
@@ -78,6 +79,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "evidence", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "evidence")]
+        [Newtonsoft.Json.JsonProperty("evidence")]
         public System.Collections.Generic.List<Gx.Common.EvidenceReference> Evidence
         {
             get
@@ -94,6 +96,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "media", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "media")]
+        [Newtonsoft.Json.JsonProperty("media")]
         public System.Collections.Generic.List<Gx.Source.SourceReference> Media
         {
             get
@@ -110,6 +113,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "identifier", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "identifier")]
+        [Newtonsoft.Json.JsonProperty("identifiers")]
         [JsonConverter(typeof(JsonIdentifiersConverter))]
         public System.Collections.Generic.List<Gx.Conclusion.Identifier> Identifiers
         {

@@ -53,6 +53,7 @@ namespace Gx.Links
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "template")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "template")]
+        [Newtonsoft.Json.JsonProperty("template")]
         public string Template
         {
             get
@@ -69,6 +70,7 @@ namespace Gx.Links
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "allow")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "allow")]
+        [Newtonsoft.Json.JsonProperty("allow")]
         public string Allow
         {
             get
@@ -85,6 +87,7 @@ namespace Gx.Links
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "count")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "count")]
+        [Newtonsoft.Json.JsonProperty("count")]
         public int Count
         {
             get
@@ -122,6 +125,7 @@ namespace Gx.Links
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "accept")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "accept")]
+        [Newtonsoft.Json.JsonProperty("accept")]
         public string Accept
         {
             get
@@ -138,6 +142,7 @@ namespace Gx.Links
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "type")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "type")]
+        [Newtonsoft.Json.JsonProperty("type")]
         public string Type
         {
             get
@@ -154,6 +159,7 @@ namespace Gx.Links
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "hreflang")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "hreflang")]
+        [Newtonsoft.Json.JsonProperty("hreflang")]
         public string Hreflang
         {
             get
@@ -170,6 +176,7 @@ namespace Gx.Links
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "title")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "title")]
+        [Newtonsoft.Json.JsonProperty("title")]
         public string Title
         {
             get
@@ -186,6 +193,7 @@ namespace Gx.Links
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "results")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "results")]
+        [Newtonsoft.Json.JsonProperty("results")]
         public int Results
         {
             get
@@ -223,6 +231,7 @@ namespace Gx.Links
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "rel")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "rel")]
+        [Newtonsoft.Json.JsonProperty("rel")]
         public string Rel
         {
             get
@@ -239,6 +248,7 @@ namespace Gx.Links
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "offset")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "offset")]
+        [Newtonsoft.Json.JsonProperty("offset")]
         public int Offset
         {
             get
@@ -276,6 +286,7 @@ namespace Gx.Links
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "href")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "href")]
+        [Newtonsoft.Json.JsonProperty("href")]
         public String Href
         {
             get

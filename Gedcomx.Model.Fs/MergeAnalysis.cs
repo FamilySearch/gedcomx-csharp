@@ -32,6 +32,7 @@ namespace Gx.Fs.Tree
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "survivorResource", Namespace = "http://familysearch.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "survivorResource")]
+        [Newtonsoft.Json.JsonProperty("survivorResources")]
         public System.Collections.Generic.List<Gx.Common.ResourceReference> SurvivorResources
         {
             get
@@ -48,6 +49,7 @@ namespace Gx.Fs.Tree
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "duplicateResource", Namespace = "http://familysearch.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "duplicateResource")]
+        [Newtonsoft.Json.JsonProperty("duplicateResources")]
         public System.Collections.Generic.List<Gx.Common.ResourceReference> DuplicateResources
         {
             get
@@ -64,6 +66,7 @@ namespace Gx.Fs.Tree
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "conflictingResource", Namespace = "http://familysearch.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "conflictingResource")]
+        [Newtonsoft.Json.JsonProperty("conflictingResources")]
         public System.Collections.Generic.List<Gx.Fs.Tree.MergeConflict> ConflictingResources
         {
             get
@@ -80,6 +83,7 @@ namespace Gx.Fs.Tree
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "survivor", Namespace = "http://familysearch.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "survivor")]
+        [Newtonsoft.Json.JsonProperty("survivor")]
         public Gx.Common.ResourceReference Survivor
         {
             get
@@ -96,6 +100,7 @@ namespace Gx.Fs.Tree
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "duplicate", Namespace = "http://familysearch.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "duplicate")]
+        [Newtonsoft.Json.JsonProperty("duplicate")]
         public Gx.Common.ResourceReference Duplicate
         {
             get

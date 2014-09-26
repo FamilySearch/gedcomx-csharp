@@ -28,6 +28,7 @@ namespace Gx.Fs.Tree
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "status")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "status")]
+        [Newtonsoft.Json.JsonProperty("status")]
         public string Status
         {
             get
@@ -61,6 +62,7 @@ namespace Gx.Fs.Tree
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "collection")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "collection")]
+        [Newtonsoft.Json.JsonProperty("collection")]
         public string Collection
         {
             get

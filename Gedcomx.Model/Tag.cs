@@ -25,6 +25,7 @@ namespace Gx.Source
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "resource")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "resource")]
+        [Newtonsoft.Json.JsonProperty("resource")]
         public string Resource
         {
             get

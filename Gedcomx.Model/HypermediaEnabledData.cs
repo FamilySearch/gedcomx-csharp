@@ -31,6 +31,7 @@ namespace Gx.Links
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "link", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "link")]
+        [Newtonsoft.Json.JsonProperty("links")]
         [JsonConverter(typeof(JsonHypermediaLinksConverter))]
         public System.Collections.Generic.List<Gx.Links.Link> Links
         {

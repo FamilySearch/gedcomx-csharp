@@ -33,6 +33,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "type")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "type")]
+        [Newtonsoft.Json.JsonProperty("type")]
         public string Type
         {
             get
@@ -66,6 +67,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "preferred", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "preferred")]
+        [Newtonsoft.Json.JsonProperty("preferred")]
         public bool Preferred
         {
             get
@@ -103,6 +105,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "date", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "date")]
+        [Newtonsoft.Json.JsonProperty("date")]
         public Gx.Conclusion.DateInfo Date
         {
             get
@@ -119,6 +122,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "nameForm", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "nameForm")]
+        [Newtonsoft.Json.JsonProperty("nameForms")]
         public System.Collections.Generic.List<Gx.Conclusion.NameForm> NameForms
         {
             get

@@ -29,6 +29,7 @@ namespace Gx.Source
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "recordType", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "recordType")]
+        [Newtonsoft.Json.JsonProperty("recordType")]
         public string RecordType
         {
             get
@@ -62,6 +63,7 @@ namespace Gx.Source
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "spatial", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "spatial")]
+        [Newtonsoft.Json.JsonProperty("spatial")]
         public Gx.Conclusion.PlaceReference Spatial
         {
             get
@@ -78,6 +80,7 @@ namespace Gx.Source
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "temporal", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "temporal")]
+        [Newtonsoft.Json.JsonProperty("temporal")]
         public Gx.Conclusion.DateInfo Temporal
         {
             get

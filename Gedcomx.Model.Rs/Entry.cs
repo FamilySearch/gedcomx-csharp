@@ -48,6 +48,7 @@ namespace Gx.Atom
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "author", Namespace = "http://www.w3.org/2005/Atom")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "author")]
+        [Newtonsoft.Json.JsonProperty("authors")]
         public System.Collections.Generic.List<Gx.Atom.Person> Authors
         {
             get
@@ -64,6 +65,7 @@ namespace Gx.Atom
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "category", Namespace = "http://www.w3.org/2005/Atom")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "category")]
+        [Newtonsoft.Json.JsonProperty("categories")]
         public System.Collections.Generic.List<Gx.Atom.Category> Categories
         {
             get
@@ -80,6 +82,7 @@ namespace Gx.Atom
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "confidence", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "confidence")]
+        [Newtonsoft.Json.JsonProperty("confidence")]
         public Gx.Search.ResultConfidence Confidence
         {
             get
@@ -118,6 +121,7 @@ namespace Gx.Atom
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "content", Namespace = "http://www.w3.org/2005/Atom")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "content")]
+        [Newtonsoft.Json.JsonProperty("content")]
         public Gx.Atom.Content Content
         {
             get
@@ -134,6 +138,7 @@ namespace Gx.Atom
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "contributor", Namespace = "http://www.w3.org/2005/Atom")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "contributor")]
+        [Newtonsoft.Json.JsonProperty("contributors")]
         public System.Collections.Generic.List<Gx.Atom.Person> Contributors
         {
             get
@@ -150,6 +155,7 @@ namespace Gx.Atom
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "id", Namespace = "http://www.w3.org/2005/Atom")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "id")]
+        [Newtonsoft.Json.JsonProperty("id")]
         public string Id
         {
             get
@@ -166,6 +172,7 @@ namespace Gx.Atom
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "link", Namespace = "http://www.w3.org/2005/Atom")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "link")]
+        [Newtonsoft.Json.JsonProperty("links")]
         [JsonConverter(typeof(JsonHypermediaLinksConverter))]
         public System.Collections.Generic.List<Gx.Links.Link> Links
         {
@@ -183,6 +190,7 @@ namespace Gx.Atom
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "published", Namespace = "http://www.w3.org/2005/Atom")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "published")]
+        [Newtonsoft.Json.JsonProperty("published")]
         public DateTime Published
         {
             get
@@ -220,6 +228,7 @@ namespace Gx.Atom
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "rights", Namespace = "http://www.w3.org/2005/Atom")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "rights")]
+        [Newtonsoft.Json.JsonProperty("rights")]
         public string Rights
         {
             get
@@ -236,6 +245,7 @@ namespace Gx.Atom
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "score", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "score")]
+        [Newtonsoft.Json.JsonProperty("score")]
         public float Score
         {
             get
@@ -273,6 +283,7 @@ namespace Gx.Atom
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "title", Namespace = "http://www.w3.org/2005/Atom")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "title")]
+        [Newtonsoft.Json.JsonProperty("title")]
         public string Title
         {
             get
@@ -289,6 +300,7 @@ namespace Gx.Atom
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "updated", Namespace = "http://www.w3.org/2005/Atom")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "updated")]
+        [Newtonsoft.Json.JsonProperty("updated")]
         [JsonConverter(typeof(JsonUnixTimestampConverter))]
         public DateTime Updated
         {

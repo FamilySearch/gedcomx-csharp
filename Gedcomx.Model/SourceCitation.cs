@@ -30,6 +30,7 @@ namespace Gx.Source
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "lang", Namespace = "http://www.w3.org/XML/1998/namespace")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "lang", Namespace = "http://www.w3.org/XML/1998/namespace")]
+        [Newtonsoft.Json.JsonProperty("lang")]
         public string Lang
         {
             get
@@ -46,6 +47,7 @@ namespace Gx.Source
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "citationTemplate", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "citationTemplate")]
+        [Newtonsoft.Json.JsonProperty("citationTemplate")]
         public Gx.Common.ResourceReference CitationTemplate
         {
             get
@@ -62,6 +64,7 @@ namespace Gx.Source
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "field", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "field")]
+        [Newtonsoft.Json.JsonProperty("fields")]
         public System.Collections.Generic.List<Gx.Source.CitationField> Fields
         {
             get
@@ -78,6 +81,7 @@ namespace Gx.Source
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "value", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "value")]
+        [Newtonsoft.Json.JsonProperty("value")]
         public string Value
         {
             get

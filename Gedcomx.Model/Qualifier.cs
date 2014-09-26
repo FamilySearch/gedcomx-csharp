@@ -22,6 +22,7 @@ namespace Gx.Common
         private string _name;
         private string _value;
 
+        [Newtonsoft.Json.JsonProperty("name")]
         public string Name
         {
             get
@@ -38,6 +39,7 @@ namespace Gx.Common
         ///  The value of the qualifier.
         /// </summary>
         [System.Xml.Serialization.XmlTextAttribute()]
+        [Newtonsoft.Json.JsonProperty("value")]
         public string Value
         {
             get

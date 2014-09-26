@@ -31,6 +31,7 @@ namespace Gx.Fs
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "name", Namespace = "http://familysearch.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "name")]
+        [Newtonsoft.Json.JsonProperty("name")]
         public string Name
         {
             get
@@ -47,6 +48,7 @@ namespace Gx.Fs
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "description", Namespace = "http://familysearch.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "description")]
+        [Newtonsoft.Json.JsonProperty("description")]
         public string Description
         {
             get
@@ -63,6 +65,7 @@ namespace Gx.Fs
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "enabled", Namespace = "http://familysearch.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "enabled")]
+        [Newtonsoft.Json.JsonProperty("enabled")]
         public bool Enabled
         {
             get
@@ -100,6 +103,7 @@ namespace Gx.Fs
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "activationDate", Namespace = "http://familysearch.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "activationDate")]
+        [Newtonsoft.Json.JsonProperty("activationDate")]
         public DateTime ActivationDate
         {
             get

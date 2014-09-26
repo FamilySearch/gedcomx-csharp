@@ -46,27 +46,27 @@ namespace Gx.Rs.Api.Options
             request.Resource = url.Path + "?" + String.Join("&", query.Select(x => x.Key + "=" + x.Value));
         }
 
-        public static QueryParameter accessToken(String value)
+        public static QueryParameter AccessToken(String value)
         {
             return new QueryParameter(true, ACCESS_TOKEN, value);
         }
 
-        public static QueryParameter count(int value)
+        public static QueryParameter Count(int value)
         {
             return new QueryParameter(true, COUNT, value.ToString());
         }
 
-        public static QueryParameter generations(int value)
+        public static QueryParameter Generations(int value)
         {
             return new QueryParameter(true, GENERATIONS, value.ToString());
         }
 
-        public static QueryParameter searchQuery(String value)
+        public static QueryParameter SearchQuery(String value)
         {
             return new QueryParameter(true, SEARCH_QUERY, value);
         }
 
-        public static QueryParameter start(int value)
+        public static QueryParameter Start(int value)
         {
             return new QueryParameter(true, START, value.ToString());
         }

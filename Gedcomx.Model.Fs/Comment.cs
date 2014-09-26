@@ -31,6 +31,7 @@ namespace Gx.Fs.Discussions
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "text", Namespace = "http://familysearch.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "text")]
+        [Newtonsoft.Json.JsonProperty("text")]
         public string Text
         {
             get
@@ -47,6 +48,7 @@ namespace Gx.Fs.Discussions
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "created", Namespace = "http://familysearch.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "created")]
+        [Newtonsoft.Json.JsonProperty("created")]
         public DateTime Created
         {
             get
@@ -84,6 +86,7 @@ namespace Gx.Fs.Discussions
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "contributor", Namespace = "http://familysearch.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "contributor")]
+        [Newtonsoft.Json.JsonProperty("contributor")]
         public Gx.Common.ResourceReference Contributor
         {
             get

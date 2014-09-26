@@ -16,6 +16,7 @@ namespace Gx.Agent {
   [System.SerializableAttribute()]
   [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://gedcomx.org/v1/",TypeName="Address")]
   [System.Xml.Serialization.SoapTypeAttribute(Namespace="http://gedcomx.org/v1/",TypeName="Address")]
+  [Newtonsoft.Json.JsonObject("")]
   public partial class Address : Gx.Common.ExtensibleData {
 
     private string _city;
@@ -34,6 +35,7 @@ namespace Gx.Agent {
     /// </summary>
     [System.Xml.Serialization.XmlElementAttribute(ElementName="city",Namespace="http://gedcomx.org/v1/")]
     [System.Xml.Serialization.SoapElementAttribute(ElementName="city")]
+    [Newtonsoft.Json.JsonProperty("city")]
     public string City {
       get {
         return this._city;
@@ -47,7 +49,9 @@ namespace Gx.Agent {
     /// </summary>
     [System.Xml.Serialization.XmlElementAttribute(ElementName="country",Namespace="http://gedcomx.org/v1/")]
     [System.Xml.Serialization.SoapElementAttribute(ElementName="country")]
-    public string Country {
+    [Newtonsoft.Json.JsonProperty("country")]
+    public string Country
+    {
       get {
         return this._country;
       }
@@ -60,7 +64,9 @@ namespace Gx.Agent {
     /// </summary>
     [System.Xml.Serialization.XmlElementAttribute(ElementName="postalCode",Namespace="http://gedcomx.org/v1/")]
     [System.Xml.Serialization.SoapElementAttribute(ElementName="postalCode")]
-    public string PostalCode {
+    [Newtonsoft.Json.JsonProperty("postalCode")]
+    public string PostalCode
+    {
       get {
         return this._postalCode;
       }
@@ -73,7 +79,9 @@ namespace Gx.Agent {
     /// </summary>
     [System.Xml.Serialization.XmlElementAttribute(ElementName="stateOrProvince",Namespace="http://gedcomx.org/v1/")]
     [System.Xml.Serialization.SoapElementAttribute(ElementName="stateOrProvince")]
-    public string StateOrProvince {
+    [Newtonsoft.Json.JsonProperty("stateOrProvince")]
+    public string StateOrProvince
+    {
       get {
         return this._stateOrProvince;
       }
@@ -86,7 +94,9 @@ namespace Gx.Agent {
     /// </summary>
     [System.Xml.Serialization.XmlElementAttribute(ElementName="street",Namespace="http://gedcomx.org/v1/")]
     [System.Xml.Serialization.SoapElementAttribute(ElementName="street")]
-    public string Street {
+    [Newtonsoft.Json.JsonProperty("street")]
+    public string Street
+    {
       get {
         return this._street;
       }
@@ -99,7 +109,9 @@ namespace Gx.Agent {
     /// </summary>
     [System.Xml.Serialization.XmlElementAttribute(ElementName="street2",Namespace="http://gedcomx.org/v1/")]
     [System.Xml.Serialization.SoapElementAttribute(ElementName="street2")]
-    public string Street2 {
+    [Newtonsoft.Json.JsonProperty("street2")]
+    public string Street2
+    {
       get {
         return this._street2;
       }
@@ -112,7 +124,9 @@ namespace Gx.Agent {
     /// </summary>
     [System.Xml.Serialization.XmlElementAttribute(ElementName="street3",Namespace="http://gedcomx.org/v1/")]
     [System.Xml.Serialization.SoapElementAttribute(ElementName="street3")]
-    public string Street3 {
+    [Newtonsoft.Json.JsonProperty("street3")]
+    public string Street3
+    {
       get {
         return this._street3;
       }
@@ -125,7 +139,9 @@ namespace Gx.Agent {
     /// </summary>
     [System.Xml.Serialization.XmlElementAttribute(ElementName="street4",Namespace="http://gedcomx.org/v1/")]
     [System.Xml.Serialization.SoapElementAttribute(ElementName="street4")]
-    public string Street4 {
+    [Newtonsoft.Json.JsonProperty("street4")]
+    public string Street4
+    {
       get {
         return this._street4;
       }
@@ -138,7 +154,9 @@ namespace Gx.Agent {
     /// </summary>
     [System.Xml.Serialization.XmlElementAttribute(ElementName="street5",Namespace="http://gedcomx.org/v1/")]
     [System.Xml.Serialization.SoapElementAttribute(ElementName="street5")]
-    public string Street5 {
+    [Newtonsoft.Json.JsonProperty("street5")]
+    public string Street5
+    {
       get {
         return this._street5;
       }
@@ -151,7 +169,9 @@ namespace Gx.Agent {
     /// </summary>
     [System.Xml.Serialization.XmlElementAttribute(ElementName="street6",Namespace="http://gedcomx.org/v1/")]
     [System.Xml.Serialization.SoapElementAttribute(ElementName="street6")]
-    public string Street6 {
+    [Newtonsoft.Json.JsonProperty("street6")]
+    public string Street6
+    {
       get {
         return this._street6;
       }
@@ -164,7 +184,9 @@ namespace Gx.Agent {
     /// </summary>
     [System.Xml.Serialization.XmlElementAttribute(ElementName="value",Namespace="http://gedcomx.org/v1/")]
     [System.Xml.Serialization.SoapElementAttribute(ElementName="value")]
-    public string Value {
+    [Newtonsoft.Json.JsonProperty("value")]
+    public string Value
+    {
       get {
         return this._value;
       }

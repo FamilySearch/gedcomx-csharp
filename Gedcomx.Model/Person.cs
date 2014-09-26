@@ -40,6 +40,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "principal")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "principal")]
+        [Newtonsoft.Json.JsonProperty("principal")]
         public bool Principal
         {
             get
@@ -77,6 +78,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "private")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "private")]
+        [Newtonsoft.Json.JsonProperty("private")]
         public bool Private
         {
             get
@@ -114,6 +116,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "living", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "living")]
+        [Newtonsoft.Json.JsonProperty("living")]
         public bool Living
         {
             get
@@ -151,6 +154,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "gender", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "gender")]
+        [Newtonsoft.Json.JsonProperty("gender")]
         public Gx.Conclusion.Gender Gender
         {
             get
@@ -167,6 +171,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "name", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "name")]
+        [Newtonsoft.Json.JsonProperty("names")]
         public System.Collections.Generic.List<Gx.Conclusion.Name> Names
         {
             get
@@ -183,6 +188,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "fact", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "fact")]
+        [Newtonsoft.Json.JsonProperty("facts")]
         public System.Collections.Generic.List<Gx.Conclusion.Fact> Facts
         {
             get
@@ -199,6 +205,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "field", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "field")]
+        [Newtonsoft.Json.JsonProperty("fields")]
         public System.Collections.Generic.List<Gx.Records.Field> Fields
         {
             get
@@ -215,6 +222,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "display", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "display")]
+        [Newtonsoft.Json.JsonProperty("display")]
         public Gx.Conclusion.DisplayProperties DisplayExtension
         {
             get

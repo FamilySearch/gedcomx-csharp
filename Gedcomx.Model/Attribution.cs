@@ -36,6 +36,7 @@ namespace Gx.Common
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "contributor", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "contributor")]
+        [Newtonsoft.Json.JsonProperty("contributor")]
         public Gx.Common.ResourceReference Contributor
         {
             get
@@ -52,6 +53,7 @@ namespace Gx.Common
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "modified", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "modified")]
+        [Newtonsoft.Json.JsonProperty("modified")]
         [JsonConverter(typeof(JsonUnixTimestampConverter))]
         public DateTime Modified
         {
@@ -90,6 +92,7 @@ namespace Gx.Common
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "changeMessage", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "changeMessage")]
+        [Newtonsoft.Json.JsonProperty("changeMessage")]
         public string ChangeMessage
         {
             get

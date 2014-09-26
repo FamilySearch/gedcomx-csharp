@@ -30,6 +30,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "description")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "description")]
+        [Newtonsoft.Json.JsonProperty("description")]
         public string DescriptionRef
         {
             get
@@ -46,6 +47,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "original", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "original")]
+        [Newtonsoft.Json.JsonProperty("original")]
         public string Original
         {
             get
@@ -63,6 +65,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "normalized", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "normalized")]
+        [Newtonsoft.Json.JsonProperty("normalized")]
         public System.Collections.Generic.List<Gx.Common.TextValue> NormalizedExtensions
         {
             get
@@ -79,6 +82,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "field", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "field")]
+        [Newtonsoft.Json.JsonProperty("fields")]
         public System.Collections.Generic.List<Gx.Records.Field> Fields
         {
             get

@@ -39,6 +39,7 @@ namespace Gx.Agent
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "account", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "account")]
+        [Newtonsoft.Json.JsonProperty("accounts")]
         public System.Collections.Generic.List<Gx.Agent.OnlineAccount> Accounts
         {
             get
@@ -55,6 +56,7 @@ namespace Gx.Agent
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "address", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "address")]
+        [Newtonsoft.Json.JsonProperty("addresses")]
         public System.Collections.Generic.List<Gx.Agent.Address> Addresses
         {
             get
@@ -71,6 +73,7 @@ namespace Gx.Agent
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "email", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "email")]
+        [Newtonsoft.Json.JsonProperty("emails")]
         public System.Collections.Generic.List<Gx.Common.ResourceReference> Emails
         {
             get
@@ -87,6 +90,7 @@ namespace Gx.Agent
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "homepage", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "homepage")]
+        [Newtonsoft.Json.JsonProperty("homepage")]
         public Gx.Common.ResourceReference Homepage
         {
             get
@@ -103,6 +107,7 @@ namespace Gx.Agent
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "identifier", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "identifier")]
+        [Newtonsoft.Json.JsonProperty("identifiers")]
         [JsonConverter(typeof(JsonIdentifiersConverter))]
         public System.Collections.Generic.List<Gx.Conclusion.Identifier> Identifiers
         {
@@ -120,6 +125,7 @@ namespace Gx.Agent
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "name", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "name")]
+        [Newtonsoft.Json.JsonProperty("names")]
         public System.Collections.Generic.List<Gx.Common.TextValue> Names
         {
             get
@@ -136,6 +142,7 @@ namespace Gx.Agent
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "openid", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "openid")]
+        [Newtonsoft.Json.JsonProperty("openid")]
         public Gx.Common.ResourceReference Openid
         {
             get
@@ -152,6 +159,7 @@ namespace Gx.Agent
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "phone", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "phone")]
+        [Newtonsoft.Json.JsonProperty("phones")]
         public System.Collections.Generic.List<Gx.Common.ResourceReference> Phones
         {
             get

@@ -40,6 +40,7 @@ namespace Gx.Fs.Discussions
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "title", Namespace = "http://familysearch.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "title")]
+        [Newtonsoft.Json.JsonProperty("title")]
         public string Title
         {
             get
@@ -56,6 +57,7 @@ namespace Gx.Fs.Discussions
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "details", Namespace = "http://familysearch.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "details")]
+        [Newtonsoft.Json.JsonProperty("details")]
         public string Details
         {
             get
@@ -72,6 +74,7 @@ namespace Gx.Fs.Discussions
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "created", Namespace = "http://familysearch.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "created")]
+        [Newtonsoft.Json.JsonProperty("created")]
         public DateTime Created
         {
             get
@@ -109,6 +112,7 @@ namespace Gx.Fs.Discussions
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "contributor", Namespace = "http://familysearch.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "contributor")]
+        [Newtonsoft.Json.JsonProperty("contributor")]
         public Gx.Common.ResourceReference Contributor
         {
             get
@@ -125,6 +129,7 @@ namespace Gx.Fs.Discussions
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "modified", Namespace = "http://familysearch.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "modified")]
+        [Newtonsoft.Json.JsonProperty("modified")]
         public DateTime Modified
         {
             get
@@ -162,6 +167,7 @@ namespace Gx.Fs.Discussions
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "numberOfComments", Namespace = "http://familysearch.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "numberOfComments")]
+        [Newtonsoft.Json.JsonProperty("numberOfComments")]
         public int NumberOfComments
         {
             get
@@ -199,6 +205,7 @@ namespace Gx.Fs.Discussions
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "comment", Namespace = "http://familysearch.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "comment")]
+        [Newtonsoft.Json.JsonProperty("comments")]
         public System.Collections.Generic.List<Gx.Fs.Discussions.Comment> Comments
         {
             get

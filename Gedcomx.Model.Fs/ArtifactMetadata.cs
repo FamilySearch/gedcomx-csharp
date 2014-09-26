@@ -32,6 +32,7 @@ namespace Gx.Fs.Artifacts
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "artifactType")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "artifactType")]
+        [Newtonsoft.Json.JsonProperty("artifactType")]
         public string ArtifactType
         {
             get
@@ -65,6 +66,7 @@ namespace Gx.Fs.Artifacts
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "filename", Namespace = "http://familysearch.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "filename")]
+        [Newtonsoft.Json.JsonProperty("filename")]
         public string Filename
         {
             get
@@ -81,6 +83,7 @@ namespace Gx.Fs.Artifacts
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "height", Namespace = "http://familysearch.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "height")]
+        [Newtonsoft.Json.JsonProperty("height")]
         public int Height
         {
             get
@@ -118,6 +121,7 @@ namespace Gx.Fs.Artifacts
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "width", Namespace = "http://familysearch.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "width")]
+        [Newtonsoft.Json.JsonProperty("width")]
         public int Width
         {
             get

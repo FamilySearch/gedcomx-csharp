@@ -35,6 +35,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "primary")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "primary")]
+        [Newtonsoft.Json.JsonProperty("primary")]
         public bool Primary
         {
             get
@@ -72,6 +73,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "type")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "type")]
+        [Newtonsoft.Json.JsonProperty("type")]
         public string Type
         {
             get
@@ -105,6 +107,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "date", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "date")]
+        [Newtonsoft.Json.JsonProperty("date")]
         public Gx.Conclusion.DateInfo Date
         {
             get
@@ -121,6 +124,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "place", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "place")]
+        [Newtonsoft.Json.JsonProperty("place")]
         public Gx.Conclusion.PlaceReference Place
         {
             get
@@ -137,6 +141,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "value", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "value")]
+        [Newtonsoft.Json.JsonProperty("value")]
         public string Value
         {
             get
@@ -153,6 +158,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "qualifier", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "qualifier")]
+        [Newtonsoft.Json.JsonProperty("qualifiers")]
         public System.Collections.Generic.List<Gx.Common.Qualifier> Qualifiers
         {
             get
@@ -169,6 +175,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "field", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "field")]
+        [Newtonsoft.Json.JsonProperty("fields")]
         public System.Collections.Generic.List<Gx.Records.Field> Fields
         {
             get

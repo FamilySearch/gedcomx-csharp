@@ -37,6 +37,7 @@ namespace Gx.Common
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "resourceId")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "resourceId")]
+        [Newtonsoft.Json.JsonProperty("resourceId")]
         public string ResourceId
         {
             get
@@ -53,6 +54,7 @@ namespace Gx.Common
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "resource")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "resource")]
+        [Newtonsoft.Json.JsonProperty("resource")]
         public string Resource
         {
             get

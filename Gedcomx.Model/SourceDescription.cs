@@ -54,6 +54,7 @@ namespace Gx.Source
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "about")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "about")]
+        [Newtonsoft.Json.JsonProperty("about")]
         public string About
         {
             get
@@ -70,6 +71,7 @@ namespace Gx.Source
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "lang", Namespace = "http://www.w3.org/XML/1998/namespace")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "lang", Namespace = "http://www.w3.org/XML/1998/namespace")]
+        [Newtonsoft.Json.JsonProperty("lang")]
         public string Lang
         {
             get
@@ -86,6 +88,7 @@ namespace Gx.Source
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "mediaType")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "mediaType")]
+        [Newtonsoft.Json.JsonProperty("mediaType")]
         public string MediaType
         {
             get
@@ -102,6 +105,7 @@ namespace Gx.Source
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "sortKey")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "sortKey")]
+        [Newtonsoft.Json.JsonProperty("sortKey")]
         public string SortKey
         {
             get
@@ -118,6 +122,7 @@ namespace Gx.Source
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "resourceType")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "resourceType")]
+        [Newtonsoft.Json.JsonProperty("resourceType")]
         public string ResourceType
         {
             get
@@ -151,6 +156,7 @@ namespace Gx.Source
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "citation", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "citation")]
+        [Newtonsoft.Json.JsonProperty("citations")]
         public System.Collections.Generic.List<Gx.Source.SourceCitation> Citations
         {
             get
@@ -167,6 +173,7 @@ namespace Gx.Source
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "mediator", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "mediator")]
+        [Newtonsoft.Json.JsonProperty("mediator")]
         public Gx.Common.ResourceReference Mediator
         {
             get
@@ -183,6 +190,7 @@ namespace Gx.Source
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "source", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "source")]
+        [Newtonsoft.Json.JsonProperty("sources")]
         public System.Collections.Generic.List<Gx.Source.SourceReference> Sources
         {
             get
@@ -199,6 +207,7 @@ namespace Gx.Source
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "analysis", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "analysis")]
+        [Newtonsoft.Json.JsonProperty("analysis")]
         public Gx.Common.ResourceReference Analysis
         {
             get
@@ -215,6 +224,7 @@ namespace Gx.Source
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "componentOf", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "componentOf")]
+        [Newtonsoft.Json.JsonProperty("componentOf")]
         public Gx.Source.SourceReference ComponentOf
         {
             get
@@ -231,6 +241,7 @@ namespace Gx.Source
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "title", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "title")]
+        [Newtonsoft.Json.JsonProperty("titles")]
         public System.Collections.Generic.List<Gx.Common.TextValue> Titles
         {
             get
@@ -247,6 +258,7 @@ namespace Gx.Source
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "titleLabel", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "titleLabel")]
+        [Newtonsoft.Json.JsonProperty("titleLabel")]
         public Gx.Common.TextValue TitleLabel
         {
             get
@@ -263,6 +275,7 @@ namespace Gx.Source
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "note", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "note")]
+        [Newtonsoft.Json.JsonProperty("notes")]
         public System.Collections.Generic.List<Gx.Common.Note> Notes
         {
             get
@@ -279,6 +292,7 @@ namespace Gx.Source
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "attribution", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "attribution")]
+        [Newtonsoft.Json.JsonProperty("attribution")]
         public Gx.Common.Attribution Attribution
         {
             get
@@ -295,6 +309,7 @@ namespace Gx.Source
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "description", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "description")]
+        [Newtonsoft.Json.JsonProperty("descriptions")]
         public System.Collections.Generic.List<Gx.Common.TextValue> Descriptions
         {
             get
@@ -311,6 +326,7 @@ namespace Gx.Source
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "identifier", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "identifier")]
+        [Newtonsoft.Json.JsonProperty("identifiers")]
         [JsonConverter(typeof(JsonIdentifiersConverter))]
         public System.Collections.Generic.List<Gx.Conclusion.Identifier> Identifiers
         {
@@ -328,6 +344,7 @@ namespace Gx.Source
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "created", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "created")]
+        [Newtonsoft.Json.JsonProperty("created")]
         [JsonConverter(typeof(JsonUnixTimestampConverter))]
         public DateTime Created
         {
@@ -366,6 +383,7 @@ namespace Gx.Source
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "modified", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "modified")]
+        [Newtonsoft.Json.JsonProperty("modified")]
         [JsonConverter(typeof(JsonUnixTimestampConverter))]
         public DateTime Modified
         {
@@ -404,6 +422,7 @@ namespace Gx.Source
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "coverage", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "coverage")]
+        [Newtonsoft.Json.JsonProperty("coverage")]
         public System.Collections.Generic.List<Gx.Source.Coverage> Coverage
         {
             get
@@ -420,6 +439,7 @@ namespace Gx.Source
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "rights", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "rights")]
+        [Newtonsoft.Json.JsonProperty("rights")]
         public System.Collections.Generic.List<string> Rights
         {
             get
@@ -436,6 +456,7 @@ namespace Gx.Source
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "field", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "field")]
+        [Newtonsoft.Json.JsonProperty("fields")]
         public System.Collections.Generic.List<Gx.Records.Field> Fields
         {
             get
@@ -452,6 +473,7 @@ namespace Gx.Source
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "repository", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "repository")]
+        [Newtonsoft.Json.JsonProperty("repository")]
         public Gx.Common.ResourceReference Repository
         {
             get
@@ -468,6 +490,7 @@ namespace Gx.Source
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "descriptor", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "descriptor")]
+        [Newtonsoft.Json.JsonProperty("descriptor")]
         public Gx.Common.ResourceReference DescriptorRef
         {
             get

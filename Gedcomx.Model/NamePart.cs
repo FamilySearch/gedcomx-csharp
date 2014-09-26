@@ -30,6 +30,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "value")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "value")]
+        [Newtonsoft.Json.JsonProperty("value")]
         public string Value
         {
             get
@@ -46,6 +47,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "type")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "type")]
+        [Newtonsoft.Json.JsonProperty("type")]
         public string Type
         {
             get
@@ -79,6 +81,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "field", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "field")]
+        [Newtonsoft.Json.JsonProperty("fields")]
         public System.Collections.Generic.List<Gx.Records.Field> Fields
         {
             get
@@ -95,6 +98,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "qualifier", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "qualifier")]
+        [Newtonsoft.Json.JsonProperty("qualifiers")]
         public System.Collections.Generic.List<Gx.Common.Qualifier> Qualifiers
         {
             get

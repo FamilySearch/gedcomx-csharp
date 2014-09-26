@@ -41,6 +41,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "type")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "type")]
+        [Newtonsoft.Json.JsonProperty("type")]
         public string Type
         {
             get
@@ -57,6 +58,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "name", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "name")]
+        [Newtonsoft.Json.JsonProperty("names")]
         public System.Collections.Generic.List<Gx.Common.TextValue> Names
         {
             get
@@ -73,6 +75,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "temporalDescription", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "temporalDescription")]
+        [Newtonsoft.Json.JsonProperty("temporalDescription")]
         public Gx.Conclusion.DateInfo TemporalDescription
         {
             get
@@ -89,6 +92,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "latitude", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "latitude")]
+        [Newtonsoft.Json.JsonProperty("latitude")]
         public double Latitude
         {
             get
@@ -126,6 +130,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "longitude", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "longitude")]
+        [Newtonsoft.Json.JsonProperty("longitude")]
         public double Longitude
         {
             get
@@ -163,6 +168,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "spatialDescription", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "spatialDescription")]
+        [Newtonsoft.Json.JsonProperty("spatialDescription")]
         public Gx.Common.ResourceReference SpatialDescription
         {
             get
@@ -179,6 +185,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "place", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "place")]
+        [Newtonsoft.Json.JsonProperty("place")]
         public Gx.Common.ResourceReference Place
         {
             get
@@ -195,6 +202,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "jurisdiction", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "jurisdiction")]
+        [Newtonsoft.Json.JsonProperty("jurisdiction")]
         public Gx.Common.ResourceReference Jurisdiction
         {
             get
@@ -211,6 +219,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "display", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "display")]
+        [Newtonsoft.Json.JsonProperty("display")]
         public Gx.Conclusion.PlaceDisplayProperties DisplayExtension
         {
             get

@@ -28,6 +28,7 @@ namespace Gx.Common
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "id", DataType = "ID")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "id", DataType = "ID")]
+        [Newtonsoft.Json.JsonProperty("id")]
         public string Id
         {
             get

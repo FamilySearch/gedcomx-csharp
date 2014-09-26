@@ -33,6 +33,7 @@ namespace Gx.Records
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "lang", Namespace = "http://www.w3.org/XML/1998/namespace")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "lang", Namespace = "http://www.w3.org/XML/1998/namespace")]
+        [Newtonsoft.Json.JsonProperty("lang")]
         public string Lang
         {
             get
@@ -49,6 +50,7 @@ namespace Gx.Records
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "title", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "title")]
+        [Newtonsoft.Json.JsonProperty("title")]
         public string Title
         {
             get
@@ -65,6 +67,7 @@ namespace Gx.Records
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "size", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "size")]
+        [Newtonsoft.Json.JsonProperty("size")]
         public int Size
         {
             get
@@ -102,6 +105,7 @@ namespace Gx.Records
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "content", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "content")]
+        [Newtonsoft.Json.JsonProperty("content")]
         public System.Collections.Generic.List<Gx.Records.CollectionContent> Content
         {
             get
@@ -118,6 +122,7 @@ namespace Gx.Records
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "attribution", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "attribution")]
+        [Newtonsoft.Json.JsonProperty("attribution")]
         public Gx.Common.Attribution Attribution
         {
             get

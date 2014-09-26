@@ -5,60 +5,74 @@
 // </auto-generated>
 using System;
 
-namespace Gx.Records {
+namespace Gx.Records
+{
 
-  /// <remarks>
-  ///  A description of a field in a record.
-  /// </remarks>
-  /// <summary>
-  ///  A description of a field in a record.
-  /// </summary>
-  [System.SerializableAttribute()]
-  [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://gedcomx.org/v1/",TypeName="FieldDescriptor")]
-  [System.Xml.Serialization.SoapTypeAttribute(Namespace="http://gedcomx.org/v1/",TypeName="FieldDescriptor")]
-  public partial class FieldDescriptor : Gx.Links.HypermediaEnabledData {
+    /// <remarks>
+    ///  A description of a field in a record.
+    /// </remarks>
+    /// <summary>
+    ///  A description of a field in a record.
+    /// </summary>
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "FieldDescriptor")]
+    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "FieldDescriptor")]
+    public partial class FieldDescriptor : Gx.Links.HypermediaEnabledData
+    {
 
-    private string _originalLabel;
-    private System.Collections.Generic.List<Gx.Common.TextValue> _descriptions;
-    private System.Collections.Generic.List<Gx.Records.FieldValueDescriptor> _values;
-    /// <summary>
-    ///  The original label for the field, as stated on the original record.
-    /// </summary>
-    [System.Xml.Serialization.XmlElementAttribute(ElementName="originalLabel",Namespace="http://gedcomx.org/v1/")]
-    [System.Xml.Serialization.SoapElementAttribute(ElementName="originalLabel")]
-    public string OriginalLabel {
-      get {
-        return this._originalLabel;
-      }
-      set {
-        this._originalLabel = value;
-      }
+        private string _originalLabel;
+        private System.Collections.Generic.List<Gx.Common.TextValue> _descriptions;
+        private System.Collections.Generic.List<Gx.Records.FieldValueDescriptor> _values;
+        /// <summary>
+        ///  The original label for the field, as stated on the original record.
+        /// </summary>
+        [System.Xml.Serialization.XmlElementAttribute(ElementName = "originalLabel", Namespace = "http://gedcomx.org/v1/")]
+        [System.Xml.Serialization.SoapElementAttribute(ElementName = "originalLabel")]
+        [Newtonsoft.Json.JsonProperty("originalLabel")]
+        public string OriginalLabel
+        {
+            get
+            {
+                return this._originalLabel;
+            }
+            set
+            {
+                this._originalLabel = value;
+            }
+        }
+        /// <summary>
+        ///  The description of the field.
+        /// </summary>
+        [System.Xml.Serialization.XmlElementAttribute(ElementName = "description", Namespace = "http://gedcomx.org/v1/")]
+        [System.Xml.Serialization.SoapElementAttribute(ElementName = "description")]
+        [Newtonsoft.Json.JsonProperty("descriptions")]
+        public System.Collections.Generic.List<Gx.Common.TextValue> Descriptions
+        {
+            get
+            {
+                return this._descriptions;
+            }
+            set
+            {
+                this._descriptions = value;
+            }
+        }
+        /// <summary>
+        ///  Descriptors of the values that are applicable to the field.
+        /// </summary>
+        [System.Xml.Serialization.XmlElementAttribute(ElementName = "value", Namespace = "http://gedcomx.org/v1/")]
+        [System.Xml.Serialization.SoapElementAttribute(ElementName = "value")]
+        [Newtonsoft.Json.JsonProperty("values")]
+        public System.Collections.Generic.List<Gx.Records.FieldValueDescriptor> Values
+        {
+            get
+            {
+                return this._values;
+            }
+            set
+            {
+                this._values = value;
+            }
+        }
     }
-    /// <summary>
-    ///  The description of the field.
-    /// </summary>
-    [System.Xml.Serialization.XmlElementAttribute(ElementName="description",Namespace="http://gedcomx.org/v1/")]
-    [System.Xml.Serialization.SoapElementAttribute(ElementName="description")]
-    public System.Collections.Generic.List<Gx.Common.TextValue> Descriptions {
-      get {
-        return this._descriptions;
-      }
-      set {
-        this._descriptions = value;
-      }
-    }
-    /// <summary>
-    ///  Descriptors of the values that are applicable to the field.
-    /// </summary>
-    [System.Xml.Serialization.XmlElementAttribute(ElementName="value",Namespace="http://gedcomx.org/v1/")]
-    [System.Xml.Serialization.SoapElementAttribute(ElementName="value")]
-    public System.Collections.Generic.List<Gx.Records.FieldValueDescriptor> Values {
-      get {
-        return this._values;
-      }
-      set {
-        this._values = value;
-      }
-    }
-  }
-}  
+}

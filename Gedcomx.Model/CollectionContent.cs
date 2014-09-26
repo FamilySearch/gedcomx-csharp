@@ -31,6 +31,7 @@ namespace Gx.Records
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "completeness", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "completeness")]
+        [Newtonsoft.Json.JsonProperty("completeness")]
         public float Completeness
         {
             get
@@ -68,6 +69,7 @@ namespace Gx.Records
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "count", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "count")]
+        [Newtonsoft.Json.JsonProperty("count")]
         public int Count
         {
             get
@@ -105,6 +107,7 @@ namespace Gx.Records
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "resourceType", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "resourceType")]
+        [Newtonsoft.Json.JsonProperty("resourceType")]
         public string ResourceType
         {
             get

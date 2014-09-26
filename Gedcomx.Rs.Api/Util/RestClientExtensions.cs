@@ -17,7 +17,6 @@ namespace Gx.Rs.Api.Util
         static RestClientExtensions()
         {
             jsonSettings = new JsonSerializerSettings();
-            jsonSettings.ContractResolver = new CamelCaseContractResolver();
             jsonSettings.NullValueHandling = NullValueHandling.Ignore;
         }
 

@@ -31,6 +31,7 @@ namespace Gx.Fs
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "code", Namespace = "http://familysearch.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "code")]
+        [Newtonsoft.Json.JsonProperty("code")]
         public int Code
         {
             get
@@ -68,6 +69,7 @@ namespace Gx.Fs
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "label", Namespace = "http://familysearch.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "label")]
+        [Newtonsoft.Json.JsonProperty("label")]
         public string Label
         {
             get
@@ -84,6 +86,7 @@ namespace Gx.Fs
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "message", Namespace = "http://familysearch.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "message")]
+        [Newtonsoft.Json.JsonProperty("message")]
         public string Message
         {
             get
@@ -100,6 +103,7 @@ namespace Gx.Fs
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "stacktrace", Namespace = "http://familysearch.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "stacktrace")]
+        [Newtonsoft.Json.JsonProperty("stacktrace")]
         public string Stacktrace
         {
             get

@@ -31,6 +31,7 @@ namespace Gx.Records
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "resource")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "resource")]
+        [Newtonsoft.Json.JsonProperty("resource")]
         public string Resource
         {
             get
@@ -47,6 +48,7 @@ namespace Gx.Records
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "datatype")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "datatype")]
+        [Newtonsoft.Json.JsonProperty("datatype")]
         public string Datatype
         {
             get
@@ -63,6 +65,7 @@ namespace Gx.Records
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "type")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "type")]
+        [Newtonsoft.Json.JsonProperty("type")]
         public string Type
         {
             get
@@ -96,6 +99,7 @@ namespace Gx.Records
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "labelId")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "labelId")]
+        [Newtonsoft.Json.JsonProperty("labelId")]
         public string LabelId
         {
             get
@@ -112,6 +116,7 @@ namespace Gx.Records
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "text", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "text")]
+        [Newtonsoft.Json.JsonProperty("text")]
         public string Text
         {
             get

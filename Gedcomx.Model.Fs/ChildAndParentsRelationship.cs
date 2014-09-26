@@ -35,6 +35,7 @@ namespace Gx.Fs.Tree
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "father", Namespace = "http://familysearch.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "father")]
+        [Newtonsoft.Json.JsonProperty("father")]
         public Gx.Common.ResourceReference Father
         {
             get
@@ -51,6 +52,7 @@ namespace Gx.Fs.Tree
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "mother", Namespace = "http://familysearch.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "mother")]
+        [Newtonsoft.Json.JsonProperty("mother")]
         public Gx.Common.ResourceReference Mother
         {
             get
@@ -67,6 +69,7 @@ namespace Gx.Fs.Tree
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "child", Namespace = "http://familysearch.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "child")]
+        [Newtonsoft.Json.JsonProperty("child")]
         public Gx.Common.ResourceReference Child
         {
             get
@@ -83,6 +86,7 @@ namespace Gx.Fs.Tree
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "fatherFact", Namespace = "http://familysearch.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "fatherFact")]
+        [Newtonsoft.Json.JsonProperty("fatherFacts")]
         public System.Collections.Generic.List<Gx.Conclusion.Fact> FatherFacts
         {
             get
@@ -99,6 +103,7 @@ namespace Gx.Fs.Tree
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "motherFact", Namespace = "http://familysearch.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "motherFact")]
+        [Newtonsoft.Json.JsonProperty("motherFacts")]
         public System.Collections.Generic.List<Gx.Conclusion.Fact> MotherFacts
         {
             get

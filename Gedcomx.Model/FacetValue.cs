@@ -29,6 +29,7 @@ namespace Gx.Records
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "title", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "title")]
+        [Newtonsoft.Json.JsonProperty("title")]
         public string Title
         {
             get
@@ -45,6 +46,7 @@ namespace Gx.Records
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "value", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "value")]
+        [Newtonsoft.Json.JsonProperty("value")]
         public string Value
         {
             get
@@ -61,6 +63,7 @@ namespace Gx.Records
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "count", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "count")]
+        [Newtonsoft.Json.JsonProperty("count")]
         public int Count
         {
             get

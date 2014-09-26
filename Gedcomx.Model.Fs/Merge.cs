@@ -29,6 +29,7 @@ namespace Gx.Fs.Tree
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "resourceToDelete", Namespace = "http://familysearch.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "resourceToDelete")]
+        [Newtonsoft.Json.JsonProperty("resourcesToDelete")]
         public System.Collections.Generic.List<Gx.Common.ResourceReference> ResourcesToDelete
         {
             get
@@ -45,6 +46,7 @@ namespace Gx.Fs.Tree
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "resourceToCopy", Namespace = "http://familysearch.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "resourceToCopy")]
+        [Newtonsoft.Json.JsonProperty("resourcesToCopy")]
         public System.Collections.Generic.List<Gx.Common.ResourceReference> ResourcesToCopy
         {
             get

@@ -19,6 +19,7 @@ namespace Gx.Conclusion
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Document")]
     [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Document")]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://gedcomx.org/v1/", ElementName = "document")]
+    [Newtonsoft.Json.JsonObject("documents")]
     public partial class Document : Gx.Conclusion.Conclusion
     {
 
@@ -32,6 +33,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "textType")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "textType")]
+        [Newtonsoft.Json.JsonProperty("textType")]
         public string TextType
         {
             get
@@ -48,6 +50,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "extracted")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "extracted")]
+        [Newtonsoft.Json.JsonProperty("extracted")]
         public bool Extracted
         {
             get
@@ -85,6 +88,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "type")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "type")]
+        [Newtonsoft.Json.JsonProperty("type")]
         public string Type
         {
             get
@@ -118,6 +122,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "text", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "text")]
+        [Newtonsoft.Json.JsonProperty("text")]
         public string Text
         {
             get

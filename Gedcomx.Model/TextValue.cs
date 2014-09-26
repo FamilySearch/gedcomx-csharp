@@ -36,6 +36,7 @@ namespace Gx.Common
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "lang", Namespace = "http://www.w3.org/XML/1998/namespace")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "lang", Namespace = "http://www.w3.org/XML/1998/namespace")]
+        [Newtonsoft.Json.JsonProperty("lang")]
         public string Lang
         {
             get
@@ -51,6 +52,7 @@ namespace Gx.Common
         ///  The text value.
         /// </summary>
         [System.Xml.Serialization.XmlTextAttribute()]
+        [Newtonsoft.Json.JsonProperty("value")]
         public string Value
         {
             get

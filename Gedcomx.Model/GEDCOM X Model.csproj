@@ -113,7 +113,6 @@
     <Compile Include="RecordType.cs" />
     <Compile Include="FieldValueDescriptor.cs" />
     <Compile Include="Util\JsonIdentifiersConverter.cs" />
-    <Compile Include="Util\CamelCaseContractResolver.cs" />
     <Compile Include="Util\JsonUnixTimestampConverter.cs" />
   </ItemGroup>
   <ItemGroup>

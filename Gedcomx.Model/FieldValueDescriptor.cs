@@ -30,6 +30,7 @@ namespace Gx.Records
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "optional")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "optional")]
+        [Newtonsoft.Json.JsonProperty("optional")]
         public bool Optional
         {
             get
@@ -67,6 +68,7 @@ namespace Gx.Records
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "type")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "type")]
+        [Newtonsoft.Json.JsonProperty("type")]
         public string Type
         {
             get
@@ -100,6 +102,7 @@ namespace Gx.Records
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "labelId")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "labelId")]
+        [Newtonsoft.Json.JsonProperty("labelId")]
         public string LabelId
         {
             get
@@ -116,6 +119,7 @@ namespace Gx.Records
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "label", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "label")]
+        [Newtonsoft.Json.JsonProperty("labels")]
         public System.Collections.Generic.List<Gx.Common.TextValue> DisplayLabels
         {
             get

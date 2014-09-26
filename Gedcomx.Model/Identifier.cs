@@ -30,6 +30,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "type")]
         [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "type")]
+        [Newtonsoft.Json.JsonProperty("type")]
         public string Type
         {
             get
@@ -62,6 +63,7 @@ namespace Gx.Conclusion
         ///  The id value.
         /// </summary>
         [System.Xml.Serialization.XmlTextAttribute()]
+        [Newtonsoft.Json.JsonProperty("value")]
         public string Value
         {
             get

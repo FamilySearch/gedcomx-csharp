@@ -41,6 +41,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "ascendancyNumber", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "ascendancyNumber")]
+        [Newtonsoft.Json.JsonProperty("ascendancyNumber")]
         public string AscendancyNumber
         {
             get
@@ -57,6 +58,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "birthDate", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "birthDate")]
+        [Newtonsoft.Json.JsonProperty("birthDate")]
         public string BirthDate
         {
             get
@@ -73,6 +75,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "birthPlace", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "birthPlace")]
+        [Newtonsoft.Json.JsonProperty("birthPlace")]
         public string BirthPlace
         {
             get
@@ -89,6 +92,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "deathDate", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "deathDate")]
+        [Newtonsoft.Json.JsonProperty("deathDate")]
         public string DeathDate
         {
             get
@@ -105,6 +109,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "deathPlace", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "deathPlace")]
+        [Newtonsoft.Json.JsonProperty("deathPlace")]
         public string DeathPlace
         {
             get
@@ -121,6 +126,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "descendancyNumber", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "descendancyNumber")]
+        [Newtonsoft.Json.JsonProperty("descendancyNumber")]
         public string DescendancyNumber
         {
             get
@@ -137,6 +143,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "gender", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "gender")]
+        [Newtonsoft.Json.JsonProperty("gender")]
         public string Gender
         {
             get
@@ -153,6 +160,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "lifespan", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "lifespan")]
+        [Newtonsoft.Json.JsonProperty("lifespan")]
         public string Lifespan
         {
             get
@@ -169,6 +177,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "marriageDate", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "marriageDate")]
+        [Newtonsoft.Json.JsonProperty("marriageDate")]
         public string MarriageDate
         {
             get
@@ -185,6 +194,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "marriagePlace", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "marriagePlace")]
+        [Newtonsoft.Json.JsonProperty("marriagePlace")]
         public string MarriagePlace
         {
             get
@@ -201,6 +211,7 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "name", Namespace = "http://gedcomx.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "name")]
+        [Newtonsoft.Json.JsonProperty("name")]
         public string Name
         {
             get

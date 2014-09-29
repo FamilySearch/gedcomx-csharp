@@ -70,7 +70,8 @@ namespace Gedcomx.Rs.Api.Test
         public void TestObtainAccessTokenWithoutAuthenticating()
         {
             var collection = new CollectionState(new Uri(SANDBOX_URI));
-            var ip = new WebClient().DownloadString("http://ipecho.net/plain");
+            var response = new WebClient().DownloadString("http://checkip.dyndns.com/");
+            var ip = new CQ(response).Select("body").Text().Split(new string[] { ": " }, StringSplitOptions.RemoveEmptyEntries)[1].Trim();
             var state = collection.UnauthenticatedAccess(ip, "WCQY-7J1Q-GKVV-7DNM-SQ5M-9Q5H-JX3H-CMJK");
             Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
             Assert.IsNotNullOrEmpty(state.CurrentAccessToken);

@@ -2,11 +2,8 @@
 using Gx.Rs.Api;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Gedcomx.Rs.Api.Test
 {
@@ -89,6 +86,23 @@ namespace Gedcomx.Rs.Api.Test
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
+        }
+
+        [Test]
+        public void TestReadSourceReferences()
+        {
+            var source = (SourceDescriptionState)tree.AddSourceDescription(TestBacking.GetCreateSourceDescription(CONTRIBUTOR_RESOURCE_ID)).Get();
+            var person = tree.AddPerson(TestBacking.GetCreateMalePerson());
+            var sourceRef = TestBacking.GetPersonSourceReference();
+            sourceRef.DescriptionRef = source.GetSelfUri();
+            person.AddSourceReference(sourceRef);
+            var state = source.QueryAttachedReferences();
+
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
+            Assert.IsNotNull(state.Entity);
+            Assert.IsNotNull(state.Entity.Persons);
+            Assert.AreEqual(1, state.Entity.Persons.Count);
         }
     }
 }

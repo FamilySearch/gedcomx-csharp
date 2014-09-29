@@ -41,12 +41,40 @@ namespace Gedcomx.Rs.Api.Test
             var dataSource = TestBacking.GetDataSource("Sample Memory", MediaTypes.TEXT_PLAIN_TYPE, Resources.PersonMemory);
             person.AddArtifact(dataSource);
             var artifact = person.ReadArtifacts().SourceDescriptions.First();
-            //"https://familysearch.org/platform/memories/memories/12345"
             var memoryUri = artifact.GetLink("memory").Href;
             var state = tree.AddSourceDescription(TestBacking.GetCreateUserSourceDescription(memoryUri, CONTRIBUTOR_RESOURCE_ID));
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.Created, state.Response.StatusCode);
+        }
+
+        [Test]
+        public void TestReadSourceDescription()
+        {
+            var state = (SourceDescriptionState)tree.AddSourceDescription(TestBacking.GetCreateSourceDescription(CONTRIBUTOR_RESOURCE_ID)).Get();
+
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
+            Assert.IsNotNull(state.SourceDescription);
+        }
+
+        [Test]
+        public void TestUpdateSourceDescription()
+        {
+            var description = (SourceDescriptionState)tree.AddSourceDescription(TestBacking.GetCreateSourceDescription(CONTRIBUTOR_RESOURCE_ID)).Get();
+            var state = description.Update(description.SourceDescription);
+
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
+        }
+
+        [Test]
+        public void TestDeleteSourceDescription()
+        {
+            var state = tree.AddSourceDescription(TestBacking.GetCreateSourceDescription(CONTRIBUTOR_RESOURCE_ID)).Delete();
+
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
         }
     }
 }

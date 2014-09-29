@@ -15,14 +15,16 @@ namespace FamilySearch.Api.Ft
             return NewFamilyTreeState(true);
         }
 
-        public FamilySearchFamilyTree NewFamilyTreeState(bool production)
+		public FamilySearchFamilyTree NewFamilyTreeState(bool production)
         {
-            return (FamilySearchFamilyTree)NewCollectionState(new Uri(production ? FamilySearchFamilyTree.URI : FamilySearchFamilyTree.SANDBOX_URI));
+			var uri = new Uri (production ? FamilySearchFamilyTree.URI : FamilySearchFamilyTree.SANDBOX_URI);
+			return NewFamilyTreeState (uri);
         }
 
         public FamilySearchFamilyTree NewFamilyTreeState(Uri discoveryUri)
         {
-            return (FamilySearchFamilyTree)base.NewCollectionState(discoveryUri);
+			var collection = NewCollectionState(discoveryUri);
+			return NewCollectionState (collection.Request, collection.Response, collection.Client, collection.CurrentAccessToken);
         }
 
         protected internal ChildAndParentsRelationshipState NewChildAndParentsRelationshipState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)

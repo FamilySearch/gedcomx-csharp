@@ -76,5 +76,19 @@ namespace Gedcomx.Rs.Api.Test
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
         }
+
+        [Test]
+        public void TestDeleteCoupleRelationshipSourceReference()
+        {
+            var husband = (PersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            var wife = tree.AddPerson(TestBacking.GetCreateFemalePerson());
+            var relationship = (RelationshipState)husband.AddSpouse(wife).Get();
+            relationship.AddSourceReference(TestBacking.GetPersonSourceReference());
+            relationship.LoadSourceReferences();
+            var state = relationship.DeleteSourceReference(relationship.SourceReference);
+
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
+        }
     }
 }

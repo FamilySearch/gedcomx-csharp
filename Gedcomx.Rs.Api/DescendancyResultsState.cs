@@ -19,9 +19,12 @@ namespace Gx.Rs.Api
             return new DescendancyResultsState(request, response, client, this.CurrentAccessToken, this.stateFactory);
         }
 
-        public DescendancyTree getTree()
+        public DescendancyTree Tree
         {
-            return Entity != null ? new DescendancyTree(Entity) : null;
+            get
+            {
+                return Entity != null ? new DescendancyTree(Entity) : null;
+            }
         }
     }
 }

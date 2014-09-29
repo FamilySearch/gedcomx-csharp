@@ -148,5 +148,111 @@ namespace Gedcomx.Rs.Api.Test
             Assert.AreEqual(husband.GetSelfUri(), state.Tree.Root.Father.Person.GetLink("self").Href);
             Assert.AreEqual(wife.GetSelfUri(), state.Tree.Root.Mother.Person.GetLink("self").Href);
         }
+
+        [Test]
+        public void TestReadPersonDescendancy()
+        {
+            var father = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            var son = tree.AddPerson(TestBacking.GetCreateMalePerson());
+            tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, null, son));
+            var state = father.ReadDescendancy();
+
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
+            Assert.IsNotNull(state.Tree);
+            Assert.IsNotNull(state.Tree.Root);
+            Assert.IsNotNull(state.Tree.Root.Person);
+            Assert.IsNotNull(state.Tree.Root.Children);
+            Assert.AreEqual(1, state.Tree.Root.Children.Count);
+            Assert.IsNotNull(state.Tree.Root.Children[0].Person);
+            Assert.AreEqual(father.Person.Id, state.Tree.Root.Person.Id);
+            Assert.AreEqual(son.Headers.Get("X-ENTITY-ID").Single().Value.ToString(), state.Tree.Root.Children[0].Person.Id);
+        }
+
+        [Test]
+        public void TestReadPersonDescendancyAndAdditionalPersonAndMarriageDetails()
+        {
+            var father = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            var mother = tree.AddPerson(TestBacking.GetCreateFemalePerson());
+            var son = tree.AddPerson(TestBacking.GetCreateMalePerson());
+            father.AddSpouse(mother).AddFact(TestBacking.GetMarriageFact());
+            tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, mother, son));
+            var details = new QueryParameter("personDetails", "");
+            var marriage = new QueryParameter("marriageDetails", "");
+            var state = father.ReadDescendancy(details, marriage);
+
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
+            Assert.IsNotNull(state.Tree);
+            Assert.IsNotNull(state.Tree.Root);
+            Assert.IsNotNull(state.Tree.Root.Person);
+            Assert.IsNotNull(state.Tree.Root.Spouse);
+            Assert.IsNotNull(state.Tree.Root.Children);
+            Assert.IsNotNull(state.Tree.Root.Spouse.DisplayExtension);
+            Assert.IsNotNull(state.Tree.Root.Spouse.DisplayExtension.MarriageDate);
+            Assert.IsNotNull(state.Tree.Root.Person.Facts);
+            Assert.IsNotNull(state.Tree.Root.Spouse.Facts);
+            Assert.AreEqual(1, state.Tree.Root.Children.Count);
+            Assert.IsNotNull(state.Tree.Root.Children[0].Person);
+            Assert.AreEqual(father.Person.Id, state.Tree.Root.Person.Id);
+            Assert.AreEqual(mother.Headers.Get("X-ENTITY-ID").Single().Value.ToString(), state.Tree.Root.Spouse.Id);
+            Assert.AreEqual(son.Headers.Get("X-ENTITY-ID").Single().Value.ToString(), state.Tree.Root.Children[0].Person.Id);
+        }
+
+        [Test]
+        public void TestReadPersonDescendancyWithSpecifiedSpouse()
+        {
+            var father = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            var mother = tree.AddPerson(TestBacking.GetCreateFemalePerson());
+            var son = tree.AddPerson(TestBacking.GetCreateMalePerson());
+            father.AddSpouse(mother).AddFact(TestBacking.GetMarriageFact());
+            tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, mother, son));
+            var spouse = new QueryParameter("spouse", mother.Headers.Get("X-ENTITY-ID").Single().Value.ToString());
+            var state = father.ReadDescendancy(spouse);
+
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
+            Assert.IsNotNull(state.Tree);
+            Assert.IsNotNull(state.Tree.Root);
+            Assert.IsNotNull(state.Tree.Root.Person);
+            Assert.IsNotNull(state.Tree.Root.Spouse);
+            Assert.IsNotNull(state.Tree.Root.Children);
+            Assert.AreEqual(1, state.Tree.Root.Children.Count);
+            Assert.IsNotNull(state.Tree.Root.Children[0].Person);
+            Assert.AreEqual(father.Person.Id, state.Tree.Root.Person.Id);
+            Assert.AreEqual(mother.Headers.Get("X-ENTITY-ID").Single().Value.ToString(), state.Tree.Root.Spouse.Id);
+            Assert.AreEqual(son.Headers.Get("X-ENTITY-ID").Single().Value.ToString(), state.Tree.Root.Children[0].Person.Id);
+        }
+
+        [Test]
+        public void TestReadPersonDescendancyWithSpecifiedSpouseAndAdditionalPersonAndMarriageDetails()
+        {
+            var father = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            var mother = tree.AddPerson(TestBacking.GetCreateFemalePerson());
+            var son = tree.AddPerson(TestBacking.GetCreateMalePerson());
+            father.AddSpouse(mother).AddFact(TestBacking.GetMarriageFact());
+            tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, mother, son));
+            var spouse = new QueryParameter("spouse", mother.Headers.Get("X-ENTITY-ID").Single().Value.ToString());
+            var details = new QueryParameter("personDetails", "");
+            var marriage = new QueryParameter("marriageDetails", "");
+            var state = father.ReadDescendancy(spouse, details, marriage);
+
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
+            Assert.IsNotNull(state.Tree);
+            Assert.IsNotNull(state.Tree.Root);
+            Assert.IsNotNull(state.Tree.Root.Person);
+            Assert.IsNotNull(state.Tree.Root.Spouse);
+            Assert.IsNotNull(state.Tree.Root.Children);
+            Assert.IsNotNull(state.Tree.Root.Spouse.DisplayExtension);
+            Assert.IsNotNull(state.Tree.Root.Spouse.DisplayExtension.MarriageDate);
+            Assert.IsNotNull(state.Tree.Root.Person.Facts);
+            Assert.IsNotNull(state.Tree.Root.Spouse.Facts);
+            Assert.AreEqual(1, state.Tree.Root.Children.Count);
+            Assert.IsNotNull(state.Tree.Root.Children[0].Person);
+            Assert.AreEqual(father.Person.Id, state.Tree.Root.Person.Id);
+            Assert.AreEqual(mother.Headers.Get("X-ENTITY-ID").Single().Value.ToString(), state.Tree.Root.Spouse.Id);
+            Assert.AreEqual(son.Headers.Get("X-ENTITY-ID").Single().Value.ToString(), state.Tree.Root.Children[0].Person.Id);
+        }
     }
 }

@@ -541,6 +541,66 @@ namespace Gedcomx.Rs.Api.Test
 
             return result;
         }
+
+        public static SourceDescription GetCreateSourceDescription(string contributorResourceId)
+        {
+            return new SourceDescription()
+            {
+                Citations = new List<SourceCitation>()
+                {
+                    new SourceCitation()
+                    {
+                        Value = "\"United States Census, 1900.\" database and digital images, FamilySearch (https://familysearch.org/: accessed 17 Mar 2012), Ethel Hollivet, 1900; citing United States Census Office, Washington, D.C., 1900 Population Census Schedules, Los Angeles, California, population schedule, Los Angeles Ward 6, Enumeration District 58, p. 20B, dwelling 470, family 501, FHL microfilm 1,240,090; citing NARA microfilm publication T623, roll 90.",
+                    }
+                },
+                Titles = new List<TextValue>()
+                {
+                    new TextValue()
+                    {
+                        Value = "1900 US Census, Ethel Hollivet",
+                    }
+                },
+                Notes = new List<Note>()
+                { 
+                    new Note()
+                    {
+                        Text = "Ethel Hollivet (line 75) with husband Albert Hollivet (line 74); also in the dwelling: step-father Joseph E Watkins (line 72), mother Lina Watkins (line 73), and grandmother -- Lina's mother -- Mary Sasnett (line 76).  Albert's mother and brother also appear on this page -- Emma Hollivet (line 68), and Eddie (line 69).",
+                    }
+                },
+                Attribution = new Attribution()
+                {
+                    Contributor = new ResourceReference()
+                    {
+                        Resource = "https://familysearch.org/platform/users/agents/" + contributorResourceId,
+                        ResourceId = contributorResourceId
+                    },
+                    Modified = DateTime.Now,
+                    ChangeMessage = "This is the change message",
+                }
+            };
+        }
+
+        public static SourceDescription GetCreateUserSourceDescription(string memoryUri, string contributorResourceId)
+        {
+            return new SourceDescription()
+            {
+                About = memoryUri,
+                Titles = new List<TextValue>() 
+                {
+                    new TextValue()
+                    {
+                        Value = "Grandpa's Birth Certificate",
+                    }
+                },
+                Notes = new List<Note>() 
+                {
+                    new Note()
+                    {
+                        Text = "This is an image of Grandpa's birth certificate.",
+                    }
+                }
+            };
+        }
     }
 
     public class DataSourceTestImpl : DataSource

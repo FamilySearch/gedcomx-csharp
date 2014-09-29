@@ -81,6 +81,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="SearchAndMatchTests.cs" />
+    <Compile Include="SourcesTests.cs" />
     <Compile Include="SpouseTests.cs" />
     <Compile Include="TestBacking.cs" />
   </ItemGroup>

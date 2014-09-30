@@ -98,7 +98,7 @@ namespace Gx.Rs.Api
             return this.stateFactory.NewRelationshipState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
-        public RelationshipState removeRelationship(Relationship relationship, params StateTransitionOption[] options)
+        public RelationshipState RemoveRelationship(Relationship relationship, params StateTransitionOption[] options)
         {
             Link link = relationship.GetLink(Rel.RELATIONSHIP);
             link = link == null ? relationship.GetLink(Rel.SELF) : link;

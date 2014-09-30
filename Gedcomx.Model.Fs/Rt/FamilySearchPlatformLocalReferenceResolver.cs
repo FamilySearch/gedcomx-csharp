@@ -168,85 +168,85 @@ namespace Gx.Fs.Rt
             base.VisitRelationship(relationship);
         }
 
-        protected void visitConclusion(Gx.Conclusion.Conclusion conclusion)
+        protected void VisitConclusion(Gx.Conclusion.Conclusion conclusion)
         {
             BindIfNeeded(conclusion);
             base.VisitConclusion(conclusion);
         }
 
-        protected void visitSubject(Subject subject)
+        protected void VisitSubject(Subject subject)
         {
             BindIfNeeded(subject);
             base.VisitSubject(subject);
         }
 
-        public void visitPerson(Person person)
+        public void VisitPerson(Person person)
         {
             BindIfNeeded(person);
             base.VisitPerson(person);
         }
 
-        public void visitFact(Fact fact)
+        public void VisitFact(Fact fact)
         {
             BindIfNeeded(fact);
             base.VisitFact(fact);
         }
 
-        public void visitPlaceReference(PlaceReference place)
+        public void VisitPlaceReference(PlaceReference place)
         {
             BindIfNeeded(place);
             base.VisitPlaceReference(place);
         }
 
-        public void visitDate(DateInfo date)
+        public void VisitDate(DateInfo date)
         {
             BindIfNeeded(date);
             base.VisitDate(date);
         }
 
-        public void visitName(Name name)
+        public void VisitName(Name name)
         {
             BindIfNeeded(name);
             base.VisitName(name);
         }
 
-        public void visitNameForm(NameForm form)
+        public void VisitNameForm(NameForm form)
         {
             BindIfNeeded(form);
             base.VisitNameForm(form);
         }
 
-        public void visitNamePart(NamePart part)
+        public void VisitNamePart(NamePart part)
         {
             BindIfNeeded(part);
             base.VisitNamePart(part);
         }
 
-        public void visitGender(Gender gender)
+        public void VisitGender(Gender gender)
         {
             BindIfNeeded(gender);
             base.VisitGender(gender);
         }
 
-        public void visitSourceReference(SourceReference sourceReference)
+        public void VisitSourceReference(SourceReference sourceReference)
         {
             BindIfNeeded(sourceReference);
             base.VisitSourceReference(sourceReference);
         }
 
-        public void visitNote(Note note)
+        public void VisitNote(Note note)
         {
             BindIfNeeded(note);
             base.VisitNote(note);
         }
 
-        public void visitEvidenceReference(EvidenceReference evidenceReference)
+        public void VisitEvidenceReference(EvidenceReference evidenceReference)
         {
             BindIfNeeded(evidenceReference);
             base.VisitEvidenceReference(evidenceReference);
         }
 
-        public void visitUser(User user)
+        public void VisitUser(User user)
         {
             BindIfNeeded(user);
             base.VisitUser(user);

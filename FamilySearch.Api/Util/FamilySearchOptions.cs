@@ -105,7 +105,7 @@ namespace FamilySearch.Api.Util
             return new QueryParameter(false, STATUS, MatchStatusQNameUtil.ConvertToKnownQName(status));
         }
 
-        public static HeaderParameter reason(String reason)
+        public static HeaderParameter Reason(String reason)
         {
             return new HeaderParameter(true, "X-Reason", reason);
         }

@@ -11,12 +11,12 @@ namespace FamilySearch.Api
 {
     public class FamilySearchPlaceDescriptionState : PlaceDescriptionState
     {
-        protected internal FamilySearchPlaceDescriptionState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken, FamilySearchStateFactory stateFactory)
+        protected internal FamilySearchPlaceDescriptionState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken, FamilySearchStateFactory stateFactory)
             : base(request, response, client, accessToken, stateFactory)
         {
         }
 
-        protected override GedcomxApplicationState<Gx.Gedcomx> Clone(IRestRequest request, IRestResponse response, IRestClient client)
+        protected override GedcomxApplicationState<Gx.Gedcomx> Clone(IRestRequest request, IRestResponse response, IFilterableRestClient client)
         {
             return new FamilySearchPlaceDescriptionState(request, response, client, this.CurrentAccessToken, (FamilySearchStateFactory)this.stateFactory);
         }

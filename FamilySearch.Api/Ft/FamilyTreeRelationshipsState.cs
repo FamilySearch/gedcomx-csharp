@@ -17,12 +17,12 @@ namespace FamilySearch.Api.Ft
 {
     public class FamilyTreeRelationshipsState : RelationshipsState
     {
-        protected internal FamilyTreeRelationshipsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken, FamilyTreeStateFactory stateFactory)
+        protected internal FamilyTreeRelationshipsState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken, FamilyTreeStateFactory stateFactory)
             : base(request, response, client, accessToken, stateFactory)
         {
         }
 
-        protected override GedcomxApplicationState<Gx.Gedcomx> Clone(IRestRequest request, IRestResponse response, IRestClient client)
+        protected override GedcomxApplicationState<Gx.Gedcomx> Clone(IRestRequest request, IRestResponse response, IFilterableRestClient client)
         {
             return new FamilyTreeRelationshipsState(request, response, client, this.CurrentAccessToken, (FamilyTreeStateFactory)this.stateFactory);
         }

@@ -25,7 +25,7 @@ namespace Gx.Rs.Api.Util
          */
         public static IWebResourceProvider DEFAULT_WEB_RESOURCE_PROVIDER = new WebResourceProviderImpl();
         private readonly List<WebResourceBuilderExtension> extensions = new List<WebResourceBuilderExtension>();
-        private IRestClient client;
+        private IFilterableRestClient client;
         private IWebResourceProvider webResourceProvider = DEFAULT_WEB_RESOURCE_PROVIDER;
         private String first = null;
         private String last = null;
@@ -132,13 +132,13 @@ namespace Gx.Rs.Api.Util
          *
          * @return the {@link com.sun.jersey.api.client.Client} being used to get paged feed documents.
          */
-        public IRestClient Client
+        public IFilterableRestClient Client
         {
             get
             {
                 if (client == null)
                 {
-                    WithClient(new RestClient());
+                    WithClient(new FilterableRestClient());
                 }
                 return client;
             }
@@ -154,7 +154,7 @@ namespace Gx.Rs.Api.Util
          * @param client the {@link com.sun.jersey.api.client.Client} to use to get paged feed documents.
          * @return a reference to this {@link PagedFeedIterator} for fluent configuration chaining
          */
-        public PagedFeedEnumerator WithClient(IRestClient client)
+        public PagedFeedEnumerator WithClient(IFilterableRestClient client)
         {
             Client = client;
             return this;
@@ -308,7 +308,7 @@ namespace Gx.Rs.Api.Util
             {
                 extension.Extend(request);
             }
-            IRestResponse clientResponse = Client.Execute(request);
+            IRestResponse clientResponse = Client.Handle(request);
             HttpStatusCode status = clientResponse.StatusCode;
             switch (status)
             {
@@ -341,12 +341,12 @@ namespace Gx.Rs.Api.Util
              *               document
              * @return a {@link com.sun.jersey.api.client.WebResource} for acquiring the desired paged feed document
              */
-            IRestRequest Provide(IRestClient client, String uri);
+            IRestRequest Provide(IFilterableRestClient client, String uri);
         }
 
         public class WebResourceProviderImpl : IWebResourceProvider
         {
-            public IRestRequest Provide(IRestClient client, String uri)
+            public IRestRequest Provide(IFilterableRestClient client, String uri)
             {
                 client.BaseUrl = new Uri(uri).GetBaseUrl();
                 return new RestRequest(uri);

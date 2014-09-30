@@ -11,12 +11,12 @@ namespace Gx.Rs.Api
 {
     public class SourceDescriptionsState : GedcomxApplicationState<Gedcomx>
     {
-        internal SourceDescriptionsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken, StateFactory stateFactory)
+        internal SourceDescriptionsState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken, StateFactory stateFactory)
             : base(request, response, client, accessToken, stateFactory)
         {
         }
 
-        protected override GedcomxApplicationState<Gedcomx> Clone(IRestRequest request, IRestResponse response, IRestClient client)
+        protected override GedcomxApplicationState<Gedcomx> Clone(IRestRequest request, IRestResponse response, IFilterableRestClient client)
         {
             return new SourceDescriptionsState(request, response, client, this.CurrentAccessToken, this.stateFactory);
         }

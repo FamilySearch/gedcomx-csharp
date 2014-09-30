@@ -9,12 +9,12 @@ namespace Gx.Rs.Api
 {
     public class DescendancyResultsState : GedcomxApplicationState<Gedcomx>
     {
-        internal DescendancyResultsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken, StateFactory stateFactory)
+        internal DescendancyResultsState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken, StateFactory stateFactory)
             : base(request, response, client, accessToken, stateFactory)
         {
         }
 
-        protected override GedcomxApplicationState<Gedcomx> Clone(IRestRequest request, IRestResponse response, IRestClient client)
+        protected override GedcomxApplicationState<Gedcomx> Clone(IRestRequest request, IRestResponse response, IFilterableRestClient client)
         {
             return new DescendancyResultsState(request, response, client, this.CurrentAccessToken, this.stateFactory);
         }

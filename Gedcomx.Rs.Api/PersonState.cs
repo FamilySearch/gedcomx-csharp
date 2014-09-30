@@ -27,17 +27,17 @@ namespace Gx.Rs.Api
         {
         }
 
-        private PersonState(Uri uri, IRestClient client, StateFactory stateFactory)
+        private PersonState(Uri uri, IFilterableRestClient client, StateFactory stateFactory)
             : this(new RestRequest().Accept(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE).Build(uri, Method.GET), client, stateFactory)
         {
         }
 
-        internal PersonState(IRestRequest request, IRestClient client, StateFactory stateFactory)
-            : this(request, client.Execute(request), client, null, stateFactory)
+        internal PersonState(IRestRequest request, IFilterableRestClient client, StateFactory stateFactory)
+            : this(request, client.Handle(request), client, null, stateFactory)
         {
         }
 
-        protected internal PersonState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken, StateFactory stateFactory)
+        protected internal PersonState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken, StateFactory stateFactory)
             : base(request, response, client, accessToken, stateFactory)
         {
         }
@@ -50,7 +50,7 @@ namespace Gx.Rs.Api
             }
         }
 
-        protected override GedcomxApplicationState<Gedcomx> Clone(IRestRequest request, IRestResponse response, IRestClient client)
+        protected override GedcomxApplicationState<Gedcomx> Clone(IRestRequest request, IRestResponse response, IFilterableRestClient client)
         {
             return new PersonState(request, response, client, this.CurrentAccessToken, this.stateFactory);
         }

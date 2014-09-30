@@ -18,7 +18,7 @@ namespace Gx.Rs.Api
     {
         protected static readonly EmbeddedLinkLoader DEFAULT_EMBEDDED_LINK_LOADER = new EmbeddedLinkLoader();
         private readonly String gzipSuffix = "-gzip";
-        public IRestClient Client { get; protected set; }
+        public IFilterableRestClient Client { get; protected set; }
         public String CurrentAccessToken { get; set; }
         protected Tavis.LinkFactory linkFactory;
         protected Tavis.LinkHeaderParser linkHeaderParser;
@@ -93,7 +93,7 @@ namespace Gx.Rs.Api
                 option.Apply(request);
             }
 
-            result = this.Client.Execute(request);
+            result = this.Client.Handle(request);
 
             return result;
         }
@@ -136,7 +136,7 @@ namespace Gx.Rs.Api
     {
         protected internal readonly StateFactory stateFactory;
         public T Entity { get; private set; }
-        protected abstract GedcomxApplicationState<T> Clone(IRestRequest request, IRestResponse response, IRestClient client);
+        protected abstract GedcomxApplicationState<T> Clone(IRestRequest request, IRestResponse response, IFilterableRestClient client);
         protected virtual T LoadEntity(IRestResponse response)
         {
             T result = null;
@@ -162,7 +162,7 @@ namespace Gx.Rs.Api
             linkHeaderParser = new Tavis.LinkHeaderParser(linkFactory);
         }
 
-        protected GedcomxApplicationState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken, StateFactory stateFactory)
+        protected GedcomxApplicationState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken, StateFactory stateFactory)
             : this()
         {
             this.Request = request;

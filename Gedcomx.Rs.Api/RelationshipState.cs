@@ -15,7 +15,7 @@ namespace Gx.Rs.Api
     public class RelationshipState : GedcomxApplicationState<Gedcomx>
     {
 
-        protected internal RelationshipState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken, StateFactory stateFactory)
+        protected internal RelationshipState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken, StateFactory stateFactory)
             : base(request, response, client, accessToken, stateFactory)
         {
         }
@@ -28,7 +28,7 @@ namespace Gx.Rs.Api
             }
         }
 
-        protected override GedcomxApplicationState<Gedcomx> Clone(IRestRequest request, IRestResponse response, IRestClient client)
+        protected override GedcomxApplicationState<Gedcomx> Clone(IRestRequest request, IRestResponse response, IFilterableRestClient client)
         {
             return new RelationshipState(request, response, client, this.CurrentAccessToken, this.stateFactory);
         }

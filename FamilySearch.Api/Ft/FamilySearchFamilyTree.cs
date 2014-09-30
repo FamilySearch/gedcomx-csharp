@@ -43,22 +43,22 @@ namespace FamilySearch.Api.Ft
         {
         }
 
-        private FamilySearchFamilyTree(Uri uri, IRestClient client, FamilyTreeStateFactory stateFactory)
+        private FamilySearchFamilyTree(Uri uri, IFilterableRestClient client, FamilyTreeStateFactory stateFactory)
             : this(new RestRequest().Accept(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE).Build(uri, Method.GET), client, stateFactory)
         {
         }
 
-        private FamilySearchFamilyTree(IRestRequest request, IRestClient client, FamilyTreeStateFactory stateFactory)
-            : this(request, client.Execute(request), client, null, stateFactory)
+        private FamilySearchFamilyTree(IRestRequest request, IFilterableRestClient client, FamilyTreeStateFactory stateFactory)
+            : this(request, client.Handle(request), client, null, stateFactory)
         {
         }
 
-        internal FamilySearchFamilyTree(IRestRequest request, IRestResponse response, IRestClient client, String accessToken, FamilyTreeStateFactory stateFactory)
+        internal FamilySearchFamilyTree(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken, FamilyTreeStateFactory stateFactory)
             : base(request, response, client, accessToken, stateFactory)
         {
         }
 
-        protected override GedcomxApplicationState<Gx.Gedcomx> Clone(IRestRequest request, IRestResponse response, IRestClient client)
+        protected override GedcomxApplicationState<Gx.Gedcomx> Clone(IRestRequest request, IRestResponse response, IFilterableRestClient client)
         {
             return new FamilySearchFamilyTree(request, response, client, this.CurrentAccessToken, (FamilyTreeStateFactory)this.stateFactory);
         }

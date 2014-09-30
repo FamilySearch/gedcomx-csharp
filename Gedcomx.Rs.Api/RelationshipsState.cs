@@ -13,12 +13,12 @@ namespace Gx.Rs.Api
 {
     public class RelationshipsState : GedcomxApplicationState<Gedcomx>
     {
-        protected internal RelationshipsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken, StateFactory stateFactory)
+        protected internal RelationshipsState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken, StateFactory stateFactory)
             : base(request, response, client, accessToken, stateFactory)
         {
         }
 
-        protected override GedcomxApplicationState<Gedcomx> Clone(IRestRequest request, IRestResponse response, IRestClient client)
+        protected override GedcomxApplicationState<Gedcomx> Clone(IRestRequest request, IRestResponse response, IFilterableRestClient client)
         {
             return new RelationshipsState(request, response, client, this.CurrentAccessToken, this.stateFactory);
         }

@@ -13,12 +13,12 @@ namespace Gx.Rs.Api
     public class PersonParentsState : GedcomxApplicationState<Gedcomx>
     {
 
-        protected internal PersonParentsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken, StateFactory stateFactory)
+        protected internal PersonParentsState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken, StateFactory stateFactory)
             : base(request, response, client, accessToken, stateFactory)
         {
         }
 
-        protected override GedcomxApplicationState<Gedcomx> Clone(IRestRequest request, IRestResponse response, IRestClient client)
+        protected override GedcomxApplicationState<Gedcomx> Clone(IRestRequest request, IRestResponse response, IFilterableRestClient client)
         {
             return new PersonParentsState(request, response, client, this.CurrentAccessToken, this.stateFactory);
         }

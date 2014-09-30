@@ -13,12 +13,12 @@ namespace FamilySearch.Api
 {
     public class PersonNonMatchesState : PersonsState
     {
-        protected internal PersonNonMatchesState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken, StateFactory stateFactory)
+        protected internal PersonNonMatchesState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken, StateFactory stateFactory)
             : base(request, response, client, accessToken, stateFactory)
         {
         }
 
-        protected override GedcomxApplicationState<Gx.Gedcomx> Clone(IRestRequest request, IRestResponse response, IRestClient client)
+        protected override GedcomxApplicationState<Gx.Gedcomx> Clone(IRestRequest request, IRestResponse response, IFilterableRestClient client)
         {
             return new PersonNonMatchesState(request, response, client, this.CurrentAccessToken, this.stateFactory);
         }

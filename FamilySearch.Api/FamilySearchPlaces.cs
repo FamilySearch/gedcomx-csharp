@@ -36,22 +36,22 @@ namespace FamilySearch.Api
         {
         }
 
-        private FamilySearchPlaces(Uri uri, IRestClient client, FamilySearchStateFactory stateFactory)
+        private FamilySearchPlaces(Uri uri, IFilterableRestClient client, FamilySearchStateFactory stateFactory)
             : this(new RestRequest().Accept(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE).Build(uri, Method.GET), client, stateFactory)
         {
         }
 
-        private FamilySearchPlaces(IRestRequest request, IRestClient client, FamilySearchStateFactory stateFactory)
-            : this(request, client.Execute(request), client, null, stateFactory)
+        private FamilySearchPlaces(IRestRequest request, IFilterableRestClient client, FamilySearchStateFactory stateFactory)
+            : this(request, client.Handle(request), client, null, stateFactory)
         {
         }
 
-        protected internal FamilySearchPlaces(IRestRequest request, IRestResponse response, IRestClient client, String accessToken, FamilySearchStateFactory stateFactory)
+        protected internal FamilySearchPlaces(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken, FamilySearchStateFactory stateFactory)
             : base(request, response, client, accessToken, stateFactory)
         {
         }
 
-        protected override GedcomxApplicationState<Gx.Gedcomx> Clone(IRestRequest request, IRestResponse response, IRestClient client)
+        protected override GedcomxApplicationState<Gx.Gedcomx> Clone(IRestRequest request, IRestResponse response, IFilterableRestClient client)
         {
             return new FamilySearchPlaces(request, response, client, this.CurrentAccessToken, (FamilySearchStateFactory)this.stateFactory);
         }

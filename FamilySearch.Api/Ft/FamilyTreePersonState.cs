@@ -28,22 +28,22 @@ namespace FamilySearch.Api.Ft
         {
         }
 
-        private FamilyTreePersonState(Uri uri, IRestClient client, FamilyTreeStateFactory stateFactory)
+        private FamilyTreePersonState(Uri uri, IFilterableRestClient client, FamilyTreeStateFactory stateFactory)
             : this(new RestRequest().Accept(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE).Build(uri, Method.GET), client, stateFactory)
         {
         }
 
-        private FamilyTreePersonState(IRestRequest request, IRestClient client, FamilyTreeStateFactory stateFactory)
-            : this(request, client.Execute(request), client, null, stateFactory)
+        private FamilyTreePersonState(IRestRequest request, IFilterableRestClient client, FamilyTreeStateFactory stateFactory)
+            : this(request, client.Handle(request), client, null, stateFactory)
         {
         }
 
-        protected internal FamilyTreePersonState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken, FamilyTreeStateFactory stateFactory)
+        protected internal FamilyTreePersonState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken, FamilyTreeStateFactory stateFactory)
             : base(request, response, client, accessToken, stateFactory)
         {
         }
 
-        protected override GedcomxApplicationState<Gx.Gedcomx> Clone(IRestRequest request, IRestResponse response, IRestClient client)
+        protected override GedcomxApplicationState<Gx.Gedcomx> Clone(IRestRequest request, IRestResponse response, IFilterableRestClient client)
         {
             return new FamilyTreePersonState(request, response, client, this.CurrentAccessToken, (FamilyTreeStateFactory)this.stateFactory);
         }
@@ -169,7 +169,7 @@ namespace FamilySearch.Api.Ft
         public FamilyTreePersonState AddDiscussionReference(DiscussionState discussion, params StateTransitionOption[] options)
         {
             DiscussionReference reference = new DiscussionReference();
-            // TODO: reference.Resource = discussion.GetSelfUri();
+            reference.Resource = discussion.GetSelfUri();
             return AddDiscussionReference(reference, options);
         }
 
@@ -183,7 +183,7 @@ namespace FamilySearch.Api.Ft
             Person person = CreateEmptySelf();
             foreach (DiscussionReference @ref in refs)
             {
-                // TODO: person.AddExtensionElement(@ref);
+                person.AddExtensionElement(@ref);
             }
             return UpdateDiscussionReference(person, options);
         }
@@ -198,7 +198,7 @@ namespace FamilySearch.Api.Ft
             Person person = CreateEmptySelf();
             foreach (DiscussionReference @ref in refs)
             {
-                // TODO: person.AddExtensionElement(@ref);
+                person.AddExtensionElement(@ref);
             }
             return UpdateDiscussionReference(person, options);
         }

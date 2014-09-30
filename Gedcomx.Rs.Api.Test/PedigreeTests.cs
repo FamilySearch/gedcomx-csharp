@@ -1,4 +1,5 @@
 ﻿using FamilySearch.Api.Ft;
+using FamilySearch.Api.Util;
 using Gx.Rs.Api.Options;
 using Gx.Rs.Api.Util;
 using NUnit.Framework;
@@ -59,8 +60,7 @@ namespace Gedcomx.Rs.Api.Test
             tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(grandfather, null, father));
             tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, null, son));
             son = tree.ReadPersonById(son.Person.Id);
-            var details = new QueryParameter("personDetails", "");
-            var state = son.ReadAncestry(details);
+            var state = son.ReadAncestry(FamilySearchOptions.IncludePersonDetails());
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
@@ -90,8 +90,7 @@ namespace Gedcomx.Rs.Api.Test
             tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(grandfather, null, father));
             tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, null, husband));
             husband = tree.ReadPersonById(husband.Person.Id);
-            var details = new QueryParameter("spouse", wife.Headers.Get("X-ENTITY-ID").Single().Value.ToString());
-            var state = husband.ReadAncestry(details);
+            var state = husband.ReadAncestry(FamilySearchOptions.SpouseId(wife.Headers.Get("X-ENTITY-ID").Single().Value.ToString()));
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
@@ -122,10 +121,7 @@ namespace Gedcomx.Rs.Api.Test
             tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(grandfather, null, father));
             tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, null, husband));
             husband = tree.ReadPersonById(husband.Person.Id);
-            var spouse = new QueryParameter("spouse", wife.Headers.Get("X-ENTITY-ID").Single().Value.ToString());
-            var details = new QueryParameter("personDetails", "");
-            var marriage = new QueryParameter("marriageDetails", "");
-            var state = husband.ReadAncestry(details, spouse, marriage);
+            var state = husband.ReadAncestry(FamilySearchOptions.SpouseId(wife.Headers.Get("X-ENTITY-ID").Single().Value.ToString()), FamilySearchOptions.IncludePersonDetails(), FamilySearchOptions.IncludeMarriageDetails());
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
@@ -177,9 +173,7 @@ namespace Gedcomx.Rs.Api.Test
             var son = tree.AddPerson(TestBacking.GetCreateMalePerson());
             father.AddSpouse(mother).AddFact(TestBacking.GetMarriageFact());
             tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, mother, son));
-            var details = new QueryParameter("personDetails", "");
-            var marriage = new QueryParameter("marriageDetails", "");
-            var state = father.ReadDescendancy(details, marriage);
+            var state = father.ReadDescendancy(FamilySearchOptions.IncludePersonDetails(), FamilySearchOptions.IncludeMarriageDetails());
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
@@ -207,8 +201,7 @@ namespace Gedcomx.Rs.Api.Test
             var son = tree.AddPerson(TestBacking.GetCreateMalePerson());
             father.AddSpouse(mother).AddFact(TestBacking.GetMarriageFact());
             tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, mother, son));
-            var spouse = new QueryParameter("spouse", mother.Headers.Get("X-ENTITY-ID").Single().Value.ToString());
-            var state = father.ReadDescendancy(spouse);
+            var state = father.ReadDescendancy(FamilySearchOptions.SpouseId(mother.Headers.Get("X-ENTITY-ID").Single().Value.ToString()));
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
@@ -232,10 +225,7 @@ namespace Gedcomx.Rs.Api.Test
             var son = tree.AddPerson(TestBacking.GetCreateMalePerson());
             father.AddSpouse(mother).AddFact(TestBacking.GetMarriageFact());
             tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, mother, son));
-            var spouse = new QueryParameter("spouse", mother.Headers.Get("X-ENTITY-ID").Single().Value.ToString());
-            var details = new QueryParameter("personDetails", "");
-            var marriage = new QueryParameter("marriageDetails", "");
-            var state = father.ReadDescendancy(spouse, details, marriage);
+            var state = father.ReadDescendancy(FamilySearchOptions.SpouseId(mother.Headers.Get("X-ENTITY-ID").Single().Value.ToString()), FamilySearchOptions.IncludePersonDetails(), FamilySearchOptions.IncludeMarriageDetails());
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);

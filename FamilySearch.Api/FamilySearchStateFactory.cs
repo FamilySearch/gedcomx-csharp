@@ -6,32 +6,33 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Gx.Rs.Api.Util;
+using FamilySearch.Api.Util;
 
 namespace FamilySearch.Api
 {
     public class FamilySearchStateFactory : StateFactory
     {
-        protected internal DiscussionsState NewDiscussionsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected internal DiscussionsState NewDiscussionsState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken)
         {
             return new DiscussionsState(request, response, client, accessToken, this);
         }
 
-        protected internal DiscussionState NewDiscussionState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected internal DiscussionState NewDiscussionState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken)
         {
             return new DiscussionState(request, response, client, accessToken, this);
         }
 
-        protected internal UserState NewUserState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected internal UserState NewUserState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken)
         {
             return new UserState(request, response, client, accessToken, this);
         }
 
-        protected internal PersonMergeState NewPersonMergeState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected internal PersonMergeState NewPersonMergeState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken)
         {
             return new PersonMergeState(request, response, client, accessToken, this);
         }
 
-        protected internal PersonMatchResultsState NewPersonMatchResultsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected internal PersonMatchResultsState NewPersonMatchResultsState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken)
         {
             return new PersonMatchResultsState(request, response, client, accessToken, this);
         }
@@ -54,7 +55,7 @@ namespace FamilySearch.Api
          * @param client the client that will use the new places state
          * @return a new places state created with with the given URI
          */
-        public FamilySearchPlaces NewPlacesState(Uri discoveryUri, IRestClient client)
+        public FamilySearchPlaces NewPlacesState(Uri discoveryUri, IFilterableRestClient client)
         {
             return NewPlacesState(discoveryUri, client, Method.GET);
         }
@@ -67,69 +68,73 @@ namespace FamilySearch.Api
          * @param method the HTTP method to call
          * @return a new places state created with with the given URI
          */
-        public FamilySearchPlaces NewPlacesState(Uri discoveryUri, IRestClient client, Method method)
+        public FamilySearchPlaces NewPlacesState(Uri discoveryUri, IFilterableRestClient client, Method method)
         {
             IRestRequest request = new RestRequest().Accept(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE).Build(discoveryUri, method);
-            return NewPlacesState(request, client.Execute(request), client, null);
+            return NewPlacesState(request, client.Handle(request), client, null);
         }
 
-        protected internal FamilySearchPlaces NewPlacesState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected internal FamilySearchPlaces NewPlacesState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken)
         {
             return new FamilySearchPlaces(request, response, client, accessToken, this);
         }
 
-        protected override CollectionState NewCollectionState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected override CollectionState NewCollectionState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken)
         {
             return new FamilySearchCollectionState(request, response, client, accessToken, this);
         }
 
-        internal virtual CollectionState NewCollectionStateInt(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        internal virtual CollectionState NewCollectionStateInt(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken)
         {
             return this.NewCollectionStateInt(request, response, client, accessToken);
         }
 
-        protected override SourceDescriptionState NewSourceDescriptionState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected override SourceDescriptionState NewSourceDescriptionState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken)
         {
             return new FamilySearchSourceDescriptionState(request, response, client, accessToken, this);
         }
 
-        internal virtual SourceDescriptionState NewSourceDescriptionStateInt(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        internal virtual SourceDescriptionState NewSourceDescriptionStateInt(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken)
         {
             return this.NewSourceDescriptionState(request, response, client, accessToken);
         }
 
-        protected override PersonState NewPersonState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected override PersonState NewPersonState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken)
         {
             return base.NewPersonState(request, response, client, accessToken);
         }
 
-        internal virtual PersonState NewPersonStateInt(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        internal virtual PersonState NewPersonStateInt(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken)
         {
             return this.NewPersonState(request, response, client, accessToken);
         }
 
-        protected internal virtual PersonNonMatchesState NewPersonNonMatchesState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected internal virtual PersonNonMatchesState NewPersonNonMatchesState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken)
         {
             return new PersonNonMatchesState(request, response, client, accessToken, this);
         }
 
-        protected internal FamilySearchPlaceState NewPlaceState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected internal FamilySearchPlaceState NewPlaceState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken)
         {
             return new FamilySearchPlaceState(request, response, client, accessToken, this);
         }
 
-        protected override PlaceDescriptionState NewPlaceDescriptionState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken)
+        protected override PlaceDescriptionState NewPlaceDescriptionState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken)
         {
             return new FamilySearchPlaceDescriptionState(request, response, client, accessToken, this);
         }
 
-        // TODO: Determine if the core LoadDefaultClient() has missing functionality. If so, implement here; otherwise, remove this method.
-        protected override IRestClient LoadDefaultClient(Uri uri)
+        protected override IFilterableRestClient LoadDefaultClient(Uri uri)
         {
-            return base.LoadDefaultClient(uri);
+            var client = base.LoadDefaultClient(uri);
+
+            //how to add an experiment:
+            client.AddFilter(new ExperimentsFilter("birth-date-not-considered-death-declaration"));
+
+            return client;
         }
 
-        internal virtual IRestClient LoadDefaultClientInt(Uri uri)
+        internal virtual IFilterableRestClient LoadDefaultClientInt(Uri uri)
         {
             return this.LoadDefaultClient(uri);
         }

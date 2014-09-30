@@ -19,7 +19,7 @@ namespace FamilySearch.Api.Ft
 {
     public class ChildAndParentsRelationshipState : GedcomxApplicationState<FamilySearchPlatform>, PreferredRelationshipState
     {
-        protected internal ChildAndParentsRelationshipState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken, FamilyTreeStateFactory stateFactory)
+        protected internal ChildAndParentsRelationshipState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken, FamilyTreeStateFactory stateFactory)
             : base(request, response, client, accessToken, stateFactory)
         {
         }
@@ -32,7 +32,7 @@ namespace FamilySearch.Api.Ft
             }
         }
 
-        protected override GedcomxApplicationState<FamilySearchPlatform> Clone(IRestRequest request, IRestResponse response, IRestClient client)
+        protected override GedcomxApplicationState<FamilySearchPlatform> Clone(IRestRequest request, IRestResponse response, IFilterableRestClient client)
         {
             return new ChildAndParentsRelationshipState(request, response, client, this.CurrentAccessToken, (FamilyTreeStateFactory)this.stateFactory);
         }

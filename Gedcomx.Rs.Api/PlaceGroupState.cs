@@ -11,7 +11,7 @@ namespace Gx.Rs.Api
 {
     public class PlaceGroupState : GedcomxApplicationState<Gedcomx>
     {
-        internal PlaceGroupState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken, StateFactory stateFactory)
+        internal PlaceGroupState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken, StateFactory stateFactory)
             : base(request, response, client, accessToken, stateFactory)
         {
         }
@@ -24,7 +24,7 @@ namespace Gx.Rs.Api
             }
         }
 
-        protected override GedcomxApplicationState<Gedcomx> Clone(IRestRequest request, IRestResponse response, IRestClient client)
+        protected override GedcomxApplicationState<Gedcomx> Clone(IRestRequest request, IRestResponse response, IFilterableRestClient client)
         {
             return new PlaceGroupState(request, response, client, this.CurrentAccessToken, this.stateFactory);
         }

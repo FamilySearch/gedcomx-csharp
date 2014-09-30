@@ -10,12 +10,12 @@ namespace Gx.Rs.Api
 {
     public class AncestryResultsState : GedcomxApplicationState<Gedcomx>
     {
-        internal AncestryResultsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken, StateFactory stateFactory)
+        internal AncestryResultsState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken, StateFactory stateFactory)
             : base(request, response, client, accessToken, stateFactory)
         {
         }
 
-        protected override GedcomxApplicationState<Gedcomx> Clone(IRestRequest request, IRestResponse response, IRestClient client)
+        protected override GedcomxApplicationState<Gedcomx> Clone(IRestRequest request, IRestResponse response, IFilterableRestClient client)
         {
             return new AncestryResultsState(request, response, client, this.CurrentAccessToken, this.stateFactory);
         }

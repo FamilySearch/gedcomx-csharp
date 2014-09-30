@@ -12,7 +12,7 @@ namespace Gx.Rs.Api
 {
     public class PlaceDescriptionState : GedcomxApplicationState<Gedcomx>
     {
-        protected internal PlaceDescriptionState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken, StateFactory stateFactory)
+        protected internal PlaceDescriptionState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken, StateFactory stateFactory)
             : base(request, response, client, accessToken, stateFactory)
         {
         }
@@ -25,7 +25,7 @@ namespace Gx.Rs.Api
             }
         }
 
-        protected override GedcomxApplicationState<Gedcomx> Clone(IRestRequest request, IRestResponse response, IRestClient client)
+        protected override GedcomxApplicationState<Gedcomx> Clone(IRestRequest request, IRestResponse response, IFilterableRestClient client)
         {
             return new PlaceDescriptionState(request, response, client, this.CurrentAccessToken, this.stateFactory);
         }

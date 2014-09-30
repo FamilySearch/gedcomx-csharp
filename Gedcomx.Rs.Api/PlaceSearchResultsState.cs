@@ -11,12 +11,12 @@ namespace Gx.Rs.Api
 {
     public class PlaceSearchResultsState : GedcomxApplicationState<Feed>
     {
-        internal PlaceSearchResultsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken, StateFactory stateFactory)
+        internal PlaceSearchResultsState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken, StateFactory stateFactory)
             : base(request, response, client, accessToken, stateFactory)
         {
         }
 
-        protected override GedcomxApplicationState<Feed> Clone(IRestRequest request, IRestResponse response, IRestClient client)
+        protected override GedcomxApplicationState<Feed> Clone(IRestRequest request, IRestResponse response, IFilterableRestClient client)
         {
             return new PlaceSearchResultsState(request, response, client, this.CurrentAccessToken, this.stateFactory);
         }

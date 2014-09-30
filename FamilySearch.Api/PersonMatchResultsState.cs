@@ -16,12 +16,12 @@ namespace FamilySearch.Api
 {
     public class PersonMatchResultsState : PersonSearchResultsState
     {
-        protected internal PersonMatchResultsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken, FamilySearchStateFactory stateFactory)
+        protected internal PersonMatchResultsState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken, FamilySearchStateFactory stateFactory)
             : base(request, response, client, accessToken, stateFactory)
         {
         }
 
-        protected override GedcomxApplicationState<Gx.Atom.Feed> Clone(IRestRequest request, IRestResponse response, IRestClient client)
+        protected override GedcomxApplicationState<Gx.Atom.Feed> Clone(IRestRequest request, IRestResponse response, IFilterableRestClient client)
         {
             return new PersonMatchResultsState(request, response, client, this.CurrentAccessToken, (FamilySearchStateFactory)this.stateFactory);
         }

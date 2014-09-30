@@ -13,7 +13,7 @@ namespace FamilySearch.Api
     public class FamilySearchPlaceState : GedcomxApplicationState<Gx.Gedcomx>
     {
 
-        protected internal FamilySearchPlaceState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken, StateFactory stateFactory)
+        protected internal FamilySearchPlaceState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken, StateFactory stateFactory)
             : base(request, response, client, accessToken, stateFactory)
         {
         }
@@ -26,7 +26,7 @@ namespace FamilySearch.Api
             }
         }
 
-        protected override GedcomxApplicationState<Gx.Gedcomx> Clone(IRestRequest request, IRestResponse response, IRestClient client)
+        protected override GedcomxApplicationState<Gx.Gedcomx> Clone(IRestRequest request, IRestResponse response, IFilterableRestClient client)
         {
             return new FamilySearchPlaceState(request, response, client, this.CurrentAccessToken, this.stateFactory);
         }

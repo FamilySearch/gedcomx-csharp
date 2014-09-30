@@ -11,12 +11,12 @@ namespace Gx.Rs.Api
 {
     public class RecordsState : GedcomxApplicationState<Feed>
     {
-        internal RecordsState(IRestRequest request, IRestResponse response, IRestClient client, String accessToken, StateFactory stateFactory)
+        internal RecordsState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken, StateFactory stateFactory)
             : base(request, response, client, accessToken, stateFactory)
         {
         }
 
-        protected override GedcomxApplicationState<Feed> Clone(IRestRequest request, IRestResponse response, IRestClient client)
+        protected override GedcomxApplicationState<Feed> Clone(IRestRequest request, IRestResponse response, IFilterableRestClient client)
         {
             return new RecordsState(request, response, client, this.CurrentAccessToken, this.stateFactory);
         }

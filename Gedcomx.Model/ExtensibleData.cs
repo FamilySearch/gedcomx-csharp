@@ -22,7 +22,7 @@ namespace Gx.Common
     {
 
         private string _id;
-        private List<System.Xml.XmlElement> _extensionElements;
+        private List<Object> _extensionElements;
         /// <summary>
         ///  A local, context-specific id for the data.
         /// </summary>
@@ -45,7 +45,7 @@ namespace Gx.Common
         ///  Custom extension elements for a conclusion.
         /// </summary>
         [System.Xml.Serialization.XmlAnyElementAttribute()]
-        public List<System.Xml.XmlElement> ExtensionElements
+        public List<Object> ExtensionElements
         {
             get
             {
@@ -61,7 +61,7 @@ namespace Gx.Common
         {
             if (data._extensionElements != null)
             {
-                this._extensionElements = this._extensionElements == null ? new List<System.Xml.XmlElement>() : this._extensionElements;
+                this._extensionElements = this._extensionElements == null ? new List<Object>() : this._extensionElements;
                 this._extensionElements.AddRange(data._extensionElements);
             }
         }
@@ -87,6 +87,21 @@ namespace Gx.Common
             }
 
             return ext;
+        }
+
+        /**
+         * Add an extension element.
+         *
+         * @param element The extension element to add.
+         */
+        public void AddExtensionElement(Object element)
+        {
+            if (this._extensionElements == null)
+            {
+                this._extensionElements = new List<Object>();
+            }
+
+            this._extensionElements.Add(element);
         }
     }
 }

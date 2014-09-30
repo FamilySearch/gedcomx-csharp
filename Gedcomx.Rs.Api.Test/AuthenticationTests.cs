@@ -27,7 +27,7 @@ namespace Gedcomx.Rs.Api.Test
             IRestRequest request = new RestRequest()
                 .Accept(MediaTypes.APPLICATION_JSON_TYPE)
                 .Build(link.Href + "?access_token=" + collection.CurrentAccessToken, Method.DELETE);
-            IRestResponse response = collection.Client.Execute(request);
+            IRestResponse response = collection.Client.Handle(request);
             Assert.AreEqual(HttpStatusCode.NoContent, response.StatusCode);
         }
 
@@ -45,7 +45,7 @@ namespace Gedcomx.Rs.Api.Test
                 .ContentType(MediaTypes.APPLICATION_FORM_URLENCODED_TYPE)
                 .SetEntity(formData)
                 .Build(tokenLink.Href, Method.POST);
-            IRestResponse response = collection.Client.Execute(request);
+            IRestResponse response = collection.Client.Handle(request);
 
             Assert.AreEqual(HttpStatusCode.BadRequest, response.StatusCode);
         }
@@ -89,7 +89,7 @@ namespace Gedcomx.Rs.Api.Test
             IRestRequest request = new RestRequest()
                 .SetEntity(formData)
                 .Build(tokenLink.Href, Method.GET);
-            IRestResponse response = collection.Client.Execute(request);
+            IRestResponse response = collection.Client.Handle(request);
 
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
             var cq = new CQ(response.Content);
@@ -110,7 +110,7 @@ namespace Gedcomx.Rs.Api.Test
                 .ContentType(MediaTypes.APPLICATION_FORM_URLENCODED_TYPE)
                 .SetEntity(formData)
                 .Build(tokenLink.Href, Method.POST);
-            IRestResponse response = collection.Client.Execute(request);
+            IRestResponse response = collection.Client.Handle(request);
 
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
             var cq = new CQ(response.Content);
@@ -129,7 +129,7 @@ namespace Gedcomx.Rs.Api.Test
             IRestRequest request = new RestRequest()
                 .SetEntity(formData)
                 .Build(tokenLink.Href, Method.POST);
-            IRestResponse response = collection.Client.Execute(request);
+            IRestResponse response = collection.Client.Handle(request);
 
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
             var cq = new CQ(response.Content);

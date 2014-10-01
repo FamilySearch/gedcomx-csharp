@@ -147,7 +147,7 @@ namespace Gedcomx.Rs.Api.Test
             Assert.DoesNotThrow(() => state2.IfSuccessful());
             var children = state2.GetChildRelationships();
             Assert.IsNotNull(children);
-            Assert.AreEqual(0, children.Count);
+            Assert.Greater(children.Count, 0);
         }
 
         [Test]
@@ -169,7 +169,7 @@ namespace Gedcomx.Rs.Api.Test
             Assert.DoesNotThrow(() => state2.IfSuccessful());
             var spouses = state2.GetSpouseRelationships();
             Assert.IsNotNull(spouses);
-            Assert.AreEqual(0, spouses.Count);
+            Assert.Greater(spouses.Count, 0);
         }
 
         [Test(Description = "Matches example request here https://familysearch.org/developers/docs/api/tree/Read_Relationships_To_Spouses_with_Persons_usecase, but is either unneeded or the SDK needs to be updated to support this more directly.")]
@@ -198,7 +198,7 @@ namespace Gedcomx.Rs.Api.Test
             var state2 = state.ReadChildren();
             Assert.DoesNotThrow(() => state2.IfSuccessful());
             Assert.IsNotNull(state2.Persons);
-            Assert.AreEqual(0, state2.Persons.Count);
+            Assert.Greater(state2.Persons.Count, 0);
         }
 
         [Test]
@@ -226,7 +226,7 @@ namespace Gedcomx.Rs.Api.Test
             Assert.DoesNotThrow(() => state2.IfSuccessful());
             Assert.IsNotNull(state2.Person);
             Assert.IsNotNull(state2.Person.Notes);
-            Assert.AreEqual(0, state2.Person.Notes.Count);
+            Assert.Greater(state2.Person.Notes.Count, 0);
         }
 
         [Test]
@@ -248,8 +248,8 @@ namespace Gedcomx.Rs.Api.Test
             Assert.DoesNotThrow(() => state2.IfSuccessful());
             Assert.IsNotNull(state2.Persons);
             Assert.IsNotNull(state2.Relationships);
-            Assert.AreEqual(0, state2.Persons.Count);
-            Assert.AreEqual(0, state2.Relationships.Count);
+            Assert.Greater(state2.Persons.Count, 0);
+            Assert.Greater(state2.Relationships.Count, 0);
         }
 
         [Test]

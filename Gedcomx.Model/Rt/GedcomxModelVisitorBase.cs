@@ -291,7 +291,7 @@ namespace Gedcomx.Model.Rt
             this.contextStack.Pop();
         }
 
-        protected void VisitConclusion(Conclusion conclusion)
+        protected virtual void VisitConclusion(Conclusion conclusion)
         {
             List<SourceReference> sourceReferences = conclusion.Sources;
             if (sourceReferences != null)
@@ -312,7 +312,7 @@ namespace Gedcomx.Model.Rt
             }
         }
 
-        protected void VisitSubject(Subject subject)
+        protected virtual void VisitSubject(Subject subject)
         {
             VisitConclusion(subject);
 
@@ -335,7 +335,7 @@ namespace Gedcomx.Model.Rt
             }
         }
 
-        public void VisitPerson(Person person)
+        public virtual void VisitPerson(Person person)
         {
             this.contextStack.Push(person);
             VisitSubject(person);
@@ -374,7 +374,7 @@ namespace Gedcomx.Model.Rt
             this.contextStack.Pop();
         }
 
-        public void VisitFact(Fact fact)
+        public virtual void VisitFact(Fact fact)
         {
             this.contextStack.Push(fact);
             VisitConclusion(fact);
@@ -402,7 +402,7 @@ namespace Gedcomx.Model.Rt
             this.contextStack.Pop();
         }
 
-        public void VisitPlaceReference(PlaceReference place)
+        public virtual void VisitPlaceReference(PlaceReference place)
         {
             this.contextStack.Push(place);
             List<Field> fields = place.Fields;
@@ -416,7 +416,7 @@ namespace Gedcomx.Model.Rt
             this.contextStack.Pop();
         }
 
-        public void VisitDate(DateInfo date)
+        public virtual void VisitDate(DateInfo date)
         {
             this.contextStack.Push(date);
             List<Field> fields = date.Fields;
@@ -430,7 +430,7 @@ namespace Gedcomx.Model.Rt
             this.contextStack.Pop();
         }
 
-        public void VisitName(Name name)
+        public virtual void VisitName(Name name)
         {
             this.contextStack.Push(name);
             VisitConclusion(name);
@@ -446,7 +446,7 @@ namespace Gedcomx.Model.Rt
             this.contextStack.Pop();
         }
 
-        public void VisitNameForm(NameForm form)
+        public virtual void VisitNameForm(NameForm form)
         {
             this.contextStack.Push(form);
             List<NamePart> parts = form.Parts;
@@ -469,7 +469,7 @@ namespace Gedcomx.Model.Rt
             this.contextStack.Pop();
         }
 
-        public void VisitNamePart(NamePart part)
+        public virtual void VisitNamePart(NamePart part)
         {
             this.contextStack.Push(part);
             List<Field> fields = part.Fields;
@@ -483,7 +483,7 @@ namespace Gedcomx.Model.Rt
             this.contextStack.Pop();
         }
 
-        public void VisitGender(Gender gender)
+        public virtual void VisitGender(Gender gender)
         {
             this.contextStack.Push(gender);
             VisitConclusion(gender);
@@ -500,17 +500,17 @@ namespace Gedcomx.Model.Rt
             this.contextStack.Pop();
         }
 
-        public void VisitSourceReference(SourceReference sourceReference)
+        public virtual void VisitSourceReference(SourceReference sourceReference)
         {
             //no-op
         }
 
-        public void VisitNote(Note note)
+        public virtual void VisitNote(Note note)
         {
             //no-op.
         }
 
-        public void VisitEvidenceReference(EvidenceReference evidenceReference)
+        public virtual void VisitEvidenceReference(EvidenceReference evidenceReference)
         {
             //no-op
         }

@@ -166,7 +166,7 @@ namespace Gx.Fs.Rt
             //no-op.
         }
 
-        public void VisitUser(User user)
+        public virtual void VisitUser(User user)
         {
             //no-op.
         }

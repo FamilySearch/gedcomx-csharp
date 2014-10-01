@@ -63,7 +63,7 @@ namespace Gedcomx.Rs.Api.Test
             var state = (PersonState)result.Get();
             var result2 = state.AddSourceReference(TestBacking.GetPersonSourceReference());
             Assert.DoesNotThrow(() => result2.IfSuccessful());
-            Assert.IsTrue(result2.Response.StatusCode == HttpStatusCode.Created);
+            Assert.AreEqual(HttpStatusCode.Created, result2.Response.StatusCode);
         }
 
         [Test]
@@ -100,17 +100,17 @@ namespace Gedcomx.Rs.Api.Test
             // KWWD-X35 was merged with KWWD-CMF
             var state = collection.ReadPerson(new Uri("https://sandbox.familysearch.org/platform/tree/persons/KWWD-X35"));
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.IsTrue(state.Response.StatusCode == HttpStatusCode.MovedPermanently);
+            Assert.AreEqual(HttpStatusCode.MovedPermanently, state.Response.StatusCode);
             var link = state.GetLink("self");
             Assert.IsNotNull(link);
-            Assert.IsTrue(link.Href == PERSON_WITH_DATA_URI);
+            Assert.AreEqual(PERSON_WITH_DATA_URI, link.Href);
         }
 
         [Test]
         public void TestReadDeletedPerson()
         {
             var state = collection.ReadPerson(new Uri("https://sandbox.familysearch.org/platform/tree/persons/KWWD-ZM7"));
-            Assert.IsTrue(state.Response.StatusCode == HttpStatusCode.Gone);
+            Assert.AreEqual(HttpStatusCode.Gone, state.Response.StatusCode);
         }
 
         [Test]
@@ -147,7 +147,7 @@ namespace Gedcomx.Rs.Api.Test
             Assert.DoesNotThrow(() => state2.IfSuccessful());
             var children = state2.GetChildRelationships();
             Assert.IsNotNull(children);
-            Assert.IsTrue(children.Count > 0);
+            Assert.AreEqual(0, children.Count);
         }
 
         [Test]
@@ -158,7 +158,7 @@ namespace Gedcomx.Rs.Api.Test
             Assert.DoesNotThrow(() => state2.IfSuccessful());
             var parents = state2.GetParentRelationships();
             Assert.IsNotNull(parents);
-            Assert.IsTrue(parents.Count > 0);
+            Assert.Greater(parents.Count, 0);
         }
 
         [Test]
@@ -169,7 +169,7 @@ namespace Gedcomx.Rs.Api.Test
             Assert.DoesNotThrow(() => state2.IfSuccessful());
             var spouses = state2.GetSpouseRelationships();
             Assert.IsNotNull(spouses);
-            Assert.IsTrue(spouses.Count > 0);
+            Assert.AreEqual(0, spouses.Count);
         }
 
         [Test(Description = "Matches example request here https://familysearch.org/developers/docs/api/tree/Read_Relationships_To_Spouses_with_Persons_usecase, but is either unneeded or the SDK needs to be updated to support this more directly.")]
@@ -181,7 +181,7 @@ namespace Gedcomx.Rs.Api.Test
             Assert.DoesNotThrow(() => state2.IfSuccessful());
             Assert.IsNotNull(state2.Entity != null);
             Assert.IsNotNull(state2.Entity.Persons);
-            Assert.IsTrue(state2.Entity.Persons.Count == 2);
+            Assert.AreEqual(2, state2.Entity.Persons.Count);
         }
 
         [Test]
@@ -198,14 +198,14 @@ namespace Gedcomx.Rs.Api.Test
             var state2 = state.ReadChildren();
             Assert.DoesNotThrow(() => state2.IfSuccessful());
             Assert.IsNotNull(state2.Persons);
-            Assert.IsTrue(state2.Persons.Count > 0);
+            Assert.AreEqual(0, state2.Persons.Count);
         }
 
         [Test]
         public void TestReadNotFoundPerson()
         {
-            var state = collection.ReadPerson(new Uri("https://sandbox.familysearch.org/platform/tree/persons/NOTFOUND"));
-            Assert.IsTrue(state.Response.StatusCode == HttpStatusCode.NotFound);
+            var state = collection.ReadPerson(new Uri("https://sandbox.familysearch.org/platform/tree/persons/MMMM-MMM"));
+            Assert.AreEqual(HttpStatusCode.NotFound, state.Response.StatusCode);
         }
 
         [Test]
@@ -215,7 +215,7 @@ namespace Gedcomx.Rs.Api.Test
             var cache = new CacheDirectives(state);
             var state2 = collection.ReadPerson(new Uri(READ_PERSON_URI), cache);
             Assert.DoesNotThrow(() => state2.IfSuccessful());
-            Assert.IsTrue(state2.Response.StatusCode == HttpStatusCode.NotModified);
+            Assert.AreEqual(HttpStatusCode.NotModified, state2.Response.StatusCode);
         }
 
         [Test]
@@ -226,7 +226,7 @@ namespace Gedcomx.Rs.Api.Test
             Assert.DoesNotThrow(() => state2.IfSuccessful());
             Assert.IsNotNull(state2.Person);
             Assert.IsNotNull(state2.Person.Notes);
-            Assert.IsTrue(state2.Person.Notes.Count > 0);
+            Assert.AreEqual(0, state2.Person.Notes.Count);
         }
 
         [Test]
@@ -236,7 +236,7 @@ namespace Gedcomx.Rs.Api.Test
             var state2 = state.ReadParents();
             Assert.DoesNotThrow(() => state2.IfSuccessful());
             Assert.IsNotNull(state2.Persons);
-            Assert.IsTrue(state2.Persons.Count > 0);
+            Assert.Greater(state2.Persons.Count, 0);
         }
 
         [Test]
@@ -248,8 +248,8 @@ namespace Gedcomx.Rs.Api.Test
             Assert.DoesNotThrow(() => state2.IfSuccessful());
             Assert.IsNotNull(state2.Persons);
             Assert.IsNotNull(state2.Relationships);
-            Assert.IsTrue(state2.Persons.Count > 0);
-            Assert.IsTrue(state2.Relationships.Count > 0);
+            Assert.AreEqual(0, state2.Persons.Count);
+            Assert.AreEqual(0, state2.Relationships.Count);
         }
 
         [Test]
@@ -258,7 +258,7 @@ namespace Gedcomx.Rs.Api.Test
             var state = collection.ReadPerson(new Uri(PERSON_WITH_DATA_URI));
             var state2 = (PersonState)state.Head();
             Assert.DoesNotThrow(() => state2.IfSuccessful());
-            Assert.IsTrue(state2.Response.StatusCode == HttpStatusCode.OK);
+            Assert.AreEqual(HttpStatusCode.OK, state2.Response.StatusCode);
         }
 
         [Test]
@@ -270,11 +270,11 @@ namespace Gedcomx.Rs.Api.Test
             state.Person.Sources[0].Tags.Remove(tag);
             var state2 = state.UpdateSourceReferences(state.Person);
             Assert.DoesNotThrow(() => state2.IfSuccessful());
-            Assert.IsTrue(state2.Response.StatusCode == HttpStatusCode.NoContent);
+            Assert.AreEqual(HttpStatusCode.NoContent, state2.Response.StatusCode);
             state.Person.Sources[0].Tags.Add(tag);
             state2 = state.UpdateSourceReferences(state.Person);
             Assert.DoesNotThrow(() => state2.IfSuccessful());
-            Assert.IsTrue(state2.Response.StatusCode == HttpStatusCode.NoContent);
+            Assert.AreEqual(HttpStatusCode.NoContent, state2.Response.StatusCode);
         }
 
         [Test]
@@ -302,12 +302,12 @@ namespace Gedcomx.Rs.Api.Test
             var cond = new Preconditions(state.LastModified);
             var state2 = state.UpdateFacts(state.Person.Facts.ToArray(), cond);
             Assert.DoesNotThrow(() => state2.IfSuccessful());
-            Assert.IsTrue(state2.Response.StatusCode == HttpStatusCode.NoContent);
+            Assert.AreEqual(HttpStatusCode.NoContent, state2.Response.StatusCode);
 
             state = collection.ReadPerson(new Uri(PERSON_WITH_DATA_URI));
             var state3 = state.UpdateFacts(state.Person.Facts.ToArray(), cond);
             Assert.Throws<GedcomxApplicationException>(() => state3.IfSuccessful());
-            Assert.IsTrue(state3.Response.StatusCode == HttpStatusCode.PreconditionFailed);
+            Assert.AreEqual(HttpStatusCode.PreconditionFailed, state3.Response.StatusCode);
         }
 
         [Test]
@@ -318,7 +318,7 @@ namespace Gedcomx.Rs.Api.Test
             var state2 = (PersonState)state.Delete();
 
             Assert.DoesNotThrow(() => state2.IfSuccessful());
-            Assert.IsTrue(state2.Response.StatusCode == HttpStatusCode.NoContent);
+            Assert.AreEqual(HttpStatusCode.NoContent, state2.Response.StatusCode);
         }
 
         [Test]
@@ -333,7 +333,7 @@ namespace Gedcomx.Rs.Api.Test
 
             var state2 = state.DeleteSourceReference(state.Person.Sources.FirstOrDefault());
             Assert.DoesNotThrow(() => state2.IfSuccessful());
-            Assert.IsTrue(state2.Response.StatusCode == HttpStatusCode.NoContent);
+            Assert.AreEqual(HttpStatusCode.NoContent, state2.Response.StatusCode);
         }
 
         [Test]
@@ -350,7 +350,7 @@ namespace Gedcomx.Rs.Api.Test
             // This should fail
             var state2 = (PersonState)state.Delete(cond);
             Assert.Throws<GedcomxApplicationException>(() => state2.IfSuccessful());
-            Assert.IsTrue(state2.Response.StatusCode == HttpStatusCode.PreconditionFailed);
+            Assert.AreEqual(HttpStatusCode.PreconditionFailed, state2.Response.StatusCode);
         }
 
         [Test]
@@ -369,10 +369,10 @@ namespace Gedcomx.Rs.Api.Test
             state.Delete();
 
             var deletedPerson = tree.ReadPersonById(id);
-            Assert.IsTrue(deletedPerson.Response.StatusCode == HttpStatusCode.Gone); // Ensure we have a deleted person
+            Assert.AreEqual(HttpStatusCode.Gone, deletedPerson.Response.StatusCode); // Ensure we have a deleted person
             var testState = deletedPerson.Restore();
             Assert.DoesNotThrow(() => testState.IfSuccessful());
-            Assert.IsTrue(testState.Response.StatusCode == HttpStatusCode.NoContent);
+            Assert.AreEqual(HttpStatusCode.NoContent, testState.Response.StatusCode);
             deletedPerson.Delete();
         }
 
@@ -428,7 +428,7 @@ namespace Gedcomx.Rs.Api.Test
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.IsNotNull(state.Person);
             Assert.IsNotNull(state.ChildAndParentsRelationships);
-            Assert.IsTrue(state.ChildAndParentsRelationships.Count > 0);
+            Assert.Greater(state.ChildAndParentsRelationships.Count, 0);
         }
 
         [Test]
@@ -438,7 +438,7 @@ namespace Gedcomx.Rs.Api.Test
             var person2 = tree.ReadPersonById("KW73-MB6");
             var state = person1.AddNonMatch(person2);
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.IsTrue(state.Response.StatusCode == HttpStatusCode.NoContent);
+            Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
         }
 
         [Test]
@@ -449,7 +449,7 @@ namespace Gedcomx.Rs.Api.Test
             var state = (PersonNonMatchesState)person1.AddNonMatch(person2).Get();
             state = state.RemoveNonMatch(state.Persons[0]);
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.IsTrue(state.Response.StatusCode == HttpStatusCode.NoContent);
+            Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
         }
 
         [Test]
@@ -462,7 +462,7 @@ namespace Gedcomx.Rs.Api.Test
             var response = person.ReadPortrait();
             Assert.IsTrue(!response.HasClientError() && !response.HasServerError());
             // NOTE: The READ_PERSON_ID user does not have images, thus the response should be 204.
-            Assert.IsTrue(response.StatusCode == HttpStatusCode.NoContent);
+            Assert.AreEqual(HttpStatusCode.NoContent, response.StatusCode);
         }
 
         [Test]
@@ -476,10 +476,10 @@ namespace Gedcomx.Rs.Api.Test
             var response = person.ReadPortrait(options);
             Assert.IsTrue(!response.HasClientError() && !response.HasServerError());
             // NOTE: The READ_PERSON_ID user does not have images, but a default is specified, thus the response should be 307.
-            Assert.IsTrue(response.StatusCode == HttpStatusCode.TemporaryRedirect);
+            Assert.AreEqual(HttpStatusCode.TemporaryRedirect, response.StatusCode);
             Assert.IsTrue(response.Headers.Get("Location").Any());
             Assert.IsNotNull(response.Headers.Get("Location").Single().Value);
-            Assert.IsTrue(response.Headers.Get("Location").Single().Value.ToString().Equals(location));
+            Assert.AreEqual(location, response.Headers.Get("Location").Single().Value.ToString());
         }
 
         [Test]
@@ -499,7 +499,7 @@ namespace Gedcomx.Rs.Api.Test
 
             var state = person.ReadPortraits();
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.IsTrue(state.Response.StatusCode == HttpStatusCode.OK);
+            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
         }
 
         [Test]
@@ -509,7 +509,7 @@ namespace Gedcomx.Rs.Api.Test
             var state = (FamilyTreePersonState)person.Post(TestBacking.GetCreatePersonLifeSketch(PERSON_WITH_DATA_ID));
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.IsTrue(state.Response.StatusCode == HttpStatusCode.NoContent);
+            Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
         }
 
         [Test]
@@ -526,7 +526,7 @@ namespace Gedcomx.Rs.Api.Test
             var state = (FamilyTreePersonState)person.Post(TestBacking.GetUpdatePersonLifeSketch(PERSON_WITH_DATA_ID, factId));
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.IsTrue(state.Response.StatusCode == HttpStatusCode.NoContent);
+            Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
         }
 
         [Test]
@@ -547,7 +547,7 @@ namespace Gedcomx.Rs.Api.Test
             var state = person.DeleteFact(sketchToDelete);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.IsTrue(state.Response.StatusCode == HttpStatusCode.NoContent);
+            Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
         }
 
         [Test]

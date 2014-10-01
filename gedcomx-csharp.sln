@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Link", "Link\src\Link\Link.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilySearch.Api", "FamilySearch.Api\FamilySearch.Api.csproj", "{BB8A28F0-E46B-4E36-AAF8-05F472B1C850}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GEDCOM X Date", "GEDCOM X Date\GEDCOM X Date.csproj", "{80B68424-7AA2-42DE-A875-FCD2B8C4B52C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -90,6 +92,12 @@ Global
 		{BB8A28F0-E46B-4E36-AAF8-05F472B1C850}.Default|Any CPU.Build.0 = Debug|Any CPU
 		{BB8A28F0-E46B-4E36-AAF8-05F472B1C850}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB8A28F0-E46B-4E36-AAF8-05F472B1C850}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80B68424-7AA2-42DE-A875-FCD2B8C4B52C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80B68424-7AA2-42DE-A875-FCD2B8C4B52C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80B68424-7AA2-42DE-A875-FCD2B8C4B52C}.Default|Any CPU.ActiveCfg = Debug|Any CPU
+		{80B68424-7AA2-42DE-A875-FCD2B8C4B52C}.Default|Any CPU.Build.0 = Debug|Any CPU
+		{80B68424-7AA2-42DE-A875-FCD2B8C4B52C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80B68424-7AA2-42DE-A875-FCD2B8C4B52C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

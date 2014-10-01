@@ -34,12 +34,10 @@ namespace Gedcomx.Rs.Api.Test
         }
 
         [Test]
-        [Ignore("Service is unavailable (503). Need to revisit and validate.")]
         public void TestReadPersonRecordMatches()
         {
             var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
-            var query = new QueryParameter("collection", "https://familysearch.org/platform/collections/records");
-            var state = person.ReadMatches(query);
+            var state = person.ReadMatches();
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
@@ -47,13 +45,11 @@ namespace Gedcomx.Rs.Api.Test
         }
 
         [Test]
-        [Ignore("Service is unavailable (503). Need to revisit and validate.")]
         public void TestReadAllMatchStatusTypesPersonRecordMatches()
         {
             var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
-            var query = new QueryParameter("collection", "https://familysearch.org/platform/collections/records");
             var statuses = new QueryParameter("status", "pending", "accepted", "rejected");
-            var state = person.ReadMatches(query, statuses);
+            var state = person.ReadMatches(statuses);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
@@ -61,14 +57,12 @@ namespace Gedcomx.Rs.Api.Test
         }
 
         [Test]
-        [Ignore("Service is unavailable (503). Need to revisit and validate.")]
         public void TestReadHigherConfidencePersonAcceptedRecordMatches()
         {
             var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
-            var query = new QueryParameter("collection", "https://familysearch.org/platform/collections/records");
             var statuses = new QueryParameter("status", "accepted");
             var confidence = new QueryParameter("confidence", "4");
-            var state = person.ReadMatches(query, statuses, confidence);
+            var state = person.ReadMatches(statuses, confidence);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);

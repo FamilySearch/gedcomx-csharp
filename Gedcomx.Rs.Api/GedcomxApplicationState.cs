@@ -498,22 +498,22 @@ namespace Gx.Rs.Api
 
         public GedcomxApplicationState<T> ReadNextPage(params StateTransitionOption[] options)
         {
-            return ReadPage(Rel.NEXT);
+            return ReadPage(Rel.NEXT, options);
         }
 
         public GedcomxApplicationState<T> ReadPreviousPage(params StateTransitionOption[] options)
         {
-            return ReadPage(Rel.PREVIOUS);
+            return ReadPage(Rel.PREVIOUS, options);
         }
 
         public GedcomxApplicationState<T> ReadFirstPage(params StateTransitionOption[] options)
         {
-            return ReadPage(Rel.FIRST);
+            return ReadPage(Rel.FIRST, options);
         }
 
         public GedcomxApplicationState<T> ReadLastPage(params StateTransitionOption[] options)
         {
-            return ReadPage(Rel.LAST);
+            return ReadPage(Rel.LAST, options);
         }
 
         protected IRestRequest CreateAuthenticatedFeedRequest()

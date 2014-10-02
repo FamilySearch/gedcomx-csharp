@@ -17,11 +17,24 @@ namespace Gedcomx.Rs.Api.Test
         {
             var file = TestBacking.WriteBytesToDisk(Resources.TestJar);
             var fi = new FileInfo(file);
-            GedcomxFile test = new GedcomxFile(fi);
+            using (GedcomxFile test = new GedcomxFile(fi))
+            {
+                Assert.IsNotNull(test);
+                Assert.IsNotNull(test.Attributes);
+                Assert.AreEqual(2, test.Attributes.Count);
+                Assert.IsNotNull(test.GetAttribute("Manifest-Version"));
+                Assert.IsNotNull(test.Entries);
+                Assert.Greater(test.Entries.Count(), 0);
 
-            Assert.IsNotNull(test);
-            Assert.IsNotNull(test.Attributes);
-            Assert.AreEqual(2, test.Attributes.Count);
+                foreach (var entry in test.Entries)
+                {
+                    using (var stream = test.GetResourceStream(entry))
+                    {
+                        Assert.IsNotNull(stream);
+                        Assert.IsTrue(stream.CanRead);
+                    }
+                }
+            }
         }
     }
 }

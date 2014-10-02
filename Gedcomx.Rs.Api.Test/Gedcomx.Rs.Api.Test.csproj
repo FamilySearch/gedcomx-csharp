@@ -70,6 +70,7 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="AuthenticationTests.cs" />
+    <Compile Include="GedcomxFileTests.cs" />
     <Compile Include="ParentsAndChildrenTest.cs" />
     <Compile Include="PedigreeTests.cs" />
     <Compile Include="PersonSearchTests.cs" />
@@ -90,6 +91,10 @@
     <ProjectReference Include="..\FamilySearch.Api\FamilySearch.Api.csproj">
       <Project>{bb8a28f0-e46b-4e36-aaf8-05f472b1c850}</Project>
       <Name>FamilySearch.Api</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GEDCOM X File\GEDCOM X File.csproj">
+      <Project>{360b5135-9cae-45d9-8c39-10352b88d7ba}</Project>
+      <Name>GEDCOM X File</Name>
     </ProjectReference>
     <ProjectReference Include="..\Gedcomx.Model.Fs\GEDCOM X FamilySearch Model Extensions.csproj">
       <Project>{FCC74CF5-AD92-4AB2-BECC-CE2882A77796}</Project>
@@ -130,6 +135,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\default_person_image.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TestJar.jar" />
   </ItemGroup>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">

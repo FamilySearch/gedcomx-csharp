@@ -10,5 +10,10 @@ namespace Gedcomx.File
     {
         public string Name { get; internal set; }
         public string Value { get; internal set; }
+
+        public override string ToString()
+        {
+            return string.Format("{0}: {1}", Name, Value);
+        }
     }
 }

@@ -491,7 +491,7 @@ namespace Gedcomx.Rs.Api.Test
         {
             DataSource result = null;
 
-            if (File.Exists(filePath))
+            if (System.IO.File.Exists(filePath))
             {
                 result = new DataSourceTestImpl(name, contentType, new StreamReader(filePath).BaseStream);
             }
@@ -600,6 +600,19 @@ namespace Gedcomx.Rs.Api.Test
                     }
                 }
             };
+        }
+
+        public static string WriteBytesToDisk(byte[] bytes)
+        {
+            var result = Path.GetTempFileName();
+
+            using (var ms = new MemoryStream(bytes))
+            using (var file = System.IO.File.OpenWrite(result))
+            {
+                file.Write(bytes, 0, bytes.Length);
+            }
+
+            return result;
         }
     }
 

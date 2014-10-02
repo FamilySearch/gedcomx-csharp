@@ -96,6 +96,10 @@
       <Project>{360b5135-9cae-45d9-8c39-10352b88d7ba}</Project>
       <Name>GEDCOM X File</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GEDCOM X Support\GEDCOM X Support.csproj">
+      <Project>{4a6f7218-7aa8-40fd-8fe9-e309635242b7}</Project>
+      <Name>GEDCOM X Support</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Gedcomx.Model.Fs\GEDCOM X FamilySearch Model Extensions.csproj">
       <Project>{FCC74CF5-AD92-4AB2-BECC-CE2882A77796}</Project>
       <Name>GEDCOM X FamilySearch Model Extensions</Name>

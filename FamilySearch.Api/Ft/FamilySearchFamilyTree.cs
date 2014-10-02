@@ -15,6 +15,7 @@ using Gx.Fs;
 using FamilySearch.Api.Util;
 using Tavis.UriTemplates;
 using System.Net;
+using Gedcomx.Support;
 
 namespace FamilySearch.Api.Ft
 {

@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using Gx.Records;
 using Gx.Common;
 using Gedcomx.Model;
+using Gedcomx.Support;
 
 namespace Gx.Rs.Api
 {

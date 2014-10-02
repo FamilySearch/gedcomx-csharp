@@ -91,6 +91,10 @@
     <Compile Include="Util\RequestUtil.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GEDCOM X Support\GEDCOM X Support.csproj">
+      <Project>{4a6f7218-7aa8-40fd-8fe9-e309635242b7}</Project>
+      <Name>GEDCOM X Support</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Gedcomx.Model.Fs\GEDCOM X FamilySearch Model Extensions.csproj">
       <Project>{fcc74cf5-ad92-4ab2-becc-ce2882a77796}</Project>
       <Name>GEDCOM X FamilySearch Model Extensions</Name>

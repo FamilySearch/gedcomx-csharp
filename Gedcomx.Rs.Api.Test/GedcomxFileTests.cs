@@ -1,4 +1,5 @@
 ﻿using Gedcomx.File;
+using KellermanSoftware.CompareNetObjects;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -35,6 +36,28 @@ namespace Gedcomx.Rs.Api.Test
                     }
                 }
             }
+        }
+
+        [Test]
+        public void TestXmlSerialization()
+        {
+            var serializer = new DefaultXMLSerialization();
+            var gxExpected = TestBacking.GetGedcomxObject();
+
+            byte[] bytes;
+
+            using (var ms = new MemoryStream())
+            {
+                serializer.Serialize(gxExpected, ms);
+                bytes = ms.ToArray();
+            }
+
+            var gxActual = (Gx.Gedcomx)serializer.Deserialize(new MemoryStream(bytes));
+
+            var comparer = new CompareLogic();
+            var differences = comparer.Compare(gxExpected, gxActual);
+
+            Assert.AreEqual(0, differences.Differences.Count);
         }
     }
 }

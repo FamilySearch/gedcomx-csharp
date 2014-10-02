@@ -13,6 +13,7 @@ using FamilySearch.Api.Util;
 using Gx.Links;
 using Gx.Source;
 using Tavis.UriTemplates;
+using Gedcomx.Support;
 
 namespace FamilySearch.Api.Ft
 {

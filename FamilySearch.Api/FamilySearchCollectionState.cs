@@ -13,6 +13,7 @@ using Gx.Common;
 using FamilySearch.Api.Util;
 using Gx.Fs.Discussions;
 using Gx.Fs;
+using Gedcomx.Support;
 
 namespace FamilySearch.Api
 {

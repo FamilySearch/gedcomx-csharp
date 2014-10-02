@@ -9,6 +9,7 @@ using NUnit.Framework;
 using Gx.Links;
 using System.Net;
 using CsQuery;
+using Gedcomx.Support;
 
 namespace Gedcomx.Rs.Api.Test
 {

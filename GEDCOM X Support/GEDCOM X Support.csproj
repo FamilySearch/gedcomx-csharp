@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{360B5135-9CAE-45D9-8C39-10352B88D7BA}</ProjectGuid>
+    <ProjectGuid>{4A6F7218-7AA8-40FD-8FE9-E309635242B7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Gedcomx.File</RootNamespace>
-    <AssemblyName>Gedcomx.File</AssemblyName>
+    <RootNamespace>Gedcomx.Support</RootNamespace>
+    <AssemblyName>Gedcomx.Support</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,8 +32,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.IO.Compression" />
-    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,25 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GedcomNamespaceManager.cs" />
-    <Compile Include="GedcomxEntrySerializer.cs" />
-    <Compile Include="GedcomxFileEntry.cs" />
-    <Compile Include="ManifestAttribute.cs" />
-    <Compile Include="DefaultXMLSerialization.cs" />
-    <Compile Include="GedcomxEntryDeserializer.cs" />
-    <Compile Include="GedcomxFile.cs" />
-    <Compile Include="ManifestAttributesParser.cs" />
+    <Compile Include="MediaTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\GEDCOM X Support\GEDCOM X Support.csproj">
-      <Project>{4a6f7218-7aa8-40fd-8fe9-e309635242b7}</Project>
-      <Name>GEDCOM X Support</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Gedcomx.Model\GEDCOM X Model.csproj">
-      <Project>{4629ba54-406e-4cd2-9dc6-cda2c5206eb7}</Project>
-      <Name>GEDCOM X Model</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -8,6 +8,7 @@ using Gx.Rs.Api;
 using Gx.Links;
 using Tavis.UriTemplates;
 using FamilySearch.Api.Util;
+using Gedcomx.Support;
 
 namespace FamilySearch.Api
 {

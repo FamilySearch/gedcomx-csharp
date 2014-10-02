@@ -11,6 +11,7 @@ using Gx.Links;
 using Gx.Records;
 using Gedcomx.Model;
 using RestSharp.Extensions;
+using Gedcomx.Support;
 
 namespace Gx.Rs.Api
 {

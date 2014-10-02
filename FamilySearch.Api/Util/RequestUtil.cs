@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Gx.Rs.Api.Util;
 using Gx.Rs.Api;
 using Gx.Fs;
+using Gedcomx.Support;
 
 namespace FamilySearch.Api.Util
 {

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Gx.Rs.Api.Util;
+using Gedcomx.Support;
 
 namespace Gx.Rs.Api
 {

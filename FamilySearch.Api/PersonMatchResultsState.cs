@@ -11,6 +11,7 @@ using FamilySearch.Api.Util;
 using Gx.Conclusion;
 using Gx.Fs.Tree;
 using Gx.Types;
+using Gedcomx.Support;
 
 namespace FamilySearch.Api
 {

@@ -9,6 +9,7 @@ using Gx.Types;
 using RestSharp;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,8 @@ namespace Gedcomx.Rs.Api.Test
 {
     public static class TestBacking
     {
+        private static Random random = new Random();
+
         public static Person GetCreateMalePerson()
         {
             return new Person()
@@ -25,7 +28,12 @@ namespace Gedcomx.Rs.Api.Test
                 Living = false,
                 Gender = new Gender()
                 {
-                    KnownType = Gx.Types.GenderType.Male
+                    KnownType = Gx.Types.GenderType.Male,
+                    Fields = new List<Gx.Records.Field>(),
+                    Sources = new List<Gx.Source.SourceReference>(),
+                    Notes = new List<Gx.Common.Note>(),
+                    Links = new List<Gx.Links.Link>(),
+                    ExtensionElements = new List<object>(),
                 },
                 Names = new List<Name>()
                 {
@@ -43,13 +51,21 @@ namespace Gedcomx.Rs.Api.Test
                                     {
                                         KnownType = Gx.Types.NamePartType.Given,
                                         Value = "GedcomX",
+                                        ExtensionElements = new List<object>(),
+                                        Fields = new List<Gx.Records.Field>(),
+                                        Qualifiers = new List<Gx.Common.Qualifier>(),
                                     },
                                     new NamePart()
                                     {
                                         KnownType = Gx.Types.NamePartType.Surname,
                                         Value = "User",
-                                    }
-                                }
+                                        ExtensionElements = new List<object>(),
+                                        Fields = new List<Gx.Records.Field>(),
+                                        Qualifiers = new List<Gx.Common.Qualifier>(),
+                                    },
+                                },
+                                ExtensionElements = new List<object>(),
+                                Fields = new List<Gx.Records.Field>(),
                             },
                             new NameForm()
                             {
@@ -60,17 +76,29 @@ namespace Gedcomx.Rs.Api.Test
                                     {
                                         KnownType = Gx.Types.NamePartType.Given,
                                         Value = "GedcomX2",
+                                        ExtensionElements = new List<object>(),
+                                        Fields = new List<Gx.Records.Field>(),
+                                        Qualifiers = new List<Gx.Common.Qualifier>(),
                                     },
                                     new NamePart()
                                     {
                                         KnownType = Gx.Types.NamePartType.Surname,
                                         Value = "User",
-                                    }
-                                }
+                                        ExtensionElements = new List<object>(),
+                                        Fields = new List<Gx.Records.Field>(),
+                                        Qualifiers = new List<Gx.Common.Qualifier>(),
+                                    },
+                                },
+                                ExtensionElements = new List<object>(),
+                                Fields = new List<Gx.Records.Field>(),
                             },
                         },
                         Preferred = true,
-                    }
+                        Sources = new List<Gx.Source.SourceReference>(),
+                        Notes = new List<Gx.Common.Note>(),
+                        Links = new List<Gx.Links.Link>(),
+                        ExtensionElements = new List<object>(),
+                    },
                 },
                 Facts = new List<Fact>()
                 {
@@ -80,11 +108,23 @@ namespace Gedcomx.Rs.Api.Test
                         Date = new DateInfo()
                         {
                             Original = "June 1800",
+                            NormalizedExtensions = new List<Gx.Common.TextValue>(),
+                            Fields = new List<Gx.Records.Field>(),
+                            ExtensionElements = new List<object>(),
                         },
                         Place = new PlaceReference()
                         {
                             Original = "Provo, Utah, Utah, United States",
+                            NormalizedExtensions = new List<Gx.Common.TextValue>(),
+                            Fields = new List<Gx.Records.Field>(),
+                            ExtensionElements = new List<object>(),
                         },
+                        Qualifiers = new List<Gx.Common.Qualifier>(),
+                        Fields = new List<Gx.Records.Field>(),
+                        Sources = new List<Gx.Source.SourceReference>(),
+                        Notes = new List<Gx.Common.Note>(),
+                        Links = new List<Gx.Links.Link>(),
+                        ExtensionElements = new List<object>(),
                     },
                     new Fact()
                     {
@@ -92,11 +132,23 @@ namespace Gedcomx.Rs.Api.Test
                         Date = new DateInfo()
                         {
                             Original = "1802",
+                            NormalizedExtensions = new List<Gx.Common.TextValue>(),
+                            Fields = new List<Gx.Records.Field>(),
+                            ExtensionElements = new List<object>(),
                         },
                         Place = new PlaceReference()
                         {
                             Original = "American Fork, Utah, Utah, United States",
+                            NormalizedExtensions = new List<Gx.Common.TextValue>(),
+                            Fields = new List<Gx.Records.Field>(),
+                            ExtensionElements = new List<object>(),
                         },
+                        Qualifiers = new List<Gx.Common.Qualifier>(),
+                        Fields = new List<Gx.Records.Field>(),
+                        Sources = new List<Gx.Source.SourceReference>(),
+                        Notes = new List<Gx.Common.Note>(),
+                        Links = new List<Gx.Links.Link>(),
+                        ExtensionElements = new List<object>(),
                     },
                     new Fact()
                     {
@@ -104,11 +156,23 @@ namespace Gedcomx.Rs.Api.Test
                         Date = new DateInfo()
                         {
                             Original = "4 Jan 1896",
+                            NormalizedExtensions = new List<Gx.Common.TextValue>(),
+                            Fields = new List<Gx.Records.Field>(),
+                            ExtensionElements = new List<object>(),
                         },
                         Place = new PlaceReference()
                         {
                             Original = "Provo, Utah, Utah, United States",
+                            NormalizedExtensions = new List<Gx.Common.TextValue>(),
+                            Fields = new List<Gx.Records.Field>(),
+                            ExtensionElements = new List<object>(),
                         },
+                        Qualifiers = new List<Gx.Common.Qualifier>(),
+                        Fields = new List<Gx.Records.Field>(),
+                        Sources = new List<Gx.Source.SourceReference>(),
+                        Notes = new List<Gx.Common.Note>(),
+                        Links = new List<Gx.Links.Link>(),
+                        ExtensionElements = new List<object>(),
                     },
                     new Fact()
                     {
@@ -116,11 +180,23 @@ namespace Gedcomx.Rs.Api.Test
                         Date = new DateInfo()
                         {
                             Original = "July 14, 1900",
+                            NormalizedExtensions = new List<Gx.Common.TextValue>(),
+                            Fields = new List<Gx.Records.Field>(),
+                            ExtensionElements = new List<object>(),
                         },
                         Place = new PlaceReference()
                         {
                             Original = "Provo, Utah, Utah, United States",
+                            NormalizedExtensions = new List<Gx.Common.TextValue>(),
+                            Fields = new List<Gx.Records.Field>(),
+                            ExtensionElements = new List<object>(),
                         },
+                        Qualifiers = new List<Gx.Common.Qualifier>(),
+                        Fields = new List<Gx.Records.Field>(),
+                        Sources = new List<Gx.Source.SourceReference>(),
+                        Notes = new List<Gx.Common.Note>(),
+                        Links = new List<Gx.Links.Link>(),
+                        ExtensionElements = new List<object>(),
                     },
                     new Fact()
                     {
@@ -128,13 +204,33 @@ namespace Gedcomx.Rs.Api.Test
                         Date = new DateInfo()
                         {
                             Original = "1900",
+                            NormalizedExtensions = new List<Gx.Common.TextValue>(),
+                            Fields = new List<Gx.Records.Field>(),
+                            ExtensionElements = new List<object>(),
                         },
                         Place = new PlaceReference()
                         {
                             Original = "Sandy, Salt Lake, Utah, United States",
+                            NormalizedExtensions = new List<Gx.Common.TextValue>(),
+                            Fields = new List<Gx.Records.Field>(),
+                            ExtensionElements = new List<object>(),
                         },
+                        Qualifiers = new List<Gx.Common.Qualifier>(),
+                        Fields = new List<Gx.Records.Field>(),
+                        Sources = new List<Gx.Source.SourceReference>(),
+                        Notes = new List<Gx.Common.Note>(),
+                        Links = new List<Gx.Links.Link>(),
+                        ExtensionElements = new List<object>(),
                     }
-                }
+                },
+                ExtensionElements = new List<object>(),
+                Fields = new List<Gx.Records.Field>(),
+                Evidence = new List<Gx.Common.EvidenceReference>(),
+                Media = new List<Gx.Source.SourceReference>(),
+                Identifiers = new List<Gx.Conclusion.Identifier>(),
+                Sources = new List<Gx.Source.SourceReference>(),
+                Notes = new List<Gx.Common.Note>(),
+                Links = new List<Gx.Links.Link>(),
             };
         }
 
@@ -491,7 +587,7 @@ namespace Gedcomx.Rs.Api.Test
         {
             DataSource result = null;
 
-            if (File.Exists(filePath))
+            if (System.IO.File.Exists(filePath))
             {
                 result = new DataSourceTestImpl(name, contentType, new StreamReader(filePath).BaseStream);
             }
@@ -599,6 +695,66 @@ namespace Gedcomx.Rs.Api.Test
                         Text = "This is an image of Grandpa's birth certificate.",
                     }
                 }
+            };
+        }
+
+        public static string WriteBytesToDisk(byte[] bytes)
+        {
+            var result = Path.GetTempFileName();
+
+            using (var ms = new MemoryStream(bytes))
+            using (var file = System.IO.File.OpenWrite(result))
+            {
+                file.Write(bytes, 0, bytes.Length);
+            }
+
+            return result;
+        }
+
+        public static Bitmap GetCreatePhoto()
+        {
+            var result = new Bitmap(5, 5);
+
+            using (var graphics = Graphics.FromImage(result))
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    for (int j = 0; j < 5; j++)
+                    {
+                        graphics.DrawRectangle(new Pen(new SolidBrush(GetRandomColor())), new Rectangle(i, j, 1, 1));
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        private static Color GetRandomColor()
+        {
+            int a = random.Next(0, 256);
+            int r = random.Next(0, 256);
+            int g = random.Next(0, 256);
+            int b = random.Next(0, 256);
+
+            return Color.FromArgb(a, r, g, b);
+        }
+
+        public static Gx.Gedcomx GetGedcomxObject()
+        {
+            return new Gx.Gedcomx()
+            {
+                Persons = new List<Gx.Conclusion.Person>() { TestBacking.GetCreateMalePerson() },
+                Relationships = new List<Gx.Conclusion.Relationship>(),
+                SourceDescriptions = new List<Gx.Source.SourceDescription>(),
+                Agents = new List<Gx.Agent.Agent>(),
+                Events = new List<Gx.Conclusion.Event>(),
+                Places = new List<Gx.Conclusion.PlaceDescription>(),
+                Documents = new List<Gx.Conclusion.Document>(),
+                Collections = new List<Gx.Records.Collection>(),
+                Fields = new List<Gx.Records.Field>(),
+                RecordDescriptors = new List<Gx.Records.RecordDescriptor>(),
+                Links = new List<Gx.Links.Link>(),
+                ExtensionElements = new List<object>(),
             };
         }
     }

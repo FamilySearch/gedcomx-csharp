@@ -1,6 +1,7 @@
 ﻿using FamilySearch.Api;
 using FamilySearch.Api.Ft;
 using FamilySearch.Api.Memories;
+using Gedcomx.Support;
 using Gx.Common;
 using Gx.Conclusion;
 using Gx.Links;
@@ -578,17 +579,17 @@ namespace Gedcomx.Rs.Api.Test
         }
 
         [Test]
-        [Ignore("Need to resolve RDF serialization issue.")]
         public void TestUploadPhotoForPerson()
         {
             var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
             var converter = new ImageConverter();
-            var bytes = (Byte[])converter.ConvertTo(Resources.PersonImage, typeof(Byte[]));
-            var dataSource = TestBacking.GetDataSource("PersonImage", "image/jpeg", bytes);
+            var bytes = (Byte[])converter.ConvertTo(TestBacking.GetCreatePhoto(), typeof(Byte[]));
+            var dataSource = TestBacking.GetDataSource(Guid.NewGuid().ToString("n") + ".jpg", "image/jpeg", bytes);
             var state = person.AddArtifact(new SourceDescription() { Titles = new List<TextValue>() { new TextValue("PersonImage") }, Citations = new List<SourceCitation>() { new SourceCitation() { Value = "Citation for PersonImage" } } }, dataSource);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
+            Assert.AreEqual(HttpStatusCode.Created, state.Response.StatusCode);
+            state.Delete();
         }
 
         [Test]

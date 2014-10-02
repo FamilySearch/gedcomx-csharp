@@ -15,6 +15,7 @@ using System.Linq;
 using System.Text;
 using Tavis.UriTemplates;
 using RestSharp.Extensions;
+using Gedcomx.Support;
 
 namespace Gx.Rs.Api
 {

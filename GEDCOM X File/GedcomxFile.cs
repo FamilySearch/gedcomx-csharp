@@ -13,14 +13,14 @@ namespace Gedcomx.File
         private readonly FileInfo gedxFile;
         private readonly ZipArchive gedxArc;
         private readonly GedcomxEntryDeserializer deserializer;
-        private readonly Dictionary<String, String> manifestAttributes;
+        private readonly Dictionary<ZipArchiveEntry, List<ManifestAttribute>> attributes;
 
         public GedcomxFile(FileInfo gedxFile, GedcomxEntryDeserializer deserializer)
         {
             this.gedxFile = gedxFile;
             this.gedxArc = ZipFile.OpenRead(gedxFile.FullName);
             this.deserializer = deserializer;
-            this.manifestAttributes = ManifestAttributesParser.Parse(this.gedxArc).ToDictionary(x => x.Name, x => x.Value);
+            this.attributes = ManifestAttributesParser.Parse(this.gedxArc);
         }
 
         /**
@@ -42,7 +42,8 @@ namespace Gedcomx.File
          */
         public String GetAttribute(String name)
         {
-            return manifestAttributes.Where(x => x.Key == name).Select(x => x.Value).FirstOrDefault();
+            var collection = attributes != null ? attributes.Where(x => x.Key.FullName == "META-INF/MANIFEST.MF").Select(x => x.Value).FirstOrDefault() : null;
+            return collection != null ? collection.Where(x => x.Name == name).Select(x => x.Value).FirstOrDefault() : null;
         }
 
         /**
@@ -50,11 +51,11 @@ namespace Gedcomx.File
          *
          * @return The attributes.
          */
-        public Dictionary<String, String> Attributes
+        public List<ManifestAttribute> Attributes
         {
             get
             {
-                return manifestAttributes;
+                return attributes != null ? attributes.Where(x => x.Key.FullName == "META-INF/MANIFEST.MF").Select(x => x.Value).FirstOrDefault() : null;
             }
         }
 
@@ -69,7 +70,8 @@ namespace Gedcomx.File
             {
                 foreach (var entry in this.gedxArc.Entries)
                 {
-                    yield return new GedcomxFileEntry(entry);
+                    var collection = attributes != null ? attributes[entry] : null;
+                    yield return new GedcomxFileEntry(entry, collection);
                 }
             }
         }

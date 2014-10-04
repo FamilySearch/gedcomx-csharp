@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Gedcomx.File
 {
-    internal class ManifestAttribute
+    public class ManifestAttribute
     {
         public string Name { get; internal set; }
         public string Value { get; internal set; }

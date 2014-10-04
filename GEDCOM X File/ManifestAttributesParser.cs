@@ -8,12 +8,23 @@ using System.Threading.Tasks;
 
 namespace Gedcomx.File
 {
-    internal static class ManifestAttributesParser
+    public static class ManifestAttributesParser
     {
-        public static IEnumerable<ManifestAttribute> Parse(ZipArchive zip)
+        public static Dictionary<ZipArchiveEntry, List<ManifestAttribute>> Parse(ZipArchive zip)
         {
+            var result = new Dictionary<ZipArchiveEntry, List<ManifestAttribute>>();
             var manifest = zip.GetEntry("META-INF/MANIFEST.MF");
-            var result = new List<ManifestAttribute>();
+            var tempAttributes = new List<ManifestAttribute>();
+            var mainAttributesParsed = false;
+            ZipArchiveEntry entry = null;
+
+            if (zip != null && zip.Entries != null)
+            {
+                foreach (var file in zip.Entries)
+                {
+                    result.Add(file, null);
+                }
+            }
 
             if (manifest != null)
             {
@@ -21,11 +32,33 @@ namespace Gedcomx.File
                 {
                     while (!stream.EndOfStream)
                     {
-                        var attribute = Parse(stream.ReadLine());
+                        var line = stream.ReadLine();
+                        var attribute = Parse(line);
 
                         if (attribute != null)
                         {
-                            result.Add(attribute);
+                            tempAttributes.Add(attribute);
+                        }
+
+                        if (line == string.Empty)
+                        {
+                            var entryName = tempAttributes.FirstOrDefault(x => x.Name == "Name");
+
+                            if ((entryName != null && !string.IsNullOrEmpty(entryName.Value)) || !mainAttributesParsed)
+                            {
+                                entry = entryName != null ? zip.GetEntry(entryName.Value) : manifest;
+
+                                if (entry == manifest)
+                                {
+                                    mainAttributesParsed = true;
+                                }
+
+                                if (entry != null)
+                                {
+                                    result[entry] = tempAttributes.ToList(); // Make a copy so the reference won't clear this assignment
+                                    tempAttributes.Clear();
+                                }
+                            }
                         }
                     }
                 }
@@ -37,16 +70,18 @@ namespace Gedcomx.File
         private static ManifestAttribute Parse(string attribute)
         {
             ManifestAttribute result = null;
+            int index;
 
-            if (!string.IsNullOrEmpty(attribute) && attribute.IndexOf(":") != -1)
+            if (!string.IsNullOrEmpty(attribute) && (index = attribute.IndexOf(":")) != -1)
             {
-                var kvp = attribute.Split(new char[] { ':' }, StringSplitOptions.RemoveEmptyEntries);
+                var key = attribute.Substring(0, index);
+                var value = attribute.Substring(index + 1);
 
-                if (kvp != null && kvp.Length == 2 && kvp.All(x => !string.IsNullOrEmpty(x)))
+                if (!string.IsNullOrWhiteSpace(key) && !string.IsNullOrWhiteSpace(value))
                 {
                     result = new ManifestAttribute();
-                    result.Name = kvp[0].Trim();
-                    result.Value = kvp[1].Trim();
+                    result.Name = key.Trim();
+                    result.Value = value.Trim();
                 }
             }
 

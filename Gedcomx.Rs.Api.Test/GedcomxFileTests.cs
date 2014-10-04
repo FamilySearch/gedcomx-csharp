@@ -59,5 +59,20 @@ namespace Gedcomx.Rs.Api.Test
 
             Assert.AreEqual(0, differences.Differences.Count);
         }
+
+        [Test]
+        public void TestManifestParsing()
+        {
+            var file = TestBacking.WriteBytesToDisk(Resources.TestJar);
+            var fi = new FileInfo(file);
+            var results = ManifestAttributesParser.Parse(System.IO.Compression.ZipFile.OpenRead(file));
+
+            Assert.IsNotNull(results);
+            Assert.AreEqual(6, results.Count);
+            Assert.IsNull(results[results.Keys.Where(x => x.FullName == "META-INF/").Single()]);
+            Assert.AreEqual(2, results[results.Keys.Where(x => x.FullName == "META-INF/MANIFEST.MF").Single()].Count);
+            Assert.AreEqual(3, results[results.Keys.Where(x => x.FullName == "Test1.txt").Single()].Count);
+            Assert.AreEqual(3, results[results.Keys.Where(x => x.FullName == "Test4.txt").Single()].Count);
+        }
     }
 }

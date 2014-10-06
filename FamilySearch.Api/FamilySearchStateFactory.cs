@@ -80,7 +80,7 @@ namespace FamilySearch.Api
             return new FamilySearchPlaces(request, response, client, accessToken, this);
         }
 
-        protected override CollectionState NewCollectionState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken)
+		protected internal override CollectionState NewCollectionState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken)
         {
             return new FamilySearchCollectionState(request, response, client, accessToken, this);
         }
@@ -90,7 +90,7 @@ namespace FamilySearch.Api
             return this.NewCollectionStateInt(request, response, client, accessToken);
         }
 
-        protected override SourceDescriptionState NewSourceDescriptionState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken)
+		protected internal override SourceDescriptionState NewSourceDescriptionState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken)
         {
             return new FamilySearchSourceDescriptionState(request, response, client, accessToken, this);
         }
@@ -100,7 +100,7 @@ namespace FamilySearch.Api
             return this.NewSourceDescriptionState(request, response, client, accessToken);
         }
 
-        protected override PersonState NewPersonState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken)
+		protected internal override PersonState NewPersonState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken)
         {
             return base.NewPersonState(request, response, client, accessToken);
         }
@@ -120,12 +120,12 @@ namespace FamilySearch.Api
             return new FamilySearchPlaceState(request, response, client, accessToken, this);
         }
 
-        protected override PlaceDescriptionState NewPlaceDescriptionState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken)
+		protected internal override PlaceDescriptionState NewPlaceDescriptionState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken)
         {
             return new FamilySearchPlaceDescriptionState(request, response, client, accessToken, this);
         }
 
-        protected override IFilterableRestClient LoadDefaultClient(Uri uri)
+		protected internal override IFilterableRestClient LoadDefaultClient(Uri uri)
         {
             var client = base.LoadDefaultClient(uri);
 

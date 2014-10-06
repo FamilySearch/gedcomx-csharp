@@ -44,11 +44,12 @@
     <Compile Include="GedcomNamespaceManager.cs" />
     <Compile Include="GedcomxEntrySerializer.cs" />
     <Compile Include="GedcomxFileEntry.cs" />
+    <Compile Include="GedcomxOutputStream.cs" />
     <Compile Include="ManifestAttribute.cs" />
     <Compile Include="DefaultXMLSerialization.cs" />
     <Compile Include="GedcomxEntryDeserializer.cs" />
     <Compile Include="GedcomxFile.cs" />
-    <Compile Include="ManifestAttributesParser.cs" />
+    <Compile Include="ManifestAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -13,14 +13,14 @@ namespace Gedcomx.File
         private readonly FileInfo gedxFile;
         private readonly ZipArchive gedxArc;
         private readonly GedcomxEntryDeserializer deserializer;
-        private readonly Dictionary<ZipArchiveEntry, List<ManifestAttribute>> attributes;
+        private readonly ManifestAttributes attributes;
 
         public GedcomxFile(FileInfo gedxFile, GedcomxEntryDeserializer deserializer)
         {
             this.gedxFile = gedxFile;
             this.gedxArc = ZipFile.OpenRead(gedxFile.FullName);
             this.deserializer = deserializer;
-            this.attributes = ManifestAttributesParser.Parse(this.gedxArc);
+            this.attributes = ManifestAttributes.Parse(this.gedxArc);
         }
 
         /**
@@ -42,7 +42,7 @@ namespace Gedcomx.File
          */
         public String GetAttribute(String name)
         {
-            var collection = attributes != null ? attributes.Where(x => x.Key.FullName == "META-INF/MANIFEST.MF").Select(x => x.Value).FirstOrDefault() : null;
+            var collection = attributes != null ? attributes.MainAttributes : null;
             return collection != null ? collection.Where(x => x.Name == name).Select(x => x.Value).FirstOrDefault() : null;
         }
 
@@ -55,7 +55,7 @@ namespace Gedcomx.File
         {
             get
             {
-                return attributes != null ? attributes.Where(x => x.Key.FullName == "META-INF/MANIFEST.MF").Select(x => x.Value).FirstOrDefault() : null;
+                return attributes != null ? attributes.MainAttributes : null;
             }
         }
 
@@ -70,7 +70,7 @@ namespace Gedcomx.File
             {
                 foreach (var entry in this.gedxArc.Entries)
                 {
-                    var collection = attributes != null ? attributes[entry] : null;
+                    var collection = attributes != null ? attributes[entry.FullName] : null;
                     yield return new GedcomxFileEntry(entry, collection);
                 }
             }

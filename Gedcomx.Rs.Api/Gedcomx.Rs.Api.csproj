@@ -128,6 +128,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GEDCOM X File\GEDCOM X File.csproj">
+      <Project>{360b5135-9cae-45d9-8c39-10352b88d7ba}</Project>
+      <Name>GEDCOM X File</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GEDCOM X Support\GEDCOM X Support.csproj">
       <Project>{4a6f7218-7aa8-40fd-8fe9-e309635242b7}</Project>
       <Name>GEDCOM X Support</Name>

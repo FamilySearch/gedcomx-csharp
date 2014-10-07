@@ -42,7 +42,7 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestXmlSerialization()
         {
-            var serializer = new DefaultXMLSerialization();
+            var serializer = new DefaultXmlSerialization();
             var gxExpected = TestBacking.GetGedcomxObject();
 
             byte[] bytes;
@@ -53,7 +53,7 @@ namespace Gedcomx.Rs.Api.Test
                 bytes = ms.ToArray();
             }
 
-            var gxActual = (Gx.Gedcomx)serializer.Deserialize(new MemoryStream(bytes));
+            var gxActual = serializer.Deserialize<Gx.Gedcomx>(new MemoryStream(bytes));
 
             var comparer = new CompareLogic();
             var differences = comparer.Compare(gxExpected, gxActual);
@@ -83,7 +83,7 @@ namespace Gedcomx.Rs.Api.Test
 
             using (var ms = new MemoryStream())
             {
-                var file = new GedcomxOutputStream(ms, new DefaultXMLSerialization());
+                var file = new GedcomxOutputStream(ms, new DefaultXmlSerialization());
                 var gx = new Gx.Gedcomx();
 
                 gx.Persons = new List<Gx.Conclusion.Person>();

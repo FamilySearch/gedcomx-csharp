@@ -14,6 +14,8 @@ namespace Gedcomx.File
          * @param in the input stream.
          * @return the resource.
          */
-        Object Deserialize(Stream stream);
+        T Deserialize<T>(Stream stream);
+
+        T Deserialize<T>(String value);
     }
 }

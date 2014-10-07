@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Compression" />
@@ -41,12 +45,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DefaultJsonSerialization.cs" />
     <Compile Include="GedcomNamespaceManager.cs" />
     <Compile Include="GedcomxEntrySerializer.cs" />
     <Compile Include="GedcomxFileEntry.cs" />
     <Compile Include="GedcomxOutputStream.cs" />
     <Compile Include="ManifestAttribute.cs" />
-    <Compile Include="DefaultXMLSerialization.cs" />
+    <Compile Include="DefaultXmlSerialization.cs" />
     <Compile Include="GedcomxEntryDeserializer.cs" />
     <Compile Include="GedcomxFile.cs" />
     <Compile Include="ManifestAttributes.cs" />
@@ -61,6 +66,9 @@
       <Project>{4629ba54-406e-4cd2-9dc6-cda2c5206eb7}</Project>
       <Name>GEDCOM X Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

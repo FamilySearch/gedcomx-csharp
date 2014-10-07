@@ -30,7 +30,7 @@ namespace Gedcomx.File
          * @throws IOException if an I/O error has occurred
          */
         public GedcomxFile(FileInfo zipFile, params Type[] types)
-            : this(zipFile, new DefaultXMLSerialization(types))
+            : this(zipFile, new DefaultXmlSerialization(types))
         {
         }
 
@@ -95,9 +95,9 @@ namespace Gedcomx.File
          *
          * @throws IOException If there was a problem unmarshalling the resource.
          */
-        public Object ReadResource(GedcomxFileEntry gedxEntry)
+        public T ReadResource<T>(GedcomxFileEntry gedxEntry)
         {
-            return this.deserializer.Deserialize(GetResourceStream(gedxEntry));
+            return this.deserializer.Deserialize<T>(GetResourceStream(gedxEntry));
         }
 
 

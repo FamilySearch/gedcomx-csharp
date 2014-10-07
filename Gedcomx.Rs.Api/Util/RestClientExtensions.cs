@@ -7,17 +7,23 @@ using RestSharp.Extensions;
 using Newtonsoft.Json;
 using Gedcomx.Model.Util;
 using System.IO;
+using Gedcomx.File;
 
 namespace Gx.Rs.Api.Util
 {
     public static class RestClientExtensions
     {
-        private static JsonSerializerSettings jsonSettings;
+        private static GedcomxEntrySerializer XmlSerializer;
+        private static GedcomxEntryDeserializer XmlDeserializer;
+        private static GedcomxEntrySerializer JsonSerializer;
+        private static GedcomxEntryDeserializer JsonDeserializer;
 
         static RestClientExtensions()
         {
-            jsonSettings = new JsonSerializerSettings();
-            jsonSettings.NullValueHandling = NullValueHandling.Ignore;
+            XmlSerializer = new DefaultXmlSerialization();
+            XmlDeserializer = (GedcomxEntryDeserializer)XmlSerializer;
+            JsonSerializer = new DefaultJsonSerialization();
+            JsonDeserializer = (GedcomxEntryDeserializer)JsonSerializer;
         }
 
         public static IRestRequest Accept(this IRestRequest @this, object value)
@@ -97,11 +103,11 @@ namespace Gx.Rs.Api.Util
 
                     if (format == DataFormat.Json)
                     {
-                        value = JsonConvert.SerializeObject(entity, jsonSettings);
+                        value = JsonSerializer.Serialize(entity);
                     }
                     else if (format == DataFormat.Xml)
                     {
-                        value = @this.XmlSerializer.Serialize(entity);
+                        value = XmlSerializer.Serialize(entity);
                     }
 
                     @this.AddParameter(new Parameter() { Name = formatHeader.Value.ToString(), Type = ParameterType.RequestBody, Value = value });
@@ -143,12 +149,11 @@ namespace Gx.Rs.Api.Util
                 {
                     if (format == DataFormat.Json)
                     {
-                        result.Data = JsonConvert.DeserializeObject<T>(@this.Content, jsonSettings);
+                        result.Data = JsonDeserializer.Deserialize<T>(@this.Content);
                     }
                     else if (format == DataFormat.Xml)
                     {
-                        var deserializer = new RestSharp.Deserializers.XmlDeserializer();
-                        result.Data = deserializer.Deserialize<T>(@this);
+                        result.Data = XmlDeserializer.Deserialize<T>(@this.Content);
                     }
                 }
             }

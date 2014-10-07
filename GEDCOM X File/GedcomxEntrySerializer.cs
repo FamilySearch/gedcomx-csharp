@@ -16,6 +16,8 @@ namespace Gedcomx.File
          */
         void Serialize(Object resource, Stream stream);
 
+        String Serialize(Object resource);
+
         /**
          * Whether the specified content type is a known content type and therefore doesn't need to be written to the entry attributes.
          *

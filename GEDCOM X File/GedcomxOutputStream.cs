@@ -37,7 +37,7 @@ namespace Gedcomx.File
         * @throws IOException
         */
         public GedcomxOutputStream(Stream gedxOutputStream, params Type[] types)
-            : this(gedxOutputStream, new DefaultXMLSerialization(types))
+            : this(gedxOutputStream, new DefaultXmlSerialization(types))
         {
         }
 

@@ -12,7 +12,7 @@ namespace Gedcomx.File
     {
         public const string MANIFEST_FOLDER = "META-INF";
         public const string MANIFEST_FILE = "MANIFEST.MF";
-        public static readonly string MANIFEST_FULLNAME = MANIFEST_FOLDER + Path.DirectorySeparatorChar + MANIFEST_FILE;
+        public static readonly string MANIFEST_FULLNAME = MANIFEST_FOLDER + "/" + MANIFEST_FILE;
         private ZipArchive zip;
 
         public ManifestAttributes(ZipArchive zipArchive)

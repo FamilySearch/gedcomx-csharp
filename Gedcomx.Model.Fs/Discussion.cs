@@ -228,7 +228,7 @@ namespace Gx.Fs.Discussions
             visitor.VisitDiscussion(this);
         }
 
-        protected override void Embed(ExtensibleData value)
+        protected internal override void Embed(ExtensibleData value)
         {
             Discussion discussion = value as Discussion;
             List<Comment> comments = discussion.Comments;

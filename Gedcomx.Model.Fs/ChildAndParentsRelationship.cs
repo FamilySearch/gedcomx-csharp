@@ -126,7 +126,7 @@ namespace Gx.Fs.Tree
             visitor.VisitChildAndParentsRelationship(this);
         }
 
-        protected override void Embed(ExtensibleData relationship)
+        protected internal override void Embed(ExtensibleData relationship)
         {
             ChildAndParentsRelationship value = relationship as ChildAndParentsRelationship;
 

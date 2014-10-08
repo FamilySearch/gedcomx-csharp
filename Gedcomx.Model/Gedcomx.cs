@@ -1,4 +1,5 @@
 using Gedcomx.Model.Rt;
+using Gx.Common;
 using Gx.Conclusion;
 using Gx.Links;
 using Gx.Records;
@@ -760,5 +761,152 @@ namespace Gx
         {
             visitor.VisitGedcomx(this);
         }
+
+        /**
+         * Build out this envelope with a lang.
+         * 
+         * @param lang The lang.
+         * @return this.
+         */
+        public Gedcomx SetLang(String lang)
+        {
+            Lang = lang;
+            return this;
+        }
+
+        /**
+         * Build out this with a description ref.
+         * 
+         * @param descriptionRef The description ref.
+         * @return this.
+         */
+        public Gedcomx SetDescriptionRef(String descriptionRef)
+        {
+            DescriptionRef = descriptionRef;
+            return this;
+        }
+
+        /**
+         * Build this out with an attribution.
+         * @param attribution The attribution.
+         * @return this.
+         */
+        public Gedcomx SetAttribution(Attribution attribution)
+        {
+            Attribution = attribution;
+            return this;
+        }
+
+        /**
+         * Build this out with a person.
+         * @param person The person.
+         * @return this.
+         */
+        public Gedcomx SetPerson(Person person)
+        {
+            AddPerson(person);
+            return this;
+        }
+
+        /**
+         * Build this out with a relationship.
+         * @param relationship The relationship.
+         * @return this.
+         */
+        public Gedcomx SetRelationship(Relationship relationship)
+        {
+            AddRelationship(relationship);
+            return this;
+        }
+
+        /**
+         * Build this out with a source description.
+         * @param sourceDescription The source description.
+         * @return this.
+         */
+        public Gedcomx SetSourceDescription(SourceDescription sourceDescription)
+        {
+            AddSourceDescription(sourceDescription);
+            return this;
+        }
+
+        /**
+         * Build this out with a agent.
+         * @param agent The agent.
+         * @return this.
+         */
+        public Gedcomx SetAgent(Gx.Agent.Agent agent)
+        {
+            AddAgent(agent);
+            return this;
+        }
+
+        /**
+         * Build this out with a event.
+         * @param event The event.
+         * @return this.
+         */
+        public Gedcomx SetEvent(Event @event)
+        {
+            AddEvent(@event);
+            return this;
+        }
+
+        /**
+         * Build this out with a place.
+         * @param place The place.
+         * @return this.
+         */
+        public Gedcomx SetPlace(PlaceDescription place)
+        {
+            AddPlace(place);
+            return this;
+        }
+
+        /**
+         * Build this out with a document.
+         * @param document The document.
+         * @return this.
+         */
+        public Gedcomx SetDocument(Document document)
+        {
+            AddDocument(document);
+            return this;
+        }
+
+        /**
+         * Build this out with a collection.
+         * @param collection The collection.
+         * @return this.
+         */
+        public Gedcomx SetCollection(Collection collection)
+        {
+            AddCollection(collection);
+            return this;
+        }
+
+        /**
+         * Build this out with a field.
+         * @param field The field.
+         * @return this.
+         */
+        public Gedcomx SetField(Field field)
+        {
+            AddField(field);
+            return this;
+        }
+
+        /**
+         * Build this out with a record descriptor.
+         *
+         * @param recordDescriptor The record descriptor.
+         * @return this.
+         */
+        public Gedcomx SetRecordDescriptor(RecordDescriptor recordDescriptor)
+        {
+            AddRecordDescriptor(recordDescriptor);
+            return this;
+        }
+
     }
 }

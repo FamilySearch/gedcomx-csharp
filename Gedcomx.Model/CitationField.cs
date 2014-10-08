@@ -55,5 +55,28 @@ namespace Gx.Source
                 this._value = value;
             }
         }
+
+        /**
+         * Build out this citation field with a name.
+         *
+         * @param name the name.
+         * @return this.
+         */
+        public CitationField SetName(String name)
+        {
+            Name = name;
+            return this;
+        }
+
+        /**
+         * Build out this citation field with a value.
+         * @param value The value.
+         * @return this.
+         */
+        public CitationField SetValue(String value)
+        {
+            Value = value;
+            return this;
+        }
     }
 }

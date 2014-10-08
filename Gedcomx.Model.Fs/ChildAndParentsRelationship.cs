@@ -151,5 +151,147 @@ namespace Gx.Fs.Tree
         {
             this.Embed(relationship);
         }
+
+        /**
+         * Build out this relationship with a reference to the father.
+         *
+         * @param father the father.
+         * @return this.
+         */
+        public ChildAndParentsRelationship SetFather(ResourceReference father)
+        {
+            Father = father;
+            return this;
+        }
+
+        /**
+         * Build out this relationship with a reference to the father.
+         *
+         * @param father the father.
+         * @return this.
+         */
+        public ChildAndParentsRelationship SetFather(Person father)
+        {
+            if (father.Id == null)
+            {
+                throw new ArgumentException("Cannot reference father: no id.");
+            }
+            Father = new ResourceReference("#" + father.Id);
+            return this;
+        }
+
+        /**
+         * Build out this relationship with a reference to the mother.
+         *
+         * @param mother the mother.
+         * @return this.
+         */
+        public ChildAndParentsRelationship SetMother(ResourceReference mother)
+        {
+            Mother = mother;
+            return this;
+        }
+
+        /**
+         * Build out this relationship with a reference to the mother.
+         *
+         * @param mother the mother.
+         * @return this.
+         */
+        public ChildAndParentsRelationship SetMother(Person mother)
+        {
+            if (mother.Id == null)
+            {
+                throw new ArgumentException("Cannot reference mother: no id.");
+            }
+            Mother = new ResourceReference("#" + mother.Id);
+            return this;
+        }
+
+        /**
+         * Build out this relationship with a reference to the child.
+         *
+         * @param child the child.
+         * @return this.
+         */
+        public ChildAndParentsRelationship SetChild(ResourceReference child)
+        {
+            Child = child;
+            return this;
+        }
+
+        /**
+         * Build out this relationship with a reference to the child.
+         *
+         * @param child the child.
+         * @return this.
+         */
+        public ChildAndParentsRelationship SetChild(Person child)
+        {
+            if (child.Id == null)
+            {
+                throw new ArgumentException("Cannot reference child: no id.");
+            }
+            Child = new ResourceReference("#" + child.Id);
+            return this;
+        }
+
+        /**
+         * Build out this relationship with a father fact.
+         * 
+         * @param fact The father fact.
+         * @return The father fact.
+         */
+        public ChildAndParentsRelationship SetFatherFact(Fact fact)
+        {
+            this.AddFatherFact(fact);
+            return this;
+        }
+
+        /**
+         * Build out this relationship with a mother fact.
+         *
+         * @param fact The mother fact.
+         * @return The mother fact.
+         */
+        public ChildAndParentsRelationship SetMotherFact(Fact fact)
+        {
+            this.AddMotherFact(fact);
+            return this;
+        }
+
+        /**
+         * Add a fact conclusion for the father.
+         *
+         * @param fact The fact conclusion to be added.
+         */
+        public void AddFatherFact(Fact fact)
+        {
+            if (fact != null)
+            {
+                if (_fatherFacts == null)
+                {
+                    _fatherFacts = new List<Fact>();
+                }
+                _fatherFacts.Add(fact);
+            }
+        }
+
+        /**
+         * Add a fact conclusion for the mother.
+         *
+         * @param fact The fact conclusion to be added.
+         */
+        public void AddMotherFact(Fact fact)
+        {
+            if (fact != null)
+            {
+                if (_motherFacts == null)
+                {
+                    _motherFacts = new List<Fact>();
+                }
+                _motherFacts.Add(fact);
+            }
+        }
     }
 }

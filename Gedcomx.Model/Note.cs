@@ -104,5 +104,51 @@ namespace Gx.Common
         {
             visitor.VisitNote(this);
         }
+
+        /**
+         * Build up this note with a locale.
+         *
+         * @param lang The locale.
+         */
+        public Note SetLang(String lang)
+        {
+            this.Lang = lang;
+            return this;
+        }
+
+        /**
+         * Build up this note with a subject.
+         *
+         * @param text The subject.
+         * @return this.
+         */
+        public Note SetSubject(String text)
+        {
+            this.Subject = text;
+            return this;
+        }
+
+        /**
+         * Build up this note with some text.
+         *
+         * @param text The text.
+         */
+        public Note SetText(String text)
+        {
+            this.Text = text;
+            return this;
+        }
+
+        /**
+         * Build up this note with attribution.
+         *
+         * @param attribution The attribution.
+         * @return this.
+         */
+        public Note SetAttribution(Attribution attribution)
+        {
+            this.Attribution = attribution;
+            return this;
+        }
     }
 }

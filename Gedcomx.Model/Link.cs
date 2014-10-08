@@ -298,5 +298,134 @@ namespace Gx.Links
                 this._href = value;
             }
         }
+
+        /**
+         * Build out this link with a rel.
+         *
+         * @param rel The rel.
+         * @return this.
+         */
+        public Link SetRel(String rel)
+        {
+            Rel = rel;
+            return this;
+        }
+
+        /**
+         * Build out this link with an href.
+         *
+         * @param href The href.
+         * @return this.
+         */
+        public Link SetHref(String href)
+        {
+            Href = href;
+            return this;
+        }
+
+        /**
+         * Build out this link with a template.
+         * @param template The template
+         * @return this.
+         */
+        public Link SetTemplate(String template)
+        {
+            Template = template;
+            return this;
+        }
+
+        /**
+         * Build out this link with a type.
+         * @param type The type.
+         * @return this.
+         */
+        public Link SetType(String type)
+        {
+            Type = type;
+            return this;
+        }
+
+        /**
+         * Build out this link with an accept.
+         *
+         * @param accept The accept.
+         * @return this.
+         */
+        public Link SetAccept(String accept)
+        {
+            Accept = accept;
+            return this;
+        }
+
+        /**
+         * Build out this link with an 'allow'.
+         *
+         * @param allow The allow.
+         * @return this.
+         */
+        public Link SetAllow(String allow)
+        {
+            Allow = allow;
+            return this;
+        }
+
+        /**
+         * Build out this link with an href lang.
+         * @param hreflang The hreflang.
+         * @return this.
+         */
+        public Link SetHreflang(String hreflang)
+        {
+            Hreflang = hreflang;
+            return this;
+        }
+
+        /**
+         * Build out this link with a title.
+         *
+         * @param title The title.
+         * @return this.
+         */
+        public Link SetTitle(String title)
+        {
+            Title = title;
+            return this;
+        }
+
+        /**
+         * Build out this link with a count.
+         *
+         * @param count The count.
+         * @return this.
+         */
+        public Link SetCount(Int32 count)
+        {
+            Count = count;
+            return this;
+        }
+
+        /**
+         * Build out this link with an offset.
+         *
+         * @param offset The offset.
+         * @return this.
+         */
+        public Link SetOffset(Int32 offset)
+        {
+            Offset = offset;
+            return this;
+        }
+
+        /**
+         * Build out this link with total results.
+         *
+         * @param results The total results count.
+         * @return this.
+         */
+        public Link SetResults(Int32 results)
+        {
+            Results = results;
+            return this;
+        }
     }
 }

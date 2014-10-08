@@ -64,5 +64,29 @@ namespace Gx.Common
                 this._value = value;
             }
         }
+
+        /**
+         * Build up this text value with a lang.
+         *
+         * @param lang The lang.
+         * @return this.
+         */
+        public TextValue SetLang(String lang)
+        {
+            Lang = lang;
+            return this;
+        }
+
+        /**
+         * Build up this text value with a value.
+         *
+         * @param value The value.
+         * @return this.
+         */
+        public TextValue SetValue(String value)
+        {
+            Value = value;
+            return this;
+        }
     }
 }

@@ -51,5 +51,29 @@ namespace Gx.Common
                 this._value = value;
             }
         }
+
+        /**
+         * Build up this qualifier with a name.
+         *
+         * @param name the name.
+         * @return this.
+         */
+        public Qualifier SetName(String name)
+        {
+            this.Name = name;
+            return this;
+        }
+
+        /**
+         * Build up this qualifier with a value.
+         *
+         * @param value The value of the qualifier.
+         * @return this.
+         */
+        public Qualifier SetValue(String value)
+        {
+            Value = value;
+            return this;
+        }
     }
 }

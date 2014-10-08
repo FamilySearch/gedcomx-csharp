@@ -240,5 +240,137 @@ namespace Gx.Conclusion
             this._descendancyNumber = this._descendancyNumber == null ? value._descendancyNumber : this._descendancyNumber;
             base.Embed(data);
         }
+
+        /**
+         * Build up these properties with a name.
+         *
+         * @param name The name.
+         * @return this.
+         */
+        public DisplayProperties SetName(String name)
+        {
+            Name = name;
+            return this;
+        }
+
+        /**
+         * Build up these properties with a gender.
+         *
+         * @param gender The gender.
+         * @return this.
+         */
+        public DisplayProperties SetGender(String gender)
+        {
+            Gender = gender;
+            return this;
+        }
+
+        /**
+         * Build up these properties with a lifespan.
+         *
+         * @param lifespan The lifespan.
+         * @return this.
+         */
+        public DisplayProperties SetLifespan(String lifespan)
+        {
+            Lifespan = lifespan;
+            return this;
+        }
+
+        /**
+         * Build up these properties with a birth date.
+         *
+         * @param birthdate The birth date.
+         * @return this.
+         */
+        public DisplayProperties SetBirthDate(String birthdate)
+        {
+            BirthDate = birthdate;
+            return this;
+        }
+
+        /**
+         * Build up these properties with a birth place.
+         *
+         * @param birthplace The birth place.
+         * @return this.
+         */
+        public DisplayProperties SetBirthPlace(String birthplace)
+        {
+            BirthPlace = birthplace;
+            return this;
+        }
+
+        /**
+         * Build up these properties with a death date.
+         *
+         * @param deathdate The death date.
+         * @return this.
+         */
+        public DisplayProperties SetDeathDate(String deathdate)
+        {
+            DeathDate = deathdate;
+            return this;
+        }
+
+        /**
+         * Build up these properties with a death place.
+         *
+         * @param deathplace The death place.
+         * @return this.
+         */
+        public DisplayProperties SetDeathPlace(String deathplace)
+        {
+            DeathPlace = deathplace;
+            return this;
+        }
+
+        /**
+         * Build up these properties with a marriage date.
+         *
+         * @param marriagedate The marriage date.
+         * @return this.
+         */
+        public DisplayProperties SetMarriageDate(String marriagedate)
+        {
+            MarriageDate = marriagedate;
+            return this;
+        }
+
+        /**
+         * Build up these properties with a marriage place.
+         *
+         * @param marriageplace The marriage place.
+         * @return this.
+         */
+        public DisplayProperties SetMarriagePlace(String marriageplace)
+        {
+            MarriagePlace = marriageplace;
+            return this;
+        }
+
+        /**
+         * Build up these properties with a ascendancy number.
+         *
+         * @param ascendancynumber The ascendancy number.
+         * @return this.
+         */
+        public DisplayProperties SetAscendancyNumber(String ascendancynumber)
+        {
+            AscendancyNumber = ascendancynumber;
+            return this;
+        }
+
+        /**
+         * Build up these properties with a descendancy number.
+         *
+         * @param descendancynumber The descendancy number.
+         * @return this.
+         */
+        public DisplayProperties SetDescendancyNumber(String descendancynumber)
+        {
+            DescendancyNumber = descendancynumber;
+            return this;
+        }
     }
 }

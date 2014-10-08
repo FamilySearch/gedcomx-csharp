@@ -104,5 +104,29 @@ namespace Gx.Common
                 this._changeMessage = value;
             }
         }
+
+        /**
+         * Build up this attribution with a contributor.
+         *
+         * @param contributor The contributor.
+         * @return this.
+         */
+        public Attribution SetContributor(ResourceReference contributor)
+        {
+            this.Contributor = contributor;
+            return this;
+        }
+
+        /**
+         * Build up this attribution with a modified date.
+         *
+         * @param modified The modified date.
+         * @return this.
+         */
+        public Attribution SetModified(DateTime modified)
+        {
+            this.Modified = modified;
+            return this;
+        }
     }
 }

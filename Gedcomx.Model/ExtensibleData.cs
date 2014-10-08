@@ -103,5 +103,17 @@ namespace Gx.Common
 
             this._extensionElements.Add(element);
         }
+
+        /**
+         * Build up this object with an id.
+         *
+         * @param id The id.
+         */
+        public ExtensibleData SetId(String id)
+        {
+            this.Id = id;
+            return this;
+        }
+
     }
 }

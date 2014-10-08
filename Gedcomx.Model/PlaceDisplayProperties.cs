@@ -78,5 +78,41 @@ namespace Gx.Conclusion
                 this._type = value;
             }
         }
+
+        /**
+         * Build up these properties with a name.
+         * 
+         * @param name The name.
+         * @return this.
+         */
+        public PlaceDisplayProperties SetName(String name)
+        {
+            Name = name;
+            return this;
+        }
+
+        /**
+         * Build up these properties with a full name.
+         * 
+         * @param name The name.
+         * @return this.
+         */
+        public PlaceDisplayProperties SetFullName(String name)
+        {
+            FullName = name;
+            return this;
+        }
+
+        /**
+         * Build up these properties with a type.
+         *
+         * @param type The type.
+         * @return this.
+         */
+        public PlaceDisplayProperties SetType(String type)
+        {
+            Type = type;
+            return this;
+        }
     }
 }

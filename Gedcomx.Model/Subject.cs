@@ -150,5 +150,116 @@ namespace Gx.Conclusion
 
             base.Embed(subject);
         }
+
+        /**
+         * Add an evidence reference for this subject.
+         *
+         * @param evidenceRef The evidence to be added.
+         */
+        public void AddEvidence(EvidenceReference evidenceRef)
+        {
+            if (evidenceRef != null)
+            {
+                if (_evidence == null)
+                {
+                    _evidence = new List<EvidenceReference>();
+                }
+                _evidence.Add(evidenceRef);
+            }
+        }
+
+        /**
+         * Build up this subject with an extracted flag.
+         *
+         * @param extracted The extracted flag.
+         * @return this.
+         */
+        public Subject SetExtracted(Boolean extracted)
+        {
+            Extracted = extracted;
+            return this;
+        }
+
+        /**
+         * Build up this subject with an identifier.
+         *
+         * @param identifier The identifier.
+         * @return this.
+         */
+        public Subject SetIdentifier(Identifier identifier)
+        {
+            AddIdentifier(identifier);
+            return this;
+        }
+
+        /**
+         * Build up this subject with an evidence reference.
+         *
+         * @param evidence The evidence reference.
+         * @return this.
+         */
+        public Subject SetEvidence(EvidenceReference evidence)
+        {
+            AddEvidence(evidence);
+            return this;
+        }
+
+        /**
+         * Build up this subject with a media reference.
+         *
+         * @param media The media reference.
+         * @return this.
+         */
+        public Subject SetMedia(SourceReference media)
+        {
+            AddMedia(media);
+            return this;
+        }
+
+        /**
+         * Build up this subject with a media reference.
+         *
+         * @param media The media reference.
+         * @return this.
+         */
+        public Subject SetMedia(SourceDescription media)
+        {
+            AddMedia(new SourceReference().SetDescription(media));
+            return this;
+        }
+
+        /**
+         * Add an identifier of the subject.
+         *
+         * @param identifier The identifier to be added.
+         */
+        public void AddIdentifier(Identifier identifier)
+        {
+            if (identifier != null)
+            {
+                if (_identifiers == null)
+                {
+                    _identifiers = new List<Identifier>();
+                }
+                _identifiers.Add(identifier);
+            }
+        }
+
+        /**
+         * Add an media reference associated with this subject.
+         *
+         * @param mediaRef The reference to the media to be added.
+         */
+        public void AddMedia(SourceReference mediaRef)
+        {
+            if (mediaRef != null)
+            {
+                if (_media == null)
+                {
+                    _media = new List<SourceReference>();
+                }
+                _media.Add(mediaRef);
+            }
+        }
     }
 }

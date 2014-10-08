@@ -103,5 +103,31 @@ namespace Gx.Links
         {
             return this.Links.Where(x => x.Rel == rel).ToList();
         }
+
+        /**
+         * Build up this data with a link.
+         *
+         * @param link The link.
+         * @return this.
+         */
+        public HypermediaEnabledData SetLink(Link link)
+        {
+            AddLink(link);
+            return this;
+        }
+
+        /**
+         * Build up this data with a link.
+         *
+         * @param rel The rel.
+         * @param href The href.
+         * @return this.
+         */
+        public HypermediaEnabledData SetLink(String rel, Uri href)
+        {
+            AddLink(rel, href);
+            return this;
+        }
+
     }
 }

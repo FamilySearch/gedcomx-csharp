@@ -113,5 +113,41 @@ namespace Gx.Fs.Discussions
         {
             this.Embed(value);
         }
+
+        /**
+         * Update this comment by applying text.
+         *
+         * @param text The text to apply.
+         * @return The comment.
+         */
+        public Comment SetText(String text)
+        {
+            Text = text;
+            return this;
+        }
+
+        /**
+         * Build this comment by applying a contributor.
+         *
+         * @param contributor The contributor.
+         * @return this.
+         */
+        public Comment SetContributor(ResourceReference contributor)
+        {
+            Contributor = contributor;
+            return this;
+        }
+
+        /**
+         * Build this comment by applying a created date.
+         *
+         * @param created The created date.
+         * @return The comment.
+         */
+        public Comment SetCreated(DateTime created)
+        {
+            Created = created;
+            return this;
+        }
     }
 }

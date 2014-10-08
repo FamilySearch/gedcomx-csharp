@@ -86,5 +86,39 @@ namespace Gx.Common
         {
             visitor.VisitEvidenceReference(this);
         }
+
+        /**
+         * Build up this reference with a resource id.
+         *
+         * @param resourceId The resource id.
+         */
+        public EvidenceReference SetResourceId(String resourceId)
+        {
+            this.ResourceId = resourceId;
+            return this;
+        }
+
+        /**
+         * Build up this reference with a resource URI.
+         *
+         * @param resource The resource.
+         */
+        public EvidenceReference SetResource(String resource)
+        {
+            this.Resource = resource;
+            return this;
+        }
+
+        /**
+         * Build up this evidence reference with an attribution.
+         *
+         * @param attribution The attribution.
+         * @return this.
+         */
+        public EvidenceReference SetAttribution(Attribution attribution)
+        {
+            this.Attribution = attribution;
+            return this;
+        }
     }
 }

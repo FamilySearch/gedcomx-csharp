@@ -66,5 +66,29 @@ namespace Gx.Common
                 this._resource = value;
             }
         }
+
+        /**
+         * Build up this resource reference with a resource id.
+         *
+         * @param resourceId The resource id.
+         * @return this.
+         */
+        public ResourceReference SetResourceId(String resourceId)
+        {
+            ResourceId = resourceId;
+            return this;
+        }
+
+        /**
+         * Build up this resource reference with a resource.
+         *
+         * @param resource The resource.
+         * @return this.
+         */
+        public ResourceReference SetResource(String resource)
+        {
+            Resource = resource;
+            return this;
+        }
     }
 }

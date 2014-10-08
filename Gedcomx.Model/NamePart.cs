@@ -37,7 +37,10 @@ namespace Gx.Conclusion
 
         public NamePart(NamePartType type, String text)
         {
-            KnownType = type;
+            if (type != NamePartType.NULL)
+            {
+                KnownType = type;
+            }
             Value = text;
         }
 

@@ -370,7 +370,6 @@ namespace Gedcomx.Rs.Api.Test
         }
 
         [Test]
-        [Ignore("Issue with discussion reference. state.Response.StatusCode == HttpStatusCode.NotFound.")]
         public void TestDeleteDiscussionReference()
         {
             var me = tree.ReadCurrentUser();

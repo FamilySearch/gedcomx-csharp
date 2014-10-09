@@ -83,9 +83,9 @@ namespace Gedcomx.Rs.Api.Test {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] TestJar {
+        internal static byte[] sample {
             get {
-                object obj = ResourceManager.GetObject("TestJar", resourceCulture);
+                object obj = ResourceManager.GetObject("sample", resourceCulture);
                 return ((byte[])(obj));
             }
         }

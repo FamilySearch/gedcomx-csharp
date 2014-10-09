@@ -124,7 +124,7 @@
   <data name="PersonMemory" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>resources\memory.txt;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="TestJar" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\TestJar.jar;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="sample" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\sample.gedx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

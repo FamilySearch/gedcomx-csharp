@@ -82,7 +82,14 @@ namespace Gx.Atom
             {
                 foreach (JToken extension in _extensionElementsJson.Values)
                 {
-                    if (typeof(T).IsAssignableFrom(extension.GetType()))
+                    if (extension.Type == JTokenType.Array)
+                    {
+                        foreach (var item in (JArray)extension)
+                        {
+                            return item.ToObject<T>();
+                        }
+                    }
+                    else
                     {
                         return extension.ToObject<T>();
                     }

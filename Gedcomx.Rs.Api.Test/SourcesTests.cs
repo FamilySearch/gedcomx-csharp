@@ -103,7 +103,7 @@ namespace Gedcomx.Rs.Api.Test
             Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
             Assert.IsNotNull(state.Entity);
             Assert.IsNotNull(state.Entity.Persons);
-            Assert.AreEqual(1, state.Entity.Persons.Count);
+            Assert.Greater(state.Entity.Persons.Count, 0);
         }
     }
 }

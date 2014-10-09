@@ -106,13 +106,6 @@ namespace Gedcomx.Rs.Api.Test
         }
 
         [Test]
-        [Ignore("May not be needed. Covered by TestReadChildAndParentsRelationshipSourceReferences()?")]
-        public void TestReadChildAndParentsRelationshipSources()
-        {
-            throw new NotImplementedException();
-        }
-
-        [Test]
         public void TestReadChildAndParentsRelationshipNotes()
         {
             var father = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();

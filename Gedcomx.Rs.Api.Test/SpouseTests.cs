@@ -116,13 +116,6 @@ namespace Gedcomx.Rs.Api.Test
         }
 
         [Test]
-        [Ignore("May not be needed. Covered by TestReadCoupleRelationshipSourceReferences()?")]
-        public void TestReadCoupleRelationshipSources()
-        {
-            throw new NotImplementedException();
-        }
-
-        [Test]
         public void TestReadCoupleRelationshipNotes()
         {
             var husband = (PersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();

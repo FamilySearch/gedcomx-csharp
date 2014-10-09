@@ -52,13 +52,6 @@ namespace Gedcomx.Rs.Api.Test
         }
 
         [Test]
-        [Ignore("Unable to test without ability to capture redirect URL POST parameters.")]
-        public void TestObtainAccessTokenwithAuthorizationCode()
-        {
-            throw new NotImplementedException();
-        }
-
-        [Test]
         public void TestObtainAccessTokenWithUsernameAndPassword()
         {
             var collection = new CollectionState(new Uri(SANDBOX_URI));

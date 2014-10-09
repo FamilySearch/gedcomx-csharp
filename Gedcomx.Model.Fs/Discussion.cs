@@ -8,6 +8,7 @@ using Gx.Fs;
 using Gx.Fs.Rt;
 using Gx.Common;
 using System.Collections.Generic;
+using Gedcomx.Model.Util;
 
 namespace Gx.Fs.Discussions
 {
@@ -75,6 +76,7 @@ namespace Gx.Fs.Discussions
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "created", Namespace = "http://familysearch.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "created")]
         [Newtonsoft.Json.JsonProperty("created")]
+        [Newtonsoft.Json.JsonConverter(typeof(JsonUnixTimestampConverter))]
         public DateTime Created
         {
             get
@@ -130,6 +132,7 @@ namespace Gx.Fs.Discussions
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "modified", Namespace = "http://familysearch.org/v1/")]
         [System.Xml.Serialization.SoapElementAttribute(ElementName = "modified")]
         [Newtonsoft.Json.JsonProperty("modified")]
+        [Newtonsoft.Json.JsonConverter(typeof(JsonUnixTimestampConverter))]
         public DateTime Modified
         {
             get

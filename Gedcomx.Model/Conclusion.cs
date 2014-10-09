@@ -21,7 +21,7 @@ namespace Gx.Conclusion
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Conclusion")]
     [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Conclusion")]
-    public abstract partial class Conclusion : Gx.Links.HypermediaEnabledData
+    public abstract partial class Conclusion : Gx.Links.HypermediaEnabledData, Attributable
     {
 
         private string _confidence;

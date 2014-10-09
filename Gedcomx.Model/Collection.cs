@@ -21,7 +21,7 @@ namespace Gx.Records
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Collection")]
     [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Collection")]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://gedcomx.org/v1/", ElementName = "collection")]
-    public partial class Collection : Gx.Links.HypermediaEnabledData
+    public partial class Collection : Gx.Links.HypermediaEnabledData, Attributable
     {
 
         private string _lang;

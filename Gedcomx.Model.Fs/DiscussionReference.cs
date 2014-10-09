@@ -15,6 +15,7 @@ namespace Gx.Fs.Tree
     /// <summary>
     ///  
     /// </summary>
+    // TODO: Create attribute equivalent to JsonWrapper
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://familysearch.org/v1/", TypeName = "DiscussionReference")]
     [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://familysearch.org/v1/", TypeName = "DiscussionReference")]

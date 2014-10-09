@@ -33,7 +33,7 @@ namespace Gedcomx.Rs.Api.Test
                     Sources = new List<Gx.Source.SourceReference>(),
                     Notes = new List<Gx.Common.Note>(),
                     Links = new List<Gx.Links.Link>(),
-                    ExtensionElements = new List<object>(),
+                    ExtensionElementsXml = new List<object>(),
                 },
                 Names = new List<Name>()
                 {
@@ -51,7 +51,7 @@ namespace Gedcomx.Rs.Api.Test
                                     {
                                         KnownType = Gx.Types.NamePartType.Given,
                                         Value = "GedcomX",
-                                        ExtensionElements = new List<object>(),
+                                        ExtensionElementsXml = new List<object>(),
                                         Fields = new List<Gx.Records.Field>(),
                                         Qualifiers = new List<Gx.Common.Qualifier>(),
                                     },
@@ -59,12 +59,12 @@ namespace Gedcomx.Rs.Api.Test
                                     {
                                         KnownType = Gx.Types.NamePartType.Surname,
                                         Value = "User",
-                                        ExtensionElements = new List<object>(),
+                                        ExtensionElementsXml = new List<object>(),
                                         Fields = new List<Gx.Records.Field>(),
                                         Qualifiers = new List<Gx.Common.Qualifier>(),
                                     },
                                 },
-                                ExtensionElements = new List<object>(),
+                                ExtensionElementsXml = new List<object>(),
                                 Fields = new List<Gx.Records.Field>(),
                             },
                             new NameForm()
@@ -76,7 +76,7 @@ namespace Gedcomx.Rs.Api.Test
                                     {
                                         KnownType = Gx.Types.NamePartType.Given,
                                         Value = "GedcomX2",
-                                        ExtensionElements = new List<object>(),
+                                        ExtensionElementsXml = new List<object>(),
                                         Fields = new List<Gx.Records.Field>(),
                                         Qualifiers = new List<Gx.Common.Qualifier>(),
                                     },
@@ -84,12 +84,12 @@ namespace Gedcomx.Rs.Api.Test
                                     {
                                         KnownType = Gx.Types.NamePartType.Surname,
                                         Value = "User",
-                                        ExtensionElements = new List<object>(),
+                                        ExtensionElementsXml = new List<object>(),
                                         Fields = new List<Gx.Records.Field>(),
                                         Qualifiers = new List<Gx.Common.Qualifier>(),
                                     },
                                 },
-                                ExtensionElements = new List<object>(),
+                                ExtensionElementsXml = new List<object>(),
                                 Fields = new List<Gx.Records.Field>(),
                             },
                         },
@@ -97,7 +97,7 @@ namespace Gedcomx.Rs.Api.Test
                         Sources = new List<Gx.Source.SourceReference>(),
                         Notes = new List<Gx.Common.Note>(),
                         Links = new List<Gx.Links.Link>(),
-                        ExtensionElements = new List<object>(),
+                        ExtensionElementsXml = new List<object>(),
                     },
                 },
                 Facts = new List<Fact>()
@@ -110,21 +110,21 @@ namespace Gedcomx.Rs.Api.Test
                             Original = "June 1800",
                             NormalizedExtensions = new List<Gx.Common.TextValue>(),
                             Fields = new List<Gx.Records.Field>(),
-                            ExtensionElements = new List<object>(),
+                            ExtensionElementsXml = new List<object>(),
                         },
                         Place = new PlaceReference()
                         {
                             Original = "Provo, Utah, Utah, United States",
                             NormalizedExtensions = new List<Gx.Common.TextValue>(),
                             Fields = new List<Gx.Records.Field>(),
-                            ExtensionElements = new List<object>(),
+                            ExtensionElementsXml = new List<object>(),
                         },
                         Qualifiers = new List<Gx.Common.Qualifier>(),
                         Fields = new List<Gx.Records.Field>(),
                         Sources = new List<Gx.Source.SourceReference>(),
                         Notes = new List<Gx.Common.Note>(),
                         Links = new List<Gx.Links.Link>(),
-                        ExtensionElements = new List<object>(),
+                        ExtensionElementsXml = new List<object>(),
                     },
                     new Fact()
                     {
@@ -134,21 +134,21 @@ namespace Gedcomx.Rs.Api.Test
                             Original = "1802",
                             NormalizedExtensions = new List<Gx.Common.TextValue>(),
                             Fields = new List<Gx.Records.Field>(),
-                            ExtensionElements = new List<object>(),
+                            ExtensionElementsXml = new List<object>(),
                         },
                         Place = new PlaceReference()
                         {
                             Original = "American Fork, Utah, Utah, United States",
                             NormalizedExtensions = new List<Gx.Common.TextValue>(),
                             Fields = new List<Gx.Records.Field>(),
-                            ExtensionElements = new List<object>(),
+                            ExtensionElementsXml = new List<object>(),
                         },
                         Qualifiers = new List<Gx.Common.Qualifier>(),
                         Fields = new List<Gx.Records.Field>(),
                         Sources = new List<Gx.Source.SourceReference>(),
                         Notes = new List<Gx.Common.Note>(),
                         Links = new List<Gx.Links.Link>(),
-                        ExtensionElements = new List<object>(),
+                        ExtensionElementsXml = new List<object>(),
                     },
                     new Fact()
                     {
@@ -158,21 +158,21 @@ namespace Gedcomx.Rs.Api.Test
                             Original = "4 Jan 1896",
                             NormalizedExtensions = new List<Gx.Common.TextValue>(),
                             Fields = new List<Gx.Records.Field>(),
-                            ExtensionElements = new List<object>(),
+                            ExtensionElementsXml = new List<object>(),
                         },
                         Place = new PlaceReference()
                         {
                             Original = "Provo, Utah, Utah, United States",
                             NormalizedExtensions = new List<Gx.Common.TextValue>(),
                             Fields = new List<Gx.Records.Field>(),
-                            ExtensionElements = new List<object>(),
+                            ExtensionElementsXml = new List<object>(),
                         },
                         Qualifiers = new List<Gx.Common.Qualifier>(),
                         Fields = new List<Gx.Records.Field>(),
                         Sources = new List<Gx.Source.SourceReference>(),
                         Notes = new List<Gx.Common.Note>(),
                         Links = new List<Gx.Links.Link>(),
-                        ExtensionElements = new List<object>(),
+                        ExtensionElementsXml = new List<object>(),
                     },
                     new Fact()
                     {
@@ -182,21 +182,21 @@ namespace Gedcomx.Rs.Api.Test
                             Original = "July 14, 1900",
                             NormalizedExtensions = new List<Gx.Common.TextValue>(),
                             Fields = new List<Gx.Records.Field>(),
-                            ExtensionElements = new List<object>(),
+                            ExtensionElementsXml = new List<object>(),
                         },
                         Place = new PlaceReference()
                         {
                             Original = "Provo, Utah, Utah, United States",
                             NormalizedExtensions = new List<Gx.Common.TextValue>(),
                             Fields = new List<Gx.Records.Field>(),
-                            ExtensionElements = new List<object>(),
+                            ExtensionElementsXml = new List<object>(),
                         },
                         Qualifiers = new List<Gx.Common.Qualifier>(),
                         Fields = new List<Gx.Records.Field>(),
                         Sources = new List<Gx.Source.SourceReference>(),
                         Notes = new List<Gx.Common.Note>(),
                         Links = new List<Gx.Links.Link>(),
-                        ExtensionElements = new List<object>(),
+                        ExtensionElementsXml = new List<object>(),
                     },
                     new Fact()
                     {
@@ -206,24 +206,24 @@ namespace Gedcomx.Rs.Api.Test
                             Original = "1900",
                             NormalizedExtensions = new List<Gx.Common.TextValue>(),
                             Fields = new List<Gx.Records.Field>(),
-                            ExtensionElements = new List<object>(),
+                            ExtensionElementsXml = new List<object>(),
                         },
                         Place = new PlaceReference()
                         {
                             Original = "Sandy, Salt Lake, Utah, United States",
                             NormalizedExtensions = new List<Gx.Common.TextValue>(),
                             Fields = new List<Gx.Records.Field>(),
-                            ExtensionElements = new List<object>(),
+                            ExtensionElementsXml = new List<object>(),
                         },
                         Qualifiers = new List<Gx.Common.Qualifier>(),
                         Fields = new List<Gx.Records.Field>(),
                         Sources = new List<Gx.Source.SourceReference>(),
                         Notes = new List<Gx.Common.Note>(),
                         Links = new List<Gx.Links.Link>(),
-                        ExtensionElements = new List<object>(),
+                        ExtensionElementsXml = new List<object>(),
                     }
                 },
-                ExtensionElements = new List<object>(),
+                ExtensionElementsXml = new List<object>(),
                 Fields = new List<Gx.Records.Field>(),
                 Evidence = new List<Gx.Common.EvidenceReference>(),
                 Media = new List<Gx.Source.SourceReference>(),
@@ -754,7 +754,7 @@ namespace Gedcomx.Rs.Api.Test
                 Fields = new List<Gx.Records.Field>(),
                 RecordDescriptors = new List<Gx.Records.RecordDescriptor>(),
                 Links = new List<Gx.Links.Link>(),
-                ExtensionElements = new List<object>(),
+                ExtensionElementsXml = new List<object>(),
             };
         }
     }

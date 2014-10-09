@@ -19,7 +19,7 @@ namespace Gx.Common
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Note")]
     [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Note")]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://gedcomx.org/v1/", ElementName = "note")]
-    public partial class Note : Gx.Links.HypermediaEnabledData
+    public partial class Note : Gx.Links.HypermediaEnabledData, Attributable
     {
 
         private string _lang;

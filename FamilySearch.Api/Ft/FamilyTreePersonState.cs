@@ -143,6 +143,11 @@ namespace FamilySearch.Api.Ft
             }
         }
 
+        public FamilyTreePersonState LoadDiscussionReferences(params StateTransitionOption[] options)
+        {
+            return (FamilyTreePersonState)base.LoadEmbeddedResources(new String[] { Rel.DISCUSSION_REFERENCES }, options);
+        }
+
         public SourceDescriptionsState ReadPortraits(params StateTransitionOption[] options)
         {
             Link link = GetLink(Rel.PORTRAITS);
@@ -184,7 +189,7 @@ namespace FamilySearch.Api.Ft
             Person person = CreateEmptySelf();
             foreach (DiscussionReference @ref in refs)
             {
-                person.AddExtensionElement(@ref);
+                person.AddExtensionElement(@ref, "discussion-references", true);
             }
             return UpdateDiscussionReference(person, options);
         }
@@ -199,7 +204,7 @@ namespace FamilySearch.Api.Ft
             Person person = CreateEmptySelf();
             foreach (DiscussionReference @ref in refs)
             {
-                person.AddExtensionElement(@ref);
+                person.AddExtensionElement(@ref, "discussion-references", true);
             }
             return UpdateDiscussionReference(person, options);
         }

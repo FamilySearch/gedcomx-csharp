@@ -25,6 +25,13 @@ namespace Gedcomx.File
             jsonSettings.NullValueHandling = NullValueHandling.Ignore;
             jsonSettings.Formatting = pretty ? Formatting.Indented : Formatting.None;
             KnownContentTypes = new HashSet<String>() { MediaTypes.GEDCOMX_JSON_MEDIA_TYPE };
+            jsonSettings.Error += (sender, e) =>
+            {
+                if (System.Diagnostics.Debugger.IsAttached)
+                {
+                    System.Diagnostics.Debugger.Break();
+                }
+            };
         }
 
         public String Serialize(Object resource)

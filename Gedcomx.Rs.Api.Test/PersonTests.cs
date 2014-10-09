@@ -4,6 +4,8 @@ using FamilySearch.Api.Memories;
 using Gedcomx.Support;
 using Gx.Common;
 using Gx.Conclusion;
+using Gx.Fs.Discussions;
+using Gx.Fs.Tree;
 using Gx.Links;
 using Gx.Rs.Api;
 using Gx.Rs.Api.Options;
@@ -78,12 +80,20 @@ namespace Gedcomx.Rs.Api.Test
         }
 
         [Test]
-        [Ignore("DiscussionReference is defined in extension. Not ready to test.")]
         public void TestCreateDiscussionReference()
         {
-            var state = collection.ReadPerson(new Uri(READ_PERSON_URI));
-            var discussion = TestBacking.GetCreateDiscussionReference(state.Person.Id);
-            throw new NotImplementedException();
+            var me = tree.ReadCurrentUser();
+            var contributor = new ResourceReference("https://familysearch.org/platform/users/agents/" + me.User.TreeUserId).SetResourceId(me.User.TreeUserId);
+            var discussion = tree.AddDiscussion(new Discussion()
+                                                    .SetTitle("Test title")
+                                                    .SetDetails("Test details")
+                                                    .SetContributor(contributor)
+                                                    .SetCreated(DateTime.Now));
+            var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            var state = person.AddDiscussionReference(discussion);
+
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.AreEqual(HttpStatusCode.Created, state.Response.StatusCode);
         }
 
         [Test]
@@ -134,13 +144,6 @@ namespace Gedcomx.Rs.Api.Test
         }
 
         [Test]
-        [Ignore("May not be needed. Covered by TestReadPersonSourceReferences()?")]
-        public void TestReadPersonSources()
-        {
-            throw new NotImplementedException();
-        }
-
-        [Test]
         public void TestReadRelationshipsToChildren()
         {
             var state = collection.ReadPerson(new Uri(PERSON_WITH_DATA_URI));
@@ -186,10 +189,22 @@ namespace Gedcomx.Rs.Api.Test
         }
 
         [Test]
-        [Ignore("DiscussionReference is defined in extension. Not ready to test.")]
         public void TestReadDiscussionReferences()
         {
-            throw new NotImplementedException();
+            var me = tree.ReadCurrentUser();
+            var contributor = new ResourceReference("https://familysearch.org/platform/users/agents/" + me.User.TreeUserId).SetResourceId(me.User.TreeUserId);
+            var discussion = tree.AddDiscussion(new Discussion()
+                                                    .SetTitle("Test title")
+                                                    .SetDetails("Test details")
+                                                    .SetContributor(contributor)
+                                                    .SetCreated(DateTime.Now));
+            var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            person.AddDiscussionReference(discussion);
+            var state = person.LoadDiscussionReferences();
+
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
+            Assert.Greater(state.Person.FindExtensionsOfType<DiscussionReference>("discussion-references").Count, 0);
         }
 
         [Test]
@@ -355,10 +370,23 @@ namespace Gedcomx.Rs.Api.Test
         }
 
         [Test]
-        [Ignore("DiscussionReference is defined in extension. Not ready to test.")]
+        [Ignore("Issue with discussion reference. state.Response.StatusCode == HttpStatusCode.NotFound.")]
         public void TestDeleteDiscussionReference()
         {
-            throw new NotImplementedException();
+            var me = tree.ReadCurrentUser();
+            var contributor = new ResourceReference("https://familysearch.org/platform/users/agents/" + me.User.TreeUserId).SetResourceId(me.User.TreeUserId);
+            var discussion = tree.AddDiscussion(new Discussion()
+                                                    .SetTitle("Test title")
+                                                    .SetDetails("Test details")
+                                                    .SetContributor(contributor)
+                                                    .SetCreated(DateTime.Now));
+            var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            person.AddDiscussionReference(discussion);
+            person.LoadDiscussionReferences();
+            var state = person.DeleteDiscussionReference(person.Person.FindExtensionsOfType<DiscussionReference>("discussion-references").Single());
+
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
         }
 
         [Test]

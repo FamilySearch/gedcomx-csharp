@@ -22,7 +22,7 @@ namespace Gx.Source
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "SourceReference")]
     [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "SourceReference")]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://gedcomx.org/v1/", ElementName = "sourceReference")]
-    public partial class SourceReference : Gx.Links.HypermediaEnabledData
+    public partial class SourceReference : Gx.Links.HypermediaEnabledData, Attributable
     {
 
         private string _descriptionRef;

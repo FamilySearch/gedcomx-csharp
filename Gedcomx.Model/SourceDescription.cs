@@ -26,7 +26,7 @@ namespace Gx.Source
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "SourceDescription")]
     [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "SourceDescription")]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://gedcomx.org/v1/", ElementName = "sourceDescription")]
-    public partial class SourceDescription : Gx.Links.HypermediaEnabledData
+    public partial class SourceDescription : Gx.Links.HypermediaEnabledData, Attributable
     {
 
         private string _about;

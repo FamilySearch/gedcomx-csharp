@@ -91,6 +91,7 @@
     <Compile Include="SpouseTests.cs" />
     <Compile Include="TestBacking.cs" />
     <Compile Include="UserTests.cs" />
+    <Compile Include="UtilitiesTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

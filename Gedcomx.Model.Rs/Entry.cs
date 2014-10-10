@@ -401,7 +401,8 @@ namespace Gx.Atom
         /// <exception cref="System.NotImplementedException"></exception>
         public Links.Link GetLink(string rel)
         {
-            return GetLinks(rel).FirstOrDefault();
+            var result = GetLinks(rel);
+            return result != null ? result.FirstOrDefault() : null;
         }
 
         /// <summary>
@@ -412,7 +413,7 @@ namespace Gx.Atom
         /// <exception cref="System.NotImplementedException"></exception>
         public List<Links.Link> GetLinks(string rel)
         {
-            return this.Links.Where(x => x.Rel == rel).ToList();
+            return this.Links != null ? this.Links.Where(x => x.Rel == rel).ToList() : null;
         }
     }
 }

@@ -37,5 +37,19 @@ namespace Gedcomx.Rs.Api.Test
             Assert.IsNotNull(state.Page.Entries);
             Assert.Greater(state.Page.Entries.Count, 0);
         }
+
+        [Test]
+        public void TestRestoreChangeAction()
+        {
+            var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            person.DeleteFact(person.Person.Facts.First());
+            var changes = person.ReadChangeHistory();
+            var deleted = changes.Page.Entries.First(x => x.Operation != null && x.Operation.Value == Gx.Fs.Tree.ChangeOperation.Delete);
+            var restore = changes.Page.Entries.First(x => x.ObjectType != null && x.ObjectType == deleted.ObjectType && x.ObjectModifier != null & x.ObjectModifier == deleted.ObjectModifier && x.Operation != null & x.Operation.Value != Gx.Fs.Tree.ChangeOperation.Delete);
+            var state = changes.RestoreChange(restore.Entry);
+
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
+        }
     }
 }

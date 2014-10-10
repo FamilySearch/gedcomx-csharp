@@ -79,6 +79,7 @@
     <Compile Include="PedigreeTests.cs" />
     <Compile Include="PersonSearchTests.cs" />
     <Compile Include="PersonTests.cs" />
+    <Compile Include="PlacesTests.cs" />
     <Compile Include="RelationshipTests.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>

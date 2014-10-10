@@ -83,7 +83,16 @@ namespace Gedcomx.File
 
             using (var reader = new StreamReader(stream))
             {
-                result = JsonConvert.DeserializeObject<T>(reader.ReadToEnd(), jsonSettings);
+                var type = typeof(T);
+
+                if (type.IsPrimitive || type == typeof(String))
+                {
+                    result = (T)Convert.ChangeType(reader.ReadToEnd(), type);
+                }
+                else
+                {
+                    result = JsonConvert.DeserializeObject<T>(reader.ReadToEnd(), jsonSettings);
+                }
             }
 
             return result;

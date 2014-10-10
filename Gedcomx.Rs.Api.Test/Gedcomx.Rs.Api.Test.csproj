@@ -90,6 +90,7 @@
     <Compile Include="SourcesTests.cs" />
     <Compile Include="SpouseTests.cs" />
     <Compile Include="TestBacking.cs" />
+    <Compile Include="UserTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

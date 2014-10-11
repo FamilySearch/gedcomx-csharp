@@ -1,5 +1,6 @@
 ﻿using FamilySearch.Api.Ft;
 using Gx.Conclusion;
+using Gx.Rs.Api.Options;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -50,6 +51,32 @@ namespace Gedcomx.Rs.Api.Test
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
+        }
+
+        [Test]
+        public void TestReadPersonChangeHistory()
+        {
+            var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            var state = person.ReadChangeHistory();
+
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
+            Assert.IsNotNull(state.Page);
+            Assert.IsNotNull(state.Page.Entries);
+            Assert.Greater(state.Page.Entries.Count, 0);
+        }
+
+        [Test]
+        public void TestReadPersonChangeHistoryFirstPage()
+        {
+            var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            var state = person.ReadChangeHistory(QueryParameter.Count(10));
+
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
+            Assert.IsNotNull(state.Page);
+            Assert.IsNotNull(state.Page.Entries);
+            Assert.Greater(state.Page.Entries.Count, 0);
         }
     }
 }

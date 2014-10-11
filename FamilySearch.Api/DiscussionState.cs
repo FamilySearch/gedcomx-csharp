@@ -68,7 +68,7 @@ namespace FamilySearch.Api
             Link link = GetLink(Rel.COMMENTS);
             if (this.Entity != null && link != null && link.Href != null)
             {
-                Embed<Gx.Gedcomx>(link, this.Entity, options);
+                Embed<FamilySearchPlatform>(link, this.Entity, options);
             }
 
             return this;

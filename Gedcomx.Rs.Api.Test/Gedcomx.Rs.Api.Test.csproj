@@ -74,6 +74,7 @@
     <Compile Include="AuthenticationTests.cs" />
     <Compile Include="AuthoritiesTests.cs" />
     <Compile Include="ChangeHistoryTests.cs" />
+    <Compile Include="DiscussionsTests.cs" />
     <Compile Include="GedcomxFileTests.cs" />
     <Compile Include="ParentsAndChildrenTest.cs" />
     <Compile Include="PedigreeTests.cs" />

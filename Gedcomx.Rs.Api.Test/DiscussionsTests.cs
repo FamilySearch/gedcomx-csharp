@@ -34,7 +34,7 @@ namespace Gedcomx.Rs.Api.Test
         }
 
         [Test]
-        public void TestReadComment()
+        public void TestReadComments()
         {
             var discussion = (DiscussionState)tree.AddDiscussion(new Discussion().SetTitle("Comment").SetDetails("Comment")).Get();
             discussion.AddComment(new Comment().SetText("Comment"));
@@ -68,6 +68,44 @@ namespace Gedcomx.Rs.Api.Test
             discussion.LoadComments();
             var comment = discussion.Discussion.Comments.First();
             var state = discussion.DeleteComment(comment);
+
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
+        }
+
+        [Test]
+        public void TestCreateDiscussion()
+        {
+            var state = tree.AddDiscussion(new Discussion().SetTitle("Comment").SetDetails("Comment"));
+
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.AreEqual(HttpStatusCode.Created, state.Response.StatusCode);
+        }
+
+        [Test]
+        public void TestReadDiscussion()
+        {
+            var state = (DiscussionState)tree.AddDiscussion(new Discussion().SetTitle("Comment").SetDetails("Comment")).Get();
+
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
+        }
+
+        [Test]
+        public void TestUpdateDiscussion()
+        {
+            var discussion = (DiscussionState)tree.AddDiscussion(new Discussion().SetTitle("Comment").SetDetails("Comment")).Get();
+            var state = discussion.Update(discussion.Discussion);
+
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
+        }
+
+        [Test]
+        public void TestDeleteDiscussion()
+        {
+            var discussion = (DiscussionState)tree.AddDiscussion(new Discussion().SetTitle("Comment").SetDetails("Comment")).Get();
+            var state = discussion.Delete();
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);

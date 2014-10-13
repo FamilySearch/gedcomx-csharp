@@ -140,7 +140,7 @@ namespace FamilySearch.Api
                 throw new GedcomxApplicationException("Comment cannot be deleted: missing link.");
             }
 
-            IRestRequest request = CreateAuthenticatedGedcomxRequest().Build(link.Href, Method.DELETE);
+            IRestRequest request = RequestUtil.ApplyFamilySearchConneg(CreateAuthenticatedRequest()).Build(link.Href, Method.DELETE);
             return ((FamilySearchStateFactory)this.stateFactory).NewDiscussionState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
     }

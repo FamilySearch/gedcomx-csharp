@@ -46,5 +46,31 @@ namespace Gedcomx.Rs.Api.Test
             Assert.IsNotNull(state.Discussion.Comments);
             Assert.Greater(state.Discussion.Comments.Count, 0);
         }
+
+        [Test]
+        public void TestUpdateComment()
+        {
+            var discussion = (DiscussionState)tree.AddDiscussion(new Discussion().SetTitle("Comment").SetDetails("Comment")).Get();
+            discussion.AddComment(new Comment().SetText("Comment"));
+            discussion.LoadComments();
+            var comment = discussion.Discussion.Comments.First();
+            var state = discussion.UpdateComment(comment);
+
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
+        }
+
+        [Test]
+        public void TestDeleteComment()
+        {
+            var discussion = (DiscussionState)tree.AddDiscussion(new Discussion().SetTitle("Comment").SetDetails("Comment")).Get();
+            discussion.AddComment(new Comment().SetText("Comment"));
+            discussion.LoadComments();
+            var comment = discussion.Discussion.Comments.First();
+            var state = discussion.DeleteComment(comment);
+
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
+        }
     }
 }

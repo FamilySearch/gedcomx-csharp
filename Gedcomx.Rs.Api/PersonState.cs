@@ -795,7 +795,7 @@ namespace Gx.Rs.Api
         public PersonState ReadSpouse(int index, params StateTransitionOption[] options)
         {
             List<Relationship> spouseRelationships = GetSpouseRelationships();
-            if (spouseRelationships.Count <= index)
+			if (spouseRelationships == null || spouseRelationships.Count <= index)
             {
                 return null;
             }

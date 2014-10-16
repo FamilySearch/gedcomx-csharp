@@ -21,7 +21,7 @@ namespace Gedcomx.Rs.Api.Test
     {
         private static Random random = new Random();
 
-        public static Person GetCreateMalePerson()
+        public static Person GetPersonForDeepCompare()
         {
             return new Person()
             {
@@ -234,6 +234,44 @@ namespace Gedcomx.Rs.Api.Test
             };
         }
 
+        public static Person GetCreateMalePerson()
+        {
+            return new Person()
+                .SetLiving(false)
+                .SetGender(new Gender().SetType(GenderType.Male))
+                .SetName(new Name()
+                    .SetType(NameType.BirthName)
+                    .SetNameForm(new NameForm()
+                        .SetFullText("GedcomX User")
+                        .SetPart(new NamePart(NamePartType.Given, "GedcomX"))
+                        .SetPart(new NamePart(NamePartType.Surname, "User")))
+                    .SetNameForm(new NameForm()
+                        .SetFullText("GedcomX2 User")
+                        .SetPart(new NamePart(NamePartType.Given, "GedcomX2"))
+                        .SetPart(new NamePart(NamePartType.Surname, "User")))
+                    .SetPreferred(true))
+                .SetFact(new Fact()
+                    .SetType(FactType.Birth)
+                    .SetDate(new DateInfo().SetOriginal("June 1800"))
+                    .SetPlace(new PlaceReference().SetOriginal("Provo, Utah, Utah, United States")))
+                .SetFact(new Fact()
+                    .SetType(FactType.Christening)
+                    .SetDate(new DateInfo().SetOriginal("1802"))
+                    .SetPlace(new PlaceReference().SetOriginal("American Fork, Utah, Utah, United States")))
+                .SetFact(new Fact()
+                    .SetType(FactType.Residence)
+                    .SetDate(new DateInfo().SetOriginal("4 Jan 1896"))
+                    .SetPlace(new PlaceReference().SetOriginal("Provo, Utah, Utah, United States")))
+                .SetFact(new Fact()
+                    .SetType(FactType.Death)
+                    .SetDate(new DateInfo().SetOriginal("July 14, 1900"))
+                    .SetPlace(new PlaceReference().SetOriginal("Provo, Utah, Utah, United States")))
+                .SetFact(new Fact()
+                    .SetType(FactType.Burial)
+                    .SetDate(new DateInfo().SetOriginal("1900"))
+                    .SetPlace(new PlaceReference().SetOriginal("Sandy, Salt Lake, Utah, United States")));
+        }
+
         public static Person GetCreateFemalePerson()
         {
             return new Person()
@@ -275,13 +313,9 @@ namespace Gedcomx.Rs.Api.Test
         public static SourceReference GetPersonSourceReference()
         {
             return new SourceReference()
-            {
-                Attribution = new Attribution()
-                {
-                    ChangeMessage = "Family is at the same address found in other sources associated with this family.  Names are a good match.  Estimated births are reasonable.",
-                },
-                DescriptionRef = "https://sandbox.familysearch.org/platform/sources/descriptions/MMH1-PNF",
-            };
+                .SetAttribution(new Attribution()
+                    .SetChangeMessage("Family is at the same address found in other sources associated with this family.  Names are a good match.  Estimated births are reasonable."))
+                    .SetDescriptionRef("https://sandbox.familysearch.org/platform/sources/descriptions/MMH1-PNF");
         }
 
         public static Person GetCreatePersonConclusion(string personId)
@@ -657,11 +691,11 @@ namespace Gedcomx.Rs.Api.Test
             return Color.FromArgb(a, r, g, b);
         }
 
-        public static Gx.Gedcomx GetGedcomxObject()
+        public static Gx.Gedcomx GetGedcomxObjectForDeepCompare()
         {
             return new Gx.Gedcomx()
             {
-                Persons = new List<Gx.Conclusion.Person>() { TestBacking.GetCreateMalePerson() },
+                Persons = new List<Gx.Conclusion.Person>() { TestBacking.GetPersonForDeepCompare() },
                 Relationships = new List<Gx.Conclusion.Relationship>(),
                 SourceDescriptions = new List<Gx.Source.SourceDescription>(),
                 Agents = new List<Gx.Agent.Agent>(),

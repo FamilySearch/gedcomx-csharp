@@ -25,7 +25,7 @@ namespace Gedcomx.Rs.Api.Test
         public void Initialize()
         {
             tree = new FamilySearchFamilyTree(true);
-            tree.AuthenticateViaOAuth2Password("sdktester", "1234sdkpass", "WCQY-7J1Q-GKVV-7DNM-SQ5M-9Q5H-JX3H-CMJK");
+            tree.AuthenticateViaOAuth2Password(Resources.TestUserName, Resources.TestPassword, Resources.TestClientId);
         }
 
         [Test]
@@ -35,7 +35,7 @@ namespace Gedcomx.Rs.Api.Test
             var tempTree = new FamilySearchFamilyTree(true);
             var features = new List<String>();
 
-            tempTree.AuthenticateViaOAuth2Password("sdktester", "1234sdkpass", "WCQY-7J1Q-GKVV-7DNM-SQ5M-9Q5H-JX3H-CMJK");
+            tempTree.AuthenticateViaOAuth2Password(Resources.TestUserName, Resources.TestPassword, Resources.TestClientId);
 
             // Get all the features that are pending
             IRestRequest request = new RestRequest()
@@ -68,7 +68,7 @@ namespace Gedcomx.Rs.Api.Test
         public void TestReadPersonWithPendingModificationActivated()
         {
             // The default client is assumed to add a single pending feature (if it doesn't, this test will fail)
-            var state = tree.AuthenticateViaOAuth2Password("sdktester", "1234sdkpass", "WCQY-7J1Q-GKVV-7DNM-SQ5M-9Q5H-JX3H-CMJK");
+            var state = tree.AuthenticateViaOAuth2Password(Resources.TestUserName, Resources.TestPassword, Resources.TestClientId);
 
             Assert.IsNotNull(state);
             var requestedFeatures = String.Join(",", state.Request.GetHeaders().Get("X-FS-Feature-Tag").Select(x => x.Value.ToString()));

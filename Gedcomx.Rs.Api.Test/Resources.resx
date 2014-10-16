@@ -127,4 +127,13 @@
   <data name="sample" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\sample.gedx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="TestClientId" xml:space="preserve">
+    <value>WCQY-7J1Q-GKVV-7DNM-SQ5M-9Q5H-JX3H-CMJK</value>
+  </data>
+  <data name="TestPassword" xml:space="preserve">
+    <value>1234sdkpass</value>
+  </data>
+  <data name="TestUserName" xml:space="preserve">
+    <value>sdktester</value>
+  </data>
 </root>

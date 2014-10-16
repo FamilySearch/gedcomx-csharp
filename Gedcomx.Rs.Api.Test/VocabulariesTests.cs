@@ -22,7 +22,7 @@ namespace Gedcomx.Rs.Api.Test
         public void Initialize()
         {
             places = new FamilySearchStateFactory().NewPlacesState(new Uri("https://sandbox.familysearch.org/platform/collections/places"));
-            places.AuthenticateViaOAuth2Password("sdktester", "1234sdkpass", "WCQY-7J1Q-GKVV-7DNM-SQ5M-9Q5H-JX3H-CMJK");
+            places.AuthenticateViaOAuth2Password(Resources.TestUserName, Resources.TestPassword, Resources.TestClientId);
             places = (FamilySearchPlaces)places.Get();
             placeTypes = places.ReadPlaceTypes();
             list = placeTypes.GetVocabElementList();

@@ -19,7 +19,7 @@ namespace Gedcomx.Rs.Api.Test
         public void Initialize()
         {
             date = new FamilySearchCollectionState(new Uri("https://sandbox.familysearch.org/platform/collections/dates"));
-            date.AuthenticateViaOAuth2Password("sdktester", "1234sdkpass", "WCQY-7J1Q-GKVV-7DNM-SQ5M-9Q5H-JX3H-CMJK");
+            date.AuthenticateViaOAuth2Password(Resources.TestUserName, Resources.TestPassword, Resources.TestClientId);
         }
 
         [Test]

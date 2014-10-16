@@ -17,7 +17,7 @@ namespace Gedcomx.Rs.Api.Test
         public void Initialize()
         {
             tree = new FamilySearchFamilyTree(true);
-            tree.AuthenticateViaOAuth2Password("sdktester", "1234sdkpass", "WCQY-7J1Q-GKVV-7DNM-SQ5M-9Q5H-JX3H-CMJK");
+            tree.AuthenticateViaOAuth2Password(Resources.TestUserName, Resources.TestPassword, Resources.TestClientId);
             Assert.DoesNotThrow(() => tree.IfSuccessful());
             Assert.IsNotNullOrEmpty(tree.CurrentAccessToken);
         }

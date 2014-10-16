@@ -128,5 +128,11 @@ namespace Gx.Common
             this.Modified = modified;
             return this;
         }
+
+        public Attribution SetChangeMessage(String changeMessage)
+        {
+            this.ChangeMessage = changeMessage;
+            return this;
+        }
     }
 }

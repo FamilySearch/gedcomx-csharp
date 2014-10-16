@@ -89,5 +89,32 @@ namespace Gedcomx.Rs.Api.Test {
                 return ((byte[])(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to WCQY-7J1Q-GKVV-7DNM-SQ5M-9Q5H-JX3H-CMJK.
+        /// </summary>
+        internal static string TestClientId {
+            get {
+                return ResourceManager.GetString("TestClientId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1234sdkpass.
+        /// </summary>
+        internal static string TestPassword {
+            get {
+                return ResourceManager.GetString("TestPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to sdktester.
+        /// </summary>
+        internal static string TestUserName {
+            get {
+                return ResourceManager.GetString("TestUserName", resourceCulture);
+            }
+        }
     }
 }

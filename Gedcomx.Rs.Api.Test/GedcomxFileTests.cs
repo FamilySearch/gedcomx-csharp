@@ -44,7 +44,7 @@ namespace Gedcomx.Rs.Api.Test
         public void TestXmlSerialization()
         {
             var serializer = new DefaultXmlSerialization();
-            var gxExpected = TestBacking.GetGedcomxObject();
+            var gxExpected = TestBacking.GetGedcomxObjectForDeepCompare();
 
             byte[] bytes;
 

@@ -19,7 +19,7 @@ namespace Gedcomx.Rs.Api.Test
         public void Initialize()
         {
             collection = new CollectionState(new Uri(SANDBOX_URI));
-            collection.AuthenticateViaOAuth2Password("sdktester", "1234sdkpass", "WCQY-7J1Q-GKVV-7DNM-SQ5M-9Q5H-JX3H-CMJK");
+            collection.AuthenticateViaOAuth2Password(Resources.TestUserName, Resources.TestPassword, Resources.TestClientId);
             Assert.DoesNotThrow(() => collection.IfSuccessful());
             Assert.IsNotNullOrEmpty(collection.CurrentAccessToken);
         }

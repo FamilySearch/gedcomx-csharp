@@ -147,12 +147,12 @@ namespace Gx.Rs.Api
 
         public VocabElementState NewVocabElementState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken)
         {
-            return new VocabElementState(request, response, accessToken, this);
+            return new VocabElementState(request, response, client, accessToken, this);
         }
 
         public VocabElementListState NewVocabElementListState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken)
         {
-            return new VocabElementListState(request, response, accessToken, this);
+            return new VocabElementListState(request, response, client, accessToken, this);
         }
 
         protected internal virtual PersonSpousesState NewPersonSpousesState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken)

@@ -114,6 +114,8 @@
     <Compile Include="FieldValueDescriptor.cs" />
     <Compile Include="Util\JsonIdentifiersConverter.cs" />
     <Compile Include="Util\JsonUnixTimestampConverter.cs" />
+    <Compile Include="VocabElement.cs" />
+    <Compile Include="VocabElementList.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

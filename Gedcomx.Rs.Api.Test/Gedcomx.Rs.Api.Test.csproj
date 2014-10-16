@@ -37,6 +37,10 @@
     <Reference Include="CsQuery">
       <HintPath>..\packages\CsQuery.1.3.4\lib\net40\CsQuery.dll</HintPath>
     </Reference>
+    <Reference Include="JsonLD, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\json-ld.net.1.0.3\lib\net40\JsonLD.dll</HintPath>
+    </Reference>
     <Reference Include="KellermanSoftware.Compare-NET-Objects">
       <HintPath>..\packages\CompareNETObjects.3.01.0.0\lib\net45\KellermanSoftware.Compare-NET-Objects.dll</HintPath>
     </Reference>
@@ -93,6 +97,7 @@
     <Compile Include="TestBacking.cs" />
     <Compile Include="UserTests.cs" />
     <Compile Include="UtilitiesTests.cs" />
+    <Compile Include="VocabulariesTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

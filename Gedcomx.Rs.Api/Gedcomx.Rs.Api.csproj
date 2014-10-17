@@ -106,6 +106,7 @@
     <Compile Include="Util\DataSource.cs" />
     <Compile Include="Util\DescendancyTree.cs" />
     <Compile Include="Util\EmbeddedLinkLoader.cs" />
+    <Compile Include="Util\FileDataSource.cs" />
     <Compile Include="Util\GedcomxBaseSearchQueryBuilder.cs" />
     <Compile Include="Util\GedcomxPersonSearchQueryBuilder.cs" />
     <Compile Include="Util\GedcomxPlaceSearchQueryBuilder.cs" />

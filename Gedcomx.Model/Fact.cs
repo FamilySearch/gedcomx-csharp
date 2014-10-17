@@ -12,7 +12,6 @@ using System.Collections.Generic;
 
 namespace Gx.Conclusion
 {
-
     /// <remarks>
     ///  A conclusion about a fact applicable to a person or relationship.
     /// </remarks>
@@ -25,7 +24,6 @@ namespace Gx.Conclusion
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://gedcomx.org/v1/", ElementName = "fact")]
     public partial class Fact : Gx.Conclusion.Conclusion
     {
-
         private bool? _primary;
         private bool _primarySpecified;
         private string _type;
@@ -34,6 +32,35 @@ namespace Gx.Conclusion
         private string _value;
         private System.Collections.Generic.List<Gx.Common.Qualifier> _qualifiers;
         private System.Collections.Generic.List<Gx.Records.Field> _fields;
+
+        public Fact()
+        {
+        }
+
+        public Fact(FactType factType, String value)
+        {
+            SetType(factType);
+            SetValue(value);
+        }
+
+        public Fact(FactType factType, String date, String place)
+            :this(factType, new DateInfo().SetOriginal(date), new PlaceReference().SetOriginal(place), null)
+        {
+        }
+
+        public Fact(FactType factType, DateInfo date, PlaceReference place)
+            :this(factType, date, place, null)
+        {
+        }
+
+        public Fact(FactType factType, DateInfo date, PlaceReference place, String value)
+        {
+            SetType(factType);
+            SetDate(date);
+            SetPlace(place);
+            SetValue(value);
+        }
+
         /// <summary>
         ///  Whether this fact is the primary fact of the record from which the subject was extracted.
         /// </summary>

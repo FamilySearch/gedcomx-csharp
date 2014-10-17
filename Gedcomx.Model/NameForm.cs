@@ -23,11 +23,24 @@ namespace Gx.Conclusion
     [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "NameForm")]
     public partial class NameForm : Gx.Common.ExtensibleData
     {
-
         private string _lang;
         private string _fullText;
         private System.Collections.Generic.List<Gx.Conclusion.NamePart> _parts;
         private System.Collections.Generic.List<Gx.Records.Field> _fields;
+
+        public NameForm()
+        {
+        }
+
+        public NameForm(String fullText, params NamePart[] parts)
+        {
+            this.FullText = fullText;
+            foreach (NamePart part in parts)
+            {
+                AddPart(part);
+            }
+        }
+
         /// <summary>
         ///  The language of the conclusion.
         /// </summary>

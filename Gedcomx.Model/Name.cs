@@ -24,12 +24,21 @@ namespace Gx.Conclusion
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://gedcomx.org/v1/", ElementName = "name")]
     public partial class Name : Gx.Conclusion.Conclusion
     {
-
         private string _type;
         private bool? _preferred;
         private bool _preferredSpecified;
         private Gx.Conclusion.DateInfo _date;
         private System.Collections.Generic.List<Gx.Conclusion.NameForm> _nameForms;
+
+        public Name()
+        {
+        }
+
+        public Name(String fullText, params NamePart[] parts)
+        {
+            AddNameForm(new NameForm(fullText, parts));
+        }
+
         /// <summary>
         ///  The type of the name.
         /// </summary>

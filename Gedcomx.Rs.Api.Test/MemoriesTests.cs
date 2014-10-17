@@ -15,18 +15,19 @@ using System.Threading.Tasks;
 using RestSharp.Extensions;
 using System.Net;
 using Gx.Rs.Api;
+using FamilySearch.Api.Memories;
 
 namespace Gedcomx.Rs.Api.Test
 {
     [TestFixture]
     public class MemoriesTests
     {
-        private CollectionState collection;
+        private FamilySearchMemories collection;
 
         [TestFixtureSetUp]
         public void Initialize()
         {
-            collection = new CollectionState(new Uri("https://sandbox.familysearch.org/platform/collections/memories"));
+            collection = new FamilySearchMemories(true);
             collection.AuthenticateViaOAuth2Password(Resources.TestUserName, Resources.TestPassword, Resources.TestClientId);
         }
 

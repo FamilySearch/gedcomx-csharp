@@ -36,7 +36,7 @@ namespace Gedcomx.Rs.Api.Test
         public void TestCreateUserUploadedSource()
         {
             var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
-            var dataSource = TestBacking.GetDataSource("Sample Memory", MediaTypes.TEXT_PLAIN_TYPE, Resources.PersonMemory);
+            var dataSource = TestBacking.GetDataSource("Sample Memory", MediaTypes.TEXT_PLAIN_TYPE, Resources.MemoryTXT);
             person.AddArtifact(dataSource);
             var artifact = person.ReadArtifacts().SourceDescriptions.First();
             var memoryUri = artifact.GetLink("memory").Href;

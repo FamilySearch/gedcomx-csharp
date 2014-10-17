@@ -312,7 +312,6 @@ namespace Gx.Rs.Api
             Byte[] inputBytes = GetBytes(artifact.InputStream);
             if (artifact.Name != null)
             {
-                //request.AddFile("artifact", inputBytes, ParameterType.RequestBody);
                 request.Files.Add(new FileParameter()
                 {
                     Name = "artifact",

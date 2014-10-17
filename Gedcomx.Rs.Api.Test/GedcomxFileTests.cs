@@ -18,7 +18,7 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestReadingJarFile()
         {
-            var file = TestBacking.WriteBytesToDisk(Resources.sample);
+            var file = TestBacking.WriteBytesToDisk(Resources.SampleGEDX);
             var fi = new FileInfo(file);
             using (GedcomxFile test = new GedcomxFile(fi))
             {
@@ -65,7 +65,7 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestManifestParsing()
         {
-            var file = TestBacking.WriteBytesToDisk(Resources.sample);
+            var file = TestBacking.WriteBytesToDisk(Resources.SampleGEDX);
             var fi = new FileInfo(file);
             var results = ManifestAttributes.Parse(ZipFile.OpenRead(file));
 
@@ -113,7 +113,7 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestFileReading()
         {
-            var file = TestBacking.WriteBytesToDisk(Resources.sample);
+            var file = TestBacking.WriteBytesToDisk(Resources.SampleGEDX);
             var fi = new FileInfo(file);
             using (GedcomxFile test = new GedcomxFile(fi))
             {

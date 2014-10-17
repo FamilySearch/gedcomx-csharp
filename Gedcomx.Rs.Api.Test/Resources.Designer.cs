@@ -61,6 +61,16 @@ namespace Gedcomx.Rs.Api.Test {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] MemoryTXT {
+            get {
+                object obj = ResourceManager.GetObject("MemoryTXT", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap PersonImage {
@@ -73,19 +83,9 @@ namespace Gedcomx.Rs.Api.Test {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] PersonMemory {
+        internal static byte[] SampleGEDX {
             get {
-                object obj = ResourceManager.GetObject("PersonMemory", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] sample {
-            get {
-                object obj = ResourceManager.GetObject("sample", resourceCulture);
+                object obj = ResourceManager.GetObject("SampleGEDX", resourceCulture);
                 return ((byte[])(obj));
             }
         }

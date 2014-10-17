@@ -6,6 +6,7 @@ using Gx.Rs.Api;
 using Gx.Rs.Api.Util;
 using Gx.Source;
 using Gx.Types;
+using iTextSharp.text.pdf;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -708,6 +709,54 @@ namespace Gedcomx.Rs.Api.Test
                 Links = new List<Gx.Links.Link>(),
                 ExtensionElementsXml = new List<object>(),
             };
+        }
+
+        public static Byte[] GetCreatePdf()
+        {
+            var doc = new iTextSharp.text.Document();
+            var ms = new MemoryStream();
+            var writer = PdfWriter.GetInstance(doc, ms);
+            var random = new Random();
+
+            doc.Open();
+
+            for (var i = 0; i < 5; i++)
+            {
+                doc.Add(new iTextSharp.text.Paragraph(GetRandomString(random)));
+            }
+
+            doc.Close();
+
+            return ms.ToArray();
+        }
+
+
+        public static Byte[] GetCreateTxt()
+        {
+            var ms = new MemoryStream();
+            var random = new Random();
+
+            using (var writer = new StreamWriter(ms))
+            {
+                for (var i = 0; i < 5; i++)
+                {
+                    writer.WriteLine(GetRandomString(random));
+                }
+            }
+
+            return ms.ToArray();
+        }
+
+        private static String GetRandomString(Random random)
+        {
+            var result = string.Empty;
+
+            for (var i = 0; i < 32; i++)
+            {
+                result += (char)random.Next(1, 256);
+            }
+
+            return result;
         }
     }
 

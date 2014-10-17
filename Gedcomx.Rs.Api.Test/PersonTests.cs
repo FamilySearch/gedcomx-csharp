@@ -582,7 +582,7 @@ namespace Gedcomx.Rs.Api.Test
         public void TestReadPersonMemories()
         {
             var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
-            var dataSource = TestBacking.GetDataSource("Sample Memory", MediaTypes.TEXT_PLAIN_TYPE, Resources.PersonMemory);
+            var dataSource = TestBacking.GetDataSource("Sample Memory", MediaTypes.TEXT_PLAIN_TYPE, Resources.MemoryTXT);
             person.AddArtifact(dataSource);
             person = (FamilyTreePersonState)person.Get();
             var state = person.ReadArtifacts();
@@ -595,7 +595,7 @@ namespace Gedcomx.Rs.Api.Test
         public void TestReadPersonMemoriesByType()
         {
             var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
-            var dataSource = TestBacking.GetDataSource("Sample Memory", MediaTypes.TEXT_PLAIN_TYPE, Resources.PersonMemory);
+            var dataSource = TestBacking.GetDataSource("Sample Memory", MediaTypes.TEXT_PLAIN_TYPE, Resources.MemoryTXT);
             person.AddArtifact(dataSource);
             person = (FamilyTreePersonState)person.Get();
             var options = new QueryParameter[] { new QueryParameter("type", "story") };

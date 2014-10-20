@@ -28,7 +28,6 @@ namespace Gx.Source
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://gedcomx.org/v1/", ElementName = "sourceDescription")]
     public partial class SourceDescription : Gx.Links.HypermediaEnabledData, Attributable
     {
-
         private string _about;
         private string _lang;
         private string _mediaType;
@@ -667,6 +666,11 @@ namespace Gx.Source
             return this;
         }
 
+        public SourceDescription SetTitle(String title)
+        {
+            return SetTitle(new TextValue(title));
+        }
+
         /**
          * Build out this source description with a title.
          * @param title The title. 
@@ -744,6 +748,11 @@ namespace Gx.Source
         {
             SortKey = sortKey;
             return this;
+        }
+
+        public SourceDescription SetDescription(String description)
+        {
+            return SetDescription(new TextValue(description));
         }
 
         /**

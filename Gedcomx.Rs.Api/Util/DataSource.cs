@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Gx.Rs.Api.Util
 {
-    public interface DataSource
+    public interface DataSource : IDisposable
     {
         Stream InputStream { get; }
 

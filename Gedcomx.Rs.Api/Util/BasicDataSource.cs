@@ -7,23 +7,23 @@ using System.Threading.Tasks;
 
 namespace Gx.Rs.Api.Util
 {
-    public class FileDataSource : DataSource
+    public class BasicDataSource : DataSource
     {
-        public FileDataSource()
+        public BasicDataSource()
+            : this(null, null, new byte[] { })
         {
         }
 
-        public FileDataSource(String file)
+        public BasicDataSource(String name, String contentType, Byte[] bytes)
+            : this(name, contentType, new MemoryStream(bytes))
         {
-            using (var fs = new FileStream(file, FileMode.Open))
-            {
-                Byte[] bytes = new Byte[fs.Length];
-                fs.Read(bytes, 0, bytes.Length);
-                InputStream = new MemoryStream(bytes);
-            }
+        }
 
-            InputStream.Seek(0, SeekOrigin.Begin);
-            Name = Path.GetFileName(file);
+        public BasicDataSource(String name, String contentType, Stream stream)
+        {
+            Name = name;
+            ContentType = contentType;
+            InputStream = stream;
         }
 
         public Stream InputStream

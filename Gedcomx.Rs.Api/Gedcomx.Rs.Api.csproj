@@ -103,6 +103,7 @@
     <Compile Include="StateFactory.cs" />
     <Compile Include="StateTransitionOption.cs" />
     <Compile Include="Util\AncestryTree.cs" />
+    <Compile Include="Util\BasicDataSource.cs" />
     <Compile Include="Util\DataSource.cs" />
     <Compile Include="Util\DescendancyTree.cs" />
     <Compile Include="Util\EmbeddedLinkLoader.cs" />

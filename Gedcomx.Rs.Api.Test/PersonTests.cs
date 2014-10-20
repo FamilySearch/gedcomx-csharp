@@ -582,7 +582,7 @@ namespace Gedcomx.Rs.Api.Test
         public void TestReadPersonMemories()
         {
             var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
-            var dataSource = TestBacking.GetDataSource("Sample Memory", MediaTypes.TEXT_PLAIN_TYPE, Resources.MemoryTXT);
+            var dataSource = new BasicDataSource("Sample Memory", MediaTypes.TEXT_PLAIN_TYPE, Resources.MemoryTXT);
             person.AddArtifact(dataSource);
             person = (FamilyTreePersonState)person.Get();
             var state = person.ReadArtifacts();
@@ -595,7 +595,7 @@ namespace Gedcomx.Rs.Api.Test
         public void TestReadPersonMemoriesByType()
         {
             var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
-            var dataSource = TestBacking.GetDataSource("Sample Memory", MediaTypes.TEXT_PLAIN_TYPE, Resources.MemoryTXT);
+            var dataSource = new BasicDataSource("Sample Memory", MediaTypes.TEXT_PLAIN_TYPE, Resources.MemoryTXT);
             person.AddArtifact(dataSource);
             person = (FamilyTreePersonState)person.Get();
             var options = new QueryParameter[] { new QueryParameter("type", "story") };
@@ -611,7 +611,7 @@ namespace Gedcomx.Rs.Api.Test
             var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
             var converter = new ImageConverter();
             var bytes = (Byte[])converter.ConvertTo(TestBacking.GetCreatePhoto(), typeof(Byte[]));
-            var dataSource = TestBacking.GetDataSource(Guid.NewGuid().ToString("n") + ".jpg", "image/jpeg", bytes);
+            var dataSource = new BasicDataSource(Guid.NewGuid().ToString("n") + ".jpg", "image/jpeg", bytes);
             var state = person.AddArtifact(new SourceDescription() { Titles = new List<TextValue>() { new TextValue("PersonImage") }, Citations = new List<SourceCitation>() { new SourceCitation() { Value = "Citation for PersonImage" } } }, dataSource);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());

@@ -536,23 +536,6 @@ namespace Gedcomx.Rs.Api.Test
             };
         }
 
-        public static DataSource GetDataSource(String name, String contentType, String filePath)
-        {
-            DataSource result = null;
-
-            if (System.IO.File.Exists(filePath))
-            {
-                result = new DataSourceTestImpl(name, contentType, new StreamReader(filePath).BaseStream);
-            }
-
-            return result;
-        }
-
-        public static DataSource GetDataSource(String name, String contentType, Byte[] bytes)
-        {
-            return new DataSourceTestImpl(name, contentType, new MemoryStream(bytes));
-        }
-
         public static Name GetCreateName(String name, NameType type, bool preferred)
         {
             var nameParts = GetNameParts(name);
@@ -664,15 +647,15 @@ namespace Gedcomx.Rs.Api.Test
             return result;
         }
 
-        public static Bitmap GetCreatePhoto()
+        public static Bitmap GetCreatePhoto(int width = 5, int height = 5)
         {
-            var result = new Bitmap(5, 5);
+            var result = new Bitmap(width, height);
 
             using (var graphics = Graphics.FromImage(result))
             {
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < width; i++)
                 {
-                    for (int j = 0; j < 5; j++)
+                    for (int j = 0; j < height; j++)
                     {
                         graphics.DrawRectangle(new Pen(new SolidBrush(GetRandomColor())), new Rectangle(i, j, 1, 1));
                     }
@@ -757,34 +740,6 @@ namespace Gedcomx.Rs.Api.Test
             }
 
             return result;
-        }
-    }
-
-    public class DataSourceTestImpl : DataSource
-    {
-        public DataSourceTestImpl(String name, String contentType, Stream inputStream)
-        {
-            Name = name;
-            ContentType = contentType;
-            InputStream = inputStream;
-        }
-
-        public Stream InputStream
-        {
-            get;
-            private set;
-        }
-
-        public String ContentType
-        {
-            get;
-            private set;
-        }
-
-        public String Name
-        {
-            get;
-            private set;
         }
     }
 }

@@ -226,7 +226,7 @@ namespace Gx.Rs.Api
             }
 
             //load links at the document level
-            var collection = entity as Collection;
+            var collection = entity as SupportsLinks;
             if (entity != mainElement && collection != null && collection.Links != null)
             {
                 links.AddRange(collection.Links);

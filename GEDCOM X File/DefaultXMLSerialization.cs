@@ -117,7 +117,20 @@ namespace Gedcomx.File
          */
         private static XmlSerializer NewContext(params Type[] types)
         {
-            return new XmlSerializer(typeof(Gx.Gedcomx), types);
+            XmlSerializer result = null;
+
+            if (types != null && types.Length > 0)
+            {
+                var remaining = new List<Type>(types.Skip(1).ToArray());
+                remaining.Add(typeof(Gx.Gedcomx));
+                result = new XmlSerializer(types.First(), remaining.ToArray());
+            }
+            else
+            {
+                result = new XmlSerializer(typeof(Gx.Gedcomx), types);
+            }
+
+            return result;
         }
 
         public static Encoding Encoding

@@ -22,6 +22,7 @@ namespace Gx.Common
         private string _name;
         private string _value;
 
+        [System.Xml.Serialization.XmlAttribute(AttributeName = "name", Namespace = "http://gedcomx.org/v1/")]
         [Newtonsoft.Json.JsonProperty("name")]
         public string Name
         {

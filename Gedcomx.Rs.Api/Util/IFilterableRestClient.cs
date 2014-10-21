@@ -11,5 +11,6 @@ namespace Gx.Rs.Api.Util
     {
         void AddFilter(IFilter filter);
         IRestResponse Handle(IRestRequest request);
+        bool FollowRedirects { get; set; }
     }
 }

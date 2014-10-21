@@ -100,7 +100,7 @@ namespace Gedcomx.Rs.Api.Test
         public void TestCreateNote()
         {
             var state = collection.ReadPerson(new Uri(READ_PERSON_URI));
-            var note = TestBacking.GetCreateNote(state.Person.Id);
+            var note = TestBacking.GetCreateNote();
             var state2 = state.AddNote(note);
             Assert.DoesNotThrow(() => state2.IfSuccessful());
         }

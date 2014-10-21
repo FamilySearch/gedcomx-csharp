@@ -54,9 +54,9 @@
     <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="RestSharp, Version=104.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="RestSharp, Version=104.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RestSharp.104.4.0\lib\net4\RestSharp.dll</HintPath>
+      <HintPath>..\packages\RestSharp.104.5.0\lib\net4\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
@@ -84,6 +84,7 @@
     <Compile Include="DiscussionsTests.cs" />
     <Compile Include="GedcomxFileTests.cs" />
     <Compile Include="MemoriesTests.cs" />
+    <Compile Include="NotesTests.cs" />
     <Compile Include="ParentsAndChildrenTest.cs" />
     <Compile Include="PedigreeTests.cs" />
     <Compile Include="PersonSearchTests.cs" />

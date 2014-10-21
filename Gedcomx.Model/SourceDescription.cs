@@ -698,6 +698,11 @@ namespace Gx.Source
             return this;
         }
 
+        public SourceDescription SetNote(String note)
+        {
+            return SetNote(new Note().SetText(note));
+        }
+
         /**
          * Build out this source description with a note.
          * @param note the note.

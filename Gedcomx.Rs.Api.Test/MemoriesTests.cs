@@ -18,6 +18,8 @@ using Gx.Rs.Api;
 using FamilySearch.Api.Memories;
 using Gx.Conclusion;
 using Gx.Types;
+using FamilySearch.Api;
+using Gx.Fs.Discussions;
 
 namespace Gedcomx.Rs.Api.Test
 {
@@ -25,12 +27,15 @@ namespace Gedcomx.Rs.Api.Test
     public class MemoriesTests
     {
         private FamilySearchFamilyTree tree;
+        private FamilySearchMemories memories;
 
         [TestFixtureSetUp]
         public void Initialize()
         {
             tree = new FamilySearchFamilyTree(true);
             tree.AuthenticateViaOAuth2Password(Resources.TestUserName, Resources.TestPassword, Resources.TestClientId);
+            memories = new FamilySearchMemories(true);
+            memories = (FamilySearchMemories)memories.AuthenticateWithAccessToken(tree.CurrentAccessToken).Get();
         }
 
         [Test]
@@ -180,6 +185,7 @@ namespace Gedcomx.Rs.Api.Test
             var dataSource = new BasicDataSource(Guid.NewGuid().ToString("n") + ".jpg", "image/jpeg", bytes);
             var description = new SourceDescription().SetTitle("PersonImage").SetCitation("Citation for PersonImage").SetDescription("Description");
             var image = (SourceDescriptionState)tree.AddArtifact(description, dataSource).Get();
+            image.AddPersona(new Person().SetName("John Smith"));
             var state = image.ReadPersonas();
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
@@ -241,6 +247,112 @@ namespace Gedcomx.Rs.Api.Test
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
             image.Delete();
+        }
+
+        [Test]
+        public void TestUpdateMemoryPersona()
+        {
+            var converter = new ImageConverter();
+            var bytes = (Byte[])converter.ConvertTo(TestBacking.GetCreatePhoto(), typeof(Byte[]));
+            var dataSource = new BasicDataSource(Guid.NewGuid().ToString("n") + ".jpg", "image/jpeg", bytes);
+            var description = new SourceDescription().SetTitle("PersonImage").SetCitation("Citation for PersonImage").SetDescription("Description");
+            var image = (SourceDescriptionState)tree.AddArtifact(description, dataSource).Get();
+            var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            var persona = (PersonState)image.AddPersona(new Person().SetName("John Smith")).Get();
+            person.AddPersonaReference(persona);
+            var personas = person.LoadPersonaReferences();
+            var state = personas.Update(personas.Person);
+
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
+            image.Delete();
+        }
+
+        [Test]
+        public void TestDeleteMemoryPersona()
+        {
+            var converter = new ImageConverter();
+            var bytes = (Byte[])converter.ConvertTo(TestBacking.GetCreatePhoto(), typeof(Byte[]));
+            var dataSource = new BasicDataSource(Guid.NewGuid().ToString("n") + ".jpg", "image/jpeg", bytes);
+            var description = new SourceDescription().SetTitle("PersonImage").SetCitation("Citation for PersonImage").SetDescription("Description");
+            var image = (SourceDescriptionState)tree.AddArtifact(description, dataSource).Get();
+            var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            var persona = (PersonState)image.AddPersona(new Person().SetName("John Smith")).Get();
+            person.AddPersonaReference(persona);
+            var personas = person.LoadPersonaReferences();
+            var state = personas.DeletePersonaReference(personas.GetPersonaReference());
+
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
+            image.Delete();
+        }
+
+        [Test]
+        public void TestReadMemoriesForAUser()
+        {
+            var state = memories.ReadResourcesOfCurrentUser();
+
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
+            Assert.IsNotNull(state.SourceDescriptions);
+        }
+
+        [Test]
+        public void TestCreateMemoriesComment()
+        {
+            var artifact = (FamilySearchSourceDescriptionState)memories.AddArtifact(new BasicDataSource("Sample Memory", MediaTypes.TEXT_PLAIN_TYPE, Resources.MemoryTXT)).Get();
+            var comments = artifact.ReadComments();
+            var state = comments.AddComment(new Comment().SetText("Test comment."));
+
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.AreEqual(HttpStatusCode.Created, state.Response.StatusCode);
+
+            artifact.Delete();
+        }
+
+        [Test]
+        public void TestReadMemoriesComments()
+        {
+            var artifact = (FamilySearchSourceDescriptionState)memories.AddArtifact(new BasicDataSource("Sample Memory", MediaTypes.TEXT_PLAIN_TYPE, Resources.MemoryTXT)).Get();
+            var state = artifact.ReadComments();
+
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
+
+            artifact.Delete();
+        }
+
+        [Test]
+        public void TestUpdateMemoriesComment()
+        {
+            var artifact = (FamilySearchSourceDescriptionState)memories.AddArtifact(new BasicDataSource("Sample Memory", MediaTypes.TEXT_PLAIN_TYPE, Resources.MemoryTXT)).Get();
+            var comments = artifact.ReadComments();
+            comments.AddComment(new Comment().SetText("Test comment."));
+            comments = artifact.ReadComments();
+            var update = comments.Discussion.Comments.Single();
+            update.SetText("Updated comment");
+            var state = comments.UpdateComment(update);
+
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
+
+            artifact.Delete();
+        }
+
+        [Test]
+        public void TestDeleteMemoriesComment()
+        {
+            var artifact = (FamilySearchSourceDescriptionState)memories.AddArtifact(new BasicDataSource("Sample Memory", MediaTypes.TEXT_PLAIN_TYPE, Resources.MemoryTXT)).Get();
+            var comments = artifact.ReadComments();
+            comments.AddComment(new Comment().SetText("Test comment."));
+            comments = artifact.ReadComments();
+            var delete = comments.Discussion.Comments.Single();
+            var state = comments.DeleteComment(delete);
+
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
+
+            artifact.Delete();
         }
     }
 }

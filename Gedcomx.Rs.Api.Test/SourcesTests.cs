@@ -12,7 +12,6 @@ namespace Gedcomx.Rs.Api.Test
     [TestFixture]
     public class SourcesTests
     {
-        private readonly String CONTRIBUTOR_RESOURCE_ID = "MM6M-8QJ";
         private FamilySearchFamilyTree tree;
 
         [TestFixtureSetUp]
@@ -27,7 +26,7 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestCreateSourceDescription()
         {
-            var state = tree.AddSourceDescription(TestBacking.GetCreateSourceDescription(CONTRIBUTOR_RESOURCE_ID));
+            var state = tree.AddSourceDescription(TestBacking.GetCreateSourceDescription());
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.Created, state.Response.StatusCode);
@@ -41,7 +40,7 @@ namespace Gedcomx.Rs.Api.Test
             person.AddArtifact(dataSource);
             var artifact = person.ReadArtifacts().SourceDescriptions.First();
             var memoryUri = artifact.GetLink("memory").Href;
-            var state = tree.AddSourceDescription(TestBacking.GetCreateUserSourceDescription(memoryUri, CONTRIBUTOR_RESOURCE_ID));
+            var state = tree.AddSourceDescription(TestBacking.GetCreateUserSourceDescription(memoryUri));
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.Created, state.Response.StatusCode);
@@ -50,7 +49,7 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestReadSourceDescription()
         {
-            var state = (SourceDescriptionState)tree.AddSourceDescription(TestBacking.GetCreateSourceDescription(CONTRIBUTOR_RESOURCE_ID)).Get();
+            var state = (SourceDescriptionState)tree.AddSourceDescription(TestBacking.GetCreateSourceDescription()).Get();
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
@@ -60,7 +59,7 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestUpdateSourceDescription()
         {
-            var description = (SourceDescriptionState)tree.AddSourceDescription(TestBacking.GetCreateSourceDescription(CONTRIBUTOR_RESOURCE_ID)).Get();
+            var description = (SourceDescriptionState)tree.AddSourceDescription(TestBacking.GetCreateSourceDescription()).Get();
             var state = description.Update(description.SourceDescription);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
@@ -70,7 +69,7 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestDeleteSourceDescription()
         {
-            var state = tree.AddSourceDescription(TestBacking.GetCreateSourceDescription(CONTRIBUTOR_RESOURCE_ID)).Delete();
+            var state = tree.AddSourceDescription(TestBacking.GetCreateSourceDescription()).Delete();
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
@@ -93,7 +92,7 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestReadSourceReferences()
         {
-            var source = (SourceDescriptionState)tree.AddSourceDescription(TestBacking.GetCreateSourceDescription(CONTRIBUTOR_RESOURCE_ID)).Get();
+            var source = (SourceDescriptionState)tree.AddSourceDescription(TestBacking.GetCreateSourceDescription()).Get();
             var person = tree.AddPerson(TestBacking.GetCreateMalePerson());
             var sourceRef = TestBacking.GetPersonSourceReference();
             sourceRef.DescriptionRef = source.GetSelfUri();

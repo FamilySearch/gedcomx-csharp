@@ -16,7 +16,6 @@ namespace Gedcomx.Rs.Api.Test
     [TestFixture]
     public class ParentsAndChildrenTest
     {
-        private readonly String CONTRIBUTOR_RESOURCE_ID = "MM6M-8QJ";
         private FamilySearchFamilyTree tree;
 
         [TestFixtureSetUp]
@@ -73,7 +72,7 @@ namespace Gedcomx.Rs.Api.Test
             var mother = tree.AddPerson(TestBacking.GetCreateFemalePerson());
             var son = tree.AddPerson(TestBacking.GetCreateMalePerson());
             var relationship = (ChildAndParentsRelationshipState)tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, mother, son)).Get();
-            var state = relationship.AddNote(TestBacking.GetCreateNote(CONTRIBUTOR_RESOURCE_ID));
+            var state = relationship.AddNote(TestBacking.GetCreateNote());
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.Created, state.Response.StatusCode);

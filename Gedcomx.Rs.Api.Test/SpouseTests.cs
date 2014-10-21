@@ -15,7 +15,6 @@ namespace Gedcomx.Rs.Api.Test
     [TestFixture]
     public class SpouseTests
     {
-        private readonly String CONTRIBUTOR_RESOURCE_ID = "MM6M-8QJ";
         private FamilySearchFamilyTree tree;
 
         [TestFixtureSetUp]
@@ -68,7 +67,7 @@ namespace Gedcomx.Rs.Api.Test
             var husband = (PersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
             var wife = tree.AddPerson(TestBacking.GetCreateFemalePerson());
             var relationship = husband.AddSpouse(wife);
-            var state = relationship.AddNote(TestBacking.GetCreateNote(CONTRIBUTOR_RESOURCE_ID));
+            var state = relationship.AddNote(TestBacking.GetCreateNote());
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.Created, state.Response.StatusCode);
@@ -121,7 +120,7 @@ namespace Gedcomx.Rs.Api.Test
             var husband = (PersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
             var wife = tree.AddPerson(TestBacking.GetCreateFemalePerson());
             var relationship = (RelationshipState)husband.AddSpouse(wife).Get();
-            relationship.AddNote(TestBacking.GetCreateNote(CONTRIBUTOR_RESOURCE_ID));
+            relationship.AddNote(TestBacking.GetCreateNote());
             var state = relationship.LoadNotes();
 
             Assert.DoesNotThrow(() => state.IfSuccessful());

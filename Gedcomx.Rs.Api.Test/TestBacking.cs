@@ -360,21 +360,13 @@ namespace Gedcomx.Rs.Api.Test
             };
         }
 
-        public static Note GetCreateNote(string contributorResourceId)
+        public static Note GetCreateNote()
         {
             return new Note()
-            {
-                Subject = "Sample",
-                Text = "Sample note text",
-                Attribution = new Attribution()
-                {
-                    Contributor = new ResourceReference()
-                    {
-                        Resource = "https://familysearch.org/platform/users/agents/" + contributorResourceId,
-                        ResourceId = contributorResourceId,
-                    },
-                },
-            };
+                .SetSubject("Sample")
+                .SetText("Sample note text")
+                .SetAttribution(new Attribution()
+                    .SetContributor(new ResourceReference("https://familysearch.org/platform/users/agents/MM6M-8QJ").SetResourceId("MM6M-8QJ")));
         }
 
         public static Fact GetBirthFact()
@@ -574,45 +566,19 @@ namespace Gedcomx.Rs.Api.Test
             return result;
         }
 
-        public static SourceDescription GetCreateSourceDescription(string contributorResourceId)
+        public static SourceDescription GetCreateSourceDescription()
         {
             return new SourceDescription()
-            {
-                Citations = new List<SourceCitation>()
-                {
-                    new SourceCitation()
-                    {
-                        Value = "\"United States Census, 1900.\" database and digital images, FamilySearch (https://familysearch.org/: accessed 17 Mar 2012), Ethel Hollivet, 1900; citing United States Census Office, Washington, D.C., 1900 Population Census Schedules, Los Angeles, California, population schedule, Los Angeles Ward 6, Enumeration District 58, p. 20B, dwelling 470, family 501, FHL microfilm 1,240,090; citing NARA microfilm publication T623, roll 90.",
-                    }
-                },
-                Titles = new List<TextValue>()
-                {
-                    new TextValue()
-                    {
-                        Value = "1900 US Census, Ethel Hollivet",
-                    }
-                },
-                Notes = new List<Note>()
-                { 
-                    new Note()
-                    {
-                        Text = "Ethel Hollivet (line 75) with husband Albert Hollivet (line 74); also in the dwelling: step-father Joseph E Watkins (line 72), mother Lina Watkins (line 73), and grandmother -- Lina's mother -- Mary Sasnett (line 76).  Albert's mother and brother also appear on this page -- Emma Hollivet (line 68), and Eddie (line 69).",
-                    }
-                },
-                Attribution = new Attribution()
-                {
-                    Contributor = new ResourceReference()
-                    {
-                        Resource = "https://familysearch.org/platform/users/agents/" + contributorResourceId,
-                        ResourceId = contributorResourceId
-                    },
-                    Modified = DateTime.Now,
-                    ChangeMessage = "This is the change message",
-                }
-            };
+                .SetCitation("\"United States Census, 1900.\" database and digital images, FamilySearch (https://familysearch.org/: accessed 17 Mar 2012), Ethel Hollivet, 1900; citing United States Census Office, Washington, D.C., 1900 Population Census Schedules, Los Angeles, California, population schedule, Los Angeles Ward 6, Enumeration District 58, p. 20B, dwelling 470, family 501, FHL microfilm 1,240,090; citing NARA microfilm publication T623, roll 90.")
+                .SetTitle("1900 US Census, Ethel Hollivet")
+                .SetNote("Ethel Hollivet (line 75) with husband Albert Hollivet (line 74); also in the dwelling: step-father Joseph E Watkins (line 72), mother Lina Watkins (line 73), and grandmother -- Lina's mother -- Mary Sasnett (line 76).  Albert's mother and brother also appear on this page -- Emma Hollivet (line 68), and Eddie (line 69).")
+                .SetAttribution(new Attribution()
+                    .SetContributor(new ResourceReference("https://familysearch.org/platform/users/agents/MM6M-8QJ").SetResourceId("MM6M-8QJ"))
+                    .SetModified(DateTime.Now)
+                    .SetChangeMessage("This is the change message"));
         }
 
-        public static SourceDescription GetCreateUserSourceDescription(string memoryUri, string contributorResourceId)
+        public static SourceDescription GetCreateUserSourceDescription(string memoryUri)
         {
             return new SourceDescription()
             {

@@ -301,7 +301,15 @@ namespace Gx
 
         public Gedcomx AddCollection(Collection collection)
         {
-            this.Collections.Add(collection);
+            if (collection != null)
+            {
+                if (Collections == null)
+                {
+                    Collections = new List<Collection>();
+                }
+
+                Collections.Add(collection);
+            }
 
             return this;
         }

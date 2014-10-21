@@ -29,35 +29,13 @@ namespace Gx.Rs.Api.Util
         public static IRestRequest Accept(this IRestRequest @this, object value)
         {
             var accept = new Parameter() { Name = "Accept", Type = ParameterType.HttpHeader, Value = value };
-            var existing = @this.Parameters.FirstOrDefault(x => x.Type == ParameterType.HttpHeader && x.Name == accept.Name);
-
-            if (existing != null)
-            {
-                existing.Value = accept.Value;
-            }
-            else
-            {
-                @this.AddParameter(accept);
-            }
-
-            return @this;
+            return @this.SetParameter(accept);
         }
 
         public static IRestRequest ContentType(this IRestRequest @this, object value)
         {
             var contentType = new Parameter() { Name = "Content-Type", Type = ParameterType.HttpHeader, Value = value };
-            var existing = @this.Parameters.FirstOrDefault(x => x.Type == ParameterType.HttpHeader && x.Name == contentType.Name);
-
-            if (existing != null)
-            {
-                existing.Value = contentType.Value;
-            }
-            else
-            {
-                @this.AddParameter(contentType);
-            }
-
-            return @this;
+            return @this.SetParameter(contentType);
         }
 
         public static IRestRequest Build(this IRestRequest @this, string href, Method method)
@@ -215,6 +193,28 @@ namespace Gx.Rs.Api.Util
             }
 
             return result;
+        }
+
+        public static IRestRequest AcceptLanguage(this IRestRequest @this, String value)
+        {
+            var accept = new Parameter() { Name = "Accept-Language", Type = ParameterType.HttpHeader, Value = value };
+            return @this.SetParameter(accept);
+        }
+
+        private static IRestRequest SetParameter(this IRestRequest @this, Parameter parameter)
+        {
+            var existing = @this.Parameters.FirstOrDefault(x => x.Type == ParameterType.HttpHeader && x.Name == parameter.Name);
+
+            if (existing != null)
+            {
+                existing.Value = parameter.Value;
+            }
+            else
+            {
+                @this.AddParameter(parameter);
+            }
+
+            return @this;
         }
     }
 }

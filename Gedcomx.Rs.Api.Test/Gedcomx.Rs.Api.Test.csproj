@@ -85,6 +85,7 @@
     <Compile Include="GedcomxFileTests.cs" />
     <Compile Include="MemoriesTests.cs" />
     <Compile Include="NotesTests.cs" />
+    <Compile Include="OrdinancesTests.cs" />
     <Compile Include="ParentsAndChildrenTest.cs" />
     <Compile Include="PedigreeTests.cs" />
     <Compile Include="PersonSearchTests.cs" />

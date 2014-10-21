@@ -136,4 +136,10 @@
   <data name="TestUserName" xml:space="preserve">
     <value>sdktester</value>
   </data>
+  <data name="PublicPassword" xml:space="preserve">
+    <value>1234pass</value>
+  </data>
+  <data name="PublicUserName" xml:space="preserve">
+    <value>general_public_user</value>
+  </data>
 </root>

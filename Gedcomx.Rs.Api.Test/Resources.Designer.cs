@@ -81,6 +81,24 @@ namespace Gedcomx.Rs.Api.Test {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 1234pass.
+        /// </summary>
+        internal static string PublicPassword {
+            get {
+                return ResourceManager.GetString("PublicPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to general_public_user.
+        /// </summary>
+        internal static string PublicUserName {
+            get {
+                return ResourceManager.GetString("PublicUserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         internal static byte[] SampleGEDX {

@@ -53,7 +53,7 @@ namespace FamilySearch.Api.Memories
 
         protected override GedcomxApplicationState<Gx.Gedcomx> Clone(IRestRequest request, IRestResponse response, IFilterableRestClient client)
         {
-            return new FamilySearchMemories(request, response, this.Client, this.CurrentAccessToken, (FamilyTreeStateFactory)this.stateFactory);
+            return new FamilySearchMemories(request, response, this.Client, this.CurrentAccessToken, (FamilySearchStateFactory)this.stateFactory);
         }
 
         public FamilySearchMemories AuthenticateViaUnauthenticatedAccess(String clientId, String ipAddress)

@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Gedcomx.Rs.Api.Test")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("This is the collection of build time tests, exercising many parts of the SDK. The tests were driven by the example requests here: https://familysearch.org/developers/docs/api/examples.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("FamilySearch")]
 [assembly: AssemblyProduct("Gedcomx.Rs.Api.Test")]
-[assembly: AssemblyCopyright("Copyright ©  2014")]
+[assembly: AssemblyCopyright("Copyright © 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

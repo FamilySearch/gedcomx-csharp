@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("GEDCOM X File")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Contains libraries to read and write GEDCOM X files and provides core serialization functionality for all web API communications.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("FamilySearch")]
 [assembly: AssemblyProduct("GEDCOM X File")]
-[assembly: AssemblyCopyright("Copyright ©  2014")]
+[assembly: AssemblyCopyright("Copyright © 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

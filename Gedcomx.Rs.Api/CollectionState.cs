@@ -61,6 +61,14 @@ namespace Gx.Rs.Api
             }
         }
 
+        public Collection Collection
+        {
+            get
+            {
+                return Entity == null ? null : Entity.Collections == null ? null : Entity.Collections.FirstOrDefault();
+            }
+        }
+
         public CollectionState Update(Collection collection, params StateTransitionOption[] options)
         {
             return (CollectionState)Post(new Gedcomx().AddCollection(collection), options);

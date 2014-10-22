@@ -70,7 +70,7 @@
   <ItemGroup>
     <Compile Include="AgentState.cs" />
     <Compile Include="AncestryResultsState.cs" />
-    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CollectionsState.cs" />
     <Compile Include="CollectionState.cs" />
     <Compile Include="DescendancyResultsState.cs" />

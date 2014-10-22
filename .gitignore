@@ -1,5 +1,7 @@
 bin
+[Dd]ebug
 test-results
 packages
 *.userprefs
 *.pidb
+*.suo

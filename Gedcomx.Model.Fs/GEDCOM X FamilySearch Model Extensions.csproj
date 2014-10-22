@@ -43,9 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ArtifactMetadata.cs" />
     <Compile Include="ArtifactType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ChangeInfo.cs" />
     <Compile Include="ChangeObjectModifier.cs" />
     <Compile Include="ChangeObjectType.cs" />

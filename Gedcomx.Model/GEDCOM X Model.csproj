@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Address.cs" />
     <Compile Include="Agent.cs" />
+    <Compile Include="FactQualifierType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Attributable.cs" />
     <Compile Include="Attribution.cs" />

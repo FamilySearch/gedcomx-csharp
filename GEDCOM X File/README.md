@@ -1,4 +1,4 @@
-﻿# GEDCOM X Java File Format
+﻿# GEDCOM X C# File Format
 
 This project provides support for reading and writing the
 [GEDCOM X File Format](https://github.com/FamilySearch/gedcomx/blob/master/specifications/file-format-specification.md).
@@ -17,7 +17,7 @@ To determine the latest version, ~ visit the NuGet link listed above ~.
 
 # Use
 
-Here's how you might write out a GEDCOM X file. See the [`gedcomx-model` documentation](../gedcomx-model/README.md)
+Here's how you might write out a GEDCOM X file. See the [`gedcomx-model` documentation](../Gedcomx.Model/README.md)
 for more information about how to build out the model.
 
 ```csharp

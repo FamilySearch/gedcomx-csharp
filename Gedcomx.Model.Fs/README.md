@@ -1,6 +1,6 @@
 ﻿# FamilySearch Model Extensions
 
-This is where the Java classes that correspond to the FamilySearch 
+This is where the C# classes that correspond to the FamilySearch 
 
 extensions to GEDCOM X live.
 

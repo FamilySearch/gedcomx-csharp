@@ -117,7 +117,7 @@ PersonState person = results.ReadPerson(entries[0]);
 Some collections are designed to hold genealogical data to be updated. Here's how you might
 add a person to a collection.
 
-```java
+```csharp
 //the collection to which the person is to be added
 CollectionState collection = ...;
 

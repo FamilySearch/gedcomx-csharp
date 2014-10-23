@@ -4,7 +4,7 @@ This is a cSharp library that provides support for consuming the [FamilySearch A
 
 The FamilySearch API is an implementation of the [GEDCOM X RS Specification](https://github.com/FamilySearch/gedcomx-rs),
 plus some custom FamilySearch extensions. As such, the FamilySearch API SDK extends the
-[GEDCOM X RS Client](../../../gedcomx-rs-client/README.md).
+[GEDCOM X RS Client](../../../Gedcomx.Rs.Api/README.md).
 
 
 # NuGet Package Information
@@ -20,8 +20,8 @@ Insert content when ready.
 To determine the latest version, ~ visit the NuGet link listed above ~.
 # Use
 
-The FamilySearch API SDK extends the [GEDCOM X RS Client](../../../gedcomx-rs-client/README.md). In addition to the
-base functionality of the [GEDCOM X RS Client](../../../gedcomx-rs-client/README.md), the
+The FamilySearch API SDK extends the [GEDCOM X RS Client](../../../Gedcomx.Rs.Api/README.md). In addition to the
+base functionality of the [GEDCOM X RS Client](../../../Gedcomx.Rs.Api/README.md), the
 FamilySearch API SDK provides additional model classes, convenience classes, and methods to support FamilySearch-specific
 functionality.
 

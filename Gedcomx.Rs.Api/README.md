@@ -1,13 +1,13 @@
-﻿# GEDCOM X csharp RS Client
+﻿# GEDCOM X C# RS Client
 
-This is a csharp library that provides support for consuming a genealogical Web service API that
+This is a C# library that provides support for consuming a genealogical Web service API that
 conforms to the [GEDCOM X RS Specification](https://github.com/FamilySearch/gedcomx-rs).
 
 # NuGet Package Information
 
 
 | Package ID          | Link                |
-|---------------|---------------------------|
+|---------------------|---------------------|
 | Insert package name | insert package link |
 
 See [the section on using these libraries](../README.md#Use).

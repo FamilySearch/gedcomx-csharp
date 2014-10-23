@@ -8,7 +8,7 @@
     <ProjectGuid>{6C4454BD-26BF-43AD-9732-9F1CE4B1CB87}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>Gx.Rs.Api</RootNamespace>
-    <AssemblyName>Gedcomx.Rs.Api</AssemblyName>
+    <AssemblyName>Gedcomx.API.SDK</AssemblyName>
     <Description>Library for accessing a GEDCOM X-compliant API.</Description>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile />

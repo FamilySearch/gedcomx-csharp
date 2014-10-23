@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <projectUrl>https://github.com/FamilySearch/gedcomx-csharp</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <copyright>Copyright &#169; 2014</copyright>
+    <dependencies>
+      <dependency id="Flurl" version="1.0.2" />
+      <dependency id="Microsoft.Net.Http" version="2.2.28" />
+      <dependency id="RestSharp" version="104.5.0" />
+      <dependency id="Tavis.UriTemplates" version="0.4" />
+    </dependencies>
+  </metadata>
+</package>

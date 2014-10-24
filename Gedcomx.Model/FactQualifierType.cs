@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Gedcomx.Model.Util;
 
 namespace Gx.Types
 {
@@ -11,56 +12,22 @@ namespace Gx.Types
         /**
          * The age of a person at the event described by the fact.
          */
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Age")]
         Age,
 
         /**
          * The cause of a specific fact, such as the cause of death.
          */
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Cause")]
         Cause,
 
         /**
          * The religion associated with a religious event such as a baptism or excommunication.
          */
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Religion")]
         Religion,
 
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/OTHER")]
         OTHER,
-    }
-
-    public static class FactQualifierTypeUtil
-    {
-        public static FactQualifierType ConvertFromKnownQName(string qname)
-        {
-            if (qname != null)
-            {
-                if ("http://gedcomx.org/Age".Equals(qname))
-                {
-                    return FactQualifierType.Age;
-                }
-                if ("http://gedcomx.org/Cause".Equals(qname))
-                {
-                    return FactQualifierType.Cause;
-                }
-                if ("http://gedcomx.org/Religion".Equals(qname))
-                {
-                    return FactQualifierType.Religion;
-                }
-            }
-            return FactQualifierType.OTHER;
-        }
-
-        public static string ConvertToKnownQName(FactQualifierType known)
-        {
-            switch (known)
-            {
-                case FactQualifierType.Age:
-                    return "http://gedcomx.org/Age";
-                case FactQualifierType.Cause:
-                    return "http://gedcomx.org/Cause";
-                case FactQualifierType.Religion:
-                    return "http://gedcomx.org/Religion";
-                default:
-                    throw new System.ArgumentException("No known QName for: " + known, "known");
-            }
-        }
     }
 }

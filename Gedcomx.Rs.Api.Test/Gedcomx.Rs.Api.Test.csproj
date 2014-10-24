@@ -79,6 +79,7 @@
   <ItemGroup>
     <Compile Include="Examples\MiscellaneousFactsExampleTest.cs" />
     <Compile Include="Examples\NamesExampleTest.cs" />
+    <Compile Include="Examples\SamuelHamExampleTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AuthenticationTests.cs" />
     <Compile Include="AuthoritiesTests.cs" />

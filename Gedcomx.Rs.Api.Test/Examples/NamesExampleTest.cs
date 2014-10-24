@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Gedcomx.Rs.Api.Test.Examples
 {
-    [TestFixture]
+    [TestFixture(Category = "Examples")]
     public class NamesExampleTest
     {
         private DefaultXmlSerialization xmlSerializer;

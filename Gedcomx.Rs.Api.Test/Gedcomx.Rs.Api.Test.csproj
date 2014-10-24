@@ -78,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Examples\EmmaBocockExampleTest.cs" />
+    <Compile Include="Examples\GeorgeMarthaWashingtonExampleTest.cs" />
     <Compile Include="Examples\MiscellaneousFactsExampleTest.cs" />
     <Compile Include="Examples\NamesExampleTest.cs" />
     <Compile Include="Examples\SamuelHamExampleTest.cs" />

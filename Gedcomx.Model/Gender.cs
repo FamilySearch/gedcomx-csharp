@@ -24,9 +24,18 @@ namespace Gx.Conclusion
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://gedcomx.org/v1/", ElementName = "gender")]
     public partial class Gender : Gx.Conclusion.Conclusion
     {
-
         private string _type;
         private System.Collections.Generic.List<Gx.Records.Field> _fields;
+
+        public Gender()
+        {
+        }
+
+        public Gender(GenderType type)
+        {
+            KnownType = type;
+        }
+
         /// <summary>
         ///  The type of the gender.
         /// </summary>

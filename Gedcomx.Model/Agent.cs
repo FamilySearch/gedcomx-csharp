@@ -184,6 +184,11 @@ namespace Gx.Agent
             visitor.VisitAgent(this);
         }
 
+        public Agent SetName(String name)
+        {
+            return SetName(new TextValue(name));
+        }
+
         /**
          * Build up this agent with a name.
          * 
@@ -239,6 +244,17 @@ namespace Gx.Agent
         {
             AddAccount(account);
             return this;
+        }
+
+        /**
+         * Build up this agent with an email address.
+         *
+         * @param email The email address.
+         * @return this.
+         */
+        public Agent SetEmail(String email)
+        {
+            return SetEmail(new ResourceReference("mailto:" + email));
         }
 
         /**

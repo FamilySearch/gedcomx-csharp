@@ -21,10 +21,19 @@ namespace Gx.Common
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://gedcomx.org/v1/", ElementName = "evidenceReference")]
     public sealed partial class EvidenceReference : Gx.Links.HypermediaEnabledData, Attributable
     {
-
         private string _resourceId;
         private string _resource;
         private Gx.Common.Attribution _attribution;
+
+        public EvidenceReference()
+        {
+        }
+
+        public EvidenceReference(String resource)
+        {
+            this.Resource = resource;
+        }
+        
         /// <summary>
         ///  The resource id of the resource being referenced.
         /// </summary>

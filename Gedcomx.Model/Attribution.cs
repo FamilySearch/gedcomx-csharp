@@ -108,6 +108,21 @@ namespace Gx.Common
         /**
          * Build up this attribution with a contributor.
          *
+         * @param agent The contributor.
+         * @return this.
+         */
+        public Attribution SetContributor(Gx.Agent.Agent agent)
+        {
+            if (agent.Id == null)
+            {
+                throw new ArgumentException("Can't reference agent as a contributor: no id.");
+            }
+            return SetContributor(new ResourceReference("#" + agent.Id));
+        }
+
+        /**
+         * Build up this attribution with a contributor.
+         *
          * @param contributor The contributor.
          * @return this.
          */

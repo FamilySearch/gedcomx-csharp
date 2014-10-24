@@ -227,6 +227,22 @@ namespace Gx.Conclusion
         }
 
         /**
+         * Build out this relationship with a reference to person 2.
+         *
+         * @param person2 person 2.
+         * @return this.
+         */
+        public Relationship SetPerson2(Person person2)
+        {
+            if (person2.Id == null)
+            {
+                throw new ArgumentException("Cannot reference person2: no id.");
+            }
+            SetPerson2(new ResourceReference("#" + person2.Id));
+            return this;
+        }
+
+        /**
          * Build out this relationship with a fact.
          * @param fact The fact.
          * @return this

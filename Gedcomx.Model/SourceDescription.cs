@@ -831,6 +831,17 @@ namespace Gx.Source
          * @param repository The repository.
          * @return this.
          */
+        public SourceDescription SetRepository(Gx.Agent.Agent repository)
+        {
+            return SetRepository(new ResourceReference("#" + repository.Id));
+        }
+
+        /**
+         * Build out this source description with a repository.
+         *
+         * @param repository The repository.
+         * @return this.
+         */
         public SourceDescription SetRepository(ResourceReference repository)
         {
             Repository = repository;

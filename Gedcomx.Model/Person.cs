@@ -25,7 +25,6 @@ namespace Gx.Conclusion
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://gedcomx.org/v1/", ElementName = "person")]
     public partial class Person : Gx.Conclusion.Subject
     {
-
         private bool? _principal;
         private bool _principalSpecified;
         private bool? _private;
@@ -446,6 +445,16 @@ namespace Gx.Conclusion
                 }
                 _fields.Add(field);
             }
+        }
+
+        public Person SetEvidence(Person evidence)
+        {
+            if (evidence.Id == null)
+            {
+                throw new ArgumentException("Unable to add person as evidence: no id.");
+            }
+
+            return (Person)base.SetEvidence(new EvidenceReference("#" + evidence.Id));
         }
     }
 }

@@ -24,11 +24,42 @@ namespace Gx.Conclusion
     [Newtonsoft.Json.JsonObject("events")]
     public partial class Event : Gx.Conclusion.Subject
     {
-
         private string _type;
         private Gx.Conclusion.DateInfo _date;
         private Gx.Conclusion.PlaceReference _place;
         private System.Collections.Generic.List<Gx.Conclusion.EventRole> _roles;
+
+        /**
+         * Create an event.
+         */
+        public Event()
+        {
+        }
+
+        /**
+         * Create an event with the passed in type and values.
+         *
+         * @param EventType the event type.
+         */
+        public Event(EventType EventType)
+        {
+            SetType(EventType);
+        }
+
+        /**
+         * Create a date/place event with the passed in type and values.
+         *
+         * @param EventType the event type.
+         * @param date The date of applicability of this event.
+         * @param place The place of applicability of this event.
+         */
+        public Event(EventType EventType, DateInfo date, PlaceReference place)
+        {
+            SetType(EventType);
+            SetDate(date);
+            SetPlace(place);
+        }
+        
         /// <summary>
         ///  The type of the event.
         /// </summary>

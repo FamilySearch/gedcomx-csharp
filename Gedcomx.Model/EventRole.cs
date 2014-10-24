@@ -110,6 +110,21 @@ namespace Gx.Conclusion
          * @param person The person.
          * @return this.
          */
+        public EventRole SetPerson(Person person)
+        {
+            if (person.Id == null)
+            {
+                throw new ArgumentException("Cannot reference person: no id.");
+            }
+            SetPerson(new ResourceReference("#" + person.Id));
+            return this;
+        }
+
+        /**
+         * Build up this event role with a person.
+         * @param person The person.
+         * @return this.
+         */
         public EventRole SetPerson(ResourceReference person)
         {
             Person = person;

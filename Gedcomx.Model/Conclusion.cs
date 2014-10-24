@@ -23,7 +23,6 @@ namespace Gx.Conclusion
     [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Conclusion")]
     public abstract partial class Conclusion : Gx.Links.HypermediaEnabledData, Attributable
     {
-
         private string _confidence;
         private string _sortKey;
         private string _lang;
@@ -227,6 +226,17 @@ namespace Gx.Conclusion
         /**
          * Build up this conclusion with a source reference.
          *
+         * @param source The source description being referenced.
+         * @return this.
+         */
+        public Conclusion SetSource(SourceDescription source)
+        {
+            return SetSource(new SourceReference().SetDescription(source));
+        }
+
+        /**
+         * Build up this conclusion with a source reference.
+         *
          * @param sourceReference The source reference.
          * @return this.
          */
@@ -258,6 +268,22 @@ namespace Gx.Conclusion
         {
             SetAttribution(attribution);
             return this;
+        }
+
+        /**
+         * Add a reference to the analysis for this conclusion.
+         *
+         * @param analysis The analysis.
+         * @return this.
+         */
+        public Conclusion SetAnalysis(Document analysis)
+        {
+            if (analysis.Id == null)
+            {
+                throw new ArgumentException("Cannot reference analysis: no id.");
+            }
+
+            return SetAnalysis(new ResourceReference("#" + analysis.Id));
         }
 
         /**

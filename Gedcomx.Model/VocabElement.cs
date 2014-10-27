@@ -20,7 +20,7 @@ namespace Gedcomx.Model
         // This is only present (OPTIONALLY) when used as an "Entries in a List" object
         private String sublist;
         // This is only present (OPTIONALLY) when used as an "Entries in a List" object
-        private Int32 position;
+        private Int32? position;
 
         public String Id
         {
@@ -126,7 +126,7 @@ namespace Gedcomx.Model
 
         [System.Xml.Serialization.XmlIgnore]
         [Newtonsoft.Json.JsonIgnore]
-        public Int32 Position
+        public Int32? Position
         {
             get
             {
@@ -144,14 +144,14 @@ namespace Gedcomx.Model
             // Otherwise, compare alphabetically against sortName
             // Then arbitrarily compare on Term Type, Concept, and Id
             int pos = 0;
-            Int32 oPosition = o.Position;
+            Int32? oPosition = o.Position;
             if (position != null)
             {
-                pos = (oPosition == null) ? position : position - oPosition;
+                pos = (oPosition == null) ? position.Value : position.Value - (oPosition ?? 0);
             }
             else if (oPosition != null)
             {
-                pos = oPosition;
+                pos = oPosition.Value;
             }
             if (pos == 0)
             { // Either positions are the same or null

@@ -33,6 +33,12 @@ namespace FamilySearch.Api.Ft
             return new FamilyTreePersonChildrenState(request, response, client, this.CurrentAccessToken, (FamilyTreeStateFactory)this.stateFactory);
         }
 
+        /// <summary>
+        /// Loads the entity from the REST API response if the response should have data.
+        /// </summary>
+        /// <param name="response">The REST API response.</param>
+        /// <returns>Conditional returns the entity from the REST API response if the response should have data.</returns>
+        /// <remarks>The REST API response should have data if the invoking request was a GET and the response status is OK or GONE.</remarks>
         protected override Gx.Gedcomx LoadEntityConditionally(IRestResponse response)
         {
             if (Request.Method == Method.GET && (response.StatusCode == HttpStatusCode.OK

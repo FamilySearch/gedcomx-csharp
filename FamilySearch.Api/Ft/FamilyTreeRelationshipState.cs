@@ -12,8 +12,19 @@ using Gx.Links;
 
 namespace FamilySearch.Api.Ft
 {
+    /// <summary>
+    /// The FamilyTreeRelationshipState exposes management and other FamilySearch specific functions for a relationship.
+    /// </summary>
     public class FamilyTreeRelationshipState : RelationshipState, PreferredRelationshipState
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FamilyTreeRelationshipState"/> class.
+        /// </summary>
+        /// <param name="request">The REST API request that will be used to instantiate this state instance.</param>
+        /// <param name="response">The REST API response that was produced from the REST API request.</param>
+        /// <param name="client">The REST API client to use for API calls.</param>
+        /// <param name="accessToken">The access token to use for subsequent invocations of the REST API client.</param>
+        /// <param name="stateFactory">The state factory to use for state instantiation.</param>
         protected internal FamilyTreeRelationshipState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken, FamilyTreeStateFactory stateFactory)
             : base(request, response, client, accessToken, stateFactory)
         {
@@ -61,6 +72,13 @@ namespace FamilySearch.Api.Ft
             return response.ToIRestResponse<FamilySearchPlatform>().Data;
         }
 
+        /// <summary>
+        /// Creates a REST API request (with appropriate authentication headers).
+        /// </summary>
+        /// <param name="rel">If the value is equal to the discussion references link, the resulting request is built with accept and content-type headers of "application/x-fs-v1+json"; otherwise, "application/x-gedcomx-v1+json" is used.</param>
+        /// <returns>
+        /// A REST API requeset (with appropriate authentication headers).
+        /// </returns>
         protected override IRestRequest CreateRequestForEmbeddedResource(String rel)
         {
             if (Rel.DISCUSSION_REFERENCES.Equals(rel))
@@ -73,11 +91,25 @@ namespace FamilySearch.Api.Ft
             }
         }
 
+        /// <summary>
+        /// Loads all discussion references for the current relationship.
+        /// </summary>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="FamilyTreeRelationshipState"/> instance containing the REST API response.
+        /// </returns>
         public FamilyTreeRelationshipState LoadDiscussionReferences(params StateTransitionOption[] options)
         {
             return (FamilyTreeRelationshipState)base.LoadEmbeddedResources(new String[] { Rel.DISCUSSION_REFERENCES }, options);
         }
 
+        /// <summary>
+        /// Reads the change history of the current relationship.
+        /// </summary>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="ChangeHistoryState"/> instance containing the REST API response.
+        /// </returns>
         public ChangeHistoryState ReadChangeHistory(params StateTransitionOption[] options)
         {
             Link link = GetLink(Rel.CHANGE_HISTORY);
@@ -90,6 +122,13 @@ namespace FamilySearch.Api.Ft
             return ((FamilyTreeStateFactory)this.stateFactory).NewChangeHistoryState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
+        /// <summary>
+        /// Restore the current relationship (if it is currently deleted).
+        /// </summary>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="FamilyTreeRelationshipState"/> instance containing the REST API response.
+        /// </returns>
         public FamilyTreeRelationshipState Restore(params StateTransitionOption[] options)
         {
             Link link = GetLink(Rel.RESTORE);

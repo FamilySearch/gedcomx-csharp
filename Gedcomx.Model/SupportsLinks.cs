@@ -28,8 +28,8 @@ namespace Gedcomx.Model
         /// <summary>
         /// Add a hypermedia link.
         /// </summary>
-        /// <param name="rel">TThe link rel.</param>
-        /// <param name="href">he target URI.</param>
+        /// <param name="rel">The link rel.</param>
+        /// <param name="href">The target URI.</param>
         void AddLink(String rel, Uri href);
 
         /// <summary>

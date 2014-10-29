@@ -369,8 +369,8 @@ namespace Gx.Atom
         /// <summary>
         /// Add a hypermedia link.
         /// </summary>
-        /// <param name="rel">TThe link rel.</param>
-        /// <param name="href">he target URI.</param>
+        /// <param name="rel">The link rel.</param>
+        /// <param name="href">The target URI.</param>
         /// <exception cref="System.NotImplementedException"></exception>
         public void AddLink(string rel, Uri href)
         {

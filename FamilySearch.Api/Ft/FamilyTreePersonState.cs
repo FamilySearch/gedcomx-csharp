@@ -18,7 +18,7 @@ using Gedcomx.Support;
 namespace FamilySearch.Api.Ft
 {
     /// <summary>
-    /// The PersonState exposes management and other FamilySearch specific functions for a person.
+    /// The FamilyTreePersonState exposes management and other FamilySearch specific functions for a person.
     /// </summary>
     public class FamilyTreePersonState : PersonState
     {

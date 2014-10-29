@@ -48,6 +48,11 @@ namespace Gx.Rs.Api
             return new VocabElementState(request, response, client, this.CurrentAccessToken, this.stateFactory);
         }
 
+        /// <summary>
+        /// Returns the <see cref="RDFDataset"/> from the REST API response.
+        /// </summary>
+        /// <param name="response">The REST API response.</param>
+        /// <returns>The <see cref="RDFDataset"/> from the REST API response.</returns>
         protected override RDFDataset LoadEntity(IRestResponse response)
         {
             var token = JSONUtils.FromString(response.Content);

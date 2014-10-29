@@ -110,6 +110,11 @@ namespace FamilySearch.Api.Ft
             }
         }
 
+        /// <summary>
+        /// Returns the <see cref="Gx.Gedcomx"/> from the REST API response.
+        /// </summary>
+        /// <param name="response">The REST API response.</param>
+        /// <returns>The <see cref="Gx.Gedcomx"/> from the REST API response.</returns>
         protected override Gx.Gedcomx LoadEntity(IRestResponse response)
         {
             FamilySearchPlatform result = null;

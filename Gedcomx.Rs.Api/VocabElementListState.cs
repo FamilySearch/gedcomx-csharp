@@ -76,6 +76,11 @@ namespace Gx.Rs.Api
             return vocabElementList;
         }
 
+        /// <summary>
+        /// Returns the <see cref="RDFDataset" /> from the REST API response.
+        /// </summary>
+        /// <param name="response">The REST API response.</param>
+        /// <returns>The <see cref="RDFDataset"/> from the REST API response.</returns>
         protected override RDFDataset LoadEntity(IRestResponse response)
         {
             var token = JSONUtils.FromString(response.Content);

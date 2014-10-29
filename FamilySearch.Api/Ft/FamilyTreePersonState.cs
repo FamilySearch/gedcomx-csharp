@@ -34,7 +34,7 @@ namespace FamilySearch.Api.Ft
         /// <summary>
         /// Initializes a new instance of the <see cref="FamilyTreePersonState"/> class.
         /// </summary>
-        /// <param name="uri">he URI where the target resides.</param>
+        /// <param name="uri">The URI where the target resides.</param>
         /// <param name="stateFactory">The state factory to use for state instantiation.</param>
         private FamilyTreePersonState(Uri uri, FamilyTreeStateFactory stateFactory)
             : this(uri, stateFactory.LoadDefaultClientInt(uri), stateFactory)
@@ -44,7 +44,7 @@ namespace FamilySearch.Api.Ft
         /// <summary>
         /// Initializes a new instance of the <see cref="FamilyTreePersonState"/> class.
         /// </summary>
-        /// <param name="uri">he URI where the target resides.</param>
+        /// <param name="uri">The URI where the target resides.</param>
         /// <param name="client">The REST API client to use for API calls.</param>
         /// <param name="stateFactory">The state factory to use for state instantiation.</param>
         private FamilyTreePersonState(Uri uri, IFilterableRestClient client, FamilyTreeStateFactory stateFactory)

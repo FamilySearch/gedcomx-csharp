@@ -210,7 +210,7 @@ namespace FamilySearch.Api.Ft
         /// <summary>
         /// Creates a REST API request (with appropriate authentication headers).
         /// </summary>
-        /// <param name="rel">If the value is equal to the discussion references link, the resulting request is built an accept and content-type headers of "application/x-fs-v1+json"; otherwise, "application/x-gedcomx-v1+json" is used.</param>
+        /// <param name="rel">If the value is equal to the discussion references link, the resulting request is built with accept and content-type headers of "application/x-fs-v1+json"; otherwise, "application/x-gedcomx-v1+json" is used.</param>
         /// <returns>
         /// A REST API requeset (with appropriate authentication headers).
         /// </returns>

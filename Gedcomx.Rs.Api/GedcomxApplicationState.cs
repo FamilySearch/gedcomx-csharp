@@ -598,7 +598,7 @@ namespace Gx.Rs.Api
         }
 
         /// <summary>
-        /// Authenticates the via OAuth2 password.
+        /// Authenticates this session via OAuth2 password.
         /// </summary>
         /// <param name="username">The username.</param>
         /// <param name="password">The password.</param>
@@ -611,7 +611,7 @@ namespace Gx.Rs.Api
         }
 
         /// <summary>
-        /// Authenticates the via OAuth2 password.
+        /// Authenticates this session via OAuth2 password.
         /// </summary>
         /// <param name="username">The username.</param>
         /// <param name="password">The password.</param>
@@ -634,7 +634,7 @@ namespace Gx.Rs.Api
         }
 
         /// <summary>
-        /// Authenticates the via OAuth2 authentication code.
+        /// Authenticates this session via OAuth2 authentication code.
         /// </summary>
         /// <param name="authCode">The authentication code.</param>
         /// <param name="redirect">The redirect.</param>
@@ -647,7 +647,7 @@ namespace Gx.Rs.Api
         }
 
         /// <summary>
-        /// Authenticates the via OAuth2 authentication code.
+        /// Authenticates this session via OAuth2 authentication code.
         /// </summary>
         /// <param name="authCode">The authentication code.</param>
         /// <param name="redirect">The redirect.</param>
@@ -670,7 +670,7 @@ namespace Gx.Rs.Api
         }
 
         /// <summary>
-        /// Authenticates the via OAuth2 client credentials.
+        /// Authenticates this session via OAuth2 client credentials.
         /// </summary>
         /// <param name="clientId">The client identifier.</param>
         /// <param name="clientSecret">The client secret.</param>
@@ -721,7 +721,7 @@ namespace Gx.Rs.Api
         }
 
         /// <summary>
-        /// Authenticates the via OAuth2.
+        /// Authenticates this session via OAuth2.
         /// </summary>
         /// <param name="formData">The form data.</param>
         /// <param name="options">The options to apply before executing the REST API call.</param>

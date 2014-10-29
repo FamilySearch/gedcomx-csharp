@@ -83,7 +83,7 @@ namespace FamilySearch.Api.Ft
         /// <param name="response">The REST API response that was produced from the REST API request.</param>
         /// <param name="client">The REST API client to use for API calls.</param>
         /// <returns>
-        /// A <see cref="GedcomxApplicationState{Gx.Gedcomx}"/> instance containing the REST API response.
+        /// A <see cref="GedcomxApplicationState{T}"/> instance, of type <see cref="Gx.Gedcomx"/>, containing the REST API response.
         /// </returns>
         protected override GedcomxApplicationState<Gx.Gedcomx> Clone(IRestRequest request, IRestResponse response, IFilterableRestClient client)
         {

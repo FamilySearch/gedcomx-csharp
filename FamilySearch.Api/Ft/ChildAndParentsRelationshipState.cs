@@ -125,10 +125,10 @@ namespace FamilySearch.Api.Ft
         }
 
         /// <summary>
-        /// Gets the first <see cref="FatherFacts"/> from the current <see cref="Relationship"/>.
+        /// Gets the first <see cref="P:Relationship.FatherFacts"/> from the current <see cref="Relationship"/>.
         /// </summary>
         /// <value>
-        /// The first <see cref="FatherFacts"/> from the current <see cref="Relationship"/>.
+        /// The first <see cref="P:Relationship.FatherFacts"/> from the current <see cref="Relationship"/>.
         /// </value>
         public Fact FatherFact
         {
@@ -140,10 +140,10 @@ namespace FamilySearch.Api.Ft
         }
 
         /// <summary>
-        /// Gets the first <see cref="MotherFacts"/> from the current <see cref="Relationship"/>.
+        /// Gets the first <see cref="P:Relationship.MotherFacts"/> from the current <see cref="Relationship"/>.
         /// </summary>
         /// <value>
-        /// The first <see cref="MotherFacts"/> from the current <see cref="Relationship"/>.
+        /// The first <see cref="P:Relationship.MotherFacts"/> from the current <see cref="Relationship"/>.
         /// </value>
         public Fact MotherFact
         {
@@ -155,10 +155,10 @@ namespace FamilySearch.Api.Ft
         }
 
         /// <summary>
-        /// Gets the first <see cref="Notes"/> from the current <see cref="Relationship"/>.
+        /// Gets the first <see cref="P:Relationship.Notes"/> from the current <see cref="Relationship"/>.
         /// </summary>
         /// <value>
-        /// The first <see cref="Notes"/> from the current <see cref="Relationship"/>.
+        /// The first <see cref="P:Relationship.Notes"/> from the current <see cref="Relationship"/>.
         /// </value>
         public Note Note
         {
@@ -170,10 +170,10 @@ namespace FamilySearch.Api.Ft
         }
 
         /// <summary>
-        /// Gets the first <see cref="Sources"/> from the current <see cref="Relationship"/>.
+        /// Gets the first <see cref="P:Relationship.Sources"/> from the current <see cref="Relationship"/>.
         /// </summary>
         /// <value>
-        /// The first <see cref="Sources"/> from the current <see cref="Relationship"/>.
+        /// The first <see cref="P:Relationship.Sources"/> from the current <see cref="Relationship"/>.
         /// </value>
         public SourceReference SourceReference
         {
@@ -185,10 +185,10 @@ namespace FamilySearch.Api.Ft
         }
 
         /// <summary>
-        /// Gets the first <see cref="Evidence"/> from the current <see cref="Relationship"/>.
+        /// Gets the first <see cref="P:Relationship.Evidence"/> from the current <see cref="Relationship"/>.
         /// </summary>
         /// <value>
-        /// The first <see cref="Evidence"/> from the current <see cref="Relationship"/>.
+        /// The first <see cref="P:Relationship.Evidence"/> from the current <see cref="Relationship"/>.
         /// </value>
         public EvidenceReference EvidenceReference
         {
@@ -200,10 +200,10 @@ namespace FamilySearch.Api.Ft
         }
 
         /// <summary>
-        /// Gets the first <see cref="Media"/> from the current <see cref="Relationship"/>.
+        /// Gets the first <see cref="P:Relationship.Media"/> from the current <see cref="Relationship"/>.
         /// </summary>
         /// <value>
-        /// The first <see cref="Media"/> from the current <see cref="Relationship"/>.
+        /// The first <see cref="P:Relationship.Media"/> from the current <see cref="Relationship"/>.
         /// </value>
         public SourceReference MediaReference
         {
@@ -697,7 +697,7 @@ namespace FamilySearch.Api.Ft
         /// <summary>
         /// Updates the media references of the specified relationship.
         /// </summary>
-        /// <param name="person">The relationship with media references that will be updated.</param>
+        /// <param name="relationship">The relationship with media references that will be updated.</param>
         /// <param name="options">The options to apply before executing the REST API call.</param>
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
@@ -798,7 +798,7 @@ namespace FamilySearch.Api.Ft
         /// <summary>
         /// Updates the evidence references for the specified relationship.
         /// </summary>
-        /// <param name="person">The relationship with evidence references to be updated.</param>
+        /// <param name="relationship">The relationship with evidence references to be updated.</param>
         /// <param name="options">The options to apply before executing the REST API call.</param>
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
@@ -921,7 +921,7 @@ namespace FamilySearch.Api.Ft
         /// <summary>
         /// Update the notes on the specified relationship.
         /// </summary>
-        /// <param name="person">The relationship with the notes to be updated.</param>
+        /// <param name="relationship">The relationship with the notes to be updated.</param>
         /// <param name="options">The options to apply before executing the REST API call.</param>
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.

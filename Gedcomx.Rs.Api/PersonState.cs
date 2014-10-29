@@ -54,7 +54,7 @@ namespace Gx.Rs.Api
         /// <summary>
         /// Initializes a new instance of the <see cref="PersonState"/> class.
         /// </summary>
-        /// <param name="request">The REST API request that will be used to instantiate this IRestRequest.</param>
+        /// <param name="request">The REST API request that will be used to instantiate this state instance.</param>
         /// <param name="client">The REST API client to use for API calls.</param>
         /// <param name="stateFactory">The state factory to use for state instantiation.</param>
         internal PersonState(IRestRequest request, IFilterableRestClient client, StateFactory stateFactory)
@@ -65,7 +65,7 @@ namespace Gx.Rs.Api
         /// <summary>
         /// Initializes a new instance of the <see cref="PersonState" /> class.
         /// </summary>
-        /// <param name="request">The REST API request that will be used to instantiate this IRestRequest.</param>
+        /// <param name="request">The REST API request that will be used to instantiate this state instance.</param>
         /// <param name="response">The REST API response that was produced from the REST API request.</param>
         /// <param name="client">The REST API client to use for API calls.</param>
         /// <param name="accessToken">The access token to use for subsequent invocations of the REST API client.</param>
@@ -95,9 +95,7 @@ namespace Gx.Rs.Api
         /// <param name="request">The REST API request used to create this state instance.</param>
         /// <param name="response">The REST API response used to create this state instance.</param>
         /// <param name="client">The REST API client used to create this state instance.</param>
-        /// <returns>
-        /// A cloned instance of the current state instance.
-        /// </returns>
+        /// <returns>A cloned instance of the current state instance.</returns>
         protected override GedcomxApplicationState<Gedcomx> Clone(IRestRequest request, IRestResponse response, IFilterableRestClient client)
         {
             return new PersonState(request, response, client, this.CurrentAccessToken, this.stateFactory);

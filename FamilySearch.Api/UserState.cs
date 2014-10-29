@@ -19,6 +19,13 @@ namespace FamilySearch.Api
         {
         }
 
+        /// <summary>
+        /// Clones the current state instance.
+        /// </summary>
+        /// <param name="request">The REST API request used to create this state instance.</param>
+        /// <param name="response">The REST API response used to create this state instance.</param>
+        /// <param name="client">The REST API client used to create this state instance.</param>
+        /// <returns>A cloned instance of the current state instance.</returns>
         protected override GedcomxApplicationState<FamilySearchPlatform> Clone(IRestRequest request, IRestResponse response, IFilterableRestClient client)
         {
             return new UserState(request, response, client, this.CurrentAccessToken, (FamilySearchStateFactory)this.stateFactory);

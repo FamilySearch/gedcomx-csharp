@@ -443,8 +443,11 @@ namespace Gx.Rs.Api
         /// <summary>
         /// Returns the current state instance if there are no errors in the current REST API response; otherwise, it throws an exception with the response details.
         /// </summary>
-        /// <returns>The current state instance if there are no errors in the current REST API response or throws an exception with the response details.</returns>
-        /// <exception cref="GedcomxApplicationException">Thrown if <see cref="HasError()"/> returns true.</exception>
+        /// <returns>
+        /// A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response or throws an exception with the response details.
+        /// </returns>
+        /// <exception cref="Gx.Rs.Api.GedcomxApplicationException"></exception>
+        /// <exception cref="GedcomxApplicationException">Thrown if <see cref="HasError()" /> returns true.</exception>
         public virtual GedcomxApplicationState<T> IfSuccessful()
         {
             if (HasError())
@@ -458,7 +461,7 @@ namespace Gx.Rs.Api
         /// Executes a HEAD verb request against the current REST API request and returns a state instance with the response.
         /// </summary>
         /// <param name="options">The options to apply before executing the REST API call.</param>
-        /// <returns>A state instance containing the REST API response.</returns>
+        /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
         public virtual GedcomxApplicationState<T> Head(params StateTransitionOption[] options)
         {
             IRestRequest request = CreateAuthenticatedRequest();
@@ -476,7 +479,7 @@ namespace Gx.Rs.Api
         /// Executes an OPTIONS verb request against the current REST API request and returns a state instance with the response.
         /// </summary>
         /// <param name="options">The options to apply before executing the REST API call.</param>
-        /// <returns>A state instance containing the REST API response.</returns>
+        /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
         public virtual GedcomxApplicationState<T> Options(params StateTransitionOption[] options)
         {
             IRestRequest request = CreateAuthenticatedRequest();
@@ -493,7 +496,7 @@ namespace Gx.Rs.Api
         /// Executes a GET verb request against the current REST API request and returns a state instance with the response.
         /// </summary>
         /// <param name="options">The options to apply before executing the REST API call.</param>
-        /// <returns>A state instance containing the REST API response.</returns>
+        /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
         public virtual GedcomxApplicationState<T> Get(params StateTransitionOption[] options)
         {
             IRestRequest request = CreateAuthenticatedRequest();
@@ -512,7 +515,7 @@ namespace Gx.Rs.Api
         /// Executes an DELETE verb request against the current REST API request and returns a state instance with the response.
         /// </summary>
         /// <param name="options">The options to apply before executing the REST API call.</param>
-        /// <returns>A state instance containing the REST API response.</returns>
+        /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
         public virtual GedcomxApplicationState<T> Delete(params StateTransitionOption[] options)
         {
             IRestRequest request = CreateAuthenticatedRequest();
@@ -530,9 +533,7 @@ namespace Gx.Rs.Api
         /// </summary>
         /// <param name="entity">The entity to be used as the body of the REST API request. This is the entity to be PUT.</param>
         /// <param name="options">The options to apply before executing the REST API call.</param>
-        /// <returns>
-        /// A state instance containing the REST API response.
-        /// </returns>
+        /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
         public virtual GedcomxApplicationState<T> Put(T entity, params StateTransitionOption[] options)
         {
             IRestRequest request = CreateAuthenticatedRequest();
@@ -555,9 +556,7 @@ namespace Gx.Rs.Api
         /// </summary>
         /// <param name="entity">The entity to be used as the body of the REST API request. This is the entity to be POST.</param>
         /// <param name="options">The options to apply before executing the REST API call.</param>
-        /// <returns>
-        /// A state instance containing the REST API response.
-        /// </returns>
+        /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
         public virtual GedcomxApplicationState<T> Post(T entity, params StateTransitionOption[] options)
         {
             IRestRequest request = CreateAuthenticatedRequest();
@@ -604,7 +603,7 @@ namespace Gx.Rs.Api
         /// <param name="username">The username.</param>
         /// <param name="password">The password.</param>
         /// <param name="clientId">The client identifier.</param>
-        /// <returns>A state instance containing the REST API response.</returns>
+        /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
         /// <remarks>See https://familysearch.org/developers/docs/guides/oauth2 for more information.</remarks>
         public virtual GedcomxApplicationState<T> AuthenticateViaOAuth2Password(String username, String password, String clientId)
         {
@@ -618,7 +617,7 @@ namespace Gx.Rs.Api
         /// <param name="password">The password.</param>
         /// <param name="clientId">The client identifier.</param>
         /// <param name="clientSecret">The client secret.</param>
-        /// <returns>A state instance containing the REST API response.</returns>
+        /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
         /// <remarks>See https://familysearch.org/developers/docs/guides/oauth2 for more information.</remarks>
         public virtual GedcomxApplicationState<T> AuthenticateViaOAuth2Password(String username, String password, String clientId, String clientSecret)
         {
@@ -640,7 +639,7 @@ namespace Gx.Rs.Api
         /// <param name="authCode">The authentication code.</param>
         /// <param name="redirect">The redirect.</param>
         /// <param name="clientId">The client identifier.</param>
-        /// <returns>A state instance containing the REST API response.</returns>
+        /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
         /// <remarks>See https://familysearch.org/developers/docs/guides/oauth2 for more information.</remarks>
         public GedcomxApplicationState<T> AuthenticateViaOAuth2AuthCode(String authCode, String redirect, String clientId)
         {
@@ -654,7 +653,7 @@ namespace Gx.Rs.Api
         /// <param name="redirect">The redirect.</param>
         /// <param name="clientId">The client identifier.</param>
         /// <param name="clientSecret">The client secret.</param>
-        /// <returns>A state instance containing the REST API response.</returns>
+        /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
         /// <remarks>See https://familysearch.org/developers/docs/guides/oauth2 for more information.</remarks>
         public GedcomxApplicationState<T> AuthenticateViaOAuth2AuthCode(String authCode, String redirect, String clientId, String clientSecret)
         {
@@ -675,7 +674,7 @@ namespace Gx.Rs.Api
         /// </summary>
         /// <param name="clientId">The client identifier.</param>
         /// <param name="clientSecret">The client secret.</param>
-        /// <returns>A state instance containing the REST API response.</returns>
+        /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
         /// <remarks>See https://familysearch.org/developers/docs/guides/oauth2 for more information.</remarks>
         public GedcomxApplicationState<T> AuthenticateViaOAuth2ClientCredentials(String clientId, String clientSecret)
         {
@@ -695,7 +694,7 @@ namespace Gx.Rs.Api
         /// <param name="ipAddress">The ip address.</param>
         /// <param name="clientId">The client identifier.</param>
         /// <param name="clientSecret">The client secret.</param>
-        /// <returns>A state instance containing the REST API response.</returns>
+        /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
         /// <remarks>See https://familysearch.org/developers/docs/guides/oauth2 for more information.</remarks>
         public GedcomxApplicationState<T> UnauthenticatedAccess(string ipAddress, string clientId, string clientSecret = null)
 		{
@@ -726,7 +725,7 @@ namespace Gx.Rs.Api
         /// </summary>
         /// <param name="formData">The form data.</param>
         /// <param name="options">The options to apply before executing the REST API call.</param>
-        /// <returns>A state instance containing the REST API response.</returns>
+        /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
         /// <exception cref="GedcomxApplicationException">
         /// Illegal access token response: no access_token provided.
         /// or
@@ -780,7 +779,7 @@ namespace Gx.Rs.Api
         /// </summary>
         /// <param name="rel">The rel name to use when looking for the link.</param>
         /// <param name="options">The options to apply before executing the REST API call.</param>
-        /// <returns>A state instance containing the REST API response.</returns>
+        /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
         public GedcomxApplicationState<T> ReadPage(String rel, params StateTransitionOption[] options)
         {
             Link link = GetLink(rel);
@@ -808,7 +807,7 @@ namespace Gx.Rs.Api
         /// Reads the next page of results (usually of type <see cref="Gx.Atom.Feed"/>).
         /// </summary>
         /// <param name="options">The options to apply before executing the REST API call.</param>
-        /// <returns>A state instance containing the REST API response.</returns>
+        /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
         /// <remarks>This is a shorthand method for calling <see cref="ReadPage"/> and specifying Rel.NEXT.</remarks>
         public GedcomxApplicationState<T> ReadNextPage(params StateTransitionOption[] options)
         {
@@ -819,7 +818,7 @@ namespace Gx.Rs.Api
         /// Reads the previous page of results (usually of type <see cref="Gx.Atom.Feed"/>).
         /// </summary>
         /// <param name="options">The options to apply before executing the REST API call.</param>
-        /// <returns>A state instance containing the REST API response.</returns>
+        /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
         /// <remarks>This is a shorthand method for calling <see cref="ReadPage"/> and specifying Rel.PREVIOUS.</remarks>
         public GedcomxApplicationState<T> ReadPreviousPage(params StateTransitionOption[] options)
         {
@@ -830,7 +829,7 @@ namespace Gx.Rs.Api
         /// Reads the first page of results (usually of type <see cref="Gx.Atom.Feed"/>).
         /// </summary>
         /// <param name="options">The options to apply before executing the REST API call.</param>
-        /// <returns>A state instance containing the REST API response.</returns>
+        /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
         /// <remarks>This is a shorthand method for calling <see cref="ReadPage"/> and specifying Rel.FIRST.</remarks>
         public GedcomxApplicationState<T> ReadFirstPage(params StateTransitionOption[] options)
         {
@@ -841,7 +840,7 @@ namespace Gx.Rs.Api
         /// Reads the last page of results (usually of type <see cref="Gx.Atom.Feed"/>).
         /// </summary>
         /// <param name="options">The options to apply before executing the REST API call.</param>
-        /// <returns>A state instance containing the REST API response.</returns>
+        /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
         /// <remarks>This is a shorthand method for calling <see cref="ReadPage"/> and specifying Rel.LAST.</remarks>
         public GedcomxApplicationState<T> ReadLastPage(params StateTransitionOption[] options)
         {

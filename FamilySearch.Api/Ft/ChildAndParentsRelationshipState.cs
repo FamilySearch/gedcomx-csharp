@@ -342,7 +342,7 @@ namespace FamilySearch.Api.Ft
         /// <summary>
         /// Instantiates a new <see cref="ChildAndParentsRelationship"/> and only sets the <see cref="P:ChildAndParentsRelationship.Id"/> to the current relationship's ID.
         /// </summary>
-        /// <returns>A new <see cref="ChildAndParentsRelationship"/> with a matching person ID for the current person ID.</returns>
+        /// <returns>A new <see cref="ChildAndParentsRelationship"/> with a matching relationship ID for the current relationship ID.</returns>
         protected ChildAndParentsRelationship CreateEmptySelf()
         {
             ChildAndParentsRelationship relationship = new ChildAndParentsRelationship();

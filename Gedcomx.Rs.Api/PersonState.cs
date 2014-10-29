@@ -208,7 +208,7 @@ namespace Gx.Rs.Api
         /// <returns>True, if the specified resource reference refers to this state instance; otherwise, false.</returns>
         protected bool RefersToMe(ResourceReference @ref)
         {
-            return @ref != null && @ref.Resource != null && @ref.Resource.ToString().Equals("#" + GetLocalSelfId());
+            return @ref != null && @ref.Resource != null && @ref.Resource.ToString().Equals("#" + LocalSelfId);
         }
 
         /// <summary>
@@ -523,18 +523,23 @@ namespace Gx.Rs.Api
         protected Person CreateEmptySelf()
         {
             Person person = new Person();
-            person.Id = GetLocalSelfId();
+            person.Id = LocalSelfId;
             return person;
         }
 
         /// <summary>
-        /// Gets the current <see cref="P:Person.Id"/>.
+        /// Gets the current <see cref="P:Person.Id" />.
         /// </summary>
-        /// <returns>The current <see cref="P:Person.Id"/></returns>
-        protected String GetLocalSelfId()
+        /// <value>
+        /// The current <see cref="P:Person.Id"/>
+        /// </value>
+        protected String LocalSelfId
         {
-            Person me = (Person)MainDataElement;
-            return me == null ? null : me.Id;
+            get
+            {
+                Person me = (Person)MainDataElement;
+                return me == null ? null : me.Id;
+            }
         }
 
         /// <summary>

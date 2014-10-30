@@ -11,13 +11,30 @@ using Gx.Conclusion;
 
 namespace Gx.Rs.Api
 {
+    /// <summary>
+    /// The SourceDescriptionState exposes management functions for a source description.
+    /// </summary>
     public class SourceDescriptionState : GedcomxApplicationState<Gedcomx>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SourceDescriptionState"/> class.
+        /// </summary>
+        /// <param name="request">The REST API request that will be used to instantiate this state instance.</param>
+        /// <param name="response">The REST API response that was produced from the REST API request.</param>
+        /// <param name="client">The REST API client to use for API calls.</param>
+        /// <param name="accessToken">The access token to use for subsequent invocations of the REST API client.</param>
+        /// <param name="stateFactory">The state factory to use for state instantiation.</param>
         protected internal SourceDescriptionState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken, StateFactory stateFactory)
             : base(request, response, client, accessToken, stateFactory)
         {
         }
 
+        /// <summary>
+        /// Gets the rel name for the currrent state instance. This is expected to be overridden.
+        /// </summary>
+        /// <value>
+        /// The rel name for the currrent state instance
+        /// </value>
         public override String SelfRel
         {
             get
@@ -38,6 +55,12 @@ namespace Gx.Rs.Api
             return new SourceDescriptionState(request, response, client, this.CurrentAccessToken, this.stateFactory);
         }
 
+        /// <summary>
+        /// Gets the main data element represented by this state instance.
+        /// </summary>
+        /// <value>
+        /// The main data element represented by this state instance.
+        /// </value>
         protected override SupportsLinks MainDataElement
         {
             get
@@ -46,6 +69,12 @@ namespace Gx.Rs.Api
             }
         }
 
+        /// <summary>
+        /// Gets the source description represented by this state instance.
+        /// </summary>
+        /// <value>
+        /// The source description represented by this state instance.
+        /// </value>
         public SourceDescription SourceDescription
         {
             get
@@ -54,6 +83,14 @@ namespace Gx.Rs.Api
             }
         }
 
+        /// <summary>
+        /// Updates the specified source description.
+        /// </summary>
+        /// <param name="description">The source description to update.</param>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="SourceDescriptionState"/> instance containing the REST API response.
+        /// </returns>
         public SourceDescriptionState Update(SourceDescription description, params StateTransitionOption[] options)
         {
             Gedcomx entity = new Gedcomx();
@@ -62,6 +99,13 @@ namespace Gx.Rs.Api
             return this.stateFactory.NewSourceDescriptionState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
+        /// <summary>
+        /// Read personas associated with the current source description.
+        /// </summary>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="PersonsState"/> instance containing the REST API response.
+        /// </returns>
         public PersonsState ReadPersonas(params StateTransitionOption[] options)
         {
             Link link = GetLink(Rel.PERSONS);
@@ -76,6 +120,14 @@ namespace Gx.Rs.Api
             }
         }
 
+        /// <summary>
+        /// Adds a persona to the current source description.
+        /// </summary>
+        /// <param name="person">The person to associate with the current source description.</param>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="PersonState"/> instance containing the REST API response.
+        /// </returns>
         public PersonState AddPersona(Person person, params StateTransitionOption[] options)
         {
             Gedcomx entity = new Gedcomx();
@@ -83,6 +135,14 @@ namespace Gx.Rs.Api
             return AddPersona(entity, options);
         }
 
+        /// <summary>
+        /// Adds a persona to the current source description.
+        /// </summary>
+        /// <param name="entity">The Gedcomx entity with a person to associate with the current source description.</param>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="PersonState"/> instance containing the REST API response.
+        /// </returns>
         public PersonState AddPersona(Gedcomx entity, params StateTransitionOption[] options)
         {
             String target = GetSelfUri();
@@ -96,6 +156,13 @@ namespace Gx.Rs.Api
             return this.stateFactory.NewPersonState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
+        /// <summary>
+        /// Queries for attached references to this source description.
+        /// </summary>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="SourceDescriptionState"/> instance containing the REST API response.
+        /// </returns>
         public SourceDescriptionState QueryAttachedReferences(params StateTransitionOption[] options)
         {
             Link link = GetLink(Rel.SOURCE_REFERENCES_QUERY);

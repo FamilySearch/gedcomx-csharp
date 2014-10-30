@@ -355,7 +355,6 @@ namespace Gx.Atom
         /// Add a hypermedia link. Links are not specified by GEDCOM X core, but as extension elements by GEDCOM X RS.
         /// </summary>
         /// <param name="link">The hypermedia link. Links are not specified by GEDCOM X core, but as extension elements by GEDCOM X RS.</param>
-        /// <exception cref="System.NotImplementedException"></exception>
         public void AddLink(Link link)
         {
             if (this.Links == null)
@@ -371,7 +370,6 @@ namespace Gx.Atom
         /// </summary>
         /// <param name="rel">The link rel.</param>
         /// <param name="href">The target URI.</param>
-        /// <exception cref="System.NotImplementedException"></exception>
         public void AddLink(string rel, Uri href)
         {
             AddLink(new Link(rel, href.ToString()));
@@ -382,7 +380,6 @@ namespace Gx.Atom
         /// </summary>
         /// <param name="rel">The link rel.</param>
         /// <param name="template">The link template.</param>
-        /// <exception cref="System.NotImplementedException"></exception>
         public void AddTemplatedLink(string rel, string template)
         {
             Link link = new Link();
@@ -398,7 +395,6 @@ namespace Gx.Atom
         /// <returns>
         /// The link by rel.
         /// </returns>
-        /// <exception cref="System.NotImplementedException"></exception>
         public Links.Link GetLink(string rel)
         {
             var result = GetLinks(rel);
@@ -410,7 +406,6 @@ namespace Gx.Atom
         /// </summary>
         /// <param name="rel">The links by rel.</param>
         /// <returns></returns>
-        /// <exception cref="System.NotImplementedException"></exception>
         public List<Links.Link> GetLinks(string rel)
         {
             return this.Links != null ? this.Links.Where(x => x.Rel == rel).ToList() : null;

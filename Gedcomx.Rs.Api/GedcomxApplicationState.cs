@@ -446,7 +446,6 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response or throws an exception with the response details.
         /// </returns>
-        /// <exception cref="Gx.Rs.Api.GedcomxApplicationException"></exception>
         /// <exception cref="GedcomxApplicationException">Thrown if <see cref="HasError()" /> returns true.</exception>
         public virtual GedcomxApplicationState<T> IfSuccessful()
         {

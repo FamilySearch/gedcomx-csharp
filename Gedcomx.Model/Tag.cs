@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gedcomx.Model.Util;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,15 @@ namespace Gx.Source
     public partial class Tag
     {
         private string _resource;
+
+        public Tag()
+        {
+        }
+
+        public Tag(Enum value)
+        {
+            this._resource = XmlQNameEnumUtil.GetNameValue(value);
+        }
 
         /// <summary>
         ///  A reference to the value of the tag.

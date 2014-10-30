@@ -44,6 +44,13 @@ namespace Gx.Rs.Api
             return this.stateFactory.NewPlaceDescriptionState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
+        /// <summary>
+        /// Reads the collection specified by this state instance.
+        /// </summary>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="CollectionState"/> instance containing the REST API response.
+        /// </returns>
         public CollectionState ReadCollection(params StateTransitionOption[] options)
         {
             Link link = GetLink(Rel.COLLECTION);

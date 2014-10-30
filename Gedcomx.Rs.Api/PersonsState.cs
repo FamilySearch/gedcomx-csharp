@@ -29,6 +29,13 @@ namespace Gx.Rs.Api
             return new PersonsState(request, response, client, this.CurrentAccessToken, this.stateFactory);
         }
 
+        /// <summary>
+        /// Reads the collection specified by this state instance.
+        /// </summary>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="CollectionState"/> instance containing the REST API response.
+        /// </returns>
         public CollectionState ReadCollection(params StateTransitionOption[] options)
         {
             Link link = GetLink(Rel.COLLECTION);

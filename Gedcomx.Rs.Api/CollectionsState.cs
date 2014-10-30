@@ -46,6 +46,14 @@ namespace Gx.Rs.Api
             }
         }
 
+        /// <summary>
+        /// Reads the specified collection.
+        /// </summary>
+        /// <param name="collection">The collection to read.</param>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="CollectionState" /> instance containing the REST API response.
+        /// </returns>
         public CollectionState ReadCollection(Collection collection, params StateTransitionOption[] options)
         {
             Link link = collection.GetLink("self");
@@ -58,6 +66,14 @@ namespace Gx.Rs.Api
             return this.stateFactory.NewCollectionState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
+        /// <summary>
+        /// Updates the specified collection.
+        /// </summary>
+        /// <param name="collection">The collection to update.</param>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="CollectionState"/> instance containing the REST API response.
+        /// </returns>
         public CollectionState UpdateCollection(Collection collection, params StateTransitionOption[] options)
         {
             Link link = collection.GetLink("self");
@@ -70,13 +86,27 @@ namespace Gx.Rs.Api
             return this.stateFactory.NewCollectionState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
+        /// <summary>
+        /// Reads the collection specified by <see cref="P:SourceDescription.About" />.
+        /// </summary>
+        /// <param name="sourceDescription">The source description that has a collection reference (in <see cref="P:SourceDescription.About"/>).</param>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="CollectionState" /> instance containing the REST API response.
+        /// </returns>
         public CollectionState ReadCollection(SourceDescription sourceDescription, params StateTransitionOption[] options)
         {
             IRestRequest request = CreateAuthenticatedGedcomxRequest().Build(sourceDescription.About, Method.GET);
             return this.stateFactory.NewCollectionState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
-
         }
 
+        /// <summary>
+        /// Reads the collection specified by this state instance.
+        /// </summary>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="CollectionState"/> instance containing the REST API response.
+        /// </returns>
         public CollectionState ReadCollection(params StateTransitionOption[] options)
         {
             Link link = GetLink(Rel.COLLECTION);
@@ -89,6 +119,14 @@ namespace Gx.Rs.Api
             return this.stateFactory.NewCollectionState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
+        /// <summary>
+        /// Adds a collection to the collection by this state instance.
+        /// </summary>
+        /// <param name="collection">The collection to add.</param>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="CollectionState" /> instance containing the REST API response.
+        /// </returns>
         public CollectionState AddCollection(Collection collection, params StateTransitionOption[] options)
         {
             Link link = GetLink("self");

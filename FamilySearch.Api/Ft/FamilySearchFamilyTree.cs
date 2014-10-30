@@ -19,41 +19,86 @@ using Gedcomx.Support;
 
 namespace FamilySearch.Api.Ft
 {
+    /// <summary>
+    /// The FamilySearchFamilyTree is a collection of FamilySearch records and exposes management of those records.
+    /// </summary>
     public class FamilySearchFamilyTree : FamilySearchCollectionState
     {
+        /// <summary>
+        /// The default production environment URI for this collection.
+        /// </summary>
         public static readonly String URI = "https://familysearch.org/platform/collections/tree";
+        /// <summary>
+        /// The default sandbox environment URI for this collection.
+        /// </summary>
         public static readonly String SANDBOX_URI = "https://sandbox.familysearch.org/platform/collections/tree";
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FamilySearchFamilyTree"/> class using the production environment URI.
+        /// </summary>
         public FamilySearchFamilyTree()
             : this(false)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FamilySearchFamilyTree"/> class.
+        /// </summary>
+        /// <param name="sandbox">If set to <c>true</c> this will use the sandbox environment URI; otherwise, it will use production.</param>
         public FamilySearchFamilyTree(bool sandbox)
             : this(new Uri(sandbox ? SANDBOX_URI : URI))
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FamilySearchFamilyTree"/> class.
+        /// </summary>
+        /// <param name="uri">The URI where the target collection resides.</param>
         public FamilySearchFamilyTree(Uri uri)
             : this(uri, new FamilyTreeStateFactory())
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FamilySearchFamilyTree"/> class.
+        /// </summary>
+        /// <param name="uri">The URI where the target resides.</param>
+        /// <param name="stateFactory">The state factory to use for state instantiation.</param>
         private FamilySearchFamilyTree(Uri uri, FamilyTreeStateFactory stateFactory)
             : this(uri, stateFactory.LoadDefaultClientInt(uri), stateFactory)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FamilySearchFamilyTree"/> class.
+        /// </summary>
+        /// <param name="uri">The URI where the target resides.</param>
+        /// <param name="client">The REST API client to use for API calls.</param>
+        /// <param name="stateFactory">The state factory to use for state instantiation.</param>
         private FamilySearchFamilyTree(Uri uri, IFilterableRestClient client, FamilyTreeStateFactory stateFactory)
             : this(new RestRequest().Accept(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE).Build(uri, Method.GET), client, stateFactory)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FamilySearchFamilyTree"/> class.
+        /// </summary>
+        /// <param name="request">The REST API request that will be used to instantiate this state instance.</param>
+        /// <param name="client">The REST API client to use for API calls.</param>
+        /// <param name="stateFactory">The state factory to use for state instantiation.</param>
         private FamilySearchFamilyTree(IRestRequest request, IFilterableRestClient client, FamilyTreeStateFactory stateFactory)
             : this(request, client.Handle(request), client, null, stateFactory)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FamilySearchFamilyTree"/> class.
+        /// </summary>
+        /// <param name="request">The REST API request that will be used to instantiate this state instance.</param>
+        /// <param name="response">The REST API response that was produced from the REST API request.</param>
+        /// <param name="client">The REST API client to use for API calls.</param>
+        /// <param name="accessToken">The access token to use for subsequent invocations of the REST API client.</param>
+        /// <param name="stateFactory">The state factory to use for state instantiation.</param>
         internal FamilySearchFamilyTree(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken, FamilyTreeStateFactory stateFactory)
             : base(request, response, client, accessToken, stateFactory)
         {
@@ -71,6 +116,13 @@ namespace FamilySearch.Api.Ft
             return new FamilySearchFamilyTree(request, response, client, this.CurrentAccessToken, (FamilyTreeStateFactory)this.stateFactory);
         }
 
+        /// <summary>
+        /// Creates a state instance without authentication. It will produce an access token, but only good for requests that do not need authentication.
+        /// </summary>
+        /// <param name="clientId">The client identifier.</param>
+        /// <param name="ipAddress">The ip address.</param>
+        /// <returns>A <see cref="FamilySearchFamilyTree"/> instance containing the REST API response.</returns>
+        /// <remarks>See https://familysearch.org/developers/docs/guides/oauth2 for more information.</remarks>
         public FamilySearchFamilyTree AuthenticateViaUnauthenticatedAccess(String clientId, String ipAddress)
         {
             IDictionary<String, String> formData = new Dictionary<String, String>();
@@ -81,6 +133,15 @@ namespace FamilySearch.Api.Ft
             return (FamilySearchFamilyTree)this.AuthenticateViaOAuth2(formData);
         }
 
+        /// <summary>
+        /// Adds relationship to the collection.
+        /// </summary>
+        /// <param name="relationship">The relationship to add.</param>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="RelationshipState" /> instance containing the REST API response.
+        /// </returns>
+        /// <exception cref="Gx.Rs.Api.GedcomxApplicationException">Thrown if this collection does not have a link to the resource.</exception>
         public override RelationshipState AddRelationship(Relationship relationship, params StateTransitionOption[] options)
         {
             if (relationship.KnownType == RelationshipType.ParentChild)
@@ -90,6 +151,15 @@ namespace FamilySearch.Api.Ft
             return base.AddRelationship(relationship);
         }
 
+        /// <summary>
+        /// Adds the array of relationships to the collection.
+        /// </summary>
+        /// <param name="relationships">The relationships to add.</param>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="RelationshipsState" /> instance containing the REST API response.
+        /// </returns>
+        /// <exception cref="Gx.Rs.Api.GedcomxApplicationException">Thrown if this collection does not have a link to the resource.</exception>
         public override RelationshipsState AddRelationships(List<Relationship> relationships, params StateTransitionOption[] options)
         {
             foreach (Relationship relationship in relationships)
@@ -102,6 +172,16 @@ namespace FamilySearch.Api.Ft
             return base.AddRelationships(relationships);
         }
 
+        /// <summary>
+        /// Adds a child and parents relationship to the collection.
+        /// </summary>
+        /// <param name="child">The child to add in the relationship.</param>
+        /// <param name="father">The father to add in the relationship.</param>
+        /// <param name="mother">The mother to add in the relationship.</param>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
+        /// </returns>
         public ChildAndParentsRelationshipState AddChildAndParentsRelationship(PersonState child, PersonState father, PersonState mother, params StateTransitionOption[] options)
         {
             ChildAndParentsRelationship chap = new ChildAndParentsRelationship();
@@ -117,6 +197,15 @@ namespace FamilySearch.Api.Ft
             return AddChildAndParentsRelationship(chap, options);
         }
 
+        /// <summary>
+        /// Adds a child and parents relationship to the collection.
+        /// </summary>
+        /// <param name="chap">The child and parent relationship to add.</param>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
+        /// </returns>
+        /// <exception cref="Gx.Rs.Api.GedcomxApplicationException">Thrown if a link to the required resource cannot be found.</exception>
         public ChildAndParentsRelationshipState AddChildAndParentsRelationship(ChildAndParentsRelationship chap, params StateTransitionOption[] options)
         {
             Link link = GetLink(Rel.RELATIONSHIPS);
@@ -132,6 +221,15 @@ namespace FamilySearch.Api.Ft
             return ((FamilyTreeStateFactory)this.stateFactory).NewChildAndParentsRelationshipState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
+        /// <summary>
+        /// Adds the child and parents relationships to the collection.
+        /// </summary>
+        /// <param name="chaps">The child and parent relationships to add.</param>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="RelationshipsState"/> instance containing the REST API response.
+        /// </returns>
+        /// <exception cref="Gx.Rs.Api.GedcomxApplicationException">Thrown if a link to the required resource cannot be found.</exception>
         public RelationshipsState AddChildAndParentsRelationships(List<ChildAndParentsRelationship> chaps, params StateTransitionOption[] options)
         {
             Link link = GetLink(Rel.RELATIONSHIPS);
@@ -147,6 +245,14 @@ namespace FamilySearch.Api.Ft
             return ((FamilyTreeStateFactory)this.stateFactory).NewRelationshipsStateInt(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
+        /// <summary>
+        /// Reads the person by the specified ID.
+        /// </summary>
+        /// <param name="id">The ID of the person to read.</param>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="FamilyTreePersonState"/> instance containing the REST API response.
+        /// </returns>
         public FamilyTreePersonState ReadPersonById(String id, params StateTransitionOption[] options)
         {
             Link link = GetLink(Rel.PERSON);
@@ -162,6 +268,14 @@ namespace FamilySearch.Api.Ft
             return (FamilyTreePersonState)((FamilyTreeStateFactory)this.stateFactory).NewPersonStateInt(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
+        /// <summary>
+        /// Reads the person by the specified ID and includes relationship details in the response.
+        /// </summary>
+        /// <param name="id">The ID of the person to read.</param>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="FamilyTreePersonState"/> instance containing the REST API response.
+        /// </returns>
         public FamilyTreePersonState ReadPersonWithRelationshipsById(String id, params StateTransitionOption[] options)
         {
             Link link = GetLink(Rel.PERSON_WITH_RELATIONSHIPS);
@@ -177,36 +291,123 @@ namespace FamilySearch.Api.Ft
             return (FamilyTreePersonState)((FamilyTreeStateFactory)this.stateFactory).NewPersonStateInt(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
+        /// <summary>
+        /// Reads the preferred spouse relationship for the specified person.
+        /// </summary>
+        /// <param name="user">The user for which the preference will be read. This is typically the current tree user. An API error may result if the user specified
+        /// is someone other than the current tree user (due to a lack of permissions).</param>
+        /// <param name="person">The person, represented by the FamilyTreePersonState, for which the preferred spouse relationship will be read.</param>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="PreferredRelationshipState"/> instance containing the REST API response.
+        /// </returns>
+        /// <remarks>Tree users can have varying spouse relationship preferences; therefore, this method will only read what the specified user prefers to
+        /// see for the specified relationship.</remarks>
         public PreferredRelationshipState ReadPreferredSpouseRelationship(UserState user, FamilyTreePersonState person, params StateTransitionOption[] options)
         {
             return ReadPreferredRelationship(Rel.PREFERRED_SPOUSE_RELATIONSHIP, user.User.TreeUserId, person.Person.Id, options);
         }
 
+        /// <summary>
+        /// Reads the preferred parent relationship for the specified person.
+        /// </summary>
+        /// <param name="user">The user for which the preference will be read. This is typically the current tree user. An API error may result if the user specified
+        /// is someone other than the current tree user (due to a lack of permissions).</param>
+        /// <param name="person">The person, represented by the FamilyTreePersonState, for which the preferred parent relationship will be read.</param>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="PreferredRelationshipState"/> instance containing the REST API response.
+        /// </returns>
+        /// <remarks>Tree users can have varying parent relationship preferences; therefore, this method will only read what the specified user prefers to
+        /// see for the specified relationship.</remarks>
         public PreferredRelationshipState ReadPreferredParentRelationship(UserState user, FamilyTreePersonState person, params StateTransitionOption[] options)
         {
             return ReadPreferredRelationship(Rel.PREFERRED_PARENT_RELATIONSHIP, user.User.TreeUserId, person.Person.Id, options);
         }
 
+        /// <summary>
+        /// Reads the preferred spouse relationship for the specified person.
+        /// </summary>
+        /// <param name="treeUserId">The <see cref="P:User.TreeUserId"/> for which the preference will be read. This is typically the current tree user. An API error may result if the user specified
+        /// is someone other than the current tree user (due to a lack of permissions).</param>
+        /// <param name="person">The person, represented by the FamilyTreePersonState, for which the preferred spouse relationship will be read.</param>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="PreferredRelationshipState"/> instance containing the REST API response.
+        /// </returns>
+        /// <remarks>Tree users can have varying spouse relationship preferences; therefore, this method will only read what the specified user prefers to
+        /// see for the specified relationship.</remarks>
         public PreferredRelationshipState ReadPreferredSpouseRelationship(String treeUserId, FamilyTreePersonState person, params StateTransitionOption[] options)
         {
             return ReadPreferredRelationship(Rel.PREFERRED_SPOUSE_RELATIONSHIP, treeUserId, person.Person.Id, options);
         }
 
+        /// <summary>
+        /// Reads the preferred parent relationship for the specified person.
+        /// </summary>
+        /// <param name="treeUserId">The <see cref="P:User.TreeUserId"/> for which the preference will be read. This is typically the current tree user. An API error may result if the user specified
+        /// is someone other than the current tree user (due to a lack of permissions).</param>
+        /// <param name="person">The person, represented by the FamilyTreePersonState, for which the preferred parent relationship will be read.</param>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="PreferredRelationshipState"/> instance containing the REST API response.
+        /// </returns>
+        /// <remarks>Tree users can have varying parent relationship preferences; therefore, this method will only read what the specified user prefers to
+        /// see for the specified relationship.</remarks>
         public PreferredRelationshipState ReadPreferredParentRelationship(String treeUserId, FamilyTreePersonState person, params StateTransitionOption[] options)
         {
             return ReadPreferredRelationship(Rel.PREFERRED_PARENT_RELATIONSHIP, treeUserId, person.Person.Id, options);
         }
 
+        /// <summary>
+        /// Reads the preferred spouse relationship for the specified person.
+        /// </summary>
+        /// <param name="treeUserId">The <see cref="P:User.TreeUserId"/> for which the preference will be read. This is typically the current tree user. An API error may result if the user specified
+        /// is someone other than the current tree user (due to a lack of permissions).</param>
+        /// <param name="personId">The person ID for which the preferred spouse relationship will be read.</param>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="PreferredRelationshipState"/> instance containing the REST API response.
+        /// </returns>
+        /// <remarks>Tree users can have varying spouse relationship preferences; therefore, this method will only read what the specified user prefers to
+        /// see for the specified relationship.</remarks>
         public PreferredRelationshipState ReadPreferredSpouseRelationship(String treeUserId, String personId, params StateTransitionOption[] options)
         {
             return ReadPreferredRelationship(Rel.PREFERRED_SPOUSE_RELATIONSHIP, treeUserId, personId, options);
         }
 
+        /// <summary>
+        /// Reads the preferred parent relationship for the specified person.
+        /// </summary>
+        /// <param name="treeUserId">The <see cref="P:User.TreeUserId"/> for which the preference will be read. This is typically the current tree user. An API error may result if the user specified
+        /// is someone other than the current tree user (due to a lack of permissions).</param>
+        /// <param name="personId">The person ID for which the preferred parent relationship will be read.</param>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="PreferredRelationshipState"/> instance containing the REST API response.
+        /// </returns>
+        /// <remarks>Tree users can have varying parent relationship preferences; therefore, this method will only read what the specified user prefers to
+        /// see for the specified relationship.</remarks>
         public PreferredRelationshipState ReadPreferredParentRelationship(String treeUserId, String personId, params StateTransitionOption[] options)
         {
             return ReadPreferredRelationship(Rel.PREFERRED_PARENT_RELATIONSHIP, treeUserId, personId, options);
         }
 
+        /// <summary>
+        /// Reads the preferred relationship for the specified person.
+        /// </summary>
+        /// <param name="rel">The rel name of the link to use to perform this operation.</param>
+        /// <param name="treeUserId">The <see cref="P:User.TreeUserId" /> for which the preference will be read. This is typically the current tree user. An API error may result if the user specified
+        /// is someone other than the current tree user (due to a lack of permissions).</param>
+        /// <param name="personId">The person ID for which the preferred relationship will be read.</param>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="PreferredRelationshipState" /> instance containing the REST API response.
+        /// </returns>
+        /// <remarks>
+        /// Tree users can have varying relationship preferences; therefore, this method will only read what the specified user prefers to
+        /// see for the specified relationship.
+        /// </remarks>
         protected PreferredRelationshipState ReadPreferredRelationship(String rel, String treeUserId, String personId, StateTransitionOption[] options)
         {
             Link link = GetLink(rel);
@@ -236,36 +437,142 @@ namespace FamilySearch.Api.Ft
             }
         }
 
+        /// <summary>
+        /// Sets the preferred spouse relationship for the specified person.
+        /// </summary>
+        /// <param name="user">The user for which the preference will be set. This is typically the current tree user. An API error may result if the user specified
+        /// is someone other than the current tree user (due to a lack of permissions).</param>
+        /// <param name="person">The person, represented by the FamilyTreePersonState, for which the preferred spouse relationship will be read.</param>
+        /// <param name="relationshipState">The relationship state instance with the relationship to set as the preferred relationship.</param>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="PreferredRelationshipState" /> instance containing the REST API response.
+        /// </returns>
+        /// <remarks>
+        /// Tree users can have varying spouse relationship preferences; therefore, this method will only set what the specified user prefers to
+        /// see for the specified relationship.
+        /// </remarks>
         public FamilyTreePersonState UpdatePreferredSpouseRelationship(UserState user, FamilyTreePersonState person, PreferredRelationshipState relationshipState, params StateTransitionOption[] options)
         {
             return UpdatePreferredRelationship(Rel.PREFERRED_SPOUSE_RELATIONSHIP, user.User.TreeUserId, person.Person.Id, relationshipState, options);
         }
 
+        /// <summary>
+        /// Sets the preferred parent relationship for the specified person.
+        /// </summary>
+        /// <param name="user">The user for which the preference will be set. This is typically the current tree user. An API error may result if the user specified
+        /// is someone other than the current tree user (due to a lack of permissions).</param>
+        /// <param name="person">The person, represented by the FamilyTreePersonState, for which the preferred parent relationship will be read.</param>
+        /// <param name="relationshipState">The relationship state instance with the relationship to set as the preferred relationship.</param>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="PreferredRelationshipState" /> instance containing the REST API response.
+        /// </returns>
+        /// <remarks>
+        /// Tree users can have varying parent relationship preferences; therefore, this method will only set what the specified user prefers to
+        /// see for the specified relationship.
+        /// </remarks>
         public FamilyTreePersonState UpdatePreferredParentRelationship(UserState user, FamilyTreePersonState person, PreferredRelationshipState relationshipState, params StateTransitionOption[] options)
         {
             return UpdatePreferredRelationship(Rel.PREFERRED_PARENT_RELATIONSHIP, user.User.TreeUserId, person.Person.Id, relationshipState, options);
         }
 
+        /// <summary>
+        /// Sets the preferred spouse relationship for the specified person.
+        /// </summary>
+        /// <param name="treeUserId">The <see cref="P:User.TreeUserId"/> for which the preference will be set. This is typically the current tree user. An API error may result if the user specified
+        /// is someone other than the current tree user (due to a lack of permissions).</param>
+        /// <param name="person">The person, represented by the FamilyTreePersonState, for which the preferred spouse relationship will be read.</param>
+        /// <param name="relationshipState">The relationship state instance with the relationship to set as the preferred relationship.</param>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="PreferredRelationshipState" /> instance containing the REST API response.
+        /// </returns>
+        /// <remarks>
+        /// Tree users can have varying spouse relationship preferences; therefore, this method will only set what the specified user prefers to
+        /// see for the specified relationship.
+        /// </remarks>
         public FamilyTreePersonState UpdatePreferredSpouseRelationship(String treeUserId, FamilyTreePersonState person, PreferredRelationshipState relationshipState, params StateTransitionOption[] options)
         {
             return UpdatePreferredRelationship(Rel.PREFERRED_SPOUSE_RELATIONSHIP, treeUserId, person.Person.Id, relationshipState, options);
         }
 
+        /// <summary>
+        /// Sets the preferred parent relationship for the specified person.
+        /// </summary>
+        /// <param name="treeUserId">The <see cref="P:User.TreeUserId"/> for which the preference will be set. This is typically the current tree user. An API error may result if the user specified
+        /// is someone other than the current tree user (due to a lack of permissions).</param>
+        /// <param name="person">The person, represented by the FamilyTreePersonState, for which the preferred parent relationship will be read.</param>
+        /// <param name="relationshipState">The relationship state instance with the relationship to set as the preferred relationship.</param>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="PreferredRelationshipState" /> instance containing the REST API response.
+        /// </returns>
+        /// <remarks>
+        /// Tree users can have varying parent relationship preferences; therefore, this method will only set what the specified user prefers to
+        /// see for the specified relationship.
+        /// </remarks>
         public FamilyTreePersonState UpdatePreferredParentRelationship(String treeUserId, FamilyTreePersonState person, PreferredRelationshipState relationshipState, params StateTransitionOption[] options)
         {
             return UpdatePreferredRelationship(Rel.PREFERRED_PARENT_RELATIONSHIP, treeUserId, person.Person.Id, relationshipState, options);
         }
 
+        /// <summary>
+        /// Sets the preferred spouse relationship for the specified person.
+        /// </summary>
+        /// <param name="treeUserId">The <see cref="P:User.TreeUserId"/> for which the preference will be set. This is typically the current tree user. An API error may result if the user specified
+        /// is someone other than the current tree user (due to a lack of permissions).</param>
+        /// <param name="personId">The person ID for which the preferred spouse relationship will be read.</param>
+        /// <param name="relationshipState">The relationship state instance with the relationship to set as the preferred relationship.</param>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="PreferredRelationshipState" /> instance containing the REST API response.
+        /// </returns>
+        /// <remarks>
+        /// Tree users can have varying spouse relationship preferences; therefore, this method will only set what the specified user prefers to
+        /// see for the specified relationship.
+        /// </remarks>
         public FamilyTreePersonState UpdatePreferredSpouseRelationship(String treeUserId, String personId, PreferredRelationshipState relationshipState, params StateTransitionOption[] options)
         {
             return UpdatePreferredRelationship(Rel.PREFERRED_SPOUSE_RELATIONSHIP, treeUserId, personId, relationshipState, options);
         }
 
+        /// <summary>
+        /// Sets the preferred parent relationship for the specified person.
+        /// </summary>
+        /// <param name="treeUserId">The <see cref="P:User.TreeUserId"/> for which the preference will be set. This is typically the current tree user. An API error may result if the user specified
+        /// is someone other than the current tree user (due to a lack of permissions).</param>
+        /// <param name="personId">The person ID for which the preferred parent relationship will be read.</param>
+        /// <param name="relationshipState">The relationship state instance with the relationship to set as the preferred relationship.</param>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="PreferredRelationshipState" /> instance containing the REST API response.
+        /// </returns>
+        /// <remarks>
+        /// Tree users can have varying parent relationship preferences; therefore, this method will only set what the specified user prefers to
+        /// see for the specified relationship.
+        /// </remarks>
         public FamilyTreePersonState UpdatePreferredParentRelationship(String treeUserId, String personId, PreferredRelationshipState relationshipState, params StateTransitionOption[] options)
         {
             return UpdatePreferredRelationship(Rel.PREFERRED_PARENT_RELATIONSHIP, treeUserId, personId, relationshipState, options);
         }
 
+        /// <summary>
+        /// Sets the preferred relationship for the specified person.
+        /// </summary>
+        /// <param name="rel">The rel name of the link to use to perform this operation.</param>
+        /// <param name="treeUserId">The <see cref="P:User.TreeUserId" /> for which the preference will be set. This is typically the current tree user. An API error may result if the user specified
+        /// is someone other than the current tree user (due to a lack of permissions).</param>
+        /// <param name="personId">The person ID for which the preferred relationship will be read.</param>
+        /// <param name="relationshipState">The relationship state instance with the relationship to set as the preferred relationship.</param>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="PreferredRelationshipState" /> instance containing the REST API response.
+        /// </returns>
+        /// <remarks>
+        /// Tree users can have varying relationship preferences; therefore, this method will only set what the specified user prefers to
+        /// see for the specified relationship.
+        /// </remarks>
         protected FamilyTreePersonState UpdatePreferredRelationship(String rel, String treeUserId, String personId, PreferredRelationshipState relationshipState, StateTransitionOption[] options)
         {
             Link link = GetLink(rel);
@@ -281,36 +588,135 @@ namespace FamilySearch.Api.Ft
             return (FamilyTreePersonState)((FamilyTreeStateFactory)this.stateFactory).NewPersonStateInt(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
+        /// <summary>
+        /// Deletes the preferred spouse relationship for the specified person.
+        /// </summary>
+        /// <param name="user">The user for which the preference will be set. This is typically the current tree user. An API error may result if the user specified
+        /// is someone other than the current tree user (due to a lack of permissions).</param>
+        /// <param name="person">The person, represented by the FamilyTreePersonState, for which the preferred spouse relationship will be read.</param>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="PreferredRelationshipState" /> instance containing the REST API response.
+        /// </returns>
+        /// <remarks>
+        /// Tree users can have varying spouse relationship preferences; therefore, this method will only delete what the specified user prefers to
+        /// see for the specified relationship.
+        /// </remarks>
         public FamilyTreePersonState DeletePreferredSpouseRelationship(UserState user, FamilyTreePersonState person, params StateTransitionOption[] options)
         {
             return DeletePreferredRelationship(user.User.TreeUserId, person.Person.Id, Rel.PREFERRED_SPOUSE_RELATIONSHIP, options);
         }
 
+        /// <summary>
+        /// Deletes the preferred parent relationship for the specified person.
+        /// </summary>
+        /// <param name="user">The user for which the preference will be set. This is typically the current tree user. An API error may result if the user specified
+        /// is someone other than the current tree user (due to a lack of permissions).</param>
+        /// <param name="person">The person, represented by the FamilyTreePersonState, for which the preferred parent relationship will be read.</param>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="PreferredRelationshipState" /> instance containing the REST API response.
+        /// </returns>
+        /// <remarks>
+        /// Tree users can have varying parent relationship preferences; therefore, this method will only delete what the specified user prefers to
+        /// see for the specified relationship.
+        /// </remarks>
         public FamilyTreePersonState DeletePreferredParentRelationship(UserState user, FamilyTreePersonState person, params StateTransitionOption[] options)
         {
             return DeletePreferredRelationship(user.User.TreeUserId, person.Person.Id, Rel.PREFERRED_PARENT_RELATIONSHIP, options);
         }
 
+        /// <summary>
+        /// Deletes the preferred spouse relationship for the specified person.
+        /// </summary>
+        /// <param name="treeUserId">The <see cref="P:User.TreeUserId"/> for which the preference will be set. This is typically the current tree user. An API error may result if the user specified
+        /// is someone other than the current tree user (due to a lack of permissions).</param>
+        /// <param name="person">The person, represented by the FamilyTreePersonState, for which the preferred spouse relationship will be read.</param>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="PreferredRelationshipState" /> instance containing the REST API response.
+        /// </returns>
+        /// <remarks>
+        /// Tree users can have varying spouse relationship preferences; therefore, this method will only delete what the specified user prefers to
+        /// see for the specified relationship.
+        /// </remarks>
         public FamilyTreePersonState DeletePreferredSpouseRelationship(String treeUserId, FamilyTreePersonState person, params StateTransitionOption[] options)
         {
             return DeletePreferredRelationship(treeUserId, person.Person.Id, Rel.PREFERRED_SPOUSE_RELATIONSHIP, options);
         }
 
+        /// <summary>
+        /// Deletes the preferred parent relationship for the specified person.
+        /// </summary>
+        /// <param name="treeUserId">The <see cref="P:User.TreeUserId"/> for which the preference will be set. This is typically the current tree user. An API error may result if the user specified
+        /// is someone other than the current tree user (due to a lack of permissions).</param>
+        /// <param name="person">The person, represented by the FamilyTreePersonState, for which the preferred parent relationship will be read.</param>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="PreferredRelationshipState" /> instance containing the REST API response.
+        /// </returns>
+        /// <remarks>
+        /// Tree users can have varying parent relationship preferences; therefore, this method will only delete what the specified user prefers to
+        /// see for the specified relationship.
+        /// </remarks>
         public FamilyTreePersonState DeletePreferredParentRelationship(String treeUserId, FamilyTreePersonState person, params StateTransitionOption[] options)
         {
             return DeletePreferredRelationship(treeUserId, person.Person.Id, Rel.PREFERRED_PARENT_RELATIONSHIP, options);
         }
 
+        /// <summary>
+        /// Deletes the preferred spouse relationship for the specified person.
+        /// </summary>
+        /// <param name="treeUserId">The <see cref="P:User.TreeUserId"/> for which the preference will be set. This is typically the current tree user. An API error may result if the user specified
+        /// is someone other than the current tree user (due to a lack of permissions).</param>
+        /// <param name="personId">The person ID for which the preferred spouse relationship will be read.</param>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="PreferredRelationshipState" /> instance containing the REST API response.
+        /// </returns>
+        /// <remarks>
+        /// Tree users can have varying spouse relationship preferences; therefore, this method will only delete what the specified user prefers to
+        /// see for the specified relationship.
+        /// </remarks>
         public FamilyTreePersonState DeletePreferredSpouseRelationship(String treeUserId, String personId, params StateTransitionOption[] options)
         {
             return DeletePreferredRelationship(treeUserId, personId, Rel.PREFERRED_SPOUSE_RELATIONSHIP, options);
         }
 
+        /// <summary>
+        /// Deletes the preferred parent relationship for the specified person.
+        /// </summary>
+        /// <param name="treeUserId">The <see cref="P:User.TreeUserId"/> for which the preference will be set. This is typically the current tree user. An API error may result if the user specified
+        /// is someone other than the current tree user (due to a lack of permissions).</param>
+        /// <param name="personId">The person ID for which the preferred parent relationship will be read.</param>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="PreferredRelationshipState" /> instance containing the REST API response.
+        /// </returns>
+        /// <remarks>
+        /// Tree users can have varying parent relationship preferences; therefore, this method will only delete what the specified user prefers to
+        /// see for the specified relationship.
+        /// </remarks>
         public FamilyTreePersonState DeletePreferredParentRelationship(String treeUserId, String personId, params StateTransitionOption[] options)
         {
             return DeletePreferredRelationship(treeUserId, personId, Rel.PREFERRED_PARENT_RELATIONSHIP, options);
         }
 
+        /// <summary>
+        /// Deletes the preferred relationship for the specified person.
+        /// </summary>
+        /// <param name="treeUserId">The <see cref="P:User.TreeUserId" /> for which the preference will be set. This is typically the current tree user. An API error may result if the user specified
+        /// is someone other than the current tree user (due to a lack of permissions).</param>
+        /// <param name="personId">The person ID for which the preferred relationship will be read.</param>
+        /// <param name="rel">The rel name of the link to use to perform this operation.</param>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="PreferredRelationshipState" /> instance containing the REST API response.
+        /// </returns>
+        /// <remarks>
+        /// Tree users can have varying relationship preferences; therefore, this method will only delete what the specified user prefers to
+        /// see for the specified relationship.
+        /// </remarks>
         protected FamilyTreePersonState DeletePreferredRelationship(String treeUserId, String personId, String rel, StateTransitionOption[] options)
         {
             Link link = GetLink(rel);

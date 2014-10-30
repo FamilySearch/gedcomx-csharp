@@ -46,6 +46,18 @@ namespace Gx.Rs.Api
             }
         }
 
+        /// <summary>
+        /// Finds the relationship to the specified parent. See remarks for more information.
+        /// </summary>
+        /// <param name="parent">The parent for which the relationship is sought.</param>
+        /// <returns>
+        /// The <see cref="Relationship"/> the parent is in, or <c>null</c> if a relationship was not found.
+        /// </returns>
+        /// <remarks>
+        /// This method iterates over the current <see cref="P:Relationships"/>, and each item is examined
+        /// to determine if the parent ID in the relationship matches the parent ID for the specified parent. If one is found,
+        /// that relationship object containing that parent ID is returned, and no other relationships are examined further.
+        /// </remarks>
         public Relationship FindRelationshipTo(Person parent)
         {
             List<Relationship> relationships = Relationships;

@@ -13,8 +13,19 @@ using Gx.Common;
 
 namespace FamilySearch.Api.Ft
 {
+    /// <summary>
+    /// The FamilyTreePersonParentsState exposes management functions for family tree person parents.
+    /// </summary>
     public class FamilyTreePersonParentsState : PersonParentsState
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FamilyTreePersonParentsState"/> class.
+        /// </summary>
+        /// <param name="request">The REST API request that will be used to instantiate this state instance.</param>
+        /// <param name="response">The REST API response that was produced from the REST API request.</param>
+        /// <param name="client">The REST API client to use for API calls.</param>
+        /// <param name="accessToken">The access token to use for subsequent invocations of the REST API client.</param>
+        /// <param name="stateFactory">The state factory to use for state instantiation.</param>
         protected internal FamilyTreePersonParentsState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken, FamilyTreeStateFactory stateFactory)
             : base(request, response, client, accessToken, stateFactory)
         {
@@ -61,6 +72,12 @@ namespace FamilySearch.Api.Ft
             return response.ToIRestResponse<FamilySearchPlatform>().Data;
         }
 
+        /// <summary>
+        /// Gets the child and parents relationships from the current <see cref="P:FamilySearchPlatform.ChildAndParentsRelationships"/> from <see cref="P:Entity"/>.
+        /// </summary>
+        /// <value>
+        /// The child and parents relationships from the current <see cref="P:FamilySearchPlatform.ChildAndParentsRelationships"/> from <see cref="P:Entity"/>.
+        /// </value>
         public List<ChildAndParentsRelationship> ChildAndParentsRelationships
         {
             get
@@ -69,6 +86,18 @@ namespace FamilySearch.Api.Ft
             }
         }
 
+        /// <summary>
+        /// Finds the child and parents relationship to the specified spouse. See remarks for more information.
+        /// </summary>
+        /// <param name="person">The spouse for which the relationship is sought.</param>
+        /// <returns>
+        /// The <see cref="ChildAndParentsRelationship"/> the spouse is in, or <c>null</c> if a relationship was not found.
+        /// </returns>
+        /// <remarks>
+        /// This method iterates over the current <see cref="P:ChildAndParentsRelationship"/>, and each item is examined
+        /// to determine if the spouse ID in the relationship matches the spouse ID for the specified child. If one is found,
+        /// that relationship object containing that spouse ID is returned, and no other relationships are examined further.
+        /// </remarks>
         public ChildAndParentsRelationship FindChildAndParentsRelationshipTo(Person spouse)
         {
             List<ChildAndParentsRelationship> relationships = ChildAndParentsRelationships;

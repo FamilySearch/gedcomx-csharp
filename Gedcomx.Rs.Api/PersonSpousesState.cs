@@ -46,6 +46,18 @@ namespace Gx.Rs.Api
             }
         }
 
+        /// <summary>
+        /// Finds the relationship to the specified spouse. See remarks for more information.
+        /// </summary>
+        /// <param name="spouse">The spouse for which the relationship is sought.</param>
+        /// <returns>
+        /// The <see cref="Relationship"/> the spouse is in, or <c>null</c> if a relationship was not found.
+        /// </returns>
+        /// <remarks>
+        /// This method iterates over the current <see cref="P:Relationships"/>, and each item is examined
+        /// to determine if the spouse ID in the relationship matches the spouse ID for the specified spouse. If one is found,
+        /// that relationship object containing that spouse ID is returned, and no other relationships are examined further.
+        /// </remarks>
         public Relationship FindRelationshipTo(Person spouse)
         {
             List<Relationship> relationships = Relationships;

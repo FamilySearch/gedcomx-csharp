@@ -93,7 +93,7 @@ namespace Gedcomx.Rs.Api.Test
             var wife = tree.AddPerson(TestBacking.GetCreateFemalePerson());
             var relationship = husband.AddSpouse(wife);
             var @get = (RelationshipState)relationship.Get();
-            var cache = new CacheDirectives(@get.LastModified);
+            var cache = new CacheDirectives(@get);
             var state = relationship.Get(cache);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());

@@ -93,7 +93,6 @@ namespace Gx.Rs.Api
         {
             get
             {
-#warning ETag is causing HTTP 412 on all requests
                 var result = this.Response != null ? this.Response.Headers.Get("ETag").Select(x => x.Value.ToString()).FirstOrDefault() : null;
                 if (result != null && result.IndexOf(gzipSuffix) != -1)
                 {

@@ -315,7 +315,7 @@ namespace Gedcomx.Rs.Api.Test
         public void TestUpdatePersonWithPreconditions()
         {
             var state = collection.ReadPerson(new Uri(PERSON_WITH_DATA_URI));
-            var cond = new Preconditions(state.LastModified);
+            var cond = new Preconditions(state);
             var state2 = state.UpdateFacts(state.Person.Facts.ToArray(), cond);
             Assert.DoesNotThrow(() => state2.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.NoContent, state2.Response.StatusCode);

@@ -8,6 +8,9 @@ using Gx.Links;
 
 namespace Gx.Rs.Api
 {
+    /// <summary>
+    /// The AncestryResultsState exposes management functions for ancestry results.
+    /// </summary>
     public class AncestryResultsState : GedcomxApplicationState<Gedcomx>
     {
         internal AncestryResultsState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken, StateFactory stateFactory)
@@ -27,6 +30,12 @@ namespace Gx.Rs.Api
             return new AncestryResultsState(request, response, client, this.CurrentAccessToken, this.stateFactory);
         }
 
+        /// <summary>
+        /// Gets the rel name for the currrent state instance. This is expected to be overridden.
+        /// </summary>
+        /// <value>
+        /// The rel name for the currrent state instance
+        /// </value>
         public override String SelfRel
         {
             get
@@ -35,6 +44,12 @@ namespace Gx.Rs.Api
             }
         }
 
+        /// <summary>
+        /// Gets the tree represented by the REST API response.
+        /// </summary>
+        /// <value>
+        /// The tree represented by the REST API response.
+        /// </value>
         public AncestryTree Tree
         {
             get
@@ -43,6 +58,14 @@ namespace Gx.Rs.Api
             }
         }
 
+        /// <summary>
+        /// Reads the person at the specified one-based index number.
+        /// </summary>
+        /// <param name="ancestorNumber">The ancestor number of the person to read.</param>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="PersonState"/> instance containing the REST API response.
+        /// </returns>
         public PersonState ReadPerson(int ancestorNumber, params StateTransitionOption[] options)
         {
             AncestryTree.AncestryNode ancestor = Tree.GetAncestor(ancestorNumber);

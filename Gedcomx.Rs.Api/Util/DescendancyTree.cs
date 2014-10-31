@@ -7,15 +7,27 @@ using System.Threading.Tasks;
 
 namespace Gx.Rs.Api.Util
 {
+    /// <summary>
+    /// A model representation of descendancy.
+    /// </summary>
     public class DescendancyTree
     {
         private DescendancyNode root;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DescendancyTree"/> class.
+        /// </summary>
+        /// <param name="gx">The input model for which a descendancy model will be built.</param>
         public DescendancyTree(Gedcomx gx)
         {
             this.root = BuildTree(gx);
         }
 
+        /// <summary>
+        /// Builds an array of persons to be placed in the descendancy tree.
+        /// </summary>
+        /// <param name="gx">The input model for which the array of persons will be parsed and analyzed.</param>
+        /// <returns>An array of persons to be placed in the descendancy tree.</returns>
         protected DescendancyNode BuildTree(Gedcomx gx)
         {
             DescendancyNode root = null;
@@ -87,6 +99,12 @@ namespace Gx.Rs.Api.Util
             return root;
         }
 
+        /// <summary>
+        /// Gets the root person of the descendancy tree.
+        /// </summary>
+        /// <value>
+        /// The root person of the descendancy tree.
+        /// </value>
         public DescendancyNode Root
         {
             get
@@ -95,6 +113,14 @@ namespace Gx.Rs.Api.Util
             }
         }
 
+        /// <summary>
+        /// Parses the coordinates of the specified d'Aboville number. See remarks.
+        /// </summary>
+        /// <param name="number">The d'Aboville number number. See remarks.</param>
+        /// <returns></returns>
+        /// <remarks>
+        /// More information on a d'Aboville number can be found here: http://en.wikipedia.org/wiki/Genealogical_numbering_system#d.27Aboville_System.
+        /// </remarks>
         protected int[] ParseCoordinates(String number)
         {
             List<StringBuilder> coords = new List<StringBuilder>();
@@ -123,20 +149,41 @@ namespace Gx.Rs.Api.Util
             return coordinates;
         }
 
+        /// <summary>
+        /// Represents a person, spouse, and descendancy in a tree.
+        /// </summary>
         public class DescendancyNode
         {
+            /// <summary>
+            /// Gets or sets the main person of a tree.
+            /// </summary>
+            /// <value>
+            /// The main person of a tree.
+            /// </value>
             public Person Person
             {
                 get;
                 set;
             }
 
+            /// <summary>
+            /// Gets or sets the spouse of the main person.
+            /// </summary>
+            /// <value>
+            /// The spouse of the main person.
+            /// </value>
             public Person Spouse
             {
                 get;
                 set;
             }
 
+            /// <summary>
+            /// Gets or sets the children of the main person
+            /// </summary>
+            /// <value>
+            /// The children of the main person
+            /// </value>
             public List<DescendancyNode> Children
             {
                 get;

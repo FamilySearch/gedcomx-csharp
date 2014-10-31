@@ -6,14 +6,13 @@ conforms to the [GEDCOM X RS Specification](https://github.com/FamilySearch/gedc
 # NuGet Package Information
 
 
-| Package ID          | Link                |
-|---------------------|---------------------|
-| Insert package name | insert package link |
+| Package ID | Link |
+|------------|------|
+| Gedcomx.API.SDK | http://www.nuget.org/packages/Gedcomx.API.SDK/ |
 
 See [the section on using these libraries](../README.md#Use).
-Insert content when ready.
 
-To determine the latest version, ~ visit the NuGet link listed above ~.
+To determine the latest version visit the NuGet link listed above.
 
 # Use
 

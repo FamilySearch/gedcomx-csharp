@@ -10,14 +10,14 @@ plus some custom FamilySearch extensions. As such, the FamilySearch API SDK exte
 # NuGet Package Information
 
 
-| Package ID          | Link                |
-|---------------------|---------------------|
-| Insert package name | insert package link |
+| Package ID | Link |
+|------------|------|
+| FamilySearch.API.SDK | http://www.nuget.org/packages/FamilySearch.API.SDK/ |
 
 See [the section on using these libraries](../README.md#Use).
-Insert content when ready.
 
-To determine the latest version, ~ visit the NuGet link listed above ~.
+To determine the latest version visit the NuGet link listed above.
+
 # Use
 
 The FamilySearch API SDK extends the [GEDCOM X RS Client](../Gedcomx.Rs.Api/README.md). In addition to the

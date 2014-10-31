@@ -8,14 +8,13 @@ and [GEDCOM X JSON](https://github.com/FamilySearch/gedcomx/blob/master/specific
 # NuGet Package Information
 
 
-| Package ID          | Link                |
-|---------------------|---------------------|
-| Insert package name | insert package link |
+| Package ID | Link |
+|------------|------|
+| Gedcomx.Model | http://www.nuget.org/packages/Gedcomx.Model/ |
 
 See [the section on using these libraries](../README.md#Use).
-Insert content when ready.
 
-To determine the latest version, ~ visit the NuGet link listed above ~.
+To determine the latest version visit the NuGet link listed above.
 
 # Use
 

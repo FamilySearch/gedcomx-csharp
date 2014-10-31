@@ -52,7 +52,6 @@ Here's how you might use this project.
 ## NuGet
 
 The GEDCOM X C# artifacts are provided via [NuGet](http://www.nuget.org/).
-Most C#-based build systems (Ant, Maven, Gradle, etc.) have support for NuGet packages.
 
 There are a total of 6 packages, which you can use in anyway you need.
 

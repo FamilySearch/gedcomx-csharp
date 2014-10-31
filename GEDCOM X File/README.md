@@ -7,14 +7,13 @@ the core API support for all serialization (whether XML or JSON).
 # NuGet Package Information
 
 
-| Package ID          | Link                |
-|---------------------|---------------------|
-| Insert package name | insert package link |
+| Package ID | Link |
+|------------|------|
+| Gedcomx.File | http://www.nuget.org/packages/Gedcomx.File/ |
 
 See [the section on using these libraries](../README.md#Use).
-Insert content when ready.
 
-To determine the latest version, ~ visit the NuGet link listed above ~.
+To determine the latest version visit the NuGet link listed above.
 
 # Use
 

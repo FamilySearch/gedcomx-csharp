@@ -7,14 +7,13 @@ extensions to GEDCOM X live.
 # NuGet Package Information
 
 
-| Package ID          | Link                |
-|---------------|---------------------------|
-| Insert package name | insert package link |
+| Package ID | Link |
+|------------|------|
+| Gedcomx.Model.Fs | http://www.nuget.org/packages/Gedcomx.Model.Fs/ |
 
 See [the section on using these libraries](../README.md#Use).
-Insert content when ready.
 
-To determine the latest version, ~ visit the NuGet link listed above ~.
+To determine the latest version visit the NuGet link listed above.
 
 # Use
 

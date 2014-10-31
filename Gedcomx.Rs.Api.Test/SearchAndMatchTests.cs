@@ -70,7 +70,6 @@ namespace Gedcomx.Rs.Api.Test
         }
 
         [Test]
-        [Ignore("Sandbox is throwing error 500. Disabling until resolved.")]
         public void TestUpdateMatchStatusForPersonRecordMatches()
         {
             var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson());

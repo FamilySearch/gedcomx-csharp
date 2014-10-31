@@ -26,7 +26,7 @@ Web service API that conforms to the [GEDCOM X RS Specification](https://github.
 
 ## Reading and Writing XML and JSON
 
-The [`gedcomx-fileformat`](./gedcomx-fileformat/README.md) subproject provides support for reading and writing the
+The [`Gedcomx.File`](./GEDCOM X File/README.md) subproject provides support for reading and writing the
 [GEDCOM X File Format](https://github.com/FamilySearch/gedcomx/blob/master/specifications/file-format-specification.md).
 
 For more information about reading and writing GEDCOM X files,
@@ -53,7 +53,7 @@ Here's how you might use this project.
 
 The GEDCOM X C# artifacts are provided via [NuGet](http://www.nuget.org/).
 
-There are a total of 6 packages, which you can use in anyway you need.
+There are a total of 7 packages, which you can use in anyway you need.
 
 | NuGet Package Id | Purpose | Notes |
 |------------------|---------|-------|
@@ -63,6 +63,7 @@ There are a total of 6 packages, which you can use in anyway you need.
 | [Gedcomx.Model.Rs](http://www.nuget.org/packages/Gedcomx.Model.Rs/) | Contains REST specific GEDCOM X model extensions. | Use this by itself to just work with the GEDCOM X REST extension models and data, and not any web services or files. (This project adds atom feed models.) |
 | [Gedcomx.API.SDK](http://www.nuget.org/packages/Gedcomx.API.SDK/) | This is the base SDK library, and encompasses the ability to work with GEDCOM X data. | This is the core GEDCOM X SDK project. Use this to perform basic GEDCOM X operations. |
 | [Gedcomx.File](http://www.nuget.org/packages/Gedcomx.File/) | Contains libraries to read and write GEDCOM X files and provides core serialization functionality for all web API communications. | Use this by itself to support reading and writing GEDCOM X files (in XML format) or reading and writing GEDCOM X data in serialized format (JSON OR XML), such as in Web API methods. |
+| [Gedcomx.Date](http://www.nuget.org/packages/Gedcomx.Date/) | Contains libraries to work with a variety of GEDCOM X dates and formats. | Use this by itself to support GEDCOM X date processing or manipulation. |
 
 ##### Finding the Latest Version
 

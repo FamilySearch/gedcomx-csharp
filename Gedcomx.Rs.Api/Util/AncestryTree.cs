@@ -74,8 +74,11 @@ namespace Gx.Rs.Api.Util
         /// <summary>
         /// Gets an ancestor from the ancestry tree at the specified index.
         /// </summary>
-        /// <param name="number">The index number of the person within the ancestry tree.</param>
-        /// <returns></returns>
+        /// <param name="number">The parsed ahnen number of the person within the ancestry tree, which is used internally as a one-based index number. See remarks.</param>
+        /// <returns>An ancestor node from the current tree, or null if the index is out of range.</returns>
+        /// <remarks>
+        /// Information on the ahnen number can be found here: http://en.wikipedia.org/wiki/Ahnentafel.
+        /// </remarks>
         public AncestryNode GetAncestor(int number)
         {
             return ancestry.Count < number ? null : new AncestryNode(this, number);

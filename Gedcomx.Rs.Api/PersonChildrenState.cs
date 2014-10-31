@@ -103,7 +103,7 @@ namespace Gx.Rs.Api
         }
 
         /// <summary>
-        /// Reads the person from this resource.
+        /// Reads the current person represented by this state instance.
         /// </summary>
         /// <param name="options">The options to apply before executing the REST API call.</param>
         /// <returns>

@@ -11,8 +11,19 @@ using Gx.Types;
 
 namespace Gx.Rs.Api
 {
+    /// <summary>
+    /// The RelationshipsState exposes management functions for a relationships collection.
+    /// </summary>
     public class RelationshipsState : GedcomxApplicationState<Gedcomx>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RelationshipsState"/> class.
+        /// </summary>
+        /// <param name="request">The REST API request that will be used to instantiate this state instance.</param>
+        /// <param name="response">The REST API response that was produced from the REST API request.</param>
+        /// <param name="client">The REST API client to use for API calls.</param>
+        /// <param name="accessToken">The access token to use for subsequent invocations of the REST API client.</param>
+        /// <param name="stateFactory">The state factory to use for state instantiation.</param>
         protected internal RelationshipsState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken, StateFactory stateFactory)
             : base(request, response, client, accessToken, stateFactory)
         {
@@ -30,6 +41,12 @@ namespace Gx.Rs.Api
             return new RelationshipsState(request, response, client, this.CurrentAccessToken, this.stateFactory);
         }
 
+        /// <summary>
+        /// Gets the relationships represented by the current collection from <see cref="P:Gedcomx.Relationships"/>.
+        /// </summary>
+        /// <value>
+        /// The relationships represented by the current collection from <see cref="P:Gedcomx.Relationships"/>.
+        /// </value>
         public List<Relationship> Relationships
         {
             get
@@ -57,6 +74,19 @@ namespace Gx.Rs.Api
             return this.stateFactory.NewCollectionState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
+        /// <summary>
+        /// Creates a spouse relationship between the two specified persons.
+        /// </summary>
+        /// <param name="person1">A person to be the husband. See remarks.</param>
+        /// <param name="person2">A person to be the wife. See remarks.</param>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="RelationshipState"/> instance containing the REST API response.
+        /// </returns>
+        /// <remarks>
+        /// The person1 parameter does not have to be the husband, it could be the wife; however, person2 must be the opposite. So if you specify a hasband for person1
+        /// then person2 must be the wife. Conversely, if you specify a wife for person1 then person2 must be the husband.
+        /// </remarks>
         public RelationshipState AddSpouseRelationship(PersonState person1, PersonState person2, params StateTransitionOption[] options)
         {
             Relationship relationship = new Relationship();
@@ -66,6 +96,15 @@ namespace Gx.Rs.Api
             return AddRelationship(relationship, options);
         }
 
+        /// <summary>
+        /// Creates a parent child relationship for the specified persons.
+        /// </summary>
+        /// <param name="parent">The <see cref="PersonState"/> representing the parent for the new relationship.</param>
+        /// <param name="child">The <see cref="PersonState"/> representing the child for the new relationship.</param>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="RelationshipState"/> instance containing the REST API response.
+        /// </returns>
         public RelationshipState AddParentChildRelationship(PersonState parent, PersonState child, params StateTransitionOption[] options)
         {
             Relationship relationship = new Relationship();
@@ -75,6 +114,14 @@ namespace Gx.Rs.Api
             return AddRelationship(relationship, options);
         }
 
+        /// <summary>
+        /// Creates a relationship between the persons specified in the relationship parameter.
+        /// </summary>
+        /// <param name="relationship">This specifies the persons and relationship type to create.</param>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="RelationshipState"/> instance containing the REST API response.
+        /// </returns>
         public virtual RelationshipState AddRelationship(Relationship relationship, params StateTransitionOption[] options)
         {
             Gedcomx entity = new Gedcomx();

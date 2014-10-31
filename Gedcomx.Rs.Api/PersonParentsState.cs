@@ -10,9 +10,20 @@ using Gx.Links;
 
 namespace Gx.Rs.Api
 {
+    /// <summary>
+    /// The PersonParentsState exposes management functions for person parents.
+    /// </summary>
     public class PersonParentsState : GedcomxApplicationState<Gedcomx>
     {
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PersonParentsState"/> class.
+        /// </summary>
+        /// <param name="request">The REST API request that will be used to instantiate this state instance.</param>
+        /// <param name="response">The REST API response that was produced from the REST API request.</param>
+        /// <param name="client">The REST API client to use for API calls.</param>
+        /// <param name="accessToken">The access token to use for subsequent invocations of the REST API client.</param>
+        /// <param name="stateFactory">The state factory to use for state instantiation.</param>
         protected internal PersonParentsState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken, StateFactory stateFactory)
             : base(request, response, client, accessToken, stateFactory)
         {
@@ -30,6 +41,12 @@ namespace Gx.Rs.Api
             return new PersonParentsState(request, response, client, this.CurrentAccessToken, this.stateFactory);
         }
 
+        /// <summary>
+        /// Gets the list of parents for the person represented by this state instance from <see cref="P:Gedcomx.Persons"/>.
+        /// </summary>
+        /// <value>
+        /// The list of parents for the person represented by this state instance from <see cref="P:Gedcomx.Persons"/>.
+        /// </value>
         public List<Person> Persons
         {
             get
@@ -38,6 +55,12 @@ namespace Gx.Rs.Api
             }
         }
 
+        /// <summary>
+        /// Gets the list of relationships for the person's parents from <see cref="P:Gedcomx.Relationships"/>.
+        /// </summary>
+        /// <value>
+        /// The list of relationships for the person's parents from <see cref="P:Gedcomx.Relationships"/>.
+        /// </value>
         public List<Relationship> Relationships
         {
             get
@@ -79,6 +102,13 @@ namespace Gx.Rs.Api
             return null;
         }
 
+        /// <summary>
+        /// Reads the current person represented by this state instance.
+        /// </summary>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="PersonState"/> instance containing the REST API response.
+        /// </returns>
         public PersonState ReadPerson(params StateTransitionOption[] options)
         {
             Link link = GetLink(Rel.PERSON);
@@ -91,6 +121,14 @@ namespace Gx.Rs.Api
             return this.stateFactory.NewPersonState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
+        /// <summary>
+        /// Reads the specified person, which is a parent to the current person. This person could come <see cref="P:Persons"/>.
+        /// </summary>
+        /// <param name="person">The person, which is a parent to the current person.</param>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="PersonState"/> instance containing the REST API response.
+        /// </returns>
         public PersonState ReadParent(Person person, params StateTransitionOption[] options)
         {
             Link link = person.GetLink(Rel.PERSON);
@@ -104,6 +142,14 @@ namespace Gx.Rs.Api
             return this.stateFactory.NewPersonState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
+        /// <summary>
+        /// Reads the specified relationship, which is a relationship between the current person and a parent. This relationship could come from <see cref="P:Relationships"/>.
+        /// </summary>
+        /// <param name="relationship">The relationship to read.</param>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="RelationshipState"/> instance containing the REST API response.
+        /// </returns>
         public RelationshipState ReadRelationship(Relationship relationship, params StateTransitionOption[] options)
         {
             Link link = relationship.GetLink(Rel.RELATIONSHIP);
@@ -117,6 +163,15 @@ namespace Gx.Rs.Api
             return this.stateFactory.NewRelationshipState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
+        /// <summary>
+        /// Removes the specified relationship, which is a relationship between the current person and a parent.
+        /// </summary>
+        /// <param name="relationship">The relationship to remove.</param>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="RelationshipState"/> instance containing the REST API response.
+        /// </returns>
+        /// <exception cref="Gx.Rs.Api.GedcomxApplicationException">Thrown if a link to the required resource cannot be found.</exception>
         public RelationshipState RemoveRelationship(Relationship relationship, params StateTransitionOption[] options)
         {
             Link link = relationship.GetLink(Rel.RELATIONSHIP);
@@ -130,6 +185,19 @@ namespace Gx.Rs.Api
             return this.stateFactory.NewRelationshipState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
+        /// <summary>
+        /// Removes the relationship from the current person to the specified person.
+        /// </summary>
+        /// <param name="parent">The parent to which the current person has a relationship.</param>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="RelationshipState"/> instance containing the REST API response.
+        /// </returns>
+        /// <exception cref="Gx.Rs.Api.GedcomxApplicationException">
+        /// Thrown if a relationship between the current person and the specified parent could not be found
+        /// or
+        /// Thrown if a link to the required resource cannot be found.
+        /// </exception>
         public RelationshipState RemoveRelationshipTo(Person parent, params StateTransitionOption[] options)
         {
             Relationship relationship = FindRelationshipTo(parent);

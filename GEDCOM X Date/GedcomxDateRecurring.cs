@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Gedcomx.Date
 {
+    /// <summary>
+    /// Represents a recurring GEDCOM X date.
+    /// </summary>
     public class GedcomxDateRecurring : GedcomxDate
     {
 
@@ -12,13 +15,15 @@ namespace Gedcomx.Date
         private GedcomxDateRange range;
         private GedcomxDateSimple end = null;
 
-        /**
-         * Instantiate a new Recurring date from the formal date string
-         * @param date The formal date string
-         */
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GedcomxDateRecurring"/> class.
+        /// </summary>
+        /// <param name="date">The recurring date string that describes a recurring GEDCOM X date.</param>
+        /// <exception cref="Gedcomx.Date.GedcomxDateException">
+        /// Thrown if the formal date string is null, empty, or fails to meet the expected format. The specific reason will be given at runtime.
+        /// </exception>
         public GedcomxDateRecurring(String date)
         {
-
             if (date == null || date.Length < 3)
             {
                 throw new GedcomxDateException("Invalid Recurring Date");
@@ -72,10 +77,12 @@ namespace Gedcomx.Date
             }
         }
 
-        /**
-         * Get the count
-         * @return The Count
-         */
+        /// <summary>
+        /// Gets the count of recurring instances if applicable.
+        /// </summary>
+        /// <value>
+        /// The count of recurring instances if applicable.
+        /// </value>
         public Int32? Count
         {
             get
@@ -84,10 +91,12 @@ namespace Gedcomx.Date
             }
         }
 
-        /**
-         * Get the range
-         * @return The Range
-         */
+        /// <summary>
+        /// Gets the <see cref="GedcomxDateRange"/> range of the current recurrences.
+        /// </summary>
+        /// <value>
+        /// The range.
+        /// </value>
         public GedcomxDateRange Range
         {
             get
@@ -96,10 +105,12 @@ namespace Gedcomx.Date
             }
         }
 
-        /**
-         * Get the start date
-         * @return The Start Date
-         */
+        /// <summary>
+        /// Gets the simple start date of the recurring period.
+        /// </summary>
+        /// <value>
+        /// The simple start date of the recurring period.
+        /// </value>
         public GedcomxDateSimple Start
         {
             get
@@ -108,10 +119,12 @@ namespace Gedcomx.Date
             }
         }
 
-        /**
-         * Get the duration
-         * @return The Duration
-         */
+        /// <summary>
+        /// Gets the <see cref="GedcomxDateDuration"/> of the recurring period.
+        /// </summary>
+        /// <value>
+        /// The the <see cref="GedcomxDateDuration"/> of the recurring period.
+        /// </value>
         public GedcomxDateDuration Duration
         {
             get
@@ -120,10 +133,12 @@ namespace Gedcomx.Date
             }
         }
 
-        /**
-         * Get the end date
-         * @return The End Date
-         */
+        /// <summary>
+        /// Gets the simple end date of the recurring period.
+        /// </summary>
+        /// <value>
+        /// The simple end date of the recurring period.
+        /// </value>
         public GedcomxDateSimple End
         {
             get
@@ -132,23 +147,24 @@ namespace Gedcomx.Date
             }
         }
 
-        /**
-         * Get the nth instance of this recurring date
-         * @param count The nth instance
-         * @return The date of the nth instance
-         */
+        /// <summary>
+        /// Gets the nth instance of this recurring date.
+        /// </summary>
+        /// <param name="count">The nth instance to retrieve.</param>
+        /// <returns>The simple date of the nth instance.</returns>
         public GedcomxDateSimple GetNth(Int32 count)
         {
-
             GedcomxDateDuration duration = GedcomxDateUtil.MultiplyDuration(range.Duration, count);
 
             return GedcomxDateUtil.AddDuration(range.Start, duration);
         }
 
-        /**
-         * Get the date type
-         * @return The Date Type
-         */
+        /// <summary>
+        /// Gets the type of GEDCOM X date. This property always returns RECURRING for this instance.
+        /// </summary>
+        /// <value>
+        /// The type of GEDCOM X date.
+        /// </value>
         public override GedcomxDateType Type
         {
             get
@@ -157,19 +173,23 @@ namespace Gedcomx.Date
             }
         }
 
-        /**
-         * Whether or not this date is considered approximate
-         * @return True if this date is approximate
-         */
+        /// <summary>
+        /// Determines whether this date is approximate. This method always returns <c>false</c> for this instance.
+        /// </summary>
+        /// <returns>
+        ///   <c>true</c> if this date is approximate; otherwise, <c>false</c>.
+        /// </returns>
         public override bool IsApproximate()
         {
             return false;
         }
 
-        /**
-         * Return the formal string for this date
-         * @return The formal date string
-         */
+        /// <summary>
+        /// The formal representation of this date.
+        /// </summary>
+        /// <returns>
+        /// The formal representation of this date.
+        /// </returns>
         public override String ToFormalString()
         {
             if (count != null)

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Gedcomx.Date
 {
+    /// <summary>
+    /// A helper utility to manipulating and working with various GEDCOM X dates and strings.
+    /// </summary>
     public class GedcomxDateUtil
     {
         /**
@@ -13,9 +16,16 @@ namespace Gedcomx.Date
          * @param date The GedcomX Date
          * @return A GedcomxDate
          */
+        /// <summary>
+        /// Parses the specified formal date string representing a GEDCOM X date of any kind.
+        /// </summary>
+        /// <param name="date">The formal date string to parse.</param>
+        /// <returns></returns>
+        /// <exception cref="Gedcomx.Date.GedcomxDateException">
+        /// Throw if the formal date string is null or empty.
+        /// </exception>
         public static GedcomxDate Parse(String date)
         {
-
             if (date == null || date.Equals(""))
             {
                 throw new GedcomxDateException("Invalid Date");
@@ -39,12 +49,17 @@ namespace Gedcomx.Date
             }
         }
 
-        /**
-         * Calculates the Duration between two dates
-         * @param startDate The start date
-         * @param endDate The end date
-         * @return The duration
-         */
+        /// <summary>
+        /// Gets the duration between the two specified GEDCOM X dates.
+        /// </summary>
+        /// <param name="startDate">The simple start date.</param>
+        /// <param name="endDate">The simple end date.</param>
+        /// <returns>A <see cref="GedcomxDateDuration"/> representing the duration between the two specified dates.</returns>
+        /// <exception cref="Gedcomx.Date.GedcomxDateException">
+        /// Thrown if one of the input dates is null
+        /// or
+        /// Thrown if the start date occurs after the end date, or is equal to the end time.
+        /// </exception>
         public static GedcomxDateDuration GetDuration(GedcomxDateSimple startDate, GedcomxDateSimple endDate)
         {
 
@@ -155,12 +170,19 @@ namespace Gedcomx.Date
             return new GedcomxDateDuration("P" + finalDuration);
         }
 
-        /**
-         * Add a duration to a simple date
-         * @param startDate The date to start from
-         * @param duration The duration to add
-         * @return a new simple date
-         */
+        /// <summary>
+        /// Adds a duration to the specified simple date and returns the resulting simple date.
+        /// </summary>
+        /// <param name="startDate">The start date that will have the specified duration added.</param>
+        /// <param name="duration">The duration to add to the specified simple date.</param>
+        /// <returns>The <see cref="GedcomxDateSimple"/> date resulting from adding the duration to the specified date. </returns>
+        /// <exception cref="Gedcomx.Date.GedcomxDateException">
+        /// Throw if the start date is null
+        /// or
+        /// Thrown if the duration is null
+        /// or
+        /// Thrown if the resulting end year is beyond 9999.
+        /// </exception>
         public static GedcomxDateSimple AddDuration(GedcomxDateSimple startDate, GedcomxDateDuration duration)
         {
 
@@ -283,12 +305,17 @@ namespace Gedcomx.Date
             return new GedcomxDateSimple(endString.ToString());
         }
 
-        /**
-         * Multiple a duration by a fixed number
-         * @param duration The duration to multiply
-         * @param multiplier The amount to multiply by
-         * @return The new, multiplied duration
-         */
+        /// <summary>
+        /// Multiplies the duration by a fixed number.
+        /// </summary>
+        /// <param name="duration">The duration to be multiplied.</param>
+        /// <param name="multiplier">The fixed number to multiply the duration.</param>
+        /// <returns>The resulting <see cref="GedcomxDateDuration"/> after multiplying the specified duration by the fixed number.</returns>
+        /// <exception cref="Gedcomx.Date.GedcomxDateException">
+        /// Thrown if the duration is null
+        /// or
+        /// Thrown if the multiplier is negative or zero.
+        /// </exception>
         public static GedcomxDateDuration MultiplyDuration(GedcomxDateDuration duration, int multiplier)
         {
 
@@ -343,13 +370,15 @@ namespace Gedcomx.Date
             return new GedcomxDateDuration(newDuration.ToString());
         }
 
-        /**
-         * Ensures that both start and end have values where the other has values.
-         * For example, if start has minutes but end does not, this function
-         * will initialize minutes in end.
-         * @param start The start date
-         * @param end The end date
-         */
+        /// <summary>
+        /// Ensures both specified dates have matching attributes. See remarks for more information.
+        /// </summary>
+        /// <param name="start">The start date to evaluate.</param>
+        /// <param name="end">The end date to evaluate.</param>
+        /// <remarks>
+        /// If the start date has minutes specified but the end date does not have minutes specified,
+        /// this method will initialize minutes on the end date.
+        /// </remarks>
         protected static void ZipDates(Date start, Date end)
         {
             if (start.month == null && end.month != null)
@@ -398,13 +427,24 @@ namespace Gedcomx.Date
             }
         }
 
-        /**
-         * Ensures that date has its properties initialized based on what the duration has.
-         * For example, if date does not have minutes and duration does, this will
-         * initialize minutes in the date.
-         * @param date The start date
-         * @param duration The duration
-         */
+        /// <summary>
+        /// Ensures the specified date has matching attributes based off the duration attributes. See remarks for more information.
+        /// </summary>
+        /// <param name="date">The date to evaluate.</param>
+        /// <param name="duration">The duration to use for evaluation.</param>
+        /// <remarks>
+        /// If the specified duration has minutes and the specified date does not, this will initialize the minutes on
+        /// the specified date.
+        /// 
+        /// Furthermore, for the level of granularity specified in the duration (e.g., down to the minute but not second),
+        /// this method ensures the specified date has the same level of granularity and greater. So if the specified duration
+        /// has minutes set, but the specified date does not have minutes or some greater unit not set, this will initialize
+        /// the minutes on the specified date and all other levels of granularity greater than minutes. Thus hours would be set
+        /// if not already, and so on. It's important to note, however, that just like <see cref="ZipDates"/>, this method will
+        /// not initialize any unit for which a value is already set.
+        /// 
+        /// Note: This method only writes to the specified date, and only reads the duration.
+        /// </remarks>
         protected static void ZipDuration(Date date, GedcomxDateDuration duration)
         {
             bool seconds = false;
@@ -474,21 +514,53 @@ namespace Gedcomx.Date
             }
         }
 
-        /**
-         * A simplified representation of a date.
-         * Used as a bag-o-properties when performing caluclations
-         */
+        /// <summary>
+        /// A simplified representation of a date. Used as a bag of properties when performing caluclations.
+        /// </summary>
         protected class Date
         {
+            /// <summary>
+            /// The year this date represents if applicable.
+            /// </summary>
             public Int32? year = null;
+            /// <summary>
+            /// The month this date represents if applicable.
+            /// </summary>
             public Int32? month = null;
+            /// <summary>
+            /// The day this date represents if applicable.
+            /// </summary>
             public Int32? day = null;
+            /// <summary>
+            /// The hours this date represents if applicable.
+            /// </summary>
             public Int32? hours = null;
+            /// <summary>
+            /// The minutes this date represents if applicable.
+            /// </summary>
             public Int32? minutes = null;
+            /// <summary>
+            /// The seconds this date represents if applicable.
+            /// </summary>
             public Int32? seconds = null;
 
+            /// <summary>
+            /// Initializes a new instance of the <see cref="Date"/> class.
+            /// </summary>
             public Date() { }
 
+            /// <summary>
+            /// Initializes a new instance of the <see cref="Date"/> class.
+            /// </summary>
+            /// <param name="simple">The simple GEDCOM X date.</param>
+            /// <param name="adjustTimezone">
+            /// If set to <c>true</c> the resulting date hours and minutes will have the timezone hours and minutes added. See remarks for more information.
+            /// </param>
+            /// <remarks>
+            /// The timezone adjustment is only applied when the adjustTimezone parameter is <c>true</c> and the incoming simple date hours and minutes are set. Thus,
+            /// if the simple date hours are null, no adjustment will be made to the hours. Likewise, if the simple date minutes are null, no adjustment will be made
+            /// to minutes.
+            /// </remarks>
             public Date(GedcomxDateSimple simple, bool adjustTimezone)
             {
                 year = simple.Year;

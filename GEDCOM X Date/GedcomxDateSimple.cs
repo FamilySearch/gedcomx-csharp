@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Gedcomx.Date
 {
+    /// <summary>
+    /// Represents a simple GEDCOM X date.
+    /// </summary>
     public class GedcomxDateSimple : GedcomxDate
     {
         private Int32? year = null;
@@ -18,19 +21,22 @@ namespace Gedcomx.Date
         private Int32? tzHours = null;
         private Int32? tzMinutes = null;
 
-        /**
-         * Instantiate a new Simple date based off of a formal date string.
-         * @param date The date
-         */
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GedcomxDateSimple"/> class.
+        /// </summary>
+        /// <param name="date">The formal date string that describes a simple GEDCOM X date.</param>
         public GedcomxDateSimple(String date)
         {
             ParseDate(date);
         }
 
-        /**
-         * Parse the date portion of the formal string
-         * @param date The date string
-         */
+        /// <summary>
+        /// Parses the date of the specified formal date string and loads the results into the current instance.
+        /// </summary>
+        /// <param name="date">The formal date string to parse.</param>
+        /// <exception cref="Gedcomx.Date.GedcomxDateException">
+        /// Thrown if the formal date string does not meet the expected format.
+        /// </exception>
         private void ParseDate(String date)
         {
             // There is a minimum length of 5 characters
@@ -166,13 +172,15 @@ namespace Gedcomx.Date
 
         }
 
-        /**
-         * Parse the time portion of the formal string
-         * @param date The date string (minus the date)
-         */
+        /// <summary>
+        /// Parses the time portion of the formal string
+        /// </summary>
+        /// <param name="date">The formal date string, excluding the date.</param>
+        /// <exception cref="Gedcomx.Date.GedcomxDateException">
+        /// Thrown if the formal date string does not meet the expected format. The specific reason will be given at runtime.
+        /// </exception>
         private void ParseTime(String date)
         {
-
             int offset = 0;
             int end = date.Length;
             String num;
@@ -221,7 +229,7 @@ namespace Gedcomx.Date
             // If there is a timezone offset
             if (date[offset] == '+' || date[offset] == '-' || date[offset] == 'Z')
             {
-                parseTimezone(date.Substring(offset)); // Don't remove the character when calling
+                ParseTimezone(date.Substring(offset)); // Don't remove the character when calling
                 return;
             }
 
@@ -266,7 +274,7 @@ namespace Gedcomx.Date
             // If there is a timezone offset
             if (date[offset] == '+' || date[offset] == '-' || date[offset] == 'Z')
             {
-                parseTimezone(date.Substring(offset)); // Don't remove the character when calling
+                ParseTimezone(date.Substring(offset)); // Don't remove the character when calling
                 return;
             }
 
@@ -309,7 +317,7 @@ namespace Gedcomx.Date
             }
             else
             {
-                parseTimezone(date.Substring(offset)); // Don't remove the character when calling
+                ParseTimezone(date.Substring(offset)); // Don't remove the character when calling
             }
 
         }
@@ -318,7 +326,14 @@ namespace Gedcomx.Date
          * Parse the timezone portion of the formal string
          * @param date The date string (minus the date and time)
          */
-        private void parseTimezone(String date)
+        /// <summary>
+        /// Parses the timezone portion of the formal date string.
+        /// </summary>
+        /// <param name="date">The formal date string to parse (excluding the date and time).</param>
+        /// <exception cref="Gedcomx.Date.GedcomxDateException">
+        /// Thrown if the formal date string does not meet the expected format. The specific reason will be given at runtime.
+        /// </exception>
+        private void ParseTimezone(String date)
         {
             int offset = 0;
             int end = date.Length;
@@ -404,10 +419,12 @@ namespace Gedcomx.Date
 
         }
 
-        /**
-         * Get the Date Type
-         * @return The type
-         */
+        /// <summary>
+        /// Gets the type of GEDCOM X date. This property always returns SIMPLE for this instance.
+        /// </summary>
+        /// <value>
+        /// The type of GEDCOM X date.
+        /// </value>
         public override GedcomxDateType Type
         {
             get
@@ -416,19 +433,23 @@ namespace Gedcomx.Date
             }
         }
 
-        /**
-         * Whether or not this date can be considered approximate
-         * @return True if this is approximate
-         */
+        /// <summary>
+        /// Determines whether this date is approximate. This method always returns <c>false</c> for this instance.
+        /// </summary>
+        /// <returns>
+        ///   <c>true</c> if this date is approximate; otherwise, <c>false</c>.
+        /// </returns>
         public override bool IsApproximate()
         {
                 return false;
         }
 
-        /**
-         * Output the formal string for this date
-         * @return The formal date string
-         */
+        /// <summary>
+        /// The formal representation of this date.
+        /// </summary>
+        /// <returns>
+        /// The formal representation of this date.
+        /// </returns>
         public override String ToFormalString()
         {
             StringBuilder simple = new StringBuilder();
@@ -471,15 +492,15 @@ namespace Gedcomx.Date
                 }
             }
 
-
-
             return simple.ToString();
         }
 
-        /**
-         * Get the year
-         * @return The Year
-         */
+        /// <summary>
+        /// Gets the year of the current date if available.
+        /// </summary>
+        /// <value>
+        /// The year of the current date if available.
+        /// </value>
         public Int32? Year
         {
             get
@@ -488,10 +509,12 @@ namespace Gedcomx.Date
             }
         }
 
-        /**
-         * Get the month
-         * @return The Month
-         */
+        /// <summary>
+        /// Gets the month of the current date if available.
+        /// </summary>
+        /// <value>
+        /// The month of the current date if available.
+        /// </value>
         public Int32? Month
         {
             get
@@ -500,10 +523,12 @@ namespace Gedcomx.Date
             }
         }
 
-        /**
-         * Get the day
-         * @return The Day
-         */
+        /// <summary>
+        /// Gets the day of the current date if available.
+        /// </summary>
+        /// <value>
+        /// The day of the current date if available.
+        /// </value>
         public Int32? Day
         {
             get
@@ -512,10 +537,12 @@ namespace Gedcomx.Date
             }
         }
 
-        /**
-         * Get the hours
-         * @return The Hours
-         */
+        /// <summary>
+        /// Gets the hours of the current date if available.
+        /// </summary>
+        /// <value>
+        /// The hours of the current date if available.
+        /// </value>
         public Int32? Hours
         {
             get
@@ -524,10 +551,12 @@ namespace Gedcomx.Date
             }
         }
 
-        /**
-         * Get the minutes
-         * @return The Minutes
-         */
+        /// <summary>
+        /// Gets the minutes of the current date if available.
+        /// </summary>
+        /// <value>
+        /// The minutes of the current date if available.
+        /// </value>
         public Int32? Minutes
         {
             get
@@ -536,10 +565,12 @@ namespace Gedcomx.Date
             }
         }
 
-        /**
-         * Get the seconds
-         * @return The seconds
-         */
+        /// <summary>
+        /// Gets the seconds of the current date if available.
+        /// </summary>
+        /// <value>
+        /// The seconds of the current date if available.
+        /// </value>
         public Int32? Seconds
         {
             get
@@ -548,10 +579,12 @@ namespace Gedcomx.Date
             }
         }
 
-        /**
-         * Get the timezone hours
-         * @return The Timezone Hours
-         */
+        /// <summary>
+        /// Gets the timezone hours of the current date if available.
+        /// </summary>
+        /// <value>
+        /// The timezone hours of the current date if available.
+        /// </value>
         public Int32? TzHours
         {
             get
@@ -560,10 +593,12 @@ namespace Gedcomx.Date
             }
         }
 
-        /**
-         * Get the timezone minutes
-         * @return The Timezone Minutes
-         */
+        /// <summary>
+        /// Gets the timezone minutes of the current date if available.
+        /// </summary>
+        /// <value>
+        /// The timezone minutes of the current date if available.
+        /// </value>
         public Int32? TzMinutes
         {
             get

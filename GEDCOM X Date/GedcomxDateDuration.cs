@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Gedcomx.Date
 {
+    /// <summary>
+    /// Represents a GEDCOM X date span, measured from years to seconds.
+    /// </summary>
     public class GedcomxDateDuration : GedcomxDate
     {
         private Int32? years = null;
@@ -14,13 +17,19 @@ namespace Gedcomx.Date
         private Int32? minutes = null;
         private Int32? seconds = null;
 
-        /**
-         * Create a new duration from the formal string
-         * @param str The formal duration string
-         */
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GedcomxDateDuration"/> class.
+        /// </summary>
+        /// <param name="str">The formal duration string that describes a GEDCOM X duration.</param>
+        /// <exception cref="GedcomxDateException">
+        /// Thrown if the formal string is null, empty, or does not begin with 'P'.
+        /// or
+        /// Thrown if the formal string does not have a duration specified (the string after 'P').
+        /// or
+        /// Thrown if the formal string is a 5.3.2 non-normalized date (these are not yet implemented).
+        /// </exception>
         public GedcomxDateDuration(String str)
         {
-
             // Durations must start with P
             if (str == null || str.Length < 1 || str[0] != 'P')
             {
@@ -47,10 +56,13 @@ namespace Gedcomx.Date
             }
         }
 
-        /**
-         * Parse the normalized duration
-         * @param duration the formal duration string
-         */
+        /// <summary>
+        /// Parses the formal duration string and populates the results in this current instance.
+        /// </summary>
+        /// <param name="duration">The formal duration string to be parsed.</param>
+        /// <exception cref="GedcomxDateException">
+        /// Thrown if any of the current parsing expectations fail. A specific reason will be included at runtime.
+        /// </exception>
         private void ParseNormalizedDuration(String duration)
         {
             String currentNum = "";
@@ -207,10 +219,12 @@ namespace Gedcomx.Date
 
         }
 
-        /**
-         * The type of this date
-         * @return The date type
-         */
+        /// <summary>
+        /// Gets the type of GEDCOM X date. This property always returns APPROXIMATE for this instance.
+        /// </summary>
+        /// <value>
+        /// The type of GEDCOM X date.
+        /// </value>
         public override GedcomxDateType Type
         {
             get
@@ -219,19 +233,23 @@ namespace Gedcomx.Date
             }
         }
 
-        /**
-         * A Duration is NEVER Approximate
-         * @return True if the duration is approximate (It never is)
-         */
+        /// <summary>
+        /// Determines whether this date is approximate.  This method always returns <c>false</c> for this instance.
+        /// </summary>
+        /// <returns>
+        ///   <c>true</c> if this date is approximate; otherwise, <c>false</c>.
+        /// </returns>
         public override bool IsApproximate()
         {
             return false;
         }
 
-        /**
-         * The formal string representation of the duration
-         * @return The formal string
-         */
+        /// <summary>
+        /// The formal representation of this duration.
+        /// </summary>
+        /// <returns>
+        /// The formal representation of this duration.
+        /// </returns>
         public override String ToFormalString()
         {
             StringBuilder duration = new StringBuilder("P");
@@ -274,19 +292,26 @@ namespace Gedcomx.Date
             return duration.ToString();
         }
 
-        /**
-         * Get the years
-         * @return The Years
-         */
+        /// <summary>
+        /// Gets the years of the current duration if applicable.
+        /// </summary>
+        /// <value>
+        /// The years of the current duration if applicable.
+        /// </value>
         public Int32? Years
-        {get{
-            return years;
-        }}
+        {
+            get
+            {
+                return years;
+            }
+        }
 
-        /**
-         * Get the months
-         * @return The Months
-         */
+        /// <summary>
+        /// Gets the months of the current duration if applicable.
+        /// </summary>
+        /// <value>
+        /// The months of the current duration if applicable.
+        /// </value>
         public Int32? Months
         {
             get
@@ -295,10 +320,12 @@ namespace Gedcomx.Date
             }
         }
 
-        /**
-         * Get the days
-         * @return The Days
-         */
+        /// <summary>
+        /// Gets the days of the current duration if applicable.
+        /// </summary>
+        /// <value>
+        /// The days of the current duration if applicable.
+        /// </value>
         public Int32? Days
         {
             get
@@ -307,10 +334,12 @@ namespace Gedcomx.Date
             }
         }
 
-        /**
-         * Get the hours
-         * @return The Hours
-         */
+        /// <summary>
+        /// Gets the hours of the current duration if applicable.
+        /// </summary>
+        /// <value>
+        /// The hours of the current duration if applicable.
+        /// </value>
         public Int32? Hours
         {
             get
@@ -319,10 +348,12 @@ namespace Gedcomx.Date
             }
         }
 
-        /**
-         * Get the minutes
-         * @return The Minutes
-         */
+        /// <summary>
+        /// Gets the minutes of the current duration if applicable.
+        /// </summary>
+        /// <value>
+        /// The minutes of the current duration if applicable.
+        /// </value>
         public Int32? Minutes
         {
             get
@@ -331,10 +362,12 @@ namespace Gedcomx.Date
             }
         }
 
-        /**
-         * Get the seconds
-         * @return The Seconds
-         */
+        /// <summary>
+        /// Gets the seconds of the current duration if applicable.
+        /// </summary>
+        /// <value>
+        /// The seconds of the current duration if applicable.
+        /// </value>
         public Int32? Seconds
         {
             get

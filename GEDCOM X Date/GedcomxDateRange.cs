@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Gedcomx.Date
 {
+    /// <summary>
+    /// Represents a GEDCOM X date range.
+    /// </summary>
     public class GedcomxDateRange : GedcomxDate
     {
         private bool approximate = false;
@@ -12,10 +15,13 @@ namespace Gedcomx.Date
         private GedcomxDateDuration duration = null;
         private GedcomxDateSimple end = null;
 
-        /**
-         * Instantiate a new Range date from the formal string
-         * @param date The formal date string
-         */
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GedcomxDateRange"/> class.
+        /// </summary>
+        /// <param name="date">The formal date string that describes a GEDCOM X date range.</param>
+        /// <exception cref="Gedcomx.Date.GedcomxDateException">
+        /// Thrown if the formal date is null, empty, or does not meet the expected format.
+        /// </exception>
         public GedcomxDateRange(String date)
         {
 
@@ -39,7 +45,7 @@ namespace Gedcomx.Date
                 throw new GedcomxDateException("Invalid Range: / is required");
             }
 
-            /**
+            /*
              * range -> parts
              * / -> []
              * +1000/ -> ["+1000"]
@@ -102,10 +108,12 @@ namespace Gedcomx.Date
             }
         }
 
-        /**
-         * Get the start of the range
-         * @return The Start Date
-         */
+        /// <summary>
+        /// Gets the simple start date of the current date range.
+        /// </summary>
+        /// <value>
+        /// The simple start date of the current date range.
+        /// </value>
         public GedcomxDateSimple Start
         {
             get
@@ -114,10 +122,12 @@ namespace Gedcomx.Date
             }
         }
 
-        /**
-         * Get the duration between the start and end dates
-         * @return The Duration
-         */
+        /// <summary>
+        /// Gets the duration between the start and end dates.
+        /// </summary>
+        /// <value>
+        /// The duration between the start and end dates.
+        /// </value>
         public GedcomxDateDuration Duration
         {
             get
@@ -126,10 +136,12 @@ namespace Gedcomx.Date
             }
         }
 
-        /**
-         * Get the end of the range
-         * @return The End Date
-         */
+        /// <summary>
+        /// Gets the simple end date of the current date range.
+        /// </summary>
+        /// <value>
+        /// The simple end date of the current date range.
+        /// </value>
         public GedcomxDateSimple End
         {
             get
@@ -138,10 +150,12 @@ namespace Gedcomx.Date
             }
         }
 
-        /**
-         * Get the type of this date
-         * @return The Date Type
-         */
+        /// <summary>
+        /// Gets the type of GEDCOM X date. This property always returns RANGE for this instance.
+        /// </summary>
+        /// <value>
+        /// The type of GEDCOM X date.
+        /// </value>
         public override GedcomxDateType Type
         {
             get
@@ -150,19 +164,23 @@ namespace Gedcomx.Date
             }
         }
 
-        /**
-         * Whether or not this date is considered approximate
-         * @return True if it this date is approximate
-         */
+        /// <summary>
+        /// Determines whether this date is approximate.
+        /// </summary>
+        /// <returns>
+        ///   <c>true</c> if this date is approximate; otherwise, <c>false</c>.
+        /// </returns>
         public override bool IsApproximate()
         {
             return approximate;
         }
 
-        /**
-         * Return the formal string for this date
-         * @return The formal string
-         */
+        /// <summary>
+        /// The formal representation of this date.
+        /// </summary>
+        /// <returns>
+        /// The formal representation of this date.
+        /// </returns>
         public override String ToFormalString()
         {
             StringBuilder range = new StringBuilder();

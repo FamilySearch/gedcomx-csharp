@@ -6,17 +6,20 @@ using System.Threading.Tasks;
 
 namespace Gedcomx.Date
 {
+    /// <summary>
+    /// Represents an approximate GEDCOM X date.
+    /// </summary>
     public class GedcomxDateApproximate : GedcomxDate
     {
         private GedcomxDateSimple simpleDate;
 
-        /**
-         * Instantiate a new approximate date
-         * @param date The formal date string
-         */
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GedcomxDateApproximate"/> class.
+        /// </summary>
+        /// <param name="date">The formal duration string that describes a GEDCOM X date approximation.</param>
+        /// <exception cref="GedcomxDateException">Thrown if the specified date is null, empty, or does not begin with 'A' (as required by a formal date string).</exception>
         public GedcomxDateApproximate(String date)
         {
-
             if (date == null || date.Length < 1 || date[0] != 'A')
             {
                 throw new GedcomxDateException("Invalid Approximate Date: Must start with A");
@@ -26,10 +29,12 @@ namespace Gedcomx.Date
 
         }
 
-        /**
-         * Return the underlying simple date
-         * @return The Simple Date
-         */
+        /// <summary>
+        /// Gets the underlying simple date.
+        /// </summary>
+        /// <value>
+        /// The underlying simple date.
+        /// </value>
         public GedcomxDateSimple SimpleDate
         {
             get
@@ -38,10 +43,12 @@ namespace Gedcomx.Date
             }
         }
 
-        /**
-         * The type of this date
-         * @return The Type
-         */
+        /// <summary>
+        /// Gets the type of GEDCOM X date. This property always returns APPROXIMATE for this instance.
+        /// </summary>
+        /// <value>
+        /// The type of GEDCOM X date.
+        /// </value>
         public override GedcomxDateType Type
         {
             get
@@ -50,28 +57,34 @@ namespace Gedcomx.Date
             }
         }
 
-        /**
-         * Whether or not this date is approximate
-         * @return True
-         */
+        /// <summary>
+        /// Determines whether this date is approximate. This method always returns <c>true</c> for this instance.
+        /// </summary>
+        /// <returns>
+        ///   <c>true</c> if this date is approximate; otherwise, <c>false</c>.
+        /// </returns>
         public override bool IsApproximate()
         {
             return true;
         }
 
-        /**
-         * Returns the formal representation of this date
-         * @return The formal String
-         */
+        /// <summary>
+        /// The formal representation of this date.
+        /// </summary>
+        /// <returns>
+        /// The formal representation of this date.
+        /// </returns>
         public override String ToFormalString()
         {
             return "A" + simpleDate.ToFormalString();
         }
 
-        /**
-         * Get the year
-         * @return The Year
-         */
+        /// <summary>
+        /// Gets the year of the current date if it exists.
+        /// </summary>
+        /// <value>
+        /// The year of the current date if it exists.
+        /// </value>
         public Int32? Year
         {
             get
@@ -80,10 +93,12 @@ namespace Gedcomx.Date
             }
         }
 
-        /**
-         * Get the month
-         * @return The Month
-         */
+        /// <summary>
+        /// Gets the month of the current date if it exists.
+        /// </summary>
+        /// <value>
+        /// The month of the current date if it exists.
+        /// </value>
         public Int32? Month
         {
             get
@@ -92,10 +107,12 @@ namespace Gedcomx.Date
             }
         }
 
-        /**
-         * Get the day
-         * @return The Day
-         */
+        /// <summary>
+        /// Gets the day of the current date if it exists.
+        /// </summary>
+        /// <value>
+        /// The day of the current date if it exists.
+        /// </value>
         public Int32? Day
         {
             get
@@ -104,10 +121,12 @@ namespace Gedcomx.Date
             }
         }
 
-        /**
-         * Get the hours
-         * @return The Hours
-         */
+        /// <summary>
+        /// Gets the hours of the current date if it exists.
+        /// </summary>
+        /// <value>
+        /// The hours of the current date if it exists.
+        /// </value>
         public Int32? Hours
         {
             get
@@ -116,10 +135,12 @@ namespace Gedcomx.Date
             }
         }
 
-        /**
-         * Get the minutes
-         * @return The Minutes
-         */
+        /// <summary>
+        /// Gets the minutes of the current date if it exists.
+        /// </summary>
+        /// <value>
+        /// The minutes of the current date if it exists.
+        /// </value>
         public Int32? Minutes
         {
             get
@@ -128,10 +149,12 @@ namespace Gedcomx.Date
             }
         }
 
-        /**
-         * Get the seconds
-         * @return The Seconds
-         */
+        /// <summary>
+        /// Gets the seconds of the current date if it exists.
+        /// </summary>
+        /// <value>
+        /// The seconds of the current date if it exists.
+        /// </value>
         public Int32? Seconds
         {
             get
@@ -140,10 +163,12 @@ namespace Gedcomx.Date
             }
         }
 
-        /**
-         * Get the timezone hours
-         * @return The Timezone Hours
-         */
+        /// <summary>
+        /// Gets the timezone hours of the current date if it exists.
+        /// </summary>
+        /// <value>
+        /// The timezone hours of the current date if it exists.
+        /// </value>
         public Int32? TzHours
         {
             get
@@ -152,10 +177,12 @@ namespace Gedcomx.Date
             }
         }
 
-        /**
-         * Get the timezone minutes
-         * @return The Timezone Minutes
-         */
+        /// <summary>
+        /// Gets the timezone minutes of the current date if it exists.
+        /// </summary>
+        /// <value>
+        /// The timezone minutes of the current date if it exists.
+        /// </value>
         public Int32? TzMinutes
         {
             get

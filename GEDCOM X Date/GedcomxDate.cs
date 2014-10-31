@@ -6,24 +6,29 @@ using System.Threading.Tasks;
 
 namespace Gedcomx.Date
 {
+    /// <summary>
+    /// Represents a basic GEDCOM X date.
+    /// </summary>
     public abstract class GedcomxDate
     {
-        /**
-         * Return the type of date
-         * @return The Type
-         */
+        /// <summary>
+        /// Gets the type of GEDCOM X date.
+        /// </summary>
+        /// <value>
+        /// The type of GEDCOM X date.
+        /// </value>
         public abstract GedcomxDateType Type { get; }
 
-        /**
-         * Whether or not this date is approximate
-         * @return True if this date is approximate
-         */
+        /// <summary>
+        /// Determines whether this date is approximate.
+        /// </summary>
+        /// <returns><c>true</c> if this date is approximate; otherwise, <c>false</c>.</returns>
         public abstract bool IsApproximate();
 
-        /**
-         * The formal representation of this date
-         * @return The formal string
-         */
+        /// <summary>
+        /// The formal representation of this date.
+        /// </summary>
+        /// <returns>The formal representation of this date.</returns>
         public abstract String ToFormalString();
     }
 }

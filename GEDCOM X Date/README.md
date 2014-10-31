@@ -5,15 +5,13 @@ It also includes some handy utility functions for manupulating ranges, durations
 # NuGet Package Information
 
 
-| Package ID          | Link                |
-|---------------|---------------------------|
-| Insert package name | insert package link |
+| Package ID | Link |
+|------------|------|
+| Gedcomx.Date | http://www.nuget.org/packages/Gedcomx.Date/ |
 
 See [the section on using these libraries](../README.md#Use).
-Insert content when ready.
 
-To determine the latest version, ~ visit the NuGet link listed above ~.
-
+To determine the latest version visit the NuGet link listed above.
 
 # Exceptions
 Every error thrown is an instance of `GedcomxDateException`, which is a *runtime* exception.

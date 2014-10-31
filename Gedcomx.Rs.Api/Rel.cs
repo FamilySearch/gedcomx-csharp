@@ -17,6 +17,9 @@ namespace Gx.Rs.Api
     /// </remarks>
     public class Rel
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Rel"/> class.
+        /// </summary>
         protected Rel() { }
 
         /****************************

@@ -13,6 +13,7 @@ using Newtonsoft.Json.Linq;
 using FamilySearch.Api.Ft;
 using Newtonsoft.Json;
 using System.Net;
+using Gx.Fs;
 
 namespace Gedcomx.Rs.Api.Test
 {
@@ -33,7 +34,7 @@ namespace Gedcomx.Rs.Api.Test
         {
             // Make a separate copy from the main tree used in other tests
             var tempTree = new FamilySearchFamilyTree(true);
-            var features = new List<String>();
+            var features = new List<Feature>();
 
             tempTree.AuthenticateViaOAuth2Password(Resources.TestUserName, Resources.TestPassword, Resources.TestClientId);
 
@@ -44,16 +45,10 @@ namespace Gedcomx.Rs.Api.Test
             IRestResponse response = tempTree.Client.Handle(request);
 
             // Get each pending feature
-            foreach (var kvp in JsonConvert.DeserializeObject<IDictionary<String, JToken>>(response.Content).Where(x => x.Key == "features"))
-            {
-                foreach (var feature in kvp.Value.ToArray().SelectMany(x => x.ToObject<IDictionary<String, JToken>>().Where(y => y.Key == "name").Select(z => z.Value.ToString())))
-                {
-                    features.Add(feature);
-                }
-            }
+            features.AddRange(response.ToIRestResponse<FamilySearchPlatform>().Data.Features);
 
             // Add every pending feature to the tree's current client
-            tempTree.Client.AddFilter(new ExperimentsFilter(features.ToArray()));
+            tempTree.Client.AddFilter(new ExperimentsFilter(features.Select(x => x.Name).ToArray()));
 
             var state = tempTree.AddPerson(TestBacking.GetCreateMalePerson());
 
@@ -61,7 +56,9 @@ namespace Gedcomx.Rs.Api.Test
             Assert.IsNotNull(state);
             var requestedFeatures = String.Join(",", state.Request.GetHeaders().Get("X-FS-Feature-Tag").Select(x => x.Value.ToString()));
             // Ensure each requested feature was found in the request headers
-            Assert.IsTrue(features.TrueForAll(x => requestedFeatures.Contains(x)));
+            Assert.IsTrue(features.TrueForAll(x => requestedFeatures.Contains(x.Name)));
+
+            state.Delete();
         }
 
         [Test]

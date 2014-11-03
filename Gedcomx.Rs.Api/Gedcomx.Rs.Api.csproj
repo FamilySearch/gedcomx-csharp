@@ -77,7 +77,6 @@
     <Compile Include="DescendancyResultsState.cs" />
     <Compile Include="GedcomxApplicationException.cs" />
     <Compile Include="GedcomxApplicationState.cs" />
-    <Compile Include="CacheControl.cs" />
     <Compile Include="PreferredRelationshipState.cs" />
     <Compile Include="Options\CacheDirectives.cs" />
     <Compile Include="Options\HeaderParameter.cs" />

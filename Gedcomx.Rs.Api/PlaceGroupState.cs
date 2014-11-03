@@ -9,13 +9,30 @@ using Gx.Conclusion;
 
 namespace Gx.Rs.Api
 {
+    /// <summary>
+    /// The PlaceGroupState exposes management functions for a place group.
+    /// </summary>
     public class PlaceGroupState : GedcomxApplicationState<Gedcomx>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PlaceGroupState"/> class.
+        /// </summary>
+        /// <param name="request">The REST API request that will be used to instantiate this state instance.</param>
+        /// <param name="response">The REST API response that was produced from the REST API request.</param>
+        /// <param name="client">The REST API client to use for API calls.</param>
+        /// <param name="accessToken">The access token to use for subsequent invocations of the REST API client.</param>
+        /// <param name="stateFactory">The state factory to use for state instantiation.</param>
         internal PlaceGroupState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken, StateFactory stateFactory)
             : base(request, response, client, accessToken, stateFactory)
         {
         }
 
+        /// <summary>
+        /// Gets the rel name for the currrent state instance. This is expected to be overridden.
+        /// </summary>
+        /// <value>
+        /// The rel name for the currrent state instance
+        /// </value>
         public override String SelfRel
         {
             get
@@ -36,6 +53,12 @@ namespace Gx.Rs.Api
             return new PlaceGroupState(request, response, client, this.CurrentAccessToken, this.stateFactory);
         }
 
+        /// <summary>
+        /// Gets the main data element represented by this state instance.
+        /// </summary>
+        /// <value>
+        /// The main data element represented by this state instance.
+        /// </value>
         protected override SupportsLinks MainDataElement
         {
             get
@@ -45,11 +68,12 @@ namespace Gx.Rs.Api
             }
         }
 
-        /**
-         * Get the place group
-         *
-         * @return the place group associated with this place group application state
-         */
+        /// <summary>
+        /// Gets a list of place descriptions represented by the current place group from <see cref="P:Gedcomx.Places"/>.
+        /// </summary>
+        /// <value>
+        /// A list of place descriptions represented by the current place group from <see cref="P:Gedcomx.Places"/>.
+        /// </value>
         public List<PlaceDescription> PlaceGroup
         {
             get

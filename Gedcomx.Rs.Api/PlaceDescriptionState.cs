@@ -10,13 +10,30 @@ using Gx.Links;
 
 namespace Gx.Rs.Api
 {
+    /// <summary>
+    /// The PlaceDescriptionState exposes management functions for a place description.
+    /// </summary>
     public class PlaceDescriptionState : GedcomxApplicationState<Gedcomx>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PlaceDescriptionState"/> class.
+        /// </summary>
+        /// <param name="request">The REST API request that will be used to instantiate this state instance.</param>
+        /// <param name="response">The REST API response that was produced from the REST API request.</param>
+        /// <param name="client">The REST API client to use for API calls.</param>
+        /// <param name="accessToken">The access token to use for subsequent invocations of the REST API client.</param>
+        /// <param name="stateFactory">The state factory to use for state instantiation.</param>
         protected internal PlaceDescriptionState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken, StateFactory stateFactory)
             : base(request, response, client, accessToken, stateFactory)
         {
         }
 
+        /// <summary>
+        /// Gets the rel name for the currrent state instance. This is expected to be overridden.
+        /// </summary>
+        /// <value>
+        /// The rel name for the currrent state instance
+        /// </value>
         public override String SelfRel
         {
             get
@@ -37,6 +54,12 @@ namespace Gx.Rs.Api
             return new PlaceDescriptionState(request, response, client, this.CurrentAccessToken, this.stateFactory);
         }
 
+        /// <summary>
+        /// Gets the main data element represented by this state instance.
+        /// </summary>
+        /// <value>
+        /// The main data element represented by this state instance.
+        /// </value>
         protected override SupportsLinks MainDataElement
         {
             get
@@ -45,6 +68,12 @@ namespace Gx.Rs.Api
             }
         }
 
+        /// <summary>
+        /// Gets the first place description represented by the current state instance from <see cref="P:Gedcomx.Places"/>.
+        /// </summary>
+        /// <value>
+        /// The first place description represented by the current state instance from <see cref="P:Gedcomx.Places"/>.
+        /// </value>
         public PlaceDescription PlaceDescription
         {
             get
@@ -53,6 +82,13 @@ namespace Gx.Rs.Api
             }
         }
 
+        /// <summary>
+        /// Reads the children of the current place description.
+        /// </summary>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="PlaceDescriptionsState"/> instance containing the REST API response.
+        /// </returns>
         public PlaceDescriptionsState ReadChildren(params StateTransitionOption[] options)
         {
             Link link = GetLink(Rel.CHILDREN);

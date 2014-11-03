@@ -1,4 +1,5 @@
 ﻿using FamilySearch.Api.Ft;
+using FamilySearch.Api.Util;
 using Gx.Fs.Tree;
 using Gx.Rs.Api.Options;
 using Gx.Rs.Api.Util;
@@ -72,13 +73,15 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestUpdateMatchStatusForPersonRecordMatches()
         {
+            var collection = FamilySearchOptions.Collection("https://familysearch.org/platform/collections/records");
             var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson());
             var matches = person.ReadMatches();
-            var collection = new QueryParameter("collection", "https://familysearch.org/platform/collections/records");
-            var state = matches.UpdateMatchStatus(matches.Results.Entries[0], MatchStatus.Pending, collection);
+            var state = matches.UpdateMatchStatus(matches.Results.Entries[0], MatchStatus.Accepted, collection);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
+
+            person.Delete();
         }
 
         [Test]

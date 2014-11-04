@@ -31,7 +31,6 @@ namespace Gedcomx.Rs.Api.Test
         }
 
         [Test]
-        [Ignore("Unable to query all sources for all collections at this time.")]
         public void TestReadAllSourcesOfAllUserDefinedCollectionsOfASpecificUser()
         {
             // Get the root collection

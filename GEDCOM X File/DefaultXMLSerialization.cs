@@ -9,6 +9,9 @@ using System.Xml.Serialization;
 
 namespace Gedcomx.File
 {
+    /// <summary>
+    /// The default XML serialization class.
+    /// </summary>
     public class DefaultXmlSerialization : GedcomxEntrySerializer, GedcomxEntryDeserializer
     {
         private readonly XmlSerializer serializer;
@@ -17,11 +20,20 @@ namespace Gedcomx.File
         private XmlReaderSettings readerSettings;
         private static Encoding encoding;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DefaultXmlSerialization"/> class. This overload defaults to using pretty output.
+        /// </summary>
+        /// <param name="types">The types the serializer is to know about for serialization.</param>
         public DefaultXmlSerialization(params Type[] types)
             : this(true, types)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DefaultXmlSerialization"/> class.
+        /// </summary>
+        /// <param name="pretty">If set to <c>true</c> the serialized output will be formatted with whitespace.</param>
+        /// <param name="types">The types the serializer is to know about for serialization.</param>
         public DefaultXmlSerialization(bool pretty, params Type[] types)
         {
             writerSettings = new XmlWriterSettings();
@@ -40,6 +52,14 @@ namespace Gedcomx.File
             }
         }
 
+        /// <summary>
+        /// Deserializes the specified string.
+        /// </summary>
+        /// <typeparam name="T">The type of object the specified string represents.</typeparam>
+        /// <param name="value"></param>
+        /// <returns>
+        /// An instance of T upon successful deserialization.
+        /// </returns>
         public T Deserialize<T>(String value)
         {
             T result;
@@ -52,6 +72,14 @@ namespace Gedcomx.File
             return result;
         }
 
+        /// <summary>
+        /// Deserializes the specified stream.
+        /// </summary>
+        /// <typeparam name="T">The type of object the specified stream represents.</typeparam>
+        /// <param name="stream">The stream to be deserialized.</param>
+        /// <returns>
+        /// An instance of T upon successful deserialization.
+        /// </returns>
         public T Deserialize<T>(Stream stream)
         {
             using (var xr = XmlReader.Create(stream, readerSettings))
@@ -60,6 +88,13 @@ namespace Gedcomx.File
             }
         }
 
+        /// <summary>
+        /// Serializes the specified object and returns the string result.
+        /// </summary>
+        /// <param name="resource">The object to be serialized.</param>
+        /// <returns>
+        /// A string representation of the serialized object.
+        /// </returns>
         public String Serialize(Object resource)
         {
             String result = null;
@@ -78,6 +113,11 @@ namespace Gedcomx.File
             return result;
         }
 
+        /// <summary>
+        /// Serializes the specified object to the specified stream.
+        /// </summary>
+        /// <param name="resource">The object to be serialized.</param>
+        /// <param name="stream">The stream that will contain the serialization result.</param>
         public void Serialize(Object resource, Stream stream)
         {
             writerSettings.Encoding = Encoding;
@@ -87,34 +127,30 @@ namespace Gedcomx.File
             }
         }
 
+        /// <summary>
+        /// Determines whether the content type is known to the serializer. This is currently not used in any meaningful way.
+        /// </summary>
+        /// <param name="contentType">The content type to check.</param>
+        /// <returns>
+        ///   <c>true</c> if the content type is known to the serializer; otherwise, false.
+        /// </returns>
         public bool IsKnownContentType(String contentType)
         {
             return this.KnownContentTypes.Contains(contentType);
         }
 
+        /// <summary>
+        /// Gets or sets the known content types.
+        /// </summary>
+        /// <value>
+        /// The known content types.
+        /// </value>
         public ISet<String> KnownContentTypes
         {
             get;
             set;
         }
 
-        /**
-         * Factory method for creating a new instance of a <code>JAXBContext</code> appropriate for reading and/or writing a GEDCOM X file.
-         *
-         * The created <code>JAXBContext</code> references the following classes by default:
-         *   org.gedcomx.conclusion.Person
-         *   org.gedcomx.conclusion.Relationship
-         *   org.gedcomx.metadata.dc.ObjectFactory
-         *   org.gedcomx.metadata.foaf.Person
-         *   org.gedcomx.contributor.Agent
-         *   org.gedcomx.metadata.rdf.Description
-         * Any additional classes needed can be passed to this call to supplement (not override) these defaults
-         *
-         * @param classes Additional classes to supplement (not override) the provided defaults
-         * @return A JAXBContext
-         *
-         * @throws JAXBException
-         */
         private static XmlSerializer NewContext(params Type[] types)
         {
             XmlSerializer result = null;
@@ -133,6 +169,12 @@ namespace Gedcomx.File
             return result;
         }
 
+        /// <summary>
+        /// Gets or sets the encoding to use for all serialization reading and writing. Changing this will take effect on subsequent reads or writes by this serializer.
+        /// </summary>
+        /// <value>
+        /// The encoding to use for all serialization reading and writing. Changing this will take effect on subsequent reads or writes by this serializer.
+        /// </value>
         public static Encoding Encoding
         {
             get

@@ -6,16 +6,20 @@ using System.Text;
 
 namespace Gedcomx.File
 {
+    /// <summary>
+    /// Represents a single file withing a GEDCOM X file.
+    /// </summary>
     public class GedcomxFileEntry
     {
         private readonly ZipArchiveEntry zipEntry;
         private readonly List<ManifestAttribute> attributes;
 
-        /**
-         * Constructs an instance of GedcomxFileEntry by wrapping a JarEntry from the underlying Jar file.
-         *
-         * @param jarEntry The JarEntry instance being wrapped.
-         */
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GedcomxFileEntry"/> class.
+        /// </summary>
+        /// <param name="entry">The zip archive this file belongs to.</param>
+        /// <param name="attributes">The attributes belonging to this file (such as content type, etc).</param>
+        /// <exception cref="System.ArgumentNullException">Thrown if the entry parameter is <c>null</c>.</exception>
         public GedcomxFileEntry(ZipArchiveEntry entry, List<ManifestAttribute> attributes)
         {
             if (entry == null)
@@ -27,11 +31,12 @@ namespace Gedcomx.File
             this.attributes = attributes;
         }
 
-        /**
-         * Gets the underlying JarEntry object used to construct this entry.
-         *
-         * @return The underlying JarEntry object used to construct this entry.
-         */
+        /// <summary>
+        /// Gets the zip file this file belongs to.
+        /// </summary>
+        /// <value>
+        /// The zip file this file belongs to.
+        /// </value>
         public ZipArchiveEntry ZipEntry
         {
             get
@@ -40,11 +45,12 @@ namespace Gedcomx.File
             }
         }
 
-        /**
-         * The content type of this entry.
-         *
-         * @return The content type of the part.
-         */
+        /// <summary>
+        /// Gets the content type of this file.
+        /// </summary>
+        /// <value>
+        /// The content type of this file.
+        /// </value>
         public String ContentType
         {
             get
@@ -53,24 +59,22 @@ namespace Gedcomx.File
             }
         }
 
-        /**
-         * Get the value of the specified per-entry attribute.
-         *
-         * @param name The name of the per-entry attribute.
-         * @return The value of the per-entry attribute.
-         */
+        /// <summary>
+        /// Gets the value of the attribute with the specified name.
+        /// </summary>
+        /// <param name="name">The name of the attribute for which the value will be retrieved.</param>
+        /// <returns>If an attribute with the specified name is found the value of said attribute will be returned; otherwise, <c>null</c> will be returned.</returns>
         public String GetAttribute(String name)
         {
             return attributes != null ? attributes.Where(x => x.Name == name).Select(x => x.Value).FirstOrDefault() : null;
         }
 
-        /**
-         * Gets the attributes associated with this entry.
-         *
-         * @return The attributes associated with this entry.
-         *
-         * @throws IOException
-         */
+        /// <summary>
+        /// Gets the attributes belonging to this file (such as content type, etc).
+        /// </summary>
+        /// <value>
+        /// The attributes belonging to this file (such as content type, etc).
+        /// </value>
         public Dictionary<String, String> Attributes
         {
             get

@@ -9,16 +9,26 @@ using System.Threading.Tasks;
 
 namespace Gedcomx.File
 {
+    /// <summary>
+    /// The default JSON serialization class.
+    /// </summary>
     public class DefaultJsonSerialization : GedcomxEntrySerializer, GedcomxEntryDeserializer
     {
         private JsonSerializerSettings jsonSettings;
         private static Encoding encoding;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DefaultJsonSerialization"/> class. This overload defaults to using pretty output.
+        /// </summary>
         public DefaultJsonSerialization()
             : this(true)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DefaultJsonSerialization"/> class.
+        /// </summary>
+        /// <param name="pretty">If set to <c>true</c> the serialized output will be formatted with whitespace.</param>
         public DefaultJsonSerialization(bool pretty)
         {
             jsonSettings = new JsonSerializerSettings();
@@ -34,6 +44,11 @@ namespace Gedcomx.File
             };
         }
 
+        /// <summary>
+        /// Serializes the specified object to JSON.
+        /// </summary>
+        /// <param name="resource">The object to serialize.</param>
+        /// <returns>A JSON string representing the serialized object specified.</returns>
         public String Serialize(Object resource)
         {
             String result = null;
@@ -52,6 +67,11 @@ namespace Gedcomx.File
             return result;
         }
 
+        /// <summary>
+        /// Serializes the specified object to JSON.
+        /// </summary>
+        /// <param name="resource">The object to serialize.</param>
+        /// <param name="stream">The stream that will contain the JSON output after serialization.</param>
         public void Serialize(Object resource, Stream stream)
         {
             using (var writer = new StreamWriter(stream, DefaultJsonSerialization.Encoding))
@@ -60,11 +80,26 @@ namespace Gedcomx.File
             }
         }
 
+        /// <summary>
+        /// Determines whether the content type is known to the serializer. This is currently not used in any meaningful way.
+        /// </summary>
+        /// <param name="contentType">The content type to check.</param>
+        /// <returns>
+        ///   <c>true</c> if the content type is known to the serializer; otherwise, false.
+        /// </returns>
         public bool IsKnownContentType(String contentType)
         {
             return KnownContentTypes.Contains(contentType);
         }
 
+        /// <summary>
+        /// Deserializes the specified string.
+        /// </summary>
+        /// <typeparam name="T">The type of object the specified string represents.</typeparam>
+        /// <param name="value"></param>
+        /// <returns>
+        /// An instance of T upon successful deserialization.
+        /// </returns>
         public T Deserialize<T>(String value)
         {
             T result;
@@ -77,6 +112,14 @@ namespace Gedcomx.File
             return result;
         }
 
+        /// <summary>
+        /// Deserializes the specified stream.
+        /// </summary>
+        /// <typeparam name="T">The type of object the specified stream represents.</typeparam>
+        /// <param name="stream">The stream to be deserialized.</param>
+        /// <returns>
+        /// An instance of T upon successful deserialization.
+        /// </returns>
         public T Deserialize<T>(Stream stream)
         {
             T result;
@@ -98,12 +141,24 @@ namespace Gedcomx.File
             return result;
         }
 
+        /// <summary>
+        /// Gets or sets the content types known to the serializer.
+        /// </summary>
+        /// <value>
+        /// The content types known to the serializer.
+        /// </value>
         public ISet<String> KnownContentTypes
         {
             get;
             set;
         }
 
+        /// <summary>
+        /// Gets or sets the encoding to use for all serialization reading and writing. Changing this will take effect on subsequent reads or writes by this serializer.
+        /// </summary>
+        /// <value>
+        /// The encoding to use for all serialization reading and writing. Changing this will take effect on subsequent reads or writes by this serializer.
+        /// </value>
         public static Encoding Encoding
         {
             get

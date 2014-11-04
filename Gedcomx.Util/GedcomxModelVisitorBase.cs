@@ -18,7 +18,7 @@ namespace Gx.Util
     {
         protected readonly Stack contextStack = new Stack ();
 		
-        public void VisitRecordSet (RecordSet rs)
+        public virtual void VisitRecordSet (RecordSet rs)
         {
             this.contextStack.Push (rs);
             if (rs.Records != null) {

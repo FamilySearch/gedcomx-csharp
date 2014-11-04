@@ -182,7 +182,7 @@ namespace Gx.Util
         /// Visits the place description.
         /// </summary>
         /// <param name="place">The place description to visit.</param>
-        public void VisitPlaceDescription(Gx.Conclusion.PlaceDescription place)
+        public override void VisitPlaceDescription(Gx.Conclusion.PlaceDescription place)
         {
             if (place.Id != null)
             {
@@ -195,7 +195,7 @@ namespace Gx.Util
         /// Visits the event.
         /// </summary>
         /// <param name="e">The event to visit.</param>
-        public void VisitEvent(Gx.Conclusion.Event e)
+        public override void VisitEvent(Gx.Conclusion.Event e)
         {
             if (e.Id != null)
             {
@@ -208,7 +208,7 @@ namespace Gx.Util
         /// Visits the event role.
         /// </summary>
         /// <param name="role">The event role to visit.</param>
-        public void VisitEventRole(Gx.Conclusion.EventRole role)
+        public override void VisitEventRole(Gx.Conclusion.EventRole role)
         {
             if (role.Id != null)
             {
@@ -221,7 +221,7 @@ namespace Gx.Util
         /// Visits the agent.
         /// </summary>
         /// <param name="agent">The agent to visit.</param>
-        public void VisitAgent(Gx.Agent.Agent agent)
+        public override void VisitAgent(Gx.Agent.Agent agent)
         {
             if (agent.Id != null)
             {
@@ -234,7 +234,7 @@ namespace Gx.Util
         /// Visits the source description.
         /// </summary>
         /// <param name="sourceDescription">The source description to visit.</param>
-        public void VisitSourceDescription(Gx.Source.SourceDescription sourceDescription)
+        public override void VisitSourceDescription(Gx.Source.SourceDescription sourceDescription)
         {
             if (sourceDescription.Id != null)
             {
@@ -247,7 +247,7 @@ namespace Gx.Util
         /// Visits the source citation.
         /// </summary>
         /// <param name="citation">The source citation to visit.</param>
-        public void VisitSourceCitation(Gx.Source.SourceCitation citation)
+        public override void VisitSourceCitation(Gx.Source.SourceCitation citation)
         {
             if (citation.Id != null)
             {
@@ -260,7 +260,7 @@ namespace Gx.Util
         /// Visits the collection.
         /// </summary>
         /// <param name="collection">The collection to visit.</param>
-        public void VisitCollection(Collection collection)
+        public override void VisitCollection(Collection collection)
         {
             if (collection.Id != null)
             {
@@ -273,7 +273,7 @@ namespace Gx.Util
         /// Visits the facet.
         /// </summary>
         /// <param name="facet">The facet to visit.</param>
-        public void VisitFacet(Facet facet)
+        public override void VisitFacet(Facet facet)
         {
             if (facet.Id != null)
             {
@@ -286,7 +286,7 @@ namespace Gx.Util
         /// Visits the record descriptor.
         /// </summary>
         /// <param name="recordDescriptor">The record descriptor to visit.</param>
-        public void VisitRecordDescriptor(RecordDescriptor recordDescriptor)
+        public override void VisitRecordDescriptor(RecordDescriptor recordDescriptor)
         {
             if (recordDescriptor.Id != null)
             {
@@ -299,7 +299,7 @@ namespace Gx.Util
         /// Visits the field.
         /// </summary>
         /// <param name="field">The field to visit.</param>
-        public void VisitField(Field field)
+        public override void VisitField(Field field)
         {
             if (field.Id != null)
             {
@@ -312,7 +312,7 @@ namespace Gx.Util
         /// Visits the field value.
         /// </summary>
         /// <param name="fieldValue">The field value to visit.</param>
-        public void VisitFieldValue(FieldValue fieldValue)
+        public override void VisitFieldValue(FieldValue fieldValue)
         {
             if (fieldValue.Id != null)
             {
@@ -325,7 +325,7 @@ namespace Gx.Util
         /// Visits the relationship.
         /// </summary>
         /// <param name="relationship">The relationship to visit.</param>
-        public void VisitRelationship(Gx.Conclusion.Relationship relationship)
+        public override void VisitRelationship(Gx.Conclusion.Relationship relationship)
         {
             if (relationship.Id != null)
             {
@@ -338,7 +338,7 @@ namespace Gx.Util
         /// Visits the person.
         /// </summary>
         /// <param name="person">The person to visit.</param>
-        public void VisitPerson(Gx.Conclusion.Person person)
+        public override void VisitPerson(Gx.Conclusion.Person person)
         {
             if (person.Id != null)
             {
@@ -351,7 +351,7 @@ namespace Gx.Util
         /// Visits the fact.
         /// </summary>
         /// <param name="fact">The fact to visit.</param>
-        public void VisitFact(Gx.Conclusion.Fact fact)
+        public override void VisitFact(Gx.Conclusion.Fact fact)
         {
             if (fact.Id != null)
             {
@@ -364,7 +364,7 @@ namespace Gx.Util
         /// Visits the place reference.
         /// </summary>
         /// <param name="place">The place reference to visit.</param>
-        public void VisitPlaceReference(Gx.Conclusion.PlaceReference place)
+        public override void VisitPlaceReference(Gx.Conclusion.PlaceReference place)
         {
             if (place.Id != null)
             {
@@ -377,7 +377,7 @@ namespace Gx.Util
         /// Visits the date.
         /// </summary>
         /// <param name="date">The date to visit.</param>
-        public void VisitDate(Gx.Conclusion.DateInfo date)
+        public override void VisitDate(Gx.Conclusion.DateInfo date)
         {
             if (date.Id != null)
             {
@@ -390,7 +390,7 @@ namespace Gx.Util
         /// Visits the name.
         /// </summary>
         /// <param name="name">The name to visit.</param>
-        public void VisitName(Gx.Conclusion.Name name)
+        public override void VisitName(Gx.Conclusion.Name name)
         {
             if (name.Id != null)
             {
@@ -403,7 +403,7 @@ namespace Gx.Util
         /// Visits the name form.
         /// </summary>
         /// <param name="form">The name form to visit.</param>
-        public void VisitNameForm(Gx.Conclusion.NameForm form)
+        public override void VisitNameForm(Gx.Conclusion.NameForm form)
         {
             if (form.Id != null)
             {
@@ -416,7 +416,7 @@ namespace Gx.Util
         /// Visits the name part.
         /// </summary>
         /// <param name="part">The name part to visit.</param>
-        public void VisitNamePart(Gx.Conclusion.NamePart part)
+        public override void VisitNamePart(Gx.Conclusion.NamePart part)
         {
             if (part.Id != null)
             {
@@ -429,7 +429,7 @@ namespace Gx.Util
         /// Visits the gender.
         /// </summary>
         /// <param name="gender">The gender to visit.</param>
-        public void VisitGender(Gx.Conclusion.Gender gender)
+        public override void VisitGender(Gx.Conclusion.Gender gender)
         {
             if (gender.Id != null)
             {
@@ -442,7 +442,7 @@ namespace Gx.Util
         /// Visits the source reference.
         /// </summary>
         /// <param name="sourceReference">The source reference to visit.</param>
-        public void VisitSourceReference(Gx.Source.SourceReference sourceReference)
+        public override void VisitSourceReference(Gx.Source.SourceReference sourceReference)
         {
             if (sourceReference.Id != null)
             {
@@ -455,7 +455,7 @@ namespace Gx.Util
         /// Visits the note.
         /// </summary>
         /// <param name="note">The note to visit.</param>
-        public void VisitNote(Gx.Common.Note note)
+        public override void VisitNote(Gx.Common.Note note)
         {
             if (note.Id != null)
             {

@@ -10,8 +10,19 @@ using Gx.Conclusion;
 
 namespace Gx.Rs.Api
 {
+    /// <summary>
+    /// The PersonsState exposes management functions for a persons collection.
+    /// </summary>
     public class PersonsState : GedcomxApplicationState<Gedcomx>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PersonsState"/> class.
+        /// </summary>
+        /// <param name="request">The REST API request that will be used to instantiate this state instance.</param>
+        /// <param name="response">The REST API response that was produced from the REST API request.</param>
+        /// <param name="client">The REST API client to use for API calls.</param>
+        /// <param name="accessToken">The access token to use for subsequent invocations of the REST API client.</param>
+        /// <param name="stateFactory">The state factory to use for state instantiation.</param>
         protected internal PersonsState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken, StateFactory stateFactory)
             : base(request, response, client, accessToken, stateFactory)
         {
@@ -48,6 +59,12 @@ namespace Gx.Rs.Api
             return this.stateFactory.NewCollectionState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 
+        /// <summary>
+        /// Gets the list of persons represented by this current instance from <see cref="P:Gedcomx.Persons"/>.
+        /// </summary>
+        /// <value>
+        /// The list of persons represented by this current instance from <see cref="P:Gedcomx.Persons"/>.
+        /// </value>
         public List<Person> Persons
         {
             get
@@ -57,6 +74,14 @@ namespace Gx.Rs.Api
             }
         }
 
+        /// <summary>
+        /// Adds a person to the current collection.
+        /// </summary>
+        /// <param name="person">The person to add to the current collection.</param>
+        /// <param name="options">The options to apply before executing the REST API call.</param>
+        /// <returns>
+        /// A <see cref="PersonState"/> instance containing the REST API response.
+        /// </returns>
         public PersonState AddPerson(Person person, params StateTransitionOption[] options)
         {
             Link link = GetLink("self");

@@ -44,6 +44,12 @@ namespace Gx.Rs.Api.Util
             InputStream = stream;
         }
 
+        /// <summary>
+        /// Gets the input stream of the target data source.
+        /// </summary>
+        /// <value>
+        /// The input stream of the target data source.
+        /// </value>
         public Stream InputStream
         {
             get;

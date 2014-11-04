@@ -11,6 +11,9 @@ using System.Text;
 
 namespace Gx.Rs.Api
 {
+    /// <summary>
+    /// The VocabElementListState exposes management functions for a vocab element list.
+    /// </summary>
     public class VocabElementListState : GedcomxApplicationState<RDFDataset>
     {
         private RDFDataset model;
@@ -24,11 +27,25 @@ namespace Gx.Rs.Api
         }
 
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="VocabElementListState"/> class.
+        /// </summary>
+        /// <param name="request">The REST API request that will be used to instantiate this state instance.</param>
+        /// <param name="response">The REST API response that was produced from the REST API request.</param>
+        /// <param name="client">The REST API client to use for API calls.</param>
+        /// <param name="accessToken">The access token to use for subsequent invocations of the REST API client.</param>
+        /// <param name="stateFactory">The state factory to use for state instantiation.</param>
         protected internal VocabElementListState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken, StateFactory stateFactory)
             : base(request, response, client, accessToken, stateFactory)
         {
         }
 
+        /// <summary>
+        /// Gets the rel name for the currrent state instance. This is expected to be overridden.
+        /// </summary>
+        /// <value>
+        /// The rel name for the currrent state instance
+        /// </value>
         public override String SelfRel
         {
             get
@@ -49,6 +66,10 @@ namespace Gx.Rs.Api
             return new VocabElementListState(request, response, client, this.CurrentAccessToken, this.stateFactory);
         }
 
+        /// <summary>
+        /// Gets the vocab element list associated with this state instance.
+        /// </summary>
+        /// <returns>The vocab element list associated with this state instance</returns>
         public VocabElementList GetVocabElementList()
         {
             var rootQuads = defaultQuads.GetSubjectQuads(this.Client.BuildUri(this.Request).ToString());
@@ -90,6 +111,16 @@ namespace Gx.Rs.Api
             return model;
         }
 
+        /// <summary>
+        /// Gets the main data element represented by this state instance.
+        /// </summary>
+        /// <value>
+        /// The main data element represented by this state instance.
+        /// </value>
+        /// <remarks>
+        /// This class does not have a <see cref="SupportsLinks"/> entity; therefore, this
+        /// always returns null.
+        /// </remarks>
         protected override SupportsLinks MainDataElement
         {
             get
@@ -98,12 +129,11 @@ namespace Gx.Rs.Api
             }
         }
 
-        /**
-         * Map a RDF resource that represents a vocabulary element to a GedcomX vocabulary element
-         *
-         * @param resourceDescribingElement the RDF resource that represents a vocabulary element
-         * @return a GedcomX vocabulary element that corresponds to the given RDF resource
-         */
+        /// <summary>
+        /// Map a RDF resource that represents a vocabulary element to a GedcomX vocabulary element.
+        /// </summary>
+        /// <param name="quads">The list of RDF Quads that represents a vocabulary element.</param>
+        /// <returns>A GedcomX vocabulary element that corresponds to the given RDF Quads.</returns>
         private VocabElement MapToVocabElement(IEnumerable<RDFDataset.Quad> quads)
         {
             VocabElement vocabElement = new VocabElement();

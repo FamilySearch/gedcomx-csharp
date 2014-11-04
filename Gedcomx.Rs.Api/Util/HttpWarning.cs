@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Gx.Rs.Api.Util
 {
+    /// <summary>
+    /// Represents a model for "Warning" headers from REST API responses.
+    /// </summary>
     public class HttpWarning
     {
         private static Regex regex = new Regex("\\w+[\\s]+\\w+[\\s]+\\\"[^\"]+\\\"", RegexOptions.Compiled);
@@ -15,6 +18,11 @@ namespace Gx.Rs.Api.Util
         private readonly String application;
         private readonly String message;
 
+        /// <summary>
+        /// Parses the specified header and returns a collection of warning headers discovered and parsed.
+        /// </summary>
+        /// <param name="header">The header to parse.</param>
+        /// <returns>A collection of warning headers that were discovered in the header and parsed.</returns>
         public static IEnumerable<HttpWarning> Parse(Parameter header)
         {
             if (header != null && header.Value != null)
@@ -26,6 +34,11 @@ namespace Gx.Rs.Api.Util
             }
         }
 
+        /// <summary>
+        /// Parses the specified header value and returns the parsed warning header.
+        /// </summary>
+        /// <param name="headerValue">The header value to parse.</param>
+        /// <returns>A warning header that was parsed.</returns>
         public static HttpWarning Parse(String headerValue)
         {
             int? code = null;
@@ -59,6 +72,12 @@ namespace Gx.Rs.Api.Util
             return new HttpWarning(code, application, message.ToString());
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HttpWarning"/> class.
+        /// </summary>
+        /// <param name="code">The code to use in the warning.</param>
+        /// <param name="application">The application originating the warning.</param>
+        /// <param name="message">The warning message.</param>
         public HttpWarning(int? code, String application, String message)
         {
             this.code = code;
@@ -66,6 +85,12 @@ namespace Gx.Rs.Api.Util
             this.message = message;
         }
 
+        /// <summary>
+        /// Gets the code for the warning.
+        /// </summary>
+        /// <value>
+        /// The code for the warning.
+        /// </value>
         public int? Code
         {
             get
@@ -74,6 +99,12 @@ namespace Gx.Rs.Api.Util
             }
         }
 
+        /// <summary>
+        /// Gets the originating application for the warning.
+        /// </summary>
+        /// <value>
+        /// The originating application for the warning.
+        /// </value>
         public String Application
         {
             get
@@ -82,6 +113,12 @@ namespace Gx.Rs.Api.Util
             }
         }
 
+        /// <summary>
+        /// Gets the warning message.
+        /// </summary>
+        /// <value>
+        /// The warning message.
+        /// </value>
         public String Message
         {
             get

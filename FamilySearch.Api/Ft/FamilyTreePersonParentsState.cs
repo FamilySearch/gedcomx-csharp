@@ -89,7 +89,7 @@ namespace FamilySearch.Api.Ft
         /// <summary>
         /// Finds the child and parents relationship to the specified spouse. See remarks for more information.
         /// </summary>
-        /// <param name="person">The spouse for which the relationship is sought.</param>
+        /// <param name="spouse">The spouse for which the relationship is sought.</param>
         /// <returns>
         /// The <see cref="ChildAndParentsRelationship"/> the spouse is in, or <c>null</c> if a relationship was not found.
         /// </returns>

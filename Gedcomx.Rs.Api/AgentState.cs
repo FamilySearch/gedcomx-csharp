@@ -8,8 +8,19 @@ using Gedcomx.Model;
 
 namespace Gx.Rs.Api
 {
+    /// <summary>
+    /// The AgentState exposes management functions for an agent.
+    /// </summary>
     public class AgentState : GedcomxApplicationState<Gedcomx>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AgentState"/> class.
+        /// </summary>
+        /// <param name="request">The REST API request that will be used to instantiate this state instance.</param>
+        /// <param name="response">The REST API response that was produced from the REST API request.</param>
+        /// <param name="client">The REST API client to use for API calls.</param>
+        /// <param name="accessToken">The access token to use for subsequent invocations of the REST API client.</param>
+        /// <param name="stateFactory">The state factory to use for state instantiation.</param>
         internal AgentState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken, StateFactory stateFactory)
             : base(request, response, client, accessToken, stateFactory)
         {
@@ -27,6 +38,12 @@ namespace Gx.Rs.Api
             return new AgentState(request, response, client, this.CurrentAccessToken, this.stateFactory);
         }
 
+        /// <summary>
+        /// Gets the rel name for the currrent state instance. This is expected to be overridden.
+        /// </summary>
+        /// <value>
+        /// The rel name for the currrent state instance
+        /// </value>
         public override String SelfRel
         {
             get
@@ -35,6 +52,12 @@ namespace Gx.Rs.Api
             }
         }
 
+        /// <summary>
+        /// Gets the main data element represented by this state instance.
+        /// </summary>
+        /// <value>
+        /// The main data element represented by this state instance.
+        /// </value>
         protected override SupportsLinks MainDataElement
         {
             get
@@ -43,6 +66,12 @@ namespace Gx.Rs.Api
             }
         }
 
+        /// <summary>
+        /// Gets the agent represented by this state instance.
+        /// </summary>
+        /// <value>
+        /// The agent represented by this state instance.
+        /// </value>
         public Agent.Agent Agent
         {
             get

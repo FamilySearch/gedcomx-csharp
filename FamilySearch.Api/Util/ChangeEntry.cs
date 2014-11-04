@@ -10,17 +10,30 @@ using System.Threading.Tasks;
 
 namespace FamilySearch.Api.Util
 {
+    /// <summary>
+    /// Represents a historical record of some operation performed (such as deleting a person).
+    /// </summary>
     public class ChangeEntry : Entry
     {
         private readonly Entry entry;
         private readonly ChangeInfo changeInfo;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChangeEntry"/> class.
+        /// </summary>
+        /// <param name="entry">The associated atom entry with this change.</param>
         public ChangeEntry(Entry entry)
         {
             this.entry = entry;
             this.changeInfo = this.entry.FindExtensionOfType<ChangeInfo>();
         }
 
+        /// <summary>
+        /// Gets the change information associated with this change.
+        /// </summary>
+        /// <value>
+        /// The change information associated with this change.
+        /// </value>
         public ChangeInfo ChangeInfo
         {
             get
@@ -29,6 +42,12 @@ namespace FamilySearch.Api.Util
             }
         }
 
+        /// <summary>
+        /// Gets the atom entry associated with this change.
+        /// </summary>
+        /// <value>
+        /// The atom entry associated with this change.
+        /// </value>
         public Entry Entry
         {
             get
@@ -37,6 +56,12 @@ namespace FamilySearch.Api.Util
             }
         }
 
+        /// <summary>
+        /// Gets the change operation associated with this change (if available).
+        /// </summary>
+        /// <value>
+        /// The change operation associated with this change (if available).
+        /// </value>
         public ChangeOperation? Operation
         {
             get
@@ -45,6 +70,12 @@ namespace FamilySearch.Api.Util
             }
         }
 
+        /// <summary>
+        /// Gets the change object type associated with this change (if available).
+        /// </summary>
+        /// <value>
+        /// The change object type associated with this change (if available).
+        /// </value>
         public ChangeObjectType? ObjectType
         {
             get
@@ -53,6 +84,12 @@ namespace FamilySearch.Api.Util
             }
         }
 
+        /// <summary>
+        /// Gets the change object modifier associated with this change (if available).
+        /// </summary>
+        /// <value>
+        /// The change object modifier associated with this change (if available).
+        /// </value>
         public ChangeObjectModifier? ObjectModifier
         {
             get
@@ -61,6 +98,12 @@ namespace FamilySearch.Api.Util
             }
         }
 
+        /// <summary>
+        /// Gets the reason this change was performed (if available).
+        /// </summary>
+        /// <value>
+        /// The reason this change was performed (if available).
+        /// </value>
         public String Reason
         {
             get
@@ -69,6 +112,12 @@ namespace FamilySearch.Api.Util
             }
         }
 
+        /// <summary>
+        /// Gets the original value from before the change.
+        /// </summary>
+        /// <value>
+        /// The original value from before the change.
+        /// </value>
         public ExtensibleData OriginalValue
         {
             get
@@ -87,6 +136,12 @@ namespace FamilySearch.Api.Util
             }
         }
 
+        /// <summary>
+        /// Gets the resulting value from after the change.
+        /// </summary>
+        /// <value>
+        /// The resulting value from after the change.
+        /// </value>
         public ExtensibleData ResultingValue
         {
             get
@@ -105,6 +160,12 @@ namespace FamilySearch.Api.Util
             }
         }
 
+        /// <summary>
+        /// Gets the value that was removed by the change.
+        /// </summary>
+        /// <value>
+        /// The value that was removed by the change.
+        /// </value>
         public ExtensibleData RemovedValue
         {
             get

@@ -8,6 +8,9 @@ using Gx.Source;
 
 namespace Gx.Util
 {
+    /// <summary>
+    /// Provides management helpers in working with a collection of records.
+    /// </summary>
     public static class RecordHelper
     {
         /// <summary>

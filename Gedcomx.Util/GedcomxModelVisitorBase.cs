@@ -16,8 +16,15 @@ namespace Gx.Util
     /// </summary>
     public class GedcomxModelVisitorBase : IGedcomxModelVisitor
     {
+        /// <summary>
+        /// The context stack of objects that are currently being visited.
+        /// </summary>
         protected readonly Stack contextStack = new Stack();
 
+        /// <summary>
+        /// Visits the record set.
+        /// </summary>
+        /// <param name="rs">The record set to visit.</param>
         public virtual void VisitRecordSet(RecordSet rs)
         {
             this.contextStack.Push(rs);
@@ -37,6 +44,10 @@ namespace Gx.Util
             this.contextStack.Pop();
         }
 
+        /// <summary>
+        /// Visits the <see cref="Gx.Gedcomx"/> entity.
+        /// </summary>
+        /// <param name="gx">The <see cref="Gx.Gedcomx"/> to visit.</param>
         public virtual void VisitGedcomx(Gedcomx gx)
         {
             this.contextStack.Push(gx);
@@ -154,6 +165,10 @@ namespace Gx.Util
             this.contextStack.Pop();
         }
 
+        /// <summary>
+        /// Visits the document.
+        /// </summary>
+        /// <param name="document">The document to visit.</param>
         public virtual void VisitDocument(Document document)
         {
             this.contextStack.Push(document);
@@ -161,6 +176,10 @@ namespace Gx.Util
             this.contextStack.Pop();
         }
 
+        /// <summary>
+        /// Visits the place description.
+        /// </summary>
+        /// <param name="place">The place description to visit.</param>
         public virtual void VisitPlaceDescription(PlaceDescription place)
         {
             this.contextStack.Push(place);
@@ -168,6 +187,10 @@ namespace Gx.Util
             this.contextStack.Pop();
         }
 
+        /// <summary>
+        /// Visits the event.
+        /// </summary>
+        /// <param name="e">The event to visit.</param>
         public virtual void VisitEvent(Event e)
         {
             this.contextStack.Push(e);
@@ -197,6 +220,10 @@ namespace Gx.Util
             this.contextStack.Pop();
         }
 
+        /// <summary>
+        /// Visits the event role.
+        /// </summary>
+        /// <param name="role">The event role to visit.</param>
         public virtual void VisitEventRole(EventRole role)
         {
             this.contextStack.Push(role);
@@ -204,11 +231,20 @@ namespace Gx.Util
             this.contextStack.Pop();
         }
 
+        /// <summary>
+        /// Visits the agent.
+        /// </summary>
+        /// <param name="agent">The agent to visit.</param>
+        /// <remarks>This specific class implementation does not currently visit the agent.</remarks>
         public virtual void VisitAgent(Gx.Agent.Agent agent)
         {
             //no-op.
         }
 
+        /// <summary>
+        /// Visits the source description.
+        /// </summary>
+        /// <param name="sourceDescription">The source description to visit.</param>
         public virtual void VisitSourceDescription(SourceDescription sourceDescription)
         {
             this.contextStack.Push(sourceDescription);
@@ -238,17 +274,30 @@ namespace Gx.Util
             this.contextStack.Pop();
         }
 
+        /// <summary>
+        /// Visits the source citation.
+        /// </summary>
+        /// <param name="citation">The source citation to visit.</param>
+        /// <remarks>This specific class implementation does not currently visit the source citation.</remarks>
         public virtual void VisitSourceCitation(SourceCitation citation)
         {
             //no-op.
         }
 
+        /// <summary>
+        /// Visits the collection.
+        /// </summary>
+        /// <param name="collection">The collection to visit.</param>
         public virtual void VisitCollection(Collection collection)
         {
             this.contextStack.Push(collection);
             this.contextStack.Pop();
         }
 
+        /// <summary>
+        /// Visits the facet.
+        /// </summary>
+        /// <param name="facet">The facet to visit.</param>
         public virtual void VisitFacet(Facet facet)
         {
             this.contextStack.Push(facet);
@@ -262,11 +311,20 @@ namespace Gx.Util
             this.contextStack.Pop();
         }
 
+        /// <summary>
+        /// Visits the record descriptor.
+        /// </summary>
+        /// <param name="recordDescriptor">The record descriptor to visit.</param>
+        /// <remarks>This specific class implementation does not currently visit the record descriptor.</remarks>
         public virtual void VisitRecordDescriptor(RecordDescriptor recordDescriptor)
         {
             //no-op.
         }
 
+        /// <summary>
+        /// Visits the field.
+        /// </summary>
+        /// <param name="field">The field to visit.</param>
         public virtual void VisitField(Field field)
         {
             this.contextStack.Push(field);
@@ -282,6 +340,10 @@ namespace Gx.Util
             this.contextStack.Pop();
         }
 
+        /// <summary>
+        /// Visits the field value.
+        /// </summary>
+        /// <param name="fieldValue">The field value to visit.</param>
         public virtual void VisitFieldValue(FieldValue fieldValue)
         {
             this.contextStack.Push(fieldValue);
@@ -289,6 +351,10 @@ namespace Gx.Util
             this.contextStack.Pop();
         }
 
+        /// <summary>
+        /// Visits the relationship.
+        /// </summary>
+        /// <param name="relationship">The relationship to visit.</param>
         public virtual void VisitRelationship(Relationship relationship)
         {
             this.contextStack.Push(relationship);
@@ -313,6 +379,10 @@ namespace Gx.Util
             this.contextStack.Pop();
         }
 
+        /// <summary>
+        /// Visits the person.
+        /// </summary>
+        /// <param name="person">The person to visit.</param>
         public virtual void VisitPerson(Person person)
         {
             this.contextStack.Push(person);
@@ -349,6 +419,10 @@ namespace Gx.Util
             this.contextStack.Pop();
         }
 
+        /// <summary>
+        /// Visits the fact.
+        /// </summary>
+        /// <param name="fact">The fact to visit.</param>
         public virtual void VisitFact(Fact fact)
         {
             this.contextStack.Push(fact);
@@ -374,6 +448,10 @@ namespace Gx.Util
             this.contextStack.Pop();
         }
 
+        /// <summary>
+        /// Visits the place reference.
+        /// </summary>
+        /// <param name="place">The place reference to visit.</param>
         public virtual void VisitPlaceReference(PlaceReference place)
         {
             this.contextStack.Push(place);
@@ -387,6 +465,10 @@ namespace Gx.Util
             this.contextStack.Pop();
         }
 
+        /// <summary>
+        /// Visits the date.
+        /// </summary>
+        /// <param name="date">The date to visit.</param>
         public virtual void VisitDate(DateInfo date)
         {
             this.contextStack.Push(date);
@@ -400,6 +482,10 @@ namespace Gx.Util
             this.contextStack.Pop();
         }
 
+        /// <summary>
+        /// Visits the name.
+        /// </summary>
+        /// <param name="name">The name to visit.</param>
         public virtual void VisitName(Name name)
         {
             this.contextStack.Push(name);
@@ -415,6 +501,10 @@ namespace Gx.Util
             this.contextStack.Pop();
         }
 
+        /// <summary>
+        /// Visits the name form.
+        /// </summary>
+        /// <param name="form">The name form to visit.</param>
         public virtual void VisitNameForm(NameForm form)
         {
             this.contextStack.Push(form);
@@ -436,6 +526,10 @@ namespace Gx.Util
             this.contextStack.Pop();
         }
 
+        /// <summary>
+        /// Visits the name part.
+        /// </summary>
+        /// <param name="part">The name part to visit.</param>
         public virtual void VisitNamePart(NamePart part)
         {
             this.contextStack.Push(part);
@@ -449,6 +543,10 @@ namespace Gx.Util
             this.contextStack.Pop();
         }
 
+        /// <summary>
+        /// Visits the gender.
+        /// </summary>
+        /// <param name="gender">The gender to visit.</param>
         public virtual void VisitGender(Gender gender)
         {
             this.contextStack.Push(gender);
@@ -466,16 +564,30 @@ namespace Gx.Util
 
         }
 
+        /// <summary>
+        /// Visits the source reference.
+        /// </summary>
+        /// <param name="sourceReference">The source reference to visit.</param>
+        /// <remarks>This specific class implementation does not currently visit the source reference.</remarks>
         public virtual void VisitSourceReference(SourceReference sourceReference)
         {
             //no-op.
         }
 
+        /// <summary>
+        /// Visits the note.
+        /// </summary>
+        /// <param name="note">The note to visit.</param>
+        /// <remarks>This specific class implementation does not currently visit the note.</remarks>
         public virtual void VisitNote(Note note)
         {
             //no-op.
         }
 
+        /// <summary>
+        /// Visits the subject.
+        /// </summary>
+        /// <param name="subject">The subject to visit.</param>
         protected void VisitSubject(Subject subject)
         {
             VisitConclusion(subject);
@@ -489,6 +601,10 @@ namespace Gx.Util
             }
         }
 
+        /// <summary>
+        /// Visits the conclusion.
+        /// </summary>
+        /// <param name="conclusion">The conclusion to visit.</param>
         protected void VisitConclusion(Gx.Conclusion.Conclusion conclusion)
         {
             if (conclusion.Sources != null)

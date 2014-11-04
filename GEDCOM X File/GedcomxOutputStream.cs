@@ -9,13 +9,22 @@ using System.Threading.Tasks;
 
 namespace Gedcomx.File
 {
+    /// <summary>
+    /// Represents a GEDCOM X file stream. Since the underlying data is a zip file, this class simply wraps some of the zip file access.
+    /// </summary>
     public class GedcomxOutputStream : IDisposable
     {
         private readonly GedcomxEntrySerializer serializer;
         private readonly ZipArchive gedxOutputStream;
         private readonly ManifestAttributes mf;
         private int entryCount = 0;
+        private bool closed = false;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GedcomxOutputStream"/> class.
+        /// </summary>
+        /// <param name="gedxOutputStream">The underlying data stream this GEDCOM X will be written to.</param>
+        /// <param name="serializer">The serializer to use when adding objects to this GEDCOM X file.</param>
         public GedcomxOutputStream(Stream gedxOutputStream, GedcomxEntrySerializer serializer)
         {
             this.serializer = serializer;
@@ -24,53 +33,41 @@ namespace Gedcomx.File
             this.mf.MainAttributes.Put("Manifest-Version", "1.0");
         }
 
-        /**
-        * Constructs a GEDCOM X output stream.
-        *
-        * NOTE: This class uses the GedcomXFileJAXBContextFactory to create a JAXB context from which to derive the marshaller that is used to marshal resources into the output stream.
-        * GedcomXFileJAXBContextFactory creates a context that includes some default resource classes.  The classes passed via this constructor will supplement these defaults; they will
-        * not overwrite or replace these defaults.  Please see the documentation for GedcomXFileJAXBContextFactory to review the list of default classes.
-        *
-        * @param gedxOutputStream an output stream to which the GEDCOM X resources will appended
-        * @param classes classes representing resources that will be marshaled (via JAXB) into the GEDCOM X output stream
-        *
-        * @throws IOException
-        */
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GedcomxOutputStream"/> class.
+        /// </summary>
+        /// <param name="gedxOutputStream">The underlying data stream this GEDCOM X will be written to.</param>
+        /// <param name="types">The types the serializer is to know about for serialization.</param>
         public GedcomxOutputStream(Stream gedxOutputStream, params Type[] types)
             : this(gedxOutputStream, new DefaultXmlSerialization(types))
         {
         }
 
-        /**
-         * Add an attribute to the GEDCOM X output stream.
-         *
-         * @param name The name of the attribute.
-         * @param value The value of the attribute.
-         */
+        /// <summary>
+        /// Adds the specified attribute name and value to this GEDCOM X file (such as the content type, etc).
+        /// </summary>
+        /// <param name="name">The name of the attribute to add.</param>
+        /// <param name="value">The value of the attribute to add.</param>
         public void AddAttribute(String name, String value)
         {
             this.mf.MainAttributes.Put(name, value);
         }
 
-        /**
-         * Add a resource to the GEDCOM X output stream.
-         *
-         * @param resource The resource.
-         * @throws IOException
-         */
+        /// <summary>
+        /// Adds the specified GEDCOM X entity to the current GEDCOM X file.
+        /// </summary>
+        /// <param name="resource">The entity to add.</param>
         public void AddResource(Gx.Gedcomx resource)
         {
             AddResource(resource, DateTime.UtcNow);
         }
 
-        /**
-         * Add a resource to the GEDCOM X output stream.
-         *
-         * @param resource The resource.
-         * @param lastModified timestamp when the resource was last modified (can be null)
-         * @throws IOException
-         */
-        public void AddResource(Gx.Gedcomx resource, DateTime lastModified)
+        /// <summary>
+        /// Adds the specified GEDCOM X entity to the current GEDCOM X file.
+        /// </summary>
+        /// <param name="resource">The entity to add.</param>
+        /// <param name="lastModified">The last modified to specify for the entity being added.</param>
+        public void AddResource(Gx.Gedcomx resource, DateTime? lastModified)
         {
             StringBuilder entryName = new StringBuilder("tree");
             if (this.entryCount > 0)
@@ -81,48 +78,41 @@ namespace Gedcomx.File
             AddResource(entryName.ToString(), resource, lastModified);
         }
 
-        /**
-         * Add a resource to the GEDCOM X output stream.
-         *
-         * @param entryName The name by which this resource shall be known within the GEDCOM X file.
-         * @param resource The resource.
-         * @param lastModified timestamp when the resource was last modified (can be null)
-         * @throws IOException
-         */
-        public void AddResource(String entryName, Gx.Gedcomx resource, DateTime lastModified)
+        /// <summary>
+        /// Adds the specified GEDCOM X entity to the current GEDCOM X file.
+        /// </summary>
+        /// <param name="entryName">The name by which this entity shall be known within the GEDCOM X file.</param>
+        /// <param name="resource">The entity to add.</param>
+        /// <param name="lastModified">The last modified to specify for the entity being added.</param>
+        public void AddResource(String entryName, Gx.Gedcomx resource, DateTime? lastModified)
         {
             AddResource(MediaTypes.GEDCOMX_XML_MEDIA_TYPE, entryName, resource, lastModified, null);
         }
 
-        /**
-         * Add a resource to the GEDCOM X output stream.
-         *
-         *
-         * @param contentType The content type of the resource.
-         * @param entryName The name by which this resource shall be known within the GEDCOM X file.
-         * @param resource The resource.
-         * @param lastModified timestamp when the resource was last modified (can be null)
-         * @throws IOException
-         */
-        public void AddResource(String contentType, String entryName, Object resource, DateTime lastModified)
+        /// <summary>
+        /// Adds the specified GEDCOM X entity to the current GEDCOM X file.
+        /// </summary>
+        /// <param name="contentType">The content type of the entity.</param>
+        /// <param name="entryName">The name by which this entity shall be known within the GEDCOM X file.</param>
+        /// <param name="resource">The entity to add.</param>
+        /// <param name="lastModified">The last modified to specify for the entity being added.</param>
+        public void AddResource(String contentType, String entryName, Object resource, DateTime? lastModified)
         {
             AddResource(contentType, entryName, resource, lastModified, null);
         }
 
-        /**
-         * Add a resource to the GEDCOM X output stream.
-         *
-         * @param contentType The content type of the resource.
-         * @param entryName The name by which this resource shall be known within the GEDCOM X file.
-         * @param resource The resource.
-         * @param lastModified timestamp when the resource was last modified (can be null)
-         * @param attributes The attributes of the resource.
-         *
-         * @throws IOException
-         */
-        public void AddResource(String contentType, String entryName, Object resource, DateTime lastModified, Dictionary<String, String> attributes)
+        /// <summary>
+        /// Adds the specified GEDCOM X entity to the current GEDCOM X file.
+        /// </summary>
+        /// <param name="contentType">The content type of the entity.</param>
+        /// <param name="entryName">The name by which this entity shall be known within the GEDCOM X file.</param>
+        /// <param name="resource">The entity to add.</param>
+        /// <param name="lastModified">The last modified to specify for the entity being added.</param>
+        /// <param name="attributes">The attributes of the specified entity (such as content type, etc).</param>
+        /// <exception cref="System.ArgumentException">Thrown if the specified content type is null or empty.</exception>
+        public void AddResource(String contentType, String entryName, Object resource, DateTime? lastModified, Dictionary<String, String> attributes)
         {
-            if (contentType.Trim().Length == 0)
+            if (String.IsNullOrEmpty(contentType))
             {
                 throw new ArgumentException("contentType must not be null or empty.", contentType);
             }
@@ -135,7 +125,7 @@ namespace Gedcomx.File
 
             if (lastModified != null)
             {
-                entryAttrs.Put("X-DC-modified", lastModified.ToUniversalTime().ToString("o"));
+                entryAttrs.Put("X-DC-modified", lastModified.Value.ToUniversalTime().ToString("o"));
             }
 
             if (!IsKnownContentType(contentType))
@@ -168,21 +158,27 @@ namespace Gedcomx.File
             return this.serializer.IsKnownContentType(contentType);
         }
 
-        /**
-         * Closes the GEDCOM X output stream as well as the stream being filtered.
-         *
-         * @throws IOException
-         */
+        /// <summary>
+        /// Adds the manifest entry and marks this instance as closed.
+        /// </summary>
         public void Close()
         {
-            var entry = gedxOutputStream.CreateEntry(ManifestAttributes.MANIFEST_FULLNAME);
-
-            using (var stream = entry.Open())
+            if (!closed)
             {
-                this.mf.Write(stream);
+                var entry = gedxOutputStream.CreateEntry(ManifestAttributes.MANIFEST_FULLNAME);
+
+                using (var stream = entry.Open())
+                {
+                    this.mf.Write(stream);
+                }
+
+                closed = true;
             }
         }
 
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
         public void Dispose()
         {
             this.Close();

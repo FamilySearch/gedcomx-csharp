@@ -20,4 +20,7 @@
       <dependency id="Gedcomx.API.SDK" />
     </dependencies>
   </metadata>
+  <files>
+    <file src="bin\Debug\Gedcomx.Support.*" target="lib\net45" exclude="bin\Debug\Gedcomx.Support.pdb" />
+  </files>
 </package>

@@ -11,6 +11,8 @@
     <copyright>Copyright &#169; 2014</copyright>
     <dependencies>
       <dependency id="Newtonsoft.Json" version="6.0.4" />
+      <dependency id="Gedcomx.Model" />
+      <dependency id="Gedcomx.Model.Rs" />
     </dependencies>
   </metadata>
 </package>

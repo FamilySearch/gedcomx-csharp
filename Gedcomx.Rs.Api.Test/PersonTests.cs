@@ -701,5 +701,27 @@ namespace Gedcomx.Rs.Api.Test
             Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
             Assert.IsFalse(state.IsAllowed);
         }
+
+        [Test]
+        public void TestMergePerson()
+        {
+            var person1 = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            var person2 = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            var merge = person1.ReadMergeAnalysis(person2);
+            var m = new Merge();
+
+            m.ResourcesToCopy = new List<ResourceReference>();
+            m.ResourcesToDelete = new List<ResourceReference>();
+            m.ResourcesToCopy.AddRange(merge.Analysis.DuplicateResources);
+            m.ResourcesToCopy.AddRange(merge.Analysis.ConflictingResources.Select(x => x.DuplicateResource));
+            var state = merge.DoMerge(m);
+
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
+            Assert.AreEqual(person1.Get().GetSelfUri(), person2.Get().GetSelfUri());
+
+            person1.Delete();
+            person2.Delete();
+        }
     }
 }

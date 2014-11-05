@@ -501,7 +501,7 @@ namespace FamilySearch.Api.Ft
         }
 
         /// <summary>
-        /// Merges the specified person with the current person.
+        /// Prepares a merge state for the specified person and the current person.
         /// </summary>
         /// <param name="method">The HTTP method to use for the operation.</param>
         /// <param name="candidate">The person which will be merged with the current person.</param>

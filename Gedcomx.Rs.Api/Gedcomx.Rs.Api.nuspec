@@ -24,5 +24,6 @@
   </metadata>
   <files>
     <file src="bin\Debug\Gedcomx.Support.*" target="lib\net45" exclude="bin\Debug\Gedcomx.Support.pdb" />
+    <file src="bin\Debug\Link.*" target="lib\net45" exclude="bin\Debug\Link.pdb" />
   </files>
 </package>

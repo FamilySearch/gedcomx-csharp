@@ -118,5 +118,5 @@ Gedcomx gx = serializer.Deserialize<Gedcomx>(stream);
 ## The Example Test Suite --- Update Links
 
 For a suite of examples on how to use the model classes, see 
-[the `org.gedcomx.examples` test suite](./src/test/C#/org/gedcomx/examples/). Many of the tests have
+[the `org.gedcomx.examples` test suite](../Gedcomx.Rs.Api.Test/Examples). Many of the tests have
 an associated document in [the GEDCOM X recipe book](http://www.gedcomx.org/Recipe-Book.html).`

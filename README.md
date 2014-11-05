@@ -57,7 +57,7 @@ There are a total of 7 packages, which you can use in anyway you need.
 
 | NuGet Package Id | Purpose | Notes |
 |------------------|---------|-------|
-| **[FamilySearch.API.SDK](http://www.nuget.org/packages/FamilySearch.API.SDK/)** | This is the main SDK library, and encompasses the ability to work with generic GEDCOM X and FamilySearch specific GEDCOM X data. | This is the FamilySearch GEDCOM X SDK. Use this project to perform GEDCOM X all operations supported by FamilySearch, or generic GEDCOM X operations. **If you're unsure which library to use, this is the one to use.** |
+| **[FamilySearch.API.SDK](http://www.nuget.org/packages/FamilySearch.API.SDK/)** | This is the main SDK library, and encompasses the ability to work with generic GEDCOM X and FamilySearch specific GEDCOM X data. | This is the FamilySearch GEDCOM X SDK. Use this project to perform all  GEDCOM X operations supported by FamilySearch, or generic GEDCOM X operations. **If you're unsure which library to use, this is the one to use.** |
 | [Gedcomx.Model](http://www.nuget.org/packages/Gedcomx.Model/) | Contains the models for GEDCOM X data. | Use this by itself to just work with the GEDCOM X models and data, and not any web services or files. |
 | [Gedcomx.Model.Fs](http://www.nuget.org/packages/Gedcomx.Model.Fs/) | Contains FamilySearch specific GEDCOM X model extensions. | Use this by itself to just work with the GEDCOM X FamilySearch extension models and data, and not any web services or files. |
 | [Gedcomx.Model.Rs](http://www.nuget.org/packages/Gedcomx.Model.Rs/) | Contains REST specific GEDCOM X model extensions. | Use this by itself to just work with the GEDCOM X REST extension models and data, and not any web services or files. (This project adds atom feed models.) |

@@ -28,6 +28,7 @@ namespace Gedcomx.Rs.Api.Test
     {
         private FamilySearchFamilyTree tree;
         private FamilySearchMemories memories;
+        private List<GedcomxApplicationState> cleanup;
 
         [TestFixtureSetUp]
         public void Initialize()
@@ -36,6 +37,16 @@ namespace Gedcomx.Rs.Api.Test
             tree.AuthenticateViaOAuth2Password(Resources.TestUserName, Resources.TestPassword, Resources.TestClientId);
             memories = new FamilySearchMemories(true);
             memories = (FamilySearchMemories)memories.AuthenticateWithAccessToken(tree.CurrentAccessToken).Get();
+            cleanup = new List<GedcomxApplicationState>();
+        }
+
+        [TestFixtureTearDown]
+        public void TearDown()
+        {
+            foreach (var state in cleanup)
+            {
+                state.Delete();
+            }
         }
 
         [Test]
@@ -103,6 +114,7 @@ namespace Gedcomx.Rs.Api.Test
         {
             var dataSource = new BasicDataSource(Guid.NewGuid().ToString("n") + ".pdf", "application/pdf", TestBacking.GetCreatePdf());
             var state = tree.AddArtifact(dataSource);
+            cleanup.Add(state);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.Created, state.Response.StatusCode);
@@ -114,6 +126,7 @@ namespace Gedcomx.Rs.Api.Test
         {
             var dataSource = new BasicDataSource(Guid.NewGuid().ToString("n") + ".txt", "text/plain", TestBacking.GetCreateTxt());
             var state = tree.AddArtifact(dataSource);
+            cleanup.Add(state);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.Created, state.Response.StatusCode);
@@ -127,6 +140,7 @@ namespace Gedcomx.Rs.Api.Test
             var bytes = (Byte[])converter.ConvertTo(TestBacking.GetCreatePhoto(), typeof(Byte[]));
             var dataSource = new BasicDataSource(Guid.NewGuid().ToString("n") + ".jpg", "image/jpeg", bytes);
             var image = tree.AddArtifact(new SourceDescription().SetTitle("PersonImage").SetCitation("Citation for PersonImage"), dataSource);
+            cleanup.Add(image);
             var state = image.Get();
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
@@ -141,6 +155,7 @@ namespace Gedcomx.Rs.Api.Test
             var bytes = (Byte[])converter.ConvertTo(TestBacking.GetCreatePhoto(), typeof(Byte[]));
             var dataSource = new BasicDataSource(Guid.NewGuid().ToString("n") + ".jpg", "image/jpeg", bytes);
             var image = (SourceDescriptionState)tree.AddArtifact(new SourceDescription().SetTitle("PersonImage").SetCitation("Citation for PersonImage"), dataSource).Get();
+            cleanup.Add(image);
             image.SourceDescription.SetDescription("Test description");
             var state = image.Update(image.SourceDescription);
 
@@ -170,11 +185,11 @@ namespace Gedcomx.Rs.Api.Test
             var dataSource = new BasicDataSource(Guid.NewGuid().ToString("n") + ".jpg", "image/jpeg", bytes);
             var description = new SourceDescription().SetTitle("PersonImage").SetCitation("Citation for PersonImage").SetDescription("Description");
             var image = (SourceDescriptionState)tree.AddArtifact(description, dataSource).Get();
+            cleanup.Add(image);
             var state = image.AddPersona(new Person().SetName("John Smith"));
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.Created, state.Response.StatusCode);
-            image.Delete();
         }
 
         [Test]
@@ -185,6 +200,7 @@ namespace Gedcomx.Rs.Api.Test
             var dataSource = new BasicDataSource(Guid.NewGuid().ToString("n") + ".jpg", "image/jpeg", bytes);
             var description = new SourceDescription().SetTitle("PersonImage").SetCitation("Citation for PersonImage").SetDescription("Description");
             var image = (SourceDescriptionState)tree.AddArtifact(description, dataSource).Get();
+            cleanup.Add(image);
             image.AddPersona(new Person().SetName("John Smith"));
             var state = image.ReadPersonas();
 
@@ -192,7 +208,6 @@ namespace Gedcomx.Rs.Api.Test
             Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
             Assert.IsNotNull(state.Persons);
             Assert.AreEqual(1, state.Persons.Count);
-            image.Delete();
         }
 
         [Test]
@@ -203,13 +218,14 @@ namespace Gedcomx.Rs.Api.Test
             var dataSource = new BasicDataSource(Guid.NewGuid().ToString("n") + ".jpg", "image/jpeg", bytes);
             var description = new SourceDescription().SetTitle("PersonImage").SetCitation("Citation for PersonImage").SetDescription("Description");
             var image = (SourceDescriptionState)tree.AddArtifact(description, dataSource).Get();
+            cleanup.Add(image);
             var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(person);
             var persona = (PersonState)image.AddPersona(new Person().SetName("John Smith")).Get();
             var state = person.AddPersonaReference(persona);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.Created, state.Response.StatusCode);
-            image.Delete();
         }
 
         [Test]
@@ -220,14 +236,15 @@ namespace Gedcomx.Rs.Api.Test
             var dataSource = new BasicDataSource(Guid.NewGuid().ToString("n") + ".jpg", "image/jpeg", bytes);
             var description = new SourceDescription().SetTitle("PersonImage").SetCitation("Citation for PersonImage").SetDescription("Description");
             var image = (SourceDescriptionState)tree.AddArtifact(description, dataSource).Get();
+            cleanup.Add(image);
             var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(person);
             var persona = (PersonState)image.AddPersona(new Person().SetName("John Smith")).Get();
             person.AddPersonaReference(persona);
             var state = person.LoadPersonaReferences();
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
-            image.Delete();
         }
 
         [Test]
@@ -238,7 +255,9 @@ namespace Gedcomx.Rs.Api.Test
             var dataSource = new BasicDataSource(Guid.NewGuid().ToString("n") + ".jpg", "image/jpeg", bytes);
             var description = new SourceDescription().SetTitle("PersonImage").SetCitation("Citation for PersonImage").SetDescription("Description");
             var image = (SourceDescriptionState)tree.AddArtifact(description, dataSource).Get();
+            cleanup.Add(image);
             var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(person);
             var persona = (PersonState)image.AddPersona(new Person().SetName("John Smith")).Get();
             person.AddPersonaReference(persona);
             var refs = person.LoadPersonaReferences();
@@ -246,7 +265,6 @@ namespace Gedcomx.Rs.Api.Test
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
-            image.Delete();
         }
 
         [Test]
@@ -257,7 +275,9 @@ namespace Gedcomx.Rs.Api.Test
             var dataSource = new BasicDataSource(Guid.NewGuid().ToString("n") + ".jpg", "image/jpeg", bytes);
             var description = new SourceDescription().SetTitle("PersonImage").SetCitation("Citation for PersonImage").SetDescription("Description");
             var image = (SourceDescriptionState)tree.AddArtifact(description, dataSource).Get();
+            cleanup.Add(image);
             var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(person);
             var persona = (PersonState)image.AddPersona(new Person().SetName("John Smith")).Get();
             person.AddPersonaReference(persona);
             var personas = person.LoadPersonaReferences();
@@ -265,7 +285,6 @@ namespace Gedcomx.Rs.Api.Test
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
-            image.Delete();
         }
 
         [Test]
@@ -276,7 +295,9 @@ namespace Gedcomx.Rs.Api.Test
             var dataSource = new BasicDataSource(Guid.NewGuid().ToString("n") + ".jpg", "image/jpeg", bytes);
             var description = new SourceDescription().SetTitle("PersonImage").SetCitation("Citation for PersonImage").SetDescription("Description");
             var image = (SourceDescriptionState)tree.AddArtifact(description, dataSource).Get();
+            cleanup.Add(image);
             var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(person);
             var persona = (PersonState)image.AddPersona(new Person().SetName("John Smith")).Get();
             person.AddPersonaReference(persona);
             var personas = person.LoadPersonaReferences();
@@ -284,7 +305,6 @@ namespace Gedcomx.Rs.Api.Test
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
-            image.Delete();
         }
 
         [Test]
@@ -301,31 +321,30 @@ namespace Gedcomx.Rs.Api.Test
         public void TestCreateMemoriesComment()
         {
             var artifact = (FamilySearchSourceDescriptionState)memories.AddArtifact(new BasicDataSource("Sample Memory", MediaTypes.TEXT_PLAIN_TYPE, Resources.MemoryTXT)).Get();
+            cleanup.Add(artifact);
             var comments = artifact.ReadComments();
             var state = comments.AddComment(new Comment().SetText("Test comment."));
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.Created, state.Response.StatusCode);
-
-            artifact.Delete();
         }
 
         [Test]
         public void TestReadMemoriesComments()
         {
             var artifact = (FamilySearchSourceDescriptionState)memories.AddArtifact(new BasicDataSource("Sample Memory", MediaTypes.TEXT_PLAIN_TYPE, Resources.MemoryTXT)).Get();
+            cleanup.Add(artifact);
             var state = artifact.ReadComments();
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
-
-            artifact.Delete();
         }
 
         [Test]
         public void TestUpdateMemoriesComment()
         {
             var artifact = (FamilySearchSourceDescriptionState)memories.AddArtifact(new BasicDataSource("Sample Memory", MediaTypes.TEXT_PLAIN_TYPE, Resources.MemoryTXT)).Get();
+            cleanup.Add(artifact);
             var comments = artifact.ReadComments();
             comments.AddComment(new Comment().SetText("Test comment."));
             comments = artifact.ReadComments();
@@ -335,14 +354,13 @@ namespace Gedcomx.Rs.Api.Test
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
-
-            artifact.Delete();
         }
 
         [Test]
         public void TestDeleteMemoriesComment()
         {
             var artifact = (FamilySearchSourceDescriptionState)memories.AddArtifact(new BasicDataSource("Sample Memory", MediaTypes.TEXT_PLAIN_TYPE, Resources.MemoryTXT)).Get();
+            cleanup.Add(artifact);
             var comments = artifact.ReadComments();
             comments.AddComment(new Comment().SetText("Test comment."));
             comments = artifact.ReadComments();
@@ -351,8 +369,6 @@ namespace Gedcomx.Rs.Api.Test
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
-
-            artifact.Delete();
         }
     }
 }

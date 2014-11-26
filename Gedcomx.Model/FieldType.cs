@@ -25,764 +25,445 @@ namespace Gx.Types {
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Age")]
     Age,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Date")]
     Date,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Place")]
     Place,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Gender")]
     Gender,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Name")]
     Name,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Role")]
     Role,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Years")]
     Years,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Months")]
     Months,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Days")]
     Days,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Hours")]
     Hours,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Minutes")]
     Minutes,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Year")]
     Year,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Month")]
     Month,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Day")]
     Day,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Hour")]
     Hour,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Minute")]
     Minute,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Address")]
     Address,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Cemetery")]
     Cemetery,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/City")]
     City,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Church")]
     Church,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/County")]
     County,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Country")]
     Country,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/District")]
     District,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Hospital")]
     Hospital,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Island")]
     Island,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/MilitaryBase")]
     MilitaryBase,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Mortuary")]
     Mortuary,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Parish")]
     Parish,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/PlotNumber")]
     PlotNumber,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/PostOffice")]
     PostOffice,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/PostalCode")]
     PostalCode,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Prison")]
     Prison,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Province")]
     Province,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Section")]
     Section,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Ship")]
     Ship,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/State")]
     State,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Territory")]
     Territory,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Town")]
     Town,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Township")]
     Township,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Ward")]
     Ward,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Prefix")]
     Prefix,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Suffix")]
     Suffix,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Given")]
     Given,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Surname")]
     Surname,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Abusua")]
     Abusua,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/BatchNumber")]
     BatchNumber,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Caste")]
     Caste,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Clan")]
     Clan,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/CommonLawMarriage")]
     CommonLawMarriage,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Education")]
     Education,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Ethnicity")]
     Ethnicity,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/FatherBirthPlace")]
     FatherBirthPlace,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/NeverHadChildren")]
     NeverHadChildren,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/NeverMarried")]
     NeverMarried,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/NumberOfChildren")]
     NumberOfChildren,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/NumberOfMarriages")]
     NumberOfMarriages,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Household")]
     Household,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/IsHeadOfHousehold")]
     IsHeadOfHousehold,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/MaritalStatus")]
     MaritalStatus,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/MotherBirthPlace")]
     MotherBirthPlace,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/MultipleBirth")]
     MultipleBirth,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/NameSake")]
     NameSake,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/NationalId")]
     NationalId,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Nationality")]
     Nationality,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Occupation")]
     Occupation,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/PhysicalDescription")]
     PhysicalDescription,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Property")]
     Property,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Race")]
     Race,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Religion")]
     Religion,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/RelationshipToHead")]
     RelationshipToHead,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Stillbirth")]
     Stillbirth,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/TitleOfNobility")]
     TitleOfNobility,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Tribe")]
     Tribe,
 
     /// <summary>
     ///   Custom
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/OTHER")]
     OTHER
-  }
-
-  /// <remarks>
-  /// Utility class for converting to/from the QNames associated with FieldType.
-  /// </remarks>
-  /// <summary>
-  /// Utility class for converting to/from the QNames associated with FieldType.
-  /// </summary>
-  public static class FieldTypeQNameUtil {
-
-    /// <summary>
-    /// Get the known FieldType for a given QName. If the QName isn't a known QName, FieldType.OTHER will be returned.
-    /// </summary>
-    public static FieldType ConvertFromKnownQName(string qname) {
-      if (qname != null) {
-        if ("http://gedcomx.org/Age".Equals(qname)) {
-          return FieldType.Age;
-        }
-        if ("http://gedcomx.org/Date".Equals(qname)) {
-          return FieldType.Date;
-        }
-        if ("http://gedcomx.org/Place".Equals(qname)) {
-          return FieldType.Place;
-        }
-        if ("http://gedcomx.org/Gender".Equals(qname)) {
-          return FieldType.Gender;
-        }
-        if ("http://gedcomx.org/Name".Equals(qname)) {
-          return FieldType.Name;
-        }
-        if ("http://gedcomx.org/Role".Equals(qname)) {
-          return FieldType.Role;
-        }
-        if ("http://gedcomx.org/Years".Equals(qname)) {
-          return FieldType.Years;
-        }
-        if ("http://gedcomx.org/Months".Equals(qname)) {
-          return FieldType.Months;
-        }
-        if ("http://gedcomx.org/Days".Equals(qname)) {
-          return FieldType.Days;
-        }
-        if ("http://gedcomx.org/Hours".Equals(qname)) {
-          return FieldType.Hours;
-        }
-        if ("http://gedcomx.org/Minutes".Equals(qname)) {
-          return FieldType.Minutes;
-        }
-        if ("http://gedcomx.org/Year".Equals(qname)) {
-          return FieldType.Year;
-        }
-        if ("http://gedcomx.org/Month".Equals(qname)) {
-          return FieldType.Month;
-        }
-        if ("http://gedcomx.org/Day".Equals(qname)) {
-          return FieldType.Day;
-        }
-        if ("http://gedcomx.org/Hour".Equals(qname)) {
-          return FieldType.Hour;
-        }
-        if ("http://gedcomx.org/Minute".Equals(qname)) {
-          return FieldType.Minute;
-        }
-        if ("http://gedcomx.org/Address".Equals(qname)) {
-          return FieldType.Address;
-        }
-        if ("http://gedcomx.org/Cemetery".Equals(qname)) {
-          return FieldType.Cemetery;
-        }
-        if ("http://gedcomx.org/City".Equals(qname)) {
-          return FieldType.City;
-        }
-        if ("http://gedcomx.org/Church".Equals(qname)) {
-          return FieldType.Church;
-        }
-        if ("http://gedcomx.org/County".Equals(qname)) {
-          return FieldType.County;
-        }
-        if ("http://gedcomx.org/Country".Equals(qname)) {
-          return FieldType.Country;
-        }
-        if ("http://gedcomx.org/District".Equals(qname)) {
-          return FieldType.District;
-        }
-        if ("http://gedcomx.org/Hospital".Equals(qname)) {
-          return FieldType.Hospital;
-        }
-        if ("http://gedcomx.org/Island".Equals(qname)) {
-          return FieldType.Island;
-        }
-        if ("http://gedcomx.org/MilitaryBase".Equals(qname)) {
-          return FieldType.MilitaryBase;
-        }
-        if ("http://gedcomx.org/Mortuary".Equals(qname)) {
-          return FieldType.Mortuary;
-        }
-        if ("http://gedcomx.org/Parish".Equals(qname)) {
-          return FieldType.Parish;
-        }
-        if ("http://gedcomx.org/PlotNumber".Equals(qname)) {
-          return FieldType.PlotNumber;
-        }
-        if ("http://gedcomx.org/PostOffice".Equals(qname)) {
-          return FieldType.PostOffice;
-        }
-        if ("http://gedcomx.org/PostalCode".Equals(qname)) {
-          return FieldType.PostalCode;
-        }
-        if ("http://gedcomx.org/Prison".Equals(qname)) {
-          return FieldType.Prison;
-        }
-        if ("http://gedcomx.org/Province".Equals(qname)) {
-          return FieldType.Province;
-        }
-        if ("http://gedcomx.org/Section".Equals(qname)) {
-          return FieldType.Section;
-        }
-        if ("http://gedcomx.org/Ship".Equals(qname)) {
-          return FieldType.Ship;
-        }
-        if ("http://gedcomx.org/State".Equals(qname)) {
-          return FieldType.State;
-        }
-        if ("http://gedcomx.org/Territory".Equals(qname)) {
-          return FieldType.Territory;
-        }
-        if ("http://gedcomx.org/Town".Equals(qname)) {
-          return FieldType.Town;
-        }
-        if ("http://gedcomx.org/Township".Equals(qname)) {
-          return FieldType.Township;
-        }
-        if ("http://gedcomx.org/Ward".Equals(qname)) {
-          return FieldType.Ward;
-        }
-        if ("http://gedcomx.org/Prefix".Equals(qname)) {
-          return FieldType.Prefix;
-        }
-        if ("http://gedcomx.org/Suffix".Equals(qname)) {
-          return FieldType.Suffix;
-        }
-        if ("http://gedcomx.org/Given".Equals(qname)) {
-          return FieldType.Given;
-        }
-        if ("http://gedcomx.org/Surname".Equals(qname)) {
-          return FieldType.Surname;
-        }
-        if ("http://gedcomx.org/Abusua".Equals(qname)) {
-          return FieldType.Abusua;
-        }
-        if ("http://gedcomx.org/BatchNumber".Equals(qname)) {
-          return FieldType.BatchNumber;
-        }
-        if ("http://gedcomx.org/Caste".Equals(qname)) {
-          return FieldType.Caste;
-        }
-        if ("http://gedcomx.org/Clan".Equals(qname)) {
-          return FieldType.Clan;
-        }
-        if ("http://gedcomx.org/CommonLawMarriage".Equals(qname)) {
-          return FieldType.CommonLawMarriage;
-        }
-        if ("http://gedcomx.org/Education".Equals(qname)) {
-          return FieldType.Education;
-        }
-        if ("http://gedcomx.org/Ethnicity".Equals(qname)) {
-          return FieldType.Ethnicity;
-        }
-        if ("http://gedcomx.org/FatherBirthPlace".Equals(qname)) {
-          return FieldType.FatherBirthPlace;
-        }
-        if ("http://gedcomx.org/NeverHadChildren".Equals(qname)) {
-          return FieldType.NeverHadChildren;
-        }
-        if ("http://gedcomx.org/NeverMarried".Equals(qname)) {
-          return FieldType.NeverMarried;
-        }
-        if ("http://gedcomx.org/NumberOfChildren".Equals(qname)) {
-          return FieldType.NumberOfChildren;
-        }
-        if ("http://gedcomx.org/NumberOfMarriages".Equals(qname)) {
-          return FieldType.NumberOfMarriages;
-        }
-        if ("http://gedcomx.org/Household".Equals(qname)) {
-          return FieldType.Household;
-        }
-        if ("http://gedcomx.org/IsHeadOfHousehold".Equals(qname)) {
-          return FieldType.IsHeadOfHousehold;
-        }
-        if ("http://gedcomx.org/MaritalStatus".Equals(qname)) {
-          return FieldType.MaritalStatus;
-        }
-        if ("http://gedcomx.org/MotherBirthPlace".Equals(qname)) {
-          return FieldType.MotherBirthPlace;
-        }
-        if ("http://gedcomx.org/MultipleBirth".Equals(qname)) {
-          return FieldType.MultipleBirth;
-        }
-        if ("http://gedcomx.org/NameSake".Equals(qname)) {
-          return FieldType.NameSake;
-        }
-        if ("http://gedcomx.org/NationalId".Equals(qname)) {
-          return FieldType.NationalId;
-        }
-        if ("http://gedcomx.org/Nationality".Equals(qname)) {
-          return FieldType.Nationality;
-        }
-        if ("http://gedcomx.org/Occupation".Equals(qname)) {
-          return FieldType.Occupation;
-        }
-        if ("http://gedcomx.org/PhysicalDescription".Equals(qname)) {
-          return FieldType.PhysicalDescription;
-        }
-        if ("http://gedcomx.org/Property".Equals(qname)) {
-          return FieldType.Property;
-        }
-        if ("http://gedcomx.org/Race".Equals(qname)) {
-          return FieldType.Race;
-        }
-        if ("http://gedcomx.org/Religion".Equals(qname)) {
-          return FieldType.Religion;
-        }
-        if ("http://gedcomx.org/RelationshipToHead".Equals(qname)) {
-          return FieldType.RelationshipToHead;
-        }
-        if ("http://gedcomx.org/Stillbirth".Equals(qname)) {
-          return FieldType.Stillbirth;
-        }
-        if ("http://gedcomx.org/TitleOfNobility".Equals(qname)) {
-          return FieldType.TitleOfNobility;
-        }
-        if ("http://gedcomx.org/Tribe".Equals(qname)) {
-          return FieldType.Tribe;
-        }
-      }
-      return FieldType.OTHER;
-    }
-
-    /// <summary>
-    /// Convert the known FieldType to a QName. If FieldType.OTHER, an ArgumentException will be thrown.
-    /// </summary>
-    public static string ConvertToKnownQName(FieldType known) {
-      switch (known) {
-        case FieldType.Age:
-          return "http://gedcomx.org/Age";
-        case FieldType.Date:
-          return "http://gedcomx.org/Date";
-        case FieldType.Place:
-          return "http://gedcomx.org/Place";
-        case FieldType.Gender:
-          return "http://gedcomx.org/Gender";
-        case FieldType.Name:
-          return "http://gedcomx.org/Name";
-        case FieldType.Role:
-          return "http://gedcomx.org/Role";
-        case FieldType.Years:
-          return "http://gedcomx.org/Years";
-        case FieldType.Months:
-          return "http://gedcomx.org/Months";
-        case FieldType.Days:
-          return "http://gedcomx.org/Days";
-        case FieldType.Hours:
-          return "http://gedcomx.org/Hours";
-        case FieldType.Minutes:
-          return "http://gedcomx.org/Minutes";
-        case FieldType.Year:
-          return "http://gedcomx.org/Year";
-        case FieldType.Month:
-          return "http://gedcomx.org/Month";
-        case FieldType.Day:
-          return "http://gedcomx.org/Day";
-        case FieldType.Hour:
-          return "http://gedcomx.org/Hour";
-        case FieldType.Minute:
-          return "http://gedcomx.org/Minute";
-        case FieldType.Address:
-          return "http://gedcomx.org/Address";
-        case FieldType.Cemetery:
-          return "http://gedcomx.org/Cemetery";
-        case FieldType.City:
-          return "http://gedcomx.org/City";
-        case FieldType.Church:
-          return "http://gedcomx.org/Church";
-        case FieldType.County:
-          return "http://gedcomx.org/County";
-        case FieldType.Country:
-          return "http://gedcomx.org/Country";
-        case FieldType.District:
-          return "http://gedcomx.org/District";
-        case FieldType.Hospital:
-          return "http://gedcomx.org/Hospital";
-        case FieldType.Island:
-          return "http://gedcomx.org/Island";
-        case FieldType.MilitaryBase:
-          return "http://gedcomx.org/MilitaryBase";
-        case FieldType.Mortuary:
-          return "http://gedcomx.org/Mortuary";
-        case FieldType.Parish:
-          return "http://gedcomx.org/Parish";
-        case FieldType.PlotNumber:
-          return "http://gedcomx.org/PlotNumber";
-        case FieldType.PostOffice:
-          return "http://gedcomx.org/PostOffice";
-        case FieldType.PostalCode:
-          return "http://gedcomx.org/PostalCode";
-        case FieldType.Prison:
-          return "http://gedcomx.org/Prison";
-        case FieldType.Province:
-          return "http://gedcomx.org/Province";
-        case FieldType.Section:
-          return "http://gedcomx.org/Section";
-        case FieldType.Ship:
-          return "http://gedcomx.org/Ship";
-        case FieldType.State:
-          return "http://gedcomx.org/State";
-        case FieldType.Territory:
-          return "http://gedcomx.org/Territory";
-        case FieldType.Town:
-          return "http://gedcomx.org/Town";
-        case FieldType.Township:
-          return "http://gedcomx.org/Township";
-        case FieldType.Ward:
-          return "http://gedcomx.org/Ward";
-        case FieldType.Prefix:
-          return "http://gedcomx.org/Prefix";
-        case FieldType.Suffix:
-          return "http://gedcomx.org/Suffix";
-        case FieldType.Given:
-          return "http://gedcomx.org/Given";
-        case FieldType.Surname:
-          return "http://gedcomx.org/Surname";
-        case FieldType.Abusua:
-          return "http://gedcomx.org/Abusua";
-        case FieldType.BatchNumber:
-          return "http://gedcomx.org/BatchNumber";
-        case FieldType.Caste:
-          return "http://gedcomx.org/Caste";
-        case FieldType.Clan:
-          return "http://gedcomx.org/Clan";
-        case FieldType.CommonLawMarriage:
-          return "http://gedcomx.org/CommonLawMarriage";
-        case FieldType.Education:
-          return "http://gedcomx.org/Education";
-        case FieldType.Ethnicity:
-          return "http://gedcomx.org/Ethnicity";
-        case FieldType.FatherBirthPlace:
-          return "http://gedcomx.org/FatherBirthPlace";
-        case FieldType.NeverHadChildren:
-          return "http://gedcomx.org/NeverHadChildren";
-        case FieldType.NeverMarried:
-          return "http://gedcomx.org/NeverMarried";
-        case FieldType.NumberOfChildren:
-          return "http://gedcomx.org/NumberOfChildren";
-        case FieldType.NumberOfMarriages:
-          return "http://gedcomx.org/NumberOfMarriages";
-        case FieldType.Household:
-          return "http://gedcomx.org/Household";
-        case FieldType.IsHeadOfHousehold:
-          return "http://gedcomx.org/IsHeadOfHousehold";
-        case FieldType.MaritalStatus:
-          return "http://gedcomx.org/MaritalStatus";
-        case FieldType.MotherBirthPlace:
-          return "http://gedcomx.org/MotherBirthPlace";
-        case FieldType.MultipleBirth:
-          return "http://gedcomx.org/MultipleBirth";
-        case FieldType.NameSake:
-          return "http://gedcomx.org/NameSake";
-        case FieldType.NationalId:
-          return "http://gedcomx.org/NationalId";
-        case FieldType.Nationality:
-          return "http://gedcomx.org/Nationality";
-        case FieldType.Occupation:
-          return "http://gedcomx.org/Occupation";
-        case FieldType.PhysicalDescription:
-          return "http://gedcomx.org/PhysicalDescription";
-        case FieldType.Property:
-          return "http://gedcomx.org/Property";
-        case FieldType.Race:
-          return "http://gedcomx.org/Race";
-        case FieldType.Religion:
-          return "http://gedcomx.org/Religion";
-        case FieldType.RelationshipToHead:
-          return "http://gedcomx.org/RelationshipToHead";
-        case FieldType.Stillbirth:
-          return "http://gedcomx.org/Stillbirth";
-        case FieldType.TitleOfNobility:
-          return "http://gedcomx.org/TitleOfNobility";
-        case FieldType.Tribe:
-          return "http://gedcomx.org/Tribe";
-        default:
-          throw new System.ArgumentException("No known QName for: " + known, "known");
-      }
-    }
   }
 }

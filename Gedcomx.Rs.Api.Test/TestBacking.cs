@@ -390,11 +390,10 @@ namespace Gedcomx.Rs.Api.Test
             };
         }
 
-        public static Fact GetUpdateFact()
+        public static Fact GetCustomFact()
         {
             return new Fact()
             {
-                Id = "N.777-7774",
                 Attribution = new Attribution()
                 {
                     ChangeMessage = "Change message",
@@ -481,17 +480,7 @@ namespace Gedcomx.Rs.Api.Test
 
         public static Relationship GetCreateInvalidRelationship()
         {
-            return new Relationship()
-            {
-                Links = new List<Link>()
-                {
-                    new Link()
-                    {
-                        Rel = "relationship",
-                        Href = "https://sandbox.familysearch.org/platform/tree/couple-relationships/INVALID",
-                    },
-                },
-            };
+            return (Relationship)new Relationship().SetLink("relationship", new Uri("https://sandbox.familysearch.org/platform/tree/couple-relationships/XXX-XXXX"));
         }
 
         public static ChildAndParentsRelationship GetCreateChildAndParentsRelationship(PersonState father = null, PersonState mother = null, PersonState child = null)

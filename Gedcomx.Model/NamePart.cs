@@ -1,4 +1,5 @@
 using Gedcomx.Model.Rt;
+using Gedcomx.Model.Util;
 using Gx.Common;
 using Gx.Records;
 using Gx.Types;
@@ -88,11 +89,11 @@ namespace Gx.Conclusion
         {
             get
             {
-                return Gx.Types.NamePartTypeQNameUtil.ConvertFromKnownQName(this._type);
+                return XmlQNameEnumUtil.GetEnumValue<NamePartType>(this._type);
             }
             set
             {
-                this._type = Gx.Types.NamePartTypeQNameUtil.ConvertToKnownQName(value);
+                this._type = XmlQNameEnumUtil.GetNameValue(value);
             }
         }
         /// <summary>

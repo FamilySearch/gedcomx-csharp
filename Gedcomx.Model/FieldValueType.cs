@@ -25,54 +25,19 @@ namespace Gx.Types {
     /// <summary>
     ///   The field value is original, extracted directly from the record. What you see is what you get, including misspellings and other errors in the record.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Original")]
     Original,
 
     /// <summary>
     ///   The field value is interpreted, meaning a user or other automated process applied some reasoning to interpret the value.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Interpreted")]
     Interpreted,
 
     /// <summary>
     ///   Custom
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/OTHER")]
     OTHER
-  }
-
-  /// <remarks>
-  /// Utility class for converting to/from the QNames associated with FieldValueType.
-  /// </remarks>
-  /// <summary>
-  /// Utility class for converting to/from the QNames associated with FieldValueType.
-  /// </summary>
-  public static class FieldValueTypeQNameUtil {
-
-    /// <summary>
-    /// Get the known FieldValueType for a given QName. If the QName isn't a known QName, FieldValueType.OTHER will be returned.
-    /// </summary>
-    public static FieldValueType ConvertFromKnownQName(string qname) {
-      if (qname != null) {
-        if ("http://gedcomx.org/Original".Equals(qname)) {
-          return FieldValueType.Original;
-        }
-        if ("http://gedcomx.org/Interpreted".Equals(qname)) {
-          return FieldValueType.Interpreted;
-        }
-      }
-      return FieldValueType.OTHER;
-    }
-
-    /// <summary>
-    /// Convert the known FieldValueType to a QName. If FieldValueType.OTHER, an ArgumentException will be thrown.
-    /// </summary>
-    public static string ConvertToKnownQName(FieldValueType known) {
-      switch (known) {
-        case FieldValueType.Original:
-          return "http://gedcomx.org/Original";
-        case FieldValueType.Interpreted:
-          return "http://gedcomx.org/Interpreted";
-        default:
-          throw new System.ArgumentException("No known QName for: " + known, "known");
-      }
-    }
   }
 }

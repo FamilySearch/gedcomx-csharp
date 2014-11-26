@@ -25,65 +25,26 @@ namespace Gx.Types {
     /// <summary>
     ///   Male.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Male")]
     Male,
 
     /// <summary>
     ///   Female.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Female")]
     Female,
 
     /// <summary>
     ///   Unknown. Note that this should be used strictly as &quot;unknown&quot; and not to
     ///   indicate a type that is not set or not understood.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Unknown")]
     Unknown,
 
     /// <summary>
     ///   Custom
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/OTHER")]
     OTHER
-  }
-
-  /// <remarks>
-  /// Utility class for converting to/from the QNames associated with GenderType.
-  /// </remarks>
-  /// <summary>
-  /// Utility class for converting to/from the QNames associated with GenderType.
-  /// </summary>
-  public static class GenderTypeQNameUtil {
-
-    /// <summary>
-    /// Get the known GenderType for a given QName. If the QName isn't a known QName, GenderType.OTHER will be returned.
-    /// </summary>
-    public static GenderType ConvertFromKnownQName(string qname) {
-      if (qname != null) {
-        if ("http://gedcomx.org/Male".Equals(qname)) {
-          return GenderType.Male;
-        }
-        if ("http://gedcomx.org/Female".Equals(qname)) {
-          return GenderType.Female;
-        }
-        if ("http://gedcomx.org/Unknown".Equals(qname)) {
-          return GenderType.Unknown;
-        }
-      }
-      return GenderType.OTHER;
-    }
-
-    /// <summary>
-    /// Convert the known GenderType to a QName. If GenderType.OTHER, an ArgumentException will be thrown.
-    /// </summary>
-    public static string ConvertToKnownQName(GenderType known) {
-      switch (known) {
-        case GenderType.Male:
-          return "http://gedcomx.org/Male";
-        case GenderType.Female:
-          return "http://gedcomx.org/Female";
-        case GenderType.Unknown:
-          return "http://gedcomx.org/Unknown";
-        default:
-          throw new System.ArgumentException("No known QName for: " + known, "known");
-      }
-    }
   }
 }

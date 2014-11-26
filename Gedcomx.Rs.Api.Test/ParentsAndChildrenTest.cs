@@ -17,23 +17,38 @@ namespace Gedcomx.Rs.Api.Test
     public class ParentsAndChildrenTest
     {
         private FamilySearchFamilyTree tree;
+        private List<GedcomxApplicationState> cleanup;
 
         [TestFixtureSetUp]
         public void Initialize()
         {
             tree = new FamilySearchFamilyTree(true);
             tree.AuthenticateViaOAuth2Password(Resources.TestUserName, Resources.TestPassword, Resources.TestClientId);
+            cleanup = new List<GedcomxApplicationState>();
             Assert.DoesNotThrow(() => tree.IfSuccessful());
             Assert.IsNotNullOrEmpty(tree.CurrentAccessToken);
+        }
+
+        [TestFixtureTearDown]
+        public void TearDown()
+        {
+            foreach (var state in cleanup)
+            {
+                state.Delete();
+            }
         }
 
         [Test]
         public void TestCreateChildAndParentsRelationship()
         {
             var father = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(father);
             var mother = tree.AddPerson(TestBacking.GetCreateFemalePerson());
+            cleanup.Add(mother);
             var son = tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(son);
             var state = tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, mother, son));
+            cleanup.Add(state);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.Created, state.Response.StatusCode);
@@ -43,9 +58,13 @@ namespace Gedcomx.Rs.Api.Test
         public void TestCreateChildAndParentsRelationshipSourceReference()
         {
             var father = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(father);
             var mother = tree.AddPerson(TestBacking.GetCreateFemalePerson());
+            cleanup.Add(mother);
             var son = tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(son);
             var relationship = tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, mother, son));
+            cleanup.Add(relationship);
             var state = relationship.AddSourceReference(TestBacking.GetPersonSourceReference());
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
@@ -56,9 +75,13 @@ namespace Gedcomx.Rs.Api.Test
         public void TestCreateChildAndParentsRelationshipConclusion()
         {
             var father = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(father);
             var mother = tree.AddPerson(TestBacking.GetCreateFemalePerson());
+            cleanup.Add(mother);
             var son = tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(son);
             var relationship = (ChildAndParentsRelationshipState)tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, mother, son)).Get();
+            cleanup.Add(relationship);
             var state = relationship.AddFatherFact(TestBacking.GetBiologicalParentFact());
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
@@ -69,9 +92,13 @@ namespace Gedcomx.Rs.Api.Test
         public void TestCreateChildAndParentsRelationshipNote()
         {
             var father = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(father);
             var mother = tree.AddPerson(TestBacking.GetCreateFemalePerson());
+            cleanup.Add(mother);
             var son = tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(son);
             var relationship = (ChildAndParentsRelationshipState)tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, mother, son)).Get();
+            cleanup.Add(relationship);
             var state = relationship.AddNote(TestBacking.GetCreateNote());
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
@@ -82,9 +109,13 @@ namespace Gedcomx.Rs.Api.Test
         public void TestReadChildAndParentsRelationship()
         {
             var father = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(father);
             var mother = tree.AddPerson(TestBacking.GetCreateFemalePerson());
+            cleanup.Add(mother);
             var son = tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(son);
             var relationship = tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, mother, son));
+            cleanup.Add(relationship);
             var state = relationship.Get();
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
@@ -95,9 +126,13 @@ namespace Gedcomx.Rs.Api.Test
         public void TestReadChildAndParentsRelationshipSourceReferences()
         {
             var father = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(father);
             var mother = tree.AddPerson(TestBacking.GetCreateFemalePerson());
+            cleanup.Add(mother);
             var son = tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(son);
             var relationship = (ChildAndParentsRelationshipState)tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, mother, son)).Get();
+            cleanup.Add(relationship);
             var state = relationship.LoadSourceReferences();
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
@@ -121,10 +156,15 @@ namespace Gedcomx.Rs.Api.Test
         public void TestUpdateChildAndParentsRelationship()
         {
             var father = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(father);
             var mother = tree.AddPerson(TestBacking.GetCreateFemalePerson());
+            cleanup.Add(mother);
             var son = tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(son);
             var relationship = (ChildAndParentsRelationshipState)tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, mother, son)).Get();
+            cleanup.Add(relationship);
             var newFather = tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(newFather);
             var state = relationship.UpdateFather(newFather);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
@@ -135,9 +175,13 @@ namespace Gedcomx.Rs.Api.Test
         public void TestUpdateChildAndParentsRelationshipConclusion()
         {
             var father = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(father);
             var mother = tree.AddPerson(TestBacking.GetCreateFemalePerson());
+            cleanup.Add(mother);
             var son = tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(son);
             var relationship = (ChildAndParentsRelationshipState)tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, mother, son)).Get();
+            cleanup.Add(relationship);
             var update = relationship.AddFatherFact(TestBacking.GetBiologicalParentFact());
             relationship = (ChildAndParentsRelationshipState)relationship.Get();
             relationship.LoadConclusions();
@@ -152,8 +196,11 @@ namespace Gedcomx.Rs.Api.Test
         public void TestDeleteChildAndParentsRelationship()
         {
             var father = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(father);
             var mother = tree.AddPerson(TestBacking.GetCreateFemalePerson());
+            cleanup.Add(mother);
             var son = tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(son);
             var relationship = (ChildAndParentsRelationshipState)tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, mother, son)).Get();
             var state = relationship.Delete();
 
@@ -165,9 +212,13 @@ namespace Gedcomx.Rs.Api.Test
         public void TestDeleteChildAndParentsRelationshipSourceReference()
         {
             var father = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(father);
             var mother = tree.AddPerson(TestBacking.GetCreateFemalePerson());
+            cleanup.Add(mother);
             var son = tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(son);
             var relationship = (ChildAndParentsRelationshipState)tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, mother, son)).Get();
+            cleanup.Add(relationship);
             relationship.AddSourceReference(TestBacking.GetPersonSourceReference());
             relationship.LoadSourceReferences();
             var state = relationship.DeleteSourceReference(relationship.SourceReference);
@@ -180,9 +231,13 @@ namespace Gedcomx.Rs.Api.Test
         public void TestRestoreChildAndParentsRelationship()
         {
             var father = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(father);
             var mother = tree.AddPerson(TestBacking.GetCreateFemalePerson());
+            cleanup.Add(mother);
             var son = tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(son);
             var relationship = (ChildAndParentsRelationshipState)tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, mother, son)).Get();
+            cleanup.Add(relationship);
             relationship = (ChildAndParentsRelationshipState)relationship.Delete().IfSuccessful().Get();
             var state = relationship.Restore();
 
@@ -194,9 +249,13 @@ namespace Gedcomx.Rs.Api.Test
         public void TestDeleteChildAndParentsRelationshipParent()
         {
             var father = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(father);
             var mother = tree.AddPerson(TestBacking.GetCreateFemalePerson());
+            cleanup.Add(mother);
             var son = tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(son);
             var relationship = (ChildAndParentsRelationshipState)tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, mother, son)).Get();
+            cleanup.Add(relationship);
             var state = relationship.DeleteFather();
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
@@ -207,9 +266,13 @@ namespace Gedcomx.Rs.Api.Test
         public void TestDeleteChildAndParentsRelationshipConclusion()
         {
             var father = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(father);
             var mother = tree.AddPerson(TestBacking.GetCreateFemalePerson());
+            cleanup.Add(mother);
             var son = tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(son);
             var relationship = (ChildAndParentsRelationshipState)tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, mother, son)).Get();
+            cleanup.Add(relationship);
             relationship.AddFatherFact(TestBacking.GetBiologicalParentFact());
             relationship = (ChildAndParentsRelationshipState)relationship.Get();
             var state = relationship.DeleteFact(relationship.FatherFact);

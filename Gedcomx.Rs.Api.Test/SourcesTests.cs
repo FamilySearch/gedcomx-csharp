@@ -4,6 +4,7 @@ using Gx.Rs.Api;
 using Gx.Rs.Api.Util;
 using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 
@@ -13,6 +14,7 @@ namespace Gedcomx.Rs.Api.Test
     public class SourcesTests
     {
         private FamilySearchFamilyTree tree;
+        private List<GedcomxApplicationState> cleanup;
 
         [TestFixtureSetUp]
         public void Initialize()
@@ -21,12 +23,23 @@ namespace Gedcomx.Rs.Api.Test
             tree.AuthenticateViaOAuth2Password(Resources.TestUserName, Resources.TestPassword, Resources.TestClientId);
             Assert.DoesNotThrow(() => tree.IfSuccessful());
             Assert.IsNotNullOrEmpty(tree.CurrentAccessToken);
+            cleanup = new List<GedcomxApplicationState>();
+        }
+
+        [TestFixtureTearDown]
+        public void TearDown()
+        {
+            foreach (var state in cleanup)
+            {
+                state.Delete();
+            }
         }
 
         [Test]
         public void TestCreateSourceDescription()
         {
             var state = tree.AddSourceDescription(TestBacking.GetCreateSourceDescription());
+            cleanup.Add(state);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.Created, state.Response.StatusCode);
@@ -36,11 +49,14 @@ namespace Gedcomx.Rs.Api.Test
         public void TestCreateUserUploadedSource()
         {
             var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(person);
             var dataSource = new BasicDataSource("Sample Memory", MediaTypes.TEXT_PLAIN_TYPE, Resources.MemoryTXT);
-            person.AddArtifact(dataSource);
+            var sds = person.AddArtifact(dataSource);
+            cleanup.Add(sds);
             var artifact = person.ReadArtifacts().SourceDescriptions.First();
             var memoryUri = artifact.GetLink("memory").Href;
             var state = tree.AddSourceDescription(TestBacking.GetCreateUserSourceDescription(memoryUri));
+            cleanup.Add(state);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.Created, state.Response.StatusCode);
@@ -50,6 +66,7 @@ namespace Gedcomx.Rs.Api.Test
         public void TestReadSourceDescription()
         {
             var state = (SourceDescriptionState)tree.AddSourceDescription(TestBacking.GetCreateSourceDescription()).Get();
+            cleanup.Add(state);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
@@ -60,6 +77,7 @@ namespace Gedcomx.Rs.Api.Test
         public void TestUpdateSourceDescription()
         {
             var description = (SourceDescriptionState)tree.AddSourceDescription(TestBacking.GetCreateSourceDescription()).Get();
+            cleanup.Add(description);
             var state = description.Update(description.SourceDescription);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
@@ -79,8 +97,11 @@ namespace Gedcomx.Rs.Api.Test
         public void TestDeleteCoupleRelationshipSourceReference()
         {
             var husband = (PersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(husband);
             var wife = tree.AddPerson(TestBacking.GetCreateFemalePerson());
+            cleanup.Add(wife);
             var relationship = (RelationshipState)husband.AddSpouse(wife).Get();
+            cleanup.Add(relationship);
             relationship.AddSourceReference(TestBacking.GetPersonSourceReference());
             relationship.LoadSourceReferences();
             var state = relationship.DeleteSourceReference(relationship.SourceReference);
@@ -93,7 +114,9 @@ namespace Gedcomx.Rs.Api.Test
         public void TestReadSourceReferences()
         {
             var source = (SourceDescriptionState)tree.AddSourceDescription(TestBacking.GetCreateSourceDescription()).Get();
+            cleanup.Add(source);
             var person = tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(person);
             var sourceRef = TestBacking.GetPersonSourceReference();
             sourceRef.DescriptionRef = source.GetSelfUri();
             person.AddSourceReference(sourceRef);

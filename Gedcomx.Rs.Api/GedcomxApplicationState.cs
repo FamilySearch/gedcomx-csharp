@@ -21,6 +21,10 @@ namespace Gx.Rs.Api
     public abstract class GedcomxApplicationState : HypermediaEnabledData
     {
         /// <summary>
+        /// The factory responsible for creating new state instances from REST API response data.
+        /// </summary>
+        protected internal readonly StateFactory stateFactory;
+        /// <summary>
         /// The default link loader for reading links from <see cref="Gx.Gedcomx"/> instances. Also see <seealso cref="Gx.Rs.Api.Util.EmbeddedLinkLoader.DEFAULT_EMBEDDED_LINK_RELS"/> for types of links that will be loaded.
         /// </summary>
         protected static readonly EmbeddedLinkLoader DEFAULT_EMBEDDED_LINK_LOADER = new EmbeddedLinkLoader();
@@ -131,6 +135,31 @@ namespace Gx.Rs.Api
         }
 
         /// <summary>
+        /// Gets the main data element represented by this state instance.
+        /// </summary>
+        /// <value>
+        /// The main data element represented by this state instance.
+        /// </value>
+        protected abstract SupportsLinks MainDataElement
+        {
+            get;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GedcomxApplicationState{T}"/> class.
+        /// </summary>
+        protected GedcomxApplicationState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken, StateFactory stateFactory)
+        {
+            linkFactory = new Tavis.LinkFactory();
+            linkHeaderParser = new Tavis.LinkHeaderParser(linkFactory);
+            this.Request = request;
+            this.Response = response;
+            this.Client = client;
+            this.CurrentAccessToken = accessToken;
+            this.stateFactory = stateFactory;
+        }
+
+        /// <summary>
         /// Executes the specified link and embeds the response in the specified Gedcomx entity.
         /// </summary>
         /// <typeparam name="T">The type of the expected response. The raw response data will be parsed (from JSON or XML) and casted to this type.</typeparam>
@@ -190,6 +219,15 @@ namespace Gx.Rs.Api
         }
 
         /// <summary>
+        /// Clones the current state instance.
+        /// </summary>
+        /// <param name="request">The REST API request used to create this state instance.</param>
+        /// <param name="response">The REST API response used to create this state instance.</param>
+        /// <param name="client">The REST API client used to create this state instance.</param>
+        /// <returns>A cloned instance of the current state instance.</returns>
+        protected abstract GedcomxApplicationState Clone(IRestRequest request, IRestResponse response, IFilterableRestClient client);
+
+        /// <summary>
         /// Creates a REST API request with authentication.
         /// </summary>
         /// <returns>The REST API request with authentication.</returns>
@@ -247,169 +285,6 @@ namespace Gx.Rs.Api
                 Embed<T>(link, entity, options);
             }
         }
-    }
-
-    /// <summary>
-    /// This is the base class for all state instances with generic specific functionality.
-    /// </summary>
-    /// <typeparam name="T">The type of the expected response. The raw response data will be parsed (from JSON or XML) and casted to this type.</typeparam>
-    public abstract class GedcomxApplicationState<T> : GedcomxApplicationState where T : class, new()
-    {
-        /// <summary>
-        /// The factory responsible for creating new state instances from REST API response data.
-        /// </summary>
-        protected internal readonly StateFactory stateFactory;
-        /// <summary>
-        /// Gets the entity represented by this state (if applicable). Not all responses produce entities.
-        /// </summary>
-        /// <value>
-        /// The entity represented by this state.
-        /// </value>
-        public T Entity { get; private set; }
-        /// <summary>
-        /// Clones the current state instance.
-        /// </summary>
-        /// <param name="request">The REST API request used to create this state instance.</param>
-        /// <param name="response">The REST API response used to create this state instance.</param>
-        /// <param name="client">The REST API client used to create this state instance.</param>
-        /// <returns>A cloned instance of the current state instance.</returns>
-        protected abstract GedcomxApplicationState<T> Clone(IRestRequest request, IRestResponse response, IFilterableRestClient client);
-        /// <summary>
-        /// Returns the entity from the REST API response.
-        /// </summary>
-        /// <param name="response">The REST API response.</param>
-        /// <returns>The entity from the REST API response.</returns>
-        protected virtual T LoadEntity(IRestResponse response)
-        {
-            T result = null;
-
-            if (response != null)
-            {
-                result = response.ToIRestResponse<T>().Data;
-            }
-
-            return result;
-        }
-        /// <summary>
-        /// Gets the main data element represented by this state instance.
-        /// </summary>
-        /// <value>
-        /// The main data element represented by this state instance.
-        /// </value>
-        protected virtual SupportsLinks MainDataElement
-        {
-            get
-            {
-                return (SupportsLinks)Entity;
-            }
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="GedcomxApplicationState{T}"/> class.
-        /// </summary>
-        protected GedcomxApplicationState()
-        {
-            linkFactory = new Tavis.LinkFactory();
-            linkHeaderParser = new Tavis.LinkHeaderParser(linkFactory);
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="GedcomxApplicationState{T}"/> class.
-        /// </summary>
-        /// <param name="request">The REST API request.</param>
-        /// <param name="response">The REST API response.</param>
-        /// <param name="client">The REST API client.</param>
-        /// <param name="accessToken">The access token.</param>
-        /// <param name="stateFactory">The state factory.</param>
-        protected GedcomxApplicationState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken, StateFactory stateFactory)
-            : this()
-        {
-            this.Request = request;
-            this.Response = response;
-            this.Client = client;
-            this.CurrentAccessToken = accessToken;
-            this.stateFactory = stateFactory;
-            this.Entity = LoadEntityConditionally(this.Response);
-            List<Link> links = LoadLinks(this.Response, this.Entity, this.Request.RequestFormat);
-            this.Links = new List<Link>();
-            this.Links.AddRange(links);
-        }
-
-        /// <summary>
-        /// Loads the entity from the REST API response if the response should have data.
-        /// </summary>
-        /// <param name="response">The REST API response.</param>
-        /// <returns>Conditional returns the entity from the REST API response if the response should have data.</returns>
-        /// <remarks>The REST API response should have data if the invoking request was not a HEAD or OPTIONS request and the response status is OK.</remarks>
-        protected virtual T LoadEntityConditionally(IRestResponse response)
-        {
-            if (Request.Method != Method.HEAD && Request.Method != Method.OPTIONS && response.StatusCode == HttpStatusCode.OK)
-            {
-                return LoadEntity(response);
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
-        /// Invokes the specified REST API request and returns a state instance of the REST API response.
-        /// </summary>
-        /// <param name="request">The REST API request to execute.</param>
-        /// <returns>The state instance of the REST API response.</returns>
-        public GedcomxApplicationState<T> Inject(IRestRequest request)
-        {
-            return Clone(request, Invoke(request), this.Client);
-        }
-
-        /// <summary>
-        /// Loads all links from a REST API response and entity object, whether from the header, response body, or any other properties available to extract useful links for this state instance.
-        /// </summary>
-        /// <param name="response">The REST API response.</param>
-        /// <param name="entity">The entity to also consider for finding links.</param>
-        /// <param name="contentFormat">The content format (JSON or XML) of the REST API response data.</param>
-        /// <returns>A list of all links discovered from the REST API response and entity object.</returns>
-        protected List<Link> LoadLinks(IRestResponse response, T entity, DataFormat contentFormat)
-        {
-            List<Link> links = new List<Link>();
-            var location = response.Headers.FirstOrDefault(x => x.Name == "Location");
-
-            //if there's a location, we'll consider it a "self" link.
-            if (location != null && location.Value != null)
-            {
-                links.Add(new Link() { Rel = Rel.SELF, Href = location.Value.ToString() });
-            }
-
-            //initialize links with link headers
-            foreach (var header in response.Headers.Where(x => x.Name == "Link" && x.Value != null).SelectMany(x => linkHeaderParser.Parse(response.ResponseUri, x.Value.ToString())))
-            {
-                Link link = new Link() { Rel = header.Relation, Href = header.Target.ToString() };
-                link.Template = header.GetLinkExtensionSafe("template");
-                link.Title = header.Title;
-                link.Accept = header.GetLinkExtensionSafe("accept");
-                link.Allow = header.GetLinkExtensionSafe("allow");
-                link.Hreflang = header.HrefLang.Select(x => x.Name).FirstOrDefault();
-                link.Type = header.GetLinkExtensionSafe("type");
-                links.Add(link);
-            }
-
-            //load the links from the main data element
-            SupportsLinks mainElement = MainDataElement;
-            if (mainElement != null && mainElement.Links != null)
-            {
-                links.AddRange(mainElement.Links);
-            }
-
-            //load links at the document level
-            var collection = entity as SupportsLinks;
-            if (entity != mainElement && collection != null && collection.Links != null)
-            {
-                links.AddRange(collection.Links);
-            }
-
-            return links;
-        }
 
         /// <summary>
         /// Gets the URI of the REST API request associated to this state instance.
@@ -446,7 +321,7 @@ namespace Gx.Rs.Api
         /// A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response or throws an exception with the response details.
         /// </returns>
         /// <exception cref="GedcomxApplicationException">Thrown if <see cref="HasError()" /> returns true.</exception>
-        public virtual GedcomxApplicationState<T> IfSuccessful()
+        public virtual GedcomxApplicationState IfSuccessful()
         {
             if (HasError())
             {
@@ -460,7 +335,7 @@ namespace Gx.Rs.Api
         /// </summary>
         /// <param name="options">The options to apply before executing the REST API call.</param>
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
-        public virtual GedcomxApplicationState<T> Head(params StateTransitionOption[] options)
+        public virtual GedcomxApplicationState Head(params StateTransitionOption[] options)
         {
             IRestRequest request = CreateAuthenticatedRequest();
             Parameter accept = this.Request.GetHeaders().Get("Accept").FirstOrDefault();
@@ -478,7 +353,7 @@ namespace Gx.Rs.Api
         /// </summary>
         /// <param name="options">The options to apply before executing the REST API call.</param>
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
-        public virtual GedcomxApplicationState<T> Options(params StateTransitionOption[] options)
+        public virtual GedcomxApplicationState Options(params StateTransitionOption[] options)
         {
             IRestRequest request = CreateAuthenticatedRequest();
             Parameter accept = this.Request.GetHeaders().Get("Accept").FirstOrDefault();
@@ -495,7 +370,7 @@ namespace Gx.Rs.Api
         /// </summary>
         /// <param name="options">The options to apply before executing the REST API call.</param>
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
-        public virtual GedcomxApplicationState<T> Get(params StateTransitionOption[] options)
+        public virtual GedcomxApplicationState Get(params StateTransitionOption[] options)
         {
             IRestRequest request = CreateAuthenticatedRequest();
             Parameter accept = this.Request.GetHeaders().Get("Accept").FirstOrDefault();
@@ -514,7 +389,7 @@ namespace Gx.Rs.Api
         /// </summary>
         /// <param name="options">The options to apply before executing the REST API call.</param>
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
-        public virtual GedcomxApplicationState<T> Delete(params StateTransitionOption[] options)
+        public virtual GedcomxApplicationState Delete(params StateTransitionOption[] options)
         {
             IRestRequest request = CreateAuthenticatedRequest();
             Parameter accept = this.Request.GetHeaders().Get("Accept").FirstOrDefault();
@@ -532,7 +407,7 @@ namespace Gx.Rs.Api
         /// <param name="entity">The entity to be used as the body of the REST API request. This is the entity to be PUT.</param>
         /// <param name="options">The options to apply before executing the REST API call.</param>
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
-        public virtual GedcomxApplicationState<T> Put(T entity, params StateTransitionOption[] options)
+        public virtual GedcomxApplicationState Put(object entity, params StateTransitionOption[] options)
         {
             IRestRequest request = CreateAuthenticatedRequest();
             Parameter accept = this.Request.GetHeaders().Get("Accept").FirstOrDefault();
@@ -555,7 +430,7 @@ namespace Gx.Rs.Api
         /// <param name="entity">The entity to be used as the body of the REST API request. This is the entity to be POST.</param>
         /// <param name="options">The options to apply before executing the REST API call.</param>
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
-        public virtual GedcomxApplicationState<T> Post(T entity, params StateTransitionOption[] options)
+        public virtual GedcomxApplicationState Post(object entity, params StateTransitionOption[] options)
         {
             IRestRequest request = CreateAuthenticatedRequest();
             Parameter accept = this.Request.GetHeaders().Get("Accept").FirstOrDefault();
@@ -603,7 +478,7 @@ namespace Gx.Rs.Api
         /// <param name="clientId">The client identifier.</param>
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
         /// <remarks>See https://familysearch.org/developers/docs/guides/oauth2 for more information.</remarks>
-        public virtual GedcomxApplicationState<T> AuthenticateViaOAuth2Password(String username, String password, String clientId)
+        public virtual GedcomxApplicationState AuthenticateViaOAuth2Password(String username, String password, String clientId)
         {
             return AuthenticateViaOAuth2Password(username, password, clientId, null);
         }
@@ -617,7 +492,7 @@ namespace Gx.Rs.Api
         /// <param name="clientSecret">The client secret.</param>
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
         /// <remarks>See https://familysearch.org/developers/docs/guides/oauth2 for more information.</remarks>
-        public virtual GedcomxApplicationState<T> AuthenticateViaOAuth2Password(String username, String password, String clientId, String clientSecret)
+        public virtual GedcomxApplicationState AuthenticateViaOAuth2Password(String username, String password, String clientId, String clientSecret)
         {
             IDictionary<String, String> formData = new Dictionary<String, String>();
             formData.Add("grant_type", "password");
@@ -639,7 +514,7 @@ namespace Gx.Rs.Api
         /// <param name="clientId">The client identifier.</param>
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
         /// <remarks>See https://familysearch.org/developers/docs/guides/oauth2 for more information.</remarks>
-        public GedcomxApplicationState<T> AuthenticateViaOAuth2AuthCode(String authCode, String redirect, String clientId)
+        public GedcomxApplicationState AuthenticateViaOAuth2AuthCode(String authCode, String redirect, String clientId)
         {
             return AuthenticateViaOAuth2Password(authCode, authCode, clientId, null);
         }
@@ -653,7 +528,7 @@ namespace Gx.Rs.Api
         /// <param name="clientSecret">The client secret.</param>
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
         /// <remarks>See https://familysearch.org/developers/docs/guides/oauth2 for more information.</remarks>
-        public GedcomxApplicationState<T> AuthenticateViaOAuth2AuthCode(String authCode, String redirect, String clientId, String clientSecret)
+        public GedcomxApplicationState AuthenticateViaOAuth2AuthCode(String authCode, String redirect, String clientId, String clientSecret)
         {
             IDictionary<String, String> formData = new Dictionary<String, String>();
             formData.Add("grant_type", "authorization_code");
@@ -674,7 +549,7 @@ namespace Gx.Rs.Api
         /// <param name="clientSecret">The client secret.</param>
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
         /// <remarks>See https://familysearch.org/developers/docs/guides/oauth2 for more information.</remarks>
-        public GedcomxApplicationState<T> AuthenticateViaOAuth2ClientCredentials(String clientId, String clientSecret)
+        public GedcomxApplicationState AuthenticateViaOAuth2ClientCredentials(String clientId, String clientSecret)
         {
             IDictionary<String, String> formData = new Dictionary<String, String>();
             formData.Add("grant_type", "client_credentials");
@@ -694,25 +569,25 @@ namespace Gx.Rs.Api
         /// <param name="clientSecret">The client secret.</param>
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
         /// <remarks>See https://familysearch.org/developers/docs/guides/oauth2 for more information.</remarks>
-        public GedcomxApplicationState<T> UnauthenticatedAccess(string ipAddress, string clientId, string clientSecret = null)
-		{
-			IDictionary<String, String> formData = new Dictionary<String, String>();
-			formData.Add("grant_type", "unauthenticated_session");
-			formData.Add("client_id", clientId);
-			formData.Add("ip_address", ipAddress);
-			if (clientSecret != null)
-			{
-				formData.Add("client_secret", clientSecret);
-			}
-			return AuthenticateViaOAuth2(formData);
-		}
+        public GedcomxApplicationState UnauthenticatedAccess(string ipAddress, string clientId, string clientSecret = null)
+        {
+            IDictionary<String, String> formData = new Dictionary<String, String>();
+            formData.Add("grant_type", "unauthenticated_session");
+            formData.Add("client_id", clientId);
+            formData.Add("ip_address", ipAddress);
+            if (clientSecret != null)
+            {
+                formData.Add("client_secret", clientSecret);
+            }
+            return AuthenticateViaOAuth2(formData);
+        }
 
         /// <summary>
         /// Sets the current access token to the one specified. The server is not contacted during this operation.
         /// </summary>
         /// <param name="accessToken">The access token.</param>
         /// <returns>Returns this instance.</returns>
-        public GedcomxApplicationState<T> AuthenticateWithAccessToken(String accessToken)
+        public GedcomxApplicationState AuthenticateWithAccessToken(String accessToken)
         {
             this.CurrentAccessToken = accessToken;
             return this;
@@ -729,7 +604,7 @@ namespace Gx.Rs.Api
         /// or
         /// Unable to obtain an access token.
         /// </exception>
-        public GedcomxApplicationState<T> AuthenticateViaOAuth2(IDictionary<String, String> formData, params StateTransitionOption[] options)
+        public GedcomxApplicationState AuthenticateViaOAuth2(IDictionary<String, String> formData, params StateTransitionOption[] options)
         {
             Link tokenLink = this.GetLink(Rel.OAUTH2_TOKEN);
             if (tokenLink == null || tokenLink.Href == null)
@@ -778,7 +653,7 @@ namespace Gx.Rs.Api
         /// <param name="rel">The rel name to use when looking for the link.</param>
         /// <param name="options">The options to apply before executing the REST API call.</param>
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
-        public GedcomxApplicationState<T> ReadPage(String rel, params StateTransitionOption[] options)
+        public GedcomxApplicationState ReadPage(String rel, params StateTransitionOption[] options)
         {
             Link link = GetLink(rel);
             if (link == null || link.Href == null)
@@ -807,7 +682,7 @@ namespace Gx.Rs.Api
         /// <param name="options">The options to apply before executing the REST API call.</param>
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
         /// <remarks>This is a shorthand method for calling <see cref="ReadPage"/> and specifying Rel.NEXT.</remarks>
-        public GedcomxApplicationState<T> ReadNextPage(params StateTransitionOption[] options)
+        public GedcomxApplicationState ReadNextPage(params StateTransitionOption[] options)
         {
             return ReadPage(Rel.NEXT, options);
         }
@@ -818,7 +693,7 @@ namespace Gx.Rs.Api
         /// <param name="options">The options to apply before executing the REST API call.</param>
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
         /// <remarks>This is a shorthand method for calling <see cref="ReadPage"/> and specifying Rel.PREVIOUS.</remarks>
-        public GedcomxApplicationState<T> ReadPreviousPage(params StateTransitionOption[] options)
+        public GedcomxApplicationState ReadPreviousPage(params StateTransitionOption[] options)
         {
             return ReadPage(Rel.PREVIOUS, options);
         }
@@ -829,7 +704,7 @@ namespace Gx.Rs.Api
         /// <param name="options">The options to apply before executing the REST API call.</param>
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
         /// <remarks>This is a shorthand method for calling <see cref="ReadPage"/> and specifying Rel.FIRST.</remarks>
-        public GedcomxApplicationState<T> ReadFirstPage(params StateTransitionOption[] options)
+        public GedcomxApplicationState ReadFirstPage(params StateTransitionOption[] options)
         {
             return ReadPage(Rel.FIRST, options);
         }
@@ -840,7 +715,7 @@ namespace Gx.Rs.Api
         /// <param name="options">The options to apply before executing the REST API call.</param>
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
         /// <remarks>This is a shorthand method for calling <see cref="ReadPage"/> and specifying Rel.LAST.</remarks>
-        public GedcomxApplicationState<T> ReadLastPage(params StateTransitionOption[] options)
+        public GedcomxApplicationState ReadLastPage(params StateTransitionOption[] options)
         {
             return ReadPage(Rel.LAST, options);
         }
@@ -949,6 +824,144 @@ namespace Gx.Rs.Api
             {
                 return null;
             }
+        }
+    }
+
+    /// <summary>
+    /// This is the base class for all state instances with generic specific functionality.
+    /// </summary>
+    /// <typeparam name="T">The type of the expected response. The raw response data will be parsed (from JSON or XML) and casted to this type.</typeparam>
+    public abstract class GedcomxApplicationState<T> : GedcomxApplicationState where T : class, new()
+    {
+        /// <summary>
+        /// Gets the entity represented by this state (if applicable). Not all responses produce entities.
+        /// </summary>
+        /// <value>
+        /// The entity represented by this state.
+        /// </value>
+        public T Entity { get; private set; }
+        /// <summary>
+        /// Returns the entity from the REST API response.
+        /// </summary>
+        /// <param name="response">The REST API response.</param>
+        /// <returns>The entity from the REST API response.</returns>
+        protected virtual T LoadEntity(IRestResponse response)
+        {
+            T result = null;
+
+            if (response != null)
+            {
+                result = response.ToIRestResponse<T>().Data;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Gets the main data element represented by this state instance.
+        /// </summary>
+        /// <value>
+        /// The main data element represented by this state instance.
+        /// </value>
+        protected override SupportsLinks MainDataElement
+        {
+            get
+            {
+                return (SupportsLinks)Entity;
+            }
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GedcomxApplicationState{T}"/> class.
+        /// </summary>
+        /// <param name="request">The REST API request.</param>
+        /// <param name="response">The REST API response.</param>
+        /// <param name="client">The REST API client.</param>
+        /// <param name="accessToken">The access token.</param>
+        /// <param name="stateFactory">The state factory.</param>
+        protected GedcomxApplicationState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken, StateFactory stateFactory)
+            : base(request, response, client, accessToken, stateFactory)
+        {
+            this.Entity = LoadEntityConditionally(this.Response);
+            List<Link> links = LoadLinks(this.Response, this.Entity, this.Request.RequestFormat);
+            this.Links = new List<Link>();
+            this.Links.AddRange(links);
+        }
+
+        /// <summary>
+        /// Loads the entity from the REST API response if the response should have data.
+        /// </summary>
+        /// <param name="response">The REST API response.</param>
+        /// <returns>Conditional returns the entity from the REST API response if the response should have data.</returns>
+        /// <remarks>The REST API response should have data if the invoking request was not a HEAD or OPTIONS request and the response status is OK.</remarks>
+        protected virtual T LoadEntityConditionally(IRestResponse response)
+        {
+            if (Request.Method != Method.HEAD && Request.Method != Method.OPTIONS && response.StatusCode == HttpStatusCode.OK)
+            {
+                return LoadEntity(response);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Invokes the specified REST API request and returns a state instance of the REST API response.
+        /// </summary>
+        /// <param name="request">The REST API request to execute.</param>
+        /// <returns>The state instance of the REST API response.</returns>
+        public GedcomxApplicationState Inject(IRestRequest request)
+        {
+            return Clone(request, Invoke(request), this.Client);
+        }
+
+        /// <summary>
+        /// Loads all links from a REST API response and entity object, whether from the header, response body, or any other properties available to extract useful links for this state instance.
+        /// </summary>
+        /// <param name="response">The REST API response.</param>
+        /// <param name="entity">The entity to also consider for finding links.</param>
+        /// <param name="contentFormat">The content format (JSON or XML) of the REST API response data.</param>
+        /// <returns>A list of all links discovered from the REST API response and entity object.</returns>
+        protected List<Link> LoadLinks(IRestResponse response, T entity, DataFormat contentFormat)
+        {
+            List<Link> links = new List<Link>();
+            var location = response.Headers.FirstOrDefault(x => x.Name == "Location");
+
+            //if there's a location, we'll consider it a "self" link.
+            if (location != null && location.Value != null)
+            {
+                links.Add(new Link() { Rel = Rel.SELF, Href = location.Value.ToString() });
+            }
+
+            //initialize links with link headers
+            foreach (var header in response.Headers.Where(x => x.Name == "Link" && x.Value != null).SelectMany(x => linkHeaderParser.Parse(response.ResponseUri, x.Value.ToString())))
+            {
+                Link link = new Link() { Rel = header.Relation, Href = header.Target.ToString() };
+                link.Template = header.GetLinkExtensionSafe("template");
+                link.Title = header.Title;
+                link.Accept = header.GetLinkExtensionSafe("accept");
+                link.Allow = header.GetLinkExtensionSafe("allow");
+                link.Hreflang = header.HrefLang.Select(x => x.Name).FirstOrDefault();
+                link.Type = header.GetLinkExtensionSafe("type");
+                links.Add(link);
+            }
+
+            //load the links from the main data element
+            SupportsLinks mainElement = MainDataElement;
+            if (mainElement != null && mainElement.Links != null)
+            {
+                links.AddRange(mainElement.Links);
+            }
+
+            //load links at the document level
+            var collection = entity as SupportsLinks;
+            if (entity != mainElement && collection != null && collection.Links != null)
+            {
+                links.AddRange(collection.Links);
+            }
+
+            return links;
         }
     }
 }

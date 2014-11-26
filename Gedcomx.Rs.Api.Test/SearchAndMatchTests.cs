@@ -1,11 +1,15 @@
 ﻿using FamilySearch.Api.Ft;
 using FamilySearch.Api.Util;
 using Gx.Fs.Tree;
+using Gx.Rs.Api;
 using Gx.Rs.Api.Options;
 using Gx.Rs.Api.Util;
 using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using System.Net;
+using System.Threading;
+using System.Linq;
 
 namespace Gedcomx.Rs.Api.Test
 {
@@ -13,20 +17,32 @@ namespace Gedcomx.Rs.Api.Test
     public class SearchAndMatchTests
     {
         private FamilySearchFamilyTree tree;
+        private List<GedcomxApplicationState> cleanup;
 
         [TestFixtureSetUp]
         public void Initialize()
         {
             tree = new FamilySearchFamilyTree(true);
             tree.AuthenticateViaOAuth2Password(Resources.TestUserName, Resources.TestPassword, Resources.TestClientId);
+            cleanup = new List<GedcomxApplicationState>();
             Assert.DoesNotThrow(() => tree.IfSuccessful());
             Assert.IsNotNullOrEmpty(tree.CurrentAccessToken);
+        }
+
+        [TestFixtureTearDown]
+        public void TearDown()
+        {
+            foreach (var state in cleanup)
+            {
+                state.Delete();
+            }
         }
 
         [Test]
         public void TestReadPersonPossibleDuplicates()
         {
             var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(person);
             var state = person.ReadMatches();
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
@@ -38,17 +54,20 @@ namespace Gedcomx.Rs.Api.Test
         public void TestReadPersonRecordMatches()
         {
             var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
-            var state = person.ReadMatches();
+            cleanup.Add(person);
+            var query = new QueryParameter("collection", "https://familysearch.org/platform/collections/records");
+            var state = person.ReadMatches(query);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
-            Assert.Greater(state.Results.Entries.Count, 0);
+            Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
+            Assert.IsNull(state.Results);
         }
 
         [Test]
         public void TestReadAllMatchStatusTypesPersonRecordMatches()
         {
             var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(person);
             var statuses = new QueryParameter("status", "pending", "accepted", "rejected");
             var state = person.ReadMatches(statuses);
 
@@ -61,6 +80,7 @@ namespace Gedcomx.Rs.Api.Test
         public void TestReadHigherConfidencePersonAcceptedRecordMatches()
         {
             var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(person);
             var statuses = new QueryParameter("status", "accepted");
             var confidence = new QueryParameter("confidence", "4");
             var state = person.ReadMatches(statuses, confidence);
@@ -75,22 +95,31 @@ namespace Gedcomx.Rs.Api.Test
         {
             var collection = FamilySearchOptions.Collection("https://familysearch.org/platform/collections/records");
             var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(person);
             var matches = person.ReadMatches();
             var state = matches.UpdateMatchStatus(matches.Results.Entries[0], MatchStatus.Accepted, collection);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
-
-            person.Delete();
         }
 
         [Test]
         public void TestReadPersonNotAMatchDeclarations()
         {
-            var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
-            var matches = person.ReadMatches();
-            person.AddNonMatch(tree.ReadPersonById(matches.Results.Entries[0].Id));
-            var state = person.ReadNonMatches();
+            var person1 = tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(person1);
+            var person2 = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(person2);
+            Thread.Sleep(30); // This is to ensure the matching system on the server has time to recognize the two new duplicates
+            var matches = person2.ReadMatches();
+            var entry = matches.Results.Entries.FirstOrDefault();
+            var id = entry.Id;
+            var match = tree.ReadPersonById(id);
+            person2.AddNonMatch(match);
+            var state = person2.ReadNonMatches();
+
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
         }
 
         [Test]

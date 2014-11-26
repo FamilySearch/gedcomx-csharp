@@ -25,74 +25,31 @@ namespace Gx.Types {
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Prefix")]
     Prefix,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Suffix")]
     Suffix,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Given")]
     Given,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Surname")]
     Surname,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/OTHER")]
     OTHER
-  }
-
-  /// <remarks>
-  /// Utility class for converting to/from the QNames associated with NamePartType.
-  /// </remarks>
-  /// <summary>
-  /// Utility class for converting to/from the QNames associated with NamePartType.
-  /// </summary>
-  public static class NamePartTypeQNameUtil {
-
-    /// <summary>
-    /// Get the known NamePartType for a given QName. If the QName isn't a known QName, NamePartType.OTHER will be returned.
-    /// </summary>
-    public static NamePartType ConvertFromKnownQName(string qname) {
-      if (qname != null) {
-        if ("http://gedcomx.org/Prefix".Equals(qname)) {
-          return NamePartType.Prefix;
-        }
-        if ("http://gedcomx.org/Suffix".Equals(qname)) {
-          return NamePartType.Suffix;
-        }
-        if ("http://gedcomx.org/Given".Equals(qname)) {
-          return NamePartType.Given;
-        }
-        if ("http://gedcomx.org/Surname".Equals(qname)) {
-          return NamePartType.Surname;
-        }
-      }
-      return NamePartType.OTHER;
-    }
-
-    /// <summary>
-    /// Convert the known NamePartType to a QName. If NamePartType.OTHER, an ArgumentException will be thrown.
-    /// </summary>
-    public static string ConvertToKnownQName(NamePartType known) {
-      switch (known) {
-        case NamePartType.Prefix:
-          return "http://gedcomx.org/Prefix";
-        case NamePartType.Suffix:
-          return "http://gedcomx.org/Suffix";
-        case NamePartType.Given:
-          return "http://gedcomx.org/Given";
-        case NamePartType.Surname:
-          return "http://gedcomx.org/Surname";
-        default:
-          throw new System.ArgumentException("No known QName for: " + known, "known");
-      }
-    }
   }
 }

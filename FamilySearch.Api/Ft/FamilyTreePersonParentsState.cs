@@ -38,7 +38,7 @@ namespace FamilySearch.Api.Ft
         /// <param name="response">The REST API response used to create this state instance.</param>
         /// <param name="client">The REST API client used to create this state instance.</param>
         /// <returns>A cloned instance of the current state instance.</returns>
-        protected override GedcomxApplicationState<Gx.Gedcomx> Clone(IRestRequest request, IRestResponse response, IFilterableRestClient client)
+        protected override GedcomxApplicationState Clone(IRestRequest request, IRestResponse response, IFilterableRestClient client)
         {
             return new FamilyTreePersonParentsState(request, response, client, this.CurrentAccessToken, (FamilyTreeStateFactory)this.stateFactory);
         }

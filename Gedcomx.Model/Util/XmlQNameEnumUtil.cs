@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +22,19 @@ namespace Gedcomx.Model.Util
             else
             {
                 result = value.ToString();
+            }
+
+            return result;
+        }
+
+        public static T GetEnumValue<T>(String value)
+        {
+            var found = typeof(T).GetEnumValues().Cast<Enum>().FirstOrDefault(x => GetNameValue(x) == value);
+            T result = default(T);
+
+            if (found is T)
+            {
+                result = (T)(object)found;
             }
 
             return result;

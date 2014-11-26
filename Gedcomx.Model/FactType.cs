@@ -5,875 +5,522 @@
 // </auto-generated>
 using System;
 
-namespace Gx.Types {
-
-  /// <remarks>
-  ///  Enumeration of standard fact types.
-  /// </remarks>
-  /// <summary>
-  ///  Enumeration of standard fact types.
-  /// </summary>
-  public enum FactType {
-
-    /// <summary>
-    ///  Unspecified enum value.
-    /// </summary>
-    [System.Xml.Serialization.XmlEnumAttribute(Name="__NULL__")]
-    [System.Xml.Serialization.SoapEnumAttribute(Name="__NULL__")]
-    NULL,
-
-    /// <summary>
-    ///   A fact of a person's adoption. In the context of a parent-child relationship, it describes a fact of the adoption of a child by a parent.
-    /// </summary>
-    Adoption,
-
-    /// <summary>
-    ///   A fact of a person's christening as an adult.
-    /// </summary>
-    AdultChristening,
-
-    /// <summary>
-    ///   A fact of a person's amnesty.
-    /// </summary>
-    Amnesty,
-
-    /// <summary>
-    ///   A fact of a person's apprenticeship.
-    /// </summary>
-    Apprenticeship,
-
-    /// <summary>
-    ///   A fact of a person's arrest.
-    /// </summary>
-    Arrest,
-
-    /// <summary>
-    ///   A fact of a person's baptism.
-    /// </summary>
-    Baptism,
-
-    /// <summary>
-    ///   A fact of a person's bar mitzvah.
-    /// </summary>
-    BarMitzvah,
-
-    /// <summary>
-    ///   A fact of a person's bat mitzvah.
-    /// </summary>
-    BatMitzvah,
-
-    /// <summary>
-    ///   A fact of a person's birth.
-    /// </summary>
-    Birth,
-
-    /// <summary>
-    ///   A fact of an official blessing received by a person, such as at the hands of a clergy member or at another religious rite.
-    /// </summary>
-    Blessing,
-
-    /// <summary>
-    ///   A fact of the burial of person's body after death.
-    /// </summary>
-    Burial,
-
-    /// <summary>
-    ///   A fact of a person's caste.
-    /// </summary>
-    Caste,
-
-    /// <summary>
-    ///   A fact of a person's participation in a census.
-    /// </summary>
-    Census,
-
-    /// <summary>
-    ///   A fact of a person's christening *at birth*. Note: use `AdultChristening` for the christening as an adult.
-    /// </summary>
-    Christening,
-
-    /// <summary>
-    ///   A fact of a person's circumcision.
-    /// </summary>
-    Circumcision,
-
-    /// <summary>
-    ///   A fact of a person's clan.
-    /// </summary>
-    Clan,
-
-    /// <summary>
-    ///   A fact of a person's confirmation (or other rite of initiation) in a church or religion.
-    /// </summary>
-    Confirmation,
-
-    /// <summary>
-    ///   A fact of the cremation of person's body after death.
-    /// </summary>
-    Cremation,
-
-    /// <summary>
-    ///   A fact of the death of a person.
-    /// </summary>
-    Death,
-
-    /// <summary>
-    ///   A fact of an education of a person.
-    /// </summary>
-    Education,
-
-    /// <summary>
-    ///   A fact of a person's enrollment in an educational program or institution.
-    /// </summary>
-    EducationEnrollment,
-
-    /// <summary>
-    ///   A fact of the emigration of a person.
-    /// </summary>
-    Emigration,
-
-    /// <summary>
-    ///   A fact of a person's ethnicity or race.
-    /// </summary>
-    Ethnicity,
-
-    /// <summary>
-    ///   A fact of a person's excommunication from a church.
-    /// </summary>
-    Excommunication,
-
-    /// <summary>
-    ///   A fact of a person's first communion in a church.
-    /// </summary>
-    FirstCommunion,
-
-    /// <summary>
-    ///   A fact of a person's funeral.
-    /// </summary>
-    Funeral,
-
-    /// <summary>
-    ///   A fact of a person's gender change.
-    /// </summary>
-    GenderChange,
-
-    /// <summary>
-    ///   A fact of a person's graduation from a scholastic institution.
-    /// </summary>
-    Graduation,
-
-    /// <summary>
-    ///   A fact of a person's immigration.
-    /// </summary>
-    Immigration,
-
-    /// <summary>
-    ///   A fact of a person's imprisonment.
-    /// </summary>
-    Imprisonment,
-
-    /// <summary>
-    ///   A fact of a land transaction enacted by a person.
-    /// </summary>
-    LandTransaction,
-
-    /// <summary>
-    ///   A fact of a language spoken by a person.
-    /// </summary>
-    Language,
-
-    /// <summary>
-    ///   A fact of a record of a person's living for a specific period. This is designed to include &quot;flourish&quot;, defined to mean the time period
-    ///   in an adult's life where he was most productive, perhaps as a writer or member of the state assembly. It does not reflect the person's birth and death dates.
-    /// </summary>
-    Living,
-
-    /// <summary>
-    ///   A fact of a person's marital status.
-    /// </summary>
-    MaritalStatus,
-
-    /// <summary>
-    ///   A fact of a person's medical record, such as for an illness or hospital stay.
-    /// </summary>
-    Medical,
-
-    /// <summary>
-    ///   A fact of a person's military award.
-    /// </summary>
-    MilitaryAward,
-
-    /// <summary>
-    ///   A fact of a person's military discharge.
-    /// </summary>
-    MilitaryDischarge,
-
-    /// <summary>
-    ///   A fact of a person's registration for a military draft.
-    /// </summary>
-    MilitaryDraftRegistration,
-
-    /// <summary>
-    ///   A fact of a person's military induction.
-    /// </summary>
-    MilitaryInduction,
-
-    /// <summary>
-    ///   A fact of a person's militray service.
-    /// </summary>
-    MilitaryService,
-
-    /// <summary>
-    ///   A fact of a person's church mission.
-    /// </summary>
-    Mission,
-
-    /// <summary>
-    ///   A fact of a person's move (i.e. change of residence) from a location.
-    /// </summary>
-    MoveFrom,
-
-    /// <summary>
-    ///   A fact of a person's move (i.e. change of residence) to a new location.
-    /// </summary>
-    MoveTo,
-
-    /// <summary>
-    ///   A fact that a person was born as part of a multiple birth (e.g. twin, triplet, etc.)
-    /// </summary>
-    MultipleBirth,
-
-    /// <summary>
-    ///   A fact of a person's national id (e.g. social security number).
-    /// </summary>
-    NationalId,
-
-    /// <summary>
-    ///   A fact of a person's nationality.
-    /// </summary>
-    Nationality,
-
-    /// <summary>
-    ///   A fact of a person's naturalization (i.e. acquisition of citizenship and nationality).
-    /// </summary>
-    Naturalization,
-
-    /// <summary>
-    ///   A fact of a person's number of marriages.
-    /// </summary>
-    NumberOfMarriages,
-
-    /// <summary>
-    ///   A fact of a person's occupation or employment.
-    /// </summary>
-    Occupation,
-
-    /// <summary>
-    ///   A fact of a person's ordination to a stewardship in a church.
-    /// </summary>
-    Ordination,
-
-    /// <summary>
-    ///   A fact of a person's legal pardon.
-    /// </summary>
-    Pardon,
-
-    /// <summary>
-    ///   A fact of a person's physical description.
-    /// </summary>
-    PhysicalDescription,
-
-    /// <summary>
-    ///   A fact of a receipt of probate of a person's property.
-    /// </summary>
-    Probate,
-
-    /// <summary>
-    ///   A fact of a person's property or possessions.
-    /// </summary>
-    Property,
-
-    /// <summary>
-    ///   A fact of a person's religion.
-    /// </summary>
-    Religion,
-
-    /// <summary>
-    ///   A fact of a person's residence.
-    /// </summary>
-    Residence,
-
-    /// <summary>
-    ///   A fact of a person's retirement.
-    /// </summary>
-    Retirement,
-
-    /// <summary>
-    ///   A fact of a person's stillbirth.
-    /// </summary>
-    Stillbirth,
-
-    /// <summary>
-    ///   A fact of a person's tax assessment.
-    /// </summary>
-    TaxAssessment,
-
-    /// <summary>
-    ///   A fact of a person's will.
-    /// </summary>
-    Will,
-
-    /// <summary>
-    ///   A fact of a person's visit to a place different from the person's residence.
-    /// </summary>
-    Visit,
-
-    /// <summary>
-    ///   A fact of a person's _yahrzeit_ date.  A person's yahzeit is the anniversary of their death as measured by the Hebrew calendar.
-    /// </summary>
-    Yahrzeit,
-
-    /// <summary>
-    ///   The fact of an annulment of a marriage.
-    /// </summary>
-    Annulment,
-
-    /// <summary>
-    ///   The fact of a marriage by common law.
-    /// </summary>
-    CommonLawMarriage,
-
-    /// <summary>
-    ///   The fact of a civil union.
-    /// </summary>
-    CivilUnion,
-
-    /// <summary>
-    ///   The fact of a divorce of a couple.
-    /// </summary>
-    Divorce,
-
-    /// <summary>
-    ///   The fact of a filing for divorce.
-    /// </summary>
-    DivorceFiling,
-
-    /// <summary>
-    ///   The fact of a domestic partnership.
-    /// </summary>
-    DomesticPartnership,
-
-    /// <summary>
-    ///   The fact of an engagement to be married.
-    /// </summary>
-    Engagement,
-
-    /// <summary>
-    ///   The fact of a marriage.
-    /// </summary>
-    Marriage,
-
-    /// <summary>
-    ///   The fact of a marriage banns.
-    /// </summary>
-    MarriageBanns,
-
-    /// <summary>
-    ///   The fact of a marriage contract.
-    /// </summary>
-    MarriageContract,
-
-    /// <summary>
-    ///   The fact of a marriage license.
-    /// </summary>
-    MarriageLicense,
-
-    /// <summary>
-    ///   The fact of a marriage notice.
-    /// </summary>
-    MarriageNotice,
-
-    /// <summary>
-    ///   A fact of the number of children of a person or relationship.
-    /// </summary>
-    NumberOfChildren,
-
-    /// <summary>
-    ///   A fact of a couple's separation.
-    /// </summary>
-    Separation,
-
-    /// <summary>
-    ///   A fact about an adoptive relationship between a parent an a child.
-    /// </summary>
-    AdoptiveParent,
-
-    /// <summary>
-    ///   A fact the biological relationship between a parent and a child.
-    /// </summary>
-    BiologicalParent,
-
-    /// <summary>
-    ///   A fact about a foster relationship between a foster parent and a child.
-    /// </summary>
-    FosterParent,
-
-    /// <summary>
-    ///   A fact about a legal guardianship between a parent and a child.
-    /// </summary>
-    GuardianParent,
-
-    /// <summary>
-    ///   A fact about the step relationship between a parent and a child.
-    /// </summary>
-    StepParent,
-
-    /// <summary>
-    ///   A fact about a sociological relationship between a parent and a child, but not definable in typical legal or biological terms.
-    /// </summary>
-    SociologicalParent,
-
-    /// <summary>
-    ///  (no documentation provided)
-    /// </summary>
-    OTHER
-  }
-
-  /// <remarks>
-  /// Utility class for converting to/from the QNames associated with FactType.
-  /// </remarks>
-  /// <summary>
-  /// Utility class for converting to/from the QNames associated with FactType.
-  /// </summary>
-  public static class FactTypeQNameUtil {
-
-    /// <summary>
-    /// Get the known FactType for a given QName. If the QName isn't a known QName, FactType.OTHER will be returned.
-    /// </summary>
-    public static FactType ConvertFromKnownQName(string qname) {
-      if (qname != null) {
-        if ("http://gedcomx.org/Adoption".Equals(qname)) {
-          return FactType.Adoption;
-        }
-        if ("http://gedcomx.org/AdultChristening".Equals(qname)) {
-          return FactType.AdultChristening;
-        }
-        if ("http://gedcomx.org/Amnesty".Equals(qname)) {
-          return FactType.Amnesty;
-        }
-        if ("http://gedcomx.org/Apprenticeship".Equals(qname)) {
-          return FactType.Apprenticeship;
-        }
-        if ("http://gedcomx.org/Arrest".Equals(qname)) {
-          return FactType.Arrest;
-        }
-        if ("http://gedcomx.org/Baptism".Equals(qname)) {
-          return FactType.Baptism;
-        }
-        if ("http://gedcomx.org/BarMitzvah".Equals(qname)) {
-          return FactType.BarMitzvah;
-        }
-        if ("http://gedcomx.org/BatMitzvah".Equals(qname)) {
-          return FactType.BatMitzvah;
-        }
-        if ("http://gedcomx.org/Birth".Equals(qname)) {
-          return FactType.Birth;
-        }
-        if ("http://gedcomx.org/Blessing".Equals(qname)) {
-          return FactType.Blessing;
-        }
-        if ("http://gedcomx.org/Burial".Equals(qname)) {
-          return FactType.Burial;
-        }
-        if ("http://gedcomx.org/Caste".Equals(qname)) {
-          return FactType.Caste;
-        }
-        if ("http://gedcomx.org/Census".Equals(qname)) {
-          return FactType.Census;
-        }
-        if ("http://gedcomx.org/Christening".Equals(qname)) {
-          return FactType.Christening;
-        }
-        if ("http://gedcomx.org/Circumcision".Equals(qname)) {
-          return FactType.Circumcision;
-        }
-        if ("http://gedcomx.org/Clan".Equals(qname)) {
-          return FactType.Clan;
-        }
-        if ("http://gedcomx.org/Confirmation".Equals(qname)) {
-          return FactType.Confirmation;
-        }
-        if ("http://gedcomx.org/Cremation".Equals(qname)) {
-          return FactType.Cremation;
-        }
-        if ("http://gedcomx.org/Death".Equals(qname)) {
-          return FactType.Death;
-        }
-        if ("http://gedcomx.org/Education".Equals(qname)) {
-          return FactType.Education;
-        }
-        if ("http://gedcomx.org/EducationEnrollment".Equals(qname)) {
-          return FactType.EducationEnrollment;
-        }
-        if ("http://gedcomx.org/Emigration".Equals(qname)) {
-          return FactType.Emigration;
-        }
-        if ("http://gedcomx.org/Ethnicity".Equals(qname)) {
-          return FactType.Ethnicity;
-        }
-        if ("http://gedcomx.org/Excommunication".Equals(qname)) {
-          return FactType.Excommunication;
-        }
-        if ("http://gedcomx.org/FirstCommunion".Equals(qname)) {
-          return FactType.FirstCommunion;
-        }
-        if ("http://gedcomx.org/Funeral".Equals(qname)) {
-          return FactType.Funeral;
-        }
-        if ("http://gedcomx.org/GenderChange".Equals(qname)) {
-          return FactType.GenderChange;
-        }
-        if ("http://gedcomx.org/Graduation".Equals(qname)) {
-          return FactType.Graduation;
-        }
-        if ("http://gedcomx.org/Immigration".Equals(qname)) {
-          return FactType.Immigration;
-        }
-        if ("http://gedcomx.org/Imprisonment".Equals(qname)) {
-          return FactType.Imprisonment;
-        }
-        if ("http://gedcomx.org/LandTransaction".Equals(qname)) {
-          return FactType.LandTransaction;
-        }
-        if ("http://gedcomx.org/Language".Equals(qname)) {
-          return FactType.Language;
-        }
-        if ("http://gedcomx.org/Living".Equals(qname)) {
-          return FactType.Living;
-        }
-        if ("http://gedcomx.org/MaritalStatus".Equals(qname)) {
-          return FactType.MaritalStatus;
-        }
-        if ("http://gedcomx.org/Medical".Equals(qname)) {
-          return FactType.Medical;
-        }
-        if ("http://gedcomx.org/MilitaryAward".Equals(qname)) {
-          return FactType.MilitaryAward;
-        }
-        if ("http://gedcomx.org/MilitaryDischarge".Equals(qname)) {
-          return FactType.MilitaryDischarge;
-        }
-        if ("http://gedcomx.org/MilitaryDraftRegistration".Equals(qname)) {
-          return FactType.MilitaryDraftRegistration;
-        }
-        if ("http://gedcomx.org/MilitaryInduction".Equals(qname)) {
-          return FactType.MilitaryInduction;
-        }
-        if ("http://gedcomx.org/MilitaryService".Equals(qname)) {
-          return FactType.MilitaryService;
-        }
-        if ("http://gedcomx.org/Mission".Equals(qname)) {
-          return FactType.Mission;
-        }
-        if ("http://gedcomx.org/MoveFrom".Equals(qname)) {
-          return FactType.MoveFrom;
-        }
-        if ("http://gedcomx.org/MoveTo".Equals(qname)) {
-          return FactType.MoveTo;
-        }
-        if ("http://gedcomx.org/MultipleBirth".Equals(qname)) {
-          return FactType.MultipleBirth;
-        }
-        if ("http://gedcomx.org/NationalId".Equals(qname)) {
-          return FactType.NationalId;
-        }
-        if ("http://gedcomx.org/Nationality".Equals(qname)) {
-          return FactType.Nationality;
-        }
-        if ("http://gedcomx.org/Naturalization".Equals(qname)) {
-          return FactType.Naturalization;
-        }
-        if ("http://gedcomx.org/NumberOfMarriages".Equals(qname)) {
-          return FactType.NumberOfMarriages;
-        }
-        if ("http://gedcomx.org/Occupation".Equals(qname)) {
-          return FactType.Occupation;
-        }
-        if ("http://gedcomx.org/Ordination".Equals(qname)) {
-          return FactType.Ordination;
-        }
-        if ("http://gedcomx.org/Pardon".Equals(qname)) {
-          return FactType.Pardon;
-        }
-        if ("http://gedcomx.org/PhysicalDescription".Equals(qname)) {
-          return FactType.PhysicalDescription;
-        }
-        if ("http://gedcomx.org/Probate".Equals(qname)) {
-          return FactType.Probate;
-        }
-        if ("http://gedcomx.org/Property".Equals(qname)) {
-          return FactType.Property;
-        }
-        if ("http://gedcomx.org/Religion".Equals(qname)) {
-          return FactType.Religion;
-        }
-        if ("http://gedcomx.org/Residence".Equals(qname)) {
-          return FactType.Residence;
-        }
-        if ("http://gedcomx.org/Retirement".Equals(qname)) {
-          return FactType.Retirement;
-        }
-        if ("http://gedcomx.org/Stillbirth".Equals(qname)) {
-          return FactType.Stillbirth;
-        }
-        if ("http://gedcomx.org/TaxAssessment".Equals(qname)) {
-          return FactType.TaxAssessment;
-        }
-        if ("http://gedcomx.org/Will".Equals(qname)) {
-          return FactType.Will;
-        }
-        if ("http://gedcomx.org/Visit".Equals(qname)) {
-          return FactType.Visit;
-        }
-        if ("http://gedcomx.org/Yahrzeit".Equals(qname)) {
-          return FactType.Yahrzeit;
-        }
-        if ("http://gedcomx.org/Annulment".Equals(qname)) {
-          return FactType.Annulment;
-        }
-        if ("http://gedcomx.org/CommonLawMarriage".Equals(qname)) {
-          return FactType.CommonLawMarriage;
-        }
-        if ("http://gedcomx.org/CivilUnion".Equals(qname)) {
-          return FactType.CivilUnion;
-        }
-        if ("http://gedcomx.org/Divorce".Equals(qname)) {
-          return FactType.Divorce;
-        }
-        if ("http://gedcomx.org/DivorceFiling".Equals(qname)) {
-          return FactType.DivorceFiling;
-        }
-        if ("http://gedcomx.org/DomesticPartnership".Equals(qname)) {
-          return FactType.DomesticPartnership;
-        }
-        if ("http://gedcomx.org/Engagement".Equals(qname)) {
-          return FactType.Engagement;
-        }
-        if ("http://gedcomx.org/Marriage".Equals(qname)) {
-          return FactType.Marriage;
-        }
-        if ("http://gedcomx.org/MarriageBanns".Equals(qname)) {
-          return FactType.MarriageBanns;
-        }
-        if ("http://gedcomx.org/MarriageContract".Equals(qname)) {
-          return FactType.MarriageContract;
-        }
-        if ("http://gedcomx.org/MarriageLicense".Equals(qname)) {
-          return FactType.MarriageLicense;
-        }
-        if ("http://gedcomx.org/MarriageNotice".Equals(qname)) {
-          return FactType.MarriageNotice;
-        }
-        if ("http://gedcomx.org/NumberOfChildren".Equals(qname)) {
-          return FactType.NumberOfChildren;
-        }
-        if ("http://gedcomx.org/Separation".Equals(qname)) {
-          return FactType.Separation;
-        }
-        if ("http://gedcomx.org/AdoptiveParent".Equals(qname)) {
-          return FactType.AdoptiveParent;
-        }
-        if ("http://gedcomx.org/BiologicalParent".Equals(qname)) {
-          return FactType.BiologicalParent;
-        }
-        if ("http://gedcomx.org/FosterParent".Equals(qname)) {
-          return FactType.FosterParent;
-        }
-        if ("http://gedcomx.org/GuardianParent".Equals(qname)) {
-          return FactType.GuardianParent;
-        }
-        if ("http://gedcomx.org/StepParent".Equals(qname)) {
-          return FactType.StepParent;
-        }
-        if ("http://gedcomx.org/SociologicalParent".Equals(qname)) {
-          return FactType.SociologicalParent;
-        }
-      }
-      return FactType.OTHER;
+namespace Gx.Types
+{
+
+    /// <remarks>
+    ///  Enumeration of standard fact types.
+    /// </remarks>
+    /// <summary>
+    ///  Enumeration of standard fact types.
+    /// </summary>
+    public enum FactType
+    {
+
+        /// <summary>
+        ///  Unspecified enum value.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnumAttribute(Name = "__NULL__")]
+        [System.Xml.Serialization.SoapEnumAttribute(Name = "__NULL__")]
+        NULL,
+
+        /// <summary>
+        ///   A fact of a person's adoption. In the context of a parent-child relationship, it describes a fact of the adoption of a child by a parent.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Adoption")]
+        Adoption,
+
+        /// <summary>
+        ///   A fact of a person's christening as an adult.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/AdultChristening")]
+        AdultChristening,
+
+        /// <summary>
+        ///   A fact of a person's amnesty.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Amnesty")]
+        Amnesty,
+
+        /// <summary>
+        ///   A fact of a person's apprenticeship.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Apprenticeship")]
+        Apprenticeship,
+
+        /// <summary>
+        ///   A fact of a person's arrest.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Arrest")]
+        Arrest,
+
+        /// <summary>
+        ///   A fact of a person's baptism.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Baptism")]
+        Baptism,
+
+        /// <summary>
+        ///   A fact of a person's bar mitzvah.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/BarMitzvah")]
+        BarMitzvah,
+
+        /// <summary>
+        ///   A fact of a person's bat mitzvah.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/BatMitzvah")]
+        BatMitzvah,
+
+        /// <summary>
+        ///   A fact of a person's birth.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Birth")]
+        Birth,
+
+        /// <summary>
+        ///   A fact of an official blessing received by a person, such as at the hands of a clergy member or at another religious rite.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Blessing")]
+        Blessing,
+
+        /// <summary>
+        ///   A fact of the burial of person's body after death.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Burial")]
+        Burial,
+
+        /// <summary>
+        ///   A fact of a person's caste.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Caste")]
+        Caste,
+
+        /// <summary>
+        ///   A fact of a person's participation in a census.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Census")]
+        Census,
+
+        /// <summary>
+        ///   A fact of a person's christening *at birth*. Note: use `AdultChristening` for the christening as an adult.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Christening")]
+        Christening,
+
+        /// <summary>
+        ///   A fact of a person's circumcision.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Circumcision")]
+        Circumcision,
+
+        /// <summary>
+        ///   A fact of a person's clan.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Clan")]
+        Clan,
+
+        /// <summary>
+        ///   A fact of a person's confirmation (or other rite of initiation) in a church or religion.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Confirmation")]
+        Confirmation,
+
+        /// <summary>
+        ///   A fact of the cremation of person's body after death.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Cremation")]
+        Cremation,
+
+        /// <summary>
+        ///   A fact of the death of a person.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Death")]
+        Death,
+
+        /// <summary>
+        ///   A fact of an education of a person.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Education")]
+        Education,
+
+        /// <summary>
+        ///   A fact of a person's enrollment in an educational program or institution.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/EducationEnrollment")]
+        EducationEnrollment,
+
+        /// <summary>
+        ///   A fact of the emigration of a person.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Emigration")]
+        Emigration,
+
+        /// <summary>
+        ///   A fact of a person's ethnicity or race.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Ethnicity")]
+        Ethnicity,
+
+        /// <summary>
+        ///   A fact of a person's excommunication from a church.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Excommunication")]
+        Excommunication,
+
+        /// <summary>
+        ///   A fact of a person's first communion in a church.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/FirstCommunion")]
+        FirstCommunion,
+
+        /// <summary>
+        ///   A fact of a person's funeral.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Funeral")]
+        Funeral,
+
+        /// <summary>
+        ///   A fact of a person's gender change.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/GenderChange")]
+        GenderChange,
+
+        /// <summary>
+        ///   A fact of a person's graduation from a scholastic institution.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Graduation")]
+        Graduation,
+
+        /// <summary>
+        ///   A fact of a person's immigration.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Immigration")]
+        Immigration,
+
+        /// <summary>
+        ///   A fact of a person's imprisonment.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Imprisonment")]
+        Imprisonment,
+
+        /// <summary>
+        ///   A fact of a land transaction enacted by a person.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/LandTransaction")]
+        LandTransaction,
+
+        /// <summary>
+        ///   A fact of a language spoken by a person.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Language")]
+        Language,
+
+        /// <summary>
+        ///   A fact of a record of a person's living for a specific period. This is designed to include &quot;flourish&quot;, defined to mean the time period
+        ///   in an adult's life where he was most productive, perhaps as a writer or member of the state assembly. It does not reflect the person's birth and death dates.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Living")]
+        Living,
+
+        /// <summary>
+        ///   A fact of a person's marital status.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/MaritalStatus")]
+        MaritalStatus,
+
+        /// <summary>
+        ///   A fact of a person's medical record, such as for an illness or hospital stay.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Medical")]
+        Medical,
+
+        /// <summary>
+        ///   A fact of a person's military award.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/MilitaryAward")]
+        MilitaryAward,
+
+        /// <summary>
+        ///   A fact of a person's military discharge.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/MilitaryDischarge")]
+        MilitaryDischarge,
+
+        /// <summary>
+        ///   A fact of a person's registration for a military draft.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/MilitaryDraftRegistration")]
+        MilitaryDraftRegistration,
+
+        /// <summary>
+        ///   A fact of a person's military induction.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/MilitaryInduction")]
+        MilitaryInduction,
+
+        /// <summary>
+        ///   A fact of a person's militray service.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/MilitaryService")]
+        MilitaryService,
+
+        /// <summary>
+        ///   A fact of a person's church mission.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Mission")]
+        Mission,
+
+        /// <summary>
+        ///   A fact of a person's move (i.e. change of residence) from a location.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/MoveFrom")]
+        MoveFrom,
+
+        /// <summary>
+        ///   A fact of a person's move (i.e. change of residence) to a new location.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/MoveTo")]
+        MoveTo,
+
+        /// <summary>
+        ///   A fact that a person was born as part of a multiple birth (e.g. twin, triplet, etc.)
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/MultipleBirth")]
+        MultipleBirth,
+
+        /// <summary>
+        ///   A fact of a person's national id (e.g. social security number).
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/NationalId")]
+        NationalId,
+
+        /// <summary>
+        ///   A fact of a person's nationality.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Nationality")]
+        Nationality,
+
+        /// <summary>
+        ///   A fact of a person's naturalization (i.e. acquisition of citizenship and nationality).
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Naturalization")]
+        Naturalization,
+
+        /// <summary>
+        ///   A fact of a person's number of marriages.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/NumberOfMarriages")]
+        NumberOfMarriages,
+
+        /// <summary>
+        ///   A fact of a person's occupation or employment.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Occupation")]
+        Occupation,
+
+        /// <summary>
+        ///   A fact of a person's ordination to a stewardship in a church.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Ordination")]
+        Ordination,
+
+        /// <summary>
+        ///   A fact of a person's legal pardon.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Pardon")]
+        Pardon,
+
+        /// <summary>
+        ///   A fact of a person's physical description.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/PhysicalDescription")]
+        PhysicalDescription,
+
+        /// <summary>
+        ///   A fact of a receipt of probate of a person's property.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Probate")]
+        Probate,
+
+        /// <summary>
+        ///   A fact of a person's property or possessions.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Property")]
+        Property,
+
+        /// <summary>
+        ///   A fact of a person's religion.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Religion")]
+        Religion,
+
+        /// <summary>
+        ///   A fact of a person's residence.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Residence")]
+        Residence,
+
+        /// <summary>
+        ///   A fact of a person's retirement.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Retirement")]
+        Retirement,
+
+        /// <summary>
+        ///   A fact of a person's stillbirth.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Stillbirth")]
+        Stillbirth,
+
+        /// <summary>
+        ///   A fact of a person's tax assessment.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/TaxAssessment")]
+        TaxAssessment,
+
+        /// <summary>
+        ///   A fact of a person's will.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Will")]
+        Will,
+
+        /// <summary>
+        ///   A fact of a person's visit to a place different from the person's residence.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Visit")]
+        Visit,
+
+        /// <summary>
+        ///   A fact of a person's _yahrzeit_ date.  A person's yahzeit is the anniversary of their death as measured by the Hebrew calendar.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Yahrzeit")]
+        Yahrzeit,
+
+        /// <summary>
+        ///   The fact of an annulment of a marriage.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Annulment")]
+        Annulment,
+
+        /// <summary>
+        ///   The fact of a marriage by common law.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/CommonLawMarriage")]
+        CommonLawMarriage,
+
+        /// <summary>
+        ///   The fact of a civil union.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/CivilUnion")]
+        CivilUnion,
+
+        /// <summary>
+        ///   The fact of a divorce of a couple.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Divorce")]
+        Divorce,
+
+        /// <summary>
+        ///   The fact of a filing for divorce.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/DivorceFiling")]
+        DivorceFiling,
+
+        /// <summary>
+        ///   The fact of a domestic partnership.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/DomesticPartnership")]
+        DomesticPartnership,
+
+        /// <summary>
+        ///   The fact of an engagement to be married.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Engagement")]
+        Engagement,
+
+        /// <summary>
+        ///   The fact of a marriage.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Marriage")]
+        Marriage,
+
+        /// <summary>
+        ///   The fact of a marriage banns.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/MarriageBanns")]
+        MarriageBanns,
+
+        /// <summary>
+        ///   The fact of a marriage contract.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/MarriageContract")]
+        MarriageContract,
+
+        /// <summary>
+        ///   The fact of a marriage license.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/MarriageLicense")]
+        MarriageLicense,
+
+        /// <summary>
+        ///   The fact of a marriage notice.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/MarriageNotice")]
+        MarriageNotice,
+
+        /// <summary>
+        ///   A fact of the number of children of a person or relationship.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/NumberOfChildren")]
+        NumberOfChildren,
+
+        /// <summary>
+        ///   A fact of a couple's separation.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Separation")]
+        Separation,
+
+        /// <summary>
+        ///   A fact about an adoptive relationship between a parent an a child.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/AdoptiveParent")]
+        AdoptiveParent,
+
+        /// <summary>
+        ///   A fact the biological relationship between a parent and a child.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/BiologicalParent")]
+        BiologicalParent,
+
+        /// <summary>
+        ///   A fact about a foster relationship between a foster parent and a child.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/FosterParent")]
+        FosterParent,
+
+        /// <summary>
+        ///   A fact about a legal guardianship between a parent and a child.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/GuardianParent")]
+        GuardianParent,
+
+        /// <summary>
+        ///   A fact about the step relationship between a parent and a child.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/StepParent")]
+        StepParent,
+
+        /// <summary>
+        ///   A fact about a sociological relationship between a parent and a child, but not definable in typical legal or biological terms.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/SociologicalParent")]
+        SociologicalParent,
+
+        /// <summary>
+        ///  (no documentation provided)
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/OTHER")]
+        OTHER
     }
-
-    /// <summary>
-    /// Convert the known FactType to a QName. If FactType.OTHER, an ArgumentException will be thrown.
-    /// </summary>
-    public static string ConvertToKnownQName(FactType known) {
-      switch (known) {
-        case FactType.Adoption:
-          return "http://gedcomx.org/Adoption";
-        case FactType.AdultChristening:
-          return "http://gedcomx.org/AdultChristening";
-        case FactType.Amnesty:
-          return "http://gedcomx.org/Amnesty";
-        case FactType.Apprenticeship:
-          return "http://gedcomx.org/Apprenticeship";
-        case FactType.Arrest:
-          return "http://gedcomx.org/Arrest";
-        case FactType.Baptism:
-          return "http://gedcomx.org/Baptism";
-        case FactType.BarMitzvah:
-          return "http://gedcomx.org/BarMitzvah";
-        case FactType.BatMitzvah:
-          return "http://gedcomx.org/BatMitzvah";
-        case FactType.Birth:
-          return "http://gedcomx.org/Birth";
-        case FactType.Blessing:
-          return "http://gedcomx.org/Blessing";
-        case FactType.Burial:
-          return "http://gedcomx.org/Burial";
-        case FactType.Caste:
-          return "http://gedcomx.org/Caste";
-        case FactType.Census:
-          return "http://gedcomx.org/Census";
-        case FactType.Christening:
-          return "http://gedcomx.org/Christening";
-        case FactType.Circumcision:
-          return "http://gedcomx.org/Circumcision";
-        case FactType.Clan:
-          return "http://gedcomx.org/Clan";
-        case FactType.Confirmation:
-          return "http://gedcomx.org/Confirmation";
-        case FactType.Cremation:
-          return "http://gedcomx.org/Cremation";
-        case FactType.Death:
-          return "http://gedcomx.org/Death";
-        case FactType.Education:
-          return "http://gedcomx.org/Education";
-        case FactType.EducationEnrollment:
-          return "http://gedcomx.org/EducationEnrollment";
-        case FactType.Emigration:
-          return "http://gedcomx.org/Emigration";
-        case FactType.Ethnicity:
-          return "http://gedcomx.org/Ethnicity";
-        case FactType.Excommunication:
-          return "http://gedcomx.org/Excommunication";
-        case FactType.FirstCommunion:
-          return "http://gedcomx.org/FirstCommunion";
-        case FactType.Funeral:
-          return "http://gedcomx.org/Funeral";
-        case FactType.GenderChange:
-          return "http://gedcomx.org/GenderChange";
-        case FactType.Graduation:
-          return "http://gedcomx.org/Graduation";
-        case FactType.Immigration:
-          return "http://gedcomx.org/Immigration";
-        case FactType.Imprisonment:
-          return "http://gedcomx.org/Imprisonment";
-        case FactType.LandTransaction:
-          return "http://gedcomx.org/LandTransaction";
-        case FactType.Language:
-          return "http://gedcomx.org/Language";
-        case FactType.Living:
-          return "http://gedcomx.org/Living";
-        case FactType.MaritalStatus:
-          return "http://gedcomx.org/MaritalStatus";
-        case FactType.Medical:
-          return "http://gedcomx.org/Medical";
-        case FactType.MilitaryAward:
-          return "http://gedcomx.org/MilitaryAward";
-        case FactType.MilitaryDischarge:
-          return "http://gedcomx.org/MilitaryDischarge";
-        case FactType.MilitaryDraftRegistration:
-          return "http://gedcomx.org/MilitaryDraftRegistration";
-        case FactType.MilitaryInduction:
-          return "http://gedcomx.org/MilitaryInduction";
-        case FactType.MilitaryService:
-          return "http://gedcomx.org/MilitaryService";
-        case FactType.Mission:
-          return "http://gedcomx.org/Mission";
-        case FactType.MoveFrom:
-          return "http://gedcomx.org/MoveFrom";
-        case FactType.MoveTo:
-          return "http://gedcomx.org/MoveTo";
-        case FactType.MultipleBirth:
-          return "http://gedcomx.org/MultipleBirth";
-        case FactType.NationalId:
-          return "http://gedcomx.org/NationalId";
-        case FactType.Nationality:
-          return "http://gedcomx.org/Nationality";
-        case FactType.Naturalization:
-          return "http://gedcomx.org/Naturalization";
-        case FactType.NumberOfMarriages:
-          return "http://gedcomx.org/NumberOfMarriages";
-        case FactType.Occupation:
-          return "http://gedcomx.org/Occupation";
-        case FactType.Ordination:
-          return "http://gedcomx.org/Ordination";
-        case FactType.Pardon:
-          return "http://gedcomx.org/Pardon";
-        case FactType.PhysicalDescription:
-          return "http://gedcomx.org/PhysicalDescription";
-        case FactType.Probate:
-          return "http://gedcomx.org/Probate";
-        case FactType.Property:
-          return "http://gedcomx.org/Property";
-        case FactType.Religion:
-          return "http://gedcomx.org/Religion";
-        case FactType.Residence:
-          return "http://gedcomx.org/Residence";
-        case FactType.Retirement:
-          return "http://gedcomx.org/Retirement";
-        case FactType.Stillbirth:
-          return "http://gedcomx.org/Stillbirth";
-        case FactType.TaxAssessment:
-          return "http://gedcomx.org/TaxAssessment";
-        case FactType.Will:
-          return "http://gedcomx.org/Will";
-        case FactType.Visit:
-          return "http://gedcomx.org/Visit";
-        case FactType.Yahrzeit:
-          return "http://gedcomx.org/Yahrzeit";
-        case FactType.Annulment:
-          return "http://gedcomx.org/Annulment";
-        case FactType.CommonLawMarriage:
-          return "http://gedcomx.org/CommonLawMarriage";
-        case FactType.CivilUnion:
-          return "http://gedcomx.org/CivilUnion";
-        case FactType.Divorce:
-          return "http://gedcomx.org/Divorce";
-        case FactType.DivorceFiling:
-          return "http://gedcomx.org/DivorceFiling";
-        case FactType.DomesticPartnership:
-          return "http://gedcomx.org/DomesticPartnership";
-        case FactType.Engagement:
-          return "http://gedcomx.org/Engagement";
-        case FactType.Marriage:
-          return "http://gedcomx.org/Marriage";
-        case FactType.MarriageBanns:
-          return "http://gedcomx.org/MarriageBanns";
-        case FactType.MarriageContract:
-          return "http://gedcomx.org/MarriageContract";
-        case FactType.MarriageLicense:
-          return "http://gedcomx.org/MarriageLicense";
-        case FactType.MarriageNotice:
-          return "http://gedcomx.org/MarriageNotice";
-        case FactType.NumberOfChildren:
-          return "http://gedcomx.org/NumberOfChildren";
-        case FactType.Separation:
-          return "http://gedcomx.org/Separation";
-        case FactType.AdoptiveParent:
-          return "http://gedcomx.org/AdoptiveParent";
-        case FactType.BiologicalParent:
-          return "http://gedcomx.org/BiologicalParent";
-        case FactType.FosterParent:
-          return "http://gedcomx.org/FosterParent";
-        case FactType.GuardianParent:
-          return "http://gedcomx.org/GuardianParent";
-        case FactType.StepParent:
-          return "http://gedcomx.org/StepParent";
-        case FactType.SociologicalParent:
-          return "http://gedcomx.org/SociologicalParent";
-        default:
-          throw new System.ArgumentException("No known QName for: " + known, "known");
-      }
-    }
-  }
 }

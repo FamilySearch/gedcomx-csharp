@@ -53,11 +53,11 @@ namespace Gx.Conclusion
         {
             get
             {
-                return Gx.Types.IdentifierTypeQNameUtil.ConvertFromKnownQName(this._type);
+                return XmlQNameEnumUtil.GetEnumValue<IdentifierType>(this._type);
             }
             set
             {
-                this._type = Gx.Types.IdentifierTypeQNameUtil.ConvertToKnownQName(value);
+                this._type = XmlQNameEnumUtil.GetNameValue(value);
             }
         }
         /// <summary>

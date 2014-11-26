@@ -25,84 +25,37 @@ namespace Gx.Types {
     /// <summary>
     ///   A historical record.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Record")]
     Record,
 
     /// <summary>
     ///   A collection.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Collection")]
     Collection,
 
     /// <summary>
     ///   A digital artifact, such as a digital image or video.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/DigitalArtifact")]
     DigitalArtifact,
 
     /// <summary>
     ///   A physical artifact.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/PhysicalArtifact")]
     PhysicalArtifact,
 
     /// <summary>
     ///   A person.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Person")]
     Person,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/OTHER")]
     OTHER
-  }
-
-  /// <remarks>
-  /// Utility class for converting to/from the QNames associated with ResourceType.
-  /// </remarks>
-  /// <summary>
-  /// Utility class for converting to/from the QNames associated with ResourceType.
-  /// </summary>
-  public static class ResourceTypeQNameUtil {
-
-    /// <summary>
-    /// Get the known ResourceType for a given QName. If the QName isn't a known QName, ResourceType.OTHER will be returned.
-    /// </summary>
-    public static ResourceType ConvertFromKnownQName(string qname) {
-      if (qname != null) {
-        if ("http://gedcomx.org/Record".Equals(qname)) {
-          return ResourceType.Record;
-        }
-        if ("http://gedcomx.org/Collection".Equals(qname)) {
-          return ResourceType.Collection;
-        }
-        if ("http://gedcomx.org/DigitalArtifact".Equals(qname)) {
-          return ResourceType.DigitalArtifact;
-        }
-        if ("http://gedcomx.org/PhysicalArtifact".Equals(qname)) {
-          return ResourceType.PhysicalArtifact;
-        }
-        if ("http://gedcomx.org/Person".Equals(qname)) {
-          return ResourceType.Person;
-        }
-      }
-      return ResourceType.OTHER;
-    }
-
-    /// <summary>
-    /// Convert the known ResourceType to a QName. If ResourceType.OTHER, an ArgumentException will be thrown.
-    /// </summary>
-    public static string ConvertToKnownQName(ResourceType known) {
-      switch (known) {
-        case ResourceType.Record:
-          return "http://gedcomx.org/Record";
-        case ResourceType.Collection:
-          return "http://gedcomx.org/Collection";
-        case ResourceType.DigitalArtifact:
-          return "http://gedcomx.org/DigitalArtifact";
-        case ResourceType.PhysicalArtifact:
-          return "http://gedcomx.org/PhysicalArtifact";
-        case ResourceType.Person:
-          return "http://gedcomx.org/Person";
-        default:
-          throw new System.ArgumentException("No known QName for: " + known, "known");
-      }
-    }
   }
 }

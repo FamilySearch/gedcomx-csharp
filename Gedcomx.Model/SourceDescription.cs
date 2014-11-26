@@ -148,11 +148,11 @@ namespace Gx.Source
         {
             get
             {
-                return Gx.Types.ResourceTypeQNameUtil.ConvertFromKnownQName(this._resourceType);
+                return XmlQNameEnumUtil.GetEnumValue<ResourceType>(this._resourceType);
             }
             set
             {
-                this._resourceType = Gx.Types.ResourceTypeQNameUtil.ConvertToKnownQName(value);
+                this._resourceType = XmlQNameEnumUtil.GetNameValue(value);
             }
         }
         /// <summary>

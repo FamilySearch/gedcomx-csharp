@@ -83,6 +83,7 @@
     <Compile Include="HypermediaEnabledData.cs" />
     <Compile Include="Identifier.cs" />
     <Compile Include="IdentifierType.cs" />
+    <Compile Include="Rt\GedcomxLocalReferenceResolver.cs" />
     <Compile Include="Rt\GedcomxModelVisitor.cs" />
     <Compile Include="Rt\GedcomxModelVisitorBase.cs" />
     <Compile Include="Tag.cs" />

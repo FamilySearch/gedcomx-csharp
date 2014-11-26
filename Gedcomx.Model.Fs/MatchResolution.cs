@@ -5,79 +5,41 @@
 // </auto-generated>
 using System;
 
-namespace Gx.Fs.Tree {
+namespace Gx.Fs.Tree
+{
 
-  /// <remarks>
-  ///  The way a match was resolved.
-  /// </remarks>
-  /// <summary>
-  ///  The way a match was resolved.
-  /// </summary>
-  public enum MatchResolution {
-
+    /// <remarks>
+    ///  The way a match was resolved.
+    /// </remarks>
     /// <summary>
-    ///  Unspecified enum value.
+    ///  The way a match was resolved.
     /// </summary>
-    [System.Xml.Serialization.XmlEnumAttribute(Name="__NULL__")]
-    [System.Xml.Serialization.SoapEnumAttribute(Name="__NULL__")]
-    NULL,
+    public enum MatchResolution
+    {
 
-    /// <summary>
-    ///  (no documentation provided)
-    /// </summary>
-    Unset,
+        /// <summary>
+        ///  Unspecified enum value.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnumAttribute(Name = "__NULL__")]
+        [System.Xml.Serialization.SoapEnumAttribute(Name = "__NULL__")]
+        NULL,
 
-    /// <summary>
-    ///  (no documentation provided)
-    /// </summary>
-    Positive,
+        /// <summary>
+        ///  (no documentation provided)
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://familysearch.org/v1/Unset")]
+        Unset,
 
-    /// <summary>
-    ///  (no documentation provided)
-    /// </summary>
-    Negative
-  }
+        /// <summary>
+        ///  (no documentation provided)
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://familysearch.org/v1/Positive")]
+        Positive,
 
-  /// <remarks>
-  /// Utility class for converting to/from the QNames associated with MatchResolution.
-  /// </remarks>
-  /// <summary>
-  /// Utility class for converting to/from the QNames associated with MatchResolution.
-  /// </summary>
-  public static class MatchResolutionQNameUtil {
-
-    /// <summary>
-    /// Get the known MatchResolution for a given QName. If the QName isn't a known QName, MatchResolution.NULL will be returned.
-    /// </summary>
-    public static MatchResolution ConvertFromKnownQName(string qname) {
-      if (qname != null) {
-        if ("http://familysearch.org/v1/Unset".Equals(qname)) {
-          return MatchResolution.Unset;
-        }
-        if ("http://familysearch.org/v1/Positive".Equals(qname)) {
-          return MatchResolution.Positive;
-        }
-        if ("http://familysearch.org/v1/Negative".Equals(qname)) {
-          return MatchResolution.Negative;
-        }
-      }
-      return MatchResolution.NULL;
+        /// <summary>
+        ///  (no documentation provided)
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://familysearch.org/v1/Negative")]
+        Negative
     }
-
-    /// <summary>
-    /// Convert the known MatchResolution to a QName. If MatchResolution.NULL, an ArgumentException will be thrown.
-    /// </summary>
-    public static string ConvertToKnownQName(MatchResolution known) {
-      switch (known) {
-        case MatchResolution.Unset:
-          return "http://familysearch.org/v1/Unset";
-        case MatchResolution.Positive:
-          return "http://familysearch.org/v1/Positive";
-        case MatchResolution.Negative:
-          return "http://familysearch.org/v1/Negative";
-        default:
-          throw new System.ArgumentException("No known QName for: " + known, "known");
-      }
-    }
-  }
 }

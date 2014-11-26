@@ -1,6 +1,7 @@
 ﻿using FamilySearch.Api;
 using FamilySearch.Api.Ft;
 using FamilySearch.Api.Memories;
+using FamilySearch.Api.Util;
 using Gedcomx.Support;
 using Gx.Common;
 using Gx.Conclusion;
@@ -22,38 +23,43 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 
 namespace Gedcomx.Rs.Api.Test
 {
     [TestFixture]
     public class PersonTests
     {
-        private static readonly String SANDBOX_URI = "https://sandbox.familysearch.org/platform/collections/tree";
-        private static readonly String READ_PERSON_ID = "KWQ7-Y57";
-        private static readonly String READ_PERSON_URI = "https://sandbox.familysearch.org/platform/tree/persons/" + READ_PERSON_ID;
-        private static readonly String PERSON_WITH_DATA_ID = "KWWD-CMF";
-        private static readonly String PERSON_WITH_DATA_URI = "https://sandbox.familysearch.org/platform/tree/persons/" + PERSON_WITH_DATA_ID;
-        private CollectionState collection;
         private FamilySearchFamilyTree tree;
+        private List<GedcomxApplicationState> cleanup;
 
         [TestFixtureSetUp]
         public void Initialize()
         {
-            collection = new CollectionState(new Uri(SANDBOX_URI));
-            collection.AuthenticateViaOAuth2Password(Resources.TestUserName, Resources.TestPassword, Resources.TestClientId);
-            Assert.DoesNotThrow(() => collection.IfSuccessful());
-            Assert.IsNotNullOrEmpty(collection.CurrentAccessToken);
-
             tree = new FamilySearchFamilyTree(true);
-            tree.AuthenticateWithAccessToken(collection.CurrentAccessToken);
+            tree.AuthenticateViaOAuth2Password(Resources.TestUserName, Resources.TestPassword, Resources.TestClientId);
+            cleanup = new List<GedcomxApplicationState>();
+            Assert.DoesNotThrow(() => tree.IfSuccessful());
+            Assert.IsNotNullOrEmpty(tree.CurrentAccessToken);
+        }
+
+        [TestFixtureTearDown]
+        public void TearDown()
+        {
+            foreach (var state in cleanup)
+            {
+                state.Delete();
+            }
         }
 
         [Test]
         public void TestCreatePerson()
         {
-            var result = collection.AddPerson(TestBacking.GetCreateMalePerson());
+            var result = tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(result);
             Assert.DoesNotThrow(() => result.IfSuccessful());
             var person = (PersonState)result.Get();
+
             Assert.IsNotNull(person.Person);
             Assert.IsNotNullOrEmpty(person.Person.Id);
         }
@@ -61,7 +67,8 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestCreatePersonSourceReference()
         {
-            var result = collection.AddPerson(TestBacking.GetCreateMalePerson());
+            var result = tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(result);
             Assert.DoesNotThrow(() => result.IfSuccessful());
             var state = (PersonState)result.Get();
             var result2 = state.AddSourceReference(TestBacking.GetPersonSourceReference());
@@ -72,7 +79,8 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestCreatePersonConclusion()
         {
-            var state = collection.ReadPerson(new Uri(READ_PERSON_URI));
+            var state = (PersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(state);
             Person conclusion = TestBacking.GetCreatePersonConclusion(state.Person.Id);
             var state2 = state.UpdateConclusions(conclusion);
             Assert.IsNotNull(state2);
@@ -89,7 +97,9 @@ namespace Gedcomx.Rs.Api.Test
                                                     .SetDetails("Test details")
                                                     .SetContributor(contributor)
                                                     .SetCreated(DateTime.Now));
+            cleanup.Add(discussion);
             var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(person);
             var state = person.AddDiscussionReference(discussion);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
@@ -99,7 +109,8 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestCreateNote()
         {
-            var state = collection.ReadPerson(new Uri(READ_PERSON_URI));
+            var state = (PersonState)tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(state);
             var note = TestBacking.GetCreateNote();
             var state2 = state.AddNote(note);
             Assert.DoesNotThrow(() => state2.IfSuccessful());
@@ -108,26 +119,43 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestReadMergedPerson()
         {
-            // KWWD-X35 was merged with KWWD-CMF
-            var state = collection.ReadPerson(new Uri("https://sandbox.familysearch.org/platform/tree/persons/KWWD-X35"));
+            var person1 = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(person1);
+            var person2 = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(person2);
+            var merge = person1.ReadMergeAnalysis(person2);
+            var m = new Merge();
+
+            m.ResourcesToCopy = new List<ResourceReference>();
+            m.ResourcesToDelete = new List<ResourceReference>();
+            m.ResourcesToCopy.AddRange(merge.Analysis.DuplicateResources);
+            m.ResourcesToCopy.AddRange(merge.Analysis.ConflictingResources.Select(x => x.DuplicateResource));
+            merge.DoMerge(m);
+
+            // Person2 was merged with Person1
+            var state = tree.ReadPersonById(person2.Person.Id);
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.MovedPermanently, state.Response.StatusCode);
-            var link = state.GetLink("self");
-            Assert.IsNotNull(link);
-            Assert.AreEqual(PERSON_WITH_DATA_URI, link.Href);
+            var link1 = person1.GetSelfUri();
+            Assert.IsNotNullOrEmpty(link1);
+            var link2 = state.GetSelfUri();
+            Assert.IsNotNullOrEmpty(link2);
+            Assert.AreEqual(link1, link2);
         }
 
         [Test]
         public void TestReadDeletedPerson()
         {
-            var state = collection.ReadPerson(new Uri("https://sandbox.familysearch.org/platform/tree/persons/KWWD-ZM7"));
+            var state = tree.AddPerson(TestBacking.GetCreateMalePerson()).Delete().Get();
             Assert.AreEqual(HttpStatusCode.Gone, state.Response.StatusCode);
         }
 
         [Test]
         public void TestReadPerson()
         {
-            var state = collection.ReadPerson(new Uri(READ_PERSON_URI));
+            var person = tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(person);
+            var state = tree.ReadPerson(new Uri(person.GetSelfUri()));
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.IsNotNull(state.Person);
             Assert.IsNotNullOrEmpty(state.Person.Id);
@@ -136,7 +164,9 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestReadPersonSourceReferences()
         {
-            var state = collection.ReadPerson(new Uri(PERSON_WITH_DATA_URI));
+            var state = (PersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(state);
+            state.AddSourceReference(TestBacking.GetPersonSourceReference());
             var state2 = state.LoadSourceReferences();
             Assert.DoesNotThrow(() => state2.IfSuccessful());
             Assert.IsNotNull(state2.Person);
@@ -146,8 +176,13 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestReadRelationshipsToChildren()
         {
-            var state = collection.ReadPerson(new Uri(PERSON_WITH_DATA_URI));
-            var state2 = state.LoadChildRelationships();
+            var father = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(father);
+            var son = tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(son);
+            var chapr = tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, null, son));
+            cleanup.Add(chapr);
+            var state2 = father.LoadChildRelationships();
             Assert.DoesNotThrow(() => state2.IfSuccessful());
             var children = state2.GetChildRelationships();
             Assert.IsNotNull(children);
@@ -157,8 +192,13 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestReadRelationshipsToParents()
         {
-            var state = collection.ReadPerson(new Uri("https://sandbox.familysearch.org/platform/tree/persons/KWWD-QV9"));
-            var state2 = state.LoadParentRelationships();
+            var father = tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(father);
+            var son = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(son);
+            var chapr = tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, null, son));
+            cleanup.Add(chapr);
+            var state2 = son.LoadParentRelationships();
             Assert.DoesNotThrow(() => state2.IfSuccessful());
             var parents = state2.GetParentRelationships();
             Assert.IsNotNull(parents);
@@ -168,20 +208,27 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestReadRelationshipsToSpouses()
         {
-            var state = collection.ReadPerson(new Uri(READ_PERSON_URI));
-            var state2 = state.LoadSpouseRelationships();
+            var husband = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(husband);
+            var wife = tree.AddPerson(TestBacking.GetCreateFemalePerson());
+            cleanup.Add(wife);
+            husband.AddSpouse(wife);
+            var state2 = husband.LoadSpouseRelationships();
             Assert.DoesNotThrow(() => state2.IfSuccessful());
             var spouses = state2.GetSpouseRelationships();
             Assert.IsNotNull(spouses);
             Assert.Greater(spouses.Count, 0);
         }
 
-        [Test(Description = "Matches example request here https://familysearch.org/developers/docs/api/tree/Read_Relationships_To_Spouses_with_Persons_usecase, but is either unneeded or the SDK needs to be updated to support this more directly.")]
+        [Test]
         public void TestReadRelationshipsToSpousesWithPersons()
         {
-            var query = new QueryParameter("persons", "");
-            var state = collection.ReadPerson(new Uri(READ_PERSON_URI));
-            var state2 = state.LoadSpouseRelationships(query);
+            var husband = (PersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(husband);
+            var wife = tree.AddPerson(TestBacking.GetCreateFemalePerson());
+            cleanup.Add(wife);
+            husband.AddSpouse(wife);
+            var state2 = husband.LoadSpouseRelationships(FamilySearchOptions.IncludePersons());
             Assert.DoesNotThrow(() => state2.IfSuccessful());
             Assert.IsNotNull(state2.Entity != null);
             Assert.IsNotNull(state2.Entity.Persons);
@@ -210,8 +257,13 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestReadChildrenOfAPerson()
         {
-            var state = collection.ReadPerson(new Uri(PERSON_WITH_DATA_URI));
-            var state2 = state.ReadChildren();
+            var father = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(father);
+            var son = tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(son);
+            var chapr = tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, null, son));
+            cleanup.Add(chapr);
+            var state2 = father.ReadChildren();
             Assert.DoesNotThrow(() => state2.IfSuccessful());
             Assert.IsNotNull(state2.Persons);
             Assert.Greater(state2.Persons.Count, 0);
@@ -220,16 +272,17 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestReadNotFoundPerson()
         {
-            var state = collection.ReadPerson(new Uri("https://sandbox.familysearch.org/platform/tree/persons/MMMM-MMM"));
+            var state = tree.ReadPerson(new Uri("https://sandbox.familysearch.org/platform/tree/persons/MMMM-MMM"));
             Assert.AreEqual(HttpStatusCode.NotFound, state.Response.StatusCode);
         }
 
         [Test]
         public void TestReadNotModifiedPerson()
         {
-            var state = collection.ReadPerson(new Uri(READ_PERSON_URI));
+            var state = (PersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(state);
             var cache = new CacheDirectives(state);
-            var state2 = collection.ReadPerson(new Uri(READ_PERSON_URI), cache);
+            var state2 = tree.ReadPerson(new Uri(state.GetSelfUri()), cache);
             Assert.DoesNotThrow(() => state2.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.NotModified, state2.Response.StatusCode);
         }
@@ -237,7 +290,9 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestReadNotes()
         {
-            var state = collection.ReadPerson(new Uri(PERSON_WITH_DATA_URI));
+            var state = (PersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(state);
+            state.AddNote(TestBacking.GetCreateNote());
             var state2 = state.LoadNotes();
             Assert.DoesNotThrow(() => state2.IfSuccessful());
             Assert.IsNotNull(state2.Person);
@@ -248,8 +303,13 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestReadParentsOfAPerson()
         {
-            var state = collection.ReadPerson(new Uri(PERSON_WITH_DATA_URI));
-            var state2 = state.ReadParents();
+            var father = tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(father);
+            var son = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(son);
+            var chapr = tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, null, son));
+            cleanup.Add(chapr);
+            var state2 = son.ReadParents();
             Assert.DoesNotThrow(() => state2.IfSuccessful());
             Assert.IsNotNull(state2.Persons);
             Assert.Greater(state2.Persons.Count, 0);
@@ -258,7 +318,12 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestReadSpousesOfAPerson()
         {
-            var state = collection.ReadPerson(new Uri(PERSON_WITH_DATA_URI));
+            var person = (PersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(person);
+            var spouse = tree.AddPerson(TestBacking.GetCreateFemalePerson());
+            cleanup.Add(spouse);
+            person.AddSpouse(spouse);
+            var state = tree.ReadPerson(new Uri(person.GetSelfUri()));
             var state2 = state.ReadSpouses();
 
             Assert.DoesNotThrow(() => state2.IfSuccessful());
@@ -271,7 +336,8 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestHeadPerson()
         {
-            var state = collection.ReadPerson(new Uri(PERSON_WITH_DATA_URI));
+            var state = tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(state);
             var state2 = (PersonState)state.Head();
             Assert.DoesNotThrow(() => state2.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.OK, state2.Response.StatusCode);
@@ -280,7 +346,12 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestUpdatePersonSourceReference()
         {
-            var state = collection.ReadPerson(new Uri(PERSON_WITH_DATA_URI));
+            var state = (PersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(state);
+            var sr = TestBacking.GetPersonSourceReference();
+            sr.Tags = new List<Tag>();
+            sr.Tags.Add(new Tag(ChangeObjectType.Name));
+            state.AddSourceReference(sr);
             state = state.LoadSourceReferences();
             var tag = state.Person.Sources[0].Tags.First();
             state.Person.Sources[0].Tags.Remove(tag);
@@ -296,7 +367,8 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestUpdatePersonConclusion()
         {
-            var state = collection.ReadPerson(new Uri(READ_PERSON_URI));
+            var state = (PersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(state);
             state.Person.Facts.Add(TestBacking.GetBirthFact());
             var state2 = state.UpdateConclusions(state.Person);
             Assert.DoesNotThrow(() => state2.IfSuccessful());
@@ -305,8 +377,14 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestUpdatePersonCustomNonEventFact()
         {
-            var state = collection.ReadPerson(new Uri(PERSON_WITH_DATA_URI));
-            var state2 = state.UpdateFact(TestBacking.GetUpdateFact());
+            var person = (PersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(person);
+            person.AddFact(TestBacking.GetCustomFact());
+            person = (PersonState)person.Get();
+            var factId = person.Person.Facts.Single(x => x.Type == "data:,Eagle%20Scout").Id;
+            var fact = TestBacking.GetCustomFact();
+            fact.Id = factId;
+            var state2 = person.UpdateFact(fact);
 
             Assert.DoesNotThrow(() => state2.IfSuccessful());
         }
@@ -314,13 +392,14 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestUpdatePersonWithPreconditions()
         {
-            var state = collection.ReadPerson(new Uri(PERSON_WITH_DATA_URI));
+            var state = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(state);
             var cond = new Preconditions(state);
             var state2 = state.UpdateFacts(state.Person.Facts.ToArray(), cond);
             Assert.DoesNotThrow(() => state2.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.NoContent, state2.Response.StatusCode);
 
-            state = collection.ReadPerson(new Uri(PERSON_WITH_DATA_URI));
+            state = tree.ReadPersonById(state.Person.Id);
             var state3 = state.UpdateFacts(state.Person.Facts.ToArray(), cond);
             Assert.Throws<GedcomxApplicationException>(() => state3.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.PreconditionFailed, state3.Response.StatusCode);
@@ -330,7 +409,7 @@ namespace Gedcomx.Rs.Api.Test
         public void TestDeletePerson()
         {
             // Assume the ability to add a person is working
-            var state = collection.AddPerson(TestBacking.GetCreateMalePerson());
+            var state = tree.AddPerson(TestBacking.GetCreateMalePerson());
             var state2 = (PersonState)state.Delete();
 
             Assert.DoesNotThrow(() => state2.IfSuccessful());
@@ -341,7 +420,8 @@ namespace Gedcomx.Rs.Api.Test
         public void TestDeletePersonSourceReference()
         {
             // Assume the ability to add a person is working
-            var state = collection.AddPerson(TestBacking.GetCreateMalePerson());
+            var state = tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(state);
             state = (PersonState)state.Get();
             // Assume the ability to add a source reference is working
             state.AddSourceReference(TestBacking.GetPersonSourceReference());
@@ -356,7 +436,8 @@ namespace Gedcomx.Rs.Api.Test
         public void TestDeletePersonWithPreconditions()
         {
             // Assume the ability to add a person is working
-            var state = collection.AddPerson(TestBacking.GetCreateMalePerson());
+            var state = tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(state);
             state = (PersonState)state.Get();
             var cond = new Preconditions(state.LastModified);
 
@@ -379,7 +460,9 @@ namespace Gedcomx.Rs.Api.Test
                                                     .SetDetails("Test details")
                                                     .SetContributor(contributor)
                                                     .SetCreated(DateTime.Now));
+            cleanup.Add(discussion);
             var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(person);
             person.AddDiscussionReference(discussion);
             person.LoadDiscussionReferences();
             var state = person.DeleteDiscussionReference(person.Person.FindExtensionsOfType<DiscussionReference>("discussion-references").Single());
@@ -392,30 +475,38 @@ namespace Gedcomx.Rs.Api.Test
         public void TestRestorePerson()
         {
             // Assume the ability to add/delete a person works
-            var state = collection.AddPerson(TestBacking.GetCreateMalePerson());
+            var state = tree.AddPerson(TestBacking.GetCreateMalePerson());
             var id = state.Headers.Get("X-ENTITY-ID").First().Value.ToString();
             state.Delete();
 
             var deletedPerson = tree.ReadPersonById(id);
+            cleanup.Add(deletedPerson);
             Assert.AreEqual(HttpStatusCode.Gone, deletedPerson.Response.StatusCode); // Ensure we have a deleted person
             var testState = deletedPerson.Restore();
             Assert.DoesNotThrow(() => testState.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.NoContent, testState.Response.StatusCode);
-            deletedPerson.Delete();
         }
 
         [Test]
         public void TestReadPreferredSpouseRelationship()
         {
+            var p = (PersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(p);
+            var s1 = tree.AddPerson(TestBacking.GetCreateFemalePerson());
+            cleanup.Add(s1);
+            var s2 = tree.AddPerson(TestBacking.GetCreateFemalePerson());
+            cleanup.Add(s2);
+            p.AddSpouse(s1);
+            p.AddSpouse(s2);
             var me = tree.ReadCurrentUser();
-            var person = tree.ReadPersonById(PERSON_WITH_DATA_ID);
+            var person = tree.ReadPersonById(p.Person.Id);
 
             // Ensure the target relationship exists
             person.LoadSpouseRelationships();
             var state = (PreferredRelationshipState)person.ReadRelationship(person.Entity.Relationships[0]);
-            tree.UpdatePreferredSpouseRelationship(me.User.TreeUserId, PERSON_WITH_DATA_ID, state);
+            tree.UpdatePreferredSpouseRelationship(me.User.TreeUserId, p.Person.Id, state);
 
-            var state2 = (FamilyTreeRelationshipState)tree.ReadPreferredSpouseRelationship(me.User.TreeUserId, PERSON_WITH_DATA_ID);
+            var state2 = (FamilyTreeRelationshipState)tree.ReadPreferredSpouseRelationship(me.User.TreeUserId, p.Person.Id);
             Assert.AreEqual(HttpStatusCode.SeeOther, state2.Response.StatusCode);
             Assert.IsNotNull(state2.Headers.Get("Location").Single());
         }
@@ -423,27 +514,43 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestUpdatePreferredSpouseRelationship()
         {
+            var p = (PersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(p);
+            var s1 = tree.AddPerson(TestBacking.GetCreateFemalePerson());
+            cleanup.Add(s1);
+            var s2 = tree.AddPerson(TestBacking.GetCreateFemalePerson());
+            cleanup.Add(s2);
+            p.AddSpouse(s1);
+            p.AddSpouse(s2);
             var me = tree.ReadCurrentUser();
-            var person = tree.ReadPersonById(PERSON_WITH_DATA_ID);
+            var person = tree.ReadPersonById(p.Person.Id);
 
             person.LoadSpouseRelationships();
             var state = (PreferredRelationshipState)person.ReadRelationship(person.Entity.Relationships[0]);
-            var state2 = tree.UpdatePreferredSpouseRelationship(me.User.TreeUserId, PERSON_WITH_DATA_ID, state);
+            var state2 = tree.UpdatePreferredSpouseRelationship(me.User.TreeUserId, p.Person.Id, state);
             Assert.AreEqual(HttpStatusCode.NoContent, state2.Response.StatusCode);
         }
 
         [Test]
         public void TestDeletePreferredSpouseRelationship()
         {
+            var p = (PersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(p);
+            var s1 = tree.AddPerson(TestBacking.GetCreateFemalePerson());
+            cleanup.Add(s1);
+            var s2 = tree.AddPerson(TestBacking.GetCreateFemalePerson());
+            cleanup.Add(s2);
+            p.AddSpouse(s1);
+            p.AddSpouse(s2);
             var me = tree.ReadCurrentUser();
-            var person = tree.ReadPersonById(PERSON_WITH_DATA_ID);
+            var person = tree.ReadPersonById(p.Person.Id);
 
             // Ensure the target relationship exists
             person.LoadSpouseRelationships();
             var state = (PreferredRelationshipState)person.ReadRelationship(person.Entity.Relationships[0]);
-            tree.UpdatePreferredSpouseRelationship(me.User.TreeUserId, PERSON_WITH_DATA_ID, state);
+            tree.UpdatePreferredSpouseRelationship(me.User.TreeUserId, p.Person.Id, state);
 
-            var state2 = tree.DeletePreferredSpouseRelationship(me.User.TreeUserId, PERSON_WITH_DATA_ID);
+            var state2 = tree.DeletePreferredSpouseRelationship(me.User.TreeUserId, p.Person.Id);
             Assert.AreEqual(HttpStatusCode.NoContent, state2.Response.StatusCode);
             Assert.IsNotNull(state2.Headers.Get("Content-Location").Single());
         }
@@ -451,7 +558,13 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestReadPersonWithRelationships()
         {
-            var state = tree.ReadPersonWithRelationshipsById(PERSON_WITH_DATA_ID);
+            var father = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(father);
+            var son = tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(son);
+            var chapr = tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, null, son));
+            cleanup.Add(chapr);
+            var state = tree.ReadPersonWithRelationshipsById(father.Person.Id);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.IsNotNull(state.Person);
@@ -462,8 +575,13 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestUpdatePersonNotAMatchDeclarations()
         {
-            var person1 = tree.ReadPersonById("KWWD-CMF");
-            var person2 = tree.ReadPersonById("KW73-MB6");
+            var person1 = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(person1);
+            var person2 = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(person2);
+            Thread.Sleep(30);
+            person1 = tree.ReadPersonById(person1.Response.Headers.Get("X-ENTITY-ID").Single().Value.ToString());
+            person2 = tree.ReadPersonById(person2.Response.Headers.Get("X-ENTITY-ID").Single().Value.ToString());
             var state = person1.AddNonMatch(person2);
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
@@ -472,8 +590,13 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestDeletePersonNotAMatch()
         {
-            var person1 = tree.ReadPersonById("KWWD-CMF");
-            var person2 = tree.ReadPersonById("KW73-MB6");
+            var person1 = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(person1);
+            var person2 = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(person2);
+            Thread.Sleep(30);
+            person1 = tree.ReadPersonById(person1.Response.Headers.Get("X-ENTITY-ID").Single().Value.ToString());
+            person2 = tree.ReadPersonById(person2.Response.Headers.Get("X-ENTITY-ID").Single().Value.ToString());
             var state = (PersonNonMatchesState)person1.AddNonMatch(person2).Get();
             state = state.RemoveNonMatch(state.Persons[0]);
             Assert.DoesNotThrow(() => state.IfSuccessful());
@@ -483,8 +606,8 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestReadPersonPortrait()
         {
-            // Assume the ability to read a person by ID is working
-            var person = tree.ReadPersonById(READ_PERSON_ID);
+            var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(person);
 
             // This is BETA, and does not yet return a state. Test is based exclusively off response data.
             var response = person.ReadPortrait();
@@ -496,12 +619,12 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestReadPersonPortraitWithDefault()
         {
-            var person = tree.ReadPersonById(READ_PERSON_ID);
+            var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(person);
             var location = "http://i.imgur.com/d9J0gYA.jpg";
-            var options = new QueryParameter("default", location);
 
             // This is BETA, and does not yet return a state. Test is based exclusively off response data.
-            var response = person.ReadPortrait(options);
+            var response = person.ReadPortrait(FamilySearchOptions.DefaultUri(location));
             Assert.IsTrue(!response.HasClientError() && !response.HasServerError());
             // NOTE: The READ_PERSON_ID user does not have images, but a default is specified, thus the response should be 307.
             Assert.AreEqual(HttpStatusCode.TemporaryRedirect, response.StatusCode);
@@ -513,7 +636,8 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestReadPersonChangeSummary()
         {
-            var person = tree.ReadPersonById(READ_PERSON_ID);
+            var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(person);
             var state = person.ReadChangeHistory();
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
@@ -522,8 +646,8 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestReadPersonPortraits()
         {
-            // Assume the ability to read a person by ID is working
-            var person = tree.ReadPersonById(READ_PERSON_ID);
+            var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(person);
 
             var state = person.ReadPortraits();
             Assert.DoesNotThrow(() => state.IfSuccessful());
@@ -533,8 +657,9 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestCreatePersonLifeSketch()
         {
-            var person = tree.ReadPersonById(PERSON_WITH_DATA_ID);
-            var state = (FamilyTreePersonState)person.Post(TestBacking.GetCreatePersonLifeSketch(PERSON_WITH_DATA_ID));
+            var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(person);
+            var state = (FamilyTreePersonState)person.Post(TestBacking.GetCreatePersonLifeSketch(person.Person.Id));
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
@@ -543,15 +668,11 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestUpdatePersonLifeSketch()
         {
-            var person = tree.ReadPersonById(PERSON_WITH_DATA_ID);
-            var factId = TestBacking.GetFactId(person.Person, "http://familysearch.org/v1/LifeSketch");
-            if (factId == null)
-            {
-                TestCreatePersonLifeSketch();
-                person = tree.ReadPersonById(PERSON_WITH_DATA_ID);
-                factId = TestBacking.GetFactId(person.Person, "http://familysearch.org/v1/LifeSketch");
-            }
-            var state = (FamilyTreePersonState)person.Post(TestBacking.GetUpdatePersonLifeSketch(PERSON_WITH_DATA_ID, factId));
+            var person = (PersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(person);
+            person.Post(TestBacking.GetCreatePersonLifeSketch(person.Person.Id));
+            person = (FamilyTreePersonState)person.Get();
+            var state = (FamilyTreePersonState)person.Post(TestBacking.GetUpdatePersonLifeSketch(person.Person.Id, TestBacking.GetFactId(person.Person, "http://familysearch.org/v1/LifeSketch")));
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
@@ -560,18 +681,13 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestDeletePersonConclusion()
         {
-            var person = tree.ReadPersonById(PERSON_WITH_DATA_ID);
+            var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(person);
+            person.Post(TestBacking.GetCreatePersonLifeSketch(person.Person.Id));
+            person = (FamilyTreePersonState)person.Get();
+
             var sketchToDelete = person.Person.Facts.Where(x => x.Type == "http://familysearch.org/v1/LifeSketch").FirstOrDefault();
-
-            if (sketchToDelete == null)
-            {
-                TestCreatePersonLifeSketch();
-                person = tree.ReadPersonById(PERSON_WITH_DATA_ID);
-                sketchToDelete = person.Person.Facts.Where(x => x.Type == "http://familysearch.org/v1/LifeSketch").FirstOrDefault();
-            }
-
             Assert.IsNotNull(sketchToDelete);
-
             var state = person.DeleteFact(sketchToDelete);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
@@ -582,6 +698,7 @@ namespace Gedcomx.Rs.Api.Test
         public void TestReadPersonMemories()
         {
             var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(person);
             var dataSource = new BasicDataSource("Sample Memory", MediaTypes.TEXT_PLAIN_TYPE, Resources.MemoryTXT);
             person.AddArtifact(dataSource);
             person = (FamilyTreePersonState)person.Get();
@@ -595,6 +712,7 @@ namespace Gedcomx.Rs.Api.Test
         public void TestReadPersonMemoriesByType()
         {
             var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(person);
             var dataSource = new BasicDataSource("Sample Memory", MediaTypes.TEXT_PLAIN_TYPE, Resources.MemoryTXT);
             person.AddArtifact(dataSource);
             person = (FamilyTreePersonState)person.Get();
@@ -609,6 +727,7 @@ namespace Gedcomx.Rs.Api.Test
         public void TestUploadPhotoForPerson()
         {
             var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(person);
             var converter = new ImageConverter();
             var bytes = (Byte[])converter.ConvertTo(TestBacking.GetCreatePhoto(), typeof(Byte[]));
             var dataSource = new BasicDataSource(Guid.NewGuid().ToString("n") + ".jpg", "image/jpeg", bytes);
@@ -622,15 +741,20 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestReadPreferredParentRelationship()
         {
+            var father = tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(father);
+            var son = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(son);
+            var chapr = tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, null, son));
+            cleanup.Add(chapr);
             var me = tree.ReadCurrentUser();
-            var person = tree.ReadPersonById(PERSON_WITH_DATA_ID);
 
             // Ensure the target relationship exists
-            var relationship = ((FamilyTreePersonParentsState)person.ReadParents()).ChildAndParentsRelationships.First();
-            var state = person.ReadChildAndParentsRelationship(relationship);
-            tree.UpdatePreferredParentRelationship(me.User.TreeUserId, PERSON_WITH_DATA_ID, state);
+            var relationship = ((FamilyTreePersonParentsState)son.ReadParents()).ChildAndParentsRelationships.First();
+            var state = son.ReadChildAndParentsRelationship(relationship);
+            tree.UpdatePreferredParentRelationship(me.User.TreeUserId, son.Person.Id, state);
 
-            var state2 = (FamilyTreeRelationshipState)tree.ReadPreferredParentRelationship(me.User.TreeUserId, PERSON_WITH_DATA_ID);
+            var state2 = (FamilyTreeRelationshipState)tree.ReadPreferredParentRelationship(me.User.TreeUserId, son.Person.Id);
             Assert.AreEqual(HttpStatusCode.SeeOther, state2.Response.StatusCode);
             Assert.IsNotNull(state2.Headers.Get("Location").Single());
         }
@@ -638,30 +762,42 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestUpdatePreferredParentRelationship()
         {
+            var father = tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(father);
+            var son = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(son);
+            var chapr = tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, null, son));
+            cleanup.Add(chapr);
             var me = tree.ReadCurrentUser();
-            var person = tree.ReadPersonById(PERSON_WITH_DATA_ID);
 
             // Ensure the target relationship exists
-            var relationship = ((FamilyTreePersonParentsState)person.ReadParents()).ChildAndParentsRelationships.First();
-            var state = person.ReadChildAndParentsRelationship(relationship);
+            var relationship = ((FamilyTreePersonParentsState)son.ReadParents()).ChildAndParentsRelationships.First();
+            var state = son.ReadChildAndParentsRelationship(relationship);
 
 
-            var state2 = tree.UpdatePreferredParentRelationship(me.User.TreeUserId, PERSON_WITH_DATA_ID, state);
+            var state2 = tree.UpdatePreferredParentRelationship(me.User.TreeUserId, son.Person.Id, state);
             Assert.AreEqual(HttpStatusCode.NoContent, state2.Response.StatusCode);
         }
 
         [Test]
         public void TestDeletePreferredParentRelationship()
         {
+            var father = tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(father);
+            var mother = tree.AddPerson(TestBacking.GetCreateFemalePerson());
+            cleanup.Add(mother);
+            var son = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(son);
+            var chapr = tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, mother, son));
+            cleanup.Add(chapr);
             var me = tree.ReadCurrentUser();
-            var person = tree.ReadPersonById(PERSON_WITH_DATA_ID);
 
             // Ensure the target relationship exists
-            var relationship = ((FamilyTreePersonParentsState)person.ReadParents()).ChildAndParentsRelationships.First();
-            var state = person.ReadChildAndParentsRelationship(relationship);
-            tree.UpdatePreferredParentRelationship(me.User.TreeUserId, PERSON_WITH_DATA_ID, state);
+            var relationship = ((FamilyTreePersonParentsState)son.ReadParents()).ChildAndParentsRelationships.First();
+            var state = son.ReadChildAndParentsRelationship(relationship);
+            tree.UpdatePreferredParentRelationship(me.User.TreeUserId, son.Person.Id, state);
 
-            var state2 = tree.DeletePreferredParentRelationship(me.User.TreeUserId, PERSON_WITH_DATA_ID);
+            var state2 = tree.DeletePreferredParentRelationship(me.User.TreeUserId, son.Person.Id);
             Assert.AreEqual(HttpStatusCode.NoContent, state2.Response.StatusCode);
             Assert.IsNotNull(state2.Headers.Get("Content-Location").Single());
         }
@@ -669,10 +805,12 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestReadPersonMergeAnalysis()
         {
-            var person1 = tree.ReadPersonById(PERSON_WITH_DATA_ID);
-            var person2 = tree.ReadPersonById("KWWX-JKF");
-
+            var person1 = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(person1);
+            var person2 = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(person2);
             var state = person1.ReadMergeAnalysis(person2);
+
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
             Assert.IsNotNull(state.Analysis);
@@ -681,10 +819,12 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestReadPersonMergeConstraintCanMergeAnyOrder()
         {
-            var person1 = tree.ReadPersonById(PERSON_WITH_DATA_ID);
-            var person2 = tree.ReadPersonById("KWWX-JKF");
-
+            var person1 = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(person1);
+            var person2 = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(person2);
             var state = person1.ReadMergeOptions(person2);
+
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
             Assert.IsNotNull(state.GetLink(FamilySearch.Api.Rel.MERGE_MIRROR));
@@ -693,8 +833,10 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestReadPersonMergeConstraintCanMergeOtherOrderOnly()
         {
-            var person1 = tree.ReadPersonById(PERSON_WITH_DATA_ID);
-            var person2 = tree.ReadPersonById("KWW6-BR2");
+            var person1 = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(person1);
+            var person2 = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateFemalePerson()).Get();
+            cleanup.Add(person2);
 
             var state = person1.ReadMergeOptions(person2);
             Assert.DoesNotThrow(() => state.IfSuccessful());
@@ -706,7 +848,9 @@ namespace Gedcomx.Rs.Api.Test
         public void TestMergePerson()
         {
             var person1 = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(person1);
             var person2 = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(person2);
             var merge = person1.ReadMergeAnalysis(person2);
             var m = new Merge();
 
@@ -719,9 +863,6 @@ namespace Gedcomx.Rs.Api.Test
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
             Assert.AreEqual(person1.Get().GetSelfUri(), person2.Get().GetSelfUri());
-
-            person1.Delete();
-            person2.Delete();
         }
     }
 }

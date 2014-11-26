@@ -25,529 +25,301 @@ namespace Gx.Fs.Tree {
     /// <summary>
     ///   A person was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Person")]
     Person,
 
     /// <summary>
     ///   A couple relationship was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Couple")]
     Couple,
 
     /// <summary>
     ///   A child-and-parents relationship was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://familysearch.org/v1/ChildAndParentsRelationship")]
     ChildAndParentsRelationship,
 
     /// <summary>
     ///   The man in a couple relationship was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://familysearch.org/v1/Man")]
     Man,
 
     /// <summary>
     ///   The man in a couple relationship was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://familysearch.org/v1/Woman")]
     Woman,
 
     /// <summary>
     ///   The father in a couple-child relationship was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://familysearch.org/v1/Father")]
     Father,
 
     /// <summary>
     ///   The mother in a couple-child relationship was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://familysearch.org/v1/Mother")]
     Mother,
 
     /// <summary>
     ///   The child in a couple-child relationship was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://familysearch.org/v1/Child")]
     Child,
 
     /// <summary>
     ///   A source reference was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/SourceReference")]
     SourceReference,
 
     /// <summary>
     ///   A discussion reference was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://familysearch.org/v1/DiscussionReference")]
     DiscussionReference,
 
     /// <summary>
     ///   An evidence reference was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://familysearch.org/v1/EvidenceReference")]
     EvidenceReference,
 
     /// <summary>
     ///   An affiliation fact was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://familysearch.org/v1/Affiliation")]
     Affiliation,
 
     /// <summary>
     ///   An annulment fact was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Annulment")]
     Annulment,
 
     /// <summary>
     ///   A bar mitzvah was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/BarMitzvah")]
     BarMitzvah,
 
     /// <summary>
     ///   A bar mitzvah was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/BatMitzvah")]
     BatMitzvah,
 
     /// <summary>
     ///   A birth fact was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Birth")]
     Birth,
 
     /// <summary>
     ///   A burial fact was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Burial")]
     Burial,
 
     /// <summary>
     ///   A christening fact was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Christening")]
     Christening,
 
     /// <summary>
     ///   A cremation fact was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Cremation")]
     Cremation,
 
     /// <summary>
     ///   A common law marriage fact was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/CommonLawMarriage")]
     CommonLawMarriage,
 
     /// <summary>
     ///   A death fact was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Death")]
     Death,
 
     /// <summary>
     ///   A divorce fact was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Divorce")]
     Divorce,
 
     /// <summary>
     ///   A marriage fact was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Marriage")]
     Marriage,
 
     /// <summary>
     ///   A military service fact was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/MilitaryService")]
     MilitaryService,
 
     /// <summary>
     ///   A naturalization fact was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Naturalization")]
     Naturalization,
 
     /// <summary>
     ///   An occupation fact was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Occupation")]
     Occupation,
 
     /// <summary>
     ///   A religion fact was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Religion")]
     Religion,
 
     /// <summary>
     ///   A residence fact was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Residence")]
     Residence,
 
     /// <summary>
     ///   A stillbirth fact was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Stillbirth")]
     Stillbirth,
 
     /// <summary>
     ///   A fact was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Fact")]
     Fact,
 
     /// <summary>
     ///   A caste fact was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Caste")]
     Caste,
 
     /// <summary>
     ///   A clan fact was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Clan")]
     Clan,
 
     /// <summary>
     ///   A national id fact was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/NationalId")]
     NationalId,
 
     /// <summary>
     ///   A nationality fact was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Nationality")]
     Nationality,
 
     /// <summary>
     ///   A physical description fact was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/PhysicalDescription")]
     PhysicalDescription,
 
     /// <summary>
     ///   An ethnicity fact was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Ethnicity")]
     Ethnicity,
 
     /// <summary>
     ///   A gender was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Gender")]
     Gender,
 
     /// <summary>
     ///   A note was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Note")]
     Note,
 
     /// <summary>
     ///   Name was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Name")]
     Name,
 
     /// <summary>
     ///   A birth name was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/BirthName")]
     BirthName,
 
     /// <summary>
     ///   An AKA name was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/AlsoKnownAs")]
     AlsoKnownAs,
 
     /// <summary>
     ///   An married name was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/MarriedName")]
     MarriedName,
 
     /// <summary>
     ///   An nickname was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Nickname")]
     Nickname,
 
     /// <summary>
     ///   A died before eight fact was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://familysearch.org/v1/DiedBeforeEight")]
     DiedBeforeEight,
 
     /// <summary>
     ///   A tribe name fact was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://familysearch.org/v1/TribeName")]
     TribeName,
 
     /// <summary>
     ///   A birth order fact was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://familysearch.org/v1/BirthOrder")]
     BirthOrder,
 
     /// <summary>
     ///   A life sketch was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://familysearch.org/v1/LifeSketch")]
     LifeSketch,
 
     /// <summary>
     ///   A living status was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://familysearch.org/v1/LivingStatus")]
     LivingStatus,
 
     /// <summary>
     ///   A title of nobility fact was changed.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://familysearch.org/v1/TitleOfNobility")]
     TitleOfNobility,
 
     /// <summary>
     ///   A not-a-match declaration
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://familysearch.org/v1/NotAMatch")]
     NotAMatch
-  }
-
-  /// <remarks>
-  /// Utility class for converting to/from the QNames associated with ChangeObjectType.
-  /// </remarks>
-  /// <summary>
-  /// Utility class for converting to/from the QNames associated with ChangeObjectType.
-  /// </summary>
-  public static class ChangeObjectTypeQNameUtil {
-
-    /// <summary>
-    /// Get the known ChangeObjectType for a given QName. If the QName isn't a known QName, ChangeObjectType.NULL will be returned.
-    /// </summary>
-    public static ChangeObjectType ConvertFromKnownQName(string qname) {
-      if (qname != null) {
-        if ("http://gedcomx.org/Person".Equals(qname)) {
-          return ChangeObjectType.Person;
-        }
-        if ("http://gedcomx.org/Couple".Equals(qname)) {
-          return ChangeObjectType.Couple;
-        }
-        if ("http://familysearch.org/v1/ChildAndParentsRelationship".Equals(qname)) {
-          return ChangeObjectType.ChildAndParentsRelationship;
-        }
-        if ("http://familysearch.org/v1/Man".Equals(qname)) {
-          return ChangeObjectType.Man;
-        }
-        if ("http://familysearch.org/v1/Woman".Equals(qname)) {
-          return ChangeObjectType.Woman;
-        }
-        if ("http://familysearch.org/v1/Father".Equals(qname)) {
-          return ChangeObjectType.Father;
-        }
-        if ("http://familysearch.org/v1/Mother".Equals(qname)) {
-          return ChangeObjectType.Mother;
-        }
-        if ("http://familysearch.org/v1/Child".Equals(qname)) {
-          return ChangeObjectType.Child;
-        }
-        if ("http://gedcomx.org/SourceReference".Equals(qname)) {
-          return ChangeObjectType.SourceReference;
-        }
-        if ("http://familysearch.org/v1/DiscussionReference".Equals(qname)) {
-          return ChangeObjectType.DiscussionReference;
-        }
-        if ("http://familysearch.org/v1/EvidenceReference".Equals(qname)) {
-          return ChangeObjectType.EvidenceReference;
-        }
-        if ("http://familysearch.org/v1/Affiliation".Equals(qname)) {
-          return ChangeObjectType.Affiliation;
-        }
-        if ("http://gedcomx.org/Annulment".Equals(qname)) {
-          return ChangeObjectType.Annulment;
-        }
-        if ("http://gedcomx.org/BarMitzvah".Equals(qname)) {
-          return ChangeObjectType.BarMitzvah;
-        }
-        if ("http://gedcomx.org/BatMitzvah".Equals(qname)) {
-          return ChangeObjectType.BatMitzvah;
-        }
-        if ("http://gedcomx.org/Birth".Equals(qname)) {
-          return ChangeObjectType.Birth;
-        }
-        if ("http://gedcomx.org/Burial".Equals(qname)) {
-          return ChangeObjectType.Burial;
-        }
-        if ("http://gedcomx.org/Christening".Equals(qname)) {
-          return ChangeObjectType.Christening;
-        }
-        if ("http://gedcomx.org/Cremation".Equals(qname)) {
-          return ChangeObjectType.Cremation;
-        }
-        if ("http://gedcomx.org/CommonLawMarriage".Equals(qname)) {
-          return ChangeObjectType.CommonLawMarriage;
-        }
-        if ("http://gedcomx.org/Death".Equals(qname)) {
-          return ChangeObjectType.Death;
-        }
-        if ("http://gedcomx.org/Divorce".Equals(qname)) {
-          return ChangeObjectType.Divorce;
-        }
-        if ("http://gedcomx.org/Marriage".Equals(qname)) {
-          return ChangeObjectType.Marriage;
-        }
-        if ("http://gedcomx.org/MilitaryService".Equals(qname)) {
-          return ChangeObjectType.MilitaryService;
-        }
-        if ("http://gedcomx.org/Naturalization".Equals(qname)) {
-          return ChangeObjectType.Naturalization;
-        }
-        if ("http://gedcomx.org/Occupation".Equals(qname)) {
-          return ChangeObjectType.Occupation;
-        }
-        if ("http://gedcomx.org/Religion".Equals(qname)) {
-          return ChangeObjectType.Religion;
-        }
-        if ("http://gedcomx.org/Residence".Equals(qname)) {
-          return ChangeObjectType.Residence;
-        }
-        if ("http://gedcomx.org/Stillbirth".Equals(qname)) {
-          return ChangeObjectType.Stillbirth;
-        }
-        if ("http://gedcomx.org/Fact".Equals(qname)) {
-          return ChangeObjectType.Fact;
-        }
-        if ("http://gedcomx.org/Caste".Equals(qname)) {
-          return ChangeObjectType.Caste;
-        }
-        if ("http://gedcomx.org/Clan".Equals(qname)) {
-          return ChangeObjectType.Clan;
-        }
-        if ("http://gedcomx.org/NationalId".Equals(qname)) {
-          return ChangeObjectType.NationalId;
-        }
-        if ("http://gedcomx.org/Nationality".Equals(qname)) {
-          return ChangeObjectType.Nationality;
-        }
-        if ("http://gedcomx.org/PhysicalDescription".Equals(qname)) {
-          return ChangeObjectType.PhysicalDescription;
-        }
-        if ("http://gedcomx.org/Ethnicity".Equals(qname)) {
-          return ChangeObjectType.Ethnicity;
-        }
-        if ("http://gedcomx.org/Gender".Equals(qname)) {
-          return ChangeObjectType.Gender;
-        }
-        if ("http://gedcomx.org/Note".Equals(qname)) {
-          return ChangeObjectType.Note;
-        }
-        if ("http://gedcomx.org/Name".Equals(qname)) {
-          return ChangeObjectType.Name;
-        }
-        if ("http://gedcomx.org/BirthName".Equals(qname)) {
-          return ChangeObjectType.BirthName;
-        }
-        if ("http://gedcomx.org/AlsoKnownAs".Equals(qname)) {
-          return ChangeObjectType.AlsoKnownAs;
-        }
-        if ("http://gedcomx.org/MarriedName".Equals(qname)) {
-          return ChangeObjectType.MarriedName;
-        }
-        if ("http://gedcomx.org/Nickname".Equals(qname)) {
-          return ChangeObjectType.Nickname;
-        }
-        if ("http://familysearch.org/v1/DiedBeforeEight".Equals(qname)) {
-          return ChangeObjectType.DiedBeforeEight;
-        }
-        if ("http://familysearch.org/v1/TribeName".Equals(qname)) {
-          return ChangeObjectType.TribeName;
-        }
-        if ("http://familysearch.org/v1/BirthOrder".Equals(qname)) {
-          return ChangeObjectType.BirthOrder;
-        }
-        if ("http://familysearch.org/v1/LifeSketch".Equals(qname)) {
-          return ChangeObjectType.LifeSketch;
-        }
-        if ("http://familysearch.org/v1/LivingStatus".Equals(qname)) {
-          return ChangeObjectType.LivingStatus;
-        }
-        if ("http://familysearch.org/v1/TitleOfNobility".Equals(qname)) {
-          return ChangeObjectType.TitleOfNobility;
-        }
-        if ("http://familysearch.org/v1/NotAMatch".Equals(qname)) {
-          return ChangeObjectType.NotAMatch;
-        }
-      }
-      return ChangeObjectType.NULL;
-    }
-
-    /// <summary>
-    /// Convert the known ChangeObjectType to a QName. If ChangeObjectType.NULL, an ArgumentException will be thrown.
-    /// </summary>
-    public static string ConvertToKnownQName(ChangeObjectType known) {
-      switch (known) {
-        case ChangeObjectType.Person:
-          return "http://gedcomx.org/Person";
-        case ChangeObjectType.Couple:
-          return "http://gedcomx.org/Couple";
-        case ChangeObjectType.ChildAndParentsRelationship:
-          return "http://familysearch.org/v1/ChildAndParentsRelationship";
-        case ChangeObjectType.Man:
-          return "http://familysearch.org/v1/Man";
-        case ChangeObjectType.Woman:
-          return "http://familysearch.org/v1/Woman";
-        case ChangeObjectType.Father:
-          return "http://familysearch.org/v1/Father";
-        case ChangeObjectType.Mother:
-          return "http://familysearch.org/v1/Mother";
-        case ChangeObjectType.Child:
-          return "http://familysearch.org/v1/Child";
-        case ChangeObjectType.SourceReference:
-          return "http://gedcomx.org/SourceReference";
-        case ChangeObjectType.DiscussionReference:
-          return "http://familysearch.org/v1/DiscussionReference";
-        case ChangeObjectType.EvidenceReference:
-          return "http://familysearch.org/v1/EvidenceReference";
-        case ChangeObjectType.Affiliation:
-          return "http://familysearch.org/v1/Affiliation";
-        case ChangeObjectType.Annulment:
-          return "http://gedcomx.org/Annulment";
-        case ChangeObjectType.BarMitzvah:
-          return "http://gedcomx.org/BarMitzvah";
-        case ChangeObjectType.BatMitzvah:
-          return "http://gedcomx.org/BatMitzvah";
-        case ChangeObjectType.Birth:
-          return "http://gedcomx.org/Birth";
-        case ChangeObjectType.Burial:
-          return "http://gedcomx.org/Burial";
-        case ChangeObjectType.Christening:
-          return "http://gedcomx.org/Christening";
-        case ChangeObjectType.Cremation:
-          return "http://gedcomx.org/Cremation";
-        case ChangeObjectType.CommonLawMarriage:
-          return "http://gedcomx.org/CommonLawMarriage";
-        case ChangeObjectType.Death:
-          return "http://gedcomx.org/Death";
-        case ChangeObjectType.Divorce:
-          return "http://gedcomx.org/Divorce";
-        case ChangeObjectType.Marriage:
-          return "http://gedcomx.org/Marriage";
-        case ChangeObjectType.MilitaryService:
-          return "http://gedcomx.org/MilitaryService";
-        case ChangeObjectType.Naturalization:
-          return "http://gedcomx.org/Naturalization";
-        case ChangeObjectType.Occupation:
-          return "http://gedcomx.org/Occupation";
-        case ChangeObjectType.Religion:
-          return "http://gedcomx.org/Religion";
-        case ChangeObjectType.Residence:
-          return "http://gedcomx.org/Residence";
-        case ChangeObjectType.Stillbirth:
-          return "http://gedcomx.org/Stillbirth";
-        case ChangeObjectType.Fact:
-          return "http://gedcomx.org/Fact";
-        case ChangeObjectType.Caste:
-          return "http://gedcomx.org/Caste";
-        case ChangeObjectType.Clan:
-          return "http://gedcomx.org/Clan";
-        case ChangeObjectType.NationalId:
-          return "http://gedcomx.org/NationalId";
-        case ChangeObjectType.Nationality:
-          return "http://gedcomx.org/Nationality";
-        case ChangeObjectType.PhysicalDescription:
-          return "http://gedcomx.org/PhysicalDescription";
-        case ChangeObjectType.Ethnicity:
-          return "http://gedcomx.org/Ethnicity";
-        case ChangeObjectType.Gender:
-          return "http://gedcomx.org/Gender";
-        case ChangeObjectType.Note:
-          return "http://gedcomx.org/Note";
-        case ChangeObjectType.Name:
-          return "http://gedcomx.org/Name";
-        case ChangeObjectType.BirthName:
-          return "http://gedcomx.org/BirthName";
-        case ChangeObjectType.AlsoKnownAs:
-          return "http://gedcomx.org/AlsoKnownAs";
-        case ChangeObjectType.MarriedName:
-          return "http://gedcomx.org/MarriedName";
-        case ChangeObjectType.Nickname:
-          return "http://gedcomx.org/Nickname";
-        case ChangeObjectType.DiedBeforeEight:
-          return "http://familysearch.org/v1/DiedBeforeEight";
-        case ChangeObjectType.TribeName:
-          return "http://familysearch.org/v1/TribeName";
-        case ChangeObjectType.BirthOrder:
-          return "http://familysearch.org/v1/BirthOrder";
-        case ChangeObjectType.LifeSketch:
-          return "http://familysearch.org/v1/LifeSketch";
-        case ChangeObjectType.LivingStatus:
-          return "http://familysearch.org/v1/LivingStatus";
-        case ChangeObjectType.TitleOfNobility:
-          return "http://familysearch.org/v1/TitleOfNobility";
-        case ChangeObjectType.NotAMatch:
-          return "http://familysearch.org/v1/NotAMatch";
-        default:
-          throw new System.ArgumentException("No known QName for: " + known, "known");
-      }
-    }
   }
 }

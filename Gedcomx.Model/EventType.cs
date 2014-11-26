@@ -25,176 +25,211 @@ namespace Gx.Types {
     /// <summary>
     ///   An adoption event.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Adoption")]
     Adoption,
 
     /// <summary>
     ///   An adult christening event.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/AdultChristening")]
     AdultChristening,
 
     /// <summary>
     ///   An annulment event of a marriage.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Annulment")]
     Annulment,
 
     /// <summary>
     ///   A baptism event.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Baptism")]
     Baptism,
 
     /// <summary>
     ///   A bar mitzvah event.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/BarMitzvah")]
     BarMitzvah,
 
     /// <summary>
     ///   A bat mitzvah event.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/BatMitzvah")]
     BatMitzvah,
 
     /// <summary>
     ///   A birth event.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Birth")]
     Birth,
 
     /// <summary>
     ///   A an official blessing event, such as at the hands of a clergy member or at another religious rite.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Blessing")]
     Blessing,
 
     /// <summary>
     ///   A burial event.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Burial")]
     Burial,
 
     /// <summary>
     ///   A census event.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Census")]
     Census,
 
     /// <summary>
     ///   A christening event *at birth*. Note: use `AdultChristening` for a christening event as an adult.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Christening")]
     Christening,
 
     /// <summary>
     ///   A circumcision event.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Circumcision")]
     Circumcision,
 
     /// <summary>
     ///   A confirmation event (or other rite of initiation) in a church or religion.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Confirmation")]
     Confirmation,
 
     /// <summary>
     ///   A cremation event after death.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Cremation")]
     Cremation,
 
     /// <summary>
     ///   A death event.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Death")]
     Death,
 
     /// <summary>
     ///   A divorce event.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Divorce")]
     Divorce,
 
     /// <summary>
     ///   A divorce filing event.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/DivorceFiling")]
     DivorceFiling,
 
     /// <summary>
     ///   A education or an educational achievement event (e.g. diploma, graduation, scholarship, etc.).
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Education")]
     Education,
 
     /// <summary>
     ///   An engagement to be married event.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Engagement")]
     Engagement,
 
     /// <summary>
     ///   An emigration event.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Emigration")]
     Emigration,
 
     /// <summary>
     ///   An excommunication event from a church.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Excommunication")]
     Excommunication,
 
     /// <summary>
     ///   A first communion event.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/FirstCommunion")]
     FirstCommunion,
 
     /// <summary>
     ///   A funeral event.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Funeral")]
     Funeral,
 
     /// <summary>
     ///   An immigration event.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Immigration")]
     Immigration,
 
     /// <summary>
     ///   A land transaction event.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/LandTransaction")]
     LandTransaction,
 
     /// <summary>
     ///   A marriage event.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Marriage")]
     Marriage,
 
     /// <summary>
     ///   A military award event.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/MilitaryAward")]
     MilitaryAward,
 
     /// <summary>
     ///   A military discharge event.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/MilitaryDischarge")]
     MilitaryDischarge,
 
     /// <summary>
     ///   A mission event.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Mission")]
     Mission,
 
     /// <summary>
     ///   An event of a move (i.e. change of residence) from a location.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/MoveFrom")]
     MoveFrom,
 
     /// <summary>
     ///   An event of a move (i.e. change of residence) to a location.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/MoveTo")]
     MoveTo,
 
     /// <summary>
     ///   A naturalization event (i.e. acquisition of citizenship and nationality).
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Naturalization")]
     Naturalization,
 
     /// <summary>
     ///   An ordination event.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Ordination")]
     Ordination,
 
     /// <summary>
     ///   A retirement event.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Retirement")]
     Retirement,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/OTHER")]
     OTHER
   }
 
@@ -211,108 +246,6 @@ namespace Gx.Types {
     /// </summary>
     public static EventType ConvertFromKnownQName(string qname) {
       if (qname != null) {
-        if ("http://gedcomx.org/Adoption".Equals(qname)) {
-          return EventType.Adoption;
-        }
-        if ("http://gedcomx.org/AdultChristening".Equals(qname)) {
-          return EventType.AdultChristening;
-        }
-        if ("http://gedcomx.org/Annulment".Equals(qname)) {
-          return EventType.Annulment;
-        }
-        if ("http://gedcomx.org/Baptism".Equals(qname)) {
-          return EventType.Baptism;
-        }
-        if ("http://gedcomx.org/BarMitzvah".Equals(qname)) {
-          return EventType.BarMitzvah;
-        }
-        if ("http://gedcomx.org/BatMitzvah".Equals(qname)) {
-          return EventType.BatMitzvah;
-        }
-        if ("http://gedcomx.org/Birth".Equals(qname)) {
-          return EventType.Birth;
-        }
-        if ("http://gedcomx.org/Blessing".Equals(qname)) {
-          return EventType.Blessing;
-        }
-        if ("http://gedcomx.org/Burial".Equals(qname)) {
-          return EventType.Burial;
-        }
-        if ("http://gedcomx.org/Census".Equals(qname)) {
-          return EventType.Census;
-        }
-        if ("http://gedcomx.org/Christening".Equals(qname)) {
-          return EventType.Christening;
-        }
-        if ("http://gedcomx.org/Circumcision".Equals(qname)) {
-          return EventType.Circumcision;
-        }
-        if ("http://gedcomx.org/Confirmation".Equals(qname)) {
-          return EventType.Confirmation;
-        }
-        if ("http://gedcomx.org/Cremation".Equals(qname)) {
-          return EventType.Cremation;
-        }
-        if ("http://gedcomx.org/Death".Equals(qname)) {
-          return EventType.Death;
-        }
-        if ("http://gedcomx.org/Divorce".Equals(qname)) {
-          return EventType.Divorce;
-        }
-        if ("http://gedcomx.org/DivorceFiling".Equals(qname)) {
-          return EventType.DivorceFiling;
-        }
-        if ("http://gedcomx.org/Education".Equals(qname)) {
-          return EventType.Education;
-        }
-        if ("http://gedcomx.org/Engagement".Equals(qname)) {
-          return EventType.Engagement;
-        }
-        if ("http://gedcomx.org/Emigration".Equals(qname)) {
-          return EventType.Emigration;
-        }
-        if ("http://gedcomx.org/Excommunication".Equals(qname)) {
-          return EventType.Excommunication;
-        }
-        if ("http://gedcomx.org/FirstCommunion".Equals(qname)) {
-          return EventType.FirstCommunion;
-        }
-        if ("http://gedcomx.org/Funeral".Equals(qname)) {
-          return EventType.Funeral;
-        }
-        if ("http://gedcomx.org/Immigration".Equals(qname)) {
-          return EventType.Immigration;
-        }
-        if ("http://gedcomx.org/LandTransaction".Equals(qname)) {
-          return EventType.LandTransaction;
-        }
-        if ("http://gedcomx.org/Marriage".Equals(qname)) {
-          return EventType.Marriage;
-        }
-        if ("http://gedcomx.org/MilitaryAward".Equals(qname)) {
-          return EventType.MilitaryAward;
-        }
-        if ("http://gedcomx.org/MilitaryDischarge".Equals(qname)) {
-          return EventType.MilitaryDischarge;
-        }
-        if ("http://gedcomx.org/Mission".Equals(qname)) {
-          return EventType.Mission;
-        }
-        if ("http://gedcomx.org/MoveFrom".Equals(qname)) {
-          return EventType.MoveFrom;
-        }
-        if ("http://gedcomx.org/MoveTo".Equals(qname)) {
-          return EventType.MoveTo;
-        }
-        if ("http://gedcomx.org/Naturalization".Equals(qname)) {
-          return EventType.Naturalization;
-        }
-        if ("http://gedcomx.org/Ordination".Equals(qname)) {
-          return EventType.Ordination;
-        }
-        if ("http://gedcomx.org/Retirement".Equals(qname)) {
-          return EventType.Retirement;
-        }
       }
       return EventType.OTHER;
     }

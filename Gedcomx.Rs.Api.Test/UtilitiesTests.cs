@@ -21,12 +21,23 @@ namespace Gedcomx.Rs.Api.Test
     public class UtilitiesTests
     {
         private FamilySearchFamilyTree tree;
+        private List<GedcomxApplicationState> cleanup;
 
         [TestFixtureSetUp]
         public void Initialize()
         {
             tree = new FamilySearchFamilyTree(true);
             tree.AuthenticateViaOAuth2Password(Resources.TestUserName, Resources.TestPassword, Resources.TestClientId);
+            cleanup = new List<GedcomxApplicationState>();
+        }
+
+        [TestFixtureTearDown]
+        public void TearDown()
+        {
+            foreach (var state in cleanup)
+            {
+                state.Delete();
+            }
         }
 
         [Test]
@@ -51,14 +62,13 @@ namespace Gedcomx.Rs.Api.Test
             tempTree.Client.AddFilter(new ExperimentsFilter(features.Select(x => x.Name).ToArray()));
 
             var state = tempTree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(state);
 
             // Ensure a response came back
             Assert.IsNotNull(state);
             var requestedFeatures = String.Join(",", state.Request.GetHeaders().Get("X-FS-Feature-Tag").Select(x => x.Value.ToString()));
             // Ensure each requested feature was found in the request headers
             Assert.IsTrue(features.TrueForAll(x => requestedFeatures.Contains(x.Name)));
-
-            state.Delete();
         }
 
         [Test]
@@ -78,6 +88,7 @@ namespace Gedcomx.Rs.Api.Test
         public void TestRedirectToPerson()
         {
             var person = tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(person);
             var id = person.Response.Headers.Get("X-ENTITY-ID").Single().Value.ToString();
             IRestRequest request = new RestRequest()
                 .Accept(MediaTypes.APPLICATION_JSON_TYPE)
@@ -92,6 +103,7 @@ namespace Gedcomx.Rs.Api.Test
         public void TestRedirectToPersonMemories()
         {
             var person = tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(person);
             var id = person.Response.Headers.Get("X-ENTITY-ID").Single().Value.ToString();
             IRestRequest request = new RestRequest()
                 .Accept(MediaTypes.APPLICATION_JSON_TYPE)
@@ -106,6 +118,7 @@ namespace Gedcomx.Rs.Api.Test
         public void TestRedirectToSourceLinker()
         {
             var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(person);
             var uri = String.Format("https://sandbox.familysearch.org/platform/redirect?context=sourcelinker&person={0}&hintId={1}", person.Person.Id, person.Person.Identifiers[0].Value);
             IRestRequest request = new RestRequest()
                 .Accept(MediaTypes.APPLICATION_JSON_TYPE)

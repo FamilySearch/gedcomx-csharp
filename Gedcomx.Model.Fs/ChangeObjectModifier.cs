@@ -25,59 +25,19 @@ namespace Gx.Fs.Tree {
     /// <summary>
     ///   The person.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Person")]
     Person,
 
     /// <summary>
     ///   The couple.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Couple")]
     Couple,
 
     /// <summary>
     ///   The child-and-parents relationship.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://familysearch.org/v1/ChildAndParentsRelationship")]
     ChildAndParentsRelationship
-  }
-
-  /// <remarks>
-  /// Utility class for converting to/from the QNames associated with ChangeObjectModifier.
-  /// </remarks>
-  /// <summary>
-  /// Utility class for converting to/from the QNames associated with ChangeObjectModifier.
-  /// </summary>
-  public static class ChangeObjectModifierQNameUtil {
-
-    /// <summary>
-    /// Get the known ChangeObjectModifier for a given QName. If the QName isn't a known QName, ChangeObjectModifier.NULL will be returned.
-    /// </summary>
-    public static ChangeObjectModifier ConvertFromKnownQName(string qname) {
-      if (qname != null) {
-        if ("http://gedcomx.org/Person".Equals(qname)) {
-          return ChangeObjectModifier.Person;
-        }
-        if ("http://gedcomx.org/Couple".Equals(qname)) {
-          return ChangeObjectModifier.Couple;
-        }
-        if ("http://familysearch.org/v1/ChildAndParentsRelationship".Equals(qname)) {
-          return ChangeObjectModifier.ChildAndParentsRelationship;
-        }
-      }
-      return ChangeObjectModifier.NULL;
-    }
-
-    /// <summary>
-    /// Convert the known ChangeObjectModifier to a QName. If ChangeObjectModifier.NULL, an ArgumentException will be thrown.
-    /// </summary>
-    public static string ConvertToKnownQName(ChangeObjectModifier known) {
-      switch (known) {
-        case ChangeObjectModifier.Person:
-          return "http://gedcomx.org/Person";
-        case ChangeObjectModifier.Couple:
-          return "http://gedcomx.org/Couple";
-        case ChangeObjectModifier.ChildAndParentsRelationship:
-          return "http://familysearch.org/v1/ChildAndParentsRelationship";
-        default:
-          throw new System.ArgumentException("No known QName for: " + known, "known");
-      }
-    }
   }
 }

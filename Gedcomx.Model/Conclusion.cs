@@ -1,3 +1,4 @@
+using Gedcomx.Model.Util;
 using Gx.Common;
 using Gx.Source;
 using Gx.Types;
@@ -57,11 +58,11 @@ namespace Gx.Conclusion
         {
             get
             {
-                return Gx.Types.ConfidenceLevelQNameUtil.ConvertFromKnownQName(this._confidence);
+                return XmlQNameEnumUtil.GetEnumValue<ConfidenceLevel>(this._confidence);
             }
             set
             {
-                this._confidence = Gx.Types.ConfidenceLevelQNameUtil.ConvertToKnownQName(value);
+                this._confidence = XmlQNameEnumUtil.GetNameValue(value);
             }
         }
         /// <summary>

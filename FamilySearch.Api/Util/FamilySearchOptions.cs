@@ -1,4 +1,5 @@
-﻿using Gx.Fs.Artifacts;
+﻿using Gedcomx.Model.Util;
+using Gx.Fs.Artifacts;
 using Gx.Fs.Ct;
 using Gx.Fs.Tree;
 using Gx.Rs.Api.Options;
@@ -111,7 +112,7 @@ namespace FamilySearch.Api.Util
         /// </remarks>
         public static QueryParameter Collection(MatchCollection value)
         {
-            return Collection(MatchCollectionQNameUtil.ConvertToKnownQName(value));
+            return Collection(XmlQNameEnumUtil.GetNameValue(value));
         }
 
         /// <summary>
@@ -124,7 +125,7 @@ namespace FamilySearch.Api.Util
         /// </remarks>
         public static QueryParameter Confidence(ConfidenceLevel confidence)
         {
-            return new QueryParameter(true, CONFIDENCE, ConfidenceLevelQNameUtil.ConvertToKnownQName(confidence));
+            return new QueryParameter(true, CONFIDENCE, XmlQNameEnumUtil.GetNameValue(confidence));
         }
 
         /// <summary>
@@ -189,7 +190,7 @@ namespace FamilySearch.Api.Util
         /// </remarks>
         public static QueryParameter ArtifactType(ArtifactType type)
         {
-            return new QueryParameter(true, TYPE, ArtifactTypeQNameUtil.ConvertToKnownQName(type));
+            return new QueryParameter(true, TYPE, XmlQNameEnumUtil.GetNameValue(type));
         }
 
         /// <summary>
@@ -264,7 +265,7 @@ namespace FamilySearch.Api.Util
         /// </remarks>
         public static QueryParameter MatchStatus(MatchStatus status)
         {
-            return new QueryParameter(false, STATUS, MatchStatusQNameUtil.ConvertToKnownQName(status));
+            return new QueryParameter(false, STATUS, XmlQNameEnumUtil.GetNameValue(status));
         }
 
         /// <summary>

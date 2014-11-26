@@ -25,164 +25,85 @@ namespace Gx.Types {
     /// <summary>
     ///   A year.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Year")]
     Year,
 
     /// <summary>
     ///   A (geographic) state.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/State")]
     State,
 
     /// <summary>
     ///   A province.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Province")]
     Province,
 
     /// <summary>
     ///   A country.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Country")]
     Country,
 
     /// <summary>
     ///   A city.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/City")]
     City,
 
     /// <summary>
     ///   A parish
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Parish")]
     Parish,
 
     /// <summary>
     ///   A township.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Township")]
     Township,
 
     /// <summary>
     ///   A page.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Page")]
     Page,
 
     /// <summary>
     ///   A volume.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Volume")]
     Volume,
 
     /// <summary>
     ///   A date.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Date")]
     Date,
 
     /// <summary>
     ///   A place.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Place")]
     Place,
 
     /// <summary>
     ///   A name.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Name")]
     Name,
 
     /// <summary>
     ///   A gender.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Gender")]
     Gender,
 
     /// <summary>
     ///   Custom
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/OTHER")]
     OTHER
-  }
-
-  /// <remarks>
-  /// Utility class for converting to/from the QNames associated with FacetType.
-  /// </remarks>
-  /// <summary>
-  /// Utility class for converting to/from the QNames associated with FacetType.
-  /// </summary>
-  public static class FacetTypeQNameUtil {
-
-    /// <summary>
-    /// Get the known FacetType for a given QName. If the QName isn't a known QName, FacetType.OTHER will be returned.
-    /// </summary>
-    public static FacetType ConvertFromKnownQName(string qname) {
-      if (qname != null) {
-        if ("http://gedcomx.org/Year".Equals(qname)) {
-          return FacetType.Year;
-        }
-        if ("http://gedcomx.org/State".Equals(qname)) {
-          return FacetType.State;
-        }
-        if ("http://gedcomx.org/Province".Equals(qname)) {
-          return FacetType.Province;
-        }
-        if ("http://gedcomx.org/Country".Equals(qname)) {
-          return FacetType.Country;
-        }
-        if ("http://gedcomx.org/City".Equals(qname)) {
-          return FacetType.City;
-        }
-        if ("http://gedcomx.org/Parish".Equals(qname)) {
-          return FacetType.Parish;
-        }
-        if ("http://gedcomx.org/Township".Equals(qname)) {
-          return FacetType.Township;
-        }
-        if ("http://gedcomx.org/Page".Equals(qname)) {
-          return FacetType.Page;
-        }
-        if ("http://gedcomx.org/Volume".Equals(qname)) {
-          return FacetType.Volume;
-        }
-        if ("http://gedcomx.org/Date".Equals(qname)) {
-          return FacetType.Date;
-        }
-        if ("http://gedcomx.org/Place".Equals(qname)) {
-          return FacetType.Place;
-        }
-        if ("http://gedcomx.org/Name".Equals(qname)) {
-          return FacetType.Name;
-        }
-        if ("http://gedcomx.org/Gender".Equals(qname)) {
-          return FacetType.Gender;
-        }
-      }
-      return FacetType.OTHER;
-    }
-
-    /// <summary>
-    /// Convert the known FacetType to a QName. If FacetType.OTHER, an ArgumentException will be thrown.
-    /// </summary>
-    public static string ConvertToKnownQName(FacetType known) {
-      switch (known) {
-        case FacetType.Year:
-          return "http://gedcomx.org/Year";
-        case FacetType.State:
-          return "http://gedcomx.org/State";
-        case FacetType.Province:
-          return "http://gedcomx.org/Province";
-        case FacetType.Country:
-          return "http://gedcomx.org/Country";
-        case FacetType.City:
-          return "http://gedcomx.org/City";
-        case FacetType.Parish:
-          return "http://gedcomx.org/Parish";
-        case FacetType.Township:
-          return "http://gedcomx.org/Township";
-        case FacetType.Page:
-          return "http://gedcomx.org/Page";
-        case FacetType.Volume:
-          return "http://gedcomx.org/Volume";
-        case FacetType.Date:
-          return "http://gedcomx.org/Date";
-        case FacetType.Place:
-          return "http://gedcomx.org/Place";
-        case FacetType.Name:
-          return "http://gedcomx.org/Name";
-        case FacetType.Gender:
-          return "http://gedcomx.org/Gender";
-        default:
-          throw new System.ArgumentException("No known QName for: " + known, "known");
-      }
-    }
   }
 }

@@ -21,6 +21,7 @@ namespace Gedcomx.Rs.Api.Test
     {
         private CollectionState collection;
         private CollectionsState subcollections;
+        private List<GedcomxApplicationState> cleanup;
 
         [TestFixtureSetUp]
         public void Initialize()
@@ -28,6 +29,16 @@ namespace Gedcomx.Rs.Api.Test
             collection = new FamilySearchCollectionState(new Uri("https://sandbox.familysearch.org/platform/collections/sources"));
             collection.AuthenticateViaOAuth2Password(Resources.TestUserName, Resources.TestPassword, Resources.TestClientId);
             subcollections = (CollectionsState)collection.ReadSubcollections().Get();
+            cleanup = new List<GedcomxApplicationState>();
+        }
+
+        [TestFixtureTearDown]
+        public void TearDown()
+        {
+            foreach (var state in cleanup)
+            {
+                state.Delete();
+            }
         }
 
         [Test]
@@ -48,6 +59,7 @@ namespace Gedcomx.Rs.Api.Test
         public void TestDeleteSourceDescriptionsFromAUserDefinedCollection()
         {
             var description = collection.AddSourceDescription(TestBacking.GetCreateSourceDescription());
+            cleanup.Add(description);
             var state = description.Delete();
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
@@ -67,11 +79,10 @@ namespace Gedcomx.Rs.Api.Test
         public void TestCreateUserDefinedCollection()
         {
             var state = collection.AddCollection(new Collection().SetTitle(Guid.NewGuid().ToString("n")));
+            cleanup.Add(state);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.Created, state.Response.StatusCode);
-
-            state.Delete();
         }
 
         [Test]
@@ -88,20 +99,20 @@ namespace Gedcomx.Rs.Api.Test
         public void TestMoveSourcesToAUserDefinedCollection()
         {
             var description = (FamilySearchSourceDescriptionState)collection.AddSourceDescription(TestBacking.GetCreateSourceDescription()).Get();
+            cleanup.Add(description);
             var subcollection = (CollectionState)collection.AddCollection(new Collection().SetTitle(Guid.NewGuid().ToString("n"))).Get();
+            cleanup.Add(subcollection);
             var state = description.MoveToCollection(subcollection);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
-
-            description.Delete();
-            subcollection.Delete();
         }
 
         [Test]
         public void TestReadUserDefinedCollection()
         {
             var state = (CollectionState)collection.AddCollection(new Collection().SetTitle(Guid.NewGuid().ToString("n"))).Get();
+            cleanup.Add(state);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
@@ -113,13 +124,12 @@ namespace Gedcomx.Rs.Api.Test
         public void TestUpdateUserDefinedCollection()
         {
             var subcollection = (CollectionState)collection.AddCollection(new Collection().SetTitle(Guid.NewGuid().ToString("n"))).Get();
+            cleanup.Add(subcollection);
             subcollection.Collection.Title = Guid.NewGuid().ToString("n");
             var state = subcollection.Update(subcollection.Collection);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
-
-            state.Delete();
         }
 
         [Test]

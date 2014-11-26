@@ -5,94 +5,53 @@
 // </auto-generated>
 using System;
 
-namespace Gx.Fs.Tree {
+namespace Gx.Fs.Tree
+{
 
-  /// <remarks>
-  ///  Identifiers for a system that might contain match results.
-  /// </remarks>
-  /// <summary>
-  ///  Identifiers for a system that might contain match results.
-  /// </summary>
-  public enum MatchSystem {
-
+    /// <remarks>
+    ///  Identifiers for a system that might contain match results.
+    /// </remarks>
     /// <summary>
-    ///  Unspecified enum value.
+    ///  Identifiers for a system that might contain match results.
     /// </summary>
-    [System.Xml.Serialization.XmlEnumAttribute(Name="__NULL__")]
-    [System.Xml.Serialization.SoapEnumAttribute(Name="__NULL__")]
-    NULL,
+    public enum MatchSystem
+    {
 
-    /// <summary>
-    ///   The FamilySearch Family Tree.
-    /// </summary>
-    tree,
+        /// <summary>
+        ///  Unspecified enum value.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnumAttribute(Name = "__NULL__")]
+        [System.Xml.Serialization.SoapEnumAttribute(Name = "__NULL__")]
+        NULL,
 
-    /// <summary>
-    ///   The FamilySearch Record Set.
-    /// </summary>
-    records,
+        /// <summary>
+        ///   The FamilySearch Family Tree.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://familysearch.org/v1/tree")]
+        tree,
 
-    /// <summary>
-    ///   The FamilySearch User-Submitted Trees.
-    /// </summary>
-    lls,
+        /// <summary>
+        ///   The FamilySearch Record Set.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://familysearch.org/v1/records")]
+        records,
 
-    /// <summary>
-    ///   The FamilySearch Temple System.
-    /// </summary>
-    tss,
+        /// <summary>
+        ///   The FamilySearch User-Submitted Trees.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://familysearch.org/v1/trees")]
+        lls,
 
-    /// <summary>
-    ///  (no documentation provided)
-    /// </summary>
-    OTHER
-  }
+        /// <summary>
+        ///   The FamilySearch Temple System.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://familysearch.org/v1/temple")]
+        tss,
 
-  /// <remarks>
-  /// Utility class for converting to/from the QNames associated with MatchSystem.
-  /// </remarks>
-  /// <summary>
-  /// Utility class for converting to/from the QNames associated with MatchSystem.
-  /// </summary>
-  public static class MatchSystemQNameUtil {
-
-    /// <summary>
-    /// Get the known MatchSystem for a given QName. If the QName isn't a known QName, MatchSystem.OTHER will be returned.
-    /// </summary>
-    public static MatchSystem ConvertFromKnownQName(string qname) {
-      if (qname != null) {
-        if ("http://familysearch.org/v1/tree".Equals(qname)) {
-          return MatchSystem.tree;
-        }
-        if ("http://familysearch.org/v1/records".Equals(qname)) {
-          return MatchSystem.records;
-        }
-        if ("http://familysearch.org/v1/trees".Equals(qname)) {
-          return MatchSystem.lls;
-        }
-        if ("http://familysearch.org/v1/temple".Equals(qname)) {
-          return MatchSystem.tss;
-        }
-      }
-      return MatchSystem.OTHER;
+        /// <summary>
+        ///  (no documentation provided)
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/OTHER")]
+        OTHER
     }
-
-    /// <summary>
-    /// Convert the known MatchSystem to a QName. If MatchSystem.OTHER, an ArgumentException will be thrown.
-    /// </summary>
-    public static string ConvertToKnownQName(MatchSystem known) {
-      switch (known) {
-        case MatchSystem.tree:
-          return "http://familysearch.org/v1/tree";
-        case MatchSystem.records:
-          return "http://familysearch.org/v1/records";
-        case MatchSystem.lls:
-          return "http://familysearch.org/v1/trees";
-        case MatchSystem.tss:
-          return "http://familysearch.org/v1/temple";
-        default:
-          throw new System.ArgumentException("No known QName for: " + known, "known");
-      }
-    }
-  }
 }

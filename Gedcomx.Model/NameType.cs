@@ -25,114 +25,55 @@ namespace Gx.Types {
     /// <summary>
     ///   Name given at birth.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/BirthName")]
     BirthName,
 
     /// <summary>
     ///   Name used at the time of death.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/DeathName")]
     DeathName,
 
     /// <summary>
     ///   Name accepted at marriage.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/MarriedName")]
     MarriedName,
 
     /// <summary>
     ///   &quot;Also known as&quot; name.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/AlsoKnownAs")]
     AlsoKnownAs,
 
     /// <summary>
     ///   Nickname.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Nickname")]
     Nickname,
 
     /// <summary>
     ///   Name given at adoption.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/AdoptiveName")]
     AdoptiveName,
 
     /// <summary>
     ///   A formal name, usually given to distinguish it from a name more commonly used.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/FormalName")]
     FormalName,
 
     /// <summary>
     ///   A name given at a religious rite or ceremony.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/ReligiousName")]
     ReligiousName,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/OTHER")]
     OTHER
-  }
-
-  /// <remarks>
-  /// Utility class for converting to/from the QNames associated with NameType.
-  /// </remarks>
-  /// <summary>
-  /// Utility class for converting to/from the QNames associated with NameType.
-  /// </summary>
-  public static class NameTypeQNameUtil {
-
-    /// <summary>
-    /// Get the known NameType for a given QName. If the QName isn't a known QName, NameType.OTHER will be returned.
-    /// </summary>
-    public static NameType ConvertFromKnownQName(string qname) {
-      if (qname != null) {
-        if ("http://gedcomx.org/BirthName".Equals(qname)) {
-          return NameType.BirthName;
-        }
-        if ("http://gedcomx.org/DeathName".Equals(qname)) {
-          return NameType.DeathName;
-        }
-        if ("http://gedcomx.org/MarriedName".Equals(qname)) {
-          return NameType.MarriedName;
-        }
-        if ("http://gedcomx.org/AlsoKnownAs".Equals(qname)) {
-          return NameType.AlsoKnownAs;
-        }
-        if ("http://gedcomx.org/Nickname".Equals(qname)) {
-          return NameType.Nickname;
-        }
-        if ("http://gedcomx.org/AdoptiveName".Equals(qname)) {
-          return NameType.AdoptiveName;
-        }
-        if ("http://gedcomx.org/FormalName".Equals(qname)) {
-          return NameType.FormalName;
-        }
-        if ("http://gedcomx.org/ReligiousName".Equals(qname)) {
-          return NameType.ReligiousName;
-        }
-      }
-      return NameType.OTHER;
-    }
-
-    /// <summary>
-    /// Convert the known NameType to a QName. If NameType.OTHER, an ArgumentException will be thrown.
-    /// </summary>
-    public static string ConvertToKnownQName(NameType known) {
-      switch (known) {
-        case NameType.BirthName:
-          return "http://gedcomx.org/BirthName";
-        case NameType.DeathName:
-          return "http://gedcomx.org/DeathName";
-        case NameType.MarriedName:
-          return "http://gedcomx.org/MarriedName";
-        case NameType.AlsoKnownAs:
-          return "http://gedcomx.org/AlsoKnownAs";
-        case NameType.Nickname:
-          return "http://gedcomx.org/Nickname";
-        case NameType.AdoptiveName:
-          return "http://gedcomx.org/AdoptiveName";
-        case NameType.FormalName:
-          return "http://gedcomx.org/FormalName";
-        case NameType.ReligiousName:
-          return "http://gedcomx.org/ReligiousName";
-        default:
-          throw new System.ArgumentException("No known QName for: " + known, "known");
-      }
-    }
   }
 }

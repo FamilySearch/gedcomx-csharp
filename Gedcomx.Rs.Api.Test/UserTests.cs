@@ -1,4 +1,5 @@
 ﻿using FamilySearch.Api.Ft;
+using Gx.Rs.Api;
 using Gx.Rs.Api.Options;
 using NUnit.Framework;
 using System;
@@ -14,12 +15,23 @@ namespace Gedcomx.Rs.Api.Test
     public class UserTests
     {
         private FamilySearchFamilyTree tree;
+        private List<GedcomxApplicationState> cleanup;
 
         [TestFixtureSetUp]
         public void Initialize()
         {
             tree = new FamilySearchFamilyTree(true);
             tree.AuthenticateViaOAuth2Password(Resources.TestUserName, Resources.TestPassword, Resources.TestClientId);
+            cleanup = new List<GedcomxApplicationState>();
+        }
+
+        [TestFixtureTearDown]
+        public void TearDown()
+        {
+            foreach (var state in cleanup)
+            {
+                state.Delete();
+            }
         }
 
         [Test]
@@ -54,6 +66,7 @@ namespace Gedcomx.Rs.Api.Test
         public void TestReadUser()
         {
             var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(person);
             var state = person.ReadContributor(person.GetName());
 
             Assert.DoesNotThrow(() => state.IfSuccessful());

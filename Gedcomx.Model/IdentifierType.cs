@@ -25,6 +25,7 @@ namespace Gx.Types {
     /// <summary>
     ///   The primary identifier for the resource.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Primary")]
     Primary,
 
     /// <summary>
@@ -35,6 +36,7 @@ namespace Gx.Types {
     ///   (working) person conclusion identifies the evidence used to support the conclusion by including
     ///   each evidence identifier in the list of identifiers for the person.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Evidence")]
     Evidence,
 
     /// <summary>
@@ -42,6 +44,7 @@ namespace Gx.Types {
     ///   identifier is commonly used as the result of a merge when what was once a primary
     ///   identifier for a person is no longer primary.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Deprecated")]
     Deprecated,
 
     /// <summary>
@@ -49,59 +52,13 @@ namespace Gx.Types {
     ///   that provide persistent identifiers are claiming that links to the resource using the identifier
     ///   won't break.
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Persistent")]
     Persistent,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
+    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/OTHER")]
     OTHER
-  }
-
-  /// <remarks>
-  /// Utility class for converting to/from the QNames associated with IdentifierType.
-  /// </remarks>
-  /// <summary>
-  /// Utility class for converting to/from the QNames associated with IdentifierType.
-  /// </summary>
-  public static class IdentifierTypeQNameUtil {
-
-    /// <summary>
-    /// Get the known IdentifierType for a given QName. If the QName isn't a known QName, IdentifierType.OTHER will be returned.
-    /// </summary>
-    public static IdentifierType ConvertFromKnownQName(string qname) {
-      if (qname != null) {
-        if ("http://gedcomx.org/Primary".Equals(qname)) {
-          return IdentifierType.Primary;
-        }
-        if ("http://gedcomx.org/Evidence".Equals(qname)) {
-          return IdentifierType.Evidence;
-        }
-        if ("http://gedcomx.org/Deprecated".Equals(qname)) {
-          return IdentifierType.Deprecated;
-        }
-        if ("http://gedcomx.org/Persistent".Equals(qname)) {
-          return IdentifierType.Persistent;
-        }
-      }
-      return IdentifierType.OTHER;
-    }
-
-    /// <summary>
-    /// Convert the known IdentifierType to a QName. If IdentifierType.OTHER, an ArgumentException will be thrown.
-    /// </summary>
-    public static string ConvertToKnownQName(IdentifierType known) {
-      switch (known) {
-        case IdentifierType.Primary:
-          return "http://gedcomx.org/Primary";
-        case IdentifierType.Evidence:
-          return "http://gedcomx.org/Evidence";
-        case IdentifierType.Deprecated:
-          return "http://gedcomx.org/Deprecated";
-        case IdentifierType.Persistent:
-          return "http://gedcomx.org/Persistent";
-        default:
-          throw new System.ArgumentException("No known QName for: " + known, "known");
-      }
-    }
   }
 }

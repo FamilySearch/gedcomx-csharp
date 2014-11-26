@@ -85,7 +85,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="GedcomxApplicationState{T}"/> instance, of type <see cref="Gx.Gedcomx"/>, containing the REST API response.
         /// </returns>
-        protected override GedcomxApplicationState<Gx.Gedcomx> Clone(IRestRequest request, IRestResponse response, IFilterableRestClient client)
+        protected override GedcomxApplicationState Clone(IRestRequest request, IRestResponse response, IFilterableRestClient client)
         {
             return new FamilyTreePersonState(request, response, client, this.CurrentAccessToken, (FamilyTreeStateFactory)this.stateFactory);
         }

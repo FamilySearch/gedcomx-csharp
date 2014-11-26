@@ -107,7 +107,7 @@ namespace Gedcomx.Model.Rt
             base.VisitSourceCitation(citation);
         }
 
-        public void VisitCollection(Collection collection)
+        public override void VisitCollection(Collection collection)
         {
             BindIfNeeded(collection);
             base.VisitCollection(collection);

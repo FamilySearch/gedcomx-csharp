@@ -1,5 +1,6 @@
 ﻿using FamilySearch.Api.Ft;
 using FamilySearch.Api.Util;
+using Gx.Rs.Api;
 using Gx.Rs.Api.Options;
 using Gx.Rs.Api.Util;
 using NUnit.Framework;
@@ -16,24 +17,40 @@ namespace Gedcomx.Rs.Api.Test
     public class PedigreeTests
     {
         private FamilySearchFamilyTree tree;
+        private List<GedcomxApplicationState> cleanup;
 
         [TestFixtureSetUp]
         public void Initialize()
         {
             tree = new FamilySearchFamilyTree(true);
             tree.AuthenticateViaOAuth2Password(Resources.TestUserName, Resources.TestPassword, Resources.TestClientId);
+            cleanup = new List<GedcomxApplicationState>();
             Assert.DoesNotThrow(() => tree.IfSuccessful());
             Assert.IsNotNullOrEmpty(tree.CurrentAccessToken);
+        }
+
+        [TestFixtureTearDown]
+        public void TearDown()
+        {
+            foreach (var state in cleanup)
+            {
+                state.Delete();
+            }
         }
 
         [Test]
         public void TestReadPersonAncestry()
         {
             var grandfather = tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(grandfather);
             var father = tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(father);
             var son = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
-            tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(grandfather, null, father));
-            tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, null, son));
+            cleanup.Add(son);
+            var rel1 = tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(grandfather, null, father));
+            cleanup.Add(rel1);
+            var rel2 = tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, null, son));
+            cleanup.Add(rel2);
             son = tree.ReadPersonById(son.Person.Id);
             var state = son.ReadAncestry();
 
@@ -55,10 +72,15 @@ namespace Gedcomx.Rs.Api.Test
         public void TestReadPersonAncestryAndAdditionalPersonDetails()
         {
             var grandfather = tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(grandfather);
             var father = tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(father);
             var son = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
-            tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(grandfather, null, father));
-            tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, null, son));
+            cleanup.Add(son);
+            var rel1 = tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(grandfather, null, father));
+            cleanup.Add(rel1);
+            var rel2 = tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, null, son));
+            cleanup.Add(rel2);
             son = tree.ReadPersonById(son.Person.Id);
             var state = son.ReadAncestry(FamilySearchOptions.IncludePersonDetails());
 
@@ -83,12 +105,19 @@ namespace Gedcomx.Rs.Api.Test
         public void TestReadPersonAncestryWithSpecifiedSpouse()
         {
             var grandfather = tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(grandfather);
             var father = tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(father);
             var husband = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(husband);
             var wife = tree.AddPerson(TestBacking.GetCreateFemalePerson());
-            husband.AddSpouse(wife);
-            tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(grandfather, null, father));
-            tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, null, husband));
+            cleanup.Add(wife);
+            var rel1 = husband.AddSpouse(wife);
+            cleanup.Add(rel1);
+            var rel2 = tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(grandfather, null, father));
+            cleanup.Add(rel2);
+            var rel3 = tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, null, husband));
+            cleanup.Add(rel3);
             husband = tree.ReadPersonById(husband.Person.Id);
             var state = husband.ReadAncestry(FamilySearchOptions.SpouseId(wife.Headers.Get("X-ENTITY-ID").Single().Value.ToString()));
 
@@ -114,12 +143,19 @@ namespace Gedcomx.Rs.Api.Test
         public void TestReadPersonAncestryWithSpecifiedSpouseAndAdditionalPersonAndMarriageDetails()
         {
             var grandfather = tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(grandfather);
             var father = tree.AddPerson(TestBacking.GetCreateMalePerson());
+            cleanup.Add(father);
             var husband = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(husband);
             var wife = tree.AddPerson(TestBacking.GetCreateFemalePerson());
-            husband.AddSpouse(wife).AddFact(TestBacking.GetMarriageFact());
-            tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(grandfather, null, father));
-            tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, null, husband));
+            cleanup.Add(wife);
+            var rel1 = husband.AddSpouse(wife).AddFact(TestBacking.GetMarriageFact());
+            cleanup.Add(rel1);
+            var rel2 = tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(grandfather, null, father));
+            cleanup.Add(rel2);
+            var rel3 = tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, null, husband));
+            cleanup.Add(rel3);
             husband = tree.ReadPersonById(husband.Person.Id);
             var state = husband.ReadAncestry(FamilySearchOptions.SpouseId(wife.Headers.Get("X-ENTITY-ID").Single().Value.ToString()), FamilySearchOptions.IncludePersonDetails(), FamilySearchOptions.IncludeMarriageDetails());
 
@@ -149,8 +185,11 @@ namespace Gedcomx.Rs.Api.Test
         public void TestReadPersonDescendancy()
         {
             var father = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(father);
             var son = tree.AddPerson(TestBacking.GetCreateMalePerson());
-            tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, null, son));
+            cleanup.Add(son);
+            var rel1 = tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, null, son));
+            cleanup.Add(rel1);
             var state = father.ReadDescendancy();
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
@@ -169,10 +208,15 @@ namespace Gedcomx.Rs.Api.Test
         public void TestReadPersonDescendancyAndAdditionalPersonAndMarriageDetails()
         {
             var father = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(father);
             var mother = tree.AddPerson(TestBacking.GetCreateFemalePerson());
+            cleanup.Add(mother);
             var son = tree.AddPerson(TestBacking.GetCreateMalePerson());
-            father.AddSpouse(mother).AddFact(TestBacking.GetMarriageFact());
-            tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, mother, son));
+            cleanup.Add(son);
+            var rel1 = father.AddSpouse(mother).AddFact(TestBacking.GetMarriageFact());
+            cleanup.Add(rel1);
+            var rel2 = tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, mother, son));
+            cleanup.Add(rel2);
             var state = father.ReadDescendancy(FamilySearchOptions.IncludePersonDetails(), FamilySearchOptions.IncludeMarriageDetails());
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
@@ -197,10 +241,15 @@ namespace Gedcomx.Rs.Api.Test
         public void TestReadPersonDescendancyWithSpecifiedSpouse()
         {
             var father = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(father);
             var mother = tree.AddPerson(TestBacking.GetCreateFemalePerson());
+            cleanup.Add(mother);
             var son = tree.AddPerson(TestBacking.GetCreateMalePerson());
-            father.AddSpouse(mother).AddFact(TestBacking.GetMarriageFact());
-            tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, mother, son));
+            cleanup.Add(son);
+            var rel1 = father.AddSpouse(mother).AddFact(TestBacking.GetMarriageFact());
+            cleanup.Add(rel1);
+            var rel2 = tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, mother, son));
+            cleanup.Add(rel2);
             var state = father.ReadDescendancy(FamilySearchOptions.SpouseId(mother.Headers.Get("X-ENTITY-ID").Single().Value.ToString()));
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
@@ -221,10 +270,15 @@ namespace Gedcomx.Rs.Api.Test
         public void TestReadPersonDescendancyWithSpecifiedSpouseAndAdditionalPersonAndMarriageDetails()
         {
             var father = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(father);
             var mother = tree.AddPerson(TestBacking.GetCreateFemalePerson());
+            cleanup.Add(mother);
             var son = tree.AddPerson(TestBacking.GetCreateMalePerson());
-            father.AddSpouse(mother).AddFact(TestBacking.GetMarriageFact());
-            tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, mother, son));
+            cleanup.Add(son);
+            var rel1 = father.AddSpouse(mother).AddFact(TestBacking.GetMarriageFact());
+            cleanup.Add(rel1);
+            var rel2 = tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, mother, son));
+            cleanup.Add(rel2);
             var state = father.ReadDescendancy(FamilySearchOptions.SpouseId(mother.Headers.Get("X-ENTITY-ID").Single().Value.ToString()), FamilySearchOptions.IncludePersonDetails(), FamilySearchOptions.IncludeMarriageDetails());
 
             Assert.DoesNotThrow(() => state.IfSuccessful());

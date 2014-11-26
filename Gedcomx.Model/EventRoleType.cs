@@ -5,94 +5,53 @@
 // </auto-generated>
 using System;
 
-namespace Gx.Types {
+namespace Gx.Types
+{
 
-  /// <remarks>
-  ///  Enumeration of standard event roles.
-  /// </remarks>
-  /// <summary>
-  ///  Enumeration of standard event roles.
-  /// </summary>
-  public enum EventRoleType {
-
+    /// <remarks>
+    ///  Enumeration of standard event roles.
+    /// </remarks>
     /// <summary>
-    ///  Unspecified enum value.
+    ///  Enumeration of standard event roles.
     /// </summary>
-    [System.Xml.Serialization.XmlEnumAttribute(Name="__NULL__")]
-    [System.Xml.Serialization.SoapEnumAttribute(Name="__NULL__")]
-    NULL,
+    public enum EventRoleType
+    {
 
-    /// <summary>
-    ///  (no documentation provided)
-    /// </summary>
-    Principal,
+        /// <summary>
+        ///  Unspecified enum value.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnumAttribute(Name = "__NULL__")]
+        [System.Xml.Serialization.SoapEnumAttribute(Name = "__NULL__")]
+        NULL,
 
-    /// <summary>
-    ///  (no documentation provided)
-    /// </summary>
-    Participant,
+        /// <summary>
+        ///  (no documentation provided)
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Principal")]
+        Principal,
 
-    /// <summary>
-    ///  (no documentation provided)
-    /// </summary>
-    Official,
+        /// <summary>
+        ///  (no documentation provided)
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Participant")]
+        Participant,
 
-    /// <summary>
-    ///  (no documentation provided)
-    /// </summary>
-    Witness,
+        /// <summary>
+        ///  (no documentation provided)
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Official")]
+        Official,
 
-    /// <summary>
-    ///  (no documentation provided)
-    /// </summary>
-    OTHER
-  }
+        /// <summary>
+        ///  (no documentation provided)
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Witness")]
+        Witness,
 
-  /// <remarks>
-  /// Utility class for converting to/from the QNames associated with EventRoleType.
-  /// </remarks>
-  /// <summary>
-  /// Utility class for converting to/from the QNames associated with EventRoleType.
-  /// </summary>
-  public static class EventRoleTypeQNameUtil {
-
-    /// <summary>
-    /// Get the known EventRoleType for a given QName. If the QName isn't a known QName, EventRoleType.OTHER will be returned.
-    /// </summary>
-    public static EventRoleType ConvertFromKnownQName(string qname) {
-      if (qname != null) {
-        if ("http://gedcomx.org/Principal".Equals(qname)) {
-          return EventRoleType.Principal;
-        }
-        if ("http://gedcomx.org/Participant".Equals(qname)) {
-          return EventRoleType.Participant;
-        }
-        if ("http://gedcomx.org/Official".Equals(qname)) {
-          return EventRoleType.Official;
-        }
-        if ("http://gedcomx.org/Witness".Equals(qname)) {
-          return EventRoleType.Witness;
-        }
-      }
-      return EventRoleType.OTHER;
+        /// <summary>
+        ///  (no documentation provided)
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/OTHER")]
+        OTHER
     }
-
-    /// <summary>
-    /// Convert the known EventRoleType to a QName. If EventRoleType.OTHER, an ArgumentException will be thrown.
-    /// </summary>
-    public static string ConvertToKnownQName(EventRoleType known) {
-      switch (known) {
-        case EventRoleType.Principal:
-          return "http://gedcomx.org/Principal";
-        case EventRoleType.Participant:
-          return "http://gedcomx.org/Participant";
-        case EventRoleType.Official:
-          return "http://gedcomx.org/Official";
-        case EventRoleType.Witness:
-          return "http://gedcomx.org/Witness";
-        default:
-          throw new System.ArgumentException("No known QName for: " + known, "known");
-      }
-    }
-  }
 }

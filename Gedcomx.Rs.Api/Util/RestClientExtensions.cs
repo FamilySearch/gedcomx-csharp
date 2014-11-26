@@ -105,7 +105,7 @@ namespace Gx.Rs.Api.Util
         /// and derivatives, it is broken into key value pairs, and each key value pair is added as a regular parameter via the
         /// <see cref="M:IRestRequest(String, Object)"/> method.
         /// </remarks>
-        public static IRestRequest SetEntity<T>(this IRestRequest @this, T entity)
+        public static IRestRequest SetEntity(this IRestRequest @this, object entity)
         {
             var dictionary = entity as System.Collections.IDictionary;
 

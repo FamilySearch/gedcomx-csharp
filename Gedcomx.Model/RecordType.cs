@@ -5,504 +5,299 @@
 // </auto-generated>
 using System;
 
-namespace Gx.Types {
+namespace Gx.Types
+{
 
-  /// <remarks>
-  ///  Enumeration of known record types.
-  /// </remarks>
-  /// <summary>
-  ///  Enumeration of known record types.
-  /// </summary>
-  public enum RecordType {
-
+    /// <remarks>
+    ///  Enumeration of known record types.
+    /// </remarks>
     /// <summary>
-    ///  Unspecified enum value.
+    ///  Enumeration of known record types.
     /// </summary>
-    [System.Xml.Serialization.XmlEnumAttribute(Name="__NULL__")]
-    [System.Xml.Serialization.SoapEnumAttribute(Name="__NULL__")]
-    NULL,
+    public enum RecordType
+    {
 
-    /// <summary>
-    ///   A record of a person's admission to an institution, society, or other association.
-    /// </summary>
-    Admission,
+        /// <summary>
+        ///  Unspecified enum value.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnumAttribute(Name = "__NULL__")]
+        [System.Xml.Serialization.SoapEnumAttribute(Name = "__NULL__")]
+        NULL,
 
-    /// <summary>
-    ///   A record of an adoption.
-    /// </summary>
-    Adoption,
+        /// <summary>
+        ///   A record of a person's admission to an institution, society, or other association.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Admission")]
+        Admission,
 
-    /// <summary>
-    ///   An affidavit.
-    /// </summary>
-    Affidavit,
+        /// <summary>
+        ///   A record of an adoption.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Adoption")]
+        Adoption,
 
-    /// <summary>
-    ///   A person's application to an institution, society or other association.
-    /// </summary>
-    Application,
+        /// <summary>
+        ///   An affidavit.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Affidavit")]
+        Affidavit,
 
-    /// <summary>
-    ///   A record of a person's arrival at a certain place.
-    /// </summary>
-    Arrival,
+        /// <summary>
+        ///   A person's application to an institution, society or other association.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Application")]
+        Application,
 
-    /// <summary>
-    ///   A bank record.
-    /// </summary>
-    Bank,
+        /// <summary>
+        ///   A record of a person's arrival at a certain place.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Arrival")]
+        Arrival,
 
-    /// <summary>
-    ///   A record of a person's baptism.
-    /// </summary>
-    Baptism,
+        /// <summary>
+        ///   A bank record.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Bank")]
+        Bank,
 
-    /// <summary>
-    ///   A record of a birth.
-    /// </summary>
-    Birth,
+        /// <summary>
+        ///   A record of a person's baptism.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Baptism")]
+        Baptism,
 
-    /// <summary>
-    ///   A record of a person's burial or interment.
-    /// </summary>
-    Burial,
+        /// <summary>
+        ///   A record of a birth.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Birth")]
+        Birth,
 
-    /// <summary>
-    ///   todo: document this type.
-    /// </summary>
-    Business,
+        /// <summary>
+        ///   A record of a person's burial or interment.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Burial")]
+        Burial,
 
-    /// <summary>
-    ///   todo: document this type.
-    /// </summary>
-    Cemetery,
+        /// <summary>
+        ///   todo: document this type.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Business")]
+        Business,
 
-    /// <summary>
-    ///   A census record.
-    /// </summary>
-    Census,
+        /// <summary>
+        ///   todo: document this type.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Cemetery")]
+        Cemetery,
 
-    /// <summary>
-    ///   A record of a person's christening.
-    /// </summary>
-    Christening,
+        /// <summary>
+        ///   A census record.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Census")]
+        Census,
 
-    /// <summary>
-    ///   A record of a person's confirmation.
-    /// </summary>
-    Confirmation,
+        /// <summary>
+        ///   A record of a person's christening.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Christening")]
+        Christening,
 
-    /// <summary>
-    ///   todo: document this type.
-    /// </summary>
-    Correspondence,
+        /// <summary>
+        ///   A record of a person's confirmation.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Confirmation")]
+        Confirmation,
 
-    /// <summary>
-    ///   A death record.
-    /// </summary>
-    Death,
+        /// <summary>
+        ///   todo: document this type.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Correspondence")]
+        Correspondence,
 
-    /// <summary>
-    ///   A record of a person's departure from a certain place.
-    /// </summary>
-    Departure,
+        /// <summary>
+        ///   A death record.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Death")]
+        Death,
 
-    /// <summary>
-    ///   A divorce record.
-    /// </summary>
-    Divorce,
+        /// <summary>
+        ///   A record of a person's departure from a certain place.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Departure")]
+        Departure,
 
-    /// <summary>
-    ///   todo: document this type.
-    /// </summary>
-    Duplicate,
+        /// <summary>
+        ///   A divorce record.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Divorce")]
+        Divorce,
 
-    /// <summary>
-    ///   A draft record.
-    /// </summary>
-    Draft,
+        /// <summary>
+        ///   todo: document this type.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Duplicate")]
+        Duplicate,
 
-    /// <summary>
-    ///   todo: document this type.
-    /// </summary>
-    Estate,
+        /// <summary>
+        ///   A draft record.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Draft")]
+        Draft,
 
-    /// <summary>
-    ///   todo: document this type.
-    /// </summary>
-    Index,
+        /// <summary>
+        ///   todo: document this type.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Estate")]
+        Estate,
 
-    /// <summary>
-    ///   todo: document this type. what's the difference between this an MarrigeBanns?
-    /// </summary>
-    IntendedMarriage,
+        /// <summary>
+        ///   todo: document this type.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Index")]
+        Index,
 
-    /// <summary>
-    ///   A land record.
-    /// </summary>
-    Land,
+        /// <summary>
+        ///   todo: document this type. what's the difference between this an MarrigeBanns?
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/IntendedMarriage")]
+        IntendedMarriage,
 
-    /// <summary>
-    ///   A legal record.
-    /// </summary>
-    Legal,
+        /// <summary>
+        ///   A land record.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Land")]
+        Land,
 
-    /// <summary>
-    ///   A marriage record.
-    /// </summary>
-    Marriage,
+        /// <summary>
+        ///   A legal record.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Legal")]
+        Legal,
 
-    /// <summary>
-    ///   A marriage affadavit. todo: is this distinguishment necessary? why not just use Marriage?
-    /// </summary>
-    MarriageAffidavit,
+        /// <summary>
+        ///   A marriage record.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Marriage")]
+        Marriage,
 
-    /// <summary>
-    ///   todo: document this type.
-    /// </summary>
-    MarriageAmendment,
+        /// <summary>
+        ///   A marriage affadavit. todo: is this distinguishment necessary? why not just use Marriage?
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/MarriageAffidavit")]
+        MarriageAffidavit,
 
-    /// <summary>
-    ///   A record of a person's banns of marriage.
-    /// </summary>
-    MarriageBanns,
+        /// <summary>
+        ///   todo: document this type.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/MarriageAmendment")]
+        MarriageAmendment,
 
-    /// <summary>
-    ///   todo: document this type. why not just use marriage banns?
-    /// </summary>
-    MarriageConsent,
+        /// <summary>
+        ///   A record of a person's banns of marriage.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/MarriageBanns")]
+        MarriageBanns,
 
-    /// <summary>
-    ///   todo: document this type.
-    /// </summary>
-    MarriageDuplicate,
+        /// <summary>
+        ///   todo: document this type. why not just use marriage banns?
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/MarriageConsent")]
+        MarriageConsent,
 
-    /// <summary>
-    ///   A marriage license. todo: is this distinguishment necessary? why not just use Marriage?
-    /// </summary>
-    MarriageLicense,
+        /// <summary>
+        ///   todo: document this type.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/MarriageDuplicate")]
+        MarriageDuplicate,
 
-    /// <summary>
-    ///   todo: document this type. is this distinguishment necessary? why not just use Marriage?
-    /// </summary>
-    MarriageReturns,
+        /// <summary>
+        ///   A marriage license. todo: is this distinguishment necessary? why not just use Marriage?
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/MarriageLicense")]
+        MarriageLicense,
 
-    /// <summary>
-    ///   todo: document this type. is this distinguishment necessary?
-    /// </summary>
-    Membership,
+        /// <summary>
+        ///   todo: document this type. is this distinguishment necessary? why not just use Marriage?
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/MarriageReturns")]
+        MarriageReturns,
 
-    /// <summary>
-    ///   A migration record.
-    /// </summary>
-    Migration,
+        /// <summary>
+        ///   todo: document this type. is this distinguishment necessary?
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Membership")]
+        Membership,
 
-    /// <summary>
-    ///   A military record.
-    /// </summary>
-    Military,
+        /// <summary>
+        ///   A migration record.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Migration")]
+        Migration,
 
-    /// <summary>
-    ///   A naturalization record.
-    /// </summary>
-    Naturalization,
+        /// <summary>
+        ///   A military record.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Military")]
+        Military,
 
-    /// <summary>
-    ///   A passenger record.
-    /// </summary>
-    Passenger,
+        /// <summary>
+        ///   A naturalization record.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Naturalization")]
+        Naturalization,
 
-    /// <summary>
-    ///   A pension record.
-    /// </summary>
-    Pension,
+        /// <summary>
+        ///   A passenger record.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Passenger")]
+        Passenger,
 
-    /// <summary>
-    ///   A probate record.
-    /// </summary>
-    Probate,
+        /// <summary>
+        ///   A pension record.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Pension")]
+        Pension,
 
-    /// <summary>
-    ///   todo: document this type.
-    /// </summary>
-    RelatedDocument,
+        /// <summary>
+        ///   A probate record.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Probate")]
+        Probate,
 
-    /// <summary>
-    ///   todo: document this type.
-    /// </summary>
-    ReligiousCreeds,
+        /// <summary>
+        ///   todo: document this type.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/RelatedDocument")]
+        RelatedDocument,
 
-    /// <summary>
-    ///   A roll.
-    /// </summary>
-    Roll,
+        /// <summary>
+        ///   todo: document this type.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/ReligiousCreeds")]
+        ReligiousCreeds,
 
-    /// <summary>
-    ///   A tax record.
-    /// </summary>
-    Tax,
+        /// <summary>
+        ///   A roll.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Roll")]
+        Roll,
 
-    /// <summary>
-    ///   A vital record.
-    /// </summary>
-    Vital,
+        /// <summary>
+        ///   A tax record.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Tax")]
+        Tax,
 
-    /// <summary>
-    ///   Custom
-    /// </summary>
-    OTHER
-  }
+        /// <summary>
+        ///   A vital record.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Vital")]
+        Vital,
 
-  /// <remarks>
-  /// Utility class for converting to/from the QNames associated with RecordType.
-  /// </remarks>
-  /// <summary>
-  /// Utility class for converting to/from the QNames associated with RecordType.
-  /// </summary>
-  public static class RecordTypeQNameUtil {
-
-    /// <summary>
-    /// Get the known RecordType for a given QName. If the QName isn't a known QName, RecordType.OTHER will be returned.
-    /// </summary>
-    public static RecordType ConvertFromKnownQName(string qname) {
-      if (qname != null) {
-        if ("http://gedcomx.org/Admission".Equals(qname)) {
-          return RecordType.Admission;
-        }
-        if ("http://gedcomx.org/Adoption".Equals(qname)) {
-          return RecordType.Adoption;
-        }
-        if ("http://gedcomx.org/Affidavit".Equals(qname)) {
-          return RecordType.Affidavit;
-        }
-        if ("http://gedcomx.org/Application".Equals(qname)) {
-          return RecordType.Application;
-        }
-        if ("http://gedcomx.org/Arrival".Equals(qname)) {
-          return RecordType.Arrival;
-        }
-        if ("http://gedcomx.org/Bank".Equals(qname)) {
-          return RecordType.Bank;
-        }
-        if ("http://gedcomx.org/Baptism".Equals(qname)) {
-          return RecordType.Baptism;
-        }
-        if ("http://gedcomx.org/Birth".Equals(qname)) {
-          return RecordType.Birth;
-        }
-        if ("http://gedcomx.org/Burial".Equals(qname)) {
-          return RecordType.Burial;
-        }
-        if ("http://gedcomx.org/Business".Equals(qname)) {
-          return RecordType.Business;
-        }
-        if ("http://gedcomx.org/Cemetery".Equals(qname)) {
-          return RecordType.Cemetery;
-        }
-        if ("http://gedcomx.org/Census".Equals(qname)) {
-          return RecordType.Census;
-        }
-        if ("http://gedcomx.org/Christening".Equals(qname)) {
-          return RecordType.Christening;
-        }
-        if ("http://gedcomx.org/Confirmation".Equals(qname)) {
-          return RecordType.Confirmation;
-        }
-        if ("http://gedcomx.org/Correspondence".Equals(qname)) {
-          return RecordType.Correspondence;
-        }
-        if ("http://gedcomx.org/Death".Equals(qname)) {
-          return RecordType.Death;
-        }
-        if ("http://gedcomx.org/Departure".Equals(qname)) {
-          return RecordType.Departure;
-        }
-        if ("http://gedcomx.org/Divorce".Equals(qname)) {
-          return RecordType.Divorce;
-        }
-        if ("http://gedcomx.org/Duplicate".Equals(qname)) {
-          return RecordType.Duplicate;
-        }
-        if ("http://gedcomx.org/Draft".Equals(qname)) {
-          return RecordType.Draft;
-        }
-        if ("http://gedcomx.org/Estate".Equals(qname)) {
-          return RecordType.Estate;
-        }
-        if ("http://gedcomx.org/Index".Equals(qname)) {
-          return RecordType.Index;
-        }
-        if ("http://gedcomx.org/IntendedMarriage".Equals(qname)) {
-          return RecordType.IntendedMarriage;
-        }
-        if ("http://gedcomx.org/Land".Equals(qname)) {
-          return RecordType.Land;
-        }
-        if ("http://gedcomx.org/Legal".Equals(qname)) {
-          return RecordType.Legal;
-        }
-        if ("http://gedcomx.org/Marriage".Equals(qname)) {
-          return RecordType.Marriage;
-        }
-        if ("http://gedcomx.org/MarriageAffidavit".Equals(qname)) {
-          return RecordType.MarriageAffidavit;
-        }
-        if ("http://gedcomx.org/MarriageAmendment".Equals(qname)) {
-          return RecordType.MarriageAmendment;
-        }
-        if ("http://gedcomx.org/MarriageBanns".Equals(qname)) {
-          return RecordType.MarriageBanns;
-        }
-        if ("http://gedcomx.org/MarriageConsent".Equals(qname)) {
-          return RecordType.MarriageConsent;
-        }
-        if ("http://gedcomx.org/MarriageDuplicate".Equals(qname)) {
-          return RecordType.MarriageDuplicate;
-        }
-        if ("http://gedcomx.org/MarriageLicense".Equals(qname)) {
-          return RecordType.MarriageLicense;
-        }
-        if ("http://gedcomx.org/MarriageReturns".Equals(qname)) {
-          return RecordType.MarriageReturns;
-        }
-        if ("http://gedcomx.org/Membership".Equals(qname)) {
-          return RecordType.Membership;
-        }
-        if ("http://gedcomx.org/Migration".Equals(qname)) {
-          return RecordType.Migration;
-        }
-        if ("http://gedcomx.org/Military".Equals(qname)) {
-          return RecordType.Military;
-        }
-        if ("http://gedcomx.org/Naturalization".Equals(qname)) {
-          return RecordType.Naturalization;
-        }
-        if ("http://gedcomx.org/Passenger".Equals(qname)) {
-          return RecordType.Passenger;
-        }
-        if ("http://gedcomx.org/Pension".Equals(qname)) {
-          return RecordType.Pension;
-        }
-        if ("http://gedcomx.org/Probate".Equals(qname)) {
-          return RecordType.Probate;
-        }
-        if ("http://gedcomx.org/RelatedDocument".Equals(qname)) {
-          return RecordType.RelatedDocument;
-        }
-        if ("http://gedcomx.org/ReligiousCreeds".Equals(qname)) {
-          return RecordType.ReligiousCreeds;
-        }
-        if ("http://gedcomx.org/Roll".Equals(qname)) {
-          return RecordType.Roll;
-        }
-        if ("http://gedcomx.org/Tax".Equals(qname)) {
-          return RecordType.Tax;
-        }
-        if ("http://gedcomx.org/Vital".Equals(qname)) {
-          return RecordType.Vital;
-        }
-      }
-      return RecordType.OTHER;
+        /// <summary>
+        ///   Custom
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/OTHER")]
+        OTHER
     }
-
-    /// <summary>
-    /// Convert the known RecordType to a QName. If RecordType.OTHER, an ArgumentException will be thrown.
-    /// </summary>
-    public static string ConvertToKnownQName(RecordType known) {
-      switch (known) {
-        case RecordType.Admission:
-          return "http://gedcomx.org/Admission";
-        case RecordType.Adoption:
-          return "http://gedcomx.org/Adoption";
-        case RecordType.Affidavit:
-          return "http://gedcomx.org/Affidavit";
-        case RecordType.Application:
-          return "http://gedcomx.org/Application";
-        case RecordType.Arrival:
-          return "http://gedcomx.org/Arrival";
-        case RecordType.Bank:
-          return "http://gedcomx.org/Bank";
-        case RecordType.Baptism:
-          return "http://gedcomx.org/Baptism";
-        case RecordType.Birth:
-          return "http://gedcomx.org/Birth";
-        case RecordType.Burial:
-          return "http://gedcomx.org/Burial";
-        case RecordType.Business:
-          return "http://gedcomx.org/Business";
-        case RecordType.Cemetery:
-          return "http://gedcomx.org/Cemetery";
-        case RecordType.Census:
-          return "http://gedcomx.org/Census";
-        case RecordType.Christening:
-          return "http://gedcomx.org/Christening";
-        case RecordType.Confirmation:
-          return "http://gedcomx.org/Confirmation";
-        case RecordType.Correspondence:
-          return "http://gedcomx.org/Correspondence";
-        case RecordType.Death:
-          return "http://gedcomx.org/Death";
-        case RecordType.Departure:
-          return "http://gedcomx.org/Departure";
-        case RecordType.Divorce:
-          return "http://gedcomx.org/Divorce";
-        case RecordType.Duplicate:
-          return "http://gedcomx.org/Duplicate";
-        case RecordType.Draft:
-          return "http://gedcomx.org/Draft";
-        case RecordType.Estate:
-          return "http://gedcomx.org/Estate";
-        case RecordType.Index:
-          return "http://gedcomx.org/Index";
-        case RecordType.IntendedMarriage:
-          return "http://gedcomx.org/IntendedMarriage";
-        case RecordType.Land:
-          return "http://gedcomx.org/Land";
-        case RecordType.Legal:
-          return "http://gedcomx.org/Legal";
-        case RecordType.Marriage:
-          return "http://gedcomx.org/Marriage";
-        case RecordType.MarriageAffidavit:
-          return "http://gedcomx.org/MarriageAffidavit";
-        case RecordType.MarriageAmendment:
-          return "http://gedcomx.org/MarriageAmendment";
-        case RecordType.MarriageBanns:
-          return "http://gedcomx.org/MarriageBanns";
-        case RecordType.MarriageConsent:
-          return "http://gedcomx.org/MarriageConsent";
-        case RecordType.MarriageDuplicate:
-          return "http://gedcomx.org/MarriageDuplicate";
-        case RecordType.MarriageLicense:
-          return "http://gedcomx.org/MarriageLicense";
-        case RecordType.MarriageReturns:
-          return "http://gedcomx.org/MarriageReturns";
-        case RecordType.Membership:
-          return "http://gedcomx.org/Membership";
-        case RecordType.Migration:
-          return "http://gedcomx.org/Migration";
-        case RecordType.Military:
-          return "http://gedcomx.org/Military";
-        case RecordType.Naturalization:
-          return "http://gedcomx.org/Naturalization";
-        case RecordType.Passenger:
-          return "http://gedcomx.org/Passenger";
-        case RecordType.Pension:
-          return "http://gedcomx.org/Pension";
-        case RecordType.Probate:
-          return "http://gedcomx.org/Probate";
-        case RecordType.RelatedDocument:
-          return "http://gedcomx.org/RelatedDocument";
-        case RecordType.ReligiousCreeds:
-          return "http://gedcomx.org/ReligiousCreeds";
-        case RecordType.Roll:
-          return "http://gedcomx.org/Roll";
-        case RecordType.Tax:
-          return "http://gedcomx.org/Tax";
-        case RecordType.Vital:
-          return "http://gedcomx.org/Vital";
-        default:
-          throw new System.ArgumentException("No known QName for: " + known, "known");
-      }
-    }
-  }
 }

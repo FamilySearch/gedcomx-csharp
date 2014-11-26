@@ -25,67 +25,19 @@ namespace Gx.Fs.Tree
         /// <summary>
         ///  (no documentation provided)
         /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://familysearch.org/v1/Pending")]
         Pending,
 
         /// <summary>
         ///  (no documentation provided)
         /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://familysearch.org/v1/Accepted")]
         Accepted,
 
         /// <summary>
         ///  (no documentation provided)
         /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://familysearch.org/v1/Rejected")]
         Rejected
-    }
-
-    /// <remarks>
-    /// Utility class for converting to/from the QNames associated with MatchStatus.
-    /// </remarks>
-    /// <summary>
-    /// Utility class for converting to/from the QNames associated with MatchStatus.
-    /// </summary>
-    public static class MatchStatusQNameUtil
-    {
-
-        /// <summary>
-        /// Get the known MatchStatus for a given QName. If the QName isn't a known QName, MatchStatus.NULL will be returned.
-        /// </summary>
-        public static MatchStatus ConvertFromKnownQName(string qname)
-        {
-            if (qname != null)
-            {
-                if ("http://familysearch.org/v1/Pending".Equals(qname))
-                {
-                    return MatchStatus.Pending;
-                }
-                if ("http://familysearch.org/v1/Accepted".Equals(qname))
-                {
-                    return MatchStatus.Accepted;
-                }
-                if ("http://familysearch.org/v1/Rejected".Equals(qname))
-                {
-                    return MatchStatus.Rejected;
-                }
-            }
-            return MatchStatus.NULL;
-        }
-
-        /// <summary>
-        /// Convert the known MatchStatus to a QName. If MatchStatus.NULL, an ArgumentException will be thrown.
-        /// </summary>
-        public static string ConvertToKnownQName(MatchStatus known)
-        {
-            switch (known)
-            {
-                case MatchStatus.Pending:
-                    return "http://familysearch.org/v1/Pending";
-                case MatchStatus.Accepted:
-                    return "http://familysearch.org/v1/Accepted";
-                case MatchStatus.Rejected:
-                    return "http://familysearch.org/v1/Rejected";
-                default:
-                    throw new System.ArgumentException("No known QName for: " + known, "known");
-            }
-        }
     }
 }

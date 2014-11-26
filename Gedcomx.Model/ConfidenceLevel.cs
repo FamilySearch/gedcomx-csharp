@@ -5,84 +5,47 @@
 // </auto-generated>
 using System;
 
-namespace Gx.Types {
+namespace Gx.Types
+{
 
-  /// <remarks>
-  ///  Enumeration of levels of confidence.
-  /// </remarks>
-  /// <summary>
-  ///  Enumeration of levels of confidence.
-  /// </summary>
-  public enum ConfidenceLevel {
-
+    /// <remarks>
+    ///  Enumeration of levels of confidence.
+    /// </remarks>
     /// <summary>
-    ///  Unspecified enum value.
+    ///  Enumeration of levels of confidence.
     /// </summary>
-    [System.Xml.Serialization.XmlEnumAttribute(Name="__NULL__")]
-    [System.Xml.Serialization.SoapEnumAttribute(Name="__NULL__")]
-    NULL,
+    public enum ConfidenceLevel
+    {
 
-    /// <summary>
-    ///   High of confidence.
-    /// </summary>
-    High,
+        /// <summary>
+        ///  Unspecified enum value.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnumAttribute(Name = "__NULL__")]
+        [System.Xml.Serialization.SoapEnumAttribute(Name = "__NULL__")]
+        NULL,
 
-    /// <summary>
-    ///   Medium of confidence.
-    /// </summary>
-    Medium,
+        /// <summary>
+        ///   High of confidence.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/High")]
+        High,
 
-    /// <summary>
-    ///   Low of confidence.
-    /// </summary>
-    Low,
+        /// <summary>
+        ///   Medium of confidence.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Medium")]
+        Medium,
 
-    /// <summary>
-    ///  (no documentation provided)
-    /// </summary>
-    OTHER
-  }
+        /// <summary>
+        ///   Low of confidence.
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Low")]
+        Low,
 
-  /// <remarks>
-  /// Utility class for converting to/from the QNames associated with ConfidenceLevel.
-  /// </remarks>
-  /// <summary>
-  /// Utility class for converting to/from the QNames associated with ConfidenceLevel.
-  /// </summary>
-  public static class ConfidenceLevelQNameUtil {
-
-    /// <summary>
-    /// Get the known ConfidenceLevel for a given QName. If the QName isn't a known QName, ConfidenceLevel.OTHER will be returned.
-    /// </summary>
-    public static ConfidenceLevel ConvertFromKnownQName(string qname) {
-      if (qname != null) {
-        if ("http://gedcomx.org/High".Equals(qname)) {
-          return ConfidenceLevel.High;
-        }
-        if ("http://gedcomx.org/Medium".Equals(qname)) {
-          return ConfidenceLevel.Medium;
-        }
-        if ("http://gedcomx.org/Low".Equals(qname)) {
-          return ConfidenceLevel.Low;
-        }
-      }
-      return ConfidenceLevel.OTHER;
+        /// <summary>
+        ///  (no documentation provided)
+        /// </summary>
+        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/OTHER")]
+        OTHER
     }
-
-    /// <summary>
-    /// Convert the known ConfidenceLevel to a QName. If ConfidenceLevel.OTHER, an ArgumentException will be thrown.
-    /// </summary>
-    public static string ConvertToKnownQName(ConfidenceLevel known) {
-      switch (known) {
-        case ConfidenceLevel.High:
-          return "http://gedcomx.org/High";
-        case ConfidenceLevel.Medium:
-          return "http://gedcomx.org/Medium";
-        case ConfidenceLevel.Low:
-          return "http://gedcomx.org/Low";
-        default:
-          throw new System.ArgumentException("No known QName for: " + known, "known");
-      }
-    }
-  }
 }

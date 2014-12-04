@@ -102,6 +102,9 @@ namespace Gx.CLI
                 }
                 outWriter.WriteLine();
             }
+
+            // Ensure all the buffered data is written before finishing
+            outWriter.Flush();
         }
     }
 }

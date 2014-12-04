@@ -1,10 +1,12 @@
+using Gx.Conclusion;
+using Gx.Records;
+using Gx.Source;
+using Gx.Types;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
-using Gx.Records;
-using Gx.Conclusion;
-using Gx.Types;
-using Gx.Source;
+using System.Linq;
 
 namespace Gx.Util
 {
@@ -123,8 +125,8 @@ namespace Gx.Util
         {
             private readonly HashSet<string> _columnNames = new HashSet<string>();
             private readonly List<Dictionary<string, string>> _rows = new List<Dictionary<string, string>>();
-            private Dictionary<string, string> _currentRecord;
-            private List<Dictionary<string, string>> _subrecords;
+            private SubRecord _currentRecord;
+            private List<SubRecord> _subrecords;
             private bool _parsingCensus;
 
             public FieldValueTableBuildingVisitor(RecordSet records)
@@ -139,29 +141,25 @@ namespace Gx.Util
                     _parsingCensus = true;
                 }
 
-                _currentRecord = new Dictionary<string, string>();
-                _subrecords = new List<Dictionary<string, string>>();
+                _currentRecord = new SubRecord();
+                _subrecords = new List<SubRecord>();
 
                 base.VisitGedcomx(gx);
 
                 if (_subrecords.Count > 0)
                 {
-                    //if we have any subrecords, the field values list only contains the field values
-                    //that are applicable to all subrecords. So iterate through each subrecord and add 
-                    //the values of the parent record to them.
-                    foreach (Dictionary<string, string> subrecord in _subrecords)
+                    int max = _subrecords.Max(x => x.GetLevel());
+
+                    // Only export "full" rows, since the subrecord chaining has some incomplete records (e.g., the parent records)
+                    foreach (SubRecord subrecord in _subrecords.Where(x => x.GetLevel() == max))
                     {
-                        foreach (KeyValuePair<string, string> entry in _currentRecord)
-                        {
-                            subrecord[entry.Key] = entry.Value;
-                        }
-                        _rows.Add(subrecord);
+                        _rows.Add(subrecord.ToRow());
                     }
                 }
                 else
                 {
                     //no subrecords; just add the record fields.
-                    _rows.Add(_currentRecord);
+                    _rows.Add(_currentRecord.ToRow());
                 }
 
                 _parsingCensus = false;
@@ -174,6 +172,12 @@ namespace Gx.Util
                 if (fieldValue.LabelId != null)
                 {
                     _columnNames.Add(fieldValue.LabelId);
+                    if (_currentRecord.ContainsKey(fieldValue.LabelId) && _currentRecord[fieldValue.LabelId] != null && _currentRecord[fieldValue.LabelId] != fieldValue.Text)
+                    {
+                        // TODO: Log or throw warning. The condition that fires this block means an existing value will be overwritten by the current value.
+                        // This means a subrecord should have been created before visiting the model. See VisitPerson() and VisitName() for examples
+                        // on creating a subrecord visit to prevent this problem.
+                    }
                     _currentRecord[fieldValue.LabelId] = fieldValue.Text;
                 }
                 else
@@ -184,21 +188,12 @@ namespace Gx.Util
 
             public override void VisitPerson(Person person)
             {
-                Dictionary<string, string> recordFieldValues = _currentRecord;
-                if (_parsingCensus)
-                {
-                    _currentRecord = new Dictionary<string, string>();
-                }
+                CreateSubRecordVisit(() => base.VisitPerson(person));
+            }
 
-                base.VisitPerson(person);
-
-                if (_parsingCensus)
-                {
-                    //add the person as a subrecord...
-                    _subrecords.Add(_currentRecord);
-                    //...and put the record back.
-                    _currentRecord = recordFieldValues;
-                }
+            public override void VisitName(Name name)
+            {
+                CreateSubRecordVisit(() => base.VisitName(name));
             }
 
             public override void VisitSourceDescription(SourceDescription sourceDescription)
@@ -228,6 +223,18 @@ namespace Gx.Util
                 }
             }
 
+            private void CreateSubRecordVisit(Action action)
+            {
+                SubRecord recordFieldValues = _currentRecord;
+                _currentRecord = new SubRecord(new Dictionary<string, string>(), recordFieldValues);
+
+                action();
+
+                //add the person as a subrecord...
+                _subrecords.Add(new SubRecord(_currentRecord.Data.ToDictionary(x => x.Key, x => x.Value), recordFieldValues));
+                //...and put the record back.
+                _currentRecord = recordFieldValues;
+            }
         }
 
         /// <summary>
@@ -254,7 +261,6 @@ namespace Gx.Util
             {
                 _fields.Add(field);
             }
-
         }
 
         /// <summary>
@@ -315,9 +321,103 @@ namespace Gx.Util
                     personFields.Add(field);
                 }
             }
+        }
 
+        private class SubRecord
+        {
+            private Dictionary<string, string> data;
+
+            public SubRecord Parent { get; private set; }
+
+            public ReadOnlyDictionary<string, string> Data
+            {
+                get
+                {
+                    return new ReadOnlyDictionary<string, string>(data);
+                }
+            }
+
+            public SubRecord()
+            {
+                data = new Dictionary<string, string>();
+            }
+
+            public SubRecord(Dictionary<string, string> record)
+                : this()
+            {
+                data = record ?? data;
+            }
+
+            public SubRecord(Dictionary<string, string> record, SubRecord parent)
+                : this(record)
+            {
+                Parent = parent;
+            }
+
+            public Dictionary<string, string> ToRow()
+            {
+                Dictionary<string, string> result = new Dictionary<string, string>();
+
+                if (Parent != null)
+                {
+                    result = Parent.ToRow();
+                }
+
+                foreach (string key in data.Keys)
+                {
+                    result[key] = data[key];
+                }
+
+                return result;
+            }
+
+            public int GetLevel()
+            {
+                int result = 1;
+
+                if (Parent != null)
+                {
+                    result += Parent.GetLevel();
+                }
+
+                return result;
+            }
+
+            public bool ContainsKey(string key)
+            {
+                bool result = false;
+
+                if (data != null)
+                {
+                    result = data.ContainsKey(key);
+                }
+
+                return result;
+            }
+
+            public string this[string key]
+            {
+                get
+                {
+                    string result = null;
+
+                    if (data != null)
+                    {
+                        result = data[key];
+                    }
+
+                    return result;
+                }
+                set
+                {
+                    if (data == null)
+                    {
+                        data = new Dictionary<string, string>();
+                    }
+
+                    data[key] = value;
+                }
+            }
         }
     }
-
 }
-

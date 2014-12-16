@@ -10,7 +10,7 @@ namespace Gx.Rs.Api
     /// A collection of rel links to assist in looking up resource links. See remarks for additional information.
     /// </summary>
     /// <remarks>
-    /// When a resource is consumed, it typcially returns a set of hypermedia links that enable additional actions on the resource. While
+    /// When a resource is consumed, it typically returns a set of hypermedia links that enable additional actions on the resource. While
     /// resources typically provide links, not all links will be available on a given resource (such as paging links on a person resource).
     /// The links exposed in this class are a set of predefined constants, which can be used to determine if a link is available on a
     /// given resource.

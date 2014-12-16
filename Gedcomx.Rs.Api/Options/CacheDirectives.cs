@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Gx.Rs.Api.Options
 {
     /// <summary>
-    /// A REST API request options helper providing cache control features.This is similar to the <see cref="Preconditions"/> class, but applies
+    /// A REST API request options helper providing cache control features. This is similar to the <see cref="Preconditions"/> class, but applies
     /// inverse logic.
     /// </summary>
     public class CacheDirectives : StateTransitionOption

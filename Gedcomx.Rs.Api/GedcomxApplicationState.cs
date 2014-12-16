@@ -37,10 +37,10 @@ namespace Gx.Rs.Api
         /// </value>
         public IFilterableRestClient Client { get; protected set; }
         /// <summary>
-        /// Gets or sets the current access token (the OAuth2 token), see https://familysearch.org/developers/docs/api/authentication/Access_Token_resource".
+        /// Gets or sets the current access token (the OAuth2 token), see https://familysearch.org/developers/docs/api/authentication/Access_Token_resource.
         /// </summary>
         /// <value>
-        /// The current access token (the OAuth2 token), see https://familysearch.org/developers/docs/api/authentication/Access_Token_resource".
+        /// The current access token (the OAuth2 token), see https://familysearch.org/developers/docs/api/authentication/Access_Token_resource.
         /// </value>
         public String CurrentAccessToken { get; set; }
         /// <summary>
@@ -813,10 +813,10 @@ namespace Gx.Rs.Api
         }
 
         /// <summary>
-        /// Gets the rel name for the currrent state instance. This is expected to be overridden.
+        /// Gets the rel name for the current state instance. This is expected to be overridden.
         /// </summary>
         /// <value>
-        /// The rel name for the currrent state instance
+        /// The rel name for the current state instance
         /// </value>
         public virtual String SelfRel
         {

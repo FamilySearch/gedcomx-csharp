@@ -81,10 +81,10 @@ namespace Gx.Rs.Api.Util
             }
 
             /// <summary>
-            /// Gets the name of the current search parameter..
+            /// Gets the name of the current search parameter.
             /// </summary>
             /// <value>
-            /// The name of the current search parameter..
+            /// The name of the current search parameter.
             /// </value>
             public String Name
             {
@@ -95,10 +95,10 @@ namespace Gx.Rs.Api.Util
             }
 
             /// <summary>
-            /// Gets the value of the current search parameter..
+            /// Gets the value of the current search parameter.
             /// </summary>
             /// <value>
-            /// The value of the current search parameter..
+            /// The value of the current search parameter.
             /// </value>
             public String Value
             {

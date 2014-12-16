@@ -48,7 +48,7 @@ namespace Gx.Rs.Api.Util
         }
 
         /// <summary>
-        /// Gets all subject quad with the specified value.
+        /// Gets all subject quads with the specified value.
         /// </summary>
         /// <param name="this">The collection of all RDF quads to be searched.</param>
         /// <param name="value">The value to search for among all subjects from the specified collection.</param>

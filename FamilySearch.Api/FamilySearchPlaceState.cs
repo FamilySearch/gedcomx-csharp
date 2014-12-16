@@ -29,10 +29,10 @@ namespace FamilySearch.Api
         }
 
         /// <summary>
-        /// Gets the rel name for the currrent state instance. This is expected to be overridden.
+        /// Gets the rel name for the current state instance. This is expected to be overridden.
         /// </summary>
         /// <value>
-        /// The rel name for the currrent state instance
+        /// The rel name for the current state instance
         /// </value>
         public override String SelfRel
         {

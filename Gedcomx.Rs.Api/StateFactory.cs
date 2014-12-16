@@ -15,7 +15,7 @@ namespace Gx.Rs.Api
     public class StateFactory
     {
         /// <summary>
-        /// This the environment variable to use at runtime to determine if REST API request logging will occur.
+        /// This is the environment variable to use at runtime to determine if REST API request logging will occur.
         /// </summary>
         protected static readonly String ENABLE_LOG4NET_LOGGING_ENV_NAME = "enableLog4NetLogging";        // env variable/property to set
 

@@ -41,7 +41,7 @@ The [`extensions`](./Gedcomx.Model.Fs/README.md) module provides a place for ext
 a set of extensions to the GEDCOM X Conceptual Model and to the GEDCOM X RS specification that comprise the definition of 
 [the FamilySearch API](https://developer.familysearch.org/).
  
-The [FamilySearch API Client](./extensions/familysearch/FamilySearch.Api/README.md) comprises the developer SDK for the FamilySearch API.
+The [FamilySearch API Client](./FamilySearch.Api/README.md) comprises the developer SDK for the FamilySearch API.
 
 <a name="Use"/>
 

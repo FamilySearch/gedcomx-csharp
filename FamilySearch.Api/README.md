@@ -96,9 +96,10 @@ String password = "...";
 String developerKey = "...";
 
 //read the Family Tree
-FamilySearchFamilyTree ft = new FamilySearchFamilyTree(useSandbox)
-  //and authenticate.
-  .AuthenticateViaOAuth2Password(username, password, developerKey);
+FamilySearchFamilyTree ft = new FamilySearchFamilyTree(useSandbox);
+
+//and authenticate.
+ft.AuthenticateViaOAuth2Password(username, password, developerKey);
 ```
 
 <a name="read-person-by-persistent-id"/>

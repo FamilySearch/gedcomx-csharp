@@ -96,7 +96,6 @@ namespace Gx.Rs.Api.Util
         /// <summary>
         /// Sets the specified entity as a parameter on the <see cref="IRestRequest"/>. See remarks.
         /// </summary>
-        /// <typeparam name="T">The type of entity to be set.</typeparam>
         /// <param name="this">The <see cref="IRestRequest"/> to have the entity embedded in the request.</param>
         /// <param name="entity">The entity to embed in the <see cref="IRestRequest"/>.</param>
         /// <returns>A <see cref="IRestRequest"/> with the specified entity embedded.</returns>

@@ -60,7 +60,7 @@ namespace Gx.Rs.Api
         /// <value>
         /// The main data element represented by this state instance.
         /// </value>
-        protected override SupportsLinks MainDataElement
+        protected override ISupportsLinks MainDataElement
         {
             get
             {
@@ -89,7 +89,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="PlaceDescriptionsState"/> instance containing the REST API response.
         /// </returns>
-        public PlaceDescriptionsState ReadChildren(params StateTransitionOption[] options)
+        public PlaceDescriptionsState ReadChildren(params IStateTransitionOption[] options)
         {
             Link link = GetLink(Rel.CHILDREN);
             if (link == null || link.Href == null)

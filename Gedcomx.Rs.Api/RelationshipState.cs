@@ -62,7 +62,7 @@ namespace Gx.Rs.Api
         /// <value>
         /// The main data element represented by this state instance.
         /// </value>
-        protected override SupportsLinks MainDataElement
+        protected override ISupportsLinks MainDataElement
         {
             get
             {
@@ -180,7 +180,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="CollectionState"/> instance containing the REST API response.
         /// </returns>
-        public CollectionState ReadCollection(params StateTransitionOption[] options)
+        public CollectionState ReadCollection(params IStateTransitionOption[] options)
         {
             Link link = GetLink(Rel.COLLECTION);
             if (link == null || link.Href == null)
@@ -199,7 +199,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="PersonState"/> instance containing the REST API response.
         /// </returns>
-        public PersonState ReadPerson1(params StateTransitionOption[] options)
+        public PersonState ReadPerson1(params IStateTransitionOption[] options)
         {
             Relationship relationship = Relationship;
             if (relationship == null)
@@ -224,7 +224,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="PersonState"/> instance containing the REST API response.
         /// </returns>
-        public PersonState ReadPerson2(params StateTransitionOption[] options)
+        public PersonState ReadPerson2(params IStateTransitionOption[] options)
         {
             Relationship relationship = Relationship;
             if (relationship == null)
@@ -249,7 +249,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public RelationshipState LoadEmbeddedResources(params StateTransitionOption[] options)
+        public RelationshipState LoadEmbeddedResources(params IStateTransitionOption[] options)
         {
             IncludeEmbeddedResources<Gedcomx>(this.Entity);
             return this;
@@ -263,7 +263,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public RelationshipState LoadEmbeddedResources(String[] rels, params StateTransitionOption[] options)
+        public RelationshipState LoadEmbeddedResources(String[] rels, params IStateTransitionOption[] options)
         {
             foreach (String rel in rels)
             {
@@ -283,7 +283,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public RelationshipState LoadConclusions(params StateTransitionOption[] options)
+        public RelationshipState LoadConclusions(params IStateTransitionOption[] options)
         {
             return LoadEmbeddedResources(new String[] { Rel.CONCLUSIONS }, options);
         }
@@ -295,7 +295,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public RelationshipState LoadSourceReferences(params StateTransitionOption[] options)
+        public RelationshipState LoadSourceReferences(params IStateTransitionOption[] options)
         {
             return LoadEmbeddedResources(new String[] { Rel.SOURCE_REFERENCES }, options);
         }
@@ -307,7 +307,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public RelationshipState LoadMediaReferences(params StateTransitionOption[] options)
+        public RelationshipState LoadMediaReferences(params IStateTransitionOption[] options)
         {
             return LoadEmbeddedResources(new String[] { Rel.MEDIA_REFERENCES }, options);
         }
@@ -319,7 +319,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public RelationshipState LoadEvidenceReferences(params StateTransitionOption[] options)
+        public RelationshipState LoadEvidenceReferences(params IStateTransitionOption[] options)
         {
             return LoadEmbeddedResources(new String[] { Rel.EVIDENCE_REFERENCES }, options);
         }
@@ -331,7 +331,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public RelationshipState LoadNotes(params StateTransitionOption[] options)
+        public RelationshipState LoadNotes(params IStateTransitionOption[] options)
         {
             return LoadEmbeddedResources(new String[] { Rel.NOTES }, options);
         }
@@ -370,7 +370,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public RelationshipState AddFact(Fact fact, params StateTransitionOption[] options)
+        public RelationshipState AddFact(Fact fact, params IStateTransitionOption[] options)
         {
             return AddFacts(new Fact[] { fact }, options);
         }
@@ -383,7 +383,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public RelationshipState AddFacts(Fact[] facts, params StateTransitionOption[] options)
+        public RelationshipState AddFacts(Fact[] facts, params IStateTransitionOption[] options)
         {
             Relationship relationship = CreateEmptySelf();
             relationship.Facts = facts.ToList();
@@ -398,7 +398,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public RelationshipState UpdateFact(Fact fact, params StateTransitionOption[] options)
+        public RelationshipState UpdateFact(Fact fact, params IStateTransitionOption[] options)
         {
             return UpdateFacts(new Fact[] { fact }, options);
         }
@@ -411,7 +411,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public RelationshipState UpdateFacts(Fact[] facts, params StateTransitionOption[] options)
+        public RelationshipState UpdateFacts(Fact[] facts, params IStateTransitionOption[] options)
         {
             Relationship relationship = CreateEmptySelf();
             relationship.Facts = facts.ToList();
@@ -426,7 +426,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
-        protected RelationshipState UpdateConclusions(Relationship relationship, params StateTransitionOption[] options)
+        protected RelationshipState UpdateConclusions(Relationship relationship, params IStateTransitionOption[] options)
         {
             String target = GetSelfUri();
             Link conclusionsLink = GetLink(Rel.CONCLUSIONS);
@@ -449,7 +449,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public RelationshipState DeleteFact(Fact fact, params StateTransitionOption[] options)
+        public RelationshipState DeleteFact(Fact fact, params IStateTransitionOption[] options)
         {
             Link link = fact.GetLink(Rel.CONCLUSION);
             link = link == null ? fact.GetLink(Rel.SELF) : link;
@@ -470,7 +470,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public RelationshipState AddSourceReference(SourceDescriptionState source, params StateTransitionOption[] options)
+        public RelationshipState AddSourceReference(SourceDescriptionState source, params IStateTransitionOption[] options)
         {
             SourceReference reference = new SourceReference();
             reference.DescriptionRef = source.GetSelfUri();
@@ -485,7 +485,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public RelationshipState AddSourceReference(SourceReference reference, params StateTransitionOption[] options)
+        public RelationshipState AddSourceReference(SourceReference reference, params IStateTransitionOption[] options)
         {
             return AddSourceReferences(new SourceReference[] { reference }, options);
         }
@@ -498,7 +498,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public RelationshipState AddSourceReferences(SourceReference[] refs, params StateTransitionOption[] options)
+        public RelationshipState AddSourceReferences(SourceReference[] refs, params IStateTransitionOption[] options)
         {
             Relationship relationship = CreateEmptySelf();
             relationship.Sources = refs.ToList();
@@ -513,7 +513,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public RelationshipState UpdateSourceReference(SourceReference reference, params StateTransitionOption[] options)
+        public RelationshipState UpdateSourceReference(SourceReference reference, params IStateTransitionOption[] options)
         {
             return UpdateSourceReferences(new SourceReference[] { reference }, options);
         }
@@ -526,7 +526,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public RelationshipState UpdateSourceReferences(SourceReference[] refs, params StateTransitionOption[] options)
+        public RelationshipState UpdateSourceReferences(SourceReference[] refs, params IStateTransitionOption[] options)
         {
             Relationship relationship = CreateEmptySelf();
             relationship.Sources = refs.ToList();
@@ -541,7 +541,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
-        protected RelationshipState UpdateSourceReferences(Relationship relationship, params StateTransitionOption[] options)
+        protected RelationshipState UpdateSourceReferences(Relationship relationship, params IStateTransitionOption[] options)
         {
             String target = GetSelfUri();
             Link conclusionsLink = GetLink(Rel.SOURCE_REFERENCES);
@@ -565,7 +565,7 @@ namespace Gx.Rs.Api
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
         /// <exception cref="Gx.Rs.Api.GedcomxApplicationException">Thrown if this collection does not have a link to the resource.</exception>
-        public RelationshipState DeleteSourceReference(SourceReference reference, params StateTransitionOption[] options)
+        public RelationshipState DeleteSourceReference(SourceReference reference, params IStateTransitionOption[] options)
         {
             Link link = reference.GetLink(Rel.SOURCE_REFERENCE);
             link = link == null ? reference.GetLink(Rel.SELF) : link;
@@ -586,7 +586,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public RelationshipState AddMediaReference(SourceDescriptionState description, params StateTransitionOption[] options)
+        public RelationshipState AddMediaReference(SourceDescriptionState description, params IStateTransitionOption[] options)
         {
             SourceReference reference = new SourceReference();
             reference.DescriptionRef = description.GetSelfUri();
@@ -601,7 +601,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public RelationshipState AddMediaReference(SourceReference reference, params StateTransitionOption[] options)
+        public RelationshipState AddMediaReference(SourceReference reference, params IStateTransitionOption[] options)
         {
             return AddMediaReferences(new SourceReference[] { reference }, options);
         }
@@ -614,7 +614,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public RelationshipState AddMediaReferences(SourceReference[] refs, params StateTransitionOption[] options)
+        public RelationshipState AddMediaReferences(SourceReference[] refs, params IStateTransitionOption[] options)
         {
             Relationship relationship = CreateEmptySelf();
             relationship.Media = refs.ToList();
@@ -629,7 +629,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public RelationshipState UpdateMediaReference(SourceReference reference, params StateTransitionOption[] options)
+        public RelationshipState UpdateMediaReference(SourceReference reference, params IStateTransitionOption[] options)
         {
             return UpdateMediaReferences(new SourceReference[] { reference }, options);
         }
@@ -642,7 +642,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public RelationshipState UpdateMediaReferences(SourceReference[] refs, params StateTransitionOption[] options)
+        public RelationshipState UpdateMediaReferences(SourceReference[] refs, params IStateTransitionOption[] options)
         {
             Relationship relationship = CreateEmptySelf();
             relationship.Media = refs.ToList();
@@ -657,7 +657,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
-        protected RelationshipState UpdateMediaReferences(Relationship relationship, params StateTransitionOption[] options)
+        protected RelationshipState UpdateMediaReferences(Relationship relationship, params IStateTransitionOption[] options)
         {
             String target = GetSelfUri();
             Link conclusionsLink = GetLink(Rel.MEDIA_REFERENCES);
@@ -681,7 +681,7 @@ namespace Gx.Rs.Api
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
         /// <exception cref="Gx.Rs.Api.GedcomxApplicationException">Thrown if this collection does not have a link to the resource.</exception>
-        public RelationshipState DeleteMediaReference(SourceReference reference, params StateTransitionOption[] options)
+        public RelationshipState DeleteMediaReference(SourceReference reference, params IStateTransitionOption[] options)
         {
             Link link = reference.GetLink(Rel.MEDIA_REFERENCE);
             link = link == null ? reference.GetLink(Rel.SELF) : link;
@@ -702,7 +702,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public RelationshipState AddEvidenceReference(RelationshipState evidence, params StateTransitionOption[] options)
+        public RelationshipState AddEvidenceReference(RelationshipState evidence, params IStateTransitionOption[] options)
         {
             EvidenceReference reference = new EvidenceReference();
             reference.Resource = evidence.GetSelfUri();
@@ -717,7 +717,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public RelationshipState AddEvidenceReference(EvidenceReference reference, params StateTransitionOption[] options)
+        public RelationshipState AddEvidenceReference(EvidenceReference reference, params IStateTransitionOption[] options)
         {
             return AddEvidenceReferences(new EvidenceReference[] { reference }, options);
         }
@@ -730,7 +730,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public RelationshipState AddEvidenceReferences(EvidenceReference[] refs, params StateTransitionOption[] options)
+        public RelationshipState AddEvidenceReferences(EvidenceReference[] refs, params IStateTransitionOption[] options)
         {
             Relationship relationship = CreateEmptySelf();
             relationship.Evidence = refs.ToList();
@@ -745,7 +745,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public RelationshipState UpdateEvidenceReference(EvidenceReference reference, params StateTransitionOption[] options)
+        public RelationshipState UpdateEvidenceReference(EvidenceReference reference, params IStateTransitionOption[] options)
         {
             return UpdateEvidenceReferences(new EvidenceReference[] { reference }, options);
         }
@@ -758,7 +758,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public RelationshipState UpdateEvidenceReferences(EvidenceReference[] refs, params StateTransitionOption[] options)
+        public RelationshipState UpdateEvidenceReferences(EvidenceReference[] refs, params IStateTransitionOption[] options)
         {
             Relationship relationship = CreateEmptySelf();
             relationship.Evidence = refs.ToList();
@@ -773,7 +773,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
-        protected RelationshipState UpdateEvidenceReferences(Relationship relationship, params StateTransitionOption[] options)
+        protected RelationshipState UpdateEvidenceReferences(Relationship relationship, params IStateTransitionOption[] options)
         {
             String target = GetSelfUri();
             Link conclusionsLink = GetLink(Rel.EVIDENCE_REFERENCES);
@@ -797,7 +797,7 @@ namespace Gx.Rs.Api
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
         /// <exception cref="Gx.Rs.Api.GedcomxApplicationException">Thrown if this collection does not have a link to the resource.</exception>
-        public RelationshipState DeleteEvidenceReference(EvidenceReference reference, params StateTransitionOption[] options)
+        public RelationshipState DeleteEvidenceReference(EvidenceReference reference, params IStateTransitionOption[] options)
         {
             Link link = reference.GetLink(Rel.EVIDENCE_REFERENCE);
             link = link == null ? reference.GetLink(Rel.SELF) : link;
@@ -819,7 +819,7 @@ namespace Gx.Rs.Api
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
         /// <exception cref="GedcomxApplicationException">Thrown if this collection does not have a link to the resource.</exception>
-        public RelationshipState ReadNote(Note note, params StateTransitionOption[] options)
+        public RelationshipState ReadNote(Note note, params IStateTransitionOption[] options)
         {
             Link link = note.GetLink(Rel.NOTE);
             link = link == null ? note.GetLink(Rel.SELF) : link;
@@ -840,7 +840,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public RelationshipState AddNote(Note note, params StateTransitionOption[] options)
+        public RelationshipState AddNote(Note note, params IStateTransitionOption[] options)
         {
             return AddNotes(new Note[] { note }, options);
         }
@@ -853,7 +853,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public RelationshipState AddNotes(Note[] notes, params StateTransitionOption[] options)
+        public RelationshipState AddNotes(Note[] notes, params IStateTransitionOption[] options)
         {
             Relationship relationship = CreateEmptySelf();
             relationship.Notes = notes.ToList();
@@ -868,7 +868,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public RelationshipState UpdateNote(Note note, params StateTransitionOption[] options)
+        public RelationshipState UpdateNote(Note note, params IStateTransitionOption[] options)
         {
             return UpdateNotes(new Note[] { note }, options);
         }
@@ -881,7 +881,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public RelationshipState UpdateNotes(Note[] notes, params StateTransitionOption[] options)
+        public RelationshipState UpdateNotes(Note[] notes, params IStateTransitionOption[] options)
         {
             Relationship relationship = CreateEmptySelf();
             relationship.Notes = notes.ToList();
@@ -896,7 +896,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
-        protected RelationshipState UpdateNotes(Relationship relationship, params StateTransitionOption[] options)
+        protected RelationshipState UpdateNotes(Relationship relationship, params IStateTransitionOption[] options)
         {
             String target = GetSelfUri();
             Link conclusionsLink = GetLink(Rel.NOTES);
@@ -920,7 +920,7 @@ namespace Gx.Rs.Api
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
         /// <exception cref="GedcomxApplicationException">Thrown if this collection does not have a link to the resource.</exception>
-        public RelationshipState DeleteNote(Note note, params StateTransitionOption[] options)
+        public RelationshipState DeleteNote(Note note, params IStateTransitionOption[] options)
         {
             Link link = note.GetLink(Rel.NOTE);
             link = link == null ? note.GetLink(Rel.SELF) : link;

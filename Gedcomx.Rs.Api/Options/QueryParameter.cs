@@ -12,7 +12,7 @@ namespace Gx.Rs.Api.Options
     /// <summary>
     /// Represents a generic query string parameter to use in REST API requests.
     /// </summary>
-    public class QueryParameter : StateTransitionOption
+    public class QueryParameter : IStateTransitionOption
     {
         /// <summary>
         /// The access token query parameter.

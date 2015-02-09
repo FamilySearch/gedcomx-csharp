@@ -15,7 +15,7 @@ namespace Gedcomx.File
     {
         private readonly FileInfo gedxFile;
         private readonly ZipArchive gedxArc;
-        private readonly GedcomxEntryDeserializer deserializer;
+        private readonly IGedcomxEntryDeserializer deserializer;
         private readonly ManifestAttributes attributes;
 
         /// <summary>
@@ -23,7 +23,7 @@ namespace Gedcomx.File
         /// </summary>
         /// <param name="gedxFile">The GEDCOM X file.</param>
         /// <param name="deserializer">The deserializer to use for deserializing data streams from the file.</param>
-        public GedcomxFile(FileInfo gedxFile, GedcomxEntryDeserializer deserializer)
+        public GedcomxFile(FileInfo gedxFile, IGedcomxEntryDeserializer deserializer)
         {
             this.gedxFile = gedxFile;
             this.gedxArc = ZipFile.OpenRead(gedxFile.FullName);

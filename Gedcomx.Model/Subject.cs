@@ -28,7 +28,7 @@ namespace Gx.Conclusion
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Subject")]
     [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Subject")]
-    public abstract partial class Subject : Gx.Conclusion.Conclusion, Attributable
+    public abstract partial class Subject : Gx.Conclusion.Conclusion, IAttributable
     {
 
         private bool? _extracted;

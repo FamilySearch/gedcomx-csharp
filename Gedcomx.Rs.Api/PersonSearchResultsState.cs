@@ -63,7 +63,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="PersonState"/> instance containing the REST API response.
         /// </returns>
-        public PersonState ReadPerson(Entry person, params StateTransitionOption[] options)
+        public PersonState ReadPerson(Entry person, params IStateTransitionOption[] options)
         {
             Link link = person.GetLink(Rel.PERSON);
             link = link == null ? person.GetLink(Rel.SELF) : link;
@@ -84,7 +84,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RecordState"/> instance containing the REST API response.
         /// </returns>
-        public RecordState ReadRecord(Entry person, params StateTransitionOption[] options)
+        public RecordState ReadRecord(Entry person, params IStateTransitionOption[] options)
         {
             Link link = person.GetLink(Rel.RECORD);
             link = link == null ? person.GetLink(Rel.SELF) : link;
@@ -108,7 +108,7 @@ namespace Gx.Rs.Api
         /// <remarks>
         /// The specified person model will need a self link; otherwise, this method will return null.
         /// </remarks>
-        public PersonState ReadPerson(Gx.Conclusion.Person person, params StateTransitionOption[] options)
+        public PersonState ReadPerson(Gx.Conclusion.Person person, params IStateTransitionOption[] options)
         {
             Link link = person.GetLink(Rel.PERSON);
             link = link == null ? person.GetLink(Rel.SELF) : link;

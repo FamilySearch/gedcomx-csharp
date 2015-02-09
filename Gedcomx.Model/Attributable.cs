@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Gx.Common
 {
-    public interface Attributable
+    public interface IAttributable
     {
         /// <summary>
         /// Attribution metadata for a genealogical resource. Attribution data is necessary to support

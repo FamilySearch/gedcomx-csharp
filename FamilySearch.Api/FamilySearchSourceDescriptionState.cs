@@ -48,7 +48,7 @@ namespace FamilySearch.Api
         /// <returns>
         /// A <see cref="DiscussionState"/> instance containing the REST API response.
         /// </returns>
-        public DiscussionState ReadComments(params StateTransitionOption[] options)
+        public DiscussionState ReadComments(params IStateTransitionOption[] options)
         {
             Link link = GetLink(Rel.COMMENTS);
             if (link == null || link.Href == null)
@@ -83,7 +83,7 @@ namespace FamilySearch.Api
         /// <returns>
         /// A <see cref="FamilySearchSourceDescriptionState"/> instance containing the REST API response.
         /// </returns>
-        public FamilySearchSourceDescriptionState MoveToCollection(CollectionState collection, params StateTransitionOption[] options)
+        public FamilySearchSourceDescriptionState MoveToCollection(CollectionState collection, params IStateTransitionOption[] options)
         {
             Link link = collection.GetLink(Rel.SOURCE_DESCRIPTIONS);
             if (link == null || link.Href == null)

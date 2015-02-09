@@ -233,7 +233,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="FamilyTreePersonState"/> instance containing the REST API response.
         /// </returns>
-        public FamilyTreePersonState LoadDiscussionReferences(params StateTransitionOption[] options)
+        public FamilyTreePersonState LoadDiscussionReferences(params IStateTransitionOption[] options)
         {
             return (FamilyTreePersonState)base.LoadEmbeddedResources(new String[] { Rel.DISCUSSION_REFERENCES }, options);
         }
@@ -245,7 +245,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="SourceDescriptionsState"/> instance containing the REST API response.
         /// </returns>
-        public SourceDescriptionsState ReadPortraits(params StateTransitionOption[] options)
+        public SourceDescriptionsState ReadPortraits(params IStateTransitionOption[] options)
         {
             Link link = GetLink(Rel.PORTRAITS);
             if (link == null || link.Href == null)
@@ -262,7 +262,7 @@ namespace FamilySearch.Api.Ft
         /// </summary>
         /// <param name="options">The options to apply before executing the REST API call.</param>
         /// <returns></returns>
-        public IRestResponse ReadPortrait(params StateTransitionOption[] options)
+        public IRestResponse ReadPortrait(params IStateTransitionOption[] options)
         {
             Link link = GetLink(Rel.PORTRAIT);
             if (link == null || link.Href == null)
@@ -282,7 +282,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="FamilyTreePersonState"/> instance containing the REST API response.
         /// </returns>
-        public FamilyTreePersonState AddDiscussionReference(DiscussionState discussion, params StateTransitionOption[] options)
+        public FamilyTreePersonState AddDiscussionReference(DiscussionState discussion, params IStateTransitionOption[] options)
         {
             DiscussionReference reference = new DiscussionReference();
             reference.Resource = discussion.GetSelfUri();
@@ -297,7 +297,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="FamilyTreePersonState"/> instance containing the REST API response.
         /// </returns>
-        public FamilyTreePersonState AddDiscussionReference(DiscussionReference reference, params StateTransitionOption[] options)
+        public FamilyTreePersonState AddDiscussionReference(DiscussionReference reference, params IStateTransitionOption[] options)
         {
             return AddDiscussionReference(new DiscussionReference[] { reference }, options);
         }
@@ -310,7 +310,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="FamilyTreePersonState"/> instance containing the REST API response.
         /// </returns>
-        public FamilyTreePersonState AddDiscussionReference(DiscussionReference[] refs, params StateTransitionOption[] options)
+        public FamilyTreePersonState AddDiscussionReference(DiscussionReference[] refs, params IStateTransitionOption[] options)
         {
             Person person = CreateEmptySelf();
             foreach (DiscussionReference @ref in refs)
@@ -328,7 +328,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="FamilyTreePersonState"/> instance containing the REST API response.
         /// </returns>
-        public FamilyTreePersonState UpdateDiscussionReference(DiscussionReference reference, params StateTransitionOption[] options)
+        public FamilyTreePersonState UpdateDiscussionReference(DiscussionReference reference, params IStateTransitionOption[] options)
         {
             return UpdateDiscussionReference(new DiscussionReference[] { reference }, options);
         }
@@ -341,7 +341,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="FamilyTreePersonState"/> instance containing the REST API response.
         /// </returns>
-        public FamilyTreePersonState UpdateDiscussionReference(DiscussionReference[] refs, params StateTransitionOption[] options)
+        public FamilyTreePersonState UpdateDiscussionReference(DiscussionReference[] refs, params IStateTransitionOption[] options)
         {
             Person person = CreateEmptySelf();
             foreach (DiscussionReference @ref in refs)
@@ -359,7 +359,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="FamilyTreePersonState"/> instance containing the REST API response.
         /// </returns>
-        public FamilyTreePersonState UpdateDiscussionReference(Person person, params StateTransitionOption[] options)
+        public FamilyTreePersonState UpdateDiscussionReference(Person person, params IStateTransitionOption[] options)
         {
             String target = GetSelfUri();
             Link discussionsLink = GetLink(Rel.DISCUSSION_REFERENCES);
@@ -383,7 +383,7 @@ namespace FamilySearch.Api.Ft
         /// A <see cref="FamilyTreePersonState"/> instance containing the REST API response.
         /// </returns>
         /// <exception cref="GedcomxApplicationException">Discussion reference cannot be deleted: missing link.</exception>
-        public FamilyTreePersonState DeleteDiscussionReference(DiscussionReference reference, params StateTransitionOption[] options)
+        public FamilyTreePersonState DeleteDiscussionReference(DiscussionReference reference, params IStateTransitionOption[] options)
         {
             Link link = reference.GetLink(Rel.DISCUSSION_REFERENCE);
             link = link == null ? reference.GetLink(Rel.SELF) : link;
@@ -404,7 +404,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public ChildAndParentsRelationshipState ReadChildAndParentsRelationship(ChildAndParentsRelationship relationship, params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState ReadChildAndParentsRelationship(ChildAndParentsRelationship relationship, params IStateTransitionOption[] options)
         {
             Link link = relationship.GetLink(Rel.RELATIONSHIP);
             link = link == null ? relationship.GetLink(Rel.SELF) : link;
@@ -424,7 +424,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChangeHistoryState"/> instance containing the REST API response.
         /// </returns>
-        public ChangeHistoryState ReadChangeHistory(params StateTransitionOption[] options)
+        public ChangeHistoryState ReadChangeHistory(params IStateTransitionOption[] options)
         {
             Link link = GetLink(Rel.CHANGE_HISTORY);
             if (link == null || link.Href == null)
@@ -443,7 +443,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="PersonMatchResultsState"/> instance containing the REST API response.
         /// </returns>
-        public PersonMatchResultsState ReadMatches(params StateTransitionOption[] options)
+        public PersonMatchResultsState ReadMatches(params IStateTransitionOption[] options)
         {
             Link link = GetLink(Rel.MATCHES);
             if (link == null || link.Href == null)
@@ -462,7 +462,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="FamilyTreePersonState"/> instance containing the REST API response.
         /// </returns>
-        public FamilyTreePersonState Restore(params StateTransitionOption[] options)
+        public FamilyTreePersonState Restore(params IStateTransitionOption[] options)
         {
             Link link = GetLink(Rel.RESTORE);
             if (link == null || link.Href == null)
@@ -482,7 +482,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="PersonMergeState"/> instance containing the REST API response.
         /// </returns>
-        public PersonMergeState ReadMergeOptions(FamilyTreePersonState candidate, params StateTransitionOption[] options)
+        public PersonMergeState ReadMergeOptions(FamilyTreePersonState candidate, params IStateTransitionOption[] options)
         {
             return TransitionToPersonMerge(Method.OPTIONS, candidate, options);
         }
@@ -495,7 +495,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="PersonMergeState"/> instance containing the REST API response.
         /// </returns>
-        public PersonMergeState ReadMergeAnalysis(FamilyTreePersonState candidate, params StateTransitionOption[] options)
+        public PersonMergeState ReadMergeAnalysis(FamilyTreePersonState candidate, params IStateTransitionOption[] options)
         {
             return TransitionToPersonMerge(Method.GET, candidate, options);
         }
@@ -514,7 +514,7 @@ namespace FamilySearch.Api.Ft
         /// or
         /// The specified candidate.Person or candidate.Person.Id was null.
         /// </exception>
-        protected PersonMergeState TransitionToPersonMerge(Method method, FamilyTreePersonState candidate, params StateTransitionOption[] options)
+        protected PersonMergeState TransitionToPersonMerge(Method method, FamilyTreePersonState candidate, params IStateTransitionOption[] options)
         {
             Link link = GetLink(Rel.MERGE);
             if (link == null || link.Template == null)
@@ -552,7 +552,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="PersonNonMatchesState"/> instance containing the REST API response.
         /// </returns>
-        public PersonNonMatchesState AddNonMatch(FamilyTreePersonState person, params StateTransitionOption[] options)
+        public PersonNonMatchesState AddNonMatch(FamilyTreePersonState person, params IStateTransitionOption[] options)
         {
             return AddNonMatch(person.Person, options);
         }
@@ -565,7 +565,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="PersonNonMatchesState"/> instance containing the REST API response.
         /// </returns>
-        public PersonNonMatchesState AddNonMatch(Person person, params StateTransitionOption[] options)
+        public PersonNonMatchesState AddNonMatch(Person person, params IStateTransitionOption[] options)
         {
             Link link = GetLink(Rel.NOT_A_MATCHES);
             if (link == null || link.Href == null)
@@ -586,7 +586,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="PersonNonMatchesState"/> instance containing the REST API response.
         /// </returns>
-        public PersonNonMatchesState ReadNonMatches(params StateTransitionOption[] options)
+        public PersonNonMatchesState ReadNonMatches(params IStateTransitionOption[] options)
         {
             Link link = GetLink(Rel.NOT_A_MATCHES);
             if (link == null || link.Href == null)

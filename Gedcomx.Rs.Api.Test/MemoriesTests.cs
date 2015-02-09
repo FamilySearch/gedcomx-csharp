@@ -58,7 +58,7 @@ namespace Gedcomx.Rs.Api.Test
             var dataSource1 = new BasicDataSource(Guid.NewGuid().ToString("n") + ".jpg", "image/jpeg", bytes1);
             var dataSource2 = new BasicDataSource(Guid.NewGuid().ToString("n") + ".jpg", "image/jpeg", bytes2);
             var description = new SourceDescription().SetTitle(new TextValue().SetValue("PersonImage")).SetCitation("Citation for PersonImage");
-            var artifacts = new List<DataSource>();
+            var artifacts = new List<IDataSource>();
 
             artifacts.Add(dataSource1);
             artifacts.Add(dataSource2);

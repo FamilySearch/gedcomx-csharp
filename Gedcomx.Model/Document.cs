@@ -23,7 +23,7 @@ namespace Gx.Conclusion
     [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Document")]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://gedcomx.org/v1/", ElementName = "document")]
     [Newtonsoft.Json.JsonObject("documents")]
-    public partial class Document : Gx.Conclusion.Conclusion, Attributable
+    public partial class Document : Gx.Conclusion.Conclusion, IAttributable
     {
 
         private string _textType;
@@ -143,7 +143,7 @@ namespace Gx.Conclusion
          *
          * @param visitor The visitor.
          */
-        public void Accept(GedcomxModelVisitor visitor)
+        public void Accept(IGedcomxModelVisitor visitor)
         {
             visitor.VisitDocument(this);
         }

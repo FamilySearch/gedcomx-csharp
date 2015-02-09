@@ -84,7 +84,7 @@ namespace FamilySearch.Api.Ft
         /// <remarks>
         /// To add a <see cref="RelationshipType.ParentChild"/> relationship, use <see cref="O:AddChildAndParentsRelationship"/> instead.
         /// </remarks>
-        public override RelationshipState AddRelationship(Relationship relationship, params StateTransitionOption[] options)
+        public override RelationshipState AddRelationship(Relationship relationship, params IStateTransitionOption[] options)
         {
             if (relationship.KnownType == RelationshipType.ParentChild)
             {
@@ -103,7 +103,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public ChildAndParentsRelationshipState AddChildAndParentsRelationship(PersonState child, PersonState father, PersonState mother, params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState AddChildAndParentsRelationship(PersonState child, PersonState father, PersonState mother, params IStateTransitionOption[] options)
         {
             ChildAndParentsRelationship chap = new ChildAndParentsRelationship();
             chap.Child = new ResourceReference(child.GetSelfUri());
@@ -126,7 +126,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public ChildAndParentsRelationshipState AddChildAndParentsRelationship(ChildAndParentsRelationship chap, params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState AddChildAndParentsRelationship(ChildAndParentsRelationship chap, params IStateTransitionOption[] options)
         {
             FamilySearchPlatform entity = new FamilySearchPlatform();
             entity.ChildAndParentsRelationships = new List<ChildAndParentsRelationship>() { chap };

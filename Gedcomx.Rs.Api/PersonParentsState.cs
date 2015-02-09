@@ -109,7 +109,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="PersonState"/> instance containing the REST API response.
         /// </returns>
-        public PersonState ReadPerson(params StateTransitionOption[] options)
+        public PersonState ReadPerson(params IStateTransitionOption[] options)
         {
             Link link = GetLink(Rel.PERSON);
             if (link == null || link.Href == null)
@@ -129,7 +129,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="PersonState"/> instance containing the REST API response.
         /// </returns>
-        public PersonState ReadParent(Person person, params StateTransitionOption[] options)
+        public PersonState ReadParent(Person person, params IStateTransitionOption[] options)
         {
             Link link = person.GetLink(Rel.PERSON);
             link = link == null ? person.GetLink(Rel.SELF) : link;
@@ -150,7 +150,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public RelationshipState ReadRelationship(Relationship relationship, params StateTransitionOption[] options)
+        public RelationshipState ReadRelationship(Relationship relationship, params IStateTransitionOption[] options)
         {
             Link link = relationship.GetLink(Rel.RELATIONSHIP);
             link = link == null ? relationship.GetLink(Rel.SELF) : link;
@@ -172,7 +172,7 @@ namespace Gx.Rs.Api
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
         /// <exception cref="Gx.Rs.Api.GedcomxApplicationException">Thrown if a link to the required resource cannot be found.</exception>
-        public RelationshipState RemoveRelationship(Relationship relationship, params StateTransitionOption[] options)
+        public RelationshipState RemoveRelationship(Relationship relationship, params IStateTransitionOption[] options)
         {
             Link link = relationship.GetLink(Rel.RELATIONSHIP);
             link = link == null ? relationship.GetLink(Rel.SELF) : link;
@@ -198,7 +198,7 @@ namespace Gx.Rs.Api
         /// or
         /// Thrown if a link to the required resource cannot be found.
         /// </exception>
-        public RelationshipState RemoveRelationshipTo(Person parent, params StateTransitionOption[] options)
+        public RelationshipState RemoveRelationshipTo(Person parent, params IStateTransitionOption[] options)
         {
             Relationship relationship = FindRelationshipTo(parent);
             if (relationship == null)

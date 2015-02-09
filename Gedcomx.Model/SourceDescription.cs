@@ -26,7 +26,7 @@ namespace Gx.Source
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "SourceDescription")]
     [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "SourceDescription")]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://gedcomx.org/v1/", ElementName = "sourceDescription")]
-    public partial class SourceDescription : Gx.Links.HypermediaEnabledData, Attributable
+    public partial class SourceDescription : Gx.Links.HypermediaEnabledData, IAttributable
     {
         private string _about;
         private string _lang;
@@ -512,7 +512,7 @@ namespace Gx.Source
          *
          * @param visitor The visitor.
          */
-        public void Accept(GedcomxModelVisitor visitor)
+        public void Accept(IGedcomxModelVisitor visitor)
         {
             visitor.VisitSourceDescription(this);
         }

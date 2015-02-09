@@ -12,7 +12,7 @@ namespace Gedcomx.File
     /// <summary>
     /// The default JSON serialization class.
     /// </summary>
-    public class DefaultJsonSerialization : GedcomxEntrySerializer, GedcomxEntryDeserializer
+    public class DefaultJsonSerialization : IGedcomxEntrySerializer, IGedcomxEntryDeserializer
     {
         private JsonSerializerSettings jsonSettings;
         private static Encoding encoding;

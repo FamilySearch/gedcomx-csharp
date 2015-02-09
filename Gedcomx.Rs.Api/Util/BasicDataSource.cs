@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 namespace Gx.Rs.Api.Util
 {
     /// <summary>
-    /// Provides a simple implementation of the <see cref="DataSource"/> interface.
+    /// Provides a simple implementation of the <see cref="IDataSource"/> interface.
     /// </summary>
-    public class BasicDataSource : DataSource
+    public class BasicDataSource : IDataSource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BasicDataSource"/> class.

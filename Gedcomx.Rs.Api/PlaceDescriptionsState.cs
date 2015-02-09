@@ -61,7 +61,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="PlaceDescriptionState"/> instance containing the REST API response.
         /// </returns>
-        public PlaceDescriptionState AddPlaceDescription(PlaceDescription place, params StateTransitionOption[] options)
+        public PlaceDescriptionState AddPlaceDescription(PlaceDescription place, params IStateTransitionOption[] options)
         {
             Gedcomx entity = new Gedcomx();
             entity.AddPlace(place);
@@ -76,7 +76,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="CollectionState"/> instance containing the REST API response.
         /// </returns>
-        public CollectionState ReadCollection(params StateTransitionOption[] options)
+        public CollectionState ReadCollection(params IStateTransitionOption[] options)
         {
             Link link = GetLink(Rel.COLLECTION);
             if (link == null || link.Href == null)

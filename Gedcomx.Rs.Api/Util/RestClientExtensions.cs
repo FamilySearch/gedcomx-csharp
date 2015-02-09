@@ -16,17 +16,17 @@ namespace Gx.Rs.Api.Util
     /// </summary>
     public static class RestClientExtensions
     {
-        private static GedcomxEntrySerializer XmlSerializer;
-        private static GedcomxEntryDeserializer XmlDeserializer;
-        private static GedcomxEntrySerializer JsonSerializer;
-        private static GedcomxEntryDeserializer JsonDeserializer;
+        private static IGedcomxEntrySerializer XmlSerializer;
+        private static IGedcomxEntryDeserializer XmlDeserializer;
+        private static IGedcomxEntrySerializer JsonSerializer;
+        private static IGedcomxEntryDeserializer JsonDeserializer;
 
         static RestClientExtensions()
         {
             XmlSerializer = new DefaultXmlSerialization();
-            XmlDeserializer = (GedcomxEntryDeserializer)XmlSerializer;
+            XmlDeserializer = (IGedcomxEntryDeserializer)XmlSerializer;
             JsonSerializer = new DefaultJsonSerialization();
-            JsonDeserializer = (GedcomxEntryDeserializer)JsonSerializer;
+            JsonDeserializer = (IGedcomxEntryDeserializer)JsonSerializer;
         }
 
         /// <summary>

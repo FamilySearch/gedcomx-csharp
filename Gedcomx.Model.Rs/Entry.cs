@@ -24,7 +24,7 @@ namespace Gx.Atom
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.w3.org/2005/Atom", TypeName = "Entry")]
     [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://www.w3.org/2005/Atom", TypeName = "Entry")]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://www.w3.org/2005/Atom", ElementName = "entry")]
-    public partial class Entry : Gx.Atom.ExtensibleElement, SupportsLinks
+    public partial class Entry : Gx.Atom.ExtensibleElement, ISupportsLinks
     {
 
         private System.Collections.Generic.List<Gx.Atom.Person> _authors;

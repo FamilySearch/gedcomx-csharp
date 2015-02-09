@@ -61,7 +61,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="PlaceDescriptionState"/> instance containing the REST API response.
         /// </returns>
-        public PlaceDescriptionState ReadPlaceDescription(Entry place, params StateTransitionOption[] options)
+        public PlaceDescriptionState ReadPlaceDescription(Entry place, params IStateTransitionOption[] options)
         {
             Link link = place.GetLink(Rel.DESCRIPTION);
             link = link == null ? place.GetLink(Rel.SELF) : link;

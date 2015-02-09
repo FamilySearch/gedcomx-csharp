@@ -49,7 +49,7 @@ namespace FamilySearch.Api
         /// <returns>
         /// A <see cref="PersonNonMatchesState"/> instance containing the REST API response.
         /// </returns>
-        public PersonNonMatchesState AddNonMatch(Person person, params StateTransitionOption[] options)
+        public PersonNonMatchesState AddNonMatch(Person person, params IStateTransitionOption[] options)
         {
             return (PersonNonMatchesState)Post(new Gx.Gedcomx() { Persons = new List<Person>() { person } }, options);
         }
@@ -62,7 +62,7 @@ namespace FamilySearch.Api
         /// <returns>
         /// A <see cref="PersonNonMatchesState"/> instance containing the REST API response.
         /// </returns>
-        public PersonNonMatchesState RemoveNonMatch(Person nonMatch, params StateTransitionOption[] options)
+        public PersonNonMatchesState RemoveNonMatch(Person nonMatch, params IStateTransitionOption[] options)
         {
             Link link = nonMatch.GetLink(Rel.NOT_A_MATCH);
             if (link == null || link.Href == null)

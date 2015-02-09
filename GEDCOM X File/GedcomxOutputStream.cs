@@ -14,7 +14,7 @@ namespace Gedcomx.File
     /// </summary>
     public class GedcomxOutputStream : IDisposable
     {
-        private readonly GedcomxEntrySerializer serializer;
+        private readonly IGedcomxEntrySerializer serializer;
         private readonly ZipArchive gedxOutputStream;
         private readonly ManifestAttributes mf;
         private int entryCount = 0;
@@ -25,7 +25,7 @@ namespace Gedcomx.File
         /// </summary>
         /// <param name="gedxOutputStream">The underlying data stream this GEDCOM X will be written to.</param>
         /// <param name="serializer">The serializer to use when adding objects to this GEDCOM X file.</param>
-        public GedcomxOutputStream(Stream gedxOutputStream, GedcomxEntrySerializer serializer)
+        public GedcomxOutputStream(Stream gedxOutputStream, IGedcomxEntrySerializer serializer)
         {
             this.serializer = serializer;
             this.gedxOutputStream = new ZipArchive(gedxOutputStream, ZipArchiveMode.Create, false, Encoding.UTF8);

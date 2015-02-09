@@ -22,7 +22,7 @@ namespace Gx.Conclusion
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Conclusion")]
     [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Conclusion")]
-    public abstract partial class Conclusion : Gx.Links.HypermediaEnabledData, Attributable
+    public abstract partial class Conclusion : Gx.Links.HypermediaEnabledData, IAttributable
     {
         private string _confidence;
         private string _sortKey;

@@ -52,7 +52,7 @@ namespace FamilySearch.Api
         /// <returns>
         /// A <see cref="PersonState"/> instance containing the REST API response.
         /// </returns>
-        public PersonState ReadPerson(params StateTransitionOption[] options)
+        public PersonState ReadPerson(params IStateTransitionOption[] options)
         {
             Link link = GetLink(Rel.PERSON);
             if (link == null || link.Href == null)
@@ -72,7 +72,7 @@ namespace FamilySearch.Api
         /// <returns>
         /// A <see cref="PersonMergeState"/> instance containing the REST API response.
         /// </returns>
-        public PersonMergeState ReadMergeOptions(Gx.Atom.Entry entry, params StateTransitionOption[] options)
+        public PersonMergeState ReadMergeOptions(Gx.Atom.Entry entry, params IStateTransitionOption[] options)
         {
             Link link = entry.GetLink(Rel.MERGE);
             if (link == null || link.Href == null)
@@ -92,7 +92,7 @@ namespace FamilySearch.Api
         /// <returns>
         /// A <see cref="PersonMergeState"/> instance containing the REST API response.
         /// </returns>
-        public PersonMergeState ReadMergeAnalysis(Gx.Atom.Entry entry, params StateTransitionOption[] options)
+        public PersonMergeState ReadMergeAnalysis(Gx.Atom.Entry entry, params IStateTransitionOption[] options)
         {
             Link link = entry.GetLink(Rel.MERGE);
             if (link == null || link.Href == null)
@@ -112,7 +112,7 @@ namespace FamilySearch.Api
         /// <returns>
         /// A <see cref="PersonNonMatchesState"/> instance containing the REST API response.
         /// </returns>
-        public PersonNonMatchesState AddNonMatch(Gx.Atom.Entry entry, params StateTransitionOption[] options)
+        public PersonNonMatchesState AddNonMatch(Gx.Atom.Entry entry, params IStateTransitionOption[] options)
         {
             Link link = GetLink(Rel.NOT_A_MATCHES);
             if (link == null || link.Href == null)
@@ -135,7 +135,7 @@ namespace FamilySearch.Api
         /// <returns>
         /// A <see cref="PersonMatchResultsState"/> instance containing the REST API response.
         /// </returns>
-        public PersonMatchResultsState UpdateMatchStatus(Gx.Atom.Entry entry, MatchStatus status, params StateTransitionOption[] options)
+        public PersonMatchResultsState UpdateMatchStatus(Gx.Atom.Entry entry, MatchStatus status, params IStateTransitionOption[] options)
         {
             String updateStatusUri = GetSelfUri().SetQueryParam(FamilySearchOptions.STATUS, status.ToString().ToLower()).ToString();
             IRestRequest request = CreateAuthenticatedRequest().ContentType(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE)

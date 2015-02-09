@@ -9,7 +9,7 @@ namespace Gx.Rs.Api.Util
     /// <summary>
     /// An interface for using various data sources with the artifacts and memories API.
     /// </summary>
-    public interface DataSource : IDisposable
+    public interface IDataSource : IDisposable
     {
         /// <summary>
         /// When overridden this gets the input stream of the target data source.

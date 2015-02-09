@@ -28,7 +28,7 @@ namespace Gx.Atom
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.w3.org/2005/Atom", TypeName = "Feed")]
     [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://www.w3.org/2005/Atom", TypeName = "Feed")]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://www.w3.org/2005/Atom", ElementName = "feed")]
-    public partial class Feed : Gx.Atom.ExtensibleElement, SupportsLinks
+    public partial class Feed : Gx.Atom.ExtensibleElement, ISupportsLinks
     {
 
         private System.Collections.Generic.List<Gx.Atom.Person> _authors;

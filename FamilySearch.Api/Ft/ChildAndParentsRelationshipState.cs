@@ -20,7 +20,7 @@ namespace FamilySearch.Api.Ft
     /// <summary>
     /// The ChildAndParentsRelationshipState exposes management and other FamilySearch specific functions for a children and parents.
     /// </summary>
-    public class ChildAndParentsRelationshipState : GedcomxApplicationState<FamilySearchPlatform>, PreferredRelationshipState
+    public class ChildAndParentsRelationshipState : GedcomxApplicationState<FamilySearchPlatform>, IPreferredRelationshipState
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ChildAndParentsRelationshipState"/> class.
@@ -87,7 +87,7 @@ namespace FamilySearch.Api.Ft
         /// <value>
         /// The main data element represented by this state instance.
         /// </value>
-        protected override SupportsLinks MainDataElement
+        protected override ISupportsLinks MainDataElement
         {
             get
             {
@@ -221,7 +221,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="FamilySearchFamilyTree"/> instance containing the REST API response.
         /// </returns>
-        public FamilySearchFamilyTree ReadCollection(params StateTransitionOption[] options)
+        public FamilySearchFamilyTree ReadCollection(params IStateTransitionOption[] options)
         {
             Link link = GetLink(Rel.COLLECTION);
             if (link == null || link.Href == null)
@@ -252,7 +252,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public ChildAndParentsRelationshipState LoadEmbeddedResources(params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState LoadEmbeddedResources(params IStateTransitionOption[] options)
         {
             IncludeEmbeddedResources<FamilySearchPlatform>(this.Entity, options);
             return this;
@@ -266,7 +266,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public ChildAndParentsRelationshipState LoadEmbeddedResources(String[] rels, params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState LoadEmbeddedResources(String[] rels, params IStateTransitionOption[] options)
         {
             foreach (String rel in rels)
             {
@@ -286,7 +286,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public ChildAndParentsRelationshipState LoadConclusions(params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState LoadConclusions(params IStateTransitionOption[] options)
         {
             return LoadEmbeddedResources(new String[] { Rel.CONCLUSIONS }, options);
         }
@@ -298,7 +298,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public ChildAndParentsRelationshipState LoadSourceReferences(params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState LoadSourceReferences(params IStateTransitionOption[] options)
         {
             return LoadEmbeddedResources(new String[] { Rel.SOURCE_REFERENCES }, options);
         }
@@ -310,7 +310,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public ChildAndParentsRelationshipState LoadMediaReferences(params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState LoadMediaReferences(params IStateTransitionOption[] options)
         {
             return LoadEmbeddedResources(new String[] { Rel.MEDIA_REFERENCES }, options);
         }
@@ -322,7 +322,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public ChildAndParentsRelationshipState LoadEvidenceReferences(params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState LoadEvidenceReferences(params IStateTransitionOption[] options)
         {
             return LoadEmbeddedResources(new String[] { Rel.EVIDENCE_REFERENCES }, options);
         }
@@ -334,7 +334,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public ChildAndParentsRelationshipState LoadNotes(params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState LoadNotes(params IStateTransitionOption[] options)
         {
             return LoadEmbeddedResources(new String[] { Rel.NOTES }, options);
         }
@@ -373,7 +373,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public ChildAndParentsRelationshipState AddFatherFact(Fact fact, params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState AddFatherFact(Fact fact, params IStateTransitionOption[] options)
         {
             return AddFatherFacts(new Fact[] { fact }, options);
         }
@@ -386,7 +386,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public ChildAndParentsRelationshipState AddFatherFacts(Fact[] facts, params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState AddFatherFacts(Fact[] facts, params IStateTransitionOption[] options)
         {
             ChildAndParentsRelationship relationship = CreateEmptySelf();
             relationship.FatherFacts = facts.ToList();
@@ -401,7 +401,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public ChildAndParentsRelationshipState UpdateFatherFact(Fact fact, params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState UpdateFatherFact(Fact fact, params IStateTransitionOption[] options)
         {
             return UpdateFatherFacts(new Fact[] { fact }, options);
         }
@@ -414,7 +414,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public ChildAndParentsRelationshipState UpdateFatherFacts(Fact[] facts, params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState UpdateFatherFacts(Fact[] facts, params IStateTransitionOption[] options)
         {
             ChildAndParentsRelationship relationship = CreateEmptySelf();
             relationship.FatherFacts = facts.ToList();
@@ -429,7 +429,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public ChildAndParentsRelationshipState AddMotherFact(Fact fact, params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState AddMotherFact(Fact fact, params IStateTransitionOption[] options)
         {
             return AddMotherFacts(new Fact[] { fact }, options);
         }
@@ -442,7 +442,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public ChildAndParentsRelationshipState AddMotherFacts(Fact[] facts, params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState AddMotherFacts(Fact[] facts, params IStateTransitionOption[] options)
         {
             ChildAndParentsRelationship relationship = CreateEmptySelf();
             relationship.MotherFacts = facts.ToList();
@@ -457,7 +457,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public ChildAndParentsRelationshipState UpdateMotherFact(Fact fact, params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState UpdateMotherFact(Fact fact, params IStateTransitionOption[] options)
         {
             return UpdateMotherFacts(new Fact[] { fact }, options);
         }
@@ -470,7 +470,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public ChildAndParentsRelationshipState UpdateMotherFacts(Fact[] facts, params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState UpdateMotherFacts(Fact[] facts, params IStateTransitionOption[] options)
         {
             ChildAndParentsRelationship relationship = CreateEmptySelf();
             relationship.MotherFacts = facts.ToList();
@@ -485,7 +485,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        protected ChildAndParentsRelationshipState UpdateConclusions(ChildAndParentsRelationship relationship, params StateTransitionOption[] options)
+        protected ChildAndParentsRelationshipState UpdateConclusions(ChildAndParentsRelationship relationship, params IStateTransitionOption[] options)
         {
             String target = GetSelfUri();
             Link conclusionsLink = GetLink(Rel.CONCLUSIONS);
@@ -509,7 +509,7 @@ namespace FamilySearch.Api.Ft
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
         /// <exception cref="Gx.Rs.Api.GedcomxApplicationException">Thrown if this relationship does not have a link to the resource.</exception>
-        public ChildAndParentsRelationshipState DeleteFact(Fact fact, params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState DeleteFact(Fact fact, params IStateTransitionOption[] options)
         {
             Link link = fact.GetLink(Rel.CONCLUSION);
             link = link == null ? fact.GetLink(Rel.SELF) : link;
@@ -530,7 +530,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public ChildAndParentsRelationshipState AddSourceReference(SourceDescriptionState source, params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState AddSourceReference(SourceDescriptionState source, params IStateTransitionOption[] options)
         {
             SourceReference reference = new SourceReference();
             reference.DescriptionRef = source.GetSelfUri();
@@ -545,7 +545,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public ChildAndParentsRelationshipState AddSourceReference(SourceReference reference, params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState AddSourceReference(SourceReference reference, params IStateTransitionOption[] options)
         {
             return AddSourceReferences(new SourceReference[] { reference });
         }
@@ -558,7 +558,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public ChildAndParentsRelationshipState AddSourceReferences(SourceReference[] refs, params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState AddSourceReferences(SourceReference[] refs, params IStateTransitionOption[] options)
         {
             ChildAndParentsRelationship relationship = CreateEmptySelf();
             relationship.Sources = refs.ToList();
@@ -573,7 +573,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public ChildAndParentsRelationshipState UpdateSourceReference(SourceReference reference, params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState UpdateSourceReference(SourceReference reference, params IStateTransitionOption[] options)
         {
             return UpdateSourceReferences(new SourceReference[] { reference }, options);
         }
@@ -586,7 +586,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public ChildAndParentsRelationshipState UpdateSourceReferences(SourceReference[] refs, params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState UpdateSourceReferences(SourceReference[] refs, params IStateTransitionOption[] options)
         {
             ChildAndParentsRelationship relationship = CreateEmptySelf();
             relationship.Sources = refs.ToList();
@@ -601,7 +601,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        protected ChildAndParentsRelationshipState UpdateSourceReferences(ChildAndParentsRelationship relationship, params StateTransitionOption[] options)
+        protected ChildAndParentsRelationshipState UpdateSourceReferences(ChildAndParentsRelationship relationship, params IStateTransitionOption[] options)
         {
             String target = GetSelfUri();
             Link conclusionsLink = GetLink(Rel.SOURCE_REFERENCES);
@@ -625,7 +625,7 @@ namespace FamilySearch.Api.Ft
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
         /// <exception cref="Gx.Rs.Api.GedcomxApplicationException">Thrown if a link to the required resource cannot be found.</exception>
-        public ChildAndParentsRelationshipState DeleteSourceReference(SourceReference reference, params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState DeleteSourceReference(SourceReference reference, params IStateTransitionOption[] options)
         {
             Link link = reference.GetLink(Rel.SOURCE_REFERENCE);
             link = link == null ? reference.GetLink(Rel.SELF) : link;
@@ -646,7 +646,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public ChildAndParentsRelationshipState AddMediaReference(SourceReference reference, params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState AddMediaReference(SourceReference reference, params IStateTransitionOption[] options)
         {
             return AddMediaReferences(new SourceReference[] { reference }, options);
         }
@@ -659,7 +659,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public ChildAndParentsRelationshipState AddMediaReferences(SourceReference[] refs, params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState AddMediaReferences(SourceReference[] refs, params IStateTransitionOption[] options)
         {
             ChildAndParentsRelationship relationship = CreateEmptySelf();
             relationship.Media = refs.ToList();
@@ -674,7 +674,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public ChildAndParentsRelationshipState UpdateMediaReference(SourceReference reference, params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState UpdateMediaReference(SourceReference reference, params IStateTransitionOption[] options)
         {
             return UpdateMediaReferences(new SourceReference[] { reference }, options);
         }
@@ -687,7 +687,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public ChildAndParentsRelationshipState UpdateMediaReferences(SourceReference[] refs, params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState UpdateMediaReferences(SourceReference[] refs, params IStateTransitionOption[] options)
         {
             ChildAndParentsRelationship relationship = CreateEmptySelf();
             relationship.Media = refs.ToList();
@@ -702,7 +702,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        protected ChildAndParentsRelationshipState UpdateMediaReferences(ChildAndParentsRelationship relationship, params StateTransitionOption[] options)
+        protected ChildAndParentsRelationshipState UpdateMediaReferences(ChildAndParentsRelationship relationship, params IStateTransitionOption[] options)
         {
             String target = GetSelfUri();
             Link conclusionsLink = GetLink(Rel.MEDIA_REFERENCES);
@@ -726,7 +726,7 @@ namespace FamilySearch.Api.Ft
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
         /// <exception cref="Gx.Rs.Api.GedcomxApplicationException">Thrown if a link to the required resource cannot be found.</exception>
-        public ChildAndParentsRelationshipState DeleteMediaReference(SourceReference reference, params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState DeleteMediaReference(SourceReference reference, params IStateTransitionOption[] options)
         {
             Link link = reference.GetLink(Rel.MEDIA_REFERENCE);
             link = link == null ? reference.GetLink(Rel.SELF) : link;
@@ -747,7 +747,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public ChildAndParentsRelationshipState AddEvidenceReference(EvidenceReference reference, params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState AddEvidenceReference(EvidenceReference reference, params IStateTransitionOption[] options)
         {
             return AddEvidenceReferences(new EvidenceReference[] { reference }, options);
         }
@@ -760,7 +760,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public ChildAndParentsRelationshipState AddEvidenceReferences(EvidenceReference[] refs, params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState AddEvidenceReferences(EvidenceReference[] refs, params IStateTransitionOption[] options)
         {
             ChildAndParentsRelationship relationship = CreateEmptySelf();
             relationship.Evidence = refs.ToList();
@@ -775,7 +775,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public ChildAndParentsRelationshipState UpdateEvidenceReference(EvidenceReference reference, params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState UpdateEvidenceReference(EvidenceReference reference, params IStateTransitionOption[] options)
         {
             return UpdateEvidenceReferences(new EvidenceReference[] { reference }, options);
         }
@@ -788,7 +788,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public ChildAndParentsRelationshipState UpdateEvidenceReferences(EvidenceReference[] refs, params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState UpdateEvidenceReferences(EvidenceReference[] refs, params IStateTransitionOption[] options)
         {
             ChildAndParentsRelationship relationship = CreateEmptySelf();
             relationship.Evidence = refs.ToList();
@@ -803,7 +803,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        protected ChildAndParentsRelationshipState UpdateEvidenceReferences(ChildAndParentsRelationship relationship, params StateTransitionOption[] options)
+        protected ChildAndParentsRelationshipState UpdateEvidenceReferences(ChildAndParentsRelationship relationship, params IStateTransitionOption[] options)
         {
             String target = GetSelfUri();
             Link conclusionsLink = GetLink(Rel.EVIDENCE_REFERENCES);
@@ -827,7 +827,7 @@ namespace FamilySearch.Api.Ft
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
         /// <exception cref="Gx.Rs.Api.GedcomxApplicationException">Thrown if this collection does not have a link to the resource.</exception>
-        public ChildAndParentsRelationshipState DeleteEvidenceReference(EvidenceReference reference, params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState DeleteEvidenceReference(EvidenceReference reference, params IStateTransitionOption[] options)
         {
             Link link = reference.GetLink(Rel.EVIDENCE_REFERENCE);
             link = link == null ? reference.GetLink(Rel.SELF) : link;
@@ -849,7 +849,7 @@ namespace FamilySearch.Api.Ft
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
         /// <exception cref="Gx.Rs.Api.GedcomxApplicationException">Thrown if a link to the required resource cannot be found.</exception>
-        public ChildAndParentsRelationshipState ReadNote(Note note, params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState ReadNote(Note note, params IStateTransitionOption[] options)
         {
             Link link = note.GetLink(Rel.NOTE);
             link = link == null ? note.GetLink(Rel.SELF) : link;
@@ -870,7 +870,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public ChildAndParentsRelationshipState AddNote(Note note, params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState AddNote(Note note, params IStateTransitionOption[] options)
         {
             return AddNotes(new Note[] { note }, options);
         }
@@ -883,7 +883,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public ChildAndParentsRelationshipState AddNotes(Note[] notes, params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState AddNotes(Note[] notes, params IStateTransitionOption[] options)
         {
             ChildAndParentsRelationship relationship = CreateEmptySelf();
             relationship.Notes = notes.ToList();
@@ -898,7 +898,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public ChildAndParentsRelationshipState UpdateNote(Note note, params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState UpdateNote(Note note, params IStateTransitionOption[] options)
         {
             return UpdateNotes(new Note[] { note }, options);
         }
@@ -911,7 +911,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public ChildAndParentsRelationshipState UpdateNotes(Note[] notes, params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState UpdateNotes(Note[] notes, params IStateTransitionOption[] options)
         {
             ChildAndParentsRelationship relationship = CreateEmptySelf();
             relationship.Notes = notes.ToList();
@@ -926,7 +926,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        protected ChildAndParentsRelationshipState UpdateNotes(ChildAndParentsRelationship relationship, params StateTransitionOption[] options)
+        protected ChildAndParentsRelationshipState UpdateNotes(ChildAndParentsRelationship relationship, params IStateTransitionOption[] options)
         {
             String target = GetSelfUri();
             Link conclusionsLink = GetLink(Rel.NOTES);
@@ -950,7 +950,7 @@ namespace FamilySearch.Api.Ft
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
         /// <exception cref="Gx.Rs.Api.GedcomxApplicationException">Thrown if a link to the required resource cannot be found.</exception>
-        public ChildAndParentsRelationshipState DeleteNote(Note note, params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState DeleteNote(Note note, params IStateTransitionOption[] options)
         {
             Link link = note.GetLink(Rel.NOTE);
             link = link == null ? note.GetLink(Rel.SELF) : link;
@@ -970,7 +970,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChangeHistoryState"/> instance containing the REST API response.
         /// </returns>
-        public ChangeHistoryState ReadChangeHistory(params StateTransitionOption[] options)
+        public ChangeHistoryState ReadChangeHistory(params IStateTransitionOption[] options)
         {
             Link link = GetLink(Rel.CHANGE_HISTORY);
             if (link == null || link.Href == null)
@@ -989,7 +989,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="PersonState"/> instance containing the REST API response.
         /// </returns>
-        public PersonState ReadChild(params StateTransitionOption[] options)
+        public PersonState ReadChild(params IStateTransitionOption[] options)
         {
             ChildAndParentsRelationship relationship = Relationship;
             if (relationship == null)
@@ -1014,7 +1014,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="PersonState"/> instance containing the REST API response.
         /// </returns>
-        public PersonState ReadFather(params StateTransitionOption[] options)
+        public PersonState ReadFather(params IStateTransitionOption[] options)
         {
             ChildAndParentsRelationship relationship = Relationship;
             if (relationship == null)
@@ -1040,7 +1040,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public ChildAndParentsRelationshipState UpdateFather(PersonState father, params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState UpdateFather(PersonState father, params IStateTransitionOption[] options)
         {
             return UpdateFather(father.GetSelfUri(), options);
         }
@@ -1053,7 +1053,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public ChildAndParentsRelationshipState UpdateFather(String fatherId, params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState UpdateFather(String fatherId, params IStateTransitionOption[] options)
         {
             ChildAndParentsRelationship relationship = CreateEmptySelf();
             relationship.Father = new ResourceReference(fatherId);
@@ -1070,7 +1070,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public ChildAndParentsRelationshipState DeleteFather(params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState DeleteFather(params IStateTransitionOption[] options)
         {
             Link link = GetLink(Rel.FATHER_ROLE);
             if (link == null || link.Href == null)
@@ -1089,7 +1089,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="PersonState"/> instance containing the REST API response.
         /// </returns>
-        public PersonState ReadMother(params StateTransitionOption[] options)
+        public PersonState ReadMother(params IStateTransitionOption[] options)
         {
             ChildAndParentsRelationship relationship = Relationship;
             if (relationship == null)
@@ -1115,7 +1115,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public ChildAndParentsRelationshipState UpdateMother(PersonState mother, params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState UpdateMother(PersonState mother, params IStateTransitionOption[] options)
         {
             return UpdateMother(mother.GetSelfUri(), options);
         }
@@ -1128,7 +1128,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public ChildAndParentsRelationshipState UpdateMother(String motherId, params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState UpdateMother(String motherId, params IStateTransitionOption[] options)
         {
             ChildAndParentsRelationship relationship = CreateEmptySelf();
             relationship.Mother = new ResourceReference(motherId);
@@ -1145,7 +1145,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public ChildAndParentsRelationshipState DeleteMother(params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState DeleteMother(params IStateTransitionOption[] options)
         {
             Link link = GetLink(Rel.MOTHER_ROLE);
             if (link == null || link.Href == null)
@@ -1164,7 +1164,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChildAndParentsRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public ChildAndParentsRelationshipState Restore(params StateTransitionOption[] options)
+        public ChildAndParentsRelationshipState Restore(params IStateTransitionOption[] options)
         {
             Link link = GetLink(Rel.RESTORE);
             if (link == null || link.Href == null)

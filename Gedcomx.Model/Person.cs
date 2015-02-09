@@ -277,7 +277,7 @@ namespace Gx.Conclusion
          *
          * @param visitor The visitor.
          */
-        public void Accept(GedcomxModelVisitor visitor)
+        public void Accept(IGedcomxModelVisitor visitor)
         {
             visitor.VisitPerson(this);
         }

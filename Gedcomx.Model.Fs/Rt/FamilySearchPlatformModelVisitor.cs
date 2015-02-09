@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Gx.Fs.Rt
 {
-    public interface FamilySearchPlatformModelVisitor : GedcomxModelVisitor
+    public interface IFamilySearchPlatformModelVisitor : IGedcomxModelVisitor
     {
         void VisitFamilySearchPlatform(FamilySearchPlatform fsp);
 

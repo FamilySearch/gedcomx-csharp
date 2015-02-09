@@ -97,7 +97,7 @@ namespace Gx.Rs.Api
         /// <value>
         /// The main data element represented by this state instance. In this overridden implementation, it is the first collection from <see cref="Gedcomx.Collections"/>.
         /// </value>
-        protected override SupportsLinks MainDataElement
+        protected override ISupportsLinks MainDataElement
         {
             get
             {
@@ -127,7 +127,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="Gx.Rs.Api.CollectionState"/> instance containing the REST API response.
         /// </returns>
-        public CollectionState Update(Collection collection, params StateTransitionOption[] options)
+        public CollectionState Update(Collection collection, params IStateTransitionOption[] options)
         {
             return (CollectionState)Post(new Gedcomx().AddCollection(collection), options);
         }
@@ -139,7 +139,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="Gx.Rs.Api.RecordsState"/> instance containing the REST API response.
         /// </returns>
-        public RecordsState ReadRecords(params StateTransitionOption[] options)
+        public RecordsState ReadRecords(params IStateTransitionOption[] options)
         {
             Link link = this.GetLink(Rel.RECORDS);
             if (link == null || link.Href == null)
@@ -160,7 +160,7 @@ namespace Gx.Rs.Api
         /// A <see cref="Gx.Rs.Api.CollectionState"/> instance containing the REST API response.
         /// </returns>
         /// <exception cref="Gx.Rs.Api.GedcomxApplicationException">Thrown if this collection does not have a link to the resource.</exception>
-        public RecordState AddRecord(Gedcomx record, params StateTransitionOption[] options)
+        public RecordState AddRecord(Gedcomx record, params IStateTransitionOption[] options)
         {
             Link link = this.GetLink(Rel.RECORDS);
             if (link == null || link.Href == null)
@@ -179,7 +179,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// If a link exists for this resource, it returns a <see cref="PersonsState"/> instance containing the REST API response; otherwise, it returns null.
         /// </returns>
-        public PersonsState ReadPersons(params StateTransitionOption[] options)
+        public PersonsState ReadPersons(params IStateTransitionOption[] options)
         {
             Link link = this.GetLink(Rel.PERSONS);
             if (link == null || link.Href == null)
@@ -199,7 +199,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="PersonState"/> instance containing the REST API response.
         /// </returns>
-        public PersonState AddPerson(Person person, params StateTransitionOption[] options)
+        public PersonState AddPerson(Person person, params IStateTransitionOption[] options)
         {
             Gedcomx entity = new Gedcomx();
             entity.AddPerson(person);
@@ -215,7 +215,7 @@ namespace Gx.Rs.Api
         /// A <see cref="PersonState"/> instance containing the REST API response.
         /// </returns>
         /// <exception cref="Gx.Rs.Api.GedcomxApplicationException">Thrown if this collection does not have a link to the resource.</exception>
-        public PersonState AddPerson(Gedcomx entity, params StateTransitionOption[] options)
+        public PersonState AddPerson(Gedcomx entity, params IStateTransitionOption[] options)
         {
             Link link = this.GetLink(Rel.PERSONS);
             if (link == null || link.Href == null)
@@ -234,7 +234,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="PersonState"/> instance containing the REST API response.
         /// </returns>
-        public PersonState ReadPersonForCurrentUser(params StateTransitionOption[] options)
+        public PersonState ReadPersonForCurrentUser(params IStateTransitionOption[] options)
         {
             Link link = this.GetLink(Rel.CURRENT_USER_PERSON);
             if (link == null || link.Href == null)
@@ -254,7 +254,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="PersonState"/> instance containing the REST API response.
         /// </returns>
-        public PersonState ReadPerson(Uri personUri, params StateTransitionOption[] options)
+        public PersonState ReadPerson(Uri personUri, params IStateTransitionOption[] options)
         {
             if (personUri == null)
             {
@@ -273,7 +273,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="PersonSearchResultsState"/> instance containing the REST API response.
         /// </returns>
-        public PersonSearchResultsState SearchForPersons(GedcomxPersonSearchQueryBuilder query, params StateTransitionOption[] options)
+        public PersonSearchResultsState SearchForPersons(GedcomxPersonSearchQueryBuilder query, params IStateTransitionOption[] options)
         {
             return SearchForPersons(query.Build(), options);
         }
@@ -287,7 +287,7 @@ namespace Gx.Rs.Api
         /// A <see cref="PersonSearchResultsState"/> instance containing the REST API response.
         /// </returns>
         /// <remarks>String query format and additional information can be reviewed at https://familysearch.org/developers/docs/api/tree/Person_Search_resource. </remarks>
-        public PersonSearchResultsState SearchForPersons(String query, params StateTransitionOption[] options)
+        public PersonSearchResultsState SearchForPersons(String query, params IStateTransitionOption[] options)
         {
             Link link = this.GetLink(Rel.PERSON_SEARCH);
             if (link == null || link.Template == null)
@@ -309,7 +309,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="PlaceSearchResultsState"/> instance containing the REST API response.
         /// </returns>
-        public PlaceSearchResultsState SearchForPlaces(GedcomxPlaceSearchQueryBuilder query, params StateTransitionOption[] options)
+        public PlaceSearchResultsState SearchForPlaces(GedcomxPlaceSearchQueryBuilder query, params IStateTransitionOption[] options)
         {
             return SearchForPlaces(query.Build(), options);
         }
@@ -323,7 +323,7 @@ namespace Gx.Rs.Api
         /// A <see cref="PlaceSearchResultsState"/> instance containing the REST API response.
         /// </returns>
         /// <remarks>String query format and additional information can be reviewed at https://familysearch.org/developers/docs/api/places/Places_Search_resource. </remarks>
-        public PlaceSearchResultsState SearchForPlaces(String query, params StateTransitionOption[] options)
+        public PlaceSearchResultsState SearchForPlaces(String query, params IStateTransitionOption[] options)
         {
             Link link = this.GetLink(Rel.PLACE_SEARCH);
             if (link == null || link.Template == null)
@@ -344,7 +344,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RelationshipsState"/> instance containing the REST API response.
         /// </returns>
-        public RelationshipsState ReadRelationships(params StateTransitionOption[] options)
+        public RelationshipsState ReadRelationships(params IStateTransitionOption[] options)
         {
             Link link = this.GetLink(Rel.RELATIONSHIPS);
             if (link == null || link.Href == null)
@@ -365,7 +365,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public RelationshipState AddSpouseRelationship(PersonState person1, PersonState person2, params StateTransitionOption[] options)
+        public RelationshipState AddSpouseRelationship(PersonState person1, PersonState person2, params IStateTransitionOption[] options)
         {
             return AddSpouseRelationship(person1, person2, null, options);
         }
@@ -380,7 +380,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public RelationshipState AddSpouseRelationship(PersonState person1, PersonState person2, Fact fact, params StateTransitionOption[] options)
+        public RelationshipState AddSpouseRelationship(PersonState person1, PersonState person2, Fact fact, params IStateTransitionOption[] options)
         {
             Relationship relationship = new Relationship();
             relationship.Person1 = new ResourceReference(person1.GetSelfUri());
@@ -399,7 +399,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public RelationshipState AddParentChildRelationship(PersonState parent, PersonState child, params StateTransitionOption[] options)
+        public RelationshipState AddParentChildRelationship(PersonState parent, PersonState child, params IStateTransitionOption[] options)
         {
             return AddParentChildRelationship(parent, child, null, options);
         }
@@ -414,7 +414,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public RelationshipState AddParentChildRelationship(PersonState parent, PersonState child, Fact fact, params StateTransitionOption[] options)
+        public RelationshipState AddParentChildRelationship(PersonState parent, PersonState child, Fact fact, params IStateTransitionOption[] options)
         {
             Relationship relationship = new Relationship();
             relationship.Person1 = new ResourceReference(parent.GetSelfUri());
@@ -433,7 +433,7 @@ namespace Gx.Rs.Api
         /// A <see cref="RelationshipState" /> instance containing the REST API response.
         /// </returns>
         /// <exception cref="Gx.Rs.Api.GedcomxApplicationException">Thrown if this collection does not have a link to the resource.</exception>
-        public virtual RelationshipState AddRelationship(Relationship relationship, params StateTransitionOption[] options)
+        public virtual RelationshipState AddRelationship(Relationship relationship, params IStateTransitionOption[] options)
         {
             Link link = this.GetLink(Rel.RELATIONSHIPS);
             if (link == null || link.Href == null)
@@ -456,7 +456,7 @@ namespace Gx.Rs.Api
         /// A <see cref="RelationshipsState" /> instance containing the REST API response.
         /// </returns>
         /// <exception cref="Gx.Rs.Api.GedcomxApplicationException">Thrown if this collection does not have a link to the resource.</exception>
-        public virtual RelationshipsState AddRelationships(List<Relationship> relationships, params StateTransitionOption[] options)
+        public virtual RelationshipsState AddRelationships(List<Relationship> relationships, params IStateTransitionOption[] options)
         {
             Link link = this.GetLink(Rel.RELATIONSHIPS);
             if (link == null || link.Href == null)
@@ -478,7 +478,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="SourceDescriptionState"/> instance containing the REST API response.
         /// </returns>
-        public SourceDescriptionState AddArtifact(DataSource artifact, params StateTransitionOption[] options)
+        public SourceDescriptionState AddArtifact(IDataSource artifact, params IStateTransitionOption[] options)
         {
             return AddArtifact(null, artifact, options);
         }
@@ -492,7 +492,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="SourceDescriptionState"/> instance containing the REST API response.
         /// </returns>
-        public SourceDescriptionState AddArtifact(SourceDescription description, DataSource artifact, params StateTransitionOption[] options)
+        public SourceDescriptionState AddArtifact(SourceDescription description, IDataSource artifact, params IStateTransitionOption[] options)
         {
             return AddArtifact(this, description, artifact, options);
         }
@@ -508,7 +508,7 @@ namespace Gx.Rs.Api
         /// A <see cref="SourceDescriptionState" /> instance containing the REST API response.
         /// </returns>
         /// <exception cref="Gx.Rs.Api.GedcomxApplicationException">Thrown if this collection does not have a link to the resource.</exception>
-        internal static SourceDescriptionState AddArtifact(GedcomxApplicationState<Gedcomx> state, SourceDescription description, DataSource artifact, params StateTransitionOption[] options)
+        internal static SourceDescriptionState AddArtifact(GedcomxApplicationState<Gedcomx> state, SourceDescription description, IDataSource artifact, params IStateTransitionOption[] options)
         {
             Link link = state.GetLink(Rel.ARTIFACTS);
             if (link == null || link.Href == null)
@@ -584,7 +584,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="SourceDescriptionsState"/> instance containing the REST API response.
         /// </returns>
-        public SourceDescriptionsState ReadSourceDescriptions(params StateTransitionOption[] options)
+        public SourceDescriptionsState ReadSourceDescriptions(params IStateTransitionOption[] options)
         {
             Link link = this.GetLink(Rel.SOURCE_DESCRIPTIONS);
             if (link == null || link.Href == null)
@@ -605,7 +605,7 @@ namespace Gx.Rs.Api
         /// A <see cref="SourceDescriptionState" /> instance containing the REST API response.
         /// </returns>
         /// <exception cref="Gx.Rs.Api.GedcomxApplicationException">Thrown if this collection does not have a link to the resource.</exception>
-        public SourceDescriptionState AddSourceDescription(SourceDescription source, params StateTransitionOption[] options)
+        public SourceDescriptionState AddSourceDescription(SourceDescription source, params IStateTransitionOption[] options)
         {
             Link link = this.GetLink(Rel.SOURCE_DESCRIPTIONS);
             if (link == null || link.Href == null)
@@ -626,7 +626,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="CollectionState"/> instance containing the REST API response.
         /// </returns>
-        public CollectionState ReadCollection(params StateTransitionOption[] options)
+        public CollectionState ReadCollection(params IStateTransitionOption[] options)
         {
             Link link = this.GetLink(Rel.COLLECTION);
             if (link == null || link.Href == null)
@@ -645,7 +645,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="CollectionsState"/> instance containing the REST API response.
         /// </returns>
-        public CollectionsState ReadSubcollections(params StateTransitionOption[] options)
+        public CollectionsState ReadSubcollections(params IStateTransitionOption[] options)
         {
             Link link = this.GetLink(Rel.SUBCOLLECTIONS);
             if (link == null || link.Href == null)
@@ -666,7 +666,7 @@ namespace Gx.Rs.Api
         /// A <see cref="CollectionState" /> instance containing the REST API response.
         /// </returns>
         /// <exception cref="Gx.Rs.Api.GedcomxApplicationException">Thrown if this collection does not have a link to the resource.</exception>
-        public CollectionState AddCollection(Collection collection, params StateTransitionOption[] options)
+        public CollectionState AddCollection(Collection collection, params IStateTransitionOption[] options)
         {
             Link link = this.GetLink(Rel.SUBCOLLECTIONS);
             if (link == null || link.Href == null)
@@ -685,7 +685,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="SourceDescriptionsState"/> instance containing the REST API response.
         /// </returns>
-        public SourceDescriptionsState ReadResourcesOfCurrentUser(params StateTransitionOption[] options)
+        public SourceDescriptionsState ReadResourcesOfCurrentUser(params IStateTransitionOption[] options)
         {
             Link link = this.GetLink(Rel.CURRENT_USER_RESOURCES);
             if (link == null || link.Href == null)

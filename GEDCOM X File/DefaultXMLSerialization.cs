@@ -12,7 +12,7 @@ namespace Gedcomx.File
     /// <summary>
     /// The default XML serialization class.
     /// </summary>
-    public class DefaultXmlSerialization : GedcomxEntrySerializer, GedcomxEntryDeserializer
+    public class DefaultXmlSerialization : IGedcomxEntrySerializer, IGedcomxEntryDeserializer
     {
         private readonly XmlSerializer serializer;
         private readonly XmlSerializerNamespaces namespaces;

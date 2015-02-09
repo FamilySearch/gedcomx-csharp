@@ -66,7 +66,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="PersonState"/> instance containing the REST API response.
         /// </returns>
-        public PersonState ReadPerson(int ancestorNumber, params StateTransitionOption[] options)
+        public PersonState ReadPerson(int ancestorNumber, params IStateTransitionOption[] options)
         {
             AncestryTree.AncestryNode ancestor = Tree.GetAncestor(ancestorNumber);
             if (ancestor == null)

@@ -76,7 +76,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RecordState"/> instance containing the REST API response.
         /// </returns>
-        public RecordState ReadRecord(Entry entry, params StateTransitionOption[] options)
+        public RecordState ReadRecord(Entry entry, params IStateTransitionOption[] options)
         {
             Link link = entry.GetLink(Rel.RECORD);
             if (link == null || link.Href == null)
@@ -96,7 +96,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RecordState"/> instance containing the REST API response.
         /// </returns>
-        public RecordState ReadRecord(Gedcomx record, params StateTransitionOption[] options)
+        public RecordState ReadRecord(Gedcomx record, params IStateTransitionOption[] options)
         {
             Link link = record.GetLink(Rel.RECORD);
             if (link == null || link.Href == null)

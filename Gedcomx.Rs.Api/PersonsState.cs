@@ -47,7 +47,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="CollectionState"/> instance containing the REST API response.
         /// </returns>
-        public CollectionState ReadCollection(params StateTransitionOption[] options)
+        public CollectionState ReadCollection(params IStateTransitionOption[] options)
         {
             Link link = GetLink(Rel.COLLECTION);
             if (link == null || link.Href == null)
@@ -82,7 +82,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="PersonState"/> instance containing the REST API response.
         /// </returns>
-        public PersonState AddPerson(Person person, params StateTransitionOption[] options)
+        public PersonState AddPerson(Person person, params IStateTransitionOption[] options)
         {
             Link link = GetLink("self");
             String href = link == null ? null : link.Href == null ? null : link.Href;

@@ -136,7 +136,7 @@ namespace Gx.Records
          *
          * @param visitor The visitor to accept.
          */
-        public void Accept(GedcomxModelVisitor visitor)
+        public void Accept(IGedcomxModelVisitor visitor)
         {
             visitor.VisitFieldValue(this);
         }

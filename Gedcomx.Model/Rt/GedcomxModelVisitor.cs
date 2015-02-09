@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Gedcomx.Model.Rt
 {
-    public interface GedcomxModelVisitor
+    public interface IGedcomxModelVisitor
     {
         void VisitGedcomx(Gx.Gedcomx gx);
 

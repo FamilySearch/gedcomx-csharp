@@ -8,7 +8,7 @@ using Gedcomx.Model.Util;
 
 namespace Gedcomx.Model
 {
-    public interface SupportsLinks
+    public interface ISupportsLinks
     {
         /// <summary>
         /// The list of hypermedia links. Links are not specified by GEDCOM X core, but as extension elements by GEDCOM X RS.

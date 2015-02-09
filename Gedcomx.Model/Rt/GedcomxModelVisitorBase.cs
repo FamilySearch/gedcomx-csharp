@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Gedcomx.Model.Rt
 {
-    public class GedcomxModelVisitorBase : GedcomxModelVisitor
+    public class GedcomxModelVisitorBase : IGedcomxModelVisitor
     {
         protected readonly Stack contextStack = new Stack();
 

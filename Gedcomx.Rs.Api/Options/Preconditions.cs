@@ -12,7 +12,7 @@ namespace Gx.Rs.Api.Options
     /// A REST API request options helper providing precondition features. This is similar to the <see cref="CacheDirectives"/> class, but applies
     /// inverse logic.
     /// </summary>
-    public class Preconditions : StateTransitionOption
+    public class Preconditions : IStateTransitionOption
     {
         private readonly String etag;
         private readonly DateTime? lastModified;

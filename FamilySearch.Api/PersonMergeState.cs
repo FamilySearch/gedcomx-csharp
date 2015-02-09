@@ -88,7 +88,7 @@ namespace FamilySearch.Api
         /// <returns>
         /// A <see cref="PersonMergeState"/> instance containing the REST API response.
         /// </returns>
-        public PersonMergeState ReadMergeMirror(params StateTransitionOption[] options)
+        public PersonMergeState ReadMergeMirror(params IStateTransitionOption[] options)
         {
             Link link = GetLink(Rel.MERGE_MIRROR);
             if (link == null || link.Href == null)
@@ -107,7 +107,7 @@ namespace FamilySearch.Api
         /// <returns>
         /// A <see cref="PersonState"/> instance containing the REST API response.
         /// </returns>
-        public PersonState ReadSurvivor(params StateTransitionOption[] options)
+        public PersonState ReadSurvivor(params IStateTransitionOption[] options)
         {
             Link link = GetLink(Rel.PERSON);
             if (link == null || link.Href == null)
@@ -127,7 +127,7 @@ namespace FamilySearch.Api
         /// <returns>
         /// A <see cref="PersonMergeState"/> instance containing the REST API response.
         /// </returns>
-        public PersonMergeState DoMerge(Merge merge, params StateTransitionOption[] options)
+        public PersonMergeState DoMerge(Merge merge, params IStateTransitionOption[] options)
         {
             FamilySearchPlatform entity = new FamilySearchPlatform();
             entity.AddMerge(merge);
@@ -142,7 +142,7 @@ namespace FamilySearch.Api
         /// <returns>
         /// A <see cref="PersonMergeState"/> instance containing the REST API response.
         /// </returns>
-        public PersonMergeState DoMerge(FamilySearchPlatform entity, params StateTransitionOption[] options)
+        public PersonMergeState DoMerge(FamilySearchPlatform entity, params IStateTransitionOption[] options)
         {
             return (PersonMergeState)Post(entity, options);
         }

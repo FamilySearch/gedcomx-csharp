@@ -9,7 +9,7 @@ namespace Gedcomx.File
     /// <summary>
     /// An interface exposing the ability deserialize an arbitrary stream or string.
     /// </summary>
-    public interface GedcomxEntryDeserializer
+    public interface IGedcomxEntryDeserializer
     {
         /// <summary>
         /// Deserializes the specified stream.

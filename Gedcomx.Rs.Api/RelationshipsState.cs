@@ -62,7 +62,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="CollectionState"/> instance containing the REST API response.
         /// </returns>
-        public CollectionState ReadCollection(params StateTransitionOption[] options)
+        public CollectionState ReadCollection(params IStateTransitionOption[] options)
         {
             Link link = GetLink(Rel.COLLECTION);
             if (link == null || link.Href == null)
@@ -87,7 +87,7 @@ namespace Gx.Rs.Api
         /// The person1 parameter does not have to be the husband, it could be the wife; however, person2 must be the opposite. So if you specify a hasband for person1
         /// then person2 must be the wife. Conversely, if you specify a wife for person1 then person2 must be the husband.
         /// </remarks>
-        public RelationshipState AddSpouseRelationship(PersonState person1, PersonState person2, params StateTransitionOption[] options)
+        public RelationshipState AddSpouseRelationship(PersonState person1, PersonState person2, params IStateTransitionOption[] options)
         {
             Relationship relationship = new Relationship();
             relationship.Person1 = new ResourceReference(person1.GetSelfUri());
@@ -105,7 +105,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public RelationshipState AddParentChildRelationship(PersonState parent, PersonState child, params StateTransitionOption[] options)
+        public RelationshipState AddParentChildRelationship(PersonState parent, PersonState child, params IStateTransitionOption[] options)
         {
             Relationship relationship = new Relationship();
             relationship.Person1 = new ResourceReference(parent.GetSelfUri());
@@ -122,7 +122,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="RelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public virtual RelationshipState AddRelationship(Relationship relationship, params StateTransitionOption[] options)
+        public virtual RelationshipState AddRelationship(Relationship relationship, params IStateTransitionOption[] options)
         {
             Gedcomx entity = new Gedcomx();
             entity.AddRelationship(relationship);

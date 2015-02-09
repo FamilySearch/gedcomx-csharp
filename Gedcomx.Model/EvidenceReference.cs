@@ -19,7 +19,7 @@ namespace Gx.Common
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "EvidenceReference")]
     [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "EvidenceReference")]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://gedcomx.org/v1/", ElementName = "evidenceReference")]
-    public sealed partial class EvidenceReference : Gx.Links.HypermediaEnabledData, Attributable
+    public sealed partial class EvidenceReference : Gx.Links.HypermediaEnabledData, IAttributable
     {
         private string _resourceId;
         private string _resource;
@@ -91,7 +91,7 @@ namespace Gx.Common
          *
          * @param visitor The visitor.
          */
-        public void Accept(GedcomxModelVisitor visitor)
+        public void Accept(IGedcomxModelVisitor visitor)
         {
             visitor.VisitEvidenceReference(this);
         }

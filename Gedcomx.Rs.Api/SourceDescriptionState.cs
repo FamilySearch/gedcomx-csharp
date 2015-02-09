@@ -61,7 +61,7 @@ namespace Gx.Rs.Api
         /// <value>
         /// The main data element represented by this state instance.
         /// </value>
-        protected override SupportsLinks MainDataElement
+        protected override ISupportsLinks MainDataElement
         {
             get
             {
@@ -91,7 +91,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="SourceDescriptionState"/> instance containing the REST API response.
         /// </returns>
-        public SourceDescriptionState Update(SourceDescription description, params StateTransitionOption[] options)
+        public SourceDescriptionState Update(SourceDescription description, params IStateTransitionOption[] options)
         {
             Gedcomx entity = new Gedcomx();
             entity.SourceDescriptions = new List<SourceDescription>() { description };
@@ -106,7 +106,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="PersonsState"/> instance containing the REST API response.
         /// </returns>
-        public PersonsState ReadPersonas(params StateTransitionOption[] options)
+        public PersonsState ReadPersonas(params IStateTransitionOption[] options)
         {
             Link link = GetLink(Rel.PERSONS);
             if (link == null || link.Href == null)
@@ -128,7 +128,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="PersonState"/> instance containing the REST API response.
         /// </returns>
-        public PersonState AddPersona(Person person, params StateTransitionOption[] options)
+        public PersonState AddPersona(Person person, params IStateTransitionOption[] options)
         {
             Gedcomx entity = new Gedcomx();
             entity.AddPerson(person);
@@ -143,7 +143,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="PersonState"/> instance containing the REST API response.
         /// </returns>
-        public PersonState AddPersona(Gedcomx entity, params StateTransitionOption[] options)
+        public PersonState AddPersona(Gedcomx entity, params IStateTransitionOption[] options)
         {
             String target = GetSelfUri();
             Link link = GetLink(Rel.PERSONS);
@@ -163,7 +163,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="SourceDescriptionState"/> instance containing the REST API response.
         /// </returns>
-        public SourceDescriptionState QueryAttachedReferences(params StateTransitionOption[] options)
+        public SourceDescriptionState QueryAttachedReferences(params IStateTransitionOption[] options)
         {
             Link link = GetLink(Rel.SOURCE_REFERENCES_QUERY);
             if (link == null || link.Href == null)
@@ -184,7 +184,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="CollectionState"/> instance containing the REST API response.
         /// </returns>
-        public CollectionState ReadCollection(params StateTransitionOption[] options)
+        public CollectionState ReadCollection(params IStateTransitionOption[] options)
         {
             Link link = GetLink(Rel.COLLECTION);
             if (link == null || link.Href == null)

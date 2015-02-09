@@ -503,7 +503,7 @@ namespace Gedcomx.Rs.Api.Test
 
             // Ensure the target relationship exists
             person.LoadSpouseRelationships();
-            var state = (PreferredRelationshipState)person.ReadRelationship(person.Entity.Relationships[0]);
+            var state = (IPreferredRelationshipState)person.ReadRelationship(person.Entity.Relationships[0]);
             tree.UpdatePreferredSpouseRelationship(me.User.TreeUserId, p.Person.Id, state);
 
             var state2 = (FamilyTreeRelationshipState)tree.ReadPreferredSpouseRelationship(me.User.TreeUserId, p.Person.Id);
@@ -526,7 +526,7 @@ namespace Gedcomx.Rs.Api.Test
             var person = tree.ReadPersonById(p.Person.Id);
 
             person.LoadSpouseRelationships();
-            var state = (PreferredRelationshipState)person.ReadRelationship(person.Entity.Relationships[0]);
+            var state = (IPreferredRelationshipState)person.ReadRelationship(person.Entity.Relationships[0]);
             var state2 = tree.UpdatePreferredSpouseRelationship(me.User.TreeUserId, p.Person.Id, state);
             Assert.AreEqual(HttpStatusCode.NoContent, state2.Response.StatusCode);
         }
@@ -547,7 +547,7 @@ namespace Gedcomx.Rs.Api.Test
 
             // Ensure the target relationship exists
             person.LoadSpouseRelationships();
-            var state = (PreferredRelationshipState)person.ReadRelationship(person.Entity.Relationships[0]);
+            var state = (IPreferredRelationshipState)person.ReadRelationship(person.Entity.Relationships[0]);
             tree.UpdatePreferredSpouseRelationship(me.User.TreeUserId, p.Person.Id, state);
 
             var state2 = tree.DeletePreferredSpouseRelationship(me.User.TreeUserId, p.Person.Id);

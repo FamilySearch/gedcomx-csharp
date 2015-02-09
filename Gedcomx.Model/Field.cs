@@ -78,7 +78,7 @@ namespace Gx.Records
             }
         }
 
-        public void Accept(GedcomxModelVisitor visitor)
+        public void Accept(IGedcomxModelVisitor visitor)
         {
             visitor.VisitField(this);
         }

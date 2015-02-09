@@ -133,7 +133,7 @@ namespace FamilySearch.Api
         /// <returns>
         /// A <see cref="VocabElementListState"/> instance containing the REST API response.
         /// </returns>
-        public VocabElementListState ReadPlaceTypeGroups(params StateTransitionOption[] options)
+        public VocabElementListState ReadPlaceTypeGroups(params IStateTransitionOption[] options)
         {
             return this.ReadPlaceElementList(Rel.PLACE_TYPE_GROUPS, options);
         }
@@ -145,7 +145,7 @@ namespace FamilySearch.Api
         /// <returns>
         /// A <see cref="VocabElementListState"/> instance containing the REST API response.
         /// </returns>
-        public VocabElementListState ReadPlaceTypes(params StateTransitionOption[] options)
+        public VocabElementListState ReadPlaceTypes(params IStateTransitionOption[] options)
         {
             return this.ReadPlaceElementList(Rel.PLACE_TYPES, options);
         }
@@ -158,7 +158,7 @@ namespace FamilySearch.Api
         /// <returns>
         /// A <see cref="VocabElementListState"/> instance containing the REST API response.
         /// </returns>
-        private VocabElementListState ReadPlaceElementList(String path, params StateTransitionOption[] options)
+        private VocabElementListState ReadPlaceElementList(String path, params IStateTransitionOption[] options)
         {
             Link link = GetLink(path);
             if (null == link || null == link.Template)
@@ -181,7 +181,7 @@ namespace FamilySearch.Api
         /// <returns>
         /// A <see cref="VocabElementListState"/> instance containing the REST API response.
         /// </returns>
-        public VocabElementListState ReadPlaceTypeGroupById(String id, params StateTransitionOption[] options)
+        public VocabElementListState ReadPlaceTypeGroupById(String id, params IStateTransitionOption[] options)
         {
             Link link = GetLink(Rel.PLACE_TYPE_GROUP);
             if (link == null || link.Template == null)
@@ -204,7 +204,7 @@ namespace FamilySearch.Api
         /// <returns>
         /// A <see cref="VocabElementState"/> instance containing the REST API response.
         /// </returns>
-        public VocabElementState ReadPlaceTypeById(String id, params StateTransitionOption[] options)
+        public VocabElementState ReadPlaceTypeById(String id, params IStateTransitionOption[] options)
         {
             Link link = GetLink(Rel.PLACE_TYPE);
             if (link == null || link.Template == null)
@@ -227,7 +227,7 @@ namespace FamilySearch.Api
         /// <returns>
         /// A <see cref="PlaceGroupState"/> instance containing the REST API response.
         /// </returns>
-        public PlaceGroupState ReadPlaceGroupById(String id, params StateTransitionOption[] options)
+        public PlaceGroupState ReadPlaceGroupById(String id, params IStateTransitionOption[] options)
         {
             Link link = GetLink(Rel.PLACE_GROUP);
             if (link == null || link.Template == null)

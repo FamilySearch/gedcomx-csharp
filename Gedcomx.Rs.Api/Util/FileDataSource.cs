@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 namespace Gx.Rs.Api.Util
 {
     /// <summary>
-    /// Provide a simple implementation of <see cref="DataSource"/> for files.
+    /// Provide a simple implementation of <see cref="IDataSource"/> for files.
     /// </summary>
-    public class FileDataSource : DataSource
+    public class FileDataSource : IDataSource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="FileDataSource"/> class.

@@ -134,10 +134,10 @@ namespace Gx.Rs.Api
         /// The main data element represented by this state instance.
         /// </value>
         /// <remarks>
-        /// This class does not have a <see cref="SupportsLinks"/> entity; therefore, this
+        /// This class does not have a <see cref="ISupportsLinks"/> entity; therefore, this
         /// always returns null.
         /// </remarks>
-        protected override SupportsLinks MainDataElement
+        protected override ISupportsLinks MainDataElement
         {
             get
             {

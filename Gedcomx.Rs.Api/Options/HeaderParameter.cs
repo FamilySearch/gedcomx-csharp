@@ -10,7 +10,7 @@ namespace Gx.Rs.Api.Options
     /// <summary>
     /// This is a helper class for managing headers in REST API requests.
     /// </summary>
-    public class HeaderParameter : StateTransitionOption
+    public class HeaderParameter : IStateTransitionOption
     {
         /// <summary>
         /// The accept language header

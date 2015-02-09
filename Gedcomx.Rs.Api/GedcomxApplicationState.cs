@@ -140,7 +140,7 @@ namespace Gx.Rs.Api
         /// <value>
         /// The main data element represented by this state instance.
         /// </value>
-        protected abstract SupportsLinks MainDataElement
+        protected abstract ISupportsLinks MainDataElement
         {
             get;
         }
@@ -167,7 +167,7 @@ namespace Gx.Rs.Api
         /// <param name="entity">The entity which will embed the reponse data.</param>
         /// <param name="options">The options to apply before executing the REST API call.</param>
         /// <exception cref="GedcomxApplicationException">Thrown when the server responds with HTTP status code >= 500 and &lt; 600.</exception>
-        protected void Embed<T>(Link link, Gedcomx entity, params StateTransitionOption[] options) where T : Gedcomx
+        protected void Embed<T>(Link link, Gedcomx entity, params IStateTransitionOption[] options) where T : Gedcomx
         {
             if (link.Href != null)
             {
@@ -204,11 +204,11 @@ namespace Gx.Rs.Api
         /// <param name="request">The REST API request.</param>
         /// <param name="options">The options to applying before the request is handled.</param>
         /// <returns>The REST API response after being handled.</returns>
-        protected internal IRestResponse Invoke(IRestRequest request, params StateTransitionOption[] options)
+        protected internal IRestResponse Invoke(IRestRequest request, params IStateTransitionOption[] options)
         {
             IRestResponse result;
 
-            foreach (StateTransitionOption option in options)
+            foreach (IStateTransitionOption option in options)
             {
                 option.Apply(request);
             }
@@ -266,7 +266,7 @@ namespace Gx.Rs.Api
         /// <typeparam name="T">The type of the expected response. The raw response data will be parsed (from JSON or XML) and casted to this type.</typeparam>
         /// <param name="entity">The entity with links and which shall have the data loaded into.</param>
         /// <param name="options">The options to apply before handling the REST API requests.</param>
-        protected void IncludeEmbeddedResources<T>(Gedcomx entity, params StateTransitionOption[] options) where T : Gedcomx
+        protected void IncludeEmbeddedResources<T>(Gedcomx entity, params IStateTransitionOption[] options) where T : Gedcomx
         {
             Embed<T>(EmbeddedLinkLoader.LoadEmbeddedLinks(entity), entity, options);
         }
@@ -278,7 +278,7 @@ namespace Gx.Rs.Api
         /// <param name="links">The links to call.</param>
         /// <param name="entity">The entity which shall have the data loaded into.</param>
         /// <param name="options">The options to apply before handling the REST API requests.</param>
-        protected void Embed<T>(IEnumerable<Link> links, Gedcomx entity, params StateTransitionOption[] options) where T : Gedcomx
+        protected void Embed<T>(IEnumerable<Link> links, Gedcomx entity, params IStateTransitionOption[] options) where T : Gedcomx
         {
             foreach (Link link in links)
             {
@@ -335,7 +335,7 @@ namespace Gx.Rs.Api
         /// </summary>
         /// <param name="options">The options to apply before executing the REST API call.</param>
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
-        public virtual GedcomxApplicationState Head(params StateTransitionOption[] options)
+        public virtual GedcomxApplicationState Head(params IStateTransitionOption[] options)
         {
             IRestRequest request = CreateAuthenticatedRequest();
             Parameter accept = this.Request.GetHeaders().Get("Accept").FirstOrDefault();
@@ -353,7 +353,7 @@ namespace Gx.Rs.Api
         /// </summary>
         /// <param name="options">The options to apply before executing the REST API call.</param>
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
-        public virtual GedcomxApplicationState Options(params StateTransitionOption[] options)
+        public virtual GedcomxApplicationState Options(params IStateTransitionOption[] options)
         {
             IRestRequest request = CreateAuthenticatedRequest();
             Parameter accept = this.Request.GetHeaders().Get("Accept").FirstOrDefault();
@@ -370,7 +370,7 @@ namespace Gx.Rs.Api
         /// </summary>
         /// <param name="options">The options to apply before executing the REST API call.</param>
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
-        public virtual GedcomxApplicationState Get(params StateTransitionOption[] options)
+        public virtual GedcomxApplicationState Get(params IStateTransitionOption[] options)
         {
             IRestRequest request = CreateAuthenticatedRequest();
             Parameter accept = this.Request.GetHeaders().Get("Accept").FirstOrDefault();
@@ -389,7 +389,7 @@ namespace Gx.Rs.Api
         /// </summary>
         /// <param name="options">The options to apply before executing the REST API call.</param>
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
-        public virtual GedcomxApplicationState Delete(params StateTransitionOption[] options)
+        public virtual GedcomxApplicationState Delete(params IStateTransitionOption[] options)
         {
             IRestRequest request = CreateAuthenticatedRequest();
             Parameter accept = this.Request.GetHeaders().Get("Accept").FirstOrDefault();
@@ -407,7 +407,7 @@ namespace Gx.Rs.Api
         /// <param name="entity">The entity to be used as the body of the REST API request. This is the entity to be PUT.</param>
         /// <param name="options">The options to apply before executing the REST API call.</param>
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
-        public virtual GedcomxApplicationState Put(object entity, params StateTransitionOption[] options)
+        public virtual GedcomxApplicationState Put(object entity, params IStateTransitionOption[] options)
         {
             IRestRequest request = CreateAuthenticatedRequest();
             Parameter accept = this.Request.GetHeaders().Get("Accept").FirstOrDefault();
@@ -430,7 +430,7 @@ namespace Gx.Rs.Api
         /// <param name="entity">The entity to be used as the body of the REST API request. This is the entity to be POST.</param>
         /// <param name="options">The options to apply before executing the REST API call.</param>
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
-        public virtual GedcomxApplicationState Post(object entity, params StateTransitionOption[] options)
+        public virtual GedcomxApplicationState Post(object entity, params IStateTransitionOption[] options)
         {
             IRestRequest request = CreateAuthenticatedRequest();
             Parameter accept = this.Request.GetHeaders().Get("Accept").FirstOrDefault();
@@ -604,7 +604,7 @@ namespace Gx.Rs.Api
         /// or
         /// Unable to obtain an access token.
         /// </exception>
-        public GedcomxApplicationState AuthenticateViaOAuth2(IDictionary<String, String> formData, params StateTransitionOption[] options)
+        public GedcomxApplicationState AuthenticateViaOAuth2(IDictionary<String, String> formData, params IStateTransitionOption[] options)
         {
             Link tokenLink = this.GetLink(Rel.OAUTH2_TOKEN);
             if (tokenLink == null || tokenLink.Href == null)
@@ -653,7 +653,7 @@ namespace Gx.Rs.Api
         /// <param name="rel">The rel name to use when looking for the link.</param>
         /// <param name="options">The options to apply before executing the REST API call.</param>
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
-        public GedcomxApplicationState ReadPage(String rel, params StateTransitionOption[] options)
+        public GedcomxApplicationState ReadPage(String rel, params IStateTransitionOption[] options)
         {
             Link link = GetLink(rel);
             if (link == null || link.Href == null)
@@ -682,7 +682,7 @@ namespace Gx.Rs.Api
         /// <param name="options">The options to apply before executing the REST API call.</param>
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
         /// <remarks>This is a shorthand method for calling <see cref="ReadPage"/> and specifying Rel.NEXT.</remarks>
-        public GedcomxApplicationState ReadNextPage(params StateTransitionOption[] options)
+        public GedcomxApplicationState ReadNextPage(params IStateTransitionOption[] options)
         {
             return ReadPage(Rel.NEXT, options);
         }
@@ -693,7 +693,7 @@ namespace Gx.Rs.Api
         /// <param name="options">The options to apply before executing the REST API call.</param>
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
         /// <remarks>This is a shorthand method for calling <see cref="ReadPage"/> and specifying Rel.PREVIOUS.</remarks>
-        public GedcomxApplicationState ReadPreviousPage(params StateTransitionOption[] options)
+        public GedcomxApplicationState ReadPreviousPage(params IStateTransitionOption[] options)
         {
             return ReadPage(Rel.PREVIOUS, options);
         }
@@ -704,7 +704,7 @@ namespace Gx.Rs.Api
         /// <param name="options">The options to apply before executing the REST API call.</param>
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
         /// <remarks>This is a shorthand method for calling <see cref="ReadPage"/> and specifying Rel.FIRST.</remarks>
-        public GedcomxApplicationState ReadFirstPage(params StateTransitionOption[] options)
+        public GedcomxApplicationState ReadFirstPage(params IStateTransitionOption[] options)
         {
             return ReadPage(Rel.FIRST, options);
         }
@@ -715,7 +715,7 @@ namespace Gx.Rs.Api
         /// <param name="options">The options to apply before executing the REST API call.</param>
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
         /// <remarks>This is a shorthand method for calling <see cref="ReadPage"/> and specifying Rel.LAST.</remarks>
-        public GedcomxApplicationState ReadLastPage(params StateTransitionOption[] options)
+        public GedcomxApplicationState ReadLastPage(params IStateTransitionOption[] options)
         {
             return ReadPage(Rel.LAST, options);
         }
@@ -734,12 +734,12 @@ namespace Gx.Rs.Api
         /// </summary>
         /// <param name="options">The options to apply before executing the REST API call.</param>
         /// <returns>An <see cref="AgentState"/> instance containing the REST API response.</returns>
-        public AgentState ReadContributor(params StateTransitionOption[] options)
+        public AgentState ReadContributor(params IStateTransitionOption[] options)
         {
             var scope = MainDataElement;
-            if (scope is Attributable)
+            if (scope is IAttributable)
             {
-                return ReadContributor((Attributable)scope, options);
+                return ReadContributor((IAttributable)scope, options);
             }
             else
             {
@@ -748,12 +748,12 @@ namespace Gx.Rs.Api
         }
 
         /// <summary>
-        /// Reads the contributor for the specified <see cref="Attributable"/>.
+        /// Reads the contributor for the specified <see cref="IAttributable"/>.
         /// </summary>
         /// <param name="attributable">The attributable.</param>
         /// <param name="options">The options to apply before executing the REST API call.</param>
         /// <returns>An <see cref="AgentState"/> instance containing the REST API response.</returns>
-        public AgentState ReadContributor(Attributable attributable, params StateTransitionOption[] options)
+        public AgentState ReadContributor(IAttributable attributable, params IStateTransitionOption[] options)
         {
             Attribution attribution = attributable.Attribution;
             if (attribution == null)
@@ -770,7 +770,7 @@ namespace Gx.Rs.Api
         /// <param name="contributor">The contributor.</param>
         /// <param name="options">The options to apply before executing the REST API call.</param>
         /// <returns>An <see cref="AgentState"/> instance containing the REST API response.</returns>
-        public AgentState ReadContributor(ResourceReference contributor, params StateTransitionOption[] options)
+        public AgentState ReadContributor(ResourceReference contributor, params IStateTransitionOption[] options)
         {
             if (contributor == null || contributor.Resource == null)
             {
@@ -863,11 +863,11 @@ namespace Gx.Rs.Api
         /// <value>
         /// The main data element represented by this state instance.
         /// </value>
-        protected override SupportsLinks MainDataElement
+        protected override ISupportsLinks MainDataElement
         {
             get
             {
-                return (SupportsLinks)Entity;
+                return (ISupportsLinks)Entity;
             }
         }
 
@@ -948,14 +948,14 @@ namespace Gx.Rs.Api
             }
 
             //load the links from the main data element
-            SupportsLinks mainElement = MainDataElement;
+            ISupportsLinks mainElement = MainDataElement;
             if (mainElement != null && mainElement.Links != null)
             {
                 links.AddRange(mainElement.Links);
             }
 
             //load links at the document level
-            var collection = entity as SupportsLinks;
+            var collection = entity as ISupportsLinks;
             if (entity != mainElement && collection != null && collection.Links != null)
             {
                 links.AddRange(collection.Links);

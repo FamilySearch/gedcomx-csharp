@@ -101,7 +101,7 @@ namespace Gx.Source
          *
          * @param visitor The visitor.
          */
-        public void Accept(GedcomxModelVisitor visitor)
+        public void Accept(IGedcomxModelVisitor visitor)
         {
             visitor.VisitSourceCitation(this);
         }

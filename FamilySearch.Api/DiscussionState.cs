@@ -60,7 +60,7 @@ namespace FamilySearch.Api
         /// <value>
         /// The main data element represented by this state instance.
         /// </value>
-        protected override SupportsLinks MainDataElement
+        protected override ISupportsLinks MainDataElement
         {
             get
             {
@@ -115,7 +115,7 @@ namespace FamilySearch.Api
         /// <returns>
         /// A <see cref="DiscussionState"/> instance containing the REST API response.
         /// </returns>
-        public DiscussionState LoadComments(params StateTransitionOption[] options)
+        public DiscussionState LoadComments(params IStateTransitionOption[] options)
         {
             Link link = GetLink(Rel.COMMENTS);
             if (this.Entity != null && link != null && link.Href != null)
@@ -146,7 +146,7 @@ namespace FamilySearch.Api
         /// <returns>
         /// A <see cref="DiscussionState"/> instance containing the REST API response.
         /// </returns>
-        public DiscussionState Update(Discussion discussion, params StateTransitionOption[] options)
+        public DiscussionState Update(Discussion discussion, params IStateTransitionOption[] options)
         {
             FamilySearchPlatform fsp = new FamilySearchPlatform();
             fsp.AddDiscussion(discussion);
@@ -162,7 +162,7 @@ namespace FamilySearch.Api
         /// <returns>
         /// A <see cref="DiscussionState"/> instance containing the REST API response.
         /// </returns>
-        public DiscussionState AddComment(String comment, params StateTransitionOption[] options)
+        public DiscussionState AddComment(String comment, params IStateTransitionOption[] options)
         {
             return AddComments(new Comment[] { new Comment() { Text = comment } }, options);
         }
@@ -175,7 +175,7 @@ namespace FamilySearch.Api
         /// <returns>
         /// A <see cref="DiscussionState"/> instance containing the REST API response.
         /// </returns>
-        public DiscussionState AddComment(Comment comment, params StateTransitionOption[] options)
+        public DiscussionState AddComment(Comment comment, params IStateTransitionOption[] options)
         {
             return AddComments(new Comment[] { comment }, options);
         }
@@ -188,7 +188,7 @@ namespace FamilySearch.Api
         /// <returns>
         /// A <see cref="DiscussionState"/> instance containing the REST API response.
         /// </returns>
-        public DiscussionState AddComments(Comment[] comments, params StateTransitionOption[] options)
+        public DiscussionState AddComments(Comment[] comments, params IStateTransitionOption[] options)
         {
             Discussion discussion = CreateEmptySelf();
             discussion.Comments = comments.ToList();
@@ -203,7 +203,7 @@ namespace FamilySearch.Api
         /// <returns>
         /// A <see cref="DiscussionState"/> instance containing the REST API response.
         /// </returns>
-        public DiscussionState UpdateComment(Comment comment, params StateTransitionOption[] options)
+        public DiscussionState UpdateComment(Comment comment, params IStateTransitionOption[] options)
         {
             return UpdateComments(new Comment[] { comment }, options);
         }
@@ -216,7 +216,7 @@ namespace FamilySearch.Api
         /// <returns>
         /// A <see cref="DiscussionState"/> instance containing the REST API response.
         /// </returns>
-        public DiscussionState UpdateComments(Comment[] comments, params StateTransitionOption[] options)
+        public DiscussionState UpdateComments(Comment[] comments, params IStateTransitionOption[] options)
         {
             Discussion discussion = CreateEmptySelf();
             discussion.Comments = comments.ToList();
@@ -231,7 +231,7 @@ namespace FamilySearch.Api
         /// <returns>
         /// A <see cref="DiscussionState"/> instance containing the REST API response.
         /// </returns>
-        protected DiscussionState UpdateComments(Discussion discussion, params StateTransitionOption[] options)
+        protected DiscussionState UpdateComments(Discussion discussion, params IStateTransitionOption[] options)
         {
             String target = GetSelfUri();
             Link link = GetLink(Rel.COMMENTS);
@@ -255,7 +255,7 @@ namespace FamilySearch.Api
         /// A <see cref="DiscussionState"/> instance containing the REST API response.
         /// </returns>
         /// <exception cref="Gx.Rs.Api.GedcomxApplicationException">Comment cannot be deleted: missing link.</exception>
-        public DiscussionState DeleteComment(Comment comment, params StateTransitionOption[] options)
+        public DiscussionState DeleteComment(Comment comment, params IStateTransitionOption[] options)
         {
             Link link = comment.GetLink(Rel.COMMENT);
             link = link == null ? comment.GetLink(Rel.SELF) : link;

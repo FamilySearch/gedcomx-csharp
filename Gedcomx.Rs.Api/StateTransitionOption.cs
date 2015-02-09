@@ -9,7 +9,7 @@ namespace Gx.Rs.Api
     /// <summary>
     /// Defines a method to manipulate and apply options to a REST API request before execution.
     /// </summary>
-    public interface StateTransitionOption
+    public interface IStateTransitionOption
     {
         /// <summary>
         /// When overriden in a class, this method applies specific options or manipulates the REST API request.

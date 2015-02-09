@@ -9,7 +9,7 @@ namespace Gx.Rs.Api
     /// <summary>
     /// A basic interface declaring the explicit ability to produce a self URI.
     /// </summary>
-    public interface PreferredRelationshipState
+    public interface IPreferredRelationshipState
     {
         /// <summary>
         /// Gets the self URI.

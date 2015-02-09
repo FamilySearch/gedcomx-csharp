@@ -94,7 +94,7 @@ namespace FamilySearch.Api
         /// <param name="date">The date to be normalized.</param>
         /// <param name="options">The options to apply before executing the REST API call.</param>
         /// <returns></returns>
-        public DateInfo NormalizeDate(String date, params StateTransitionOption[] options)
+        public DateInfo NormalizeDate(String date, params IStateTransitionOption[] options)
         {
             Link normalizedDateLink = GetLink(Rel.NORMALIZED_DATE);
             if (normalizedDateLink == null || normalizedDateLink.Template == null)
@@ -123,7 +123,7 @@ namespace FamilySearch.Api
         /// <returns>
         /// A <see cref="UserState"/> instance containing the REST API response.
         /// </returns>
-        public UserState ReadCurrentUser(params StateTransitionOption[] options)
+        public UserState ReadCurrentUser(params IStateTransitionOption[] options)
         {
             Link link = GetLink(Rel.CURRENT_USER);
             if (link == null || link.Href == null)
@@ -148,7 +148,7 @@ namespace FamilySearch.Api
         /// collection to determine possible causes. The most common issue is not supplying a sufficient number of search parameters, in which case too
         /// many search results could return.
         /// </remarks>
-        public PersonMatchResultsState SearchForPersonMatches(GedcomxPersonSearchQueryBuilder query, params StateTransitionOption[] options)
+        public PersonMatchResultsState SearchForPersonMatches(GedcomxPersonSearchQueryBuilder query, params IStateTransitionOption[] options)
         {
             return SearchForPersonMatches(query.Build(), options);
         }
@@ -168,7 +168,7 @@ namespace FamilySearch.Api
         /// 
         /// The query string syntax is documented here: https://familysearch.org/developers/docs/api/tree/Person_Search_resource
         /// </remarks>
-        public PersonMatchResultsState SearchForPersonMatches(String query, params StateTransitionOption[] options)
+        public PersonMatchResultsState SearchForPersonMatches(String query, params IStateTransitionOption[] options)
         {
             Link searchLink = GetLink(Rel.PERSON_MATCHES_QUERY);
             if (searchLink == null || searchLink.Template == null)
@@ -190,7 +190,7 @@ namespace FamilySearch.Api
         /// <returns>
         /// A <see cref="DiscussionsState"/> instance containing the REST API response.
         /// </returns>
-        public DiscussionsState ReadDiscussions(params StateTransitionOption[] options)
+        public DiscussionsState ReadDiscussions(params IStateTransitionOption[] options)
         {
             Link link = GetLink(Rel.DISCUSSIONS);
             if (link == null || link.Href == null)
@@ -211,7 +211,7 @@ namespace FamilySearch.Api
         /// A <see cref="DiscussionState"/> instance containing the REST API response.
         /// </returns>
         /// <exception cref="Gx.Rs.Api.GedcomxApplicationException">Thrown if a link to the required resource cannot be found.</exception>
-        public DiscussionState AddDiscussion(Discussion discussion, params StateTransitionOption[] options)
+        public DiscussionState AddDiscussion(Discussion discussion, params IStateTransitionOption[] options)
         {
             Link link = GetLink(Rel.DISCUSSIONS);
             if (link == null || link.Href == null)

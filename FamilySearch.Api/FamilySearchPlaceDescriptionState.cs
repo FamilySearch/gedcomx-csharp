@@ -46,7 +46,7 @@ namespace FamilySearch.Api
         /// <returns>
         /// A <see cref="FamilySearchPlaceState"/> instance containing the REST API response.
         /// </returns>
-        public FamilySearchPlaceState ReadPlace(params StateTransitionOption[] options)
+        public FamilySearchPlaceState ReadPlace(params IStateTransitionOption[] options)
         {
             Link link = this.GetLink(Rel.PLACE);
             link = link == null ? this.GetLink(Rel.SELF) : link;

@@ -22,7 +22,7 @@ namespace Gx.Links
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "HypermediaEnabledData")]
     [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "HypermediaEnabledData")]
-    public abstract partial class HypermediaEnabledData : Gx.Common.ExtensibleData, SupportsLinks
+    public abstract partial class HypermediaEnabledData : Gx.Common.ExtensibleData, ISupportsLinks
     {
 
         private System.Collections.Generic.List<Gx.Links.Link> _links;

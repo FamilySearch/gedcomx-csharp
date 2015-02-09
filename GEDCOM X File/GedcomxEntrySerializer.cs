@@ -9,7 +9,7 @@ namespace Gedcomx.File
     /// <summary>
     /// An interface exposing the ability serialize an arbitrary object.
     /// </summary>
-    public interface GedcomxEntrySerializer
+    public interface IGedcomxEntrySerializer
     {
         /// <summary>
         /// Serializes the specified object to the specified stream.

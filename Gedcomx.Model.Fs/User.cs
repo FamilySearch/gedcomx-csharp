@@ -356,7 +356,7 @@ namespace Gx.Fs.Users
          *
          * @param visitor The visitor to accept.
          */
-        public void Accept(FamilySearchPlatformModelVisitor visitor)
+        public void Accept(IFamilySearchPlatformModelVisitor visitor)
         {
             visitor.VisitUser(this);
         }

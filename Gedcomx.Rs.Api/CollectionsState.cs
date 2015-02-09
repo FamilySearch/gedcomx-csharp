@@ -77,7 +77,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="CollectionState" /> instance containing the REST API response.
         /// </returns>
-        public CollectionState ReadCollection(Collection collection, params StateTransitionOption[] options)
+        public CollectionState ReadCollection(Collection collection, params IStateTransitionOption[] options)
         {
             Link link = collection.GetLink("self");
             if (link == null || link.Href == null)
@@ -97,7 +97,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="CollectionState"/> instance containing the REST API response.
         /// </returns>
-        public CollectionState UpdateCollection(Collection collection, params StateTransitionOption[] options)
+        public CollectionState UpdateCollection(Collection collection, params IStateTransitionOption[] options)
         {
             Link link = collection.GetLink("self");
             if (link == null || link.Href == null)
@@ -117,7 +117,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="CollectionState" /> instance containing the REST API response.
         /// </returns>
-        public CollectionState ReadCollection(SourceDescription sourceDescription, params StateTransitionOption[] options)
+        public CollectionState ReadCollection(SourceDescription sourceDescription, params IStateTransitionOption[] options)
         {
             IRestRequest request = CreateAuthenticatedGedcomxRequest().Build(sourceDescription.About, Method.GET);
             return this.stateFactory.NewCollectionState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
@@ -130,7 +130,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="CollectionState"/> instance containing the REST API response.
         /// </returns>
-        public CollectionState ReadCollection(params StateTransitionOption[] options)
+        public CollectionState ReadCollection(params IStateTransitionOption[] options)
         {
             Link link = GetLink(Rel.COLLECTION);
             if (link == null || link.Href == null)
@@ -150,7 +150,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="CollectionState" /> instance containing the REST API response.
         /// </returns>
-        public CollectionState AddCollection(Collection collection, params StateTransitionOption[] options)
+        public CollectionState AddCollection(Collection collection, params IStateTransitionOption[] options)
         {
             Link link = GetLink("self");
             String href = link == null ? null : link.Href == null ? null : link.Href;

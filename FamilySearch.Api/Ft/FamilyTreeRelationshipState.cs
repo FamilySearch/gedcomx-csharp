@@ -15,7 +15,7 @@ namespace FamilySearch.Api.Ft
     /// <summary>
     /// The FamilyTreeRelationshipState exposes management and other FamilySearch specific functions for a relationship.
     /// </summary>
-    public class FamilyTreeRelationshipState : RelationshipState, PreferredRelationshipState
+    public class FamilyTreeRelationshipState : RelationshipState, IPreferredRelationshipState
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="FamilyTreeRelationshipState"/> class.
@@ -98,7 +98,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="FamilyTreeRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public FamilyTreeRelationshipState LoadDiscussionReferences(params StateTransitionOption[] options)
+        public FamilyTreeRelationshipState LoadDiscussionReferences(params IStateTransitionOption[] options)
         {
             return (FamilyTreeRelationshipState)base.LoadEmbeddedResources(new String[] { Rel.DISCUSSION_REFERENCES }, options);
         }
@@ -110,7 +110,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="ChangeHistoryState"/> instance containing the REST API response.
         /// </returns>
-        public ChangeHistoryState ReadChangeHistory(params StateTransitionOption[] options)
+        public ChangeHistoryState ReadChangeHistory(params IStateTransitionOption[] options)
         {
             Link link = GetLink(Rel.CHANGE_HISTORY);
             if (link == null || link.Href == null)
@@ -129,7 +129,7 @@ namespace FamilySearch.Api.Ft
         /// <returns>
         /// A <see cref="FamilyTreeRelationshipState"/> instance containing the REST API response.
         /// </returns>
-        public FamilyTreeRelationshipState Restore(params StateTransitionOption[] options)
+        public FamilyTreeRelationshipState Restore(params IStateTransitionOption[] options)
         {
             Link link = GetLink(Rel.RESTORE);
             if (link == null || link.Href == null)

@@ -65,7 +65,7 @@ namespace FamilySearch.Api.Ft
         /// A <see cref="ChangeHistoryState"/> instance containing the REST API response.
         /// </returns>
         /// <exception cref="Gx.Rs.Api.GedcomxApplicationException">Thrown if a link to the required resource cannot be found.</exception>
-        public ChangeHistoryState RestoreChange(Entry change, params StateTransitionOption[] options)
+        public ChangeHistoryState RestoreChange(Entry change, params IStateTransitionOption[] options)
         {
             Link link = change.GetLink(Rel.RESTORE);
             if (link == null || link.Href == null)

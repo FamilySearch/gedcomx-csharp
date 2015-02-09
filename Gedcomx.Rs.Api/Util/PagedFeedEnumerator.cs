@@ -16,7 +16,7 @@ namespace Gx.Rs.Api.Util
     /// </summary>
     /// <remarks>
     /// The HTTP GET requests can be customized by using a custom <see cref="IWebResourceProvider"/> and/or adding
-    /// <see cref="WebResourceBuilderExtension"/>s.
+    /// <see cref="IWebResourceBuilderExtension"/>s.
     /// 
     /// @see <a href="http://tools.ietf.org/search/rfc5005#section-3">Paged Feeds</a>
     /// </remarks>
@@ -27,7 +27,7 @@ namespace Gx.Rs.Api.Util
         /// and sets the resource on the REST API request.
         /// </summary>
         public static IWebResourceProvider DEFAULT_WEB_RESOURCE_PROVIDER = new WebResourceProviderImpl();
-        private readonly List<WebResourceBuilderExtension> extensions = new List<WebResourceBuilderExtension>();
+        private readonly List<IWebResourceBuilderExtension> extensions = new List<IWebResourceBuilderExtension>();
         private IFilterableRestClient client;
         private IWebResourceProvider webResourceProvider = DEFAULT_WEB_RESOURCE_PROVIDER;
         private String first = null;
@@ -95,7 +95,7 @@ namespace Gx.Rs.Api.Util
         /// <value>
         /// The web resource builder extensions that will be used to modify REST API requests just before retrieving the feed.
         /// </value>
-        public IList<WebResourceBuilderExtension> WebResourceBuilderExtensions
+        public IList<IWebResourceBuilderExtension> WebResourceBuilderExtensions
         {
             get
             {
@@ -104,25 +104,25 @@ namespace Gx.Rs.Api.Util
         }
 
         /// <summary>
-        /// Adds a <see cref="WebResourceBuilderExtension"/> in order to add cookies, header values, etc. to the paged feed document GET request.
+        /// Adds a <see cref="IWebResourceBuilderExtension"/> in order to add cookies, header values, etc. to the paged feed document GET request.
         /// </summary>
         /// <param name="extension">The extension to add.</param>
-        public void AddWebResourceBuilderExtension(WebResourceBuilderExtension extension)
+        public void AddWebResourceBuilderExtension(IWebResourceBuilderExtension extension)
         {
             this.extensions.Add(extension);
         }
 
         /// <summary>
-        /// Removes the specified <see cref="WebResourceBuilderExtension"/>.
+        /// Removes the specified <see cref="IWebResourceBuilderExtension"/>.
         /// </summary>
         /// <param name="extension">The extension to remove.</param>
-        public void RemoveWebResourceBuilderExtension(WebResourceBuilderExtension extension)
+        public void RemoveWebResourceBuilderExtension(IWebResourceBuilderExtension extension)
         {
             this.extensions.Remove(extension);
         }
 
         /// <summary>
-        /// Removes all <see cref="WebResourceBuilderExtension"/>s.
+        /// Removes all <see cref="IWebResourceBuilderExtension"/>s.
         /// </summary>
         public void ClearWebResourceBuilderExtensions()
         {
@@ -130,11 +130,11 @@ namespace Gx.Rs.Api.Util
         }
 
         /// <summary>
-        /// Adds a <see cref="WebResourceBuilderExtension"/> in order to add cookies, header values, etc. to the paged feed document GET request.
+        /// Adds a <see cref="IWebResourceBuilderExtension"/> in order to add cookies, header values, etc. to the paged feed document GET request.
         /// </summary>
         /// <param name="extension">The extension to add.</param>
         /// <returns>A reference to this <see cref="PagedFeedEnumerator"/> for fluent configuration chaining.</returns>
-        public PagedFeedEnumerator WithWebResourceBuilderExtension(WebResourceBuilderExtension extension)
+        public PagedFeedEnumerator WithWebResourceBuilderExtension(IWebResourceBuilderExtension extension)
         {
             AddWebResourceBuilderExtension(extension);
             return this;
@@ -396,7 +396,7 @@ namespace Gx.Rs.Api.Util
             Feed result = null;
             IRestRequest request = webResourceProvider.Provide(Client, uri)
                 .Accept(MediaTypes.APPLICATION_ATOM_XML_TYPE);
-            foreach (WebResourceBuilderExtension extension in this.extensions)
+            foreach (IWebResourceBuilderExtension extension in this.extensions)
             {
                 extension.Extend(request);
             }
@@ -458,7 +458,7 @@ namespace Gx.Rs.Api.Util
         /// <summary>
         /// Interface for extending HTTP GET requests (e.g. add cookies, header values, etc.).
         /// </summary>
-        public interface WebResourceBuilderExtension
+        public interface IWebResourceBuilderExtension
         {
             /// <summary>
             /// Extends a REST API request.

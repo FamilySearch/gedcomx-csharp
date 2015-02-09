@@ -21,7 +21,7 @@ namespace Gx.Records
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Collection")]
     [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Collection")]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://gedcomx.org/v1/", ElementName = "collection")]
-    public partial class Collection : Gx.Links.HypermediaEnabledData, Attributable
+    public partial class Collection : Gx.Links.HypermediaEnabledData, IAttributable
     {
 
         private string _lang;
@@ -142,7 +142,7 @@ namespace Gx.Records
          *
          * @param visitor The visitor.
          */
-        public void Accept(GedcomxModelVisitor visitor)
+        public void Accept(IGedcomxModelVisitor visitor)
         {
             visitor.VisitCollection(this);
         }

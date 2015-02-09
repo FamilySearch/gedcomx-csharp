@@ -19,7 +19,7 @@ namespace Gx.Common
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Note")]
     [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Note")]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://gedcomx.org/v1/", ElementName = "note")]
-    public partial class Note : Gx.Links.HypermediaEnabledData, Attributable
+    public partial class Note : Gx.Links.HypermediaEnabledData, IAttributable
     {
 
         private string _lang;
@@ -100,7 +100,7 @@ namespace Gx.Common
          *
          * @param visitor The visitor.
          */
-        public void Accept(GedcomxModelVisitor visitor)
+        public void Accept(IGedcomxModelVisitor visitor)
         {
             visitor.VisitNote(this);
         }

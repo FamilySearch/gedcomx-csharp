@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Gx.Fs.Rt
 {
-    public class FamilySearchPlatformModelVisitorBase : GedcomxModelVisitorBase, FamilySearchPlatformModelVisitor
+    public class FamilySearchPlatformModelVisitorBase : GedcomxModelVisitorBase, IFamilySearchPlatformModelVisitor
     {
         public void VisitFamilySearchPlatform(FamilySearchPlatform fsp)
         {

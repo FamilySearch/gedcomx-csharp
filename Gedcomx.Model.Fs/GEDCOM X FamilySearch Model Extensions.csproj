@@ -67,7 +67,7 @@
     <Compile Include="MergeAnalysis.cs" />
     <Compile Include="MergeConflict.cs" />
     <Compile Include="Rt\FamilySearchPlatformLocalReferenceResolver.cs" />
-    <Compile Include="Rt\FamilySearchPlatformModelVisitor.cs" />
+    <Compile Include="Rt\IFamilySearchPlatformModelVisitor.cs" />
     <Compile Include="Rt\FamilySearchPlatformModelVisitorBase.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>

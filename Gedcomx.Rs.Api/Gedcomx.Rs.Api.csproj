@@ -77,7 +77,7 @@
     <Compile Include="DescendancyResultsState.cs" />
     <Compile Include="GedcomxApplicationException.cs" />
     <Compile Include="GedcomxApplicationState.cs" />
-    <Compile Include="PreferredRelationshipState.cs" />
+    <Compile Include="IPreferredRelationshipState.cs" />
     <Compile Include="Options\CacheDirectives.cs" />
     <Compile Include="Options\HeaderParameter.cs" />
     <Compile Include="Options\Preconditions.cs" />
@@ -100,10 +100,10 @@
     <Compile Include="SourceDescriptionsState.cs" />
     <Compile Include="SourceDescriptionState.cs" />
     <Compile Include="StateFactory.cs" />
-    <Compile Include="StateTransitionOption.cs" />
+    <Compile Include="IStateTransitionOption.cs" />
     <Compile Include="Util\AncestryTree.cs" />
     <Compile Include="Util\BasicDataSource.cs" />
-    <Compile Include="Util\DataSource.cs" />
+    <Compile Include="Util\IDataSource.cs" />
     <Compile Include="Util\DescendancyTree.cs" />
     <Compile Include="Util\EmbeddedLinkLoader.cs" />
     <Compile Include="Util\FileDataSource.cs" />

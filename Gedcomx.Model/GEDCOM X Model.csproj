@@ -49,7 +49,7 @@
     <Compile Include="FactQualifierType.cs" />
     <Compile Include="NamePartQualifierType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Attributable.cs" />
+    <Compile Include="IAttributable.cs" />
     <Compile Include="Attribution.cs" />
     <Compile Include="CitationField.cs" />
     <Compile Include="Collection.cs" />
@@ -84,7 +84,7 @@
     <Compile Include="Identifier.cs" />
     <Compile Include="IdentifierType.cs" />
     <Compile Include="Rt\GedcomxLocalReferenceResolver.cs" />
-    <Compile Include="Rt\GedcomxModelVisitor.cs" />
+    <Compile Include="Rt\IGedcomxModelVisitor.cs" />
     <Compile Include="Rt\GedcomxModelVisitorBase.cs" />
     <Compile Include="Tag.cs" />
     <Compile Include="Util\JsonHypermediaLinksConverter.cs" />
@@ -111,7 +111,7 @@
     <Compile Include="SourceDescription.cs" />
     <Compile Include="SourceReference.cs" />
     <Compile Include="Subject.cs" />
-    <Compile Include="SupportsLinks.cs" />
+    <Compile Include="ISupportsLinks.cs" />
     <Compile Include="TextValue.cs" />
     <Compile Include="RecordType.cs" />
     <Compile Include="FieldValueDescriptor.cs" />

@@ -19,7 +19,6 @@ namespace Gx.Common
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Qualifier")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Qualifier")]
     public sealed class Qualifier
     {
         private string _name;

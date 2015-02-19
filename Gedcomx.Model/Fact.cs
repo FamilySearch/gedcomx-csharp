@@ -21,7 +21,6 @@ namespace Gx.Conclusion
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Fact")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Fact")]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://gedcomx.org/v1/", ElementName = "fact")]
     public partial class Fact : Gx.Conclusion.Conclusion
     {
@@ -66,7 +65,6 @@ namespace Gx.Conclusion
         ///  Whether this fact is the primary fact of the record from which the subject was extracted.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "primary")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "primary")]
         [Newtonsoft.Json.JsonProperty("primary")]
         public bool Primary
         {
@@ -85,7 +83,6 @@ namespace Gx.Conclusion
         ///  Property for the XML serializer indicating whether the "Primary" property should be included in the output.
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute]
-        [System.Xml.Serialization.SoapIgnoreAttribute]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         [Newtonsoft.Json.JsonIgnore]
         public bool PrimarySpecified
@@ -104,7 +101,6 @@ namespace Gx.Conclusion
         ///  The type of the fact.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "type")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "type")]
         [Newtonsoft.Json.JsonProperty("type")]
         public string Type
         {
@@ -138,7 +134,6 @@ namespace Gx.Conclusion
         ///  The date of applicability of this fact.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "date", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "date")]
         [Newtonsoft.Json.JsonProperty("date")]
         public Gx.Conclusion.DateInfo Date
         {
@@ -155,7 +150,6 @@ namespace Gx.Conclusion
         ///  The place of applicability of this fact.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "place", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "place")]
         [Newtonsoft.Json.JsonProperty("place")]
         public Gx.Conclusion.PlaceReference Place
         {
@@ -172,7 +166,6 @@ namespace Gx.Conclusion
         ///  The value as supplied by the user.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "value", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "value")]
         [Newtonsoft.Json.JsonProperty("value")]
         public string Value
         {
@@ -189,7 +182,6 @@ namespace Gx.Conclusion
         ///  The qualifiers associated with this fact.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "qualifier", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "qualifier")]
         [Newtonsoft.Json.JsonProperty("qualifiers")]
         public System.Collections.Generic.List<Gx.Common.Qualifier> Qualifiers
         {
@@ -206,7 +198,6 @@ namespace Gx.Conclusion
         ///  The references to the record fields being used as evidence.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "field", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "field")]
         [Newtonsoft.Json.JsonProperty("fields")]
         public System.Collections.Generic.List<Gx.Records.Field> Fields
         {

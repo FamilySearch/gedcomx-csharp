@@ -16,7 +16,6 @@ namespace Gx.Records
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "FacetValue")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "FacetValue")]
     public partial class FacetValue : Gx.Links.HypermediaEnabledData
     {
 
@@ -28,7 +27,6 @@ namespace Gx.Records
         ///  A title for the facet value.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "title", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "title")]
         [Newtonsoft.Json.JsonProperty("title")]
         public string Title
         {
@@ -45,7 +43,6 @@ namespace Gx.Records
         ///  The value.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "value", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "value")]
         [Newtonsoft.Json.JsonProperty("value")]
         public string Value
         {
@@ -62,7 +59,6 @@ namespace Gx.Records
         ///  The number of resources applicable to this value.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "count", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "count")]
         [Newtonsoft.Json.JsonProperty("count")]
         public int Count
         {
@@ -81,7 +77,6 @@ namespace Gx.Records
         ///  Property for the XML serializer indicating whether the "Count" property should be included in the output.
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute]
-        [System.Xml.Serialization.SoapIgnoreAttribute]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         [Newtonsoft.Json.JsonIgnore]
         public bool CountSpecified

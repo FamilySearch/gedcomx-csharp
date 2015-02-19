@@ -21,7 +21,6 @@ namespace Gx.Links
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "HypermediaEnabledData")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "HypermediaEnabledData")]
     public abstract partial class HypermediaEnabledData : Gx.Common.ExtensibleData, ISupportsLinks
     {
 
@@ -30,7 +29,6 @@ namespace Gx.Links
         ///  The list of hypermedia links. Links are not specified by GEDCOM X core, but as extension elements by GEDCOM X RS.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "link", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "link")]
         [Newtonsoft.Json.JsonProperty("links")]
         [JsonConverter(typeof(JsonHypermediaLinksConverter))]
         public System.Collections.Generic.List<Gx.Links.Link> Links

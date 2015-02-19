@@ -16,7 +16,6 @@ namespace Gx.Source
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "CitationField")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "CitationField")]
     public partial class CitationField
     {
 
@@ -26,7 +25,6 @@ namespace Gx.Source
         ///  The citation field's name.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "name")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "name")]
         [Newtonsoft.Json.JsonProperty("name")]
         public string Name
         {

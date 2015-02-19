@@ -21,7 +21,6 @@ namespace Gx.Fs.Tree
         ///  Unspecified enum value.
         /// </summary>
         [System.Xml.Serialization.XmlEnumAttribute(Name = "__NULL__")]
-        [System.Xml.Serialization.SoapEnumAttribute(Name = "__NULL__")]
         NULL,
 
         /// <summary>

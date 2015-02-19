@@ -19,7 +19,6 @@ namespace Gx.Conclusion
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "PlaceReference")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "PlaceReference")]
     public partial class PlaceReference : Gx.Common.ExtensibleData
     {
 
@@ -31,7 +30,6 @@ namespace Gx.Conclusion
         ///  A reference to a description of the place being referenced.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "description")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "description")]
         [Newtonsoft.Json.JsonProperty("description")]
         public string DescriptionRef
         {
@@ -48,7 +46,6 @@ namespace Gx.Conclusion
         ///  The original value as supplied by the user.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "original", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "original")]
         [Newtonsoft.Json.JsonProperty("original")]
         public string Original
         {
@@ -66,7 +63,6 @@ namespace Gx.Conclusion
         ///  are not specified by GEDCOM X core, but as extension elements by GEDCOM X RS.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "normalized", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "normalized")]
         [Newtonsoft.Json.JsonProperty("normalized")]
         public System.Collections.Generic.List<Gx.Common.TextValue> NormalizedExtensions
         {
@@ -83,7 +79,6 @@ namespace Gx.Conclusion
         ///  The references to the record fields being used as evidence.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "field", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "field")]
         [Newtonsoft.Json.JsonProperty("fields")]
         public System.Collections.Generic.List<Gx.Records.Field> Fields
         {

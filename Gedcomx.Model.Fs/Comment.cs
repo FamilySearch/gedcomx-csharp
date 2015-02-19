@@ -19,7 +19,6 @@ namespace Gx.Fs.Discussions
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://familysearch.org/v1/", TypeName = "Comment")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://familysearch.org/v1/", TypeName = "Comment")]
     public partial class Comment : Gx.Links.HypermediaEnabledData
     {
 
@@ -31,7 +30,6 @@ namespace Gx.Fs.Discussions
         ///  The text or &quot;message body&quot; of the comment
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "text", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "text")]
         [Newtonsoft.Json.JsonProperty("text")]
         public string Text
         {
@@ -48,7 +46,6 @@ namespace Gx.Fs.Discussions
         ///  date of creation
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "created", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "created")]
         [Newtonsoft.Json.JsonProperty("created")]
         [Newtonsoft.Json.JsonConverter(typeof(JsonUnixTimestampConverter))]
         public DateTime Created
@@ -68,7 +65,6 @@ namespace Gx.Fs.Discussions
         ///  Property for the XML serializer indicating whether the "Created" property should be included in the output.
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute]
-        [System.Xml.Serialization.SoapIgnoreAttribute]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         [Newtonsoft.Json.JsonIgnore]
         public bool CreatedSpecified
@@ -87,7 +83,6 @@ namespace Gx.Fs.Discussions
         ///  contributor of comment
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "contributor", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "contributor")]
         [Newtonsoft.Json.JsonProperty("contributor")]
         public Gx.Common.ResourceReference Contributor
         {

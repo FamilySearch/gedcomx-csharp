@@ -18,7 +18,6 @@ namespace Gx.Records
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "FieldDescriptor")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "FieldDescriptor")]
     public partial class FieldDescriptor : Gx.Links.HypermediaEnabledData
     {
 
@@ -29,7 +28,6 @@ namespace Gx.Records
         ///  The original label for the field, as stated on the original record.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "originalLabel", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "originalLabel")]
         [Newtonsoft.Json.JsonProperty("originalLabel")]
         public string OriginalLabel
         {
@@ -46,7 +44,6 @@ namespace Gx.Records
         ///  The description of the field.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "description", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "description")]
         [Newtonsoft.Json.JsonProperty("descriptions")]
         public System.Collections.Generic.List<Gx.Common.TextValue> Descriptions
         {
@@ -63,7 +60,6 @@ namespace Gx.Records
         ///  Descriptors of the values that are applicable to the field.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "value", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "value")]
         [Newtonsoft.Json.JsonProperty("values")]
         public System.Collections.Generic.List<Gx.Records.FieldValueDescriptor> Values
         {

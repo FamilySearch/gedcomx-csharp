@@ -17,7 +17,6 @@ namespace Gx.Fs.Tree
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://familysearch.org/v1/", TypeName = "MatchInfo")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://familysearch.org/v1/", TypeName = "MatchInfo")]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://familysearch.org/v1/", ElementName = "matchInfo")]
     public partial class MatchInfo
     {
@@ -28,7 +27,6 @@ namespace Gx.Fs.Tree
         ///  The way this match has been resolved.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "status")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "status")]
         [Newtonsoft.Json.JsonProperty("status")]
         public string Status
         {
@@ -62,7 +60,6 @@ namespace Gx.Fs.Tree
         ///  The collection in which this match was found.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "collection")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "collection")]
         [Newtonsoft.Json.JsonProperty("collection")]
         public string Collection
         {

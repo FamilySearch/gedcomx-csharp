@@ -17,7 +17,6 @@ namespace Gx.Fs.Tree
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://familysearch.org/v1/", TypeName = "Merge")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://familysearch.org/v1/", TypeName = "Merge")]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://familysearch.org/v1/", ElementName = "merge")]
     public partial class Merge
     {
@@ -28,7 +27,6 @@ namespace Gx.Fs.Tree
         ///  List of resources to remove from the survivor person.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "resourceToDelete", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "resourceToDelete")]
         [Newtonsoft.Json.JsonProperty("resourcesToDelete")]
         public System.Collections.Generic.List<Gx.Common.ResourceReference> ResourcesToDelete
         {
@@ -45,7 +43,6 @@ namespace Gx.Fs.Tree
         ///  List of resources to copy from the duplicate person to survivor person.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "resourceToCopy", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "resourceToCopy")]
         [Newtonsoft.Json.JsonProperty("resourcesToCopy")]
         public System.Collections.Generic.List<Gx.Common.ResourceReference> ResourcesToCopy
         {

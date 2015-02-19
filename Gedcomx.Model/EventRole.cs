@@ -20,7 +20,6 @@ namespace Gx.Conclusion
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "EventRole")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "EventRole")]
     public partial class EventRole : Gx.Conclusion.Conclusion
     {
 
@@ -31,7 +30,6 @@ namespace Gx.Conclusion
         ///  The role type.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "type")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "type")]
         [Newtonsoft.Json.JsonProperty("type")]
         public string Type
         {
@@ -65,7 +63,6 @@ namespace Gx.Conclusion
         ///  Reference to the person playing the role in the event.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "person", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "person")]
         [Newtonsoft.Json.JsonProperty("person")]
         public Gx.Common.ResourceReference Person
         {
@@ -82,7 +79,6 @@ namespace Gx.Conclusion
         ///  Details about the role of the person in the event.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "details", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "details")]
         [Newtonsoft.Json.JsonProperty("details")]
         public string Details
         {

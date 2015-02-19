@@ -16,7 +16,6 @@ namespace Gx.Fs
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://familysearch.org/v1/", TypeName = "Error")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://familysearch.org/v1/", TypeName = "Error")]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://familysearch.org/v1/", ElementName = "error")]
     public partial class Error
     {
@@ -30,7 +29,6 @@ namespace Gx.Fs
         ///  The error code. Intepreted per &lt;a href=&quot;http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html&quot;&gt;RFC 2616, Section 10 (HTTP Status Code Definitions)&lt;/a&gt;.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "code", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "code")]
         [Newtonsoft.Json.JsonProperty("code")]
         public int Code
         {
@@ -49,7 +47,6 @@ namespace Gx.Fs
         ///  Property for the XML serializer indicating whether the "Code" property should be included in the output.
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute]
-        [System.Xml.Serialization.SoapIgnoreAttribute]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         [Newtonsoft.Json.JsonIgnore]
         public bool CodeSpecified
@@ -68,7 +65,6 @@ namespace Gx.Fs
         ///  A text label associated with the error code.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "label", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "label")]
         [Newtonsoft.Json.JsonProperty("label")]
         public string Label
         {
@@ -85,7 +81,6 @@ namespace Gx.Fs
         ///  A message associated with the error.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "message", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "message")]
         [Newtonsoft.Json.JsonProperty("message")]
         public string Message
         {
@@ -102,7 +97,6 @@ namespace Gx.Fs
         ///  The back-end stack trace associated with the error, useful for debugging.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "stacktrace", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "stacktrace")]
         [Newtonsoft.Json.JsonProperty("stacktrace")]
         public string Stacktrace
         {

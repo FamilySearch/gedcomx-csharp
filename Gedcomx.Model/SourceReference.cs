@@ -20,7 +20,6 @@ namespace Gx.Source
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "SourceReference")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "SourceReference")]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://gedcomx.org/v1/", ElementName = "sourceReference")]
     public partial class SourceReference : Gx.Links.HypermediaEnabledData, IAttributable
     {
@@ -33,7 +32,6 @@ namespace Gx.Source
         ///  A reference to a description of the source being referenced.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "description")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "description")]
         [JsonProperty("description")]
         public string DescriptionRef
         {
@@ -50,7 +48,6 @@ namespace Gx.Source
         ///  The attribution metadata for this source reference.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "attribution", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "attribution")]
         [Newtonsoft.Json.JsonProperty("attribution")]
         public Gx.Common.Attribution Attribution
         {
@@ -67,7 +64,6 @@ namespace Gx.Source
         ///  The qualifiers associated with this source reference.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "qualifier", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "qualifier")]
         [Newtonsoft.Json.JsonProperty("qualifiers")]
         public System.Collections.Generic.List<Gx.Common.Qualifier> Qualifiers
         {
@@ -84,7 +80,6 @@ namespace Gx.Source
         ///  The tags associated with this source reference.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "tags", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "tags")]
         [Newtonsoft.Json.JsonProperty("tags")]
         public System.Collections.Generic.List<Gx.Source.Tag> Tags
         {

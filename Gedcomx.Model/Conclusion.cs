@@ -21,7 +21,6 @@ namespace Gx.Conclusion
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Conclusion")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Conclusion")]
     public abstract partial class Conclusion : Gx.Links.HypermediaEnabledData, IAttributable
     {
         private string _confidence;
@@ -35,7 +34,6 @@ namespace Gx.Conclusion
         ///  The level of confidence the contributor has about the data.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "confidence")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "confidence")]
         [Newtonsoft.Json.JsonProperty("confidence")]
         public string Confidence
         {
@@ -69,7 +67,6 @@ namespace Gx.Conclusion
         ///  A sort key in relation to other facts for display purposes.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "sortKey")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "sortKey")]
         [Newtonsoft.Json.JsonProperty("sortKey")]
         public string SortKey
         {
@@ -86,7 +83,6 @@ namespace Gx.Conclusion
         ///  The language of the conclusion.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "lang", Namespace = "http://www.w3.org/XML/1998/namespace")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "lang", Namespace = "http://www.w3.org/XML/1998/namespace")]
         [Newtonsoft.Json.JsonProperty("lang")]
         public string Lang
         {
@@ -103,7 +99,6 @@ namespace Gx.Conclusion
         ///  Attribution metadata for a conclusion.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "attribution", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "attribution")]
         [Newtonsoft.Json.JsonProperty("attribution")]
         public Gx.Common.Attribution Attribution
         {
@@ -120,7 +115,6 @@ namespace Gx.Conclusion
         ///  The source references for a conclusion.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "source", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "source")]
         [Newtonsoft.Json.JsonProperty("sources")]
         public System.Collections.Generic.List<Gx.Source.SourceReference> Sources
         {
@@ -137,7 +131,6 @@ namespace Gx.Conclusion
         ///  A reference to the analysis document explaining the analysis that went into this conclusion.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "analysis", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "analysis")]
         [Newtonsoft.Json.JsonProperty("analysis")]
         public Gx.Common.ResourceReference Analysis
         {
@@ -154,7 +147,6 @@ namespace Gx.Conclusion
         ///  Notes about a person.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "note", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "note")]
         [Newtonsoft.Json.JsonProperty("notes")]
         public System.Collections.Generic.List<Gx.Common.Note> Notes
         {

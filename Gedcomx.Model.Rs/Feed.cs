@@ -26,7 +26,6 @@ namespace Gx.Atom
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.w3.org/2005/Atom", TypeName = "Feed")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://www.w3.org/2005/Atom", TypeName = "Feed")]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://www.w3.org/2005/Atom", ElementName = "feed")]
     public partial class Feed : Gx.Atom.ExtensibleElement, ISupportsLinks
     {
@@ -53,7 +52,6 @@ namespace Gx.Atom
         ///  The author of the feed.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "author", Namespace = "http://www.w3.org/2005/Atom")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "author")]
         [Newtonsoft.Json.JsonProperty("authors")]
         public System.Collections.Generic.List<Gx.Atom.Person> Authors
         {
@@ -70,7 +68,6 @@ namespace Gx.Atom
         ///  information about a category associated with the feed
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "contributor", Namespace = "http://www.w3.org/2005/Atom")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "contributor")]
         [Newtonsoft.Json.JsonProperty("contributors")]
         public System.Collections.Generic.List<Gx.Atom.Person> Contributors
         {
@@ -87,7 +84,6 @@ namespace Gx.Atom
         ///  identifies the agent used to generate the feed
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "generator", Namespace = "http://www.w3.org/2005/Atom")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "generator")]
         [Newtonsoft.Json.JsonProperty("generator")]
         public Gx.Atom.Generator Generator
         {
@@ -104,7 +100,6 @@ namespace Gx.Atom
         ///  identifies an image that provides iconic visual identification for the feed.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "icon", Namespace = "http://www.w3.org/2005/Atom")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "icon")]
         [Newtonsoft.Json.JsonProperty("icon")]
         public string Icon
         {
@@ -121,7 +116,6 @@ namespace Gx.Atom
         ///  a permanent, universally unique identifier for the feed.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "id", Namespace = "http://www.w3.org/2005/Atom")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "id")]
         [Newtonsoft.Json.JsonProperty("id")]
         public string Id
         {
@@ -138,7 +132,6 @@ namespace Gx.Atom
         ///  The total number of results available, if this feed is supplying a subset of results, such as for a query.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "results", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "results")]
         [Newtonsoft.Json.JsonProperty("results")]
         public int Results
         {
@@ -157,7 +150,6 @@ namespace Gx.Atom
         ///  Property for the XML serializer indicating whether the "Results" property should be included in the output.
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute]
-        [System.Xml.Serialization.SoapIgnoreAttribute]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         [Newtonsoft.Json.JsonIgnore]
         public bool ResultsSpecified
@@ -176,7 +168,6 @@ namespace Gx.Atom
         ///  The index of the first entry in this page of data, if this feed is supplying a page of data.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "index", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "index")]
         [Newtonsoft.Json.JsonProperty("index")]
         public int Index
         {
@@ -195,7 +186,6 @@ namespace Gx.Atom
         ///  Property for the XML serializer indicating whether the "Index" property should be included in the output.
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute]
-        [System.Xml.Serialization.SoapIgnoreAttribute]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         [Newtonsoft.Json.JsonIgnore]
         public bool IndexSpecified
@@ -214,7 +204,6 @@ namespace Gx.Atom
         ///  a reference from a feed to a Web resource.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "link", Namespace = "http://www.w3.org/2005/Atom")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "link")]
         [Newtonsoft.Json.JsonProperty("links")]
         [JsonConverter(typeof(JsonHypermediaLinksConverter))]
         public System.Collections.Generic.List<Gx.Links.Link> Links
@@ -232,7 +221,6 @@ namespace Gx.Atom
         ///  identifies an image that provides visual identification for the feed.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "logo", Namespace = "http://www.w3.org/2005/Atom")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "logo")]
         [Newtonsoft.Json.JsonProperty("logo")]
         public string Logo
         {
@@ -249,7 +237,6 @@ namespace Gx.Atom
         ///  information about rights held in and over the feed.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "rights", Namespace = "http://www.w3.org/2005/Atom")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "rights")]
         [Newtonsoft.Json.JsonProperty("rights")]
         public string Rights
         {
@@ -266,7 +253,6 @@ namespace Gx.Atom
         ///  a human-readable description or subtitle for the feed.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "subtitle", Namespace = "http://www.w3.org/2005/Atom")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "subtitle")]
         [Newtonsoft.Json.JsonProperty("subtitle")]
         public string Subtitle
         {
@@ -283,7 +269,6 @@ namespace Gx.Atom
         ///  a human-readable title for the feed
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "title", Namespace = "http://www.w3.org/2005/Atom")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "title")]
         [Newtonsoft.Json.JsonProperty("title")]
         public string Title
         {
@@ -300,7 +285,6 @@ namespace Gx.Atom
         ///  the most recent instant in time when the feed was modified in a way the publisher considers significant.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "updated", Namespace = "http://www.w3.org/2005/Atom")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "updated")]
         [Newtonsoft.Json.JsonProperty("updated")]
         [JsonConverter(typeof(JsonUnixTimestampConverter))]
         public DateTime Updated
@@ -320,7 +304,6 @@ namespace Gx.Atom
         ///  Property for the XML serializer indicating whether the "Updated" property should be included in the output.
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute]
-        [System.Xml.Serialization.SoapIgnoreAttribute]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         [Newtonsoft.Json.JsonIgnore]
         public bool UpdatedSpecified
@@ -339,7 +322,6 @@ namespace Gx.Atom
         ///  The entries in the feed.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "entry", Namespace = "http://www.w3.org/2005/Atom")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "entry")]
         [Newtonsoft.Json.JsonProperty("entries")]
         public System.Collections.Generic.List<Gx.Atom.Entry> Entries
         {
@@ -356,7 +338,6 @@ namespace Gx.Atom
         ///  The list of facets for the feed, used for convenience in browsing and filtering.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "facet", Namespace = "http://www.w3.org/2005/Atom")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "facet")]
         [Newtonsoft.Json.JsonProperty("facets")]
         public System.Collections.Generic.List<Gx.Records.Field> Facets
         {

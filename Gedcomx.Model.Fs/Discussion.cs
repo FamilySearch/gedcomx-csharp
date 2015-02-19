@@ -21,7 +21,6 @@ namespace Gx.Fs.Discussions
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://familysearch.org/v1/", TypeName = "Discussion")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://familysearch.org/v1/", TypeName = "Discussion")]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://familysearch.org/v1/", ElementName = "discussion")]
     public partial class Discussion : Gx.Links.HypermediaEnabledData
     {
@@ -40,7 +39,6 @@ namespace Gx.Fs.Discussions
         ///  the one-line summary text
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "title", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "title")]
         [Newtonsoft.Json.JsonProperty("title")]
         public string Title
         {
@@ -57,7 +55,6 @@ namespace Gx.Fs.Discussions
         ///  The text or &quot;message body&quot; of the discussion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "details", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "details")]
         [Newtonsoft.Json.JsonProperty("details")]
         public string Details
         {
@@ -74,7 +71,6 @@ namespace Gx.Fs.Discussions
         ///  date of creation
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "created", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "created")]
         [Newtonsoft.Json.JsonProperty("created")]
         [Newtonsoft.Json.JsonConverter(typeof(JsonUnixTimestampConverter))]
         public DateTime Created
@@ -94,7 +90,6 @@ namespace Gx.Fs.Discussions
         ///  Property for the XML serializer indicating whether the "Created" property should be included in the output.
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute]
-        [System.Xml.Serialization.SoapIgnoreAttribute]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         [Newtonsoft.Json.JsonIgnore]
         public bool CreatedSpecified
@@ -113,7 +108,6 @@ namespace Gx.Fs.Discussions
         ///  contributor of discussion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "contributor", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "contributor")]
         [Newtonsoft.Json.JsonProperty("contributor")]
         public Gx.Common.ResourceReference Contributor
         {
@@ -130,7 +124,6 @@ namespace Gx.Fs.Discussions
         ///  Date of last modification
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "modified", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "modified")]
         [Newtonsoft.Json.JsonProperty("modified")]
         [Newtonsoft.Json.JsonConverter(typeof(JsonUnixTimestampConverter))]
         public DateTime Modified
@@ -150,7 +143,6 @@ namespace Gx.Fs.Discussions
         ///  Property for the XML serializer indicating whether the "Modified" property should be included in the output.
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute]
-        [System.Xml.Serialization.SoapIgnoreAttribute]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         [Newtonsoft.Json.JsonIgnore]
         public bool ModifiedSpecified
@@ -169,7 +161,6 @@ namespace Gx.Fs.Discussions
         ///  Number of comments
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "numberOfComments", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "numberOfComments")]
         [Newtonsoft.Json.JsonProperty("numberOfComments")]
         public int NumberOfComments
         {
@@ -188,7 +179,6 @@ namespace Gx.Fs.Discussions
         ///  Property for the XML serializer indicating whether the "NumberOfComments" property should be included in the output.
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute]
-        [System.Xml.Serialization.SoapIgnoreAttribute]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         [Newtonsoft.Json.JsonIgnore]
         public bool NumberOfCommentsSpecified
@@ -207,7 +197,6 @@ namespace Gx.Fs.Discussions
         ///  The comments on this discussion.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "comment", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "comment")]
         [Newtonsoft.Json.JsonProperty("comments")]
         public System.Collections.Generic.List<Gx.Fs.Discussions.Comment> Comments
         {

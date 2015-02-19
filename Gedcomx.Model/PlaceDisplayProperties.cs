@@ -20,7 +20,6 @@ namespace Gx.Conclusion
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "PlaceDisplayProperties")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "PlaceDisplayProperties")]
     public partial class PlaceDisplayProperties : Gx.Common.ExtensibleData
     {
 
@@ -31,7 +30,6 @@ namespace Gx.Conclusion
         ///  The displayable full name of the place.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "fullName", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "fullName")]
         [Newtonsoft.Json.JsonProperty("fullName")]
         public string FullName
         {
@@ -48,7 +46,6 @@ namespace Gx.Conclusion
         ///  The displayable name of the place.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "name", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "name")]
         [Newtonsoft.Json.JsonProperty("name")]
         public string Name
         {
@@ -65,7 +62,6 @@ namespace Gx.Conclusion
         ///  The displayable type of the place.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "type", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "type")]
         [Newtonsoft.Json.JsonProperty("type")]
         public string Type
         {

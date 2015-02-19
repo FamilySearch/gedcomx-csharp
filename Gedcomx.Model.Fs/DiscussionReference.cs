@@ -18,7 +18,6 @@ namespace Gx.Fs.Tree
     // TODO: Create attribute equivalent to JsonWrapper (for each call to FindExtensionsOfType<T>() and FindExtensionOfType<T>())
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://familysearch.org/v1/", TypeName = "DiscussionReference")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://familysearch.org/v1/", TypeName = "DiscussionReference")]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://familysearch.org/v1/", ElementName = "discussion-reference")]
     public sealed partial class DiscussionReference : Gx.Links.HypermediaEnabledData
     {
@@ -30,7 +29,6 @@ namespace Gx.Fs.Tree
         ///  The id of the discussion being referenced.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "resourceId")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "resourceId")]
         [Newtonsoft.Json.JsonProperty("resourceId")]
         public string ResourceId
         {
@@ -47,7 +45,6 @@ namespace Gx.Fs.Tree
         ///  The URI to the resource.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "resource")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "resource")]
         [Newtonsoft.Json.JsonProperty("resource")]
         public string Resource
         {
@@ -64,7 +61,6 @@ namespace Gx.Fs.Tree
         ///  The attribution metadata for this discussion reference.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "attribution", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "attribution")]
         [Newtonsoft.Json.JsonProperty("attribution")]
         public Gx.Common.Attribution Attribution
         {

@@ -16,7 +16,6 @@ namespace Gx.Atom
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.w3.org/2005/Atom", TypeName = "Category")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://www.w3.org/2005/Atom", TypeName = "Category")]
     public sealed partial class Category : Gx.Atom.CommonAttributes
     {
 
@@ -27,7 +26,6 @@ namespace Gx.Atom
         ///  identifies a categorization scheme
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "scheme")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "scheme")]
         [Newtonsoft.Json.JsonProperty("scheme")]
         public string Scheme
         {
@@ -44,7 +42,6 @@ namespace Gx.Atom
         ///  identifies the category to which the entry or feed belongs
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "term")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "term")]
         [Newtonsoft.Json.JsonProperty("term")]
         public string Term
         {
@@ -61,7 +58,6 @@ namespace Gx.Atom
         ///  a human-readable label for display in end-user applications
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "label")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "label")]
         [Newtonsoft.Json.JsonProperty("label")]
         public string Label
         {

@@ -20,7 +20,6 @@ namespace Gx.Conclusion
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "NameForm")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "NameForm")]
     public partial class NameForm : Gx.Common.ExtensibleData
     {
         private string _lang;
@@ -45,7 +44,6 @@ namespace Gx.Conclusion
         ///  The language of the conclusion.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "lang", Namespace = "http://www.w3.org/XML/1998/namespace")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "lang", Namespace = "http://www.w3.org/XML/1998/namespace")]
         [Newtonsoft.Json.JsonProperty("lang")]
         public string Lang
         {
@@ -62,7 +60,6 @@ namespace Gx.Conclusion
         ///  The full text of the name form.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "fullText", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "fullText")]
         [Newtonsoft.Json.JsonProperty("fullText")]
         public string FullText
         {
@@ -79,7 +76,6 @@ namespace Gx.Conclusion
         ///  The different parts of the name form.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "part", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "part")]
         [Newtonsoft.Json.JsonProperty("parts")]
         public System.Collections.Generic.List<Gx.Conclusion.NamePart> Parts
         {
@@ -96,7 +92,6 @@ namespace Gx.Conclusion
         ///  The references to the record fields being used as evidence.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "field", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "field")]
         [Newtonsoft.Json.JsonProperty("fields")]
         public System.Collections.Generic.List<Gx.Records.Field> Fields
         {

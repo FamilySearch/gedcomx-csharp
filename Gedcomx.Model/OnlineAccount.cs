@@ -17,7 +17,6 @@ namespace Gx.Agent
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "OnlineAccount")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "OnlineAccount")]
     public partial class OnlineAccount : Gx.Common.ExtensibleData
     {
 
@@ -27,7 +26,6 @@ namespace Gx.Agent
         ///  The name associated the holder of this account with the account.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "accountName", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "accountName")]
         [Newtonsoft.Json.JsonProperty("accountName")]
         public string AccountName
         {
@@ -44,7 +42,6 @@ namespace Gx.Agent
         ///  The homepage of the service that provides this account.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "serviceHomepage", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "serviceHomepage")]
         [Newtonsoft.Json.JsonProperty("serviceHomepage")]
         public Gx.Common.ResourceReference ServiceHomepage
         {

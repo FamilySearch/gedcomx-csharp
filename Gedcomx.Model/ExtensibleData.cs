@@ -19,7 +19,6 @@ namespace Gx.Common
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "ExtensibleData")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "ExtensibleData")]
     public abstract partial class ExtensibleData
     {
         private string _id;
@@ -30,7 +29,6 @@ namespace Gx.Common
         ///  A local, context-specific id for the data.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "id", DataType = "ID")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "id", DataType = "ID")]
         [Newtonsoft.Json.JsonProperty("id")]
         public string Id
         {

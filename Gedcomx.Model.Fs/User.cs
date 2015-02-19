@@ -17,7 +17,6 @@ namespace Gx.Fs.Users
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://familysearch.org/v1/", TypeName = "User")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://familysearch.org/v1/", TypeName = "User")]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://familysearch.org/v1/", ElementName = "user")]
     public partial class User : Gx.Links.HypermediaEnabledData
     {
@@ -44,7 +43,6 @@ namespace Gx.Fs.Users
         ///  (no documentation provided)
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "alternateEmail", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "alternateEmail")]
         [Newtonsoft.Json.JsonProperty("alternateEmail")]
         public string AlternateEmail
         {
@@ -61,7 +59,6 @@ namespace Gx.Fs.Users
         ///  (no documentation provided)
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "birthDate", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "birthDate")]
         [Newtonsoft.Json.JsonProperty("birthDate")]
         public string BirthDate
         {
@@ -78,7 +75,6 @@ namespace Gx.Fs.Users
         ///  (no documentation provided)
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "contactName", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "contactName")]
         [Newtonsoft.Json.JsonProperty("contactName")]
         public string ContactName
         {
@@ -95,7 +91,6 @@ namespace Gx.Fs.Users
         ///  (no documentation provided)
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "country", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "country")]
         [Newtonsoft.Json.JsonProperty("country")]
         public string Country
         {
@@ -112,7 +107,6 @@ namespace Gx.Fs.Users
         ///  (no documentation provided)
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "displayName", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "displayName")]
         [Newtonsoft.Json.JsonProperty("displayName")]
         public string DisplayName
         {
@@ -129,7 +123,6 @@ namespace Gx.Fs.Users
         ///  (no documentation provided)
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "email", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "email")]
         [Newtonsoft.Json.JsonProperty("email")]
         public string Email
         {
@@ -146,7 +139,6 @@ namespace Gx.Fs.Users
         ///  (no documentation provided)
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "familyName", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "familyName")]
         [Newtonsoft.Json.JsonProperty("familyName")]
         public string FamilyName
         {
@@ -163,7 +155,6 @@ namespace Gx.Fs.Users
         ///  (no documentation provided)
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "fullName", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "fullName")]
         [Newtonsoft.Json.JsonProperty("fullName")]
         public string FullName
         {
@@ -180,7 +171,6 @@ namespace Gx.Fs.Users
         ///  (no documentation provided)
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "gender", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "gender")]
         [Newtonsoft.Json.JsonProperty("gender")]
         public string Gender
         {
@@ -197,7 +187,6 @@ namespace Gx.Fs.Users
         ///  (no documentation provided)
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "givenName", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "givenName")]
         [Newtonsoft.Json.JsonProperty("givenName")]
         public string GivenName
         {
@@ -214,7 +203,6 @@ namespace Gx.Fs.Users
         ///  (no documentation provided)
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "helperAccessPin", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "helperAccessPin")]
         [Newtonsoft.Json.JsonProperty("helperAccessPin")]
         public string HelperAccessPin
         {
@@ -231,7 +219,6 @@ namespace Gx.Fs.Users
         ///  (no documentation provided)
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "ldsMemberAccount", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "ldsMemberAccount")]
         [Newtonsoft.Json.JsonProperty("ldsMemberAccount")]
         public bool LdsMemberAccount
         {
@@ -250,7 +237,6 @@ namespace Gx.Fs.Users
         ///  Property for the XML serializer indicating whether the "LdsMemberAccount" property should be included in the output.
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute]
-        [System.Xml.Serialization.SoapIgnoreAttribute]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         [Newtonsoft.Json.JsonIgnore]
         public bool LdsMemberAccountSpecified
@@ -269,7 +255,6 @@ namespace Gx.Fs.Users
         ///  (no documentation provided)
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "mailingAddress", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "mailingAddress")]
         [Newtonsoft.Json.JsonProperty("mailingAddress")]
         public string MailingAddress
         {
@@ -286,7 +271,6 @@ namespace Gx.Fs.Users
         ///  (no documentation provided)
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "personId", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "personId")]
         [Newtonsoft.Json.JsonProperty("personId")]
         public string PersonId
         {
@@ -303,7 +287,6 @@ namespace Gx.Fs.Users
         ///  (no documentation provided)
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "phoneNumber", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "phoneNumber")]
         [Newtonsoft.Json.JsonProperty("phoneNumber")]
         public string PhoneNumber
         {
@@ -320,7 +303,6 @@ namespace Gx.Fs.Users
         ///  (no documentation provided)
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "preferredLanguage", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "preferredLanguage")]
         [Newtonsoft.Json.JsonProperty("preferredLanguage")]
         public string PreferredLanguage
         {
@@ -337,7 +319,6 @@ namespace Gx.Fs.Users
         ///  (no documentation provided)
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "treeUserId", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "treeUserId")]
         [Newtonsoft.Json.JsonProperty("treeUserId")]
         public string TreeUserId
         {

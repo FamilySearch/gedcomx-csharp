@@ -27,7 +27,6 @@ namespace Gx.Conclusion
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Subject")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Subject")]
     public abstract partial class Subject : Gx.Conclusion.Conclusion, IAttributable
     {
 
@@ -40,7 +39,6 @@ namespace Gx.Conclusion
         ///  Whether this subject has been identified as &quot;extracted&quot;.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "extracted")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "extracted")]
         [Newtonsoft.Json.JsonProperty("extracted")]
         public bool Extracted
         {
@@ -59,7 +57,6 @@ namespace Gx.Conclusion
         ///  Property for the XML serializer indicating whether the "Extracted" property should be included in the output.
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute]
-        [System.Xml.Serialization.SoapIgnoreAttribute]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         [Newtonsoft.Json.JsonIgnore]
         public bool ExtractedSpecified
@@ -78,7 +75,6 @@ namespace Gx.Conclusion
         ///  References to the evidence being referenced.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "evidence", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "evidence")]
         [Newtonsoft.Json.JsonProperty("evidence")]
         public System.Collections.Generic.List<Gx.Common.EvidenceReference> Evidence
         {
@@ -95,7 +91,6 @@ namespace Gx.Conclusion
         ///  References to multimedia resources associated with this subject.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "media", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "media")]
         [Newtonsoft.Json.JsonProperty("media")]
         public System.Collections.Generic.List<Gx.Source.SourceReference> Media
         {
@@ -112,7 +107,6 @@ namespace Gx.Conclusion
         ///  The list of identifiers for the subject.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "identifier", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "identifier")]
         [Newtonsoft.Json.JsonProperty("identifiers")]
         [JsonConverter(typeof(JsonIdentifiersConverter))]
         public System.Collections.Generic.List<Gx.Conclusion.Identifier> Identifiers

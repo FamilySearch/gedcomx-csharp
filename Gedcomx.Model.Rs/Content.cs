@@ -16,7 +16,6 @@ namespace Gx.Atom
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.w3.org/2005/Atom", TypeName = "Content")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://www.w3.org/2005/Atom", TypeName = "Content")]
     public sealed partial class Content
     {
 
@@ -26,7 +25,6 @@ namespace Gx.Atom
         ///  The type of the content.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "type")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "type")]
         [Newtonsoft.Json.JsonProperty("type")]
         public string Type
         {
@@ -43,7 +41,6 @@ namespace Gx.Atom
         ///  The genealogical data associated with this entry.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "gedcomx", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "gedcomx")]
         [Newtonsoft.Json.JsonProperty("gedcomx")]
         public Gx.Gedcomx Gedcomx
         {

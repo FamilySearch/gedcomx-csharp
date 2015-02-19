@@ -22,7 +22,6 @@ namespace Gx.Conclusion
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "NamePart")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "NamePart")]
     public sealed partial class NamePart : Gx.Common.ExtensibleData
     {
 
@@ -49,7 +48,6 @@ namespace Gx.Conclusion
         ///  The value of the name part.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "value")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "value")]
         [Newtonsoft.Json.JsonProperty("value")]
         public string Value
         {
@@ -66,7 +64,6 @@ namespace Gx.Conclusion
         ///  The type of the name part.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "type")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "type")]
         [Newtonsoft.Json.JsonProperty("type")]
         public string Type
         {
@@ -100,7 +97,6 @@ namespace Gx.Conclusion
         ///  The references to the record fields being used as evidence.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "field", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "field")]
         [Newtonsoft.Json.JsonProperty("fields")]
         public System.Collections.Generic.List<Gx.Records.Field> Fields
         {
@@ -117,7 +113,6 @@ namespace Gx.Conclusion
         ///  The qualifiers associated with this name part.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "qualifier", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "qualifier")]
         [Newtonsoft.Json.JsonProperty("qualifiers")]
         public System.Collections.Generic.List<Gx.Common.Qualifier> Qualifiers
         {

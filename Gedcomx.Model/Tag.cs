@@ -15,7 +15,6 @@ namespace Gx.Source
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://familysearch.org/v1/", TypeName = "Tag")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://familysearch.org/v1/", TypeName = "Tag")]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://familysearch.org/v1/", ElementName = "tag")]
     public partial class Tag
     {
@@ -34,7 +33,6 @@ namespace Gx.Source
         ///  A reference to the value of the tag.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "resource")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "resource")]
         [Newtonsoft.Json.JsonProperty("resource")]
         public string Resource
         {

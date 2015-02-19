@@ -20,7 +20,6 @@ namespace Gx.Conclusion
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Document")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Document")]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://gedcomx.org/v1/", ElementName = "document")]
     [Newtonsoft.Json.JsonObject("documents")]
     public partial class Document : Gx.Conclusion.Conclusion, IAttributable
@@ -35,7 +34,6 @@ namespace Gx.Conclusion
         ///  The text type of the document.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "textType")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "textType")]
         [Newtonsoft.Json.JsonProperty("textType")]
         public string TextType
         {
@@ -52,7 +50,6 @@ namespace Gx.Conclusion
         ///  Whether this document has been identified as &quot;extracted&quot;.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "extracted")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "extracted")]
         [Newtonsoft.Json.JsonProperty("extracted")]
         public bool Extracted
         {
@@ -71,7 +68,6 @@ namespace Gx.Conclusion
         ///  Property for the XML serializer indicating whether the "Extracted" property should be included in the output.
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute]
-        [System.Xml.Serialization.SoapIgnoreAttribute]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         [Newtonsoft.Json.JsonIgnore]
         public bool ExtractedSpecified
@@ -90,7 +86,6 @@ namespace Gx.Conclusion
         ///  The type of the document.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "type")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "type")]
         [Newtonsoft.Json.JsonProperty("type")]
         public string Type
         {
@@ -124,7 +119,6 @@ namespace Gx.Conclusion
         ///  The document text.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "text", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "text")]
         [Newtonsoft.Json.JsonProperty("text")]
         public string Text
         {

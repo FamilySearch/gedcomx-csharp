@@ -17,7 +17,6 @@ namespace Gx.Fs.Tree
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://familysearch.org/v1/", TypeName = "ChangeInfo")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://familysearch.org/v1/", TypeName = "ChangeInfo")]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://familysearch.org/v1/", ElementName = "changeInfo")]
     public partial class ChangeInfo
     {
@@ -34,7 +33,6 @@ namespace Gx.Fs.Tree
         ///  An optional modifier for the object to which the operation applies.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "objectModifier")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "objectModifier")]
         [Newtonsoft.Json.JsonProperty("objectModifier")]
         public string ObjectModifier
         {
@@ -68,7 +66,6 @@ namespace Gx.Fs.Tree
         ///  The operation of the change.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "operation")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "operation")]
         [Newtonsoft.Json.JsonProperty("operation")]
         public string Operation
         {
@@ -102,7 +99,6 @@ namespace Gx.Fs.Tree
         ///  The reason for the change.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "reason")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "reason")]
         [Newtonsoft.Json.JsonProperty("reason")]
         public string Reason
         {
@@ -119,7 +115,6 @@ namespace Gx.Fs.Tree
         ///  The type of the object to which the operation applies.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "objectType")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "objectType")]
         [Newtonsoft.Json.JsonProperty("objectType")]
         public string ObjectType
         {
@@ -153,7 +148,6 @@ namespace Gx.Fs.Tree
         ///  The subject representing the original value(s) that existed before the change.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "original", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "original")]
         [Newtonsoft.Json.JsonProperty("original")]
         public Gx.Common.ResourceReference Original
         {
@@ -170,7 +164,6 @@ namespace Gx.Fs.Tree
         ///  The parent change that triggered, caused, or included this change.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "parent", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "parent")]
         [Newtonsoft.Json.JsonProperty("parent")]
         public Gx.Common.ResourceReference Parent
         {
@@ -187,7 +180,6 @@ namespace Gx.Fs.Tree
         ///  The subject representing the removed value(s) that existed before the change.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "removed", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "removed")]
         [Newtonsoft.Json.JsonProperty("removed")]
         public Gx.Common.ResourceReference Removed
         {
@@ -204,7 +196,6 @@ namespace Gx.Fs.Tree
         ///  The subject representing the result of the change.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "resulting", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "resulting")]
         [Newtonsoft.Json.JsonProperty("resulting")]
         public Gx.Common.ResourceReference Resulting
         {

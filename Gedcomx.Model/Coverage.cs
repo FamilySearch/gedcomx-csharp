@@ -19,7 +19,6 @@ namespace Gx.Source
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Coverage")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Coverage")]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://gedcomx.org/v1/", ElementName = "coverage")]
     public partial class Coverage : Gx.Links.HypermediaEnabledData
     {
@@ -31,7 +30,6 @@ namespace Gx.Source
         ///  The type of record being covered.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "recordType", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "recordType")]
         [Newtonsoft.Json.JsonProperty("recordType")]
         public string RecordType
         {
@@ -65,7 +63,6 @@ namespace Gx.Source
         ///  Spatial coverage.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "spatial", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "spatial")]
         [Newtonsoft.Json.JsonProperty("spatial")]
         public Gx.Conclusion.PlaceReference Spatial
         {
@@ -82,7 +79,6 @@ namespace Gx.Source
         ///  Temporal coverage.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "temporal", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "temporal")]
         [Newtonsoft.Json.JsonProperty("temporal")]
         public Gx.Conclusion.DateInfo Temporal
         {

@@ -16,7 +16,6 @@ namespace Gx.Fs
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://familysearch.org/v1/", TypeName = "HealthConfig")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://familysearch.org/v1/", TypeName = "HealthConfig")]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://familysearch.org/v1/", ElementName = "healthConfig")]
     public partial class HealthConfig
     {
@@ -29,7 +28,6 @@ namespace Gx.Fs
         ///  (no documentation provided)
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "buildDate", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "buildDate")]
         [Newtonsoft.Json.JsonProperty("buildDate")]
         public string BuildDate
         {
@@ -46,7 +44,6 @@ namespace Gx.Fs
         ///  (no documentation provided)
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "buildVersion", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "buildVersion")]
         [Newtonsoft.Json.JsonProperty("buildVersion")]
         public string BuildVersion
         {
@@ -63,7 +60,6 @@ namespace Gx.Fs
         ///  (no documentation provided)
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "databaseVersion", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "databaseVersion")]
         [Newtonsoft.Json.JsonProperty("databaseVersion")]
         public string DatabaseVersion
         {
@@ -80,7 +76,6 @@ namespace Gx.Fs
         ///  (no documentation provided)
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "platformVersion", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "platformVersion")]
         [Newtonsoft.Json.JsonProperty("platformVersion")]
         public string PlatformVersion
         {

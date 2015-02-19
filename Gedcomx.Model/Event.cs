@@ -19,7 +19,6 @@ namespace Gx.Conclusion
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Event")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Event")]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://gedcomx.org/v1/", ElementName = "event")]
     [Newtonsoft.Json.JsonObject("events")]
     public partial class Event : Gx.Conclusion.Subject
@@ -64,7 +63,6 @@ namespace Gx.Conclusion
         ///  The type of the event.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "type")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "type")]
         [Newtonsoft.Json.JsonProperty("type")]
         public string Type
         {
@@ -98,7 +96,6 @@ namespace Gx.Conclusion
         ///  The date of this event.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "date", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "date")]
         [Newtonsoft.Json.JsonProperty("date")]
         public Gx.Conclusion.DateInfo Date
         {
@@ -115,7 +112,6 @@ namespace Gx.Conclusion
         ///  The place of this event.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "place", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "place")]
         [Newtonsoft.Json.JsonProperty("place")]
         public Gx.Conclusion.PlaceReference Place
         {
@@ -132,7 +128,6 @@ namespace Gx.Conclusion
         ///  The roles played in this event.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "role", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "role")]
         [Newtonsoft.Json.JsonProperty("roles")]
         public System.Collections.Generic.List<Gx.Conclusion.EventRole> Roles
         {

@@ -17,7 +17,6 @@ namespace Gx.Fs
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://familysearch.org/v1/", TypeName = "FeatureSet")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://familysearch.org/v1/", TypeName = "FeatureSet")]
     public partial class Feature
     {
 
@@ -31,7 +30,6 @@ namespace Gx.Fs
         ///  The name of the feature.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "name", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "name")]
         [Newtonsoft.Json.JsonProperty("name")]
         public string Name
         {
@@ -48,7 +46,6 @@ namespace Gx.Fs
         ///  A description of the feature.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "description", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "description")]
         [Newtonsoft.Json.JsonProperty("description")]
         public string Description
         {
@@ -65,7 +62,6 @@ namespace Gx.Fs
         ///  Whether the feature is enabled for the current request.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "enabled", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "enabled")]
         [Newtonsoft.Json.JsonProperty("enabled")]
         public bool Enabled
         {
@@ -84,7 +80,6 @@ namespace Gx.Fs
         ///  Property for the XML serializer indicating whether the "Enabled" property should be included in the output.
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute]
-        [System.Xml.Serialization.SoapIgnoreAttribute]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         [Newtonsoft.Json.JsonIgnore]
         public bool EnabledSpecified
@@ -103,7 +98,6 @@ namespace Gx.Fs
         ///  The date that this feature is scheduled to activate permanently.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "activationDate", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "activationDate")]
         [Newtonsoft.Json.JsonProperty("activationDate")]
         [Newtonsoft.Json.JsonConverter(typeof(JsonUnixTimestampConverter))]
         public DateTime ActivationDate
@@ -123,7 +117,6 @@ namespace Gx.Fs
         ///  Property for the XML serializer indicating whether the "ActivationDate" property should be included in the output.
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute]
-        [System.Xml.Serialization.SoapIgnoreAttribute]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         [Newtonsoft.Json.JsonIgnore]
         public bool ActivationDateSpecified

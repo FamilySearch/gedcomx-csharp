@@ -21,7 +21,6 @@ namespace Gx.Conclusion
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Name")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Name")]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://gedcomx.org/v1/", ElementName = "name")]
     public partial class Name : Gx.Conclusion.Conclusion
     {
@@ -44,7 +43,6 @@ namespace Gx.Conclusion
         ///  The type of the name.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "type")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "type")]
         [Newtonsoft.Json.JsonProperty("type")]
         public string Type
         {
@@ -78,7 +76,6 @@ namespace Gx.Conclusion
         ///  Whether the conclusion is preferred above other conclusions of the same type. Useful, for example, for display purposes.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "preferred", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "preferred")]
         [Newtonsoft.Json.JsonProperty("preferred")]
         public bool Preferred
         {
@@ -97,7 +94,6 @@ namespace Gx.Conclusion
         ///  Property for the XML serializer indicating whether the "Preferred" property should be included in the output.
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute]
-        [System.Xml.Serialization.SoapIgnoreAttribute]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         [Newtonsoft.Json.JsonIgnore]
         public bool PreferredSpecified
@@ -116,7 +112,6 @@ namespace Gx.Conclusion
         ///  The date the name was first applied or adopted.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "date", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "date")]
         [Newtonsoft.Json.JsonProperty("date")]
         public Gx.Conclusion.DateInfo Date
         {
@@ -133,7 +128,6 @@ namespace Gx.Conclusion
         ///  Alternate forms of the name, such as the romanized form of a non-latin name.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "nameForm", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "nameForm")]
         [Newtonsoft.Json.JsonProperty("nameForms")]
         public System.Collections.Generic.List<Gx.Conclusion.NameForm> NameForms
         {

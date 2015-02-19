@@ -22,7 +22,6 @@ namespace Gx.Common
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Attribution")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Attribution")]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://gedcomx.org/v1/", ElementName = "attribution")]
     public sealed partial class Attribution : Gx.Common.ExtensibleData
     {
@@ -35,7 +34,6 @@ namespace Gx.Common
         ///  Reference to the contributor of the attributed data.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "contributor", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "contributor")]
         [Newtonsoft.Json.JsonProperty("contributor")]
         public Gx.Common.ResourceReference Contributor
         {
@@ -52,7 +50,6 @@ namespace Gx.Common
         ///  The modified timestamp for the attributed data.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "modified", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "modified")]
         [Newtonsoft.Json.JsonProperty("modified")]
         [JsonConverter(typeof(JsonUnixTimestampConverter))]
         public DateTime Modified
@@ -72,7 +69,6 @@ namespace Gx.Common
         ///  Property for the XML serializer indicating whether the "Modified" property should be included in the output.
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute]
-        [System.Xml.Serialization.SoapIgnoreAttribute]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         [Newtonsoft.Json.JsonIgnore]
         public bool ModifiedSpecified
@@ -91,7 +87,6 @@ namespace Gx.Common
         ///  The &quot;change message&quot; for the attributed data provided by the contributor.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "changeMessage", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "changeMessage")]
         [Newtonsoft.Json.JsonProperty("changeMessage")]
         public string ChangeMessage
         {

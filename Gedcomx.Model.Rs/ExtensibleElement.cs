@@ -18,7 +18,6 @@ namespace Gx.Atom
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.w3.org/2005/Atom", TypeName = "ExtensibleElement")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://www.w3.org/2005/Atom", TypeName = "ExtensibleElement")]
     public abstract partial class ExtensibleElement : Gx.Atom.CommonAttributes
     {
 

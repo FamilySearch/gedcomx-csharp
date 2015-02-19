@@ -16,7 +16,6 @@ namespace Gx.Fs.Tree
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://familysearch.org/v1/", TypeName = "MergeConflict")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://familysearch.org/v1/", TypeName = "MergeConflict")]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://familysearch.org/v1/", ElementName = "mergeConflict")]
     public partial class MergeConflict
     {
@@ -27,7 +26,6 @@ namespace Gx.Fs.Tree
         ///  (no documentation provided)
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "survivorResource", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "survivorResource")]
         [Newtonsoft.Json.JsonProperty("survivorResource")]
         public Gx.Common.ResourceReference SurvivorResource
         {
@@ -44,7 +42,6 @@ namespace Gx.Fs.Tree
         ///  (no documentation provided)
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "duplicateResource", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "duplicateResource")]
         [Newtonsoft.Json.JsonProperty("duplicateResource")]
         public Gx.Common.ResourceReference DuplicateResource
         {

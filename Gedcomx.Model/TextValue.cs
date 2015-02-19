@@ -16,7 +16,6 @@ namespace Gx.Common
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "TextValue")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "TextValue")]
     public partial class TextValue
     {
         private string _lang;
@@ -35,7 +34,6 @@ namespace Gx.Common
         ///  The language of the text value.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "lang", Namespace = "http://www.w3.org/XML/1998/namespace")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "lang", Namespace = "http://www.w3.org/XML/1998/namespace")]
         [Newtonsoft.Json.JsonProperty("lang")]
         public string Lang
         {

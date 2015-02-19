@@ -18,7 +18,6 @@ namespace Gx.Records
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "FieldValueDescriptor")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "FieldValueDescriptor")]
     public partial class FieldValueDescriptor : Gx.Links.HypermediaEnabledData
     {
 
@@ -31,7 +30,6 @@ namespace Gx.Records
         ///  Whether the treatment of the field value is optional. Used to determine whether it should be displayed even if the value is empty.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "optional")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "optional")]
         [Newtonsoft.Json.JsonProperty("optional")]
         public bool Optional
         {
@@ -50,7 +48,6 @@ namespace Gx.Records
         ///  Property for the XML serializer indicating whether the "Optional" property should be included in the output.
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute]
-        [System.Xml.Serialization.SoapIgnoreAttribute]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         [Newtonsoft.Json.JsonIgnore]
         public bool OptionalSpecified
@@ -69,7 +66,6 @@ namespace Gx.Records
         ///  The type of the field value.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "type")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "type")]
         [Newtonsoft.Json.JsonProperty("type")]
         public string Type
         {
@@ -103,7 +99,6 @@ namespace Gx.Records
         ///  The id of the label applicable to the field value
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "labelId")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "labelId")]
         [Newtonsoft.Json.JsonProperty("labelId")]
         public string LabelId
         {
@@ -120,7 +115,6 @@ namespace Gx.Records
         ///  The labels to be used for display purposes.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "label", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "label")]
         [Newtonsoft.Json.JsonProperty("labels")]
         public System.Collections.Generic.List<Gx.Common.TextValue> DisplayLabels
         {

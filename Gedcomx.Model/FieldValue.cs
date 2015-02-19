@@ -19,7 +19,6 @@ namespace Gx.Records
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "FieldValue")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "FieldValue")]
     public sealed partial class FieldValue : Gx.Conclusion.Conclusion
     {
 
@@ -32,7 +31,6 @@ namespace Gx.Records
         ///  URI that resolves to the value of the field.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "resource")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "resource")]
         [Newtonsoft.Json.JsonProperty("resource")]
         public string Resource
         {
@@ -49,7 +47,6 @@ namespace Gx.Records
         ///  The datatype of the text value of the field.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "datatype")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "datatype")]
         [Newtonsoft.Json.JsonProperty("datatype")]
         public string Datatype
         {
@@ -66,7 +63,6 @@ namespace Gx.Records
         ///  The type of the field value.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "type")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "type")]
         [Newtonsoft.Json.JsonProperty("type")]
         public string Type
         {
@@ -100,7 +96,6 @@ namespace Gx.Records
         ///  The id of the label applicable to this field value.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "labelId")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "labelId")]
         [Newtonsoft.Json.JsonProperty("labelId")]
         public string LabelId
         {
@@ -117,7 +112,6 @@ namespace Gx.Records
         ///  The text value.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "text", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "text")]
         [Newtonsoft.Json.JsonProperty("text")]
         public string Text
         {

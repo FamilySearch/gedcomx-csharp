@@ -16,7 +16,6 @@ namespace Gx.Links
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Link")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Link")]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://gedcomx.org/v1/", ElementName = "link")]
     public partial class Link
     {
@@ -52,7 +51,6 @@ namespace Gx.Links
         ///  URIs, such as for the purpose of linking to a query.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "template")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "template")]
         [Newtonsoft.Json.JsonProperty("template")]
         public string Template
         {
@@ -69,7 +67,6 @@ namespace Gx.Links
         ///  Metadata about the available media type(s) of the resource being linked to.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "allow")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "allow")]
         [Newtonsoft.Json.JsonProperty("allow")]
         public string Allow
         {
@@ -86,7 +83,6 @@ namespace Gx.Links
         ///  The number of elements in the page, if this link refers to a page of resources.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "count")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "count")]
         [Newtonsoft.Json.JsonProperty("count")]
         public int Count
         {
@@ -105,7 +101,6 @@ namespace Gx.Links
         ///  Property for the XML serializer indicating whether the "Count" property should be included in the output.
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute]
-        [System.Xml.Serialization.SoapIgnoreAttribute]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         [Newtonsoft.Json.JsonIgnore]
         public bool CountSpecified
@@ -124,7 +119,6 @@ namespace Gx.Links
         ///  Metadata about the available media type(s) of the resource being linked to.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "accept")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "accept")]
         [Newtonsoft.Json.JsonProperty("accept")]
         public string Accept
         {
@@ -141,7 +135,6 @@ namespace Gx.Links
         ///  Metadata about the available media type(s) of the resource being linked to.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "type")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "type")]
         [Newtonsoft.Json.JsonProperty("type")]
         public string Type
         {
@@ -158,7 +151,6 @@ namespace Gx.Links
         ///  The language of the resource being linked to.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "hreflang")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "hreflang")]
         [Newtonsoft.Json.JsonProperty("hreflang")]
         public string Hreflang
         {
@@ -175,7 +167,6 @@ namespace Gx.Links
         ///  Human-readable information about the link.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "title")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "title")]
         [Newtonsoft.Json.JsonProperty("title")]
         public string Title
         {
@@ -192,7 +183,6 @@ namespace Gx.Links
         ///  The total number of results in the page to which this links, if this link refers to a page of resources.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "results")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "results")]
         [Newtonsoft.Json.JsonProperty("results")]
         public int Results
         {
@@ -211,7 +201,6 @@ namespace Gx.Links
         ///  Property for the XML serializer indicating whether the "Results" property should be included in the output.
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute]
-        [System.Xml.Serialization.SoapIgnoreAttribute]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         [Newtonsoft.Json.JsonIgnore]
         public bool ResultsSpecified
@@ -230,7 +219,6 @@ namespace Gx.Links
         ///  The link relationship.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "rel")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "rel")]
         [Newtonsoft.Json.JsonProperty("rel")]
         public string Rel
         {
@@ -247,7 +235,6 @@ namespace Gx.Links
         ///  The index of the offset of the page, if this link refers to a page of resources.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "offset")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "offset")]
         [Newtonsoft.Json.JsonProperty("offset")]
         public int Offset
         {
@@ -266,7 +253,6 @@ namespace Gx.Links
         ///  Property for the XML serializer indicating whether the "Offset" property should be included in the output.
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute]
-        [System.Xml.Serialization.SoapIgnoreAttribute]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         [Newtonsoft.Json.JsonIgnore]
         public bool OffsetSpecified
@@ -285,7 +271,6 @@ namespace Gx.Links
         ///  The target IRI of the link.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "href")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "href")]
         [Newtonsoft.Json.JsonProperty("href")]
         public String Href
         {

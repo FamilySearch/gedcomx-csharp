@@ -22,7 +22,6 @@ namespace Gx.Conclusion
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Relationship")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Relationship")]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://gedcomx.org/v1/", ElementName = "relationship")]
     public partial class Relationship : Gx.Conclusion.Subject
     {
@@ -36,7 +35,6 @@ namespace Gx.Conclusion
         ///  The type of this relationship.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "type")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "type")]
         [Newtonsoft.Json.JsonProperty("type")]
         public string Type
         {
@@ -72,7 +70,6 @@ namespace Gx.Conclusion
         ///  implies direction, it goes from &quot;person1&quot; to &quot;person2&quot;.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "person1", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "person1")]
         [Newtonsoft.Json.JsonProperty("person1")]
         public Gx.Common.ResourceReference Person1
         {
@@ -91,7 +88,6 @@ namespace Gx.Conclusion
         ///  implies direction, it goes from &quot;person1&quot; to &quot;person2&quot;.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "person2", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "person2")]
         [Newtonsoft.Json.JsonProperty("person2")]
         public Gx.Common.ResourceReference Person2
         {
@@ -108,7 +104,6 @@ namespace Gx.Conclusion
         ///  The fact conclusions for the relationship.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "fact", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "fact")]
         [Newtonsoft.Json.JsonProperty("facts")]
         public System.Collections.Generic.List<Gx.Conclusion.Fact> Facts
         {
@@ -125,7 +120,6 @@ namespace Gx.Conclusion
         ///  The references to the record fields being used as evidence.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "field", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "field")]
         [Newtonsoft.Json.JsonProperty("fields")]
         public System.Collections.Generic.List<Gx.Records.Field> Fields
         {

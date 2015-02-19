@@ -17,7 +17,6 @@ namespace Gx.Records
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "RecordSet")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "RecordSet")]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://gedcomx.org/v1/", ElementName = "records")]
     public partial class RecordSet : Gx.Links.HypermediaEnabledData
     {
@@ -29,7 +28,6 @@ namespace Gx.Records
         ///  The language of the genealogical data.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "lang", Namespace = "http://www.w3.org/XML/1998/namespace")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "lang", Namespace = "http://www.w3.org/XML/1998/namespace")]
         [Newtonsoft.Json.JsonProperty("lang")]
         public string Lang
         {
@@ -46,7 +44,6 @@ namespace Gx.Records
         ///  Metadata about this record set; shared among all records in the set.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "metadata", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "metadata")]
         [Newtonsoft.Json.JsonProperty("metadata")]
         public Gx.Gedcomx Metadata
         {
@@ -63,7 +60,6 @@ namespace Gx.Records
         ///  The records included in this genealogical data set.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "record", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "record")]
         [Newtonsoft.Json.JsonProperty("records")]
         public System.Collections.Generic.List<Gx.Gedcomx> Records
         {

@@ -16,7 +16,6 @@ namespace Gx.Atom
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.w3.org/2005/Atom", TypeName = "Person")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://www.w3.org/2005/Atom", TypeName = "Person")]
     public sealed partial class Person : Gx.Atom.ExtensibleElement
     {
 
@@ -27,7 +26,6 @@ namespace Gx.Atom
         ///  a human-readable name for the person.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "name", Namespace = "http://www.w3.org/2005/Atom")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "name")]
         [Newtonsoft.Json.JsonProperty("name")]
         public string Name
         {
@@ -44,7 +42,6 @@ namespace Gx.Atom
         ///  an IRI associated with the person.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "uri", Namespace = "http://www.w3.org/2005/Atom")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "uri")]
         [Newtonsoft.Json.JsonProperty("uri")]
         public string Uri
         {
@@ -61,7 +58,6 @@ namespace Gx.Atom
         ///  an e-mail address associated with the person.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "email", Namespace = "http://www.w3.org/2005/Atom")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "email")]
         [Newtonsoft.Json.JsonProperty("email")]
         public string Email
         {

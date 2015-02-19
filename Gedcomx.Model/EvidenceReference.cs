@@ -17,7 +17,6 @@ namespace Gx.Common
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "EvidenceReference")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "EvidenceReference")]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://gedcomx.org/v1/", ElementName = "evidenceReference")]
     public sealed partial class EvidenceReference : Gx.Links.HypermediaEnabledData, IAttributable
     {
@@ -38,7 +37,6 @@ namespace Gx.Common
         ///  The resource id of the resource being referenced.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "resourceId")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "resourceId")]
         [Newtonsoft.Json.JsonProperty("resourceId")]
         public string ResourceId
         {
@@ -55,7 +53,6 @@ namespace Gx.Common
         ///  The URI to the resource.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "resource")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "resource")]
         [Newtonsoft.Json.JsonProperty("resource")]
         public string Resource
         {
@@ -72,7 +69,6 @@ namespace Gx.Common
         ///  Attribution metadata for evidence reference.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "attribution", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "attribution")]
         [Newtonsoft.Json.JsonProperty("attribution")]
         public Gx.Common.Attribution Attribution
         {

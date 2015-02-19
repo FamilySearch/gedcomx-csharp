@@ -23,7 +23,6 @@ namespace Gx.Conclusion
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "PlaceDescription")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "PlaceDescription")]
     public partial class PlaceDescription : Gx.Conclusion.Subject
     {
 
@@ -42,7 +41,6 @@ namespace Gx.Conclusion
         ///  An implementation-specific uniform resource identifier (URI) used to identify the type of a place (e.g., address, city, county, province, state, country, etc.).
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "type")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "type")]
         [Newtonsoft.Json.JsonProperty("type")]
         public string Type
         {
@@ -59,7 +57,6 @@ namespace Gx.Conclusion
         ///  An ordered list of standardized (or normalized), fully-qualified (in terms of what is known of the applicable jurisdictional hierarchy) names for this place that are applicable to this description of this place.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "name", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "name")]
         [Newtonsoft.Json.JsonProperty("names")]
         public System.Collections.Generic.List<Gx.Common.TextValue> Names
         {
@@ -76,7 +73,6 @@ namespace Gx.Conclusion
         ///  A description of the time period to which this place description is relevant.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "temporalDescription", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "temporalDescription")]
         [Newtonsoft.Json.JsonProperty("temporalDescription")]
         public Gx.Conclusion.DateInfo TemporalDescription
         {
@@ -93,7 +89,6 @@ namespace Gx.Conclusion
         ///  Degrees north or south of the Equator.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "latitude", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "latitude")]
         [Newtonsoft.Json.JsonProperty("latitude")]
         public double Latitude
         {
@@ -112,7 +107,6 @@ namespace Gx.Conclusion
         ///  Property for the XML serializer indicating whether the "Latitude" property should be included in the output.
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute]
-        [System.Xml.Serialization.SoapIgnoreAttribute]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         [Newtonsoft.Json.JsonIgnore]
         public bool LatitudeSpecified
@@ -131,7 +125,6 @@ namespace Gx.Conclusion
         ///  Angular distance in degrees, relative to the Prime Meridian.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "longitude", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "longitude")]
         [Newtonsoft.Json.JsonProperty("longitude")]
         public double Longitude
         {
@@ -150,7 +143,6 @@ namespace Gx.Conclusion
         ///  Property for the XML serializer indicating whether the "Longitude" property should be included in the output.
         /// </summary>
         [System.Xml.Serialization.XmlIgnoreAttribute]
-        [System.Xml.Serialization.SoapIgnoreAttribute]
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         [Newtonsoft.Json.JsonIgnore]
         public bool LongitudeSpecified
@@ -169,7 +161,6 @@ namespace Gx.Conclusion
         ///  A reference to a geospatial description of this place.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "spatialDescription", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "spatialDescription")]
         [Newtonsoft.Json.JsonProperty("spatialDescription")]
         public Gx.Common.ResourceReference SpatialDescription
         {
@@ -186,7 +177,6 @@ namespace Gx.Conclusion
         ///  A reference to the place being described.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "place", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "place")]
         [Newtonsoft.Json.JsonProperty("place")]
         public Gx.Common.ResourceReference Place
         {
@@ -203,7 +193,6 @@ namespace Gx.Conclusion
         ///  A reference to a description of the jurisdiction this place.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "jurisdiction", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "jurisdiction")]
         [Newtonsoft.Json.JsonProperty("jurisdiction")]
         public Gx.Common.ResourceReference Jurisdiction
         {
@@ -220,7 +209,6 @@ namespace Gx.Conclusion
         ///  Display properties for the place. Display properties are not specified by GEDCOM X core, but as extension elements by GEDCOM X RS.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "display", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "display")]
         [Newtonsoft.Json.JsonProperty("display")]
         public Gx.Conclusion.PlaceDisplayProperties DisplayExtension
         {

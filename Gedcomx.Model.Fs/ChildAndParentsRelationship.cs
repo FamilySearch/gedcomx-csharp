@@ -20,7 +20,6 @@ namespace Gx.Fs.Tree
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://familysearch.org/v1/", TypeName = "ChildAndParentsRelationship")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://familysearch.org/v1/", TypeName = "ChildAndParentsRelationship")]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://familysearch.org/v1/", ElementName = "childAndParentsRelationship")]
     public partial class ChildAndParentsRelationship : Gx.Conclusion.Subject
     {
@@ -34,7 +33,6 @@ namespace Gx.Fs.Tree
         ///  The father of the child.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "father", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "father")]
         [Newtonsoft.Json.JsonProperty("father")]
         public Gx.Common.ResourceReference Father
         {
@@ -51,7 +49,6 @@ namespace Gx.Fs.Tree
         ///  The mother of the child.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "mother", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "mother")]
         [Newtonsoft.Json.JsonProperty("mother")]
         public Gx.Common.ResourceReference Mother
         {
@@ -68,7 +65,6 @@ namespace Gx.Fs.Tree
         ///  child in the relationship.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "child", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "child")]
         [Newtonsoft.Json.JsonProperty("child")]
         public Gx.Common.ResourceReference Child
         {
@@ -85,7 +81,6 @@ namespace Gx.Fs.Tree
         ///  The fact conclusions for the father.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "fatherFact", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "fatherFact")]
         [Newtonsoft.Json.JsonProperty("fatherFacts")]
         public System.Collections.Generic.List<Gx.Conclusion.Fact> FatherFacts
         {
@@ -102,7 +97,6 @@ namespace Gx.Fs.Tree
         ///  The fact conclusions for the mother.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "motherFact", Namespace = "http://familysearch.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "motherFact")]
         [Newtonsoft.Json.JsonProperty("motherFacts")]
         public System.Collections.Generic.List<Gx.Conclusion.Fact> MotherFacts
         {

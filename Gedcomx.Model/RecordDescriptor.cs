@@ -17,7 +17,6 @@ namespace Gx.Records
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "RecordDescriptor")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "RecordDescriptor")]
     public partial class RecordDescriptor : Gx.Links.HypermediaEnabledData
     {
 
@@ -27,7 +26,6 @@ namespace Gx.Records
         ///  The language of this record description.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "lang", Namespace = "http://www.w3.org/XML/1998/namespace")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "lang", Namespace = "http://www.w3.org/XML/1998/namespace")]
         [Newtonsoft.Json.JsonProperty("lang")]
         public string Lang
         {
@@ -44,7 +42,6 @@ namespace Gx.Records
         ///  Descriptors of the fields that are applicable to this record.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "field", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "field")]
         [Newtonsoft.Json.JsonProperty("fields")]
         public System.Collections.Generic.List<Gx.Records.FieldDescriptor> Fields
         {

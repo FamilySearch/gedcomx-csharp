@@ -19,7 +19,6 @@ namespace Gx.Source
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "SourceCitation")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "SourceCitation")]
     public partial class SourceCitation : Gx.Links.HypermediaEnabledData
     {
 
@@ -31,7 +30,6 @@ namespace Gx.Source
         ///  The language of the note.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "lang", Namespace = "http://www.w3.org/XML/1998/namespace")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "lang", Namespace = "http://www.w3.org/XML/1998/namespace")]
         [Newtonsoft.Json.JsonProperty("lang")]
         public string Lang
         {
@@ -48,7 +46,6 @@ namespace Gx.Source
         ///  A reference to the citation template for this citation.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "citationTemplate", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "citationTemplate")]
         [Newtonsoft.Json.JsonProperty("citationTemplate")]
         public Gx.Common.ResourceReference CitationTemplate
         {
@@ -65,7 +62,6 @@ namespace Gx.Source
         ///  The list of citation fields.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "field", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "field")]
         [Newtonsoft.Json.JsonProperty("fields")]
         public System.Collections.Generic.List<Gx.Source.CitationField> Fields
         {
@@ -82,7 +78,6 @@ namespace Gx.Source
         ///  A rendering (as a string) of a source citation.  This rendering should be the most complete rendering available.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "value", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "value")]
         [Newtonsoft.Json.JsonProperty("value")]
         public string Value
         {

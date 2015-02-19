@@ -41,7 +41,6 @@ namespace Gx
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Gedcomx")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Gedcomx")]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://gedcomx.org/v1/", ElementName = "gedcomx")]
     public partial class Gedcomx : Gx.Links.HypermediaEnabledData
     {
@@ -64,7 +63,6 @@ namespace Gx
         ///  The language of the genealogical data.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "lang", Namespace = "http://www.w3.org/XML/1998/namespace")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "lang", Namespace = "http://www.w3.org/XML/1998/namespace")]
         [Newtonsoft.Json.JsonProperty("lang")]
         public string Lang
         {
@@ -81,7 +79,6 @@ namespace Gx
         ///  A reference to a description of this data set.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "description")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "description")]
         [Newtonsoft.Json.JsonProperty("description")]
         public string DescriptionRef
         {
@@ -98,7 +95,6 @@ namespace Gx
         ///  A reference to the profile that describes this data set.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "profile")]
-        [System.Xml.Serialization.SoapAttributeAttribute(AttributeName = "profile")]
         [Newtonsoft.Json.JsonProperty("profile")]
         public string Profile
         {
@@ -115,7 +111,6 @@ namespace Gx
         ///  The attribution of this genealogical data.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "attribution", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "attribution")]
         [Newtonsoft.Json.JsonProperty("attribution")]
         public Gx.Common.Attribution Attribution
         {
@@ -132,7 +127,6 @@ namespace Gx
         ///  The persons included in this genealogical data set.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "person", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "person")]
         [Newtonsoft.Json.JsonProperty("persons")]
         public System.Collections.Generic.List<Gx.Conclusion.Person> Persons
         {
@@ -149,7 +143,6 @@ namespace Gx
         ///  The relationships included in this genealogical data set.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "relationship", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "relationship")]
         [Newtonsoft.Json.JsonProperty("relationships")]
         public System.Collections.Generic.List<Gx.Conclusion.Relationship> Relationships
         {
@@ -166,7 +159,6 @@ namespace Gx
         ///  The descriptions of sources included in this genealogical data set.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "sourceDescription", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "sourceDescription")]
         [Newtonsoft.Json.JsonProperty("sourceDescriptions")]
         public System.Collections.Generic.List<Gx.Source.SourceDescription> SourceDescriptions
         {
@@ -183,7 +175,6 @@ namespace Gx
         ///  The agents included in this genealogical data set.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "agent", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "agent")]
         [Newtonsoft.Json.JsonProperty("agents")]
         public System.Collections.Generic.List<Gx.Agent.Agent> Agents
         {
@@ -200,7 +191,6 @@ namespace Gx
         ///  The events included in this genealogical data set.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "event", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "event")]
         [Newtonsoft.Json.JsonProperty("events")]
         public System.Collections.Generic.List<Gx.Conclusion.Event> Events
         {
@@ -217,7 +207,6 @@ namespace Gx
         ///  The places included in this genealogical data set.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "place", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "place")]
         [Newtonsoft.Json.JsonProperty("places")]
         public System.Collections.Generic.List<Gx.Conclusion.PlaceDescription> Places
         {
@@ -234,7 +223,6 @@ namespace Gx
         ///  The documents included in this genealogical data set.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "document", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "document")]
         [Newtonsoft.Json.JsonProperty("documents")]
         public System.Collections.Generic.List<Gx.Conclusion.Document> Documents
         {
@@ -251,7 +239,6 @@ namespace Gx
         ///  The collections included in this genealogical data set.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "collection", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "collection")]
         [Newtonsoft.Json.JsonProperty("collections")]
         public System.Collections.Generic.List<Gx.Records.Collection> Collections
         {
@@ -268,7 +255,6 @@ namespace Gx
         ///  The extracted fields included in this genealogical data set.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "field", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "field")]
         [Newtonsoft.Json.JsonProperty("fields")]
         public System.Collections.Generic.List<Gx.Records.Field> Fields
         {
@@ -285,7 +271,6 @@ namespace Gx
         ///  The record descriptors included in this genealogical data set.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "recordDescriptor", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "recordDescriptor")]
         [Newtonsoft.Json.JsonProperty("recordDescriptors")]
         public System.Collections.Generic.List<Gx.Records.RecordDescriptor> RecordDescriptors
         {

@@ -21,7 +21,6 @@ namespace Gx.Conclusion
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "DisplayProperties")]
-    [System.Xml.Serialization.SoapTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "DisplayProperties")]
     public partial class DisplayProperties : Gx.Common.ExtensibleData
     {
 
@@ -40,7 +39,6 @@ namespace Gx.Conclusion
         ///  The context-specific ascendancy number for the person in relation to the other persons in the request. The ancestry number is defined using the Ahnentafel numbering system.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "ascendancyNumber", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "ascendancyNumber")]
         [Newtonsoft.Json.JsonProperty("ascendancyNumber")]
         public string AscendancyNumber
         {
@@ -57,7 +55,6 @@ namespace Gx.Conclusion
         ///  The displayable label for the birth date of the person.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "birthDate", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "birthDate")]
         [Newtonsoft.Json.JsonProperty("birthDate")]
         public string BirthDate
         {
@@ -74,7 +71,6 @@ namespace Gx.Conclusion
         ///  The displayable label for the birth place of the person.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "birthPlace", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "birthPlace")]
         [Newtonsoft.Json.JsonProperty("birthPlace")]
         public string BirthPlace
         {
@@ -91,7 +87,6 @@ namespace Gx.Conclusion
         ///  The displayable label for the death date of the person.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "deathDate", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "deathDate")]
         [Newtonsoft.Json.JsonProperty("deathDate")]
         public string DeathDate
         {
@@ -108,7 +103,6 @@ namespace Gx.Conclusion
         ///  The displayable label for the death place of the person.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "deathPlace", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "deathPlace")]
         [Newtonsoft.Json.JsonProperty("deathPlace")]
         public string DeathPlace
         {
@@ -125,7 +119,6 @@ namespace Gx.Conclusion
         ///  The context-specific descendancy number for the person in relation to the other persons in the request. The descendancy number is defined using the d'Aboville numbering system.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "descendancyNumber", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "descendancyNumber")]
         [Newtonsoft.Json.JsonProperty("descendancyNumber")]
         public string DescendancyNumber
         {
@@ -142,7 +135,6 @@ namespace Gx.Conclusion
         ///  The displayable label for the gender of the person.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "gender", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "gender")]
         [Newtonsoft.Json.JsonProperty("gender")]
         public string Gender
         {
@@ -159,7 +151,6 @@ namespace Gx.Conclusion
         ///  The displayable label for the lifespan of the person.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "lifespan", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "lifespan")]
         [Newtonsoft.Json.JsonProperty("lifespan")]
         public string Lifespan
         {
@@ -176,7 +167,6 @@ namespace Gx.Conclusion
         ///  The displayable label for the marriage date of the person.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "marriageDate", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "marriageDate")]
         [Newtonsoft.Json.JsonProperty("marriageDate")]
         public string MarriageDate
         {
@@ -193,7 +183,6 @@ namespace Gx.Conclusion
         ///  The displayable label for the marriage place of the person.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "marriagePlace", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "marriagePlace")]
         [Newtonsoft.Json.JsonProperty("marriagePlace")]
         public string MarriagePlace
         {
@@ -210,7 +199,6 @@ namespace Gx.Conclusion
         ///  The displayable name of the person.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "name", Namespace = "http://gedcomx.org/v1/")]
-        [System.Xml.Serialization.SoapElementAttribute(ElementName = "name")]
         [Newtonsoft.Json.JsonProperty("name")]
         public string Name
         {

@@ -63,7 +63,7 @@ namespace Gedcomx.Rs.Api.Test
             artifacts.Add(dataSource1);
             artifacts.Add(dataSource2);
 
-            IRestRequest request = new RestRequest()
+            IRestRequest request = new RedirectableRestRequest()
                 .AddHeader("Authorization", "Bearer " + tree.CurrentAccessToken)
                 .Accept(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE)
                 .ContentType(MediaTypes.MULTIPART_FORM_DATA_TYPE)

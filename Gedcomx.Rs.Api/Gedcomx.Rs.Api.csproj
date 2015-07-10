@@ -119,6 +119,7 @@
     <Compile Include="Util\PagedFeedEnumerator.cs" />
     <Compile Include="Util\FilterableRestClient.cs" />
     <Compile Include="Util\RdfExtensions.cs" />
+    <Compile Include="Util\RedirectableRestRequest.cs" />
     <Compile Include="Util\RestClientExtensions.cs" />
     <Compile Include="Util\ServiceHelper.cs" />
     <Compile Include="Util\UriExtensions.cs" />

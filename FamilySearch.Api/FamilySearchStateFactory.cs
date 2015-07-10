@@ -127,7 +127,7 @@ namespace FamilySearch.Api
         /// </returns>
         public FamilySearchPlaces NewPlacesState(Uri discoveryUri, IFilterableRestClient client, Method method)
         {
-            IRestRequest request = new RestRequest().Accept(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE).Build(discoveryUri, method);
+            IRestRequest request = new RedirectableRestRequest().Accept(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE).Build(discoveryUri, method);
             return NewPlacesState(request, client.Handle(request), client, null);
         }
 

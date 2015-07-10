@@ -55,7 +55,7 @@ namespace Gx.Rs.Api
         /// </returns>
         public CollectionState NewCollectionState(Uri discoveryUri, IFilterableRestClient client, Method method)
         {
-            IRestRequest request = new RestRequest().Accept(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE).Build(discoveryUri, method);
+            IRestRequest request = new RedirectableRestRequest().Accept(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE).Build(discoveryUri, method);
             return NewCollectionState(request, client.Handle(request), client, null);
         }
 
@@ -95,7 +95,7 @@ namespace Gx.Rs.Api
         /// </returns>
         public PersonState NewPersonState(Uri discoveryUri, IFilterableRestClient client, Method method)
         {
-            IRestRequest request = new RestRequest().Accept(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE).Build(discoveryUri, method);
+            IRestRequest request = new RedirectableRestRequest().Accept(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE).Build(discoveryUri, method);
             return NewPersonState(request, client.Handle(request), client, null);
         }
 
@@ -135,7 +135,7 @@ namespace Gx.Rs.Api
         /// </returns>
         public RecordState NewRecordState(Uri discoveryUri, IFilterableRestClient client, Method method)
         {
-            IRestRequest request = new RestRequest().Accept(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE).Build(discoveryUri, method);
+            IRestRequest request = new RedirectableRestRequest().Accept(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE).Build(discoveryUri, method);
             return NewRecordState(request, client.Handle(request), client, null);
         }
 

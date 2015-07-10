@@ -68,7 +68,7 @@ namespace FamilySearch.Api.Memories
         /// <param name="client">The REST API client to use for API calls.</param>
         /// <param name="stateFactory">The state factory to use for state instantiation.</param>
         private FamilySearchMemories(Uri uri, IFilterableRestClient client, FamilySearchStateFactory stateFactory)
-            : this(new RestRequest().Accept(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE).Build(uri, Method.GET), client, stateFactory)
+            : this(new RedirectableRestRequest().Accept(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE).Build(uri, Method.GET), client, stateFactory)
         {
         }
 

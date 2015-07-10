@@ -86,9 +86,16 @@ namespace Gx.Rs.Api.Util
         /// </returns>
         public static IRestRequest Build(this IRestRequest @this, Uri uri, Method method)
         {
+            var redirectable = @this as RedirectableRestRequest;
+
             @this.RequestFormat = @this.GetDataFormat();
             @this.Resource = uri.PathAndQuery;
             @this.Method = method;
+
+            if (redirectable != null)
+            {
+                redirectable.BaseUrl = uri.GetLeftPart(UriPartial.Authority);
+            }
 
             return @this;
         }

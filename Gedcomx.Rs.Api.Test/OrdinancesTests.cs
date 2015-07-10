@@ -21,7 +21,7 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestReadOrdinancePolicy()
         {
-            var request = new RestRequest("/platform/ordinances/policy", Method.GET).Accept("text/html");
+            var request = new RedirectableRestRequest("/platform/ordinances/policy", Method.GET).Accept("text/html");
             var client = new FilterableRestClient("https://sandbox.familysearch.org");
             var response = client.Execute(request);
 
@@ -32,7 +32,7 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestReadOrdinancePolicyInFrench()
         {
-            var request = new RestRequest("/platform/ordinances/policy", Method.GET).Accept("text/html").AcceptLanguage("fr");
+            var request = new RedirectableRestRequest("/platform/ordinances/policy", Method.GET).Accept("text/html").AcceptLanguage("fr");
             var client = new FilterableRestClient("https://sandbox.familysearch.org");
             var response = client.Execute(request);
 

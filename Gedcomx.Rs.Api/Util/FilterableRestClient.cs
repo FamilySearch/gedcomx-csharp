@@ -17,6 +17,7 @@ namespace Gx.Rs.Api.Util
     public class FilterableRestClient : RestClient, IFilterableRestClient
     {
         private List<IFilter> filters;
+        private object _lock = new object();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FilterableRestClient"/> class.
@@ -57,12 +58,33 @@ namespace Gx.Rs.Api.Util
         /// <returns></returns>
         public IRestResponse Handle(IRestRequest request)
         {
+            var redirectable = request as RedirectableRestRequest;
+            string originalBaseUrl = null;
+            IRestResponse result = null;
+
             foreach (var filter in filters)
             {
                 filter.Handle((IRestClient)this, request);
             }
 
-            return this.Execute(request);
+            // Prevent parallel execution issues (per instance) since this is a destructive property pattern
+            lock (_lock)
+            {
+                if (redirectable != null && redirectable.BaseUrl != this.BaseUrl && !string.IsNullOrEmpty(redirectable.BaseUrl))
+                {
+                    originalBaseUrl = this.BaseUrl;
+                    this.BaseUrl = redirectable.BaseUrl;
+                }
+
+                result = this.Execute(request);
+
+                if (originalBaseUrl != null)
+                {
+                    this.BaseUrl = originalBaseUrl;
+                }
+            }
+
+            return result;
         }
     }
 }

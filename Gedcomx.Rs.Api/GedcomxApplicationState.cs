@@ -257,7 +257,7 @@ namespace Gx.Rs.Api
         /// <returns>A basic REST API request</returns>
         protected IRestRequest CreateRequest()
         {
-            return new RestRequest();
+            return new RedirectableRestRequest();
         }
 
         /// <summary>

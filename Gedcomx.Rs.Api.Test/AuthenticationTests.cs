@@ -25,7 +25,7 @@ namespace Gedcomx.Rs.Api.Test
             collection.AuthenticateViaOAuth2Password(Resources.TestUserName, Resources.TestPassword, Resources.TestClientId);
             Assert.IsTrue(collection.IsAuthenticated);
             Link link = collection.GetLink(Rel.OAUTH2_TOKEN);
-            IRestRequest request = new RestRequest()
+            IRestRequest request = new RedirectableRestRequest()
                 .Accept(MediaTypes.APPLICATION_JSON_TYPE)
                 .Build(link.Href + "?access_token=" + collection.CurrentAccessToken, Method.DELETE);
             IRestResponse response = collection.Client.Handle(request);
@@ -41,7 +41,7 @@ namespace Gedcomx.Rs.Api.Test
             formData.Add("grant_type", "authorization_code");
             formData.Add("code", "tGzv3JOkF0XG5Qx2TlKWIA");
             formData.Add("client_id", "WCQY-7J1Q-GKVV-7DNM-SQ5M-9Q5H-JX3H-CMJK");
-            IRestRequest request = new RestRequest()
+            IRestRequest request = new RedirectableRestRequest()
                 .Accept(MediaTypes.APPLICATION_JSON_TYPE)
                 .ContentType(MediaTypes.APPLICATION_FORM_URLENCODED_TYPE)
                 .SetEntity(formData)
@@ -80,7 +80,7 @@ namespace Gedcomx.Rs.Api.Test
             formData.Add("response_type", "code");
             formData.Add("client_id", "ABCD-EFGH-JKLM-NOPQ-RSTU-VWXY-0123-4567");
             formData.Add("redirect_uri", "https://familysearch.org/developers/sandbox-oauth2-redirect");
-            IRestRequest request = new RestRequest()
+            IRestRequest request = new RedirectableRestRequest()
                 .SetEntity(formData)
                 .Build(tokenLink.Href, Method.GET);
             IRestResponse response = collection.Client.Handle(request);
@@ -100,7 +100,7 @@ namespace Gedcomx.Rs.Api.Test
             formData.Add("response_type", "authorize_me");
             formData.Add("client_id", "ABCD-EFGH-JKLM-NOPQ-RSTU-VWXY-0123-4567");
             formData.Add("redirect_uri", "https://familysearch.org/developers/sandbox-oauth2-redirect");
-            IRestRequest request = new RestRequest()
+            IRestRequest request = new RedirectableRestRequest()
                 .ContentType(MediaTypes.APPLICATION_FORM_URLENCODED_TYPE)
                 .SetEntity(formData)
                 .Build(tokenLink.Href, Method.POST);
@@ -120,7 +120,7 @@ namespace Gedcomx.Rs.Api.Test
             formData.Add("response_type", "code");
             formData.Add("client_id", "ABCD-EFGH-JKLM-NOPQ-RSTU-VWXY-0123-4567");
             formData.Add("redirect_uri", "https://familysearch.org/developers/sandbox-oauth2-redirect");
-            IRestRequest request = new RestRequest()
+            IRestRequest request = new RedirectableRestRequest()
                 .SetEntity(formData)
                 .Build(tokenLink.Href, Method.POST);
             IRestResponse response = collection.Client.Handle(request);

@@ -938,12 +938,12 @@ namespace Gx.Rs.Api
             foreach (var header in response.Headers.Where(x => x.Name == "Link" && x.Value != null).SelectMany(x => linkHeaderParser.Parse(response.ResponseUri, x.Value.ToString())))
             {
                 Link link = new Link() { Rel = header.Relation, Href = header.Target.ToString() };
-                link.Template = header.GetLinkExtensionSafe("template");
+                link.Template = header.LinkExtensions.Any(x => x.Key == "template") ? header.GetLinkExtension("template") : null;
                 link.Title = header.Title;
-                link.Accept = header.GetLinkExtensionSafe("accept");
-                link.Allow = header.GetLinkExtensionSafe("allow");
+                link.Accept = header.LinkExtensions.Any(x => x.Key == "accept") ? header.GetLinkExtension("accept") : null;
+                link.Allow = header.LinkExtensions.Any(x => x.Key == "allow") ? header.GetLinkExtension("allow") : null;
                 link.Hreflang = header.HrefLang.Select(x => x.Name).FirstOrDefault();
-                link.Type = header.GetLinkExtensionSafe("type");
+                link.Type = header.LinkExtensions.Any(x => x.Key == "type") ? header.GetLinkExtension("type") : null;
                 links.Add(link);
             }
 

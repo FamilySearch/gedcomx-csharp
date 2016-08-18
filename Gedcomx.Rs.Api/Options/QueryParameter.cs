@@ -77,15 +77,15 @@ namespace Gx.Rs.Api.Options
 
             if (this.replace)
             {
-                query.RemoveAll(x => x.Key == this.name);
+                query.RemoveAll(x => x.Name == this.name);
             }
 
             foreach (var value in values)
             {
-                query.Add(new KeyValuePair<string, object>(this.name, value));
+                query.Add(new Flurl.QueryParameter(this.name, value));
             }
 
-            request.Resource = url.Path + "?" + String.Join("&", query.Select(x => x.Key + "=" + x.Value));
+            request.Resource = url.Path + "?" + String.Join("&", query.Select(x => x.Name + "=" + x.Value));
         }
 
         /// <summary>

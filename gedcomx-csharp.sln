@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GEDCOM X Model", "Gedcomx.Model\GEDCOM X Model.csproj", "{4629BA54-406E-4CD2-9DC6-CDA2C5206EB7}"
 EndProject
@@ -19,8 +19,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gedcomx.Rs.Api", "Gedcomx.R
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gedcomx.Rs.Api.Test", "Gedcomx.Rs.Api.Test\Gedcomx.Rs.Api.Test.csproj", "{E1599FF7-1CC2-4AB3-9165-2740CFF03425}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Link", "Link\src\Link\Link.csproj", "{960DCE2C-22FA-4A2F-9A5E-513575B389D5}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilySearch.Api", "FamilySearch.Api\FamilySearch.Api.csproj", "{BB8A28F0-E46B-4E36-AAF8-05F472B1C850}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GEDCOM X Date", "GEDCOM X Date\GEDCOM X Date.csproj", "{80B68424-7AA2-42DE-A875-FCD2B8C4B52C}"
@@ -33,6 +31,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{5BB9E1DA-4625-4538-A5B4-6E6B2D9CFDB7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -89,12 +89,6 @@ Global
 		{E1599FF7-1CC2-4AB3-9165-2740CFF03425}.Default|Any CPU.Build.0 = Debug|Any CPU
 		{E1599FF7-1CC2-4AB3-9165-2740CFF03425}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1599FF7-1CC2-4AB3-9165-2740CFF03425}.Release|Any CPU.Build.0 = Release|Any CPU
-		{960DCE2C-22FA-4A2F-9A5E-513575B389D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{960DCE2C-22FA-4A2F-9A5E-513575B389D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{960DCE2C-22FA-4A2F-9A5E-513575B389D5}.Default|Any CPU.ActiveCfg = Debug|Any CPU
-		{960DCE2C-22FA-4A2F-9A5E-513575B389D5}.Default|Any CPU.Build.0 = Debug|Any CPU
-		{960DCE2C-22FA-4A2F-9A5E-513575B389D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{960DCE2C-22FA-4A2F-9A5E-513575B389D5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BB8A28F0-E46B-4E36-AAF8-05F472B1C850}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BB8A28F0-E46B-4E36-AAF8-05F472B1C850}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB8A28F0-E46B-4E36-AAF8-05F472B1C850}.Default|Any CPU.ActiveCfg = Debug|Any CPU

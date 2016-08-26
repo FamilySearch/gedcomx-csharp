@@ -26,8 +26,9 @@ namespace Gedcomx.Rs.Api.Test
             tree.AuthenticateWithAccessToken(collection.CurrentAccessToken);
             cleanup = new List<GedcomxApplicationState>();
             Assert.DoesNotThrow(() => collection.IfSuccessful());
-            Assert.IsNotNullOrEmpty(collection.CurrentAccessToken);
-        }
+            Assert.IsNotNull(collection.CurrentAccessToken);
+			Assert.IsNotEmpty(collection.CurrentAccessToken);
+		}
 
         [TestFixtureTearDown]
         public void TearDown()

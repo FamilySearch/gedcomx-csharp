@@ -21,8 +21,9 @@ namespace Gedcomx.Rs.Api.Test
             collection = new CollectionState(new Uri(SANDBOX_URI));
             collection.AuthenticateViaOAuth2Password(Resources.TestUserName, Resources.TestPassword, Resources.TestClientId);
             Assert.DoesNotThrow(() => collection.IfSuccessful());
-            Assert.IsNotNullOrEmpty(collection.CurrentAccessToken);
-        }
+            Assert.IsNotNull(collection.CurrentAccessToken);
+			Assert.IsNotEmpty(collection.CurrentAccessToken);
+		}
 
         [Test]
         public void TestReadNextPageOfSearchResults()

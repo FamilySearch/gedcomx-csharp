@@ -40,8 +40,9 @@ namespace Gedcomx.Rs.Api.Test
             tree.AuthenticateViaOAuth2Password(Resources.TestUserName, Resources.TestPassword, Resources.TestClientId);
             cleanup = new List<GedcomxApplicationState>();
             Assert.DoesNotThrow(() => tree.IfSuccessful());
-            Assert.IsNotNullOrEmpty(tree.CurrentAccessToken);
-        }
+            Assert.IsNotNull(tree.CurrentAccessToken);
+			Assert.IsNotEmpty(tree.CurrentAccessToken);
+		}
 
         [TestFixtureTearDown]
         public void TearDown()
@@ -61,8 +62,9 @@ namespace Gedcomx.Rs.Api.Test
             var person = (PersonState)result.Get();
 
             Assert.IsNotNull(person.Person);
-            Assert.IsNotNullOrEmpty(person.Person.Id);
-        }
+            Assert.IsNotNull(person.Person.Id);
+			Assert.IsNotEmpty(person.Person.Id);
+		}
 
         [Test]
         public void TestCreatePersonSourceReference()
@@ -137,10 +139,12 @@ namespace Gedcomx.Rs.Api.Test
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.MovedPermanently, state.Response.StatusCode);
             var link1 = person1.GetSelfUri();
-            Assert.IsNotNullOrEmpty(link1);
-            var link2 = state.GetSelfUri();
-            Assert.IsNotNullOrEmpty(link2);
-            Assert.AreEqual(link1, link2);
+            Assert.IsNotNull(link1);
+			Assert.IsNotEmpty(link1);
+			var link2 = state.GetSelfUri();
+            Assert.IsNotNull(link2);
+			Assert.IsNotEmpty(link2);
+			Assert.AreEqual(link1, link2);
         }
 
         [Test]
@@ -158,8 +162,9 @@ namespace Gedcomx.Rs.Api.Test
             var state = tree.ReadPerson(new Uri(person.GetSelfUri()));
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.IsNotNull(state.Person);
-            Assert.IsNotNullOrEmpty(state.Person.Id);
-        }
+            Assert.IsNotNull(state.Person.Id);
+			Assert.IsNotEmpty(state.Person.Id);
+		}
 
         [Test]
         public void TestReadPersonSourceReferences()

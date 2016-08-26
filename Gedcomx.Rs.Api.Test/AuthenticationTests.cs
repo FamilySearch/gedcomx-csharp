@@ -57,8 +57,9 @@ namespace Gedcomx.Rs.Api.Test
             var collection = new CollectionState(new Uri(SANDBOX_URI));
             var state = collection.AuthenticateViaOAuth2Password(Resources.TestUserName, Resources.TestPassword, Resources.TestClientId);
             Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
-            Assert.IsNotNullOrEmpty(state.CurrentAccessToken);
-        }
+            Assert.IsNotNull(state.CurrentAccessToken);
+			Assert.IsNotEmpty(state.CurrentAccessToken);
+		}
 
         [Test]
         public void TestObtainAccessTokenWithoutAuthenticating()
@@ -68,8 +69,9 @@ namespace Gedcomx.Rs.Api.Test
             var ip = new CQ(response).Select("body").Text().Split(new string[] { ": " }, StringSplitOptions.RemoveEmptyEntries)[1].Trim();
             var state = collection.UnauthenticatedAccess(ip, "WCQY-7J1Q-GKVV-7DNM-SQ5M-9Q5H-JX3H-CMJK");
             Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
-            Assert.IsNotNullOrEmpty(state.CurrentAccessToken);
-        }
+            Assert.IsNotNull(state.CurrentAccessToken);
+			Assert.IsNotEmpty(state.CurrentAccessToken);
+		}
 
         [Test]
         public void TestInitiateAuthorizationGet()

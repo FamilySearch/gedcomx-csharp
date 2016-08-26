@@ -26,8 +26,9 @@ namespace Gedcomx.Rs.Api.Test
             tree.AuthenticateViaOAuth2Password(Resources.TestUserName, Resources.TestPassword, Resources.TestClientId);
             cleanup = new List<GedcomxApplicationState>();
             Assert.DoesNotThrow(() => tree.IfSuccessful());
-            Assert.IsNotNullOrEmpty(tree.CurrentAccessToken);
-        }
+            Assert.IsNotNull(tree.CurrentAccessToken);
+			Assert.IsNotEmpty(tree.CurrentAccessToken);
+		}
 
         [TestFixtureTearDown]
         public void TearDown()

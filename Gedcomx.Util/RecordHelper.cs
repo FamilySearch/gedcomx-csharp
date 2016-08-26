@@ -207,8 +207,8 @@ namespace Gx.Util
 				if (sourceDescription.KnownResourceType == ResourceType.Record)
 				{
 					var identifyer = sourceDescription.Identifiers.Where(p => p.KnownType == IdentifierType.Persistent).FirstOrDefault();
-					_columnNames.Add("IDENTIFER");
-					_currentRecord["IDENTIFER"] = identifyer != null ? identifyer.Value : "";
+					_columnNames.Add("RECORD_IDENTIFER");
+					_currentRecord["RECORD_IDENTIFER"] = identifyer != null ? identifyer.Value : "";
 				}
 
                 base.VisitSourceDescription(sourceDescription);

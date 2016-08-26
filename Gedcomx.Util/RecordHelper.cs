@@ -204,6 +204,13 @@ namespace Gx.Util
                     _currentRecord["IMAGE_URI"] = sourceDescription.About;
                 }
 
+				if (sourceDescription.KnownResourceType == ResourceType.Record)
+				{
+					var identifyer = sourceDescription.Identifiers.Where(p => p.KnownType == IdentifierType.Persistent).FirstOrDefault();
+					_columnNames.Add("IDENTIFER");
+					_currentRecord["IDENTIFER"] = identifyer != null ? identifyer.Value : "";
+				}
+
                 base.VisitSourceDescription(sourceDescription);
             }
 

@@ -22,16 +22,16 @@ namespace Gx.Rs.Api.Util
         /// properties can be managed safely through the RFC 5988 link class <see cref="Tavis.Link"/>.
         /// </remarks>
         /// <returns></returns>
-        public static string GetLinkExtensionSafe(this Link @this, string key)
-        {
-            string result = null;
+        //public static string GetLinkExtensionSafe(this Link @this, string key)
+        //{
+        //    string result = null;
 
-            if (@this.LinkExtensions.Any(x => x.Key == key))
-            {
-                result = @this.GetLinkExtension(key);
-            }
+        //    if (@this.LinkExtensions.Any(x => x.Key == key))
+        //    {
+        //        result = @this.GetLinkExtension(key);
+        //    }
 
-            return result;
-        }
+        //    return result;
+        //}
     }
 }

@@ -22,8 +22,9 @@ namespace Gedcomx.Rs.Api.Test
             tree = new FamilySearchFamilyTree(true);
             tree.AuthenticateViaOAuth2Password(Resources.TestUserName, Resources.TestPassword, Resources.TestClientId);
             Assert.DoesNotThrow(() => tree.IfSuccessful());
-            Assert.IsNotNullOrEmpty(tree.CurrentAccessToken);
-            cleanup = new List<GedcomxApplicationState>();
+            Assert.IsNotNull(tree.CurrentAccessToken);
+			Assert.IsNotEmpty(tree.CurrentAccessToken);
+			cleanup = new List<GedcomxApplicationState>();
         }
 
         [TestFixtureTearDown]

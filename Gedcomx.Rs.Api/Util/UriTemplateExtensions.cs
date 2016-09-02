@@ -18,11 +18,11 @@ namespace Gx.Rs.Api.Util
         /// <param name="name">The name of the parameter to add.</param>
         /// <param name="value">The value of the parameter to add.</param>
         /// <returns>The specified <see cref="UriTemplate"/> with the newly added parameter.</returns>
-        public static UriTemplate AddParameter(this UriTemplate @this, string name, object value)
-        {
-            @this.SetParameter(name, value);
+        //public static UriTemplate AddParameter(this UriTemplate @this, string name, object value)
+        //{
+        //    @this.SetParameter(name, value);
 
-            return @this;
-        }
+        //    return @this;
+        //}
     }
 }

@@ -26,8 +26,9 @@ namespace Gedcomx.Rs.Api.Test
             var response = client.Execute(request);
 
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
-            Assert.IsNotNullOrEmpty(response.Content);
-        }
+            Assert.IsNotNull(response.Content);
+			Assert.IsNotEmpty(response.Content);
+		}
 
         [Test]
         public void TestReadOrdinancePolicyInFrench()
@@ -37,8 +38,9 @@ namespace Gedcomx.Rs.Api.Test
             var response = client.Execute(request);
 
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
-            Assert.IsNotNullOrEmpty(response.Content);
-        }
+            Assert.IsNotNull(response.Content);
+			Assert.IsNotEmpty(response.Content);
+		}
 
         [Test]
         public void TestReadOrdinances()

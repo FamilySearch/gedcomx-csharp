@@ -15,7 +15,7 @@ namespace Gedcomx.Rs.Api.Test
     {
         private FamilySearchCollectionState date;
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void Initialize()
         {
             date = new FamilySearchCollectionState(new Uri("https://sandbox.familysearch.org/platform/collections/dates"));

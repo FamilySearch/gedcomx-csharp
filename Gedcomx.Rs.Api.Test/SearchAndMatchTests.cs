@@ -19,7 +19,7 @@ namespace Gedcomx.Rs.Api.Test
         private FamilySearchFamilyTree tree;
         private List<GedcomxApplicationState> cleanup;
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void Initialize()
         {
             tree = new FamilySearchFamilyTree(true);
@@ -30,7 +30,7 @@ namespace Gedcomx.Rs.Api.Test
 			Assert.IsNotEmpty(tree.CurrentAccessToken);
 		}
 
-        [TestFixtureTearDown]
+        [OneTimeTearDown]
         public void TearDown()
         {
             foreach (var state in cleanup)
@@ -111,7 +111,7 @@ namespace Gedcomx.Rs.Api.Test
             cleanup.Add(person1);
             var person2 = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
             cleanup.Add(person2);
-            Thread.Sleep(30); // This is to ensure the matching system on the server has time to recognize the two new duplicates
+            Thread.Sleep(10000); // This is to ensure the matching system on the server has time to recognize the two new duplicates
             var matches = person2.ReadMatches();
             var entry = matches.Results.Entries.FirstOrDefault();
             var id = entry.Id;

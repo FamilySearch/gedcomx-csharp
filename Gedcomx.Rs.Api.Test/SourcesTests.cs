@@ -16,7 +16,7 @@ namespace Gedcomx.Rs.Api.Test
         private FamilySearchFamilyTree tree;
         private List<GedcomxApplicationState> cleanup;
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void Initialize()
         {
             tree = new FamilySearchFamilyTree(true);
@@ -27,7 +27,7 @@ namespace Gedcomx.Rs.Api.Test
 			cleanup = new List<GedcomxApplicationState>();
         }
 
-        [TestFixtureTearDown]
+        [OneTimeTearDown]
         public void TearDown()
         {
             foreach (var state in cleanup)
@@ -107,7 +107,10 @@ namespace Gedcomx.Rs.Api.Test
             relationship.LoadSourceReferences();
             var state = relationship.DeleteSourceReference(relationship.SourceReference);
 
-            Assert.DoesNotThrow(() => state.IfSuccessful());
+			// TODO: GetLink(Rel.SOURCE_REFERENCES) is not one of the linked references when trying to add it. 
+			// therefore relationship of relationship.SourceReference is null.
+
+			Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
         }
 

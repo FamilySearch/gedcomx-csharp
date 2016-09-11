@@ -17,7 +17,7 @@ namespace Gedcomx.Rs.Api.Test
         private FamilySearchFamilyTree tree;
         private List<GedcomxApplicationState> cleanup;
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void Initialize()
         {
             tree = new FamilySearchFamilyTree(true);
@@ -25,7 +25,7 @@ namespace Gedcomx.Rs.Api.Test
             cleanup = new List<GedcomxApplicationState>();
         }
 
-        [TestFixtureTearDown]
+        [OneTimeTearDown]
         public void TearDown()
         {
             foreach (var state in cleanup)
@@ -49,7 +49,9 @@ namespace Gedcomx.Rs.Api.Test
             var expect = new HeaderParameter("Expect", "200-ok");
             var state = tree.ReadPersonForCurrentUser(expect);
 
-            Assert.DoesNotThrow(() => state.IfSuccessful());
+			// TODO: Unable to connect to the remote server
+
+			Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
         }
 

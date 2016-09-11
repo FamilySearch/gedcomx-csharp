@@ -23,7 +23,7 @@ namespace Gedcomx.Rs.Api.Test
         private FamilySearchFamilyTree tree;
         private List<GedcomxApplicationState> cleanup;
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void Initialize()
         {
             tree = new FamilySearchFamilyTree(true);
@@ -31,7 +31,7 @@ namespace Gedcomx.Rs.Api.Test
             cleanup = new List<GedcomxApplicationState>();
         }
 
-        [TestFixtureTearDown]
+        [OneTimeTearDown]
         public void TearDown()
         {
             foreach (var state in cleanup)

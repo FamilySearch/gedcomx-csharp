@@ -18,7 +18,7 @@ namespace Gedcomx.Rs.Api.Test
     {
         private FamilySearchPlaces places;
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void Initialize()
         {
 

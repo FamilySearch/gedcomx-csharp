@@ -17,7 +17,7 @@ namespace Gedcomx.Rs.Api.Test.Examples
         private DefaultXmlSerialization xmlSerializer;
         private DefaultJsonSerialization jsonSerializer;
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void Initialize()
         {
             xmlSerializer = new DefaultXmlSerialization();

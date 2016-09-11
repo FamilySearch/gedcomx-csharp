@@ -30,7 +30,7 @@ namespace Gedcomx.Rs.Api.Test
         private FamilySearchMemories memories;
         private List<GedcomxApplicationState> cleanup;
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void Initialize()
         {
             tree = new FamilySearchFamilyTree(true);
@@ -40,7 +40,7 @@ namespace Gedcomx.Rs.Api.Test
             cleanup = new List<GedcomxApplicationState>();
         }
 
-        [TestFixtureTearDown]
+        [OneTimeTearDown]
         public void TearDown()
         {
             foreach (var state in cleanup)
@@ -300,7 +300,10 @@ namespace Gedcomx.Rs.Api.Test
             cleanup.Add(person);
             var persona = (PersonState)image.AddPersona(new Person().SetName("John Smith")).Get();
             person.AddPersonaReference(persona);
-            var personas = person.LoadPersonaReferences();
+
+			// TODO: GetLink(Rel.EVIDENCE_REFERENCES) doesn't work. "evidence-references"
+
+			var personas = person.LoadPersonaReferences();
             var state = personas.DeletePersonaReference(personas.GetPersonaReference());
 
             Assert.DoesNotThrow(() => state.IfSuccessful());

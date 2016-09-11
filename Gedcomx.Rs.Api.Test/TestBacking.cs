@@ -251,7 +251,9 @@ namespace Gedcomx.Rs.Api.Test
                         .SetPart(new NamePart(NamePartType.Given, "GedcomX2"))
                         .SetPart(new NamePart(NamePartType.Surname, "User")))
                     .SetPreferred(true))
-                .SetFact(new Fact()
+				//.SetSource(new SourceReference()
+				//	.)
+				.SetFact(new Fact()
                     .SetType(FactType.Birth)
                     .SetDate(new DateInfo().SetOriginal("June 1800"))
                     .SetPlace(new PlaceReference().SetOriginal("Provo, Utah, Utah, United States")))
@@ -364,7 +366,7 @@ namespace Gedcomx.Rs.Api.Test
         {
             return new Note()
                 .SetSubject("Sample")
-                .SetText("Sample note text")
+                .SetText("Sample note text " + DateTime.Now.Ticks)
                 .SetAttribution(new Attribution()
                     .SetContributor(new ResourceReference("https://familysearch.org/platform/users/agents/MM6M-8QJ").SetResourceId("MM6M-8QJ")));
         }

@@ -23,7 +23,7 @@ namespace Gedcomx.Rs.Api.Test
         private CollectionsState subcollections;
         private List<GedcomxApplicationState> cleanup;
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void Initialize()
         {
             collection = new FamilySearchCollectionState(new Uri("https://sandbox.familysearch.org/platform/collections/sources"));
@@ -32,7 +32,7 @@ namespace Gedcomx.Rs.Api.Test
             cleanup = new List<GedcomxApplicationState>();
         }
 
-        [TestFixtureTearDown]
+        [OneTimeTearDown]
         public void TearDown()
         {
             foreach (var state in cleanup)

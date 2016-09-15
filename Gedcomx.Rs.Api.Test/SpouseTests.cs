@@ -267,7 +267,8 @@ namespace Gedcomx.Rs.Api.Test
             Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
         }
 
-        [Test]
+		// TODO: fact.Fact is null because this call returns null GetLink(Rel.CONCLUSIONS)
+		[Test]
         public void TestDeleteCoupleRelationshipConclusion()
         {
             var husband = (PersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
@@ -277,8 +278,6 @@ namespace Gedcomx.Rs.Api.Test
             var relationship = husband.AddSpouse(wife);
             cleanup.Add(relationship);
             var fact = (RelationshipState)relationship.AddFact(TestBacking.GetMarriageFact()).Get();
-
-			// TODO: fact.Fact is null because this call returns null GetLink(Rel.CONCLUSIONS)
 
 			var state = fact.DeleteFact(fact.Fact);
 

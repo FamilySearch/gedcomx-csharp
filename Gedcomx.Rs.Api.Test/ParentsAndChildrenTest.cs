@@ -213,7 +213,7 @@ namespace Gedcomx.Rs.Api.Test
 		}
 
 		// Depreciated https://familysearch.org/developers/docs/api/tree/Person_Source_References_resource
-		// TODO: write a new TestDeleteChildAndParentsRelationshipSourceReference
+		// TODO: GetLink("source-references") doesn't work.
 		//[Test]
 		//public void TestDeleteChildAndParentsRelationshipSourceReference()
 		//{

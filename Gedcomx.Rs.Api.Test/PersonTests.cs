@@ -167,7 +167,7 @@ namespace Gedcomx.Rs.Api.Test
 
 
 		// Depreciated https://familysearch.org/developers/docs/api/tree/Person_Source_References_resource
-		// TODO: write a new TestReadPersonSourceReferences
+		// TODO: GetLink("source-references") doesn't work.
 		//[Test]
 		//public void TestReadPersonSourceReferences()
 		//{
@@ -244,7 +244,7 @@ namespace Gedcomx.Rs.Api.Test
 
 
 		// Depreciated at https://familysearch.org/developers/docs/api/tree/Person_Discussion_References_resource
-		// TODO: write a new TestReadDiscussionReferences
+		// TODO: GetLink("discussion-references") doesn't work.
 		//[Test]
 		//public void TestReadDiscussionReferences()
 		//{
@@ -354,7 +354,7 @@ namespace Gedcomx.Rs.Api.Test
 		}
 
 		// Depreciated https://familysearch.org/developers/docs/api/tree/Person_Source_References_resource
-		// TODO: write a new TestUpdatePersonSourceReference
+		// TODO: GetLink("source-references") doesn't work.
 		//[Test]
 		//public void TestUpdatePersonSourceReference()
 		//{
@@ -429,7 +429,7 @@ namespace Gedcomx.Rs.Api.Test
 		}
 
 		// Depreciated https://familysearch.org/developers/docs/api/tree/Person_Source_References_resource
-		// TODO: write a new TestDeletePersonSourceReference
+		// TODO: GetLink("source-references") doesn't work.
 		//[Test]
 		//public void TestDeletePersonSourceReference()
 		//{
@@ -465,7 +465,7 @@ namespace Gedcomx.Rs.Api.Test
 		}
 
 		// Depreciated https://familysearch.org/developers/docs/api/tree/Person_Discussion_References_resource
-		// TODO: write a new TestDeleteDiscussionReference
+		// TODO: GetLink("discussion-references") doesn't work.
 		//[Test]
 		//public void TestDeleteDiscussionReference()
 		//{

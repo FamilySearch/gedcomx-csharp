@@ -917,14 +917,17 @@ namespace Gx.Rs.Api
         /// </returns>
         public PersonState UpdateSourceReferences(Person person, params IStateTransitionOption[] options)
         {
-            Uri target = new Uri(GetSelfUri());
-            Link link = this.GetLink(Rel.SOURCE_REFERENCES);
-            if (link != null && link.Href != null)
-            {
-                target = new Uri(link.Href);
-            }
+			Uri target = new Uri(GetSelfUri());
 
-            Gedcomx gx = new Gedcomx();
+			// source reference is now part of person, simply update.
+
+			//Link link = this.GetLink(Rel.SOURCE_REFERENCES);
+			//if (link != null && link.Href != null)
+			//{
+			//	target = new Uri(link.Href);
+			//}	
+
+			Gedcomx gx = new Gedcomx();
             gx.Persons = new List<Person>() { person };
             IRestRequest request = CreateAuthenticatedGedcomxRequest().SetEntity(gx).Build(target, Method.POST);
             return this.stateFactory.NewPersonState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
@@ -1196,13 +1199,15 @@ namespace Gx.Rs.Api
         public PersonState UpdateEvidenceReferences(Person person, params IStateTransitionOption[] options)
         {
             Uri target = new Uri(GetSelfUri());
-            Link link = this.GetLink(Rel.EVIDENCE_REFERENCES);
-            if (link != null && link.Href != null)
-            {
-                target = new Uri(link.Href);
-            }
 
-            Gedcomx gx = new Gedcomx();
+			// https://familysearch.org/developers/docs/api/tree/Create_Person_Memory_Reference_(Starting_December_2016)_usecase
+			//Link link = this.GetLink(Rel.ARTIFACTS);
+			//if (link != null && link.Href != null)
+			//{
+			//    target = new Uri(link.Href);
+			//}
+
+			Gedcomx gx = new Gedcomx();
             gx.Persons = new List<Person>() { person };
             IRestRequest request = CreateAuthenticatedGedcomxRequest().SetEntity(gx).Build(target, Method.POST);
             return this.stateFactory.NewPersonState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);

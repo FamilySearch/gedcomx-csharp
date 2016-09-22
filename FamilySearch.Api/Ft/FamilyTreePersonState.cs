@@ -207,14 +207,49 @@ namespace FamilySearch.Api.Ft
             }
         }
 
-        /// <summary>
-        /// Creates a REST API request (with appropriate authentication headers).
-        /// </summary>
-        /// <param name="rel">If the value is equal to the discussion references link, the resulting request is built with accept and content-type headers of "application/x-fs-v1+json"; otherwise, "application/x-gedcomx-v1+json" is used.</param>
-        /// <returns>
-        /// A REST API requeset (with appropriate authentication headers).
-        /// </returns>
-        protected override IRestRequest CreateRequestForEmbeddedResource(String rel)
+
+		/// <summary>
+		/// Gets the Source Descriptions
+		/// </summary>
+		public List<SourceDescription> SourceDescriptions
+		{
+			get
+			{
+				return Entity == null ? null : ((FamilySearchPlatform)Entity).SourceDescriptions;
+			}
+		}
+
+		/// <summary>
+		/// Gets the Relationships
+		/// </summary>
+		public List<Relationship> Relationships
+		{
+			get
+			{
+				return Entity == null ? null : ((FamilySearchPlatform)Entity).Relationships;
+			}
+		}
+
+		/// <summary>
+		/// Gets the Places
+		/// </summary>
+		public List<PlaceDescription> Places
+		{
+			get
+			{
+				return Entity == null ? null : ((FamilySearchPlatform)Entity).Places;
+			}
+		}
+
+
+		/// <summary>
+		/// Creates a REST API request (with appropriate authentication headers).
+		/// </summary>
+		/// <param name="rel">If the value is equal to the discussion references link, the resulting request is built with accept and content-type headers of "application/x-fs-v1+json"; otherwise, "application/x-gedcomx-v1+json" is used.</param>
+		/// <returns>
+		/// A REST API requeset (with appropriate authentication headers).
+		/// </returns>
+		protected override IRestRequest CreateRequestForEmbeddedResource(String rel)
         {
             if (Rel.DISCUSSION_REFERENCES.Equals(rel))
             {
@@ -362,13 +397,15 @@ namespace FamilySearch.Api.Ft
         public FamilyTreePersonState UpdateDiscussionReference(Person person, params IStateTransitionOption[] options)
         {
             String target = GetSelfUri();
-            Link discussionsLink = GetLink(Rel.DISCUSSION_REFERENCES);
-            if (discussionsLink != null && discussionsLink.Href != null)
-            {
-                target = discussionsLink.Href;
-            }
 
-            Gx.Gedcomx gx = new Gx.Gedcomx();
+			// https://familysearch.org/developers/docs/api/tree/Read_Discussion_References_(Starting_December_2016)_usecase
+			//Link discussionsLink = GetLink(Rel.DISCUSSION_REFERENCES);
+			//if (discussionsLink != null && discussionsLink.Href != null)
+			//{
+			//    target = discussionsLink.Href;
+			//}
+
+			Gx.Gedcomx gx = new Gx.Gedcomx();
             gx.Persons = new List<Person>() { person };
             IRestRequest request = RequestUtil.ApplyFamilySearchConneg(CreateAuthenticatedGedcomxRequest()).SetEntity(gx).Build(target, Method.POST);
             return (FamilyTreePersonState)((FamilyTreeStateFactory)this.stateFactory).NewPersonStateInt(request, Invoke(request, options), this.Client, this.CurrentAccessToken);

@@ -250,25 +250,32 @@ namespace Gedcomx.Rs.Api.Test
 
 		// Depreciated https://familysearch.org/developers/docs/api/tree/Person_Memory_References_resource
 		// TODO: GetLink(Rel.EVIDENCE_REFERENCES) doesn't work. "evidence-references"
-		//[Test]
-		//public void TestDeletePersonMemoryReference()
-		//{
-		//	var converter = new ImageConverter();
-		//	var bytes = (Byte[])converter.ConvertTo(TestBacking.GetCreatePhoto(), typeof(Byte[]));
-		//	var dataSource = new BasicDataSource(Guid.NewGuid().ToString("n") + ".jpg", "image/jpeg", bytes);
-		//	var description = new SourceDescription().SetTitle("PersonImage").SetCitation("Citation for PersonImage").SetDescription("Description");
-		//	var image = (SourceDescriptionState)tree.AddArtifact(description, dataSource).Get();
-		//	cleanup.Add(image);
-		//	var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
-		//	cleanup.Add(person);
-		//	var persona = (PersonState)image.AddPersona(new Person().SetName("John Smith")).Get();
-		//	person.AddPersonaReference(persona);
-		//	var refs = person.LoadPersonaReferences();
-		//	var state = refs.DeletePersonaReference(refs.Person.Evidence.Single());
+		[Test]
+		public void TestDeletePersonMemoryReference()
+		{
+			var converter = new ImageConverter();
+			var bytes = (Byte[])converter.ConvertTo(TestBacking.GetCreatePhoto(), typeof(Byte[]));
+			var dataSource = new BasicDataSource(Guid.NewGuid().ToString("n") + ".jpg", "image/jpeg", bytes);
+			var description = new SourceDescription().SetTitle("PersonImage").SetCitation("Citation for PersonImage").SetDescription("Description");
+			var image = (SourceDescriptionState)tree.AddArtifact(description, dataSource).Get();
+			cleanup.Add(image);
+			var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+			cleanup.Add(person);
+			var persona = (PersonState)image.AddPersona(new Person().SetName("John Smith")).Get();
+			person.AddPersonaReference(persona);
 
-		//	Assert.DoesNotThrow(() => state.IfSuccessful());
-		//	Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
-		//}
+			// Confirm it is there.
+			var person2 = (FamilyTreePersonState)tree.ReadPersonById(person.Id).Get();
+
+			//var refs = person.LoadPersonaReferences();
+			//var state = refs.DeletePersonaReference(refs.Person.Evidence.Single());
+
+			//// Now has it been deleted?
+
+
+			//Assert.DoesNotThrow(() => state.IfSuccessful());
+			//Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
+		}
 
 		[Test]
 		public void TestUpdateMemoryPersona()

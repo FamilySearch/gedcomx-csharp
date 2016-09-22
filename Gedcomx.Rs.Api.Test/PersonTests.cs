@@ -97,8 +97,11 @@ namespace Gedcomx.Rs.Api.Test
 			cleanup.Add(person);
 			var state = person.AddDiscussionReference(discussion);
 
+			var state2 = tree.ReadPerson(new Uri(person.GetSelfUri()));
+
 			Assert.DoesNotThrow(() => state.IfSuccessful());
 			Assert.AreEqual(HttpStatusCode.Created, state.Response.StatusCode);
+			Assert.Greater(state2.Person.DiscussionReferences.Count, 0);
 		}
 
 		[Test]
@@ -166,19 +169,18 @@ namespace Gedcomx.Rs.Api.Test
 		}
 
 
-		// Depreciated https://familysearch.org/developers/docs/api/tree/Person_Source_References_resource
-		// TODO: GetLink("source-references") doesn't work.
-		//[Test]
-		//public void TestReadPersonSourceReferences()
-		//{
-		//	var state = (PersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
-		//	cleanup.Add(state);
-		//	state.AddSourceReference(TestBacking.GetPersonSourceReference());
-		//	var state2 = state.LoadSourceReferences();
-		//	Assert.DoesNotThrow(() => state2.IfSuccessful());
-		//	Assert.IsNotNull(state2.Person);
-		//	Assert.IsNotNull(state2.Person.Sources);
-		//}
+		[Test]
+		public void TestReadPersonSourceReferences()
+		{
+			var state = (PersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+			cleanup.Add(state);
+			state.AddSourceReference(TestBacking.GetPersonSourceReference());
+
+			var state2 = tree.ReadPerson(new Uri(state.GetSelfUri()));
+			Assert.DoesNotThrow(() => state2.IfSuccessful());
+			Assert.IsNotNull(state2.Person);
+			Assert.IsNotNull(state2.Person.Sources);
+		}
 
 		[Test]
 		public void TestReadRelationshipsToChildren()
@@ -242,27 +244,24 @@ namespace Gedcomx.Rs.Api.Test
 			Assert.AreEqual(2, state2.Entity.Persons.Count);
 		}
 
+		[Test]
+		public void TestReadDiscussionReferences()
+		{
+			var me = tree.ReadCurrentUser();
+			var contributor = new ResourceReference("https://familysearch.org/platform/users/agents/" + me.User.TreeUserId).SetResourceId(me.User.TreeUserId);
+			var discussion = tree.AddDiscussion(new Discussion()
+													.SetTitle("Test title")
+													.SetDetails("Test details")
+													.SetContributor(contributor)
+													.SetCreated(DateTime.Now));
+			var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+			person.AddDiscussionReference(discussion);
+			var state = tree.ReadPerson(new Uri(person.GetSelfUri()));
 
-		// Depreciated at https://familysearch.org/developers/docs/api/tree/Person_Discussion_References_resource
-		// TODO: GetLink("discussion-references") doesn't work.
-		//[Test]
-		//public void TestReadDiscussionReferences()
-		//{
-		//	var me = tree.ReadCurrentUser();
-		//	var contributor = new ResourceReference("https://familysearch.org/platform/users/agents/" + me.User.TreeUserId).SetResourceId(me.User.TreeUserId);
-		//	var discussion = tree.AddDiscussion(new Discussion()
-		//											.SetTitle("Test title")
-		//											.SetDetails("Test details")
-		//											.SetContributor(contributor)
-		//											.SetCreated(DateTime.Now));
-		//	var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
-		//	person.AddDiscussionReference(discussion);
-		//	var state = person.LoadDiscussionReferences();
-
-		//	Assert.DoesNotThrow(() => state.IfSuccessful());
-		//	Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
-		//	Assert.Greater(state.Person.FindExtensionsOfType<DiscussionReference>("discussion-references").Count, 0);
-		//}
+			Assert.DoesNotThrow(() => state.IfSuccessful());
+			Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
+			Assert.Greater(state.Person.FindExtensionsOfType<DiscussionReference>("discussion-references").Count, 0);
+		}
 
 		[Test]
 		public void TestReadChildrenOfAPerson()
@@ -353,28 +352,29 @@ namespace Gedcomx.Rs.Api.Test
 			Assert.AreEqual(HttpStatusCode.OK, state2.Response.StatusCode);
 		}
 
-		// Depreciated https://familysearch.org/developers/docs/api/tree/Person_Source_References_resource
-		// TODO: GetLink("source-references") doesn't work.
-		//[Test]
-		//public void TestUpdatePersonSourceReference()
-		//{
-		//	var state = (PersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
-		//	cleanup.Add(state);
-		//	var sr = TestBacking.GetPersonSourceReference();
-		//	sr.Tags = new List<Tag>();
-		//	sr.Tags.Add(new Tag(ChangeObjectType.Name));
-		//	state.AddSourceReference(sr);
-		//	state = state.LoadSourceReferences();
-		//	var tag = state.Person.Sources[0].Tags.First();
-		//	state.Person.Sources[0].Tags.Remove(tag);
-		//	var state2 = state.UpdateSourceReferences(state.Person);
-		//	Assert.DoesNotThrow(() => state2.IfSuccessful());
-		//	Assert.AreEqual(HttpStatusCode.NoContent, state2.Response.StatusCode);
-		//	state.Person.Sources[0].Tags.Add(tag);
-		//	state2 = state.UpdateSourceReferences(state.Person);
-		//	Assert.DoesNotThrow(() => state2.IfSuccessful());
-		//	Assert.AreEqual(HttpStatusCode.NoContent, state2.Response.StatusCode);
-		//}
+		[Test]
+		public void TestUpdatePersonSourceReference()
+		{
+			var state = (PersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+			cleanup.Add(state);
+			var sr = TestBacking.GetPersonSourceReference();
+			sr.Tags = new List<Tag>();
+			sr.Tags.Add(new Tag(ChangeObjectType.Name));
+			state.AddSourceReference(sr);
+			var state3 = tree.ReadPerson(new Uri(state.GetSelfUri()));
+			var tag = state3.Person.Sources[0].Tags.First();
+			state3.Person.Sources[0].Tags.Remove(tag);
+			cleanup.Add(state3);
+
+			var state2 = state.UpdateSourceReferences(state3.Person);
+			cleanup.Add(state2);
+			Assert.DoesNotThrow(() => state2.IfSuccessful());
+			Assert.AreEqual(HttpStatusCode.NoContent, state2.Response.StatusCode);
+			state3.Person.Sources[0].Tags.Add(tag);
+			state2 = state.UpdateSourceReferences(state3.Person);
+			Assert.DoesNotThrow(() => state2.IfSuccessful());
+			Assert.AreEqual(HttpStatusCode.NoContent, state2.Response.StatusCode);
+		}
 
 		[Test]
 		public void TestUpdatePersonConclusion()
@@ -428,23 +428,22 @@ namespace Gedcomx.Rs.Api.Test
 			Assert.AreEqual(HttpStatusCode.NoContent, state2.Response.StatusCode);
 		}
 
-		// Depreciated https://familysearch.org/developers/docs/api/tree/Person_Source_References_resource
-		// TODO: GetLink("source-references") doesn't work.
-		//[Test]
-		//public void TestDeletePersonSourceReference()
-		//{
-		//	// Assume the ability to add a person is working
-		//	var state = tree.AddPerson(TestBacking.GetCreateMalePerson());
-		//	cleanup.Add(state);
-		//	state = (PersonState)state.Get();
-		//	// Assume the ability to add a source reference is working
-		//	state.AddSourceReference(TestBacking.GetPersonSourceReference());
-		//	state.LoadSourceReferences();
+		[Test]
+		public void TestDeletePersonSourceReference()
+		{
+			// Assume the ability to add a person is working
+			var state = tree.AddPerson(TestBacking.GetCreateMalePerson());
+			cleanup.Add(state);
+			state = (PersonState)state.Get();
+			// Assume the ability to add a source reference is working
+			state.AddSourceReference(TestBacking.GetPersonSourceReference());
+			var state3 = tree.ReadPerson(new Uri(state.GetSelfUri()));
+			cleanup.Add(state3);
 
-		//	var state2 = state.DeleteSourceReference(state.Person.Sources.FirstOrDefault());
-		//	Assert.DoesNotThrow(() => state2.IfSuccessful());
-		//	Assert.AreEqual(HttpStatusCode.NoContent, state2.Response.StatusCode);
-		//}
+			var state2 = state.DeleteSourceReference(state3.Person.Sources.FirstOrDefault());
+			Assert.DoesNotThrow(() => state2.IfSuccessful());
+			Assert.AreEqual(HttpStatusCode.NoContent, state2.Response.StatusCode);
+		}
 
 		[Test]
 		public void TestDeletePersonWithPreconditions()
@@ -464,29 +463,26 @@ namespace Gedcomx.Rs.Api.Test
 			Assert.AreEqual(HttpStatusCode.PreconditionFailed, state2.Response.StatusCode);
 		}
 
-		// Depreciated https://familysearch.org/developers/docs/api/tree/Person_Discussion_References_resource
-		// TODO: GetLink("discussion-references") doesn't work.
-		//[Test]
-		//public void TestDeleteDiscussionReference()
-		//{
-		//	var me = tree.ReadCurrentUser();
-		//	var contributor = new ResourceReference("https://familysearch.org/platform/users/agents/" + me.User.TreeUserId).SetResourceId(me.User.TreeUserId);
-		//	var discussion = tree.AddDiscussion(new Discussion()
-		//											.SetTitle("Test title")
-		//											.SetDetails("Test details")
-		//											.SetContributor(contributor)
-		//											.SetCreated(DateTime.Now));
-		//	cleanup.Add(discussion);
-		//	var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
-		//	cleanup.Add(person);
-		//	person.AddDiscussionReference(discussion);
-		//	person.LoadDiscussionReferences();
+		[Test]
+		public void TestDeleteDiscussionReference()
+		{
+			var me = tree.ReadCurrentUser();
+			var contributor = new ResourceReference("https://familysearch.org/platform/users/agents/" + me.User.TreeUserId).SetResourceId(me.User.TreeUserId);
+			var discussion = tree.AddDiscussion(new Discussion()
+													.SetTitle("Test title")
+													.SetDetails("Test details")
+													.SetContributor(contributor)
+													.SetCreated(DateTime.Now));
+			cleanup.Add(discussion);
+			var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+			cleanup.Add(person);
+			person.AddDiscussionReference(discussion);
+			var state2 = tree.ReadPerson(new Uri(person.GetSelfUri()));
+			var state = person.DeleteDiscussionReference(state2.Person.DiscussionReferences.Single());
 
-		//	var state = person.DeleteDiscussionReference(person.Person.FindExtensionsOfType<DiscussionReference>("discussion-references").Single());
-
-		//	Assert.DoesNotThrow(() => state.IfSuccessful());
-		//	Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
-		//}
+			Assert.DoesNotThrow(() => state.IfSuccessful());
+			Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
+		}
 
 		[Test]
 		public void TestRestorePerson()

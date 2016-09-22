@@ -109,8 +109,9 @@ namespace Gedcomx.Rs.Api.Test
             IRestResponse response = collection.Client.Handle(request);
 
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
-            var cq = new CQ(response.Content);
-            Assert.AreEqual(1, cq.Select("p#error").Length);
+			//var cq = new CQ(response.Content);
+			//Assert.AreEqual(1, cq.Select("p#error").Length);
+			Assert.True(response.Content.Contains("Error")); // An error should occur.
         }
 
         [Test]

@@ -12,6 +12,7 @@ using Gx.Records;
 using Gx.Common;
 using Gedcomx.Model;
 using Gedcomx.Support;
+using System.Diagnostics;
 
 namespace Gx.Rs.Api
 {
@@ -215,7 +216,15 @@ namespace Gx.Rs.Api
 
             result = this.Client.Handle(request);
 
-            return result;
+			Debug.WriteLine(string.Format("\nRequest: {0}", request.Resource));
+			foreach (var header in request.Parameters)
+			{
+				Debug.WriteLine(string.Format("{0} {1}", header.Name, header.Value));
+			}
+			Debug.WriteLine(string.Format("\nResponse Status: {0} {1}", result.StatusCode, result.StatusDescription));
+			Debug.WriteLine(string.Format("\nResponse Content: {0}", result.Content));
+
+			return result;
         }
 
         /// <summary>

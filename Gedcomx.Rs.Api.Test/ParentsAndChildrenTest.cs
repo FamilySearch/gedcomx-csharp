@@ -212,26 +212,27 @@ namespace Gedcomx.Rs.Api.Test
 			Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
 		}
 
-		// Depreciated https://familysearch.org/developers/docs/api/tree/Person_Source_References_resource
-		// TODO: GetLink("source-references") doesn't work.
-		//[Test]
-		//public void TestDeleteChildAndParentsRelationshipSourceReference()
-		//{
-		//	var father = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
-		//	cleanup.Add(father);
-		//	var mother = tree.AddPerson(TestBacking.GetCreateFemalePerson());
-		//	cleanup.Add(mother);
-		//	var son = tree.AddPerson(TestBacking.GetCreateMalePerson());
-		//	cleanup.Add(son);
-		//	var relationship = (ChildAndParentsRelationshipState)tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, mother, son)).Get();
-		//	cleanup.Add(relationship);
-		//	relationship.AddSourceReference(TestBacking.GetPersonSourceReference());
-		//	relationship.LoadSourceReferences();
-		//	var state = relationship.DeleteSourceReference(relationship.SourceReference);
+		[Test]
+		public void TestDeleteChildAndParentsRelationshipSourceReference()
+		{
+			var father = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+			cleanup.Add(father);
+			var mother = tree.AddPerson(TestBacking.GetCreateFemalePerson());
+			cleanup.Add(mother);
+			var son = tree.AddPerson(TestBacking.GetCreateMalePerson());
+			cleanup.Add(son);
+			var relationship = (ChildAndParentsRelationshipState)tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, mother, son)).Get();
+			cleanup.Add(relationship);
+			var relationship2 = relationship.AddSourceReference(TestBacking.GetPersonSourceReference());
+			relationship.LoadSourceReferences();
+			var state = relationship.DeleteSourceReference(relationship2.SourceReference);
 
-		//	Assert.DoesNotThrow(() => state.IfSuccessful());
-		//	Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
-		//}
+			// relationship2.SourceReference is null when adding it.
+			// I'm fairly certain I can add it, but putting it into the object is not working.
+
+			Assert.DoesNotThrow(() => state.IfSuccessful());
+			Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
+		}
 
 		[Test]
 		public void TestRestoreChildAndParentsRelationship()

@@ -260,7 +260,7 @@ namespace Gedcomx.Rs.Api.Test
 
 			Assert.DoesNotThrow(() => state.IfSuccessful());
 			Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
-			Assert.Greater(state.Person.FindExtensionsOfType<DiscussionReference>("discussion-references").Count, 0);
+			Assert.Greater(state.Person.DiscussionReferences.Count, 0);
 		}
 
 		[Test]

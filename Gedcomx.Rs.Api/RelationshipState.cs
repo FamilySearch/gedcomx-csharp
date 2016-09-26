@@ -429,11 +429,11 @@ namespace Gx.Rs.Api
         protected RelationshipState UpdateConclusions(Relationship relationship, params IStateTransitionOption[] options)
         {
             String target = GetSelfUri();
-            Link conclusionsLink = GetLink(Rel.CONCLUSIONS);
-            if (conclusionsLink != null && conclusionsLink.Href != null)
-            {
-                target = conclusionsLink.Href;
-            }
+            //Link conclusionsLink = GetLink(Rel.CONCLUSIONS);
+            //if (conclusionsLink != null && conclusionsLink.Href != null)
+            //{
+            //    target = conclusionsLink.Href;
+            //}
 
             Gedcomx gx = new Gedcomx();
             gx.Relationships = new List<Relationship>() { relationship };

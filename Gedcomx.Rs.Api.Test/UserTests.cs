@@ -46,10 +46,8 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestReadCurrentTreePersonExpecting200Response()
         {
-            var expect = new HeaderParameter("Expect", "200-ok");
+            var expect = new HeaderParameter("X-Expect-Override", "200-ok");
             var state = tree.ReadPersonForCurrentUser(expect);
-
-			// TODO: Unable to connect to the remote server
 
 			Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);

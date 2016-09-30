@@ -104,11 +104,8 @@ namespace Gedcomx.Rs.Api.Test
             var relationship = (RelationshipState)husband.AddSpouse(wife).Get();
             cleanup.Add(relationship);
             relationship.AddSourceReference(TestBacking.GetPersonSourceReference());
-            relationship.LoadSourceReferences();
-            var state = relationship.DeleteSourceReference(relationship.SourceReference);
-
-			// TODO: GetLink(Rel.SOURCE_REFERENCES) is not one of the linked references when trying to add it. 
-			// therefore relationship of relationship.SourceReference is null.
+			relationship = (RelationshipState)relationship.Get();
+			var state = relationship.DeleteSourceReference(relationship.SourceReference);
 
 			Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);

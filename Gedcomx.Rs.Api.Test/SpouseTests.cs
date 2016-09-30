@@ -216,21 +216,22 @@ namespace Gedcomx.Rs.Api.Test
         [Test]
         public void TestUpdateCoupleRelationshipConclusion()
         {
-            var husband = (PersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
-            cleanup.Add(husband);
-            var wife = tree.AddPerson(TestBacking.GetCreateFemalePerson());
-            cleanup.Add(wife);
-            var relationship = husband.AddSpouse(wife);
-            cleanup.Add(relationship);
-            var update = (RelationshipState)relationship.AddFact(TestBacking.GetMarriageFact()).Get();
-            update.Fact.Date.Original = "4 Apr 1930";
-            update.Fact.Attribution = new Attribution()
-            {
-                ChangeMessage = "Change message2",
-            };
-            var state = relationship.UpdateFact(update.Fact);
-
-            Assert.DoesNotThrow(() => state.IfSuccessful());
+			var husband = (PersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+			cleanup.Add(husband);
+			var wife = tree.AddPerson(TestBacking.GetCreateFemalePerson());
+			cleanup.Add(wife);
+			var relationship = husband.AddSpouse(wife);
+			cleanup.Add(relationship);
+			var update = (RelationshipState)relationship.AddFact(TestBacking.GetMarriageFact()).Get();
+			update = (RelationshipState)relationship.Get();
+			update.Fact.Date.Original = "4 Apr 1930";
+			update.Fact.Attribution = new Attribution()
+			{
+				ChangeMessage = "Change message2",
+			};
+			var state = relationship.UpdateFact(update.Fact);
+			
+			Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
         }
 
@@ -278,8 +279,9 @@ namespace Gedcomx.Rs.Api.Test
             var relationship = husband.AddSpouse(wife);
             cleanup.Add(relationship);
             var fact = (RelationshipState)relationship.AddFact(TestBacking.GetMarriageFact()).Get();
+			var state2 = (RelationshipState)relationship.Get();
 
-			var state = fact.DeleteFact(fact.Fact);
+			var state = state2.DeleteFact(state2.Fact);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);

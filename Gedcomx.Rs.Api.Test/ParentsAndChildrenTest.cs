@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Gedcomx.Rs.Api.Test
@@ -135,10 +136,14 @@ namespace Gedcomx.Rs.Api.Test
 			cleanup.Add(mother);
 			var son = tree.AddPerson(TestBacking.GetCreateMalePerson());
 			cleanup.Add(son);
-			var relationship = (ChildAndParentsRelationshipState)tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, mother, son)).Get();
+			var temp = TestBacking.GetCreateChildAndParentsRelationship(father, mother, son);
+			temp.AddSource(TestBacking.GetPersonSourceReference());
+			var relationship = (ChildAndParentsRelationshipState)tree.AddChildAndParentsRelationship(temp).Get();
 			cleanup.Add(relationship);
 			var state = relationship.LoadSourceReferences();
 
+			var relationship2 = (ChildAndParentsRelationshipState)relationship.Get();
+			
 			Assert.DoesNotThrow(() => state.IfSuccessful());
 			Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
 		}
@@ -221,14 +226,12 @@ namespace Gedcomx.Rs.Api.Test
 			cleanup.Add(mother);
 			var son = tree.AddPerson(TestBacking.GetCreateMalePerson());
 			cleanup.Add(son);
-			var relationship = (ChildAndParentsRelationshipState)tree.AddChildAndParentsRelationship(TestBacking.GetCreateChildAndParentsRelationship(father, mother, son)).Get();
+			var temp = TestBacking.GetCreateChildAndParentsRelationship(father, mother, son);
+			temp.AddSource(TestBacking.GetPersonSourceReference());
+			var relationship = (ChildAndParentsRelationshipState)tree.AddChildAndParentsRelationship(temp).Get();
 			cleanup.Add(relationship);
-			var relationship2 = relationship.AddSourceReference(TestBacking.GetPersonSourceReference());
-			relationship.LoadSourceReferences();
-			var state = relationship.DeleteSourceReference(relationship2.SourceReference);
-
-			// relationship2.SourceReference is null when adding it.
-			// I'm fairly certain I can add it, but putting it into the object is not working.
+			
+			var state = relationship.DeleteSourceReference(relationship.SourceReference);
 
 			Assert.DoesNotThrow(() => state.IfSuccessful());
 			Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);

@@ -869,7 +869,7 @@ namespace Gedcomx.Rs.Api.Test
 		{
 			var person1 = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
 			cleanup.Add(person1);
-			var person2 = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+			var person2 = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePersonNoFacts()).Get();
 			cleanup.Add(person2);
 			var merge = person1.ReadMergeAnalysis(person2);
 			var m = new Merge();

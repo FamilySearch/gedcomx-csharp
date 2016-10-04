@@ -17,7 +17,7 @@ namespace Gedcomx.Rs.Api.Test
         private FamilySearchFamilyTree tree;
         private List<GedcomxApplicationState> cleanup;
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void Initialize()
         {
             tree = new FamilySearchFamilyTree(true);
@@ -25,7 +25,7 @@ namespace Gedcomx.Rs.Api.Test
             cleanup = new List<GedcomxApplicationState>();
         }
 
-        [TestFixtureTearDown]
+        [OneTimeTearDown]
         public void TearDown()
         {
             foreach (var state in cleanup)
@@ -74,24 +74,24 @@ namespace Gedcomx.Rs.Api.Test
             cleanup.Add(relationship);
             relationship.AddNote(TestBacking.GetCreateNote());
             var notes = relationship.LoadNotes();
-            var state = relationship.UpdateNote(notes.Note);
+            var state = relationship.UpdateNote(TestBacking.GetCreateNote());
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
+            Assert.AreEqual(HttpStatusCode.Created, state.Response.StatusCode);
         }
 
         [Test]
         public void TestUpdateNote()
         {
-            var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+			var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
             cleanup.Add(person);
             person.AddNote(TestBacking.GetCreateNote());
             var notes = person.LoadNotes();
-            var state = person.UpdateNote(notes.Entity.Persons[0].Notes[0]);
+			var state = person.UpdateNote(TestBacking.GetCreateNote());
 
-            Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
-        }
+			Assert.DoesNotThrow(() => state.IfSuccessful());
+			Assert.AreEqual(HttpStatusCode.Created, state.Response.StatusCode);
+		}
 
         [Test]
         public void TestUpdateChildAndParentsRelationshipNotes()
@@ -106,10 +106,10 @@ namespace Gedcomx.Rs.Api.Test
             cleanup.Add(relationship);
             relationship.AddNote(TestBacking.GetCreateNote());
             var notes = relationship.LoadNotes();
-            var state = relationship.UpdateNote(notes.Note);
+            var state = relationship.UpdateNote(TestBacking.GetCreateNote());
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
+            Assert.AreEqual(HttpStatusCode.Created, state.Response.StatusCode);
         }
 
         [Test]

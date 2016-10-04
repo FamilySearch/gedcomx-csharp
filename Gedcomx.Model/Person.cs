@@ -32,13 +32,15 @@ namespace Gx.Conclusion
         private bool _livingSpecified;
         private Gx.Conclusion.Gender _gender;
         private System.Collections.Generic.List<Gx.Conclusion.Name> _names;
-        private System.Collections.Generic.List<Gx.Conclusion.Fact> _facts;
-        private System.Collections.Generic.List<Gx.Records.Field> _fields;
+		private System.Collections.Generic.List<Gx.Conclusion.Fact> _facts;
+		private System.Collections.Generic.List<Gx.Source.SourceReference> _media;
+		private System.Collections.Generic.List<Gx.Records.Field> _fields;
         private Gx.Conclusion.DisplayProperties _displayExtension;
-        /// <summary>
-        ///  Whether this person is the &quot;principal&quot; person extracted from the record.
-        /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "principal")]
+		private System.Collections.Generic.List<Gx.Source.DiscussionReference> _discussionreference;
+		/// <summary>
+		///  Whether this person is the &quot;principal&quot; person extracted from the record.
+		/// </summary>
+		[System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "principal")]
         [Newtonsoft.Json.JsonProperty("principal")]
         public bool Principal
         {
@@ -223,12 +225,28 @@ namespace Gx.Conclusion
                 this._displayExtension = value;
             }
         }
+		/// <summary>
+		///  Discussion References properties for the person.
+		/// </summary>
+		[System.Xml.Serialization.XmlElementAttribute(ElementName = "discussion-references", Namespace = "http://gedcomx.org/v1/")]
+		[Newtonsoft.Json.JsonProperty("discussion-references")]
+		public System.Collections.Generic.List<Gx.Source.DiscussionReference> DiscussionReferences
+		{
+			get
+			{
+				return this._discussionreference;
+			}
+			set
+			{
+				this._discussionreference = value;
+			}
+		}
 
-        /// <summary>
-        /// Embed the specified person into this one.
-        /// </summary>
-        /// <param name="person">The person to embed.</param>
-        public void Embed(Person person)
+		/// <summary>
+		/// Embed the specified person into this one.
+		/// </summary>
+		/// <param name="person">The person to embed.</param>
+		public void Embed(Person person)
         {
             this._private = this._private == null ? person._private : this._private;
             this._living = this._living == null ? person._living : this._living;

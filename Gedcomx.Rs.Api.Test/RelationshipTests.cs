@@ -17,7 +17,7 @@ namespace Gedcomx.Rs.Api.Test
         private FamilySearchFamilyTree tree;
         private List<GedcomxApplicationState> cleanup;
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void Initialize()
         {
             collection = new CollectionState(new Uri(SANDBOX_URI));
@@ -30,7 +30,7 @@ namespace Gedcomx.Rs.Api.Test
 			Assert.IsNotEmpty(collection.CurrentAccessToken);
 		}
 
-        [TestFixtureTearDown]
+        [OneTimeTearDown]
         public void TearDown()
         {
             foreach (var state in cleanup)

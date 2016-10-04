@@ -16,7 +16,7 @@ namespace Gedcomx.Rs.Api.Test
         private FamilySearchFamilyTree tree;
         private List<GedcomxApplicationState> cleanup;
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void Initialize()
         {
             tree = new FamilySearchFamilyTree(true);
@@ -27,7 +27,7 @@ namespace Gedcomx.Rs.Api.Test
 			cleanup = new List<GedcomxApplicationState>();
         }
 
-        [TestFixtureTearDown]
+        [OneTimeTearDown]
         public void TearDown()
         {
             foreach (var state in cleanup)
@@ -104,10 +104,10 @@ namespace Gedcomx.Rs.Api.Test
             var relationship = (RelationshipState)husband.AddSpouse(wife).Get();
             cleanup.Add(relationship);
             relationship.AddSourceReference(TestBacking.GetPersonSourceReference());
-            relationship.LoadSourceReferences();
-            var state = relationship.DeleteSourceReference(relationship.SourceReference);
+			relationship = (RelationshipState)relationship.Get();
+			var state = relationship.DeleteSourceReference(relationship.SourceReference);
 
-            Assert.DoesNotThrow(() => state.IfSuccessful());
+			Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
         }
 

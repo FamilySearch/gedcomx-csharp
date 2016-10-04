@@ -35,7 +35,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{5BB9E1DA-4625-4538-A5B4-6E6B2D9CFDB7}"
 	ProjectSection(SolutionItems) = preProject
 		GEDCOM X Test1.xml = GEDCOM X Test1.xml
-		TextFile1.txt = TextFile1.txt
 	EndProjectSection
 EndProject
 Global

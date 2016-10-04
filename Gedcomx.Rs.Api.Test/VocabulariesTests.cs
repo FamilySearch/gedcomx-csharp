@@ -18,7 +18,7 @@ namespace Gedcomx.Rs.Api.Test
         private VocabElementListState placeTypes;
         private VocabElementList list;
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void Initialize()
         {
             places = new FamilySearchStateFactory().NewPlacesState(new Uri("https://sandbox.familysearch.org/platform/collections/places"));

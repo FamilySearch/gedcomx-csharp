@@ -603,14 +603,15 @@ namespace FamilySearch.Api.Ft
         /// </returns>
         protected ChildAndParentsRelationshipState UpdateSourceReferences(ChildAndParentsRelationship relationship, params IStateTransitionOption[] options)
         {
-            String target = GetSelfUri();
-            Link conclusionsLink = GetLink(Rel.SOURCE_REFERENCES);
-            if (conclusionsLink != null && conclusionsLink.Href != null)
-            {
-                target = conclusionsLink.Href;
-            }
+            String target = GetSelfUri() + "/" + Rel.SOURCE_REFERENCES;
+			//Link conclusionsLink = GetLink(Rel.SOURCE_REFERENCES);
+			//if (conclusionsLink != null && conclusionsLink.Href != null)
+			//{
+			//    target = conclusionsLink.Href;
+			//}
+			
 
-            FamilySearchPlatform gx = new FamilySearchPlatform();
+			FamilySearchPlatform gx = new FamilySearchPlatform();
             gx.ChildAndParentsRelationships = new List<ChildAndParentsRelationship>() { relationship };
             IRestRequest request = RequestUtil.ApplyFamilySearchConneg(CreateAuthenticatedRequest()).SetEntity(gx).Build(target, Method.POST);
             return ((FamilyTreeStateFactory)this.stateFactory).NewChildAndParentsRelationshipState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);

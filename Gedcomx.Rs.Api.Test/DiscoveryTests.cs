@@ -16,7 +16,7 @@ namespace Gedcomx.Rs.Api.Test
         private CollectionState collection;
         private FamilySearchStateFactory factory;
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void Initialize()
         {
             factory = new FamilySearchStateFactory();

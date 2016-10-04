@@ -101,14 +101,20 @@ namespace Gx.Rs.Api
         /// A link that points to the descendancy resource.
         /// </summary>
         public static readonly String DESCENDANCY = "descendancy";
-        /// <summary>
-        /// A link that points to the description resource.
-        /// </summary>
-        public static readonly String DESCRIPTION = "description";
-        /// <summary>
-        /// A link that points to the evidence reference resource.
-        /// </summary>
-        public static readonly String EVIDENCE_REFERENCE = "evidence-reference";
+		/// <summary>
+		/// A link that points to the description resource.
+		/// </summary>
+		public static readonly String DESCRIPTION = "description";
+
+		/// <summary>
+		/// A link that points to the memory reference resource.
+		/// </summary>
+		public static readonly string MEMORY_REFERENCES = "memory-references";
+
+		/// <summary>
+		/// A link that points to the evidence reference resource.
+		/// </summary>
+		public static readonly String EVIDENCE_REFERENCE = "evidence-reference";
         /// <summary>
         /// A link that points to the evidence references resource.
         /// </summary>

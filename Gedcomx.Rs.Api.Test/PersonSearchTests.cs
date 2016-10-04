@@ -15,7 +15,7 @@ namespace Gedcomx.Rs.Api.Test
         private static readonly String SANDBOX_URI = "https://sandbox.familysearch.org/platform/collections/tree";
         private CollectionState collection;
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void Initialize()
         {
             collection = new CollectionState(new Uri(SANDBOX_URI));

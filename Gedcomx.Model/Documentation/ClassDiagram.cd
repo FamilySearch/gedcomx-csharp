@@ -1,0 +1,547 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Gx.Agent.Address" Collapsed="true">
+    <Position X="3.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAgEAIIAAYAAgAIoEAAgEAA4BoAAAAQgA+gACACAAQ=</HashCode>
+      <FileName>Address.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gx.Agent.Agent" Collapsed="true">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIJSoDIgAKAEQAEEBABCgAAIAAAABgCAAIACYAIAAAE=</HashCode>
+      <FileName>Agent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gx.Agent.OnlineAccount" Collapsed="true">
+    <Position X="13.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQEAAAAAAEAAAAAAAAAAAAAAAAQAAAQBAAA=</HashCode>
+      <FileName>OnlineAccount.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gx.Common.Attribution" Collapsed="true">
+    <Position X="20" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABQAAAAAAAIAgABAAAAAABAAAAAAAQAAgAgACABA=</HashCode>
+      <FileName>Attribution.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gx.Common.EvidenceReference" Collapsed="true">
+    <Position X="25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAYIAAgAAAAIAAAAAAAAAAAAgAAAAAAAQAIAA=</HashCode>
+      <FileName>EvidenceReference.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Gx.Common.ExtensibleData" Collapsed="true">
+    <Position X="10.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACACCAAAAAIAEAAgBABAAIAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ExtensibleData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gx.Common.Note" Collapsed="true">
+    <Position X="19.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAQAAAQIAAAAAEAIAAAAAAACAACAAIBAAACAQAAAA=</HashCode>
+      <FileName>Note.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Gx.Common.Qualifier" Collapsed="true">
+    <Position X="21.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAIAAAAAAAAgAAAAAAAAQAAAAAAAAAAAAgQAAAAAA=</HashCode>
+      <FileName>Qualifier.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gx.Common.ResourceReference" Collapsed="true">
+    <Position X="23" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAgAAAAIAAAAAAAAAAAAgAAAAAAAQAIAA=</HashCode>
+      <FileName>ResourceReference.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gx.Common.TextValue" Collapsed="true">
+    <Position X="17.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAQAAAAAAAAgAEAAAAAAAAAAAAAAAABAAgAAAAAAA=</HashCode>
+      <FileName>TextValue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gx.Source.CitationField" Collapsed="true">
+    <Position X="17.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAIAAAAAAAAgAAAAAAAAQAAAAAAAAAAAAgQAAAAAA=</HashCode>
+      <FileName>CitationField.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gx.Source.Coverage" Collapsed="true">
+    <Position X="11" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAIAAAAABACAAgABAAAAQAAAAEEAAAg=</HashCode>
+      <FileName>Coverage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gx.Source.SourceCitation" Collapsed="true">
+    <Position X="14.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AJAgQAgEAAAAAgAEAACAAEAABAAAAAAABAAgAAAAgAA=</HashCode>
+      <FileName>SourceCitation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gx.Source.SourceDescription" Collapsed="true">
+    <Position X="5.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>wIR56QoEQIRwDMkkDPCiwJACCCAQhwQCRAChBAdWgAA=</HashCode>
+      <FileName>SourceDescription.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Gx.Source.SourceReference" Collapsed="true">
+    <Position X="9.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AsEAAIAAQIAAAAAABCACAAAAAACAAEAABAAAAAQAAAA=</HashCode>
+      <FileName>SourceReference.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Gx.Source.Tag" Collapsed="true">
+    <Position X="24.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Tag.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gx.Records.Collection" Collapsed="true">
+    <Position X="28.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAQAAEQoIAgEAFBQAIAAAAAAAAAAAADAAAAAYAAAA=</HashCode>
+      <FileName>Collection.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Gx.Records.CollectionContent" Collapsed="true">
+    <Position X="16.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACEAAAGAAAIAAAAACQAQAAABAAAQAAACAAAAUAEA=</HashCode>
+      <FileName>CollectionContent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gx.Records.Facet" Collapsed="true">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAIAAAkQAAACAAAAAAAAAAQAAAQAgAAAAACA=</HashCode>
+      <FileName>Facet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gx.Records.FacetValue" Collapsed="true">
+    <Position X="7.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAEAAAIAAAEAAAAACAAQAAAAAAAAAAACgAAAAAAA=</HashCode>
+      <FileName>FacetValue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gx.Records.Field" Collapsed="true">
+    <Position X="23.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAgQAAQAAAAAAAAAAAAAQAQAgAAAAACA=</HashCode>
+      <FileName>Field.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gx.Records.FieldDescriptor" Collapsed="true">
+    <Position X="30.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAgAIAAAAAgAAAAAAACAQAAAAAAAAAIAAAgAAAAACA=</HashCode>
+      <FileName>FieldDescriptor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gx.Records.FieldValue" Collapsed="true">
+    <Position X="5.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAIAAIAAAIgUAkIAAAAAAAAAAAAAYAQAACIQAAAA=</HashCode>
+      <FileName>FieldValue.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gx.Records.FieldValueDescriptor" Collapsed="true">
+    <Position X="21.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAQEBg0AAAAAAAAAAAAAAAIAAQAAAIAAAAA=</HashCode>
+      <FileName>FieldValueDescriptor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gx.Records.RecordDescriptor" Collapsed="true">
+    <Position X="18" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAEAACAAAAAAAAAAAAABAAAAAAAgAA=</HashCode>
+      <FileName>RecordDescriptor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gx.Records.RecordSet" Collapsed="true">
+    <Position X="26.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IQAAQAAAAAAEAAQEAAAAAAAAEAAAAAAABAAAAAAEAAA=</HashCode>
+      <FileName>RecordSet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gx.Conclusion.Conclusion" Collapsed="true">
+    <Position X="12.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAA4QEAgQIAQAAAkAiAABCAAAIAQAQAABAAABAUYAAA=</HashCode>
+      <FileName>Conclusion.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.1" />
+  </Class>
+  <Class Name="Gx.Conclusion.DateInfo" Collapsed="true">
+    <Position X="5.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AMBAQAgEAAAAAAAAAACAIgAAAAgAAAIAgAAAAAAAgAQ=</HashCode>
+      <FileName>DateInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gx.Conclusion.DisplayProperties" Collapsed="true">
+    <Position X="15.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CGEwMQQAgAAIAiiAAgAAgAQAETAAAgAABxQAQAAAAAA=</HashCode>
+      <FileName>DisplayProperties.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gx.Conclusion.Document" Collapsed="true">
+    <Position X="3.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIQAIAAAAICAAgQAAIFAABAAAAAAAAAYAQIACAAAAAA=</HashCode>
+      <FileName>Document.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Gx.Conclusion.Event" Collapsed="true">
+    <Position X="10" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AJIAABAAAAAAAgQAhEAAAAAAAgAAAAARAUABAAAAAAA=</HashCode>
+      <FileName>Event.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gx.Conclusion.EventRole" Collapsed="true">
+    <Position X="8" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAEAAAAAABAgQAAAAAABAAAAIAAACQAQAAAAAAAAA=</HashCode>
+      <FileName>EventRole.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gx.Conclusion.Fact" Collapsed="true">
+    <Position X="10.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QtMAAJgEAAAAAgYABECAAAAAAAAAAAAZAUAgAACAgAA=</HashCode>
+      <FileName>Fact.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gx.Conclusion.Gender" Collapsed="true">
+    <Position X="12.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAgEAAAAAgQAAACAAAAAAAAAAAAQAQAAAAAAgAA=</HashCode>
+      <FileName>Gender.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gx.Conclusion.Identifier" Collapsed="true">
+    <Position X="21.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAgQAAAAAAAAAAAAAAAAQAQAgAAAAAAA=</HashCode>
+      <FileName>Identifier.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gx.Conclusion.Name" Collapsed="true">
+    <Position X="1.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QICQABAAAgAAAgQABAAAAAAAAAAAEACRARAAAgBAAAA=</HashCode>
+      <FileName>Name.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gx.Conclusion.NameForm" Collapsed="true">
+    <Position X="7.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAQAgEAAQAAAgGABCAAAAAAAAAAgAABQAAAAAggAA=</HashCode>
+      <FileName>NameForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gx.Conclusion.NamePart" Collapsed="true">
+    <Position X="17.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AtEAAIgEAAAAAgQAAACAAAAAAAAAAAAQAQAgAAAAgAA=</HashCode>
+      <FileName>NamePart.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gx.Conclusion.Person" Collapsed="true">
+    <Position X="7.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIBwsAxMAgAAAACAAgSCAAAAEAAA1hCAASUASAAAgAA=</HashCode>
+      <FileName>Person.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gx.Conclusion.PlaceDescription" Collapsed="true">
+    <Position X="12.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QIIAoABAEEIAQAwAAMAKAACAAAIARQAQAcCAQgBQEEA=</HashCode>
+      <FileName>PlaceDescription.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gx.Conclusion.PlaceDisplayProperties" Collapsed="true">
+    <Position X="22.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAACAAIQAAAAAAAYAAAAAAAAQAQAAQAAAAAA=</HashCode>
+      <FileName>PlaceDisplayProperties.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gx.Conclusion.PlaceReference" Collapsed="true">
+    <Position X="24.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AMAAQAgEAAAAAAAQACCCAgAAAAAAAAAAhAAAAAAAgAQ=</HashCode>
+      <FileName>PlaceReference.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gx.Conclusion.Relationship" Collapsed="true">
+    <Position X="14.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIBAAAgEAAAAAgQAgASAAAAAQIAEEAAQAQBAAgAAgAA=</HashCode>
+      <FileName>Relationship.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gx.Conclusion.Subject" Collapsed="true">
+    <Position X="14.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACIAUAAICAAAACBgEAgAAAAAQAAAAAQAIAAAoAAAY=</HashCode>
+      <FileName>Subject.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Gx.Types.EventTypeQNameUtil" Collapsed="true">
+    <Position X="19.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>EventType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gx.Gedcomx" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gMABSAwEwIiAAEBkhmXCAABAAwsAABACBlAEAIeAhEQ=</HashCode>
+      <FileName>Gedcomx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gx.Links.HypermediaEnabledData" Collapsed="true">
+    <Position X="10.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BEAgAgAAAAAAAAAABAAAAAAAAACAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>HypermediaEnabledData.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Left" Position="0.1" />
+  </Class>
+  <Class Name="Gx.Links.Link" Collapsed="true">
+    <Position X="19.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAEAECGAMAEJsSAooACAASACIAAAARQASCAAALAgGA=</HashCode>
+      <FileName>Link.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gedcomx.Model.VocabElement" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="19.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABACAAAQEgAgCBQgIAgAIQAAgAAJAAAACQAAAAAAAgA=</HashCode>
+      <FileName>VocabElement.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Gedcomx.Model.VocabElementList" Collapsed="true">
+    <Position X="21.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAQAAhAFAAIAAQAAAAAAAIAAAACAAAAAAAAgA=</HashCode>
+      <FileName>VocabElementList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gedcomx.Model.Rt.GedcomxLocalReferenceResolver" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AECCBQAAIAqEAKJQKJAEAVAAAEAAQAAAAAAgAAEAAEA=</HashCode>
+      <FileName>Rt\GedcomxLocalReferenceResolver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gedcomx.Model.Rt.GedcomxModelVisitorBase" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BECCBQAAAAsEAIJQKJAEAVAAAEAAQAAAAAAgAAUAAEA=</HashCode>
+      <FileName>Rt\GedcomxModelVisitorBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Gedcomx.Model.Util.JsonHypermediaLinksConverter" Collapsed="true">
+    <Position X="23" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQQAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Util\JsonHypermediaLinksConverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gedcomx.Model.Util.JsonIdentifiersConverter" Collapsed="true">
+    <Position X="24.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQQAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Util\JsonIdentifiersConverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gedcomx.Model.Util.JsonUnixTimestampConverter" Collapsed="true">
+    <Position X="17.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQQAAAAAAAAAAAAAAAAAAAAAAAAAAAAQCAA=</HashCode>
+      <FileName>Util\JsonUnixTimestampConverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gedcomx.Model.Util.XmlQNameEnumUtil" Collapsed="true">
+    <Position X="23" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Util\XmlQNameEnumUtil.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Gx.Common.IAttributable" Collapsed="true">
+    <Position X="17.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IAttributable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Gedcomx.Model.ISupportsLinks" Collapsed="true">
+    <Position X="21.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAgAgAAAAAAAAAAAAAAAAAAAACAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>ISupportsLinks.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Gedcomx.Model.Rt.IGedcomxModelVisitor" Collapsed="true">
+    <Position X="19.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AECCBQAAAAkEAIJQKIAEAVAAAEAAQAAAAAAgAAEAAEA=</HashCode>
+      <FileName>Rt\IGedcomxModelVisitor.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Gx.Types.ConfidenceLevel" Collapsed="true">
+    <Position X="17.75" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAgAAIAAAAAAQAAEAAA=</HashCode>
+      <FileName>ConfidenceLevel.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Gx.Types.DocumentType" Collapsed="true">
+    <Position X="19.5" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAACAAgAAAAAAAAAAIAAAAAARAAAAAA=</HashCode>
+      <FileName>DocumentType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Gx.Types.EventRoleType" Collapsed="true">
+    <Position X="21.25" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQABAAAAAAAAAAAAAAAAAAAAAAAIAAACAAQAQAAAA=</HashCode>
+      <FileName>EventRoleType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Gx.Types.EventType" Collapsed="true">
+    <Position X="23" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAhRAgMAAAIAAQAAgAAoQAKAJQIAgowhgwDQIAAg=</HashCode>
+      <FileName>EventType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Gx.Types.FacetType" Collapsed="true">
+    <Position X="24.75" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgABAAQAAKIAAAAAAQAAAIAAIABAEIARgAAAAA=</HashCode>
+      <FileName>FacetType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Gx.Types.FactQualifierType" Collapsed="true">
+    <Position X="17.75" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAEAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>FactQualifierType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Gx.Types.FactType" Collapsed="true">
+    <Position X="19.5" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BBCaQhVGjsAAhIQAQEAxAipQgLAZSJKgpwxgxfY9CAg=</HashCode>
+      <FileName>FactType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Gx.Types.FieldType" Collapsed="true">
+    <Position X="21.25" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>xBCACQiGJgAQhALIcVAQAARmFALAJK4nQWAgR8YoigA=</HashCode>
+      <FileName>FieldType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Gx.Types.FieldValueType" Collapsed="true">
+    <Position X="23" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAAAAQAAAAAQ=</HashCode>
+      <FileName>FieldValueType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Gx.Types.GenderType" Collapsed="true">
+    <Position X="24.75" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAQAIAABA=</HashCode>
+      <FileName>GenderType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Gx.Types.IdentifierType" Collapsed="true">
+    <Position X="17.75" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAIBAQAAAQACAAAA=</HashCode>
+      <FileName>IdentifierType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Gx.Types.NamePartQualifierType" Collapsed="true">
+    <Position X="19.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAACEAACIAgAAAgAAAwAAAAAAAQQAWBBAA=</HashCode>
+      <FileName>NamePartQualifierType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Gx.Types.NamePartType" Collapsed="true">
+    <Position X="21.25" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAACBAAAAIIAACAAQAAAAAA=</HashCode>
+      <FileName>NamePartType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Gx.Types.NameType" Collapsed="true">
+    <Position X="23" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIABAAAgAAACABAAAAAAAAAAACAAAIAAAACAQAAAAAI=</HashCode>
+      <FileName>NameType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Gx.Types.RecordType" Collapsed="true">
+    <Position X="24.75" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQgIDgFAoNAgAGAAAmggQQgIQCACKKQwIgEAYAQAIBg=</HashCode>
+      <FileName>RecordType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Gx.Types.RelationshipType" Collapsed="true">
+    <Position X="17.75" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAAAAIAAAAAAAAIAAAAAAQAAAAAA=</HashCode>
+      <FileName>RelationshipType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Gx.Types.ResourceType" Collapsed="true">
+    <Position X="19.5" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAQAAAAAAAAAAAAQAAAYAAAAAAQAAABAA=</HashCode>
+      <FileName>ResourceType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

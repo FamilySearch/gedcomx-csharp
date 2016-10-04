@@ -869,18 +869,18 @@ namespace Gedcomx.Rs.Api.Test
 		{
 			var person1 = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
 			cleanup.Add(person1);
-			var person2 = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePersonNoFacts()).Get();
+			var person2 = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
 			cleanup.Add(person2);
 			var merge = person1.ReadMergeAnalysis(person2);
 			var m = new Merge();
 
-			m.ResourcesToCopy = new List<ResourceReference>();
 			m.ResourcesToDelete = new List<ResourceReference>();
+			m.ResourcesToDelete.AddRange(merge.Analysis.ConflictingResources.Select(x => x.SurvivorResource));
+
+			m.ResourcesToCopy = new List<ResourceReference>();
 			m.ResourcesToCopy.AddRange(merge.Analysis.DuplicateResources);
 			m.ResourcesToCopy.AddRange(merge.Analysis.ConflictingResources.Select(x => x.DuplicateResource));
 			var state = merge.DoMerge(m);
-
-			// TODO: merge says there is a conflic
 
 			Assert.DoesNotThrow(() => state.IfSuccessful());
 			Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);

@@ -236,25 +236,6 @@ namespace Gedcomx.Rs.Api.Test
 			};
 		}
 
-		public static Person GetCreateMalePersonNoFacts()
-		{
-			return new Person()
-				.SetLiving(false)
-				.SetGender(new Gender().SetType(GenderType.Male))
-				.SetName(new Name()
-					.SetType(NameType.BirthName)
-					.SetNameForm(new NameForm()
-						.SetFullText("GedcomX User")
-						.SetPart(new NamePart(NamePartType.Given, "GedcomX"))
-						.SetPart(new NamePart(NamePartType.Surname, "User")))
-					.SetNameForm(new NameForm()
-						.SetFullText("GedcomX2 User")
-						.SetPart(new NamePart(NamePartType.Given, "GedcomX2"))
-						.SetPart(new NamePart(NamePartType.Surname, "User")))
-					.SetPreferred(true));
-		}
-
-
 		public static Person GetCreateMalePerson()
 		{
 			return new Person()

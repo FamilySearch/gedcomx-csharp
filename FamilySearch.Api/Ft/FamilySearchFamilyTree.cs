@@ -32,11 +32,15 @@ namespace FamilySearch.Api.Ft
         /// The default sandbox environment URI for this collection.
         /// </summary>
         public static readonly String SANDBOX_URI = "https://sandbox.familysearch.org/platform/collections/tree";
+		/// <summary>
+		/// The default beta environment URI for this collection.
+		/// </summary>
+		public static readonly String BETA_URI = "https://beta.familysearch.org/platform/collections/tree";
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="FamilySearchFamilyTree"/> class using the production environment URI.
-        /// </summary>
-        public FamilySearchFamilyTree()
+		/// <summary>
+		/// Initializes a new instance of the <see cref="FamilySearchFamilyTree"/> class using the production environment URI.
+		/// </summary>
+		public FamilySearchFamilyTree()
             : this(false)
         {
         }
@@ -50,11 +54,23 @@ namespace FamilySearch.Api.Ft
         {
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="FamilySearchFamilyTree"/> class.
-        /// </summary>
-        /// <param name="uri">The URI where the target collection resides.</param>
-        public FamilySearchFamilyTree(Uri uri)
+		/// <summary>
+		/// Initializes a new instance of the <see cref="FamilySearchFamilyTree"/> class supporting the beta environment
+		/// </summary>
+		/// <param name="environment"></param>
+		public FamilySearchFamilyTree(EnvironmentEnum environment)
+			: this(new Uri(
+				environment == EnvironmentEnum.Sandbox ? SANDBOX_URI :
+				environment == EnvironmentEnum.Beta ? BETA_URI :
+				URI))
+		{
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="FamilySearchFamilyTree"/> class.
+		/// </summary>
+		/// <param name="uri">The URI where the target collection resides.</param>
+		public FamilySearchFamilyTree(Uri uri)
             : this(uri, new FamilyTreeStateFactory())
         {
         }

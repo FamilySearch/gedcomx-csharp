@@ -70,6 +70,7 @@
   <ItemGroup>
     <Compile Include="DiscussionsState.cs" />
     <Compile Include="DiscussionState.cs" />
+    <Compile Include="EnvironmentEnum.cs" />
     <Compile Include="FamilySearchCollectionState.cs" />
     <Compile Include="FamilySearchPlaceDescriptionState.cs" />
     <Compile Include="FamilySearchPlaces.cs" />

@@ -81,7 +81,7 @@ namespace Gedcomx.Rs.Api.Test
             IDictionary<String, String> formData = new Dictionary<String, String>();
             formData.Add("response_type", "code");
             formData.Add("client_id", "ABCD-EFGH-JKLM-NOPQ-RSTU-VWXY-0123-4567");
-            formData.Add("redirect_uri", "https://familysearch.org/developers/sandbox-oauth2-redirect");
+            formData.Add("redirect_uri", "https://familysearch.org/developers/integration-oauth2-redirect");
             IRestRequest request = new RedirectableRestRequest()
                 .SetEntity(formData)
                 .Build(tokenLink.Href, Method.GET);
@@ -101,7 +101,7 @@ namespace Gedcomx.Rs.Api.Test
             IDictionary<String, String> formData = new Dictionary<String, String>();
             formData.Add("response_type", "authorize_me");
             formData.Add("client_id", "ABCD-EFGH-JKLM-NOPQ-RSTU-VWXY-0123-4567");
-            formData.Add("redirect_uri", "https://familysearch.org/developers/sandbox-oauth2-redirect");
+            formData.Add("redirect_uri", "https://familysearch.org/developers/integration-oauth2-redirect");
             IRestRequest request = new RedirectableRestRequest()
                 .ContentType(MediaTypes.APPLICATION_FORM_URLENCODED_TYPE)
                 .SetEntity(formData)
@@ -122,7 +122,7 @@ namespace Gedcomx.Rs.Api.Test
             IDictionary<String, String> formData = new Dictionary<String, String>();
             formData.Add("response_type", "code");
             formData.Add("client_id", "ABCD-EFGH-JKLM-NOPQ-RSTU-VWXY-0123-4567");
-            formData.Add("redirect_uri", "https://familysearch.org/developers/sandbox-oauth2-redirect");
+            formData.Add("redirect_uri", "https://familysearch.org/developers/integration-oauth2-redirect");
             IRestRequest request = new RedirectableRestRequest()
                 .SetEntity(formData)
                 .Build(tokenLink.Href, Method.POST);

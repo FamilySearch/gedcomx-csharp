@@ -52,7 +52,7 @@ namespace Gedcomx.Rs.Api.Test
             // Get all the features that are pending
             IRestRequest request = new RedirectableRestRequest()
                 .Accept(MediaTypes.APPLICATION_JSON_TYPE)
-                .Build("https://sandbox.familysearch.org/platform/pending-modifications", Method.GET);
+                .Build("https://integration.familysearch.org/platform/pending-modifications", Method.GET);
             IRestResponse response = tempTree.Client.Handle(request);
 
             // Get each pending feature
@@ -92,7 +92,7 @@ namespace Gedcomx.Rs.Api.Test
             var id = person.Response.Headers.Get("X-ENTITY-ID").Single().Value.ToString();
             IRestRequest request = new RedirectableRestRequest()
                 .Accept(MediaTypes.APPLICATION_JSON_TYPE)
-                .Build("https://sandbox.familysearch.org/platform/redirect?person=" + id, Method.GET);
+                .Build("https://integration.familysearch.org/platform/redirect?person=" + id, Method.GET);
             var response = tree.Client.Execute(request);
 
             Assert.IsNotNull(response);
@@ -107,7 +107,7 @@ namespace Gedcomx.Rs.Api.Test
             var id = person.Response.Headers.Get("X-ENTITY-ID").Single().Value.ToString();
             IRestRequest request = new RedirectableRestRequest()
                 .Accept(MediaTypes.APPLICATION_JSON_TYPE)
-                .Build("https://sandbox.familysearch.org/platform/redirect?context=memories&person=" + id, Method.GET);
+                .Build("https://integration.familysearch.org/platform/redirect?context=memories&person=" + id, Method.GET);
             var response = tree.Client.Execute(request);
 
             Assert.IsNotNull(response);
@@ -119,7 +119,7 @@ namespace Gedcomx.Rs.Api.Test
         {
             var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
             cleanup.Add(person);
-            var uri = String.Format("https://sandbox.familysearch.org/platform/redirect?context=sourcelinker&person={0}&hintId={1}", person.Person.Id, person.Person.Identifiers[0].Value);
+            var uri = String.Format("https://integration.familysearch.org/platform/redirect?context=sourcelinker&person={0}&hintId={1}", person.Person.Id, person.Person.Identifiers[0].Value);
             IRestRequest request = new RedirectableRestRequest()
                 .Accept(MediaTypes.APPLICATION_JSON_TYPE)
                 .Build(uri, Method.GET);
@@ -134,7 +134,7 @@ namespace Gedcomx.Rs.Api.Test
         {
             IRestRequest request = new RedirectableRestRequest()
                 .Accept(MediaTypes.APPLICATION_JSON_TYPE)
-                .Build("https://sandbox.familysearch.org/platform/redirect?uri=https://familysearch.org/some/path?p1%3Dp1-value%26p2%3Dp2-value", Method.GET);
+                .Build("https://integration.familysearch.org/platform/redirect?uri=https://familysearch.org/some/path?p1%3Dp1-value%26p2%3Dp2-value", Method.GET);
             var response = tree.Client.Execute(request);
 
             Assert.IsNotNull(response);

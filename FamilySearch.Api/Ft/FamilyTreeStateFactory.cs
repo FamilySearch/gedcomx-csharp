@@ -23,14 +23,14 @@ namespace FamilySearch.Api.Ft
             return NewFamilyTreeState(true);
         }
 
-        /// <summary>
-        /// Instantiates a new FamilySearchFamilyTree using the environment specified.
-        /// </summary>
-        /// <param name="production">If set to <c>true</c>, the resulting FamilySearchFamilyTree will use the production environment URI; otherwise, it will use the sandbox environment URI.</param>
-        /// <returns></returns>
-        public FamilySearchFamilyTree NewFamilyTreeState(bool production)
+		/// <summary>
+		/// Instantiates a new FamilySearchFamilyTree using the environment specified.
+		/// </summary>
+		/// <param name="production">If set to <c>true</c>, the resulting FamilySearchFamilyTree will use the production environment URI; otherwise, it will use the integration environment URI.</param>
+		/// <returns></returns>
+		public FamilySearchFamilyTree NewFamilyTreeState(bool production)
         {
-            return (FamilySearchFamilyTree)NewCollectionState(new Uri(production ? FamilySearchFamilyTree.URI : FamilySearchFamilyTree.SANDBOX_URI));
+            return (FamilySearchFamilyTree)NewCollectionState(new Uri(production ? FamilySearchFamilyTree.URI : FamilySearchFamilyTree.INTEGRATION_URI));
         }
 
         /// <summary>

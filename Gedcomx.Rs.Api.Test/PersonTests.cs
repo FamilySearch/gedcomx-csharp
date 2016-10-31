@@ -281,7 +281,7 @@ namespace Gedcomx.Rs.Api.Test
 		[Test]
 		public void TestReadNotFoundPerson()
 		{
-			var state = tree.ReadPerson(new Uri("https://sandbox.familysearch.org/platform/tree/persons/MMMM-MMM"));
+			var state = tree.ReadPerson(new Uri("https://integration.familysearch.org/platform/tree/persons/MMMM-MMM"));
 			Assert.AreEqual(HttpStatusCode.NotFound, state.Response.StatusCode);
 		}
 

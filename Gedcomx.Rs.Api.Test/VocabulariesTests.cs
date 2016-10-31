@@ -21,7 +21,7 @@ namespace Gedcomx.Rs.Api.Test
         [OneTimeSetUp]
         public void Initialize()
         {
-            places = new FamilySearchStateFactory().NewPlacesState(new Uri("https://sandbox.familysearch.org/platform/collections/places"));
+            places = new FamilySearchStateFactory().NewPlacesState(new Uri("https://integration.familysearch.org/platform/collections/places"));
             places.AuthenticateViaOAuth2Password(Resources.TestUserName, Resources.TestPassword, Resources.TestClientId);
             places = (FamilySearchPlaces)places.Get();
             placeTypes = places.ReadPlaceTypes();

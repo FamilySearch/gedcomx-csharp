@@ -317,7 +317,7 @@ namespace Gedcomx.Rs.Api.Test
 			return new SourceReference()
 				.SetAttribution(new Attribution()
 					.SetChangeMessage("Family is at the same address found in other sources associated with this family.  Names are a good match.  Estimated births are reasonable."))
-					.SetDescriptionRef("https://sandbox.familysearch.org/platform/sources/descriptions/MMH1-PNF");
+					.SetDescriptionRef("https://integration.familysearch.org/platform/sources/descriptions/MMH1-PNF");
 		}
 
 		public static Person GetCreatePersonConclusion(string personId)
@@ -481,7 +481,7 @@ namespace Gedcomx.Rs.Api.Test
 
 		public static Relationship GetCreateInvalidRelationship()
 		{
-			return (Relationship)new Relationship().SetLink("relationship", new Uri("https://sandbox.familysearch.org/platform/tree/couple-relationships/XXX-XXXX"));
+			return (Relationship)new Relationship().SetLink("relationship", new Uri("https://integration.familysearch.org/platform/tree/couple-relationships/XXX-XXXX"));
 		}
 
 		public static ChildAndParentsRelationship GetCreateChildAndParentsRelationship(PersonState father = null, PersonState mother = null, PersonState child = null)

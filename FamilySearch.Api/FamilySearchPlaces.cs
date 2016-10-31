@@ -22,9 +22,9 @@ namespace FamilySearch.Api
         /// </summary>
         public static readonly String URI = "https://familysearch.org/platform/collections/places";
         /// <summary>
-        /// The default sandbox environment URI for this collection.
+        /// The default integration environment URI for this collection.
         /// </summary>
-        public static readonly String SANDBOX_URI = "https://sandbox.familysearch.org/platform/collections/places";
+        public static readonly String INTEGRATION_URI = "https://integration.familysearch.org/platform/collections/places";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FamilySearchPlaces"/> class using the production environment URI.
@@ -34,12 +34,12 @@ namespace FamilySearch.Api
         {
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="FamilySearchPlaces"/> class.
-        /// </summary>
-        /// <param name="sandbox">If set to <c>true</c> this will use the sandbox environment URI; otherwise, it will use production.</param>
-        public FamilySearchPlaces(bool sandbox)
-            : this(new Uri(sandbox ? SANDBOX_URI : URI))
+		/// <summary>
+		/// Initializes a new instance of the <see cref="FamilySearchPlaces"/> class.
+		/// </summary>
+		/// <param name="integration">If set to <c>true</c> this will use the integration environment URI; otherwise, it will use production.</param>
+		public FamilySearchPlaces(bool integration)
+            : this(new Uri(integration ? INTEGRATION_URI : URI))
         {
         }
 

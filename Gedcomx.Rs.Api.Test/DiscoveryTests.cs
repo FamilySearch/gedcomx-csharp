@@ -20,7 +20,7 @@ namespace Gedcomx.Rs.Api.Test
         public void Initialize()
         {
             factory = new FamilySearchStateFactory();
-            collection = factory.NewCollectionState(new Uri("https://sandbox.familysearch.org/platform/collection"));
+            collection = factory.NewCollectionState(new Uri("https://integration.familysearch.org/platform/collection"));
             collection.AuthenticateViaOAuth2Password(Resources.TestUserName, Resources.TestPassword, Resources.TestClientId);
         }
 

@@ -20,10 +20,10 @@ namespace FamilySearch.Api.Memories
         /// The default production environment URI for this collection.
         /// </summary>
         public static readonly String URI = "https://familysearch.org/platform/collections/memories";
-        /// <summary>
-        /// The default sandbox environment URI for this collection.
-        /// </summary>
-        public static readonly String SANDBOX_URI = "https://sandbox.familysearch.org/platform/collections/memories";
+		/// <summary>
+		/// The default integration environment URI for this collection.
+		/// </summary>
+		public static readonly String INTEGRATION_URI = "https://integration.familysearch.org/platform/collections/memories";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FamilySearchMemories"/> class using the production environment URI.
@@ -33,12 +33,12 @@ namespace FamilySearch.Api.Memories
         {
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="FamilySearchMemories"/> class.
-        /// </summary>
-        /// <param name="sandbox">If set to <c>true</c> this will use the sandbox environment URI; otherwise, it will use production.</param>
-        public FamilySearchMemories(bool sandbox)
-            : this(new Uri(sandbox ? SANDBOX_URI : URI))
+		/// <summary>
+		/// Initializes a new instance of the <see cref="FamilySearchMemories"/> class.
+		/// </summary>
+		/// <param name="integration">If set to <c>true</c> this will use the integration environment URI; otherwise, it will use production.</param>
+		public FamilySearchMemories(bool integration)
+            : this(new Uri(integration ? INTEGRATION_URI : URI))
         {
         }
 

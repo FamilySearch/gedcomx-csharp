@@ -26,7 +26,7 @@ namespace Gedcomx.Rs.Api.Test
         [OneTimeSetUp]
         public void Initialize()
         {
-            collection = new FamilySearchCollectionState(new Uri("https://sandbox.familysearch.org/platform/collections/sources"));
+            collection = new FamilySearchCollectionState(new Uri("https://integration.familysearch.org/platform/collections/sources"));
             collection.AuthenticateViaOAuth2Password(Resources.TestUserName, Resources.TestPassword, Resources.TestClientId);
             subcollections = (CollectionsState)collection.ReadSubcollections().Get();
             cleanup = new List<GedcomxApplicationState>();

@@ -67,7 +67,7 @@ namespace Gedcomx.Rs.Api.Test
 				.AddHeader("Authorization", "Bearer " + tree.CurrentAccessToken)
 				.Accept(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE)
 				.ContentType(MediaTypes.MULTIPART_FORM_DATA_TYPE)
-				.Build("https://sandbox.familysearch.org/platform/memories/memories", Method.POST);
+				.Build("https://integration.familysearch.org/platform/memories/memories", Method.POST);
 
 			foreach (var artifact in artifacts)
 			{

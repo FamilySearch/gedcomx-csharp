@@ -28,10 +28,10 @@ namespace FamilySearch.Api.Ft
         /// The default production environment URI for this collection.
         /// </summary>
         public static readonly String URI = "https://familysearch.org/platform/collections/tree";
-        /// <summary>
-        /// The default sandbox environment URI for this collection.
-        /// </summary>
-        public static readonly String SANDBOX_URI = "https://sandbox.familysearch.org/platform/collections/tree";
+		/// <summary>
+		/// The default integration environment URI for this collection.
+		/// </summary>
+		public static readonly String INTEGRATION_URI = "https://integration.familysearch.org/platform/collections/tree";
 		/// <summary>
 		/// The default beta environment URI for this collection.
 		/// </summary>
@@ -45,12 +45,12 @@ namespace FamilySearch.Api.Ft
         {
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="FamilySearchFamilyTree"/> class.
-        /// </summary>
-        /// <param name="sandbox">If set to <c>true</c> this will use the sandbox environment URI; otherwise, it will use production.</param>
-        public FamilySearchFamilyTree(bool sandbox)
-            : this(new Uri(sandbox ? SANDBOX_URI : URI))
+		/// <summary>
+		/// Initializes a new instance of the <see cref="FamilySearchFamilyTree"/> class.
+		/// </summary>
+		/// <param name="integration">If set to <c>true</c> this will use the integration environment URI; otherwise, it will use production.</param>
+		public FamilySearchFamilyTree(bool integration)
+            : this(new Uri(integration ? INTEGRATION_URI : URI))
         {
         }
 
@@ -60,7 +60,7 @@ namespace FamilySearch.Api.Ft
 		/// <param name="environment"></param>
 		public FamilySearchFamilyTree(EnvironmentEnum environment)
 			: this(new Uri(
-				environment == EnvironmentEnum.Sandbox ? SANDBOX_URI :
+				environment == EnvironmentEnum.Integration ? INTEGRATION_URI :
 				environment == EnvironmentEnum.Beta ? BETA_URI :
 				URI))
 		{

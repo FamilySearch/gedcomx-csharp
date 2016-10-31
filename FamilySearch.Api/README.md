@@ -90,13 +90,13 @@ to read or update.
 May we suggest you start with the FamilySearch Family Tree?
 
 ```csharp
-Boolean useSandbox = true; //whether to use the sandbox reference.
+Boolean useIntegration = true; //whether to use the integration (previously sandbox) reference.
 String username = "...";
 String password = "...";
 String developerKey = "...";
 
 //read the Family Tree
-FamilySearchFamilyTree ft = new FamilySearchFamilyTree(useSandbox);
+FamilySearchFamilyTree ft = new FamilySearchFamilyTree(useIntegration);
 
 //and authenticate.
 ft.AuthenticateViaOAuth2Password(username, password, developerKey);
@@ -477,13 +477,13 @@ SourceDescriptionState artifact = person.AddArtifact(new SourceDescription()
 ### Read FamilySearch Memories
 
 ```csharp
-boolean useSandbox = true; //whether to use the sandbox reference.
+Boolean useIntegration = true; //whether to use the integration (previously sandbox) reference.
 String username = "...";
 String password = "...";
 String developerKey = "...";
 
 //read the Family Tree
-FamilySearchMemories fsMemories = new FamilySearchMemories(useSandbox)
+FamilySearchMemories fsMemories = new FamilySearchMemories(useIntegration)
   //and authenticate.
   .AuthenticateViaOAuth2Password(username, password, developerKey);
 ```

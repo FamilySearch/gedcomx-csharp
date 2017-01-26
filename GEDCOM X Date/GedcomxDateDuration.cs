@@ -236,60 +236,66 @@ namespace Gedcomx.Date
         /// <summary>
         /// Determines whether this date is approximate.  This method always returns <c>false</c> for this instance.
         /// </summary>
-        /// <returns>
+        /// <value>
         ///   <c>true</c> if this date is approximate; otherwise, <c>false</c>.
-        /// </returns>
-        public override bool IsApproximate()
+        /// </value>
+        public override bool IsApproximate
         {
-            return false;
+            get
+            {
+                return false;
+            }
         }
 
         /// <summary>
         /// The formal representation of this duration.
         /// </summary>
-        /// <returns>
+        /// <value>
         /// The formal representation of this duration.
-        /// </returns>
-        public override String ToFormalString()
+        /// </value>
+        public override String FormalString
         {
-            StringBuilder duration = new StringBuilder("P");
-
-            if (years != null)
+            get
             {
-                duration.Append(years).Append('Y');
-            }
+                StringBuilder duration = new StringBuilder("P");
 
-            if (months != null)
-            {
-                duration.Append(months).Append('M');
-            }
-
-            if (days != null)
-            {
-                duration.Append(days).Append('D');
-            }
-
-            if (hours != null || minutes != null || seconds != null)
-            {
-                duration.Append('T');
-
-                if (hours != null)
+                if (years != null)
                 {
-                    duration.Append(hours).Append('H');
+                    duration.Append(years).Append('Y');
                 }
 
-                if (minutes != null)
+                if (months != null)
                 {
-                    duration.Append(minutes).Append('M');
+                    duration.Append(months).Append('M');
                 }
 
-                if (seconds != null)
+                if (days != null)
                 {
-                    duration.Append(seconds).Append('S');
+                    duration.Append(days).Append('D');
                 }
+
+                if (hours != null || minutes != null || seconds != null)
+                {
+                    duration.Append('T');
+
+                    if (hours != null)
+                    {
+                        duration.Append(hours).Append('H');
+                    }
+
+                    if (minutes != null)
+                    {
+                        duration.Append(minutes).Append('M');
+                    }
+
+                    if (seconds != null)
+                    {
+                        duration.Append(seconds).Append('S');
+                    }
+                }
+
+                return duration.ToString();
             }
-
-            return duration.ToString();
         }
 
         /// <summary>

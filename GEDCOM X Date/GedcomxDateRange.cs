@@ -167,46 +167,52 @@ namespace Gedcomx.Date
         /// <summary>
         /// Determines whether this date is approximate.
         /// </summary>
-        /// <returns>
+        /// <value>
         ///   <c>true</c> if this date is approximate; otherwise, <c>false</c>.
-        /// </returns>
-        public override bool IsApproximate()
+        /// </value>
+        public override bool IsApproximate
         {
-            return approximate;
+            get
+            {
+                return approximate;
+            }
         }
 
         /// <summary>
         /// The formal representation of this date.
         /// </summary>
-        /// <returns>
+        /// <value>
         /// The formal representation of this date.
-        /// </returns>
-        public override String ToFormalString()
+        /// </value>
+        public override String FormalString
         {
-            StringBuilder range = new StringBuilder();
-
-            if (approximate)
+            get
             {
-                range.Append('A');
-            }
+                StringBuilder range = new StringBuilder();
 
-            if (start != null)
-            {
-                range.Append(start.ToFormalString());
-            }
+                if (approximate)
+                {
+                    range.Append('A');
+                }
 
-            range.Append('/');
+                if (start != null)
+                {
+                    range.Append(start.FormalString);
+                }
 
-            if (duration != null)
-            {
-                range.Append(duration.ToFormalString());
-            }
-            else if (end != null)
-            {
-                range.Append(end.ToFormalString());
-            }
+                range.Append('/');
 
-            return range.ToString();
+                if (duration != null)
+                {
+                    range.Append(duration.FormalString);
+                }
+                else if (end != null)
+                {
+                    range.Append(end.FormalString);
+                }
+
+                return range.ToString();
+            }
         }
     }
 }

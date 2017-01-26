@@ -436,63 +436,69 @@ namespace Gedcomx.Date
         /// <summary>
         /// Determines whether this date is approximate. This method always returns <c>false</c> for this instance.
         /// </summary>
-        /// <returns>
+        /// <value>
         ///   <c>true</c> if this date is approximate; otherwise, <c>false</c>.
-        /// </returns>
-        public override bool IsApproximate()
+        /// </value>
+        public override bool IsApproximate
         {
+            get
+            {
                 return false;
+            }
         }
 
         /// <summary>
         /// The formal representation of this date.
         /// </summary>
-        /// <returns>
+        /// <value>
         /// The formal representation of this date.
-        /// </returns>
-        public override String ToFormalString()
+        /// </value>
+        public override String FormalString
         {
-            StringBuilder simple = new StringBuilder();
-
-            simple.Append(year >= 0 ? "+" : "-").Append(String.Format("{0:0000}", Math.Abs(year.Value)));
-
-            if (month != null)
+            get
             {
-                simple.Append("-").Append(String.Format("{0:00}", month));
+                StringBuilder simple = new StringBuilder();
+
+                simple.Append(year >= 0 ? "+" : "-").Append(String.Format("{0:0000}", Math.Abs(year.Value)));
+
+                if (month != null)
+                {
+                    simple.Append("-").Append(String.Format("{0:00}", month));
+                }
+
+                if (day != null)
+                {
+                    simple.Append("-").Append(String.Format("{0:00}", day));
+                }
+
+                if (hours != null)
+                {
+                    simple.Append("T").Append(String.Format("{0:00}", hours));
+
+                    if (minutes != null)
+                    {
+                        simple.Append(":").Append(String.Format("{0:00}", minutes));
+                    }
+
+                    if (seconds != null)
+                    {
+                        simple.Append(":").Append(String.Format("{0:00}", seconds));
+                    }
+
+                    // If we have time we always have tz
+                    if (tzHours == 0 && tzMinutes == 0)
+                    {
+                        simple.Append("Z");
+                    }
+                    else
+                    {
+                        simple.Append(tzHours >= 0 ? "+" : "-").Append(String.Format("{0:00}", Math.Abs(tzHours.Value)));
+                        simple.Append(":").Append(String.Format("{0:00}", tzMinutes));
+                    }
+                }
+
+                return simple.ToString();
             }
-
-            if (day != null)
-            {
-                simple.Append("-").Append(String.Format("{0:00}", day));
-            }
-
-            if (hours != null)
-            {
-                simple.Append("T").Append(String.Format("{0:00}", hours));
-
-                if (minutes != null)
-                {
-                    simple.Append(":").Append(String.Format("{0:00}", minutes));
-                }
-
-                if (seconds != null)
-                {
-                    simple.Append(":").Append(String.Format("{0:00}", seconds));
-                }
-
-                // If we have time we always have tz
-                if (tzHours == 0 && tzMinutes == 0)
-                {
-                    simple.Append("Z");
-                }
-                else
-                {
-                    simple.Append(tzHours >= 0 ? "+" : "-").Append(String.Format("{0:00}", Math.Abs(tzHours.Value)));
-                    simple.Append(":").Append(String.Format("{0:00}", tzMinutes));
-                }
-            }
-
-            return simple.ToString();
         }
 
         /// <summary>

@@ -60,23 +60,29 @@ namespace Gedcomx.Date
         /// <summary>
         /// Determines whether this date is approximate. This method always returns <c>true</c> for this instance.
         /// </summary>
-        /// <returns>
+        /// <value>
         ///   <c>true</c> if this date is approximate; otherwise, <c>false</c>.
-        /// </returns>
-        public override bool IsApproximate()
+        /// </value>
+        public override bool IsApproximate
         {
-            return true;
+            get
+            {
+                return true;
+            }
         }
 
         /// <summary>
         /// The formal representation of this date.
         /// </summary>
-        /// <returns>
+        /// <value>
         /// The formal representation of this date.
-        /// </returns>
-        public override String ToFormalString()
+        /// </value>
+        public override String FormalString
         {
-            return "A" + simpleDate.ToFormalString();
+            get
+            {
+                return "A" + simpleDate.FormalString;
+            }
         }
 
         /// <summary>

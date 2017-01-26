@@ -22,13 +22,13 @@ namespace Gedcomx.Date
         /// <summary>
         /// Determines whether this date is approximate.
         /// </summary>
-        /// <returns><c>true</c> if this date is approximate; otherwise, <c>false</c>.</returns>
-        public abstract bool IsApproximate();
+        /// <value><c>true</c> if this date is approximate; otherwise, <c>false</c>.</value>
+        public abstract bool IsApproximate { get; }
 
         /// <summary>
         /// The formal representation of this date.
         /// </summary>
-        /// <returns>The formal representation of this date.</returns>
-        public abstract String ToFormalString();
+        /// <value>The formal representation of this date.</value>
+        public abstract String FormalString { get; }
     }
 }

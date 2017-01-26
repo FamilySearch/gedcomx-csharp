@@ -4,6 +4,7 @@ using Gx.Conclusion;
 using Gx.Records;
 using Gx.Source;
 using System;
+using System.Xml.Serialization;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

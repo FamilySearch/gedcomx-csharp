@@ -3,6 +3,7 @@ using Gx.Common;
 using Gx.Rs.Api;
 using NUnit.Framework;
 using System;
+using System.Xml.Serialization;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;

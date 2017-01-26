@@ -17,8 +17,8 @@ namespace Gx.Common
     /// <summary>
     ///  A data qualifier. Qualifiers are used to &quot;qualify&quot; certain data elements to provide additional context, information, or details.
     /// </summary>
-    [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Qualifier")]
+    [Serializable]
+    [XmlType(Namespace = "http://gedcomx.org/v1/", TypeName = "Qualifier")]
     public sealed class Qualifier
     {
         private string _name;

@@ -1,4 +1,6 @@
 using System;
+using System.Xml.Serialization;
+using System.Collections.Generic;
 using NDesk.Options;
 
 namespace Gx.CLI

@@ -1,7 +1,8 @@
 using System;
+using System.Xml.Serialization;
+using System.Collections.Generic;
 using RestSharp;
 using System.Text;
-using System.Collections.Generic;
 using Gx.Conclusion;
 using Gx.Rs.Api.Util;
 using Gx.Links;

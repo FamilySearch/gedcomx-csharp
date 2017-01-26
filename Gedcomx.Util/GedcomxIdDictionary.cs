@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Gx;
 using Gx.Agent;
 using Gx.Common;
@@ -7,7 +8,6 @@ using Gx.Links;
 using Gx.Records;
 using Gx.Source;
 using Gx.Types;
-using System.Collections.Generic;
 
 namespace Gx.Util
 {

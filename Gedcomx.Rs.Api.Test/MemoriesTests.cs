@@ -6,6 +6,7 @@ using Gx.Source;
 using NUnit.Framework;
 using RestSharp;
 using System;
+using System.Xml.Serialization;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;

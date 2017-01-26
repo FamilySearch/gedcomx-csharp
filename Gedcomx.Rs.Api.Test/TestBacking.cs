@@ -9,6 +9,7 @@ using Gx.Types;
 using iTextSharp.text.pdf;
 using RestSharp;
 using System;
+using System.Xml.Serialization;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;

@@ -5,6 +5,7 @@ using Gx.Fs.Tree;
 using Gx.Rs.Api.Options;
 using Gx.Types;
 using System;
+using System.Xml.Serialization;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

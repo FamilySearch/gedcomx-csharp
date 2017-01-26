@@ -3,6 +3,7 @@ using Gx.Records;
 using Gx.Source;
 using Gx.Types;
 using System;
+using System.Xml.Serialization;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;

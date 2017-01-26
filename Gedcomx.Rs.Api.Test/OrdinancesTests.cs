@@ -5,6 +5,7 @@ using Gx.Rs.Api.Util;
 using NUnit.Framework;
 using RestSharp;
 using System;
+using System.Xml.Serialization;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;

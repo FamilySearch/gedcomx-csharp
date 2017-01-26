@@ -9,7 +9,10 @@ using Gx.Types;
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
+using Gx.Source;
+using System.ComponentModel;
 
 namespace Gx.Conclusion
 {
@@ -23,7 +26,7 @@ namespace Gx.Conclusion
     [Serializable]
     [XmlType(Namespace = "http://gedcomx.org/v1/", TypeName = "Person")]
     [XmlRoot(Namespace = "http://gedcomx.org/v1/", ElementName = "person")]
-    public partial class Person : Gx.Conclusion.Subject
+    public partial class Person : Subject
     {
         private bool? _principal;
         private bool _principalSpecified;
@@ -31,18 +34,18 @@ namespace Gx.Conclusion
         private bool _privateSpecified;
         private bool? _living;
         private bool _livingSpecified;
-        private Gx.Conclusion.Gender _gender;
-        private List<Gx.Conclusion.Name> _names;
-		private List<Gx.Conclusion.Fact> _facts;
-		private List<Gx.Source.SourceReference> _media;
-		private List<Gx.Records.Field> _fields;
-        private Gx.Conclusion.DisplayProperties _displayExtension;
-		private List<Gx.Source.DiscussionReference> _discussionreference;
-		/// <summary>
-		///  Whether this person is the &quot;principal&quot; person extracted from the record.
-		/// </summary>
-		[System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "principal")]
-        [Newtonsoft.Json.JsonProperty("principal")]
+        private Gender _gender;
+        private List<Name> _names;
+        private List<Fact> _facts;
+        //private List<Source.SourceReference> _media;
+        private List<Field> _fields;
+        private DisplayProperties _displayExtension;
+        private List<DiscussionReference> _discussionreference;
+        /// <summary>
+        ///  Whether this person is the &quot;principal&quot; person extracted from the record.
+        /// </summary>
+        [XmlAttribute(AttributeName = "principal")]
+        [JsonProperty("principal")]
         public bool Principal
         {
             get
@@ -59,9 +62,9 @@ namespace Gx.Conclusion
         /// <summary>
         ///  Property for the XML serializer indicating whether the "Principal" property should be included in the output.
         /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute]
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
-        [Newtonsoft.Json.JsonIgnore]
+        [XmlIgnore]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [JsonIgnore]
         public bool PrincipalSpecified
         {
             get
@@ -77,8 +80,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  Whether this person has been designated for limited distribution or display.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "private")]
-        [Newtonsoft.Json.JsonProperty("private")]
+        [XmlAttribute(AttributeName = "private")]
+        [JsonProperty("private")]
         public bool Private
         {
             get
@@ -95,9 +98,9 @@ namespace Gx.Conclusion
         /// <summary>
         ///  Property for the XML serializer indicating whether the "Private" property should be included in the output.
         /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute]
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
-        [Newtonsoft.Json.JsonIgnore]
+        [XmlIgnore]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [JsonIgnore]
         public bool PrivateSpecified
         {
             get
@@ -113,8 +116,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  Living status of the person as treated by the system.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "living", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("living")]
+        [XmlElement(ElementName = "living", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("living")]
         public bool Living
         {
             get
@@ -131,9 +134,9 @@ namespace Gx.Conclusion
         /// <summary>
         ///  Property for the XML serializer indicating whether the "Living" property should be included in the output.
         /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute]
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
-        [Newtonsoft.Json.JsonIgnore]
+        [XmlIgnore]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [JsonIgnore]
         public bool LivingSpecified
         {
             get
@@ -149,9 +152,9 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The gender conclusion for the person.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "gender", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("gender")]
-        public Gx.Conclusion.Gender Gender
+        [XmlElement(ElementName = "gender", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("gender")]
+        public Gender Gender
         {
             get
             {
@@ -165,9 +168,9 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The name conclusions for the person.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "name", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("names")]
-        public List<Gx.Conclusion.Name> Names
+        [XmlElement(ElementName = "name", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("names")]
+        public List<Name> Names
         {
             get
             {
@@ -181,9 +184,9 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The fact conclusions for the person.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "fact", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("facts")]
-        public List<Gx.Conclusion.Fact> Facts
+        [XmlElement(ElementName = "fact", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("facts")]
+        public List<Fact> Facts
         {
             get
             {
@@ -197,9 +200,9 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The references to the record fields being used as evidence.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "field", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("fields")]
-        public List<Gx.Records.Field> Fields
+        [XmlElement(ElementName = "field", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("fields")]
+        public List<Field> Fields
         {
             get
             {
@@ -213,9 +216,9 @@ namespace Gx.Conclusion
         /// <summary>
         ///  Display properties for the person. Display properties are not specified by GEDCOM X core, but as extension elements by GEDCOM X RS.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "display", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("display")]
-        public Gx.Conclusion.DisplayProperties DisplayExtension
+        [XmlElement(ElementName = "display", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("display")]
+        public DisplayProperties DisplayExtension
         {
             get
             {
@@ -226,28 +229,28 @@ namespace Gx.Conclusion
                 this._displayExtension = value;
             }
         }
-		/// <summary>
-		///  Discussion References properties for the person.
-		/// </summary>
-		[System.Xml.Serialization.XmlElementAttribute(ElementName = "discussion-references", Namespace = "http://gedcomx.org/v1/")]
-		[Newtonsoft.Json.JsonProperty("discussion-references")]
-		public List<Gx.Source.DiscussionReference> DiscussionReferences
-		{
-			get
-			{
-				return this._discussionreference;
-			}
-			set
-			{
-				this._discussionreference = value;
-			}
-		}
+        /// <summary>
+        ///  Discussion References properties for the person.
+        /// </summary>
+        [XmlElement(ElementName = "discussion-references", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("discussion-references")]
+        public List<Gx.Source.DiscussionReference> DiscussionReferences
+        {
+            get
+            {
+                return this._discussionreference;
+            }
+            set
+            {
+                this._discussionreference = value;
+            }
+        }
 
-		/// <summary>
-		/// Embed the specified person into this one.
-		/// </summary>
-		/// <param name="person">The person to embed.</param>
-		public void Embed(Person person)
+        /// <summary>
+        /// Embed the specified person into this one.
+        /// </summary>
+        /// <param name="person">The person to embed.</param>
+        public void Embed(Person person)
         {
             this._private = this._private == null ? person._private : this._private;
             this._living = this._living == null ? person._living : this._living;

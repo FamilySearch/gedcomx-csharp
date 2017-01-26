@@ -6,6 +6,7 @@ using Gx.Fs.Rt;
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Gx.Fs.Tree
@@ -31,8 +32,8 @@ namespace Gx.Fs.Tree
         /// <summary>
         ///  (no documentation provided)
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "survivorResource", Namespace = "http://familysearch.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("survivorResources")]
+        [XmlElement(ElementName = "survivorResource", Namespace = "http://familysearch.org/v1/")]
+        [JsonProperty("survivorResources")]
         public List<Gx.Common.ResourceReference> SurvivorResources
         {
             get
@@ -47,8 +48,8 @@ namespace Gx.Fs.Tree
         /// <summary>
         ///  (no documentation provided)
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "duplicateResource", Namespace = "http://familysearch.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("duplicateResources")]
+        [XmlElement(ElementName = "duplicateResource", Namespace = "http://familysearch.org/v1/")]
+        [JsonProperty("duplicateResources")]
         public List<Gx.Common.ResourceReference> DuplicateResources
         {
             get
@@ -63,8 +64,8 @@ namespace Gx.Fs.Tree
         /// <summary>
         ///  (no documentation provided)
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "conflictingResource", Namespace = "http://familysearch.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("conflictingResources")]
+        [XmlElement(ElementName = "conflictingResource", Namespace = "http://familysearch.org/v1/")]
+        [JsonProperty("conflictingResources")]
         public List<Gx.Fs.Tree.MergeConflict> ConflictingResources
         {
             get
@@ -79,8 +80,8 @@ namespace Gx.Fs.Tree
         /// <summary>
         ///  (no documentation provided)
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "survivor", Namespace = "http://familysearch.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("survivor")]
+        [XmlElement(ElementName = "survivor", Namespace = "http://familysearch.org/v1/")]
+        [JsonProperty("survivor")]
         public Gx.Common.ResourceReference Survivor
         {
             get
@@ -95,8 +96,8 @@ namespace Gx.Fs.Tree
         /// <summary>
         ///  (no documentation provided)
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "duplicate", Namespace = "http://familysearch.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("duplicate")]
+        [XmlElement(ElementName = "duplicate", Namespace = "http://familysearch.org/v1/")]
+        [JsonProperty("duplicate")]
         public Gx.Common.ResourceReference Duplicate
         {
             get

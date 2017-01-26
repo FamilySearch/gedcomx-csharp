@@ -9,6 +9,7 @@ using Gx.Types;
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Gx.Conclusion
@@ -40,8 +41,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The type of the gender.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "type")]
-        [Newtonsoft.Json.JsonProperty("type")]
+        [XmlAttribute(AttributeName = "type")]
+        [JsonProperty("type")]
         public string Type
         {
             get
@@ -57,8 +58,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  Convenience property for treating Type as an enum. See Gx.Types.GenderTypeQNameUtil for details on getter/setter functionality.
         /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute]
-        [Newtonsoft.Json.JsonIgnore]
+        [XmlIgnore]
+        [JsonIgnore]
         public Gx.Types.GenderType KnownType
         {
             get
@@ -73,8 +74,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The references to the record fields being used as evidence.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "field", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("fields")]
+        [XmlElement(ElementName = "field", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("fields")]
         public List<Gx.Records.Field> Fields
         {
             get

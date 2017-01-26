@@ -5,6 +5,7 @@
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 
 
 namespace Gx.Fs.Tree
@@ -27,8 +28,8 @@ namespace Gx.Fs.Tree
         /// <summary>
         ///  (no documentation provided)
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "survivorResource", Namespace = "http://familysearch.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("survivorResource")]
+        [XmlElement(ElementName = "survivorResource", Namespace = "http://familysearch.org/v1/")]
+        [JsonProperty("survivorResource")]
         public Gx.Common.ResourceReference SurvivorResource
         {
             get
@@ -43,8 +44,8 @@ namespace Gx.Fs.Tree
         /// <summary>
         ///  (no documentation provided)
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "duplicateResource", Namespace = "http://familysearch.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("duplicateResource")]
+        [XmlElement(ElementName = "duplicateResource", Namespace = "http://familysearch.org/v1/")]
+        [JsonProperty("duplicateResource")]
         public Gx.Common.ResourceReference DuplicateResource
         {
             get

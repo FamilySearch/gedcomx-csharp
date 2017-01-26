@@ -5,7 +5,9 @@
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Gx.Records
 {
@@ -28,8 +30,8 @@ namespace Gx.Records
         /// <summary>
         ///  A title for the facet value.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "title", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("title")]
+        [XmlElement(ElementName = "title", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("title")]
         public string Title
         {
             get
@@ -44,8 +46,8 @@ namespace Gx.Records
         /// <summary>
         ///  The value.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "value", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("value")]
+        [XmlElement(ElementName = "value", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("value")]
         public string Value
         {
             get
@@ -60,8 +62,8 @@ namespace Gx.Records
         /// <summary>
         ///  The number of resources applicable to this value.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "count", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("count")]
+        [XmlElement(ElementName = "count", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("count")]
         public int Count
         {
             get
@@ -78,9 +80,9 @@ namespace Gx.Records
         /// <summary>
         ///  Property for the XML serializer indicating whether the "Count" property should be included in the output.
         /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute]
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
-        [Newtonsoft.Json.JsonIgnore]
+        [XmlIgnore]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [JsonIgnore]
         public bool CountSpecified
         {
             get

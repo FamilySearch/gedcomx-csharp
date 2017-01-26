@@ -8,7 +8,6 @@ using Newtonsoft.Json;
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
-using System.Collections.Generic;
 
 namespace Gx.Conclusion
 {
@@ -30,8 +29,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The type of the id.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "type")]
-        [Newtonsoft.Json.JsonProperty("type")]
+        [XmlAttribute(AttributeName = "type")]
+        [JsonProperty("type")]
         public string Type
         {
             get
@@ -47,8 +46,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  Convenience property for treating Type as an enum. See Gx.Types.IdentifierTypeQNameUtil for details on getter/setter functionality.
         /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute]
-        [Newtonsoft.Json.JsonIgnore]
+        [XmlIgnore]
+        [JsonIgnore]
         public Gx.Types.IdentifierType KnownType
         {
             get
@@ -63,8 +62,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The id value.
         /// </summary>
-        [System.Xml.Serialization.XmlTextAttribute()]
-        [Newtonsoft.Json.JsonProperty("value")]
+        [XmlTextAttribute()]
+        [JsonProperty("value")]
         public string Value
         {
             get

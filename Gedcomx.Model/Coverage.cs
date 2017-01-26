@@ -8,6 +8,7 @@ using Gx.Types;
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Gx.Source
@@ -31,8 +32,8 @@ namespace Gx.Source
         /// <summary>
         ///  The type of record being covered.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "recordType", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("recordType")]
+        [XmlElement(ElementName = "recordType", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("recordType")]
         public string RecordType
         {
             get
@@ -48,8 +49,8 @@ namespace Gx.Source
         /// <summary>
         ///  Convenience property for treating RecordType as an enum. See Gx.Types.RecordTypeQNameUtil for details on getter/setter functionality.
         /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute]
-        [Newtonsoft.Json.JsonIgnore]
+        [XmlIgnore]
+        [JsonIgnore]
         public Gx.Types.RecordType KnownRecordType
         {
             get
@@ -64,8 +65,8 @@ namespace Gx.Source
         /// <summary>
         ///  Spatial coverage.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "spatial", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("spatial")]
+        [XmlElement(ElementName = "spatial", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("spatial")]
         public Gx.Conclusion.PlaceReference Spatial
         {
             get
@@ -80,8 +81,8 @@ namespace Gx.Source
         /// <summary>
         ///  Temporal coverage.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "temporal", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("temporal")]
+        [XmlElement(ElementName = "temporal", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("temporal")]
         public Gx.Conclusion.DateInfo Temporal
         {
             get

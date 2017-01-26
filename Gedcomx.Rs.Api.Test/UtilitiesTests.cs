@@ -4,6 +4,7 @@ using NUnit.Framework;
 using RestSharp;
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,6 @@ using Gx.Rs.Api.Util;
 using Gedcomx.Support;
 using Newtonsoft.Json.Linq;
 using FamilySearch.Api.Ft;
-using Newtonsoft.Json;
 using System.Net;
 using Gx.Fs;
 

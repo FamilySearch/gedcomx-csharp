@@ -9,6 +9,7 @@ using Gx.Fs.Users;
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Gx.Fs
@@ -43,8 +44,8 @@ namespace Gx.Fs
         /// <summary>
         ///  The child-and-parents relationships for this data set.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "childAndParentsRelationship", Namespace = "http://familysearch.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("childAndParentsRelationships")]
+        [XmlElement(ElementName = "childAndParentsRelationship", Namespace = "http://familysearch.org/v1/")]
+        [JsonProperty("childAndParentsRelationships")]
         public List<Gx.Fs.Tree.ChildAndParentsRelationship> ChildAndParentsRelationships
         {
             get
@@ -59,8 +60,8 @@ namespace Gx.Fs
         /// <summary>
         ///  The discussions included in this data set.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "discussion", Namespace = "http://familysearch.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("discussions")]
+        [XmlElement(ElementName = "discussion", Namespace = "http://familysearch.org/v1/")]
+        [JsonProperty("discussions")]
         public List<Gx.Fs.Discussions.Discussion> Discussions
         {
             get
@@ -75,8 +76,8 @@ namespace Gx.Fs
         /// <summary>
         ///  The users included in this genealogical data set.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "user", Namespace = "http://familysearch.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("users")]
+        [XmlElement(ElementName = "user", Namespace = "http://familysearch.org/v1/")]
+        [JsonProperty("users")]
         public List<Gx.Fs.Users.User> Users
         {
             get
@@ -91,8 +92,8 @@ namespace Gx.Fs
         /// <summary>
         ///  The merges for this data set.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "merge", Namespace = "http://familysearch.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("merges")]
+        [XmlElement(ElementName = "merge", Namespace = "http://familysearch.org/v1/")]
+        [JsonProperty("merges")]
         public List<Gx.Fs.Tree.Merge> Merges
         {
             get
@@ -107,8 +108,8 @@ namespace Gx.Fs
         /// <summary>
         ///  The merge analysis results for this data set.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "mergeAnalysis", Namespace = "http://familysearch.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("mergeAnalyses")]
+        [XmlElement(ElementName = "mergeAnalysis", Namespace = "http://familysearch.org/v1/")]
+        [JsonProperty("mergeAnalyses")]
         public List<Gx.Fs.Tree.MergeAnalysis> MergeAnalyses
         {
             get
@@ -123,8 +124,8 @@ namespace Gx.Fs
         /// <summary>
         ///  The set of features defined in the platform API.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "feature", Namespace = "http://familysearch.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("features")]
+        [XmlElement(ElementName = "feature", Namespace = "http://familysearch.org/v1/")]
+        [JsonProperty("features")]
         public List<Gx.Fs.Feature> Features
         {
             get

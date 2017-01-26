@@ -5,6 +5,7 @@
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Gx.Atom
@@ -27,8 +28,8 @@ namespace Gx.Atom
         /// <summary>
         ///  identifies a categorization scheme
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "scheme")]
-        [Newtonsoft.Json.JsonProperty("scheme")]
+        [XmlAttribute(AttributeName = "scheme")]
+        [JsonProperty("scheme")]
         public string Scheme
         {
             get
@@ -43,8 +44,8 @@ namespace Gx.Atom
         /// <summary>
         ///  identifies the category to which the entry or feed belongs
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "term")]
-        [Newtonsoft.Json.JsonProperty("term")]
+        [XmlAttribute(AttributeName = "term")]
+        [JsonProperty("term")]
         public string Term
         {
             get
@@ -59,8 +60,8 @@ namespace Gx.Atom
         /// <summary>
         ///  a human-readable label for display in end-user applications
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "label")]
-        [Newtonsoft.Json.JsonProperty("label")]
+        [XmlAttribute(AttributeName = "label")]
+        [JsonProperty("label")]
         public string Label
         {
             get

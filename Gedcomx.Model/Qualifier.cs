@@ -7,6 +7,7 @@ using Gx.Types;
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 
 namespace Gx.Common
 {
@@ -50,8 +51,8 @@ namespace Gx.Common
             SetName(XmlQNameEnumUtil.GetNameValue(name));
         }
 
-        [System.Xml.Serialization.XmlAttribute(AttributeName = "name", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("name")]
+        [XmlAttribute(AttributeName = "name", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("name")]
         public string Name
         {
             get
@@ -67,8 +68,8 @@ namespace Gx.Common
         /// <summary>
         ///  The value of the qualifier.
         /// </summary>
-        [System.Xml.Serialization.XmlTextAttribute()]
-        [Newtonsoft.Json.JsonProperty("value")]
+        [XmlTextAttribute()]
+        [JsonProperty("value")]
         public string Value
         {
             get

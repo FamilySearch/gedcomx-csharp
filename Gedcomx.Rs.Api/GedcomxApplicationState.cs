@@ -1,5 +1,5 @@
 using System;
-using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using RestSharp;
 using System.Text;
@@ -8,7 +8,6 @@ using Gx.Rs.Api.Util;
 using Gx.Links;
 using System.Net;
 using System.Linq;
-using Newtonsoft.Json;
 using Gx.Records;
 using Gx.Common;
 using Gedcomx.Model;

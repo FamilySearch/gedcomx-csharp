@@ -7,7 +7,9 @@ using Gx.Types;
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Gx.Records
 {
@@ -32,8 +34,8 @@ namespace Gx.Records
         /// <summary>
         ///  A completeness factor for this content aspect, a value between 0 and 1.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "completeness", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("completeness")]
+        [XmlElement(ElementName = "completeness", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("completeness")]
         public float Completeness
         {
             get
@@ -50,9 +52,9 @@ namespace Gx.Records
         /// <summary>
         ///  Property for the XML serializer indicating whether the "Completeness" property should be included in the output.
         /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute]
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
-        [Newtonsoft.Json.JsonIgnore]
+        [XmlIgnore]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [JsonIgnore]
         public bool CompletenessSpecified
         {
             get
@@ -68,8 +70,8 @@ namespace Gx.Records
         /// <summary>
         ///  The count of the items applicable to this content aspect.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "count", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("count")]
+        [XmlElement(ElementName = "count", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("count")]
         public int Count
         {
             get
@@ -86,9 +88,9 @@ namespace Gx.Records
         /// <summary>
         ///  Property for the XML serializer indicating whether the "Count" property should be included in the output.
         /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute]
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
-        [Newtonsoft.Json.JsonIgnore]
+        [XmlIgnore]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [JsonIgnore]
         public bool CountSpecified
         {
             get
@@ -104,8 +106,8 @@ namespace Gx.Records
         /// <summary>
         ///  The type of resource being covered in this collection.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "resourceType", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("resourceType")]
+        [XmlElement(ElementName = "resourceType", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("resourceType")]
         public string ResourceType
         {
             get
@@ -124,8 +126,8 @@ namespace Gx.Records
          * @return this.
          */
 
-        [System.Xml.Serialization.XmlIgnoreAttribute]
-        [Newtonsoft.Json.JsonIgnore]
+        [XmlIgnore]
+        [JsonIgnore]
         public Gx.Types.ResourceType KnownResourceType
         {
             get

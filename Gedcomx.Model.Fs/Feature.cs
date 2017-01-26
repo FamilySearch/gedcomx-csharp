@@ -6,7 +6,9 @@ using Gedcomx.Model.Util;
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Gx.Fs
 {
@@ -31,8 +33,8 @@ namespace Gx.Fs
         /// <summary>
         ///  The name of the feature.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "name", Namespace = "http://familysearch.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("name")]
+        [XmlElement(ElementName = "name", Namespace = "http://familysearch.org/v1/")]
+        [JsonProperty("name")]
         public string Name
         {
             get
@@ -47,8 +49,8 @@ namespace Gx.Fs
         /// <summary>
         ///  A description of the feature.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "description", Namespace = "http://familysearch.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("description")]
+        [XmlElement(ElementName = "description", Namespace = "http://familysearch.org/v1/")]
+        [JsonProperty("description")]
         public string Description
         {
             get
@@ -63,8 +65,8 @@ namespace Gx.Fs
         /// <summary>
         ///  Whether the feature is enabled for the current request.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "enabled", Namespace = "http://familysearch.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("enabled")]
+        [XmlElement(ElementName = "enabled", Namespace = "http://familysearch.org/v1/")]
+        [JsonProperty("enabled")]
         public bool Enabled
         {
             get
@@ -81,9 +83,9 @@ namespace Gx.Fs
         /// <summary>
         ///  Property for the XML serializer indicating whether the "Enabled" property should be included in the output.
         /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute]
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
-        [Newtonsoft.Json.JsonIgnore]
+        [XmlIgnore]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [JsonIgnore]
         public bool EnabledSpecified
         {
             get
@@ -99,9 +101,9 @@ namespace Gx.Fs
         /// <summary>
         ///  The date that this feature is scheduled to activate permanently.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "activationDate", Namespace = "http://familysearch.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("activationDate")]
-        [Newtonsoft.Json.JsonConverter(typeof(JsonUnixTimestampConverter))]
+        [XmlElement(ElementName = "activationDate", Namespace = "http://familysearch.org/v1/")]
+        [JsonProperty("activationDate")]
+        [JsonConverter(typeof(JsonUnixTimestampConverter))]
         public DateTime ActivationDate
         {
             get
@@ -118,9 +120,9 @@ namespace Gx.Fs
         /// <summary>
         ///  Property for the XML serializer indicating whether the "ActivationDate" property should be included in the output.
         /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute]
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
-        [Newtonsoft.Json.JsonIgnore]
+        [XmlIgnore]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [JsonIgnore]
         public bool ActivationDateSpecified
         {
             get

@@ -6,6 +6,7 @@ using Newtonsoft.Json.Linq;
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Gx.Atom
@@ -28,8 +29,8 @@ namespace Gx.Atom
         /// <summary>
         ///  Custom extension elements.
         /// </summary>
-        [System.Xml.Serialization.XmlAnyElementAttribute()]
-        [Newtonsoft.Json.JsonIgnore]
+        [XmlAnyElementAttribute()]
+        [JsonIgnore]
         public List<Object> ExtensionElementsXml
         {
             get
@@ -45,8 +46,8 @@ namespace Gx.Atom
         /// <summary>
         ///  Custom extension elements.
         /// </summary>
-        [System.Xml.Serialization.XmlIgnore()]
-        [Newtonsoft.Json.JsonExtensionData]
+        [XmlIgnore()]
+        [JsonExtensionData]
         public Dictionary<String, JToken> ExtensionElementsJson
         {
             get

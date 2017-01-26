@@ -7,7 +7,9 @@ using Gx.Common;
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Gx.Records
 {
@@ -33,8 +35,8 @@ namespace Gx.Records
         /// <summary>
         ///  The language of this description of the collection
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "lang", Namespace = "http://www.w3.org/XML/1998/namespace")]
-        [Newtonsoft.Json.JsonProperty("lang")]
+        [XmlAttribute(AttributeName = "lang", Namespace = "http://www.w3.org/XML/1998/namespace")]
+        [JsonProperty("lang")]
         public string Lang
         {
             get
@@ -49,8 +51,8 @@ namespace Gx.Records
         /// <summary>
         ///  A title for the collection.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "title", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("title")]
+        [XmlElement(ElementName = "title", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("title")]
         public string Title
         {
             get
@@ -65,8 +67,8 @@ namespace Gx.Records
         /// <summary>
         ///  The size of the collection, in terms of the number of items in this collection.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "size", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("size")]
+        [XmlElement(ElementName = "size", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("size")]
         public int Size
         {
             get
@@ -83,9 +85,9 @@ namespace Gx.Records
         /// <summary>
         ///  Property for the XML serializer indicating whether the "Size" property should be included in the output.
         /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute]
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
-        [Newtonsoft.Json.JsonIgnore]
+        [XmlIgnore]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [JsonIgnore]
         public bool SizeSpecified
         {
             get
@@ -101,8 +103,8 @@ namespace Gx.Records
         /// <summary>
         ///  Descriptions of the content of this collection.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "content", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("content")]
+        [XmlElement(ElementName = "content", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("content")]
         public List<Gx.Records.CollectionContent> Content
         {
             get
@@ -117,8 +119,8 @@ namespace Gx.Records
         /// <summary>
         ///  Attribution metadata for this collection.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "attribution", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("attribution")]
+        [XmlElement(ElementName = "attribution", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("attribution")]
         public Gx.Common.Attribution Attribution
         {
             get

@@ -11,6 +11,7 @@ using System.Xml.Serialization;
 using System.Collections.Generic;
 using System.Linq;
 using Gedcomx.Model.Util;
+using System.ComponentModel;
 
 namespace Gx.Atom
 {
@@ -46,8 +47,8 @@ namespace Gx.Atom
         /// <summary>
         ///  The author of the entry.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "author", Namespace = "http://www.w3.org/2005/Atom")]
-        [Newtonsoft.Json.JsonProperty("authors")]
+        [XmlElement(ElementName = "author", Namespace = "http://www.w3.org/2005/Atom")]
+        [JsonProperty("authors")]
         public List<Gx.Atom.Person> Authors
         {
             get
@@ -62,8 +63,8 @@ namespace Gx.Atom
         /// <summary>
         ///  information about a category associated with an entry.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "category", Namespace = "http://www.w3.org/2005/Atom")]
-        [Newtonsoft.Json.JsonProperty("categories")]
+        [XmlElement(ElementName = "category", Namespace = "http://www.w3.org/2005/Atom")]
+        [JsonProperty("categories")]
         public List<Gx.Atom.Category> Categories
         {
             get
@@ -78,8 +79,8 @@ namespace Gx.Atom
         /// <summary>
         ///  The confidence of the result, if this entry represents a search result.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "confidence", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("confidence")]
+        [XmlElement(ElementName = "confidence", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("confidence")]
         public Gx.Search.ResultConfidence Confidence
         {
             get
@@ -95,9 +96,9 @@ namespace Gx.Atom
         /// <summary>
         ///  Property for the XML serializer indicating whether the "Confidence" property should be included in the output.
         /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute]
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
-        [Newtonsoft.Json.JsonIgnore]
+        [XmlIgnore]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [JsonIgnore]
         public bool ConfidenceSpecified
         {
             get
@@ -115,8 +116,8 @@ namespace Gx.Atom
         /// <summary>
         ///  The content of the entry.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "content", Namespace = "http://www.w3.org/2005/Atom")]
-        [Newtonsoft.Json.JsonProperty("content")]
+        [XmlElement(ElementName = "content", Namespace = "http://www.w3.org/2005/Atom")]
+        [JsonProperty("content")]
         public Gx.Atom.Content Content
         {
             get
@@ -131,8 +132,8 @@ namespace Gx.Atom
         /// <summary>
         ///  information about a category associated with the entry
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "contributor", Namespace = "http://www.w3.org/2005/Atom")]
-        [Newtonsoft.Json.JsonProperty("contributors")]
+        [XmlElement(ElementName = "contributor", Namespace = "http://www.w3.org/2005/Atom")]
+        [JsonProperty("contributors")]
         public List<Gx.Atom.Person> Contributors
         {
             get
@@ -147,8 +148,8 @@ namespace Gx.Atom
         /// <summary>
         ///  a permanent, universally unique identifier for the entry.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "id", Namespace = "http://www.w3.org/2005/Atom")]
-        [Newtonsoft.Json.JsonProperty("id")]
+        [XmlElement(ElementName = "id", Namespace = "http://www.w3.org/2005/Atom")]
+        [JsonProperty("id")]
         public string Id
         {
             get
@@ -163,8 +164,8 @@ namespace Gx.Atom
         /// <summary>
         ///  a reference from a entry to a Web resource.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "link", Namespace = "http://www.w3.org/2005/Atom")]
-        [Newtonsoft.Json.JsonProperty("links")]
+        [XmlElement(ElementName = "link", Namespace = "http://www.w3.org/2005/Atom")]
+        [JsonProperty("links")]
         [JsonConverter(typeof(JsonHypermediaLinksConverter))]
         public List<Gx.Links.Link> Links
         {
@@ -180,8 +181,8 @@ namespace Gx.Atom
         /// <summary>
         ///  instant in time associated with an event early in the life cycle of the entry.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "published", Namespace = "http://www.w3.org/2005/Atom")]
-        [Newtonsoft.Json.JsonProperty("published")]
+        [XmlElement(ElementName = "published", Namespace = "http://www.w3.org/2005/Atom")]
+        [JsonProperty("published")]
         public DateTime Published
         {
             get
@@ -198,9 +199,9 @@ namespace Gx.Atom
         /// <summary>
         ///  Property for the XML serializer indicating whether the "Published" property should be included in the output.
         /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute]
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
-        [Newtonsoft.Json.JsonIgnore]
+        [XmlIgnore]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [JsonIgnore]
         public bool PublishedSpecified
         {
             get
@@ -216,8 +217,8 @@ namespace Gx.Atom
         /// <summary>
         ///  information about rights held in and over the entry.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "rights", Namespace = "http://www.w3.org/2005/Atom")]
-        [Newtonsoft.Json.JsonProperty("rights")]
+        [XmlElement(ElementName = "rights", Namespace = "http://www.w3.org/2005/Atom")]
+        [JsonProperty("rights")]
         public string Rights
         {
             get
@@ -232,8 +233,8 @@ namespace Gx.Atom
         /// <summary>
         ///  The relevance score.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "score", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("score")]
+        [XmlElement(ElementName = "score", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("score")]
         public float Score
         {
             get
@@ -250,9 +251,9 @@ namespace Gx.Atom
         /// <summary>
         ///  Property for the XML serializer indicating whether the "Score" property should be included in the output.
         /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute]
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
-        [Newtonsoft.Json.JsonIgnore]
+        [XmlIgnore]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [JsonIgnore]
         public bool ScoreSpecified
         {
             get
@@ -268,8 +269,8 @@ namespace Gx.Atom
         /// <summary>
         ///  a human-readable title for the entry
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "title", Namespace = "http://www.w3.org/2005/Atom")]
-        [Newtonsoft.Json.JsonProperty("title")]
+        [XmlElement(ElementName = "title", Namespace = "http://www.w3.org/2005/Atom")]
+        [JsonProperty("title")]
         public string Title
         {
             get
@@ -284,8 +285,8 @@ namespace Gx.Atom
         /// <summary>
         ///  the most recent instant in time when the entry was modified in a way the publisher considers significant.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "updated", Namespace = "http://www.w3.org/2005/Atom")]
-        [Newtonsoft.Json.JsonProperty("updated")]
+        [XmlElement(ElementName = "updated", Namespace = "http://www.w3.org/2005/Atom")]
+        [JsonProperty("updated")]
         [JsonConverter(typeof(JsonUnixTimestampConverter))]
         public DateTime Updated
         {
@@ -303,9 +304,9 @@ namespace Gx.Atom
         /// <summary>
         ///  Property for the XML serializer indicating whether the "Updated" property should be included in the output.
         /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute]
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
-        [Newtonsoft.Json.JsonIgnore]
+        [XmlIgnore]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [JsonIgnore]
         public bool UpdatedSpecified
         {
             get
@@ -322,7 +323,7 @@ namespace Gx.Atom
         /// <summary>
         ///  The other attributes.
         /// </summary>
-        [System.Xml.Serialization.XmlAnyAttributeAttribute()]
+        [XmlAnyAttributeAttribute()]
         public System.Xml.XmlAttribute[] OtherAttributes
         {
             get

@@ -29,8 +29,8 @@ namespace Gx.Links
         /// <summary>
         ///  The list of hypermedia links. Links are not specified by GEDCOM X core, but as extension elements by GEDCOM X RS.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "link", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("links")]
+        [XmlElement(ElementName = "link", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("links")]
         [JsonConverter(typeof(JsonHypermediaLinksConverter))]
         public List<Gx.Links.Link> Links
         {

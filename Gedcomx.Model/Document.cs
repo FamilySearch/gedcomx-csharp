@@ -9,7 +9,9 @@ using Gx.Types;
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Gx.Conclusion
 {
@@ -23,7 +25,7 @@ namespace Gx.Conclusion
     [Serializable]
     [XmlType(Namespace = "http://gedcomx.org/v1/", TypeName = "Document")]
     [XmlRoot(Namespace = "http://gedcomx.org/v1/", ElementName = "document")]
-    [Newtonsoft.Json.JsonObject("documents")]
+    [JsonObject("documents")]
     public partial class Document : Gx.Conclusion.Conclusion, IAttributable
     {
 
@@ -35,8 +37,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The text type of the document.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "textType")]
-        [Newtonsoft.Json.JsonProperty("textType")]
+        [XmlAttribute(AttributeName = "textType")]
+        [JsonProperty("textType")]
         public string TextType
         {
             get
@@ -51,8 +53,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  Whether this document has been identified as &quot;extracted&quot;.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "extracted")]
-        [Newtonsoft.Json.JsonProperty("extracted")]
+        [XmlAttribute(AttributeName = "extracted")]
+        [JsonProperty("extracted")]
         public bool Extracted
         {
             get
@@ -69,9 +71,9 @@ namespace Gx.Conclusion
         /// <summary>
         ///  Property for the XML serializer indicating whether the "Extracted" property should be included in the output.
         /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute]
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
-        [Newtonsoft.Json.JsonIgnore]
+        [XmlIgnore]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [JsonIgnore]
         public bool ExtractedSpecified
         {
             get
@@ -87,8 +89,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The type of the document.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "type")]
-        [Newtonsoft.Json.JsonProperty("type")]
+        [XmlAttribute(AttributeName = "type")]
+        [JsonProperty("type")]
         public string Type
         {
             get
@@ -104,8 +106,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  Convenience property for treating Type as an enum. See Gx.Types.DocumentTypeQNameUtil for details on getter/setter functionality.
         /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute]
-        [Newtonsoft.Json.JsonIgnore]
+        [XmlIgnore]
+        [JsonIgnore]
         public Gx.Types.DocumentType KnownType
         {
             get
@@ -120,8 +122,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The document text.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "text", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("text")]
+        [XmlElement(ElementName = "text", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("text")]
         public string Text
         {
             get

@@ -5,6 +5,7 @@ using Gx.Source;
 using RestSharp;
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

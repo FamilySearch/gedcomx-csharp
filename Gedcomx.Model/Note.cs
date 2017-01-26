@@ -6,6 +6,7 @@ using Gedcomx.Model.Rt;
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Gx.Common
@@ -30,8 +31,8 @@ namespace Gx.Common
         /// <summary>
         ///  The language of the note.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "lang", Namespace = "http://www.w3.org/XML/1998/namespace")]
-        [Newtonsoft.Json.JsonProperty("lang")]
+        [XmlAttribute(AttributeName = "lang", Namespace = "http://www.w3.org/XML/1998/namespace")]
+        [JsonProperty("lang")]
         public string Lang
         {
             get
@@ -46,8 +47,8 @@ namespace Gx.Common
         /// <summary>
         ///  The subject of the note.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "subject", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("subject")]
+        [XmlElement(ElementName = "subject", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("subject")]
         public string Subject
         {
             get
@@ -62,8 +63,8 @@ namespace Gx.Common
         /// <summary>
         ///  The text of the note.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "text", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("text")]
+        [XmlElement(ElementName = "text", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("text")]
         public string Text
         {
             get
@@ -78,8 +79,8 @@ namespace Gx.Common
         /// <summary>
         ///  Attribution metadata for a note.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "attribution", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("attribution")]
+        [XmlElement(ElementName = "attribution", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("attribution")]
         public Gx.Common.Attribution Attribution
         {
             get

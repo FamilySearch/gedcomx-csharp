@@ -5,6 +5,7 @@
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Gx.Fs.Artifacts
@@ -22,49 +23,49 @@ namespace Gx.Fs.Artifacts
         /// <summary>
         ///  Unspecified enum value.
         /// </summary>
-        [System.Xml.Serialization.XmlEnumAttribute(Name = "__NULL__")]
+        [XmlEnumAttribute(Name = "__NULL__")]
         NULL,
 
         /// <summary>
         ///   The artifact is an audio.
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://familysearch.org/v1/Audio")]
+        [XmlEnum("http://familysearch.org/v1/Audio")]
         Audio,
 
         /// <summary>
         ///   The artifact is an image of a document.
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://familysearch.org/v1/Document")]
+        [XmlEnum("http://familysearch.org/v1/Document")]
         Document,
 
         /// <summary>
         ///   The artifact is an image.
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://familysearch.org/v1/Image")]
+        [XmlEnum("http://familysearch.org/v1/Image")]
         Image,
 
         /// <summary>
         ///   The artifact is a portrait.
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://familysearch.org/v1/Portrait")]
+        [XmlEnum("http://familysearch.org/v1/Portrait")]
         Portrait,
 
         /// <summary>
         ///   The artifact is a story.
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://familysearch.org/v1/Story")]
+        [XmlEnum("http://familysearch.org/v1/Story")]
         Story,
 
         /// <summary>
         ///   The artifact is a video.
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://familysearch.org/v1/Video")]
+        [XmlEnum("http://familysearch.org/v1/Video")]
         Video,
 
         /// <summary>
         ///   Custom
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/OTHER")]
+        [XmlEnum("http://gedcomx.org/OTHER")]
         OTHER
     }
 }

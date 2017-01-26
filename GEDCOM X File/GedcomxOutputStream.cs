@@ -1,6 +1,7 @@
 ﻿using Gedcomx.Support;
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;

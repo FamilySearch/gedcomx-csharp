@@ -5,6 +5,7 @@
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Gx.Atom
@@ -29,8 +30,8 @@ namespace Gx.Atom
         /// <summary>
         ///  The base.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "base")]
-        [Newtonsoft.Json.JsonProperty("base")]
+        [XmlAttribute(AttributeName = "base")]
+        [JsonProperty("base")]
         public string Base
         {
             get
@@ -45,8 +46,8 @@ namespace Gx.Atom
         /// <summary>
         ///  link to a representation that is relevant to the generating agent.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "uri")]
-        [Newtonsoft.Json.JsonProperty("uri")]
+        [XmlAttribute(AttributeName = "uri")]
+        [JsonProperty("uri")]
         public string Uri
         {
             get
@@ -61,8 +62,8 @@ namespace Gx.Atom
         /// <summary>
         ///  The language.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "lang", Namespace = "http://www.w3.org/XML/1998/namespace")]
-        [Newtonsoft.Json.JsonProperty("lang")]
+        [XmlAttribute(AttributeName = "lang", Namespace = "http://www.w3.org/XML/1998/namespace")]
+        [JsonProperty("lang")]
         public string Lang
         {
             get
@@ -77,8 +78,8 @@ namespace Gx.Atom
         /// <summary>
         ///  the version of the generating agent
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "version")]
-        [Newtonsoft.Json.JsonProperty("version")]
+        [XmlAttribute(AttributeName = "version")]
+        [JsonProperty("version")]
         public string Version
         {
             get
@@ -93,8 +94,8 @@ namespace Gx.Atom
         /// <summary>
         ///  human-readable name for the generating agent
         /// </summary>
-        [System.Xml.Serialization.XmlTextAttribute()]
-        [Newtonsoft.Json.JsonProperty("value")]
+        [XmlTextAttribute()]
+        [JsonProperty("value")]
         public string Value
         {
             get

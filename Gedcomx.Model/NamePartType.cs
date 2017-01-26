@@ -5,6 +5,7 @@
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Gx.Types {
@@ -20,37 +21,37 @@ namespace Gx.Types {
     /// <summary>
     ///  Unspecified enum value.
     /// </summary>
-    [System.Xml.Serialization.XmlEnumAttribute(Name="__NULL__")]
+    [XmlEnumAttribute(Name="__NULL__")]
     NULL,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
-    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Prefix")]
+    [XmlEnum("http://gedcomx.org/Prefix")]
     Prefix,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
-    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Suffix")]
+    [XmlEnum("http://gedcomx.org/Suffix")]
     Suffix,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
-    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Given")]
+    [XmlEnum("http://gedcomx.org/Given")]
     Given,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
-    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Surname")]
+    [XmlEnum("http://gedcomx.org/Surname")]
     Surname,
 
     /// <summary>
     ///  (no documentation provided)
     /// </summary>
-    [System.Xml.Serialization.XmlEnum("http://gedcomx.org/OTHER")]
+    [XmlEnum("http://gedcomx.org/OTHER")]
     OTHER
   }
 }

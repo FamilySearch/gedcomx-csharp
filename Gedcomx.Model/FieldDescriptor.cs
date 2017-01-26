@@ -6,6 +6,7 @@ using Gx.Common;
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Gx.Records
@@ -28,8 +29,8 @@ namespace Gx.Records
         /// <summary>
         ///  The original label for the field, as stated on the original record.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "originalLabel", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("originalLabel")]
+        [XmlElement(ElementName = "originalLabel", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("originalLabel")]
         public string OriginalLabel
         {
             get
@@ -44,8 +45,8 @@ namespace Gx.Records
         /// <summary>
         ///  The description of the field.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "description", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("descriptions")]
+        [XmlElement(ElementName = "description", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("descriptions")]
         public List<Gx.Common.TextValue> Descriptions
         {
             get
@@ -60,8 +61,8 @@ namespace Gx.Records
         /// <summary>
         ///  Descriptors of the values that are applicable to the field.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "value", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("values")]
+        [XmlElement(ElementName = "value", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("values")]
         public List<Gx.Records.FieldValueDescriptor> Values
         {
             get

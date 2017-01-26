@@ -5,6 +5,7 @@
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Gx.Source
@@ -26,8 +27,8 @@ namespace Gx.Source
         /// <summary>
         ///  The citation field's name.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "name")]
-        [Newtonsoft.Json.JsonProperty("name")]
+        [XmlAttribute(AttributeName = "name")]
+        [JsonProperty("name")]
         public string Name
         {
             get
@@ -42,8 +43,8 @@ namespace Gx.Source
         /// <summary>
         ///  The citation field's value.
         /// </summary>
-        [System.Xml.Serialization.XmlTextAttribute()]
-        [Newtonsoft.Json.JsonProperty("value")]
+        [XmlTextAttribute()]
+        [JsonProperty("value")]
         public string Value
         {
             get

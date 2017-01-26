@@ -10,6 +10,7 @@ using Gx.Types;
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Gx.Conclusion
@@ -48,8 +49,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The value of the name part.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "value")]
-        [Newtonsoft.Json.JsonProperty("value")]
+        [XmlAttribute(AttributeName = "value")]
+        [JsonProperty("value")]
         public string Value
         {
             get
@@ -64,8 +65,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The type of the name part.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "type")]
-        [Newtonsoft.Json.JsonProperty("type")]
+        [XmlAttribute(AttributeName = "type")]
+        [JsonProperty("type")]
         public string Type
         {
             get
@@ -81,8 +82,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  Convenience property for treating Type as an enum. See Gx.Types.NamePartTypeQNameUtil for details on getter/setter functionality.
         /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute]
-        [Newtonsoft.Json.JsonIgnore]
+        [XmlIgnore]
+        [JsonIgnore]
         public Gx.Types.NamePartType KnownType
         {
             get
@@ -97,8 +98,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The references to the record fields being used as evidence.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "field", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("fields")]
+        [XmlElement(ElementName = "field", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("fields")]
         public List<Gx.Records.Field> Fields
         {
             get
@@ -113,8 +114,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The qualifiers associated with this name part.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "qualifier", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("qualifiers")]
+        [XmlElement(ElementName = "qualifier", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("qualifiers")]
         public List<Gx.Common.Qualifier> Qualifiers
         {
             get

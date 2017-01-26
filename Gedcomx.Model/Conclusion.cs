@@ -9,6 +9,7 @@ using Gx.Types;
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Gx.Conclusion
@@ -34,8 +35,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The level of confidence the contributor has about the data.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "confidence")]
-        [Newtonsoft.Json.JsonProperty("confidence")]
+        [XmlAttribute(AttributeName = "confidence")]
+        [JsonProperty("confidence")]
         public string Confidence
         {
             get
@@ -51,8 +52,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  Convenience property for treating Confidence as an enum. See Gx.Types.ConfidenceLevelQNameUtil for details on getter/setter functionality.
         /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute]
-        [Newtonsoft.Json.JsonIgnore]
+        [XmlIgnore]
+        [JsonIgnore]
         public Gx.Types.ConfidenceLevel KnownConfidence
         {
             get
@@ -67,8 +68,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  A sort key in relation to other facts for display purposes.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "sortKey")]
-        [Newtonsoft.Json.JsonProperty("sortKey")]
+        [XmlAttribute(AttributeName = "sortKey")]
+        [JsonProperty("sortKey")]
         public string SortKey
         {
             get
@@ -83,8 +84,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The language of the conclusion.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "lang", Namespace = "http://www.w3.org/XML/1998/namespace")]
-        [Newtonsoft.Json.JsonProperty("lang")]
+        [XmlAttribute(AttributeName = "lang", Namespace = "http://www.w3.org/XML/1998/namespace")]
+        [JsonProperty("lang")]
         public string Lang
         {
             get
@@ -99,8 +100,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  Attribution metadata for a conclusion.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "attribution", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("attribution")]
+        [XmlElement(ElementName = "attribution", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("attribution")]
         public Gx.Common.Attribution Attribution
         {
             get
@@ -115,8 +116,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The source references for a conclusion.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "source", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("sources")]
+        [XmlElement(ElementName = "source", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("sources")]
         public List<Gx.Source.SourceReference> Sources
         {
             get
@@ -131,8 +132,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  A reference to the analysis document explaining the analysis that went into this conclusion.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "analysis", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("analysis")]
+        [XmlElement(ElementName = "analysis", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("analysis")]
         public Gx.Common.ResourceReference Analysis
         {
             get
@@ -147,8 +148,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  Notes about a person.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "note", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("notes")]
+        [XmlElement(ElementName = "note", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("notes")]
         public List<Gx.Common.Note> Notes
         {
             get

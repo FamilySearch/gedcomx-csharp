@@ -7,6 +7,7 @@ using Gx.Common;
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Gx.Source
@@ -30,8 +31,8 @@ namespace Gx.Source
         /// <summary>
         ///  The language of the note.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "lang", Namespace = "http://www.w3.org/XML/1998/namespace")]
-        [Newtonsoft.Json.JsonProperty("lang")]
+        [XmlAttribute(AttributeName = "lang", Namespace = "http://www.w3.org/XML/1998/namespace")]
+        [JsonProperty("lang")]
         public string Lang
         {
             get
@@ -46,8 +47,8 @@ namespace Gx.Source
         /// <summary>
         ///  A reference to the citation template for this citation.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "citationTemplate", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("citationTemplate")]
+        [XmlElement(ElementName = "citationTemplate", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("citationTemplate")]
         public Gx.Common.ResourceReference CitationTemplate
         {
             get
@@ -62,8 +63,8 @@ namespace Gx.Source
         /// <summary>
         ///  The list of citation fields.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "field", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("fields")]
+        [XmlElement(ElementName = "field", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("fields")]
         public List<Gx.Source.CitationField> Fields
         {
             get
@@ -78,8 +79,8 @@ namespace Gx.Source
         /// <summary>
         ///  A rendering (as a string) of a source citation.  This rendering should be the most complete rendering available.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "value", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("value")]
+        [XmlElement(ElementName = "value", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("value")]
         public string Value
         {
             get

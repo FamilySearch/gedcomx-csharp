@@ -5,6 +5,7 @@
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Gx.Fs
@@ -29,8 +30,8 @@ namespace Gx.Fs
         /// <summary>
         ///  (no documentation provided)
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "buildDate", Namespace = "http://familysearch.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("buildDate")]
+        [XmlElement(ElementName = "buildDate", Namespace = "http://familysearch.org/v1/")]
+        [JsonProperty("buildDate")]
         public string BuildDate
         {
             get
@@ -45,8 +46,8 @@ namespace Gx.Fs
         /// <summary>
         ///  (no documentation provided)
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "buildVersion", Namespace = "http://familysearch.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("buildVersion")]
+        [XmlElement(ElementName = "buildVersion", Namespace = "http://familysearch.org/v1/")]
+        [JsonProperty("buildVersion")]
         public string BuildVersion
         {
             get
@@ -61,8 +62,8 @@ namespace Gx.Fs
         /// <summary>
         ///  (no documentation provided)
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "databaseVersion", Namespace = "http://familysearch.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("databaseVersion")]
+        [XmlElement(ElementName = "databaseVersion", Namespace = "http://familysearch.org/v1/")]
+        [JsonProperty("databaseVersion")]
         public string DatabaseVersion
         {
             get
@@ -77,8 +78,8 @@ namespace Gx.Fs
         /// <summary>
         ///  (no documentation provided)
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "platformVersion", Namespace = "http://familysearch.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("platformVersion")]
+        [XmlElement(ElementName = "platformVersion", Namespace = "http://familysearch.org/v1/")]
+        [JsonProperty("platformVersion")]
         public string PlatformVersion
         {
             get

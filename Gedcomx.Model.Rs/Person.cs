@@ -5,6 +5,7 @@
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Gx.Atom
@@ -27,8 +28,8 @@ namespace Gx.Atom
         /// <summary>
         ///  a human-readable name for the person.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "name", Namespace = "http://www.w3.org/2005/Atom")]
-        [Newtonsoft.Json.JsonProperty("name")]
+        [XmlElement(ElementName = "name", Namespace = "http://www.w3.org/2005/Atom")]
+        [JsonProperty("name")]
         public string Name
         {
             get
@@ -43,8 +44,8 @@ namespace Gx.Atom
         /// <summary>
         ///  an IRI associated with the person.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "uri", Namespace = "http://www.w3.org/2005/Atom")]
-        [Newtonsoft.Json.JsonProperty("uri")]
+        [XmlElement(ElementName = "uri", Namespace = "http://www.w3.org/2005/Atom")]
+        [JsonProperty("uri")]
         public string Uri
         {
             get
@@ -59,8 +60,8 @@ namespace Gx.Atom
         /// <summary>
         ///  an e-mail address associated with the person.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "email", Namespace = "http://www.w3.org/2005/Atom")]
-        [Newtonsoft.Json.JsonProperty("email")]
+        [XmlElement(ElementName = "email", Namespace = "http://www.w3.org/2005/Atom")]
+        [JsonProperty("email")]
         public string Email
         {
             get

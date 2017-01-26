@@ -9,6 +9,7 @@ using Gx.Types;
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Gx.Conclusion
@@ -31,8 +32,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The role type.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "type")]
-        [Newtonsoft.Json.JsonProperty("type")]
+        [XmlAttribute(AttributeName = "type")]
+        [JsonProperty("type")]
         public string Type
         {
             get
@@ -48,8 +49,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  Convenience property for treating Type as an enum. See Gx.Types.EventRoleTypeQNameUtil for details on getter/setter functionality.
         /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute]
-        [Newtonsoft.Json.JsonIgnore]
+        [XmlIgnore]
+        [JsonIgnore]
         public Gx.Types.EventRoleType KnownType
         {
             get
@@ -64,8 +65,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  Reference to the person playing the role in the event.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "person", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("person")]
+        [XmlElement(ElementName = "person", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("person")]
         public Gx.Common.ResourceReference Person
         {
             get
@@ -80,8 +81,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  Details about the role of the person in the event.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "details", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("details")]
+        [XmlElement(ElementName = "details", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("details")]
         public string Details
         {
             get

@@ -6,6 +6,7 @@ using Gedcomx.Model.Util;
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Gx.Fs.Tree
@@ -28,8 +29,8 @@ namespace Gx.Fs.Tree
         /// <summary>
         ///  The way this match has been resolved.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "status")]
-        [Newtonsoft.Json.JsonProperty("status")]
+        [XmlAttribute(AttributeName = "status")]
+        [JsonProperty("status")]
         public string Status
         {
             get
@@ -45,8 +46,8 @@ namespace Gx.Fs.Tree
         /// <summary>
         ///  Convenience property for treating Status as an enum. See Gx.Fs.Tree.MatchStatusQNameUtil for details on getter/setter functionality.
         /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute]
-        [Newtonsoft.Json.JsonIgnore]
+        [XmlIgnore]
+        [JsonIgnore]
         public Gx.Fs.Tree.MatchStatus KnownStatus
         {
             get
@@ -61,8 +62,8 @@ namespace Gx.Fs.Tree
         /// <summary>
         ///  The collection in which this match was found.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "collection")]
-        [Newtonsoft.Json.JsonProperty("collection")]
+        [XmlAttribute(AttributeName = "collection")]
+        [JsonProperty("collection")]
         public string Collection
         {
             get

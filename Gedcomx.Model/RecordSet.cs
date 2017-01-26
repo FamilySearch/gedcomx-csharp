@@ -5,6 +5,7 @@
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Gx.Records
@@ -28,8 +29,8 @@ namespace Gx.Records
         /// <summary>
         ///  The language of the genealogical data.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "lang", Namespace = "http://www.w3.org/XML/1998/namespace")]
-        [Newtonsoft.Json.JsonProperty("lang")]
+        [XmlAttribute(AttributeName = "lang", Namespace = "http://www.w3.org/XML/1998/namespace")]
+        [JsonProperty("lang")]
         public string Lang
         {
             get
@@ -44,8 +45,8 @@ namespace Gx.Records
         /// <summary>
         ///  Metadata about this record set; shared among all records in the set.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "metadata", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("metadata")]
+        [XmlElement(ElementName = "metadata", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("metadata")]
         public Gx.Gedcomx Metadata
         {
             get
@@ -60,8 +61,8 @@ namespace Gx.Records
         /// <summary>
         ///  The records included in this genealogical data set.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "record", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("records")]
+        [XmlElement(ElementName = "record", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("records")]
         public List<Gx.Gedcomx> Records
         {
             get

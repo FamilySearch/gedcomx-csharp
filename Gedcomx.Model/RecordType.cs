@@ -5,6 +5,7 @@
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Gx.Types
@@ -22,283 +23,283 @@ namespace Gx.Types
         /// <summary>
         ///  Unspecified enum value.
         /// </summary>
-        [System.Xml.Serialization.XmlEnumAttribute(Name = "__NULL__")]
+        [XmlEnumAttribute(Name = "__NULL__")]
         NULL,
 
         /// <summary>
         ///   A record of a person's admission to an institution, society, or other association.
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Admission")]
+        [XmlEnum("http://gedcomx.org/Admission")]
         Admission,
 
         /// <summary>
         ///   A record of an adoption.
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Adoption")]
+        [XmlEnum("http://gedcomx.org/Adoption")]
         Adoption,
 
         /// <summary>
         ///   An affidavit.
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Affidavit")]
+        [XmlEnum("http://gedcomx.org/Affidavit")]
         Affidavit,
 
         /// <summary>
         ///   A person's application to an institution, society or other association.
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Application")]
+        [XmlEnum("http://gedcomx.org/Application")]
         Application,
 
         /// <summary>
         ///   A record of a person's arrival at a certain place.
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Arrival")]
+        [XmlEnum("http://gedcomx.org/Arrival")]
         Arrival,
 
         /// <summary>
         ///   A bank record.
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Bank")]
+        [XmlEnum("http://gedcomx.org/Bank")]
         Bank,
 
         /// <summary>
         ///   A record of a person's baptism.
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Baptism")]
+        [XmlEnum("http://gedcomx.org/Baptism")]
         Baptism,
 
         /// <summary>
         ///   A record of a birth.
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Birth")]
+        [XmlEnum("http://gedcomx.org/Birth")]
         Birth,
 
         /// <summary>
         ///   A record of a person's burial or interment.
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Burial")]
+        [XmlEnum("http://gedcomx.org/Burial")]
         Burial,
 
         /// <summary>
         ///   todo: document this type.
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Business")]
+        [XmlEnum("http://gedcomx.org/Business")]
         Business,
 
         /// <summary>
         ///   todo: document this type.
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Cemetery")]
+        [XmlEnum("http://gedcomx.org/Cemetery")]
         Cemetery,
 
         /// <summary>
         ///   A census record.
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Census")]
+        [XmlEnum("http://gedcomx.org/Census")]
         Census,
 
         /// <summary>
         ///   A record of a person's christening.
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Christening")]
+        [XmlEnum("http://gedcomx.org/Christening")]
         Christening,
 
         /// <summary>
         ///   A record of a person's confirmation.
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Confirmation")]
+        [XmlEnum("http://gedcomx.org/Confirmation")]
         Confirmation,
 
         /// <summary>
         ///   todo: document this type.
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Correspondence")]
+        [XmlEnum("http://gedcomx.org/Correspondence")]
         Correspondence,
 
         /// <summary>
         ///   A death record.
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Death")]
+        [XmlEnum("http://gedcomx.org/Death")]
         Death,
 
         /// <summary>
         ///   A record of a person's departure from a certain place.
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Departure")]
+        [XmlEnum("http://gedcomx.org/Departure")]
         Departure,
 
         /// <summary>
         ///   A divorce record.
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Divorce")]
+        [XmlEnum("http://gedcomx.org/Divorce")]
         Divorce,
 
         /// <summary>
         ///   todo: document this type.
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Duplicate")]
+        [XmlEnum("http://gedcomx.org/Duplicate")]
         Duplicate,
 
         /// <summary>
         ///   A draft record.
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Draft")]
+        [XmlEnum("http://gedcomx.org/Draft")]
         Draft,
 
         /// <summary>
         ///   todo: document this type.
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Estate")]
+        [XmlEnum("http://gedcomx.org/Estate")]
         Estate,
 
         /// <summary>
         ///   todo: document this type.
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Index")]
+        [XmlEnum("http://gedcomx.org/Index")]
         Index,
 
         /// <summary>
         ///   todo: document this type. what's the difference between this an MarrigeBanns?
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/IntendedMarriage")]
+        [XmlEnum("http://gedcomx.org/IntendedMarriage")]
         IntendedMarriage,
 
         /// <summary>
         ///   A land record.
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Land")]
+        [XmlEnum("http://gedcomx.org/Land")]
         Land,
 
         /// <summary>
         ///   A legal record.
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Legal")]
+        [XmlEnum("http://gedcomx.org/Legal")]
         Legal,
 
         /// <summary>
         ///   A marriage record.
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Marriage")]
+        [XmlEnum("http://gedcomx.org/Marriage")]
         Marriage,
 
         /// <summary>
         ///   A marriage affadavit. todo: is this distinguishment necessary? why not just use Marriage?
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/MarriageAffidavit")]
+        [XmlEnum("http://gedcomx.org/MarriageAffidavit")]
         MarriageAffidavit,
 
         /// <summary>
         ///   todo: document this type.
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/MarriageAmendment")]
+        [XmlEnum("http://gedcomx.org/MarriageAmendment")]
         MarriageAmendment,
 
         /// <summary>
         ///   A record of a person's banns of marriage.
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/MarriageBanns")]
+        [XmlEnum("http://gedcomx.org/MarriageBanns")]
         MarriageBanns,
 
         /// <summary>
         ///   todo: document this type. why not just use marriage banns?
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/MarriageConsent")]
+        [XmlEnum("http://gedcomx.org/MarriageConsent")]
         MarriageConsent,
 
         /// <summary>
         ///   todo: document this type.
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/MarriageDuplicate")]
+        [XmlEnum("http://gedcomx.org/MarriageDuplicate")]
         MarriageDuplicate,
 
         /// <summary>
         ///   A marriage license. todo: is this distinguishment necessary? why not just use Marriage?
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/MarriageLicense")]
+        [XmlEnum("http://gedcomx.org/MarriageLicense")]
         MarriageLicense,
 
         /// <summary>
         ///   todo: document this type. is this distinguishment necessary? why not just use Marriage?
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/MarriageReturns")]
+        [XmlEnum("http://gedcomx.org/MarriageReturns")]
         MarriageReturns,
 
         /// <summary>
         ///   todo: document this type. is this distinguishment necessary?
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Membership")]
+        [XmlEnum("http://gedcomx.org/Membership")]
         Membership,
 
         /// <summary>
         ///   A migration record.
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Migration")]
+        [XmlEnum("http://gedcomx.org/Migration")]
         Migration,
 
         /// <summary>
         ///   A military record.
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Military")]
+        [XmlEnum("http://gedcomx.org/Military")]
         Military,
 
         /// <summary>
         ///   A naturalization record.
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Naturalization")]
+        [XmlEnum("http://gedcomx.org/Naturalization")]
         Naturalization,
 
         /// <summary>
         ///   A passenger record.
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Passenger")]
+        [XmlEnum("http://gedcomx.org/Passenger")]
         Passenger,
 
         /// <summary>
         ///   A pension record.
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Pension")]
+        [XmlEnum("http://gedcomx.org/Pension")]
         Pension,
 
         /// <summary>
         ///   A probate record.
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Probate")]
+        [XmlEnum("http://gedcomx.org/Probate")]
         Probate,
 
         /// <summary>
         ///   todo: document this type.
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/RelatedDocument")]
+        [XmlEnum("http://gedcomx.org/RelatedDocument")]
         RelatedDocument,
 
         /// <summary>
         ///   todo: document this type.
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/ReligiousCreeds")]
+        [XmlEnum("http://gedcomx.org/ReligiousCreeds")]
         ReligiousCreeds,
 
         /// <summary>
         ///   A roll.
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Roll")]
+        [XmlEnum("http://gedcomx.org/Roll")]
         Roll,
 
         /// <summary>
         ///   A tax record.
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Tax")]
+        [XmlEnum("http://gedcomx.org/Tax")]
         Tax,
 
         /// <summary>
         ///   A vital record.
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Vital")]
+        [XmlEnum("http://gedcomx.org/Vital")]
         Vital,
 
         /// <summary>
         ///   Custom
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/OTHER")]
+        [XmlEnum("http://gedcomx.org/OTHER")]
         OTHER
     }
 }

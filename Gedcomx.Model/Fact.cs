@@ -10,7 +10,9 @@ using Gx.Types;
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Gx.Conclusion
 {
@@ -65,8 +67,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  Whether this fact is the primary fact of the record from which the subject was extracted.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "primary")]
-        [Newtonsoft.Json.JsonProperty("primary")]
+        [XmlAttribute(AttributeName = "primary")]
+        [JsonProperty("primary")]
         public bool Primary
         {
             get
@@ -83,9 +85,9 @@ namespace Gx.Conclusion
         /// <summary>
         ///  Property for the XML serializer indicating whether the "Primary" property should be included in the output.
         /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute]
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
-        [Newtonsoft.Json.JsonIgnore]
+        [XmlIgnore]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [JsonIgnore]
         public bool PrimarySpecified
         {
             get
@@ -101,8 +103,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The type of the fact.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "type")]
-        [Newtonsoft.Json.JsonProperty("type")]
+        [XmlAttribute(AttributeName = "type")]
+        [JsonProperty("type")]
         public string Type
         {
             get
@@ -118,8 +120,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  Convenience property for treating Type as an enum. See Gx.Types.FactTypeQNameUtil for details on getter/setter functionality.
         /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute]
-        [Newtonsoft.Json.JsonIgnore]
+        [XmlIgnore]
+        [JsonIgnore]
         public Gx.Types.FactType KnownType
         {
             get
@@ -134,8 +136,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The date of applicability of this fact.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "date", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("date")]
+        [XmlElement(ElementName = "date", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("date")]
         public Gx.Conclusion.DateInfo Date
         {
             get
@@ -150,8 +152,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The place of applicability of this fact.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "place", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("place")]
+        [XmlElement(ElementName = "place", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("place")]
         public Gx.Conclusion.PlaceReference Place
         {
             get
@@ -166,8 +168,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The value as supplied by the user.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "value", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("value")]
+        [XmlElement(ElementName = "value", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("value")]
         public string Value
         {
             get
@@ -182,8 +184,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The qualifiers associated with this fact.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "qualifier", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("qualifiers")]
+        [XmlElement(ElementName = "qualifier", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("qualifiers")]
         public List<Gx.Common.Qualifier> Qualifiers
         {
             get
@@ -198,8 +200,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The references to the record fields being used as evidence.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "field", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("fields")]
+        [XmlElement(ElementName = "field", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("fields")]
         public List<Gx.Records.Field> Fields
         {
             get

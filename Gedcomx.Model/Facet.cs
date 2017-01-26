@@ -7,6 +7,7 @@ using Gx.Types;
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Gx.Records
@@ -31,8 +32,8 @@ namespace Gx.Records
         /// <summary>
         ///  The type of the facet.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "type")]
-        [Newtonsoft.Json.JsonProperty("type")]
+        [XmlAttribute(AttributeName = "type")]
+        [JsonProperty("type")]
         public string Type
         {
             get
@@ -48,8 +49,8 @@ namespace Gx.Records
         /// <summary>
         ///  Convenience property for treating Type as an enum. See Gx.Types.FacetTypeQNameUtil for details on getter/setter functionality.
         /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute]
-        [Newtonsoft.Json.JsonIgnore]
+        [XmlIgnore]
+        [JsonIgnore]
         public Gx.Types.FacetType KnownType
         {
             get
@@ -64,8 +65,8 @@ namespace Gx.Records
         /// <summary>
         ///  A title for the facet.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "title", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("title")]
+        [XmlElement(ElementName = "title", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("title")]
         public string Title
         {
             get
@@ -80,8 +81,8 @@ namespace Gx.Records
         /// <summary>
         ///  A key unique within the context of this facet, used to apply the facet.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "key", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("key")]
+        [XmlElement(ElementName = "key", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("key")]
         public string Key
         {
             get
@@ -96,8 +97,8 @@ namespace Gx.Records
         /// <summary>
         ///  The set of sub-facets of this facet.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "facet", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("facets")]
+        [XmlElement(ElementName = "facet", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("facets")]
         public List<Gx.Records.Facet> Facets
         {
             get
@@ -112,8 +113,8 @@ namespace Gx.Records
         /// <summary>
         ///  The set of values for the field.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "value", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("values")]
+        [XmlElement(ElementName = "value", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("values")]
         public List<Gx.Records.FacetValue> Values
         {
             get

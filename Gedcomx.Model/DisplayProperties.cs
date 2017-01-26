@@ -6,6 +6,7 @@ using Gx.Common;
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Gx.Conclusion
@@ -40,8 +41,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The context-specific ascendancy number for the person in relation to the other persons in the request. The ancestry number is defined using the Ahnentafel numbering system.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "ascendancyNumber", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("ascendancyNumber")]
+        [XmlElement(ElementName = "ascendancyNumber", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("ascendancyNumber")]
         public string AscendancyNumber
         {
             get
@@ -56,8 +57,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The displayable label for the birth date of the person.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "birthDate", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("birthDate")]
+        [XmlElement(ElementName = "birthDate", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("birthDate")]
         public string BirthDate
         {
             get
@@ -72,8 +73,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The displayable label for the birth place of the person.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "birthPlace", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("birthPlace")]
+        [XmlElement(ElementName = "birthPlace", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("birthPlace")]
         public string BirthPlace
         {
             get
@@ -88,8 +89,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The displayable label for the death date of the person.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "deathDate", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("deathDate")]
+        [XmlElement(ElementName = "deathDate", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("deathDate")]
         public string DeathDate
         {
             get
@@ -104,8 +105,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The displayable label for the death place of the person.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "deathPlace", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("deathPlace")]
+        [XmlElement(ElementName = "deathPlace", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("deathPlace")]
         public string DeathPlace
         {
             get
@@ -120,8 +121,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The context-specific descendancy number for the person in relation to the other persons in the request. The descendancy number is defined using the d'Aboville numbering system.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "descendancyNumber", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("descendancyNumber")]
+        [XmlElement(ElementName = "descendancyNumber", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("descendancyNumber")]
         public string DescendancyNumber
         {
             get
@@ -136,8 +137,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The displayable label for the gender of the person.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "gender", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("gender")]
+        [XmlElement(ElementName = "gender", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("gender")]
         public string Gender
         {
             get
@@ -152,8 +153,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The displayable label for the lifespan of the person.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "lifespan", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("lifespan")]
+        [XmlElement(ElementName = "lifespan", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("lifespan")]
         public string Lifespan
         {
             get
@@ -168,8 +169,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The displayable label for the marriage date of the person.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "marriageDate", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("marriageDate")]
+        [XmlElement(ElementName = "marriageDate", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("marriageDate")]
         public string MarriageDate
         {
             get
@@ -184,8 +185,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The displayable label for the marriage place of the person.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "marriagePlace", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("marriagePlace")]
+        [XmlElement(ElementName = "marriagePlace", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("marriagePlace")]
         public string MarriagePlace
         {
             get
@@ -200,8 +201,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The displayable name of the person.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "name", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("name")]
+        [XmlElement(ElementName = "name", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("name")]
         public string Name
         {
             get

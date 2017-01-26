@@ -1,6 +1,7 @@
 ﻿using Gedcomx.Model.Util;
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,8 +34,8 @@ namespace Gx.Source
         /// <summary>
         ///  A reference to the value of the tag.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "resource")]
-        [Newtonsoft.Json.JsonProperty("resource")]
+        [XmlAttribute(AttributeName = "resource")]
+        [JsonProperty("resource")]
         public string Resource
         {
             get

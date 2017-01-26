@@ -8,7 +8,9 @@ using Gx.Fs.Rt;
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Gx.Fs.Discussions
 {
@@ -31,8 +33,8 @@ namespace Gx.Fs.Discussions
         /// <summary>
         ///  The text or &quot;message body&quot; of the comment
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "text", Namespace = "http://familysearch.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("text")]
+        [XmlElement(ElementName = "text", Namespace = "http://familysearch.org/v1/")]
+        [JsonProperty("text")]
         public string Text
         {
             get
@@ -47,9 +49,9 @@ namespace Gx.Fs.Discussions
         /// <summary>
         ///  date of creation
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "created", Namespace = "http://familysearch.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("created")]
-        [Newtonsoft.Json.JsonConverter(typeof(JsonUnixTimestampConverter))]
+        [XmlElement(ElementName = "created", Namespace = "http://familysearch.org/v1/")]
+        [JsonProperty("created")]
+        [JsonConverter(typeof(JsonUnixTimestampConverter))]
         public DateTime Created
         {
             get
@@ -66,9 +68,9 @@ namespace Gx.Fs.Discussions
         /// <summary>
         ///  Property for the XML serializer indicating whether the "Created" property should be included in the output.
         /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute]
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
-        [Newtonsoft.Json.JsonIgnore]
+        [XmlIgnore]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [JsonIgnore]
         public bool CreatedSpecified
         {
             get
@@ -84,8 +86,8 @@ namespace Gx.Fs.Discussions
         /// <summary>
         ///  contributor of comment
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "contributor", Namespace = "http://familysearch.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("contributor")]
+        [XmlElement(ElementName = "contributor", Namespace = "http://familysearch.org/v1/")]
+        [JsonProperty("contributor")]
         public Gx.Common.ResourceReference Contributor
         {
             get

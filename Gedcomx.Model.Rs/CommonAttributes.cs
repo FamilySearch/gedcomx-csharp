@@ -5,6 +5,7 @@
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Gx.Atom
@@ -26,8 +27,8 @@ namespace Gx.Atom
         /// <summary>
         ///  The base.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "base")]
-        [Newtonsoft.Json.JsonProperty("base")]
+        [XmlAttribute(AttributeName = "base")]
+        [JsonProperty("base")]
         public string Base
         {
             get
@@ -42,8 +43,8 @@ namespace Gx.Atom
         /// <summary>
         ///  The language.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "lang", Namespace = "http://www.w3.org/XML/1998/namespace")]
-        [Newtonsoft.Json.JsonProperty("lang")]
+        [XmlAttribute(AttributeName = "lang", Namespace = "http://www.w3.org/XML/1998/namespace")]
+        [JsonProperty("lang")]
         public string Lang
         {
             get

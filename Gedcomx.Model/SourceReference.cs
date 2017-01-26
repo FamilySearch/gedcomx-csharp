@@ -32,7 +32,7 @@ namespace Gx.Source
         /// <summary>
         ///  A reference to a description of the source being referenced.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "description")]
+        [XmlAttribute(AttributeName = "description")]
         [JsonProperty("description")]
         public string DescriptionRef
         {
@@ -48,8 +48,8 @@ namespace Gx.Source
         /// <summary>
         ///  The attribution metadata for this source reference.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "attribution", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("attribution")]
+        [XmlElement(ElementName = "attribution", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("attribution")]
         public Gx.Common.Attribution Attribution
         {
             get
@@ -64,8 +64,8 @@ namespace Gx.Source
         /// <summary>
         ///  The qualifiers associated with this source reference.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "qualifier", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("qualifiers")]
+        [XmlElement(ElementName = "qualifier", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("qualifiers")]
         public List<Gx.Common.Qualifier> Qualifiers
         {
             get
@@ -80,8 +80,8 @@ namespace Gx.Source
         /// <summary>
         ///  The tags associated with this source reference.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "tags", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("tags")]
+        [XmlElement(ElementName = "tags", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("tags")]
         public List<Gx.Source.Tag> Tags
         {
             get

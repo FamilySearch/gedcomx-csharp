@@ -5,7 +5,9 @@
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Gx.Fs
 {
@@ -30,8 +32,8 @@ namespace Gx.Fs
         /// <summary>
         ///  The error code. Intepreted per &lt;a href=&quot;http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html&quot;&gt;RFC 2616, Section 10 (HTTP Status Code Definitions)&lt;/a&gt;.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "code", Namespace = "http://familysearch.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("code")]
+        [XmlElement(ElementName = "code", Namespace = "http://familysearch.org/v1/")]
+        [JsonProperty("code")]
         public int Code
         {
             get
@@ -48,9 +50,9 @@ namespace Gx.Fs
         /// <summary>
         ///  Property for the XML serializer indicating whether the "Code" property should be included in the output.
         /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute]
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
-        [Newtonsoft.Json.JsonIgnore]
+        [XmlIgnore]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [JsonIgnore]
         public bool CodeSpecified
         {
             get
@@ -66,8 +68,8 @@ namespace Gx.Fs
         /// <summary>
         ///  A text label associated with the error code.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "label", Namespace = "http://familysearch.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("label")]
+        [XmlElement(ElementName = "label", Namespace = "http://familysearch.org/v1/")]
+        [JsonProperty("label")]
         public string Label
         {
             get
@@ -82,8 +84,8 @@ namespace Gx.Fs
         /// <summary>
         ///  A message associated with the error.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "message", Namespace = "http://familysearch.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("message")]
+        [XmlElement(ElementName = "message", Namespace = "http://familysearch.org/v1/")]
+        [JsonProperty("message")]
         public string Message
         {
             get
@@ -98,8 +100,8 @@ namespace Gx.Fs
         /// <summary>
         ///  The back-end stack trace associated with the error, useful for debugging.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "stacktrace", Namespace = "http://familysearch.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("stacktrace")]
+        [XmlElement(ElementName = "stacktrace", Namespace = "http://familysearch.org/v1/")]
+        [JsonProperty("stacktrace")]
         public string Stacktrace
         {
             get

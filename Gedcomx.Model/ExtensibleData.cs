@@ -6,6 +6,7 @@ using Newtonsoft.Json.Linq;
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -29,8 +30,8 @@ namespace Gx.Common
         /// <summary>
         ///  A local, context-specific id for the data.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "id", DataType = "ID")]
-        [Newtonsoft.Json.JsonProperty("id")]
+        [XmlAttribute(AttributeName = "id", DataType = "ID")]
+        [JsonProperty("id")]
         public string Id
         {
             get
@@ -46,8 +47,8 @@ namespace Gx.Common
         /// <summary>
         ///  Custom extension elements for a conclusion.
         /// </summary>
-        [System.Xml.Serialization.XmlAnyElementAttribute()]
-        [Newtonsoft.Json.JsonIgnore]
+        [XmlAnyElementAttribute()]
+        [JsonIgnore]
         public List<Object> ExtensionElementsXml
         {
             get
@@ -63,8 +64,8 @@ namespace Gx.Common
         /// <summary>
         ///  Custom extension elements for a conclusion.
         /// </summary>
-        [System.Xml.Serialization.XmlIgnore]
-        [Newtonsoft.Json.JsonExtensionData]
+        [XmlIgnore]
+        [JsonExtensionData]
         public Dictionary<String, JToken> ExtensionElementsJson
         {
             get

@@ -7,6 +7,7 @@ using Gx.Records;
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Gx.Conclusion
@@ -30,8 +31,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  A reference to a description of the place being referenced.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "description")]
-        [Newtonsoft.Json.JsonProperty("description")]
+        [XmlAttribute(AttributeName = "description")]
+        [JsonProperty("description")]
         public string DescriptionRef
         {
             get
@@ -46,8 +47,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The original value as supplied by the user.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "original", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("original")]
+        [XmlElement(ElementName = "original", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("original")]
         public string Original
         {
             get
@@ -63,8 +64,8 @@ namespace Gx.Conclusion
         ///  The list of normalized values for the place, provided for display purposes by the application. Normalized values
         ///  are not specified by GEDCOM X core, but as extension elements by GEDCOM X RS.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "normalized", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("normalized")]
+        [XmlElement(ElementName = "normalized", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("normalized")]
         public List<Gx.Common.TextValue> NormalizedExtensions
         {
             get
@@ -79,8 +80,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The references to the record fields being used as evidence.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "field", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("fields")]
+        [XmlElement(ElementName = "field", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("fields")]
         public List<Gx.Records.Field> Fields
         {
             get

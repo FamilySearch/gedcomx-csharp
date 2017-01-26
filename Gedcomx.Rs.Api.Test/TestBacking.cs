@@ -10,6 +10,7 @@ using iTextSharp.text.pdf;
 using RestSharp;
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;

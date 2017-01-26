@@ -5,6 +5,7 @@
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Gx.Fs.Tree
@@ -22,49 +23,49 @@ namespace Gx.Fs.Tree
         /// <summary>
         ///  Unspecified enum value.
         /// </summary>
-        [System.Xml.Serialization.XmlEnumAttribute(Name = "__NULL__")]
+        [XmlEnumAttribute(Name = "__NULL__")]
         NULL,
 
         /// <summary>
         ///  (no documentation provided)
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://familysearch.org/v1/Create")]
+        [XmlEnum("http://familysearch.org/v1/Create")]
         Create,
 
         /// <summary>
         ///  (no documentation provided)
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://familysearch.org/v1/Read")]
+        [XmlEnum("http://familysearch.org/v1/Read")]
         Read,
 
         /// <summary>
         ///  (no documentation provided)
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://familysearch.org/v1/Update")]
+        [XmlEnum("http://familysearch.org/v1/Update")]
         Update,
 
         /// <summary>
         ///  (no documentation provided)
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://familysearch.org/v1/Delete")]
+        [XmlEnum("http://familysearch.org/v1/Delete")]
         Delete,
 
         /// <summary>
         ///  (no documentation provided)
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://familysearch.org/v1/Merge")]
+        [XmlEnum("http://familysearch.org/v1/Merge")]
         Merge,
 
         /// <summary>
         ///  (no documentation provided)
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://familysearch.org/v1/Unmerge")]
+        [XmlEnum("http://familysearch.org/v1/Unmerge")]
         Unmerge,
 
         /// <summary>
         ///  (no documentation provided)
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://familysearch.org/v1/Restore")]
+        [XmlEnum("http://familysearch.org/v1/Restore")]
         Restore
     }
 }

@@ -8,6 +8,7 @@ using Gx.Types;
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Gx.Conclusion
@@ -44,8 +45,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The language of the conclusion.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "lang", Namespace = "http://www.w3.org/XML/1998/namespace")]
-        [Newtonsoft.Json.JsonProperty("lang")]
+        [XmlAttribute(AttributeName = "lang", Namespace = "http://www.w3.org/XML/1998/namespace")]
+        [JsonProperty("lang")]
         public string Lang
         {
             get
@@ -60,8 +61,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The full text of the name form.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "fullText", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("fullText")]
+        [XmlElement(ElementName = "fullText", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("fullText")]
         public string FullText
         {
             get
@@ -76,8 +77,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The different parts of the name form.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "part", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("parts")]
+        [XmlElement(ElementName = "part", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("parts")]
         public List<Gx.Conclusion.NamePart> Parts
         {
             get
@@ -92,8 +93,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The references to the record fields being used as evidence.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "field", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("fields")]
+        [XmlElement(ElementName = "field", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("fields")]
         public List<Gx.Records.Field> Fields
         {
             get

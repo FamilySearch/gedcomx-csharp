@@ -5,6 +5,7 @@
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Gx.Common
@@ -36,8 +37,8 @@ namespace Gx.Common
         /// <summary>
         ///  The resource id of the resource being referenced.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "resourceId")]
-        [Newtonsoft.Json.JsonProperty("resourceId")]
+        [XmlAttribute(AttributeName = "resourceId")]
+        [JsonProperty("resourceId")]
         public string ResourceId
         {
             get
@@ -52,8 +53,8 @@ namespace Gx.Common
         /// <summary>
         ///  The URI to the resource.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "resource")]
-        [Newtonsoft.Json.JsonProperty("resource")]
+        [XmlAttribute(AttributeName = "resource")]
+        [JsonProperty("resource")]
         public string Resource
         {
             get

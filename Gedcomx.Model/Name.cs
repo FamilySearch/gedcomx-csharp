@@ -8,8 +8,10 @@ using Gx.Types;
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
+using System.ComponentModel;
 
 namespace Gx.Conclusion
 {
@@ -43,8 +45,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The type of the name.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "type")]
-        [Newtonsoft.Json.JsonProperty("type")]
+        [XmlAttribute(AttributeName = "type")]
+        [JsonProperty("type")]
         public string Type
         {
             get
@@ -60,8 +62,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  Convenience property for treating Type as an enum. See Gx.Types.NameTypeQNameUtil for details on getter/setter functionality.
         /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute]
-        [Newtonsoft.Json.JsonIgnore]
+        [XmlIgnore]
+        [JsonIgnore]
         public Gx.Types.NameType KnownType
         {
             get
@@ -76,8 +78,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  Whether the conclusion is preferred above other conclusions of the same type. Useful, for example, for display purposes.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "preferred", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("preferred")]
+        [XmlElement(ElementName = "preferred", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("preferred")]
         public bool Preferred
         {
             get
@@ -94,9 +96,9 @@ namespace Gx.Conclusion
         /// <summary>
         ///  Property for the XML serializer indicating whether the "Preferred" property should be included in the output.
         /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute]
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
-        [Newtonsoft.Json.JsonIgnore]
+        [XmlIgnore]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [JsonIgnore]
         public bool PreferredSpecified
         {
             get
@@ -112,8 +114,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The date the name was first applied or adopted.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "date", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("date")]
+        [XmlElement(ElementName = "date", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("date")]
         public Gx.Conclusion.DateInfo Date
         {
             get
@@ -128,8 +130,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  Alternate forms of the name, such as the romanized form of a non-latin name.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "nameForm", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("nameForms")]
+        [XmlElement(ElementName = "nameForm", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("nameForms")]
         public List<Gx.Conclusion.NameForm> NameForms
         {
             get
@@ -142,8 +144,8 @@ namespace Gx.Conclusion
             }
         }
 
-        [System.Xml.Serialization.XmlIgnoreAttribute]
-        [Newtonsoft.Json.JsonIgnore]
+        [XmlIgnore]
+        [JsonIgnore]
         public NameForm NameForm
         {
             get

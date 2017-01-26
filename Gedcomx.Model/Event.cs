@@ -7,6 +7,7 @@ using Gx.Types;
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Gx.Conclusion
@@ -21,7 +22,7 @@ namespace Gx.Conclusion
     [Serializable]
     [XmlType(Namespace = "http://gedcomx.org/v1/", TypeName = "Event")]
     [XmlRoot(Namespace = "http://gedcomx.org/v1/", ElementName = "event")]
-    [Newtonsoft.Json.JsonObject("events")]
+    [JsonObject("events")]
     public partial class Event : Gx.Conclusion.Subject
     {
         private string _type;
@@ -63,8 +64,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The type of the event.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "type")]
-        [Newtonsoft.Json.JsonProperty("type")]
+        [XmlAttribute(AttributeName = "type")]
+        [JsonProperty("type")]
         public string Type
         {
             get
@@ -80,8 +81,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  Convenience property for treating Type as an enum. See Gx.Types.EventTypeQNameUtil for details on getter/setter functionality.
         /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute]
-        [Newtonsoft.Json.JsonIgnore]
+        [XmlIgnore]
+        [JsonIgnore]
         public Gx.Types.EventType KnownType
         {
             get
@@ -96,8 +97,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The date of this event.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "date", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("date")]
+        [XmlElement(ElementName = "date", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("date")]
         public Gx.Conclusion.DateInfo Date
         {
             get
@@ -112,8 +113,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The place of this event.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "place", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("place")]
+        [XmlElement(ElementName = "place", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("place")]
         public Gx.Conclusion.PlaceReference Place
         {
             get
@@ -128,8 +129,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The roles played in this event.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "role", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("roles")]
+        [XmlElement(ElementName = "role", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("roles")]
         public List<Gx.Conclusion.EventRole> Roles
         {
             get

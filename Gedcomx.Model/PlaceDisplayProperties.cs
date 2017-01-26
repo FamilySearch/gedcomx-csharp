@@ -5,6 +5,7 @@
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Gx.Conclusion
@@ -31,8 +32,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The displayable full name of the place.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "fullName", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("fullName")]
+        [XmlElement(ElementName = "fullName", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("fullName")]
         public string FullName
         {
             get
@@ -47,8 +48,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The displayable name of the place.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "name", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("name")]
+        [XmlElement(ElementName = "name", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("name")]
         public string Name
         {
             get
@@ -63,8 +64,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The displayable type of the place.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "type", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("type")]
+        [XmlElement(ElementName = "type", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("type")]
         public string Type
         {
             get

@@ -6,7 +6,9 @@ using Gedcomx.Model.Util;
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Gx.Fs.Artifacts
 {
@@ -32,8 +34,8 @@ namespace Gx.Fs.Artifacts
         /// <summary>
         ///  The type of the gender.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "artifactType")]
-        [Newtonsoft.Json.JsonProperty("artifactType")]
+        [XmlAttribute(AttributeName = "artifactType")]
+        [JsonProperty("artifactType")]
         public string ArtifactType
         {
             get
@@ -49,8 +51,8 @@ namespace Gx.Fs.Artifacts
         /// <summary>
         ///  Convenience property for treating ArtifactType as an enum. See Gx.Fs.Artifacts.ArtifactTypeQNameUtil for details on getter/setter functionality.
         /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute]
-        [Newtonsoft.Json.JsonIgnore]
+        [XmlIgnore]
+        [JsonIgnore]
         public Gx.Fs.Artifacts.ArtifactType KnownArtifactType
         {
             get
@@ -65,8 +67,8 @@ namespace Gx.Fs.Artifacts
         /// <summary>
         ///  The original filename of the memories item.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "filename", Namespace = "http://familysearch.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("filename")]
+        [XmlElement(ElementName = "filename", Namespace = "http://familysearch.org/v1/")]
+        [JsonProperty("filename")]
         public string Filename
         {
             get
@@ -81,8 +83,8 @@ namespace Gx.Fs.Artifacts
         /// <summary>
         ///  The height of the artifact (presumably an image).
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "height", Namespace = "http://familysearch.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("height")]
+        [XmlElement(ElementName = "height", Namespace = "http://familysearch.org/v1/")]
+        [JsonProperty("height")]
         public int Height
         {
             get
@@ -99,9 +101,9 @@ namespace Gx.Fs.Artifacts
         /// <summary>
         ///  Property for the XML serializer indicating whether the "Height" property should be included in the output.
         /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute]
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
-        [Newtonsoft.Json.JsonIgnore]
+        [XmlIgnore]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [JsonIgnore]
         public bool HeightSpecified
         {
             get
@@ -117,8 +119,8 @@ namespace Gx.Fs.Artifacts
         /// <summary>
         ///  The width of the artifact (presumably an image).
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "width", Namespace = "http://familysearch.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("width")]
+        [XmlElement(ElementName = "width", Namespace = "http://familysearch.org/v1/")]
+        [JsonProperty("width")]
         public int Width
         {
             get
@@ -135,9 +137,9 @@ namespace Gx.Fs.Artifacts
         /// <summary>
         ///  Property for the XML serializer indicating whether the "Width" property should be included in the output.
         /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute]
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
-        [Newtonsoft.Json.JsonIgnore]
+        [XmlIgnore]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [JsonIgnore]
         public bool WidthSpecified
         {
             get

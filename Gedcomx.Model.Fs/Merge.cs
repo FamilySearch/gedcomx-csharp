@@ -6,6 +6,7 @@ using Gx.Fs.Rt;
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Gx.Fs.Tree
@@ -28,8 +29,8 @@ namespace Gx.Fs.Tree
         /// <summary>
         ///  List of resources to remove from the survivor person.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "resourceToDelete", Namespace = "http://familysearch.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("resourcesToDelete")]
+        [XmlElement(ElementName = "resourceToDelete", Namespace = "http://familysearch.org/v1/")]
+        [JsonProperty("resourcesToDelete")]
         public List<Gx.Common.ResourceReference> ResourcesToDelete
         {
             get
@@ -44,8 +45,8 @@ namespace Gx.Fs.Tree
         /// <summary>
         ///  List of resources to copy from the duplicate person to survivor person.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "resourceToCopy", Namespace = "http://familysearch.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("resourcesToCopy")]
+        [XmlElement(ElementName = "resourceToCopy", Namespace = "http://familysearch.org/v1/")]
+        [JsonProperty("resourcesToCopy")]
         public List<Gx.Common.ResourceReference> ResourcesToCopy
         {
             get

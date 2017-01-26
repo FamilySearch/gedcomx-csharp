@@ -10,6 +10,7 @@ using Gx.Types;
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Gx.Conclusion
@@ -35,8 +36,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The type of this relationship.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "type")]
-        [Newtonsoft.Json.JsonProperty("type")]
+        [XmlAttribute(AttributeName = "type")]
+        [JsonProperty("type")]
         public string Type
         {
             get
@@ -52,8 +53,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  Convenience property for treating Type as an enum. See Gx.Types.RelationshipTypeQNameUtil for details on getter/setter functionality.
         /// </summary>
-        [System.Xml.Serialization.XmlIgnoreAttribute]
-        [Newtonsoft.Json.JsonIgnore]
+        [XmlIgnore]
+        [JsonIgnore]
         public Gx.Types.RelationshipType KnownType
         {
             get
@@ -70,8 +71,8 @@ namespace Gx.Conclusion
         ///  the other person in this relationship and implies neither order nor role. When the relationship type
         ///  implies direction, it goes from &quot;person1&quot; to &quot;person2&quot;.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "person1", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("person1")]
+        [XmlElement(ElementName = "person1", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("person1")]
         public Gx.Common.ResourceReference Person1
         {
             get
@@ -88,8 +89,8 @@ namespace Gx.Conclusion
         ///  the other person in this relationship and implies neither order nor role. When the relationship type
         ///  implies direction, it goes from &quot;person1&quot; to &quot;person2&quot;.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "person2", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("person2")]
+        [XmlElement(ElementName = "person2", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("person2")]
         public Gx.Common.ResourceReference Person2
         {
             get
@@ -104,8 +105,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The fact conclusions for the relationship.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "fact", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("facts")]
+        [XmlElement(ElementName = "fact", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("facts")]
         public List<Gx.Conclusion.Fact> Facts
         {
             get
@@ -120,8 +121,8 @@ namespace Gx.Conclusion
         /// <summary>
         ///  The references to the record fields being used as evidence.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "field", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("fields")]
+        [XmlElement(ElementName = "field", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("fields")]
         public List<Gx.Records.Field> Fields
         {
             get

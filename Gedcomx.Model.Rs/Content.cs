@@ -5,6 +5,7 @@
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Gx.Atom
@@ -26,8 +27,8 @@ namespace Gx.Atom
         /// <summary>
         ///  The type of the content.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "type")]
-        [Newtonsoft.Json.JsonProperty("type")]
+        [XmlAttribute(AttributeName = "type")]
+        [JsonProperty("type")]
         public string Type
         {
             get
@@ -42,8 +43,8 @@ namespace Gx.Atom
         /// <summary>
         ///  The genealogical data associated with this entry.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "gedcomx", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("gedcomx")]
+        [XmlElement(ElementName = "gedcomx", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("gedcomx")]
         public Gx.Gedcomx Gedcomx
         {
             get

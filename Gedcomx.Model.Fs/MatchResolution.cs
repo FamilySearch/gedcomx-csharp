@@ -5,6 +5,7 @@
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Gx.Fs.Tree
@@ -22,25 +23,25 @@ namespace Gx.Fs.Tree
         /// <summary>
         ///  Unspecified enum value.
         /// </summary>
-        [System.Xml.Serialization.XmlEnumAttribute(Name = "__NULL__")]
+        [XmlEnumAttribute(Name = "__NULL__")]
         NULL,
 
         /// <summary>
         ///  (no documentation provided)
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://familysearch.org/v1/Unset")]
+        [XmlEnum("http://familysearch.org/v1/Unset")]
         Unset,
 
         /// <summary>
         ///  (no documentation provided)
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://familysearch.org/v1/Positive")]
+        [XmlEnum("http://familysearch.org/v1/Positive")]
         Positive,
 
         /// <summary>
         ///  (no documentation provided)
         /// </summary>
-        [System.Xml.Serialization.XmlEnum("http://familysearch.org/v1/Negative")]
+        [XmlEnum("http://familysearch.org/v1/Negative")]
         Negative
     }
 }

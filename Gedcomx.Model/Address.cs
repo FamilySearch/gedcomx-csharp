@@ -5,6 +5,7 @@
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 
 namespace Gx.Agent
 {
@@ -17,7 +18,7 @@ namespace Gx.Agent
     /// </summary>
     [Serializable]
     [XmlType(Namespace = "http://gedcomx.org/v1/", TypeName = "Address")]
-    [Newtonsoft.Json.JsonObject("")]
+    [JsonObject("")]
     public partial class Address : Gx.Common.ExtensibleData
     {
 
@@ -35,8 +36,8 @@ namespace Gx.Agent
         /// <summary>
         ///  The city.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "city", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("city")]
+        [XmlElement(ElementName = "city", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("city")]
         public string City
         {
             get
@@ -51,8 +52,8 @@ namespace Gx.Agent
         /// <summary>
         ///  The country.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "country", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("country")]
+        [XmlElement(ElementName = "country", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("country")]
         public string Country
         {
             get
@@ -67,8 +68,8 @@ namespace Gx.Agent
         /// <summary>
         ///  The postal code.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "postalCode", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("postalCode")]
+        [XmlElement(ElementName = "postalCode", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("postalCode")]
         public string PostalCode
         {
             get
@@ -83,8 +84,8 @@ namespace Gx.Agent
         /// <summary>
         ///  The state or province.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "stateOrProvince", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("stateOrProvince")]
+        [XmlElement(ElementName = "stateOrProvince", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("stateOrProvince")]
         public string StateOrProvince
         {
             get
@@ -99,8 +100,8 @@ namespace Gx.Agent
         /// <summary>
         ///  The street.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "street", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("street")]
+        [XmlElement(ElementName = "street", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("street")]
         public string Street
         {
             get
@@ -115,8 +116,8 @@ namespace Gx.Agent
         /// <summary>
         ///  Additional street information.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "street2", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("street2")]
+        [XmlElement(ElementName = "street2", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("street2")]
         public string Street2
         {
             get
@@ -131,8 +132,8 @@ namespace Gx.Agent
         /// <summary>
         ///  Additional street information.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "street3", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("street3")]
+        [XmlElement(ElementName = "street3", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("street3")]
         public string Street3
         {
             get
@@ -147,8 +148,8 @@ namespace Gx.Agent
         /// <summary>
         ///  Additional street information.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "street4", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("street4")]
+        [XmlElement(ElementName = "street4", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("street4")]
         public string Street4
         {
             get
@@ -163,8 +164,8 @@ namespace Gx.Agent
         /// <summary>
         ///  Additional street information.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "street5", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("street5")]
+        [XmlElement(ElementName = "street5", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("street5")]
         public string Street5
         {
             get
@@ -179,8 +180,8 @@ namespace Gx.Agent
         /// <summary>
         ///  Additional street information.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "street6", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("street6")]
+        [XmlElement(ElementName = "street6", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("street6")]
         public string Street6
         {
             get
@@ -195,8 +196,8 @@ namespace Gx.Agent
         /// <summary>
         ///  The value of the property.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "value", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("value")]
+        [XmlElement(ElementName = "value", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("value")]
         public string Value
         {
             get

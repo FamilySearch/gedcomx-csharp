@@ -6,6 +6,7 @@ using Gx.Common;
 // </auto-generated>
 using System;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Gx.Agent
@@ -27,8 +28,8 @@ namespace Gx.Agent
         /// <summary>
         ///  The name associated the holder of this account with the account.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "accountName", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("accountName")]
+        [XmlElement(ElementName = "accountName", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("accountName")]
         public string AccountName
         {
             get
@@ -43,8 +44,8 @@ namespace Gx.Agent
         /// <summary>
         ///  The homepage of the service that provides this account.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "serviceHomepage", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("serviceHomepage")]
+        [XmlElement(ElementName = "serviceHomepage", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("serviceHomepage")]
         public Gx.Common.ResourceReference ServiceHomepage
         {
             get

@@ -39,8 +39,8 @@ namespace Gx.Agent
         /// <summary>
         ///  The accounts that belong to this person or organization.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "account", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("accounts")]
+        [XmlElement(ElementName = "account", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("accounts")]
         public List<Gx.Agent.OnlineAccount> Accounts
         {
             get
@@ -55,8 +55,8 @@ namespace Gx.Agent
         /// <summary>
         ///  The addresses that belong to this person or organization.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "address", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("addresses")]
+        [XmlElement(ElementName = "address", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("addresses")]
         public List<Gx.Agent.Address> Addresses
         {
             get
@@ -71,8 +71,8 @@ namespace Gx.Agent
         /// <summary>
         ///  The emails that belong to this person or organization.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "email", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("emails")]
+        [XmlElement(ElementName = "email", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("emails")]
         public List<Gx.Common.ResourceReference> Emails
         {
             get
@@ -87,8 +87,8 @@ namespace Gx.Agent
         /// <summary>
         ///  The homepage.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "homepage", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("homepage")]
+        [XmlElement(ElementName = "homepage", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("homepage")]
         public Gx.Common.ResourceReference Homepage
         {
             get
@@ -103,8 +103,8 @@ namespace Gx.Agent
         /// <summary>
         ///  The list of identifiers for the agent.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "identifier", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("identifiers")]
+        [XmlElement(ElementName = "identifier", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("identifiers")]
         [JsonConverter(typeof(JsonIdentifiersConverter))]
         public List<Gx.Conclusion.Identifier> Identifiers
         {
@@ -120,8 +120,8 @@ namespace Gx.Agent
         /// <summary>
         ///  The list of names for the agent.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "name", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("names")]
+        [XmlElement(ElementName = "name", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("names")]
         public List<Gx.Common.TextValue> Names
         {
             get
@@ -136,8 +136,8 @@ namespace Gx.Agent
         /// <summary>
         ///  The &lt;a href=&quot;http://openid.net/&quot;&gt;openid&lt;/a&gt; of the person or organization.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "openid", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("openid")]
+        [XmlElement(ElementName = "openid", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("openid")]
         public Gx.Common.ResourceReference Openid
         {
             get
@@ -152,8 +152,8 @@ namespace Gx.Agent
         /// <summary>
         ///  The phones that belong to this person or organization.
         /// </summary>
-        [System.Xml.Serialization.XmlElementAttribute(ElementName = "phone", Namespace = "http://gedcomx.org/v1/")]
-        [Newtonsoft.Json.JsonProperty("phones")]
+        [XmlElement(ElementName = "phone", Namespace = "http://gedcomx.org/v1/")]
+        [JsonProperty("phones")]
         public List<Gx.Common.ResourceReference> Phones
         {
             get

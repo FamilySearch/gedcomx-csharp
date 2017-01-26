@@ -8,7 +8,7 @@
     <projectUrl>https://github.com/FamilySearch/gedcomx-csharp</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <copyright>Copyright &#169; 2014</copyright>
+    <copyright>Copyright &#169; 2016</copyright>
     <dependencies>
       <dependency id="Flurl" version="2.2.0" />
       <dependency id="json-ld.net" version="1.0.3" />

@@ -12,13 +12,13 @@ namespace Gedcomx.Rs.Api.Test
     [TestFixture]
     public class PersonSearchTests
     {
-        private static readonly String SANDBOX_URI = "https://sandbox.familysearch.org/platform/collections/tree";
+        private static readonly String INTEGRATION_URI = "https://integration.familysearch.org/platform/collections/tree";
         private CollectionState collection;
 
         [OneTimeSetUp]
         public void Initialize()
         {
-            collection = new CollectionState(new Uri(SANDBOX_URI));
+            collection = new CollectionState(new Uri(INTEGRATION_URI));
             collection.AuthenticateViaOAuth2Password(Resources.TestUserName, Resources.TestPassword, Resources.TestClientId);
             Assert.DoesNotThrow(() => collection.IfSuccessful());
             Assert.IsNotNull(collection.CurrentAccessToken);

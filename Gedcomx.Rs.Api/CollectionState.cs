@@ -249,7 +249,7 @@ namespace Gx.Rs.Api
         /// <summary>
         /// Reads the person specified by the URI.
         /// </summary>
-        /// <param name="personUri">The person URI (e.g., https://sandbox.familysearch.org/platform/tree/persons/PPPP-PPP). </param>
+        /// <param name="personUri">The person URI (e.g., https://integration.familysearch.org/platform/tree/persons/PPPP-PPP). </param>
         /// <param name="options">The options to apply before executing the REST API call.</param>
         /// <returns>
         /// A <see cref="PersonState"/> instance containing the REST API response.

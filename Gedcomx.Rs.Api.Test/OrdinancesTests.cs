@@ -16,13 +16,13 @@ namespace Gedcomx.Rs.Api.Test
     [TestFixture]
     public class OrdinancesTests
     {
-        private Uri ordinanceUri = new Uri("https://sandbox.familysearch.org/platform/ordinances/ordinances");
+        private Uri ordinanceUri = new Uri("https://integration.familysearch.org/platform/ordinances/ordinances");
 
         [Test]
         public void TestReadOrdinancePolicy()
         {
             var request = new RedirectableRestRequest("/platform/ordinances/policy", Method.GET).Accept("text/html");
-            var client = new FilterableRestClient("https://sandbox.familysearch.org");
+            var client = new FilterableRestClient("https://integration.familysearch.org");
             var response = client.Execute(request);
 
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
@@ -34,7 +34,7 @@ namespace Gedcomx.Rs.Api.Test
         public void TestReadOrdinancePolicyInFrench()
         {
             var request = new RedirectableRestRequest("/platform/ordinances/policy", Method.GET).Accept("text/html").AcceptLanguage("fr");
-            var client = new FilterableRestClient("https://sandbox.familysearch.org");
+            var client = new FilterableRestClient("https://integration.familysearch.org");
             var response = client.Execute(request);
 
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);

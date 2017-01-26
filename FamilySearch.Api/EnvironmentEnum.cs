@@ -5,7 +5,7 @@
 	/// </summary>
 	public enum EnvironmentEnum
 	{
-		Sandbox,
+		Integration,
 		Beta,
 		Production
 	}

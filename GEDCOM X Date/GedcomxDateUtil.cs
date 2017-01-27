@@ -9,7 +9,7 @@ namespace Gedcomx.Date
     /// <summary>
     /// A helper utility to manipulating and working with various GEDCOM X dates and strings.
     /// </summary>
-    public class GedcomxDateUtil
+    public static class GedcomxDateUtil
     {
         /**
          * Parse a String representation of a Formal GedcomX Date

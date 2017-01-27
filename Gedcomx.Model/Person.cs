@@ -234,7 +234,7 @@ namespace Gx.Conclusion
         /// </summary>
         [XmlElement(ElementName = "discussion-references", Namespace = "http://gedcomx.org/v1/")]
         [JsonProperty("discussion-references")]
-        public List<Gx.Source.DiscussionReference> DiscussionReferences
+        public List<DiscussionReference> DiscussionReferences
         {
             get
             {

@@ -1,3 +1,5 @@
+⚠️ *This project is no longer maintained. The community is welcome to contribute.*
+
 # Welcome
 
 This project hosts the C# implementation of [GEDCOM X](http://www.gedcomx.org) and related extensions.

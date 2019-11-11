@@ -10,6 +10,9 @@
 
 namespace Gedcomx.Rs.Api.Test {
     using System;
+using System.Xml.Serialization;
+using Newtonsoft.Json;
+using System.Collections.Generic;
     
     
     /// <summary>

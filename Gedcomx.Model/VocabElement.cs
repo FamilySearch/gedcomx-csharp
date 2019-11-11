@@ -1,5 +1,7 @@
 ﻿using Gx.Common;
 using System;
+using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -70,8 +72,8 @@ namespace Gedcomx.Model
             }
         }
 
-        [System.Xml.Serialization.XmlIgnore]
-        [Newtonsoft.Json.JsonIgnore]
+        [XmlIgnore]
+        [JsonIgnore]
         public String SortName
         {
             get
@@ -124,8 +126,8 @@ namespace Gedcomx.Model
             }
         }
 
-        [System.Xml.Serialization.XmlIgnore]
-        [Newtonsoft.Json.JsonIgnore]
+        [XmlIgnore]
+        [JsonIgnore]
         public Int32? Position
         {
             get

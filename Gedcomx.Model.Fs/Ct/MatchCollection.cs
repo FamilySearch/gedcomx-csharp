@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,29 +13,29 @@ namespace Gx.Fs.Ct
         /**
          * The FamilySearch Family Tree.
          */
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Tree")]
+        [XmlEnum("http://gedcomx.org/Tree")]
         Tree,
 
         /**
          * The FamilySearch Record Set.
          */
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Records")]
+        [XmlEnum("http://gedcomx.org/Records")]
         Records,
 
         /**
          * The FamilySearch User-Submitted Trees.
          */
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Trees")]
+        [XmlEnum("http://gedcomx.org/Trees")]
         Lls,
 
         /**
          * The FamilySearch Temple System.
          */
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Temple")]
+        [XmlEnum("http://gedcomx.org/Temple")]
         Tss,
 
         // TODO: @XmlUnknownQNameEnumValue
-        [System.Xml.Serialization.XmlEnum("http://gedcomx.org/OTHER")]
+        [XmlEnum("http://gedcomx.org/OTHER")]
         OTHER,
     }
 }

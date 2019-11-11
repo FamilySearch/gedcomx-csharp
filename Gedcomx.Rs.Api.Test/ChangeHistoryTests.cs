@@ -4,6 +4,8 @@ using Gx.Rs.Api;
 using Gx.Rs.Api.Options;
 using NUnit.Framework;
 using System;
+using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;

@@ -6,6 +6,8 @@ using Gx.Rs.Api.Options;
 using Gx.Rs.Api.Util;
 using NUnit.Framework;
 using System;
+using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Net;
 using System.Threading;

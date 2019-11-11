@@ -3,6 +3,8 @@ using Gx.Fs.Tree;
 using Gx.Rs.Api;
 using RestSharp;
 using System;
+using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;

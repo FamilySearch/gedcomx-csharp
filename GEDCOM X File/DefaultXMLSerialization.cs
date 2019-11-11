@@ -1,11 +1,12 @@
 ﻿using Gedcomx.Support;
 using System;
+using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml;
-using System.Xml.Serialization;
 
 namespace Gedcomx.File
 {

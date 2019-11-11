@@ -1,5 +1,7 @@
 ﻿using Gedcomx.Model.Util;
 using System;
+using System.Xml.Serialization;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,9 +15,9 @@ namespace Gx.Source
     /// <summary>
     ///  A tag in the FamilySearch system.
     /// </summary>
-    [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://familysearch.org/v1/", TypeName = "Tag")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://familysearch.org/v1/", ElementName = "tag")]
+    [Serializable]
+    [XmlType(Namespace = "http://familysearch.org/v1/", TypeName = "Tag")]
+    [XmlRoot(Namespace = "http://familysearch.org/v1/", ElementName = "tag")]
     public partial class Tag
     {
         private string _resource;
@@ -32,8 +34,8 @@ namespace Gx.Source
         /// <summary>
         ///  A reference to the value of the tag.
         /// </summary>
-        [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "resource")]
-        [Newtonsoft.Json.JsonProperty("resource")]
+        [XmlAttribute(AttributeName = "resource")]
+        [JsonProperty("resource")]
         public string Resource
         {
             get

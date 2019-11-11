@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using RestSharp.Extensions;
-using Newtonsoft.Json;
 using Gedcomx.Model.Util;
 using System.IO;
 using Gedcomx.File;

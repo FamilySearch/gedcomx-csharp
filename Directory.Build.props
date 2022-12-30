@@ -1,0 +1,29 @@
+<Project>
+  <PropertyGroup>
+    <major>1</major>
+    <minor>0</minor>
+    <patch>0</patch>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!-- Set versions for all projects. Avoids warnings from non-preview projects referencing preview projects -->
+    <!-- package version of Gexcomx -->
+    <VersionPrefix>$(major).$(minor).$(patch)</VersionPrefix>
+    <!-- assembly version of Gexcomx -->
+    <AssemblyVersion>$(major).0.0.0</AssemblyVersion>
+    <!-- file version of all Gexcomx -->
+    <FileVersion>$(major).$(minor).0.0</FileVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <AnalysisLevel>latest</AnalysisLevel>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Company>FamilySearch</Company>
+    <projectUrl>https://github.com/FamilySearch/gedcomx-csharp</projectUrl>
+    <Copyright>Copyright (c) $(Company) 2014</Copyright>
+  </PropertyGroup>
+
+</Project>

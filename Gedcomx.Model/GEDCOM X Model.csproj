@@ -1,134 +1,16 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>10.0.0</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{4629BA54-406E-4CD2-9DC6-CDA2C5206EB7}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>Gedcomx.Model</RootNamespace>
+    <Title>GEDCOM X Model</Title>
+    <Description>Contains the models for GEDCOM X data.</Description>
+    <Product>GEDCOM X Model</Product>
+     <RootNamespace>Gedcomx.Model</RootNamespace>
     <AssemblyName>Gedcomx.Model</AssemblyName>
-    <Description>The basic GEDCOM X model.</Description>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <TargetFrameworkProfile />
+    <TargetFramework>net48</TargetFramework>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>True</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>False</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>False</ConsolePause>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <Prefer32Bit>false</Prefer32Bit>
-    <DocumentationFile>bin\Debug\Gedcomx.Model.XML</DocumentationFile>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>none</DebugType>
-    <Optimize>False</Optimize>
-    <OutputPath>bin\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>False</ConsolePause>
-    <Prefer32Bit>false</Prefer32Bit>
-    <DocumentationFile>bin\Release\Gedcomx.Model.XML</DocumentationFile>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Address.cs" />
-    <Compile Include="Agent.cs" />
-    <Compile Include="DiscussionReference.cs" />
-    <Compile Include="FactQualifierType.cs" />
-    <Compile Include="NamePartQualifierType.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="IAttributable.cs" />
-    <Compile Include="Attribution.cs" />
-    <Compile Include="CitationField.cs" />
-    <Compile Include="Collection.cs" />
-    <Compile Include="CollectionContent.cs" />
-    <Compile Include="Conclusion.cs" />
-    <Compile Include="ConfidenceLevel.cs" />
-    <Compile Include="Coverage.cs" />
-    <Compile Include="DateInfo.cs" />
-    <Compile Include="DisplayProperties.cs" />
-    <Compile Include="Document.cs" />
-    <Compile Include="DocumentType.cs" />
-    <Compile Include="Event.cs" />
-    <Compile Include="EventRole.cs" />
-    <Compile Include="EventRoleType.cs" />
-    <Compile Include="EventType.cs" />
-    <Compile Include="EvidenceReference.cs" />
-    <Compile Include="ExtensibleData.cs" />
-    <Compile Include="Facet.cs" />
-    <Compile Include="FacetType.cs" />
-    <Compile Include="FacetValue.cs" />
-    <Compile Include="Fact.cs" />
-    <Compile Include="FactType.cs" />
-    <Compile Include="Field.cs" />
-    <Compile Include="FieldDescriptor.cs" />
-    <Compile Include="FieldType.cs" />
-    <Compile Include="FieldValue.cs" />
-    <Compile Include="FieldValueType.cs" />
-    <Compile Include="Gedcomx.cs" />
-    <Compile Include="Gender.cs" />
-    <Compile Include="GenderType.cs" />
-    <Compile Include="HypermediaEnabledData.cs" />
-    <Compile Include="Identifier.cs" />
-    <Compile Include="IdentifierType.cs" />
-    <Compile Include="Rt\GedcomxLocalReferenceResolver.cs" />
-    <Compile Include="Rt\IGedcomxModelVisitor.cs" />
-    <Compile Include="Rt\GedcomxModelVisitorBase.cs" />
-    <Compile Include="Tag.cs" />
-    <Compile Include="Util\JsonHypermediaLinksConverter.cs" />
-    <Compile Include="Link.cs" />
-    <Compile Include="Name.cs" />
-    <Compile Include="NameForm.cs" />
-    <Compile Include="NamePart.cs" />
-    <Compile Include="NamePartType.cs" />
-    <Compile Include="NameType.cs" />
-    <Compile Include="Note.cs" />
-    <Compile Include="OnlineAccount.cs" />
-    <Compile Include="Person.cs" />
-    <Compile Include="PlaceDescription.cs" />
-    <Compile Include="PlaceDisplayProperties.cs" />
-    <Compile Include="PlaceReference.cs" />
-    <Compile Include="Qualifier.cs" />
-    <Compile Include="RecordDescriptor.cs" />
-    <Compile Include="RecordSet.cs" />
-    <Compile Include="Relationship.cs" />
-    <Compile Include="RelationshipType.cs" />
-    <Compile Include="ResourceReference.cs" />
-    <Compile Include="ResourceType.cs" />
-    <Compile Include="SourceCitation.cs" />
-    <Compile Include="SourceDescription.cs" />
-    <Compile Include="SourceReference.cs" />
-    <Compile Include="Subject.cs" />
-    <Compile Include="ISupportsLinks.cs" />
-    <Compile Include="TextValue.cs" />
-    <Compile Include="RecordType.cs" />
-    <Compile Include="FieldValueDescriptor.cs" />
-    <Compile Include="Util\JsonIdentifiersConverter.cs" />
-    <Compile Include="Util\JsonUnixTimestampConverter.cs" />
-    <Compile Include="Util\XmlQNameEnumUtil.cs" />
-    <Compile Include="VocabElement.cs" />
-    <Compile Include="VocabElementList.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Documentation\ClassDiagram.cd" />
-    <None Include="packages.config" />
-    <None Include="README.md" />
-  </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+
 </Project>

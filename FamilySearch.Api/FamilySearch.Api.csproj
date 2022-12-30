@@ -1,145 +1,26 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BB8A28F0-E46B-4E36-AAF8-05F472B1C850}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <Title>GEDCOM X FamilySearch API</Title>
+    <Description>This is the main SDK library, and encompasses the ability to work with generic GEDCOM X and FamilySearch specific GEDCOM X data.</Description>
+    <Product>GEDCOM X FamilySearch API</Product>
     <RootNamespace>FamilySearch.Api</RootNamespace>
     <AssemblyName>FamilySearch.API.SDK</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <TargetFramework>net48</TargetFramework>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\FamilySearch.API.SDK.XML</DocumentationFile>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="Flurl, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Flurl.2.2.0\lib\portable40-net40+sl5+win8+wp8+wpa81\Flurl.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="RestSharp, Version=104.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RestSharp.104.5.0\lib\net4\RestSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Net.Http.Extensions">
-      <HintPath>..\packages\Microsoft.Net.Http.2.2.28\lib\net45\System.Net.Http.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.Http.Primitives">
-      <HintPath>..\packages\Microsoft.Net.Http.2.2.28\lib\net45\System.Net.Http.Primitives.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.Http.WebRequest" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-    <Reference Include="Tavis.Link, Version=0.1.5938.41532, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Tavis.Link.2.5\lib\portable-net45+sl5+wp8+win8+wpa81+MonoTouch1+MonoAndroid1\Tavis.Link.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Tavis.UriTemplates, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Tavis.UriTemplates.1.0.0\lib\Net45\Tavis.UriTemplates.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
+    <PackageReference Include="Flurl" Version="2.2.0" />
+    <PackageReference Include="RestSharp" Version="104.5.0" />
+    <PackageReference Include="Tavis.Link" Version="2.5.0" />
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="DiscussionsState.cs" />
-    <Compile Include="DiscussionState.cs" />
-    <Compile Include="EnvironmentEnum.cs" />
-    <Compile Include="FamilySearchCollectionState.cs" />
-    <Compile Include="FamilySearchPlaceDescriptionState.cs" />
-    <Compile Include="FamilySearchPlaces.cs" />
-    <Compile Include="FamilySearchPlaceState.cs" />
-    <Compile Include="FamilySearchSourceDescriptionState.cs" />
-    <Compile Include="FamilySearchStateFactory.cs" />
-    <Compile Include="Ft\ChangeHistoryState.cs" />
-    <Compile Include="Ft\ChildAndParentsRelationshipState.cs" />
-    <Compile Include="Ft\FamilySearchFamilyTree.cs" />
-    <Compile Include="Ft\FamilyTreePersonChildrenState.cs" />
-    <Compile Include="Ft\FamilyTreePersonParentsState.cs" />
-    <Compile Include="Ft\FamilyTreePersonState.cs" />
-    <Compile Include="Ft\FamilyTreeRelationshipsState.cs" />
-    <Compile Include="Ft\FamilyTreeRelationshipState.cs" />
-    <Compile Include="Ft\FamilyTreeStateFactory.cs" />
-    <Compile Include="Memories\FamilySearchMemories.cs" />
-    <Compile Include="PersonMatchResultsState.cs" />
-    <Compile Include="PersonMergeState.cs" />
-    <Compile Include="PersonNonMatchesState.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Rel.cs" />
-    <Compile Include="UserHistoryState.cs" />
-    <Compile Include="UserState.cs" />
-    <Compile Include="Util\ChangeEntry.cs" />
-    <Compile Include="Util\ChangeHistoryPage.cs" />
-    <Compile Include="Util\ExperimentsFilter.cs" />
-    <Compile Include="Util\FamilySearchOptions.cs" />
-    <Compile Include="Util\MergeAnalysisFilter.cs" />
-    <Compile Include="Util\RequestUtil.cs" />
+    <ProjectReference Include="..\GEDCOM X Support\GEDCOM X Support.csproj" />
+    <ProjectReference Include="..\Gedcomx.Model.Fs\GEDCOM X FamilySearch Model Extensions.csproj" />
+    <ProjectReference Include="..\Gedcomx.Model.Rs\GEDCOM X REST Model Extensions.csproj" />
+    <ProjectReference Include="..\Gedcomx.Model\GEDCOM X Model.csproj" />
+    <ProjectReference Include="..\Gedcomx.Rs.Api\Gedcomx.Rs.Api.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\GEDCOM X Support\GEDCOM X Support.csproj">
-      <Project>{4a6f7218-7aa8-40fd-8fe9-e309635242b7}</Project>
-      <Name>GEDCOM X Support</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Gedcomx.Model.Fs\GEDCOM X FamilySearch Model Extensions.csproj">
-      <Project>{fcc74cf5-ad92-4ab2-becc-ce2882a77796}</Project>
-      <Name>GEDCOM X FamilySearch Model Extensions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Gedcomx.Model.Rs\GEDCOM X REST Model Extensions.csproj">
-      <Project>{a171b653-434f-494d-bda9-0dc2fcd86ba6}</Project>
-      <Name>GEDCOM X REST Model Extensions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Gedcomx.Model\GEDCOM X Model.csproj">
-      <Project>{4629ba54-406e-4cd2-9dc6-cda2c5206eb7}</Project>
-      <Name>GEDCOM X Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Gedcomx.Rs.Api\Gedcomx.Rs.Api.csproj">
-      <Project>{6c4454bd-26bf-43ad-9732-9f1ce4b1cb87}</Project>
-      <Name>Gedcomx.Rs.Api</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
-    <None Include="README.md" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
-  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
-    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
-    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
-  </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>

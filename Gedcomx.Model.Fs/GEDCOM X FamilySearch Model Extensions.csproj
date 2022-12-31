@@ -6,7 +6,7 @@
     <Product>GEDCOM X FamilySearch Model Extensions</Product>
     <RootNamespace>Gx.Fs</RootNamespace>
     <AssemblyName>Gedcomx.Model.Fs</AssemblyName>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>

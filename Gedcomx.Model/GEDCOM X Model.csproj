@@ -6,7 +6,7 @@
     <Product>GEDCOM X Model</Product>
      <RootNamespace>Gedcomx.Model</RootNamespace>
     <AssemblyName>Gedcomx.Model</AssemblyName>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>

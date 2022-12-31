@@ -1,0 +1,17 @@
+<Project>
+  <PropertyGroup>
+    <major>1</major>
+    <minor>0</minor>
+    <patch>0</patch>
+
+    <!-- package version of Gexcomx -->
+    <GexcomxVersion>$(major).$(minor).$(patch)</GexcomxVersion>
+
+    <!-- assembly version of Gexcomx -->
+    <GexcomxAssemblyVersion>$(major).0.0.0</GexcomxAssemblyVersion>
+
+    <!-- file version of all Gexcomx -->
+    <GexcomxAssemblyFileVersion>$(major).$(minor).0.0</GexcomxAssemblyFileVersion>
+
+  </PropertyGroup>
+</Project>

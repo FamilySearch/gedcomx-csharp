@@ -1,81 +1,40 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>10.0.0</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{2DB621CF-0164-43A6-A31D-811BE8BF3527}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <Title>GEDCOM X FamilySearch API</Title>
+    <Description>This is the main SDK library, and encompasses the ability to work with generic GEDCOM X and FamilySearch specific GEDCOM X data.</Description>
+    <Product>GEDCOM X FamilySearch API</Product>
     <RootNamespace>Gedcomx.CLI.Test</RootNamespace>
     <AssemblyName>Gedcomx.CLI.Test</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <TargetFrameworkProfile />
+    <TargetFramework>net48</TargetFramework>
+
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>True</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>False</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>False</ConsolePause>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>none</DebugType>
-    <Optimize>False</Optimize>
-    <OutputPath>bin\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>False</ConsolePause>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=3.4.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.3.4.1\lib\net45\nunit.framework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System" />
+    <None Remove="recordset-1307888.xml" />
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RecordSetParserTest.cs" />
+    <EmbeddedResource Include="recordset-1307888.xml" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+
   <ItemGroup>
-    <ProjectReference Include="..\Gedcomx.CLI\GEDCOM X Command Line Interface.csproj">
-      <Project>{26AEBDF3-DCC8-4FE9-8BC4-796F306E4CA2}</Project>
-      <Name>GEDCOM X Command Line Interface</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Gedcomx.Model\GEDCOM X Model.csproj">
-      <Project>{4629BA54-406E-4CD2-9DC6-CDA2C5206EB7}</Project>
-      <Name>GEDCOM X Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Gedcomx.Model.Fs\GEDCOM X FamilySearch Model Extensions.csproj">
-      <Project>{FCC74CF5-AD92-4AB2-BECC-CE2882A77796}</Project>
-      <Name>GEDCOM X FamilySearch Model Extensions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Gedcomx.Model.Rs\GEDCOM X REST Model Extensions.csproj">
-      <Project>{A171B653-434F-494D-BDA9-0DC2FCD86BA6}</Project>
-      <Name>GEDCOM X REST Model Extensions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Gedcomx.Util\GEDCOM X Utilities.csproj">
-      <Project>{876EA5FA-FAE0-4280-9409-3754F3C8AAA4}</Project>
-      <Name>GEDCOM X Utilities</Name>
-    </ProjectReference>
+    <PackageReference Include="NUnit" Version="3.13.3" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.3.1" />
+    <PackageReference Include="NUnit.Analyzers" Version="3.5.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.1" />
   </ItemGroup>
+
   <ItemGroup>
-    <EmbeddedResource Include="recordset-1307888.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
+    <ProjectReference Include="..\Gedcomx.CLI\GEDCOM X Command Line Interface.csproj" />
+    <ProjectReference Include="..\Gedcomx.Model.Fs\GEDCOM X FamilySearch Model Extensions.csproj" />
+    <ProjectReference Include="..\Gedcomx.Model.Rs\GEDCOM X REST Model Extensions.csproj" />
+    <ProjectReference Include="..\Gedcomx.Model\GEDCOM X Model.csproj" />
+    <ProjectReference Include="..\Gedcomx.Util\GEDCOM X Utilities.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
+
 </Project>

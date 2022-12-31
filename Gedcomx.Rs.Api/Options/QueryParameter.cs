@@ -73,16 +73,16 @@ namespace Gx.Rs.Api.Options
         public void Apply(IRestRequest request)
         {
             var url = new Url(request.Resource);
-            var query = url.QueryParams.ToList();
+            var query = url.QueryParams;
 
             if (this.replace)
             {
-                query.RemoveAll(x => x.Name == this.name);
+                query.Remove(this.name);
             }
 
             foreach (var value in values)
             {
-                query.Add(new Flurl.QueryParameter(this.name, value));
+                query.Add(this.name, value);
             }
 
             request.Resource = url.Path + "?" + String.Join("&", query.Select(x => x.Name + "=" + x.Value));

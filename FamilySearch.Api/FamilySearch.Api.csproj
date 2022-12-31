@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Flurl" Version="2.2.0" />
+    <PackageReference Include="Flurl" Version="3.0.7" />
     <PackageReference Include="RestSharp" Version="104.5.0" />
     <PackageReference Include="Tavis.Link" Version="2.5.0" />
   </ItemGroup>

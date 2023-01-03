@@ -1,14 +1,14 @@
-﻿using Gedcomx.File;
-using KellermanSoftware.CompareNetObjects;
-using NUnit.Framework;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using Gedcomx.File;
+
+using KellermanSoftware.CompareNetObjects;
+
+using NUnit.Framework;
 
 namespace Gedcomx.Rs.Api.Test
 {
@@ -22,19 +22,19 @@ namespace Gedcomx.Rs.Api.Test
             var fi = new FileInfo(file);
             using (GedcomxFile test = new GedcomxFile(fi))
             {
-                Assert.IsNotNull(test);
-                Assert.IsNotNull(test.Attributes);
-                Assert.AreEqual(2, test.Attributes.Count);
-                Assert.IsNotNull(test.GetAttribute("Manifest-Version"));
-                Assert.IsNotNull(test.Entries);
-                Assert.Greater(test.Entries.Count(), 0);
+                Assert.That(test, Is.Not.Null);
+                Assert.That(test.Attributes, Is.Not.Null);
+                Assert.That(test.Attributes, Has.Count.EqualTo(2));
+                Assert.That(test.GetAttribute("Manifest-Version"), Is.Not.Null);
+                Assert.That(test.Entries, Is.Not.Null);
+                Assert.That(test.Entries.Count(), Is.GreaterThan(0));
 
                 foreach (var entry in test.Entries)
                 {
                     using (var stream = test.GetResourceStream(entry))
                     {
-                        Assert.IsNotNull(stream);
-                        Assert.IsTrue(stream.CanRead);
+                        Assert.That(stream, Is.Not.Null);
+                        Assert.That(stream.CanRead, Is.True);
                     }
                 }
             }
@@ -59,7 +59,7 @@ namespace Gedcomx.Rs.Api.Test
             var comparer = new CompareLogic();
             var differences = comparer.Compare(gxExpected, gxActual);
 
-            Assert.AreEqual(0, differences.Differences.Count);
+            Assert.That(differences.Differences, Is.Empty);
         }
 
         [Test]
@@ -69,12 +69,12 @@ namespace Gedcomx.Rs.Api.Test
             var fi = new FileInfo(file);
             var results = ManifestAttributes.Parse(ZipFile.OpenRead(file));
 
-            Assert.IsNotNull(results);
-            Assert.AreEqual(4, results.Count);
-            Assert.AreEqual(2, results[results.Keys.Where(x => x == ManifestAttributes.MANIFEST_FULLNAME).Single()].Count);
-            Assert.AreEqual(3, results[results.Keys.Where(x => x == "tree.xml").Single()].Count);
-            Assert.AreEqual(3, results[results.Keys.Where(x => x == "person1.png").Single()].Count);
-            Assert.AreEqual(3, results[results.Keys.Where(x => x == "person2.png").Single()].Count);
+            Assert.That(results, Is.Not.Null);
+            Assert.That(results, Has.Count.EqualTo(4));
+            Assert.That(results[results.Keys.Where(x => x == ManifestAttributes.MANIFEST_FULLNAME).Single()], Has.Count.EqualTo(2));
+            Assert.That(results[results.Keys.Where(x => x == "tree.xml").Single()], Has.Count.EqualTo(3));
+            Assert.That(results[results.Keys.Where(x => x == "person1.png").Single()], Has.Count.EqualTo(3));
+            Assert.That(results[results.Keys.Where(x => x == "person2.png").Single()], Has.Count.EqualTo(3));
         }
 
         [Test]
@@ -85,9 +85,10 @@ namespace Gedcomx.Rs.Api.Test
             using (var ms = new MemoryStream())
             {
                 var file = new GedcomxOutputStream(ms, new DefaultXmlSerialization());
-                var gx = new Gx.Gedcomx();
-
-                gx.Persons = new List<Gx.Conclusion.Person>();
+                var gx = new Gx.Gedcomx
+                {
+                    Persons = new List<Gx.Conclusion.Person>()
+                };
                 gx.Persons.Add(TestBacking.GetCreateMalePerson());
 
                 file.AddResource(gx);
@@ -106,7 +107,7 @@ namespace Gedcomx.Rs.Api.Test
             // Verify basic reading of the zip file created above
             using (var zip = ZipFile.OpenRead(fileName))
             {
-                Assert.AreEqual(2, zip.Entries.Count);
+                Assert.That(zip.Entries, Has.Count.EqualTo(2));
             }
         }
 
@@ -117,22 +118,22 @@ namespace Gedcomx.Rs.Api.Test
             var fi = new FileInfo(file);
             using (GedcomxFile test = new GedcomxFile(fi))
             {
-                Assert.AreEqual(4, test.Entries.Count());
+                Assert.That(test.Entries.Count(), Is.EqualTo(4));
 
                 var gedxEntry = test.Entries.Where(x => x.ZipEntry.FullName == "tree.xml").Single();
                 var imageEntry1 = test.Entries.Where(x => x.ZipEntry.FullName == "person1.png").Single();
                 var imageEntry2 = test.Entries.Where(x => x.ZipEntry.FullName == "person2.png").Single();
 
-                Assert.AreEqual("application/x-gedcomx-v1+xml", gedxEntry.GetAttribute("Content-Type"));
-                Assert.AreEqual("image/png", imageEntry1.GetAttribute("Content-Type"));
-                Assert.AreEqual("image/png", imageEntry2.GetAttribute("Content-Type"));
+                Assert.That(gedxEntry.GetAttribute("Content-Type"), Is.EqualTo("application/x-gedcomx-v1+xml"));
+                Assert.That(imageEntry1.GetAttribute("Content-Type"), Is.EqualTo("image/png"));
+                Assert.That(imageEntry2.GetAttribute("Content-Type"), Is.EqualTo("image/png"));
 
                 var gedx = test.ReadResource<Gx.Gedcomx>(gedxEntry);
                 var image1 = test.GetResourceStream(imageEntry1);
                 var image2 = test.GetResourceStream(imageEntry2);
 
-                Assert.AreEqual(4, gedx.Persons.Count);
-                Assert.AreEqual(4, gedx.Relationships.Count);
+                Assert.That(gedx.Persons, Has.Count.EqualTo(4));
+                Assert.That(gedx.Relationships, Has.Count.EqualTo(4));
                 Assert.DoesNotThrow(() => new Bitmap(image1));
                 Assert.DoesNotThrow(() => new Bitmap(image2));
             }

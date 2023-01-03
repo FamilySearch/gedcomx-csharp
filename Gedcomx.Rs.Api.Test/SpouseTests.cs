@@ -1,14 +1,13 @@
-﻿using FamilySearch.Api.Ft;
+﻿using System.Collections.Generic;
+using System.Net;
+
+using FamilySearch.Api.Ft;
+
 using Gx.Common;
 using Gx.Rs.Api;
 using Gx.Rs.Api.Options;
+
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Gedcomx.Rs.Api.Test
 {
@@ -25,9 +24,9 @@ namespace Gedcomx.Rs.Api.Test
             tree.AuthenticateViaOAuth2Password(Resources.TestUserName, Resources.TestPassword, Resources.TestClientId);
             cleanup = new List<GedcomxApplicationState>();
             Assert.DoesNotThrow(() => tree.IfSuccessful());
-            Assert.IsNotNull(tree.CurrentAccessToken);
-			Assert.IsNotEmpty(tree.CurrentAccessToken);
-		}
+            Assert.That(tree.CurrentAccessToken, Is.Not.Null);
+            Assert.That(tree.CurrentAccessToken, Is.Not.Empty);
+        }
 
         [OneTimeTearDown]
         public void TearDown()
@@ -49,7 +48,7 @@ namespace Gedcomx.Rs.Api.Test
             cleanup.Add(state);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.Created, state.Response.StatusCode);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.Created));
         }
 
         [Test]
@@ -64,7 +63,7 @@ namespace Gedcomx.Rs.Api.Test
             var state = relationship.AddSourceReference(TestBacking.GetPersonSourceReference());
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.Created, state.Response.StatusCode);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.Created));
         }
 
         [Test]
@@ -79,11 +78,11 @@ namespace Gedcomx.Rs.Api.Test
             var state = relationship.AddFact(TestBacking.GetMarriageFact());
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-			
-			// TODO: likely this should now be created
-			//Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
-			Assert.AreEqual(HttpStatusCode.Created, state.Response.StatusCode);
-		}
+
+            // TODO: likely this should now be created
+            //Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.Created));
+        }
 
         [Test]
         public void TestCreateCoupleRelationshipNote()
@@ -97,7 +96,7 @@ namespace Gedcomx.Rs.Api.Test
             var state = relationship.AddNote(TestBacking.GetCreateNote());
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.Created, state.Response.StatusCode);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.Created));
         }
 
         [Test]
@@ -112,8 +111,8 @@ namespace Gedcomx.Rs.Api.Test
             var state = (RelationshipState)relationship.Get();
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
-            Assert.IsNotNull(state.Relationship);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            Assert.That(state.Relationship, Is.Not.Null);
         }
 
         [Test]
@@ -130,7 +129,7 @@ namespace Gedcomx.Rs.Api.Test
             var state = relationship.Get(cache);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.NotModified, state.Response.StatusCode);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.NotModified));
         }
 
         [Test]
@@ -146,8 +145,8 @@ namespace Gedcomx.Rs.Api.Test
             var state = ((RelationshipState)relationship.Get()).LoadSourceReferences();
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
-            Assert.IsNotNull(state.SourceReference);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            Assert.That(state.SourceReference, Is.Not.Null);
         }
 
         [Test]
@@ -163,12 +162,12 @@ namespace Gedcomx.Rs.Api.Test
             var state = relationship.LoadNotes();
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
-            Assert.IsNotNull(state.Relationship.Notes);
-            Assert.AreEqual(1, state.Relationship.Notes.Count);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            Assert.That(state.Relationship.Notes, Is.Not.Null);
+            Assert.That(state.Relationship.Notes, Has.Count.EqualTo(1));
         }
 
-        [Test]
+        [Test, Category("AccountNeeded")]
         public void TestReadNonExistentCoupleRelationship()
         {
             var person = tree.AddPerson(TestBacking.GetCreateMalePerson());
@@ -177,7 +176,7 @@ namespace Gedcomx.Rs.Api.Test
             var state = person.ReadRelationship(relationship);
 
             Assert.Throws<GedcomxApplicationException>(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.NotFound, state.Response.StatusCode);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.NotFound));
         }
 
         [Test]
@@ -192,7 +191,7 @@ namespace Gedcomx.Rs.Api.Test
 
             var state = relationship.Head();
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
         }
 
         [Test]
@@ -210,32 +209,32 @@ namespace Gedcomx.Rs.Api.Test
             var state = relationship.Post(relationship.Entity);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.NoContent));
         }
 
         [Test]
         public void TestUpdateCoupleRelationshipConclusion()
         {
-			var husband = (PersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
-			cleanup.Add(husband);
-			var wife = tree.AddPerson(TestBacking.GetCreateFemalePerson());
-			cleanup.Add(wife);
-			var relationship = husband.AddSpouse(wife);
-			cleanup.Add(relationship);
-			var update = (RelationshipState)relationship.AddFact(TestBacking.GetMarriageFact()).Get();
-			update = (RelationshipState)relationship.Get();
-			update.Fact.Date.Original = "4 Apr 1930";
-			update.Fact.Attribution = new Attribution()
-			{
-				ChangeMessage = "Change message2",
-			};
-			var state = relationship.UpdateFact(update.Fact);
-			
-			Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
+            var husband = (PersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            cleanup.Add(husband);
+            var wife = tree.AddPerson(TestBacking.GetCreateFemalePerson());
+            cleanup.Add(wife);
+            var relationship = husband.AddSpouse(wife);
+            cleanup.Add(relationship);
+            var update = (RelationshipState)relationship.AddFact(TestBacking.GetMarriageFact()).Get();
+            update = (RelationshipState)relationship.Get();
+            update.Fact.Date.Original = "4 Apr 1930";
+            update.Fact.Attribution = new Attribution()
+            {
+                ChangeMessage = "Change message2",
+            };
+            var state = relationship.UpdateFact(update.Fact);
+
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.NoContent));
         }
 
-        [Test]
+        [Test, Category("AccountNeeded")]
         public void TestUpdateIllegalCoupleRelationship()
         {
             var husband = (PersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
@@ -250,7 +249,7 @@ namespace Gedcomx.Rs.Api.Test
             var state = relationship.Post(relationship.Entity);
 
             Assert.Throws<GedcomxApplicationException>(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.BadRequest, state.Response.StatusCode);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.BadRequest));
         }
 
         [Test]
@@ -265,11 +264,11 @@ namespace Gedcomx.Rs.Api.Test
             var state = relationship.Delete();
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.NoContent));
         }
 
-		// TODO: fact.Fact is null because this call returns null GetLink(Rel.CONCLUSIONS)
-		[Test]
+        // TODO: fact.Fact is null because this call returns null GetLink(Rel.CONCLUSIONS)
+        [Test]
         public void TestDeleteCoupleRelationshipConclusion()
         {
             var husband = (PersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
@@ -279,12 +278,12 @@ namespace Gedcomx.Rs.Api.Test
             var relationship = husband.AddSpouse(wife);
             cleanup.Add(relationship);
             var fact = (RelationshipState)relationship.AddFact(TestBacking.GetMarriageFact()).Get();
-			var state2 = (RelationshipState)relationship.Get();
+            var state2 = (RelationshipState)relationship.Get();
 
-			var state = state2.DeleteFact(state2.Fact);
+            var state = state2.DeleteFact(state2.Fact);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.NoContent));
         }
 
         [Test]
@@ -300,7 +299,7 @@ namespace Gedcomx.Rs.Api.Test
             var state = relationship.Restore();
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.NoContent));
         }
     }
 }

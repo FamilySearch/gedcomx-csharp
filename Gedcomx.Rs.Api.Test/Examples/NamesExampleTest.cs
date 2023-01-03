@@ -1,13 +1,10 @@
 ﻿using Gedcomx.File;
+
 using Gx.Common;
 using Gx.Conclusion;
 using Gx.Types;
+
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Gedcomx.Rs.Api.Test.Examples
 {
@@ -101,7 +98,7 @@ namespace Gedcomx.Rs.Api.Test.Examples
               .SetPart(NamePartType.Given, "Björk")
               .SetPart(new NamePart().SetValue("Guðmundsdóttir").SetQualifier(new Qualifier(NamePartQualifierType.Patronymic)));
             Name name = new Name().SetNameForm(nameForm);
-            
+
             Gx.Gedcomx gx = new Gx.Gedcomx().SetPerson(new Person().SetName(name));
             xmlSerializer.Deserialize<Gx.Gedcomx>(xmlSerializer.Serialize(gx));
             jsonSerializer.Deserialize<Gx.Gedcomx>(jsonSerializer.Serialize(gx));

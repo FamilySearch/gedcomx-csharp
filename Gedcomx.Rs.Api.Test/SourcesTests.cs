@@ -1,12 +1,15 @@
-﻿using FamilySearch.Api.Ft;
-using Gedcomx.Support;
-using Gx.Rs.Api;
-using Gx.Rs.Api.Util;
-using NUnit.Framework;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+
+using FamilySearch.Api.Ft;
+
+using Gedcomx.Support;
+
+using Gx.Rs.Api;
+using Gx.Rs.Api.Util;
+
+using NUnit.Framework;
 
 namespace Gedcomx.Rs.Api.Test
 {
@@ -22,9 +25,9 @@ namespace Gedcomx.Rs.Api.Test
             tree = new FamilySearchFamilyTree(true);
             tree.AuthenticateViaOAuth2Password(Resources.TestUserName, Resources.TestPassword, Resources.TestClientId);
             Assert.DoesNotThrow(() => tree.IfSuccessful());
-            Assert.IsNotNull(tree.CurrentAccessToken);
-			Assert.IsNotEmpty(tree.CurrentAccessToken);
-			cleanup = new List<GedcomxApplicationState>();
+            Assert.That(tree.CurrentAccessToken, Is.Not.Null);
+            Assert.That(tree.CurrentAccessToken, Is.Not.Empty);
+            cleanup = new List<GedcomxApplicationState>();
         }
 
         [OneTimeTearDown]
@@ -43,7 +46,7 @@ namespace Gedcomx.Rs.Api.Test
             cleanup.Add(state);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.Created, state.Response.StatusCode);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.Created));
         }
 
         [Test]
@@ -60,7 +63,7 @@ namespace Gedcomx.Rs.Api.Test
             cleanup.Add(state);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.Created, state.Response.StatusCode);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.Created));
         }
 
         [Test]
@@ -70,8 +73,8 @@ namespace Gedcomx.Rs.Api.Test
             cleanup.Add(state);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
-            Assert.IsNotNull(state.SourceDescription);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            Assert.That(state.SourceDescription, Is.Not.Null);
         }
 
         [Test]
@@ -82,7 +85,7 @@ namespace Gedcomx.Rs.Api.Test
             var state = description.Update(description.SourceDescription);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.NoContent));
         }
 
         [Test]
@@ -91,7 +94,7 @@ namespace Gedcomx.Rs.Api.Test
             var state = tree.AddSourceDescription(TestBacking.GetCreateSourceDescription()).Delete();
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.NoContent));
         }
 
         [Test]
@@ -104,11 +107,11 @@ namespace Gedcomx.Rs.Api.Test
             var relationship = (RelationshipState)husband.AddSpouse(wife).Get();
             cleanup.Add(relationship);
             relationship.AddSourceReference(TestBacking.GetPersonSourceReference());
-			relationship = (RelationshipState)relationship.Get();
-			var state = relationship.DeleteSourceReference(relationship.SourceReference);
+            relationship = (RelationshipState)relationship.Get();
+            var state = relationship.DeleteSourceReference(relationship.SourceReference);
 
-			Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.NoContent));
         }
 
         [Test]
@@ -124,10 +127,10 @@ namespace Gedcomx.Rs.Api.Test
             var state = source.QueryAttachedReferences();
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
-            Assert.IsNotNull(state.Entity);
-            Assert.IsNotNull(state.Entity.Persons);
-            Assert.Greater(state.Entity.Persons.Count, 0);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            Assert.That(state.Entity, Is.Not.Null);
+            Assert.That(state.Entity.Persons, Is.Not.Null);
+            Assert.That(state.Entity.Persons, Is.Not.Empty);
         }
     }
 }

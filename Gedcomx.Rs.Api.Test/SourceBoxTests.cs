@@ -1,18 +1,14 @@
-﻿using FamilySearch.Api.Ft;
-using Gx.Rs.Api;
-using Gx.Source;
-using NUnit.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using Gx.Rs.Api.Util;
-using Gx.Records;
-using Gedcomx.Support;
+
 using FamilySearch.Api;
-using Gx.Rs.Api.Options;
+
+using Gx.Records;
+using Gx.Rs.Api;
+
+using NUnit.Framework;
 
 namespace Gedcomx.Rs.Api.Test
 {
@@ -26,7 +22,7 @@ namespace Gedcomx.Rs.Api.Test
         [OneTimeSetUp]
         public void Initialize()
         {
-            collection = new FamilySearchCollectionState(new Uri("https://integration.familysearch.org/platform/collections/sources"));
+            collection = new FamilySearchCollectionState(new Uri("https://api-integ.familysearch.org/platform/collections/sources"));
             collection.AuthenticateViaOAuth2Password(Resources.TestUserName, Resources.TestPassword, Resources.TestClientId);
             subcollections = (CollectionsState)collection.ReadSubcollections().Get();
             cleanup = new List<GedcomxApplicationState>();
@@ -50,9 +46,9 @@ namespace Gedcomx.Rs.Api.Test
             var state = subcollection.ReadSourceDescriptions();
 
             Assert.DoesNotThrow(() => subcollection.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, subcollection.Response.StatusCode);
-            Assert.IsNotNull(subcollection.Entity.Collections);
-            Assert.Greater(subcollection.Entity.Collections.Count, 0);
+            Assert.That(subcollection.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            Assert.That(subcollection.Entity.Collections, Is.Not.Null);
+            Assert.That(subcollection.Entity.Collections, Is.Not.Empty);
         }
 
         [Test]
@@ -63,16 +59,16 @@ namespace Gedcomx.Rs.Api.Test
             var state = description.Delete();
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.NoContent));
         }
 
         [Test]
         public void TestReadASpecificUsersSetOfUserDefinedCollections()
         {
             Assert.DoesNotThrow(() => subcollections.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, subcollections.Response.StatusCode);
-            Assert.IsNotNull(subcollections.Collections);
-            Assert.Greater(subcollections.Collections.Count, 0);
+            Assert.That(subcollections.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            Assert.That(subcollections.Collections, Is.Not.Null);
+            Assert.That(subcollections.Collections, Is.Not.Empty);
         }
 
         [Test]
@@ -82,7 +78,7 @@ namespace Gedcomx.Rs.Api.Test
             cleanup.Add(state);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.Created, state.Response.StatusCode);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.Created));
         }
 
         [Test]
@@ -92,7 +88,7 @@ namespace Gedcomx.Rs.Api.Test
             var state = subcollection.ReadSourceDescriptions();
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
         }
 
         [Test]
@@ -105,7 +101,7 @@ namespace Gedcomx.Rs.Api.Test
             var state = description.MoveToCollection(subcollection);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.NoContent));
         }
 
         [Test]
@@ -115,7 +111,7 @@ namespace Gedcomx.Rs.Api.Test
             cleanup.Add(state);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
 
             state.Delete();
         }
@@ -129,7 +125,7 @@ namespace Gedcomx.Rs.Api.Test
             var state = subcollection.Update(subcollection.Collection);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.NoContent));
         }
 
         [Test]
@@ -139,7 +135,7 @@ namespace Gedcomx.Rs.Api.Test
             var state = subcollection.Delete();
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.NoContent));
         }
     }
 }

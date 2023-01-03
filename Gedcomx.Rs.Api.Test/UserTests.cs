@@ -1,13 +1,12 @@
-﻿using FamilySearch.Api.Ft;
+﻿using System.Collections.Generic;
+using System.Net;
+
+using FamilySearch.Api.Ft;
+
 using Gx.Rs.Api;
 using Gx.Rs.Api.Options;
+
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Gedcomx.Rs.Api.Test
 {
@@ -40,7 +39,7 @@ namespace Gedcomx.Rs.Api.Test
             var state = tree.ReadPersonForCurrentUser();
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.SeeOther, state.Response.StatusCode);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.SeeOther));
         }
 
         [Test]
@@ -49,8 +48,8 @@ namespace Gedcomx.Rs.Api.Test
             var expect = new HeaderParameter("X-Expect-Override", "200-ok");
             var state = tree.ReadPersonForCurrentUser(expect);
 
-			Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
         }
 
         [Test]
@@ -59,7 +58,7 @@ namespace Gedcomx.Rs.Api.Test
             var state = tree.ReadCurrentUser();
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
         }
 
         [Test]
@@ -70,7 +69,7 @@ namespace Gedcomx.Rs.Api.Test
             var state = person.ReadContributor(person.GetName());
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
         }
     }
 }

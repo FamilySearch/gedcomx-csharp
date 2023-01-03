@@ -1,13 +1,12 @@
-﻿using FamilySearch.Api.Ft;
+﻿using System.Collections.Generic;
+using System.Net;
+
+using FamilySearch.Api.Ft;
+
 using Gx.Common;
 using Gx.Rs.Api;
+
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Gedcomx.Rs.Api.Test
 {
@@ -33,7 +32,7 @@ namespace Gedcomx.Rs.Api.Test
                 state.Delete();
             }
         }
-        
+
         [Test]
         public void TestReadNote()
         {
@@ -44,10 +43,10 @@ namespace Gedcomx.Rs.Api.Test
             var state = notes.ReadNote(notes.Entity.Persons[0].Notes[0]);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
-            Assert.IsNotNull(state.Person);
-            Assert.IsNotNull(state.Person.Notes);
-            Assert.Greater(state.Person.Notes.Count, 0);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            Assert.That(state.Person, Is.Not.Null);
+            Assert.That(state.Person.Notes, Is.Not.Null);
+            Assert.That(state.Person.Notes, Is.Not.Empty);
         }
 
         [Test]
@@ -60,7 +59,7 @@ namespace Gedcomx.Rs.Api.Test
             var state = notes.DeleteNote(notes.Entity.Persons[0].Notes[0]);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.NoContent));
         }
 
         [Test]
@@ -77,23 +76,23 @@ namespace Gedcomx.Rs.Api.Test
             var state = relationship.UpdateNote(TestBacking.GetCreateNote());
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.Created, state.Response.StatusCode);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.Created));
         }
 
         [Test]
         public void TestUpdateNote()
         {
-			var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
+            var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
             cleanup.Add(person);
             person.AddNote(TestBacking.GetCreateNote());
             var notes = person.LoadNotes();
-			var state = person.UpdateNote(TestBacking.GetCreateNote());
+            var state = person.UpdateNote(TestBacking.GetCreateNote());
 
-			Assert.DoesNotThrow(() => state.IfSuccessful());
-			Assert.AreEqual(HttpStatusCode.Created, state.Response.StatusCode);
-		}
+            Assert.DoesNotThrow(() => state.IfSuccessful());
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.Created));
+        }
 
-        [Test]
+        [Test, Category("AccountNeeded")]
         public void TestUpdateChildAndParentsRelationshipNotes()
         {
             var father = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
@@ -109,10 +108,10 @@ namespace Gedcomx.Rs.Api.Test
             var state = relationship.UpdateNote(TestBacking.GetCreateNote());
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.Created, state.Response.StatusCode);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.Created));
         }
 
-        [Test]
+        [Test, Category("AccountNeeded")]
         public void TestDeleteChildAndParentsRelationshipNotes()
         {
             var father = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
@@ -128,7 +127,7 @@ namespace Gedcomx.Rs.Api.Test
             var state = relationship.DeleteNote(notes.Note);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.NoContent));
         }
 
         [Test]
@@ -145,7 +144,7 @@ namespace Gedcomx.Rs.Api.Test
             var state = relationship.DeleteNote(notes.Note);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.NoContent));
         }
     }
 }

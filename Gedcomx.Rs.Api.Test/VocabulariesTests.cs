@@ -1,17 +1,16 @@
-﻿using FamilySearch.Api;
+﻿using System;
+
+using FamilySearch.Api;
+
 using Gedcomx.Model;
-using Gx.Common;
+
 using Gx.Rs.Api;
+
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Gedcomx.Rs.Api.Test
 {
-    [TestFixture]
+    [TestFixture, Category("AccountNeeded")]
     public class VocabulariesTests
     {
         private FamilySearchPlaces places;
@@ -21,7 +20,7 @@ namespace Gedcomx.Rs.Api.Test
         [OneTimeSetUp]
         public void Initialize()
         {
-            places = new FamilySearchStateFactory().NewPlacesState(new Uri("https://integration.familysearch.org/platform/collections/places"));
+            places = new FamilySearchStateFactory().NewPlacesState(new Uri("https://api-integ.familysearch.org/platform/collections/places"));
             places.AuthenticateViaOAuth2Password(Resources.TestUserName, Resources.TestPassword, Resources.TestClientId);
             places = (FamilySearchPlaces)places.Get();
             placeTypes = places.ReadPlaceTypes();
@@ -32,20 +31,20 @@ namespace Gedcomx.Rs.Api.Test
         public void TestReadVocabularyList()
         {
             var state = placeTypes;
-            Assert.IsNotNull(state);
+            Assert.That(state, Is.Not.Null);
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.IsNotNull(list);
-            Assert.IsNotNull(list.Title);
-            Assert.IsNotNull(list.Description);
-            Assert.IsNotNull(list.Elements);
+            Assert.That(list, Is.Not.Null);
+            Assert.That(list.Title, Is.Not.Null);
+            Assert.That(list.Description, Is.Not.Null);
+            Assert.That(list.Elements, Is.Not.Null);
             var numPlaceTypes = list.Elements.Count;
             var randomNum = new Random().Next(0, numPlaceTypes + 1);
             var randomPlaceType = list.Elements[randomNum];
-            Assert.IsNotNull(randomPlaceType);
-            Assert.IsNotNull(randomPlaceType.Id);
-            Assert.IsNotNull(randomPlaceType.Uri);
-            Assert.IsNotNull(randomPlaceType.Labels);
-            Assert.IsNotNull(randomPlaceType.Descriptions);
+            Assert.That(randomPlaceType, Is.Not.Null);
+            Assert.That(randomPlaceType.Id, Is.Not.Null);
+            Assert.That(randomPlaceType.Uri, Is.Not.Null);
+            Assert.That(randomPlaceType.Labels, Is.Not.Null);
+            Assert.That(randomPlaceType.Descriptions, Is.Not.Null);
         }
 
         [Test]
@@ -55,9 +54,9 @@ namespace Gedcomx.Rs.Api.Test
             var randomNum = new Random().Next(0, numPlaceTypes + 1);
             var randomPlaceType = list.Elements[randomNum];
             var state = places.ReadPlaceTypeById(randomPlaceType.Id);
-            Assert.IsNotNull(state);
+            Assert.That(state, Is.Not.Null);
             var placeType = state.GetVocabElement();
-            Assert.IsNotNull(placeType);
+            Assert.That(placeType, Is.Not.Null);
         }
     }
 }

@@ -37,8 +37,10 @@ namespace Gedcomx.Rs.Api.Test.Examples
             Relationship marriage = CreateMarriage(george, martha);
             List<SourceDescription> sources = CiteGeorgeMarthaAndMarriage(george, martha, marriage);
             Agent contributor = CreateContributor();
-            Gx.Gedcomx gx = new Gx.Gedcomx();
-            gx.Persons = new List<Person>() { george, martha };
+            Gx.Gedcomx gx = new Gx.Gedcomx
+            {
+                Persons = new List<Person>() { george, martha }
+            };
             gx.SetRelationship(marriage);
             gx.SourceDescriptions = sources;
             gx.SetAgent(contributor);

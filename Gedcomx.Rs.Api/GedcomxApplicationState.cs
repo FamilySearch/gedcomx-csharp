@@ -1,18 +1,19 @@
-using System;
-using RestSharp;
-using System.Text;
+﻿using System;
 using System.Collections.Generic;
-using Gx.Conclusion;
-using Gx.Rs.Api.Util;
-using Gx.Links;
-using System.Net;
+using System.Diagnostics;
 using System.Linq;
-using Newtonsoft.Json;
-using Gx.Records;
-using Gx.Common;
+using System.Net;
+
 using Gedcomx.Model;
 using Gedcomx.Support;
-using System.Diagnostics;
+
+using Gx.Common;
+using Gx.Links;
+using Gx.Rs.Api.Util;
+
+using Newtonsoft.Json;
+
+using RestSharp;
 
 namespace Gx.Rs.Api
 {
@@ -38,10 +39,10 @@ namespace Gx.Rs.Api
         /// </value>
         public IFilterableRestClient Client { get; protected set; }
         /// <summary>
-        /// Gets or sets the current access token (the OAuth2 token), see https://familysearch.org/developers/docs/api/authentication/Access_Token_resource.
+        /// Gets or sets the current access token (the OAuth2 token), see https://www.familysearch.org/developers/docs/api/authentication/Access_Token_resource.
         /// </summary>
         /// <value>
-        /// The current access token (the OAuth2 token), see https://familysearch.org/developers/docs/api/authentication/Access_Token_resource.
+        /// The current access token (the OAuth2 token), see https://www.familysearch.org/developers/docs/api/authentication/Access_Token_resource.
         /// </value>
         public String CurrentAccessToken { get; set; }
         /// <summary>
@@ -216,15 +217,15 @@ namespace Gx.Rs.Api
 
             result = this.Client.Handle(request);
 
-			Debug.WriteLine(string.Format("\nRequest: {0}", request.Resource));
-			foreach (var header in request.Parameters)
-			{
-				Debug.WriteLine(string.Format("{0} {1}", header.Name, header.Value));
-			}
-			Debug.WriteLine(string.Format("\nResponse Status: {0} {1}", result.StatusCode, result.StatusDescription));
-			Debug.WriteLine(string.Format("\nResponse Content: {0}", result.Content));
+            Debug.WriteLine(string.Format("\nRequest: {0}", request.Resource));
+            foreach (var header in request.Parameters)
+            {
+                Debug.WriteLine(string.Format("{0} {1}", header.Name, header.Value));
+            }
+            Debug.WriteLine(string.Format("\nResponse Status: {0} {1}", result.StatusCode, result.StatusDescription));
+            Debug.WriteLine(string.Format("\nResponse Content: {0}", result.Content));
 
-			return result;
+            return result;
         }
 
         /// <summary>
@@ -486,7 +487,7 @@ namespace Gx.Rs.Api
         /// <param name="password">The password.</param>
         /// <param name="clientId">The client identifier.</param>
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
-        /// <remarks>See https://familysearch.org/developers/docs/guides/oauth2 for more information.</remarks>
+        /// <remarks>See https://www.familysearch.org/developers/docs/guides/oauth2 for more information.</remarks>
         public virtual GedcomxApplicationState AuthenticateViaOAuth2Password(String username, String password, String clientId)
         {
             return AuthenticateViaOAuth2Password(username, password, clientId, null);
@@ -500,7 +501,7 @@ namespace Gx.Rs.Api
         /// <param name="clientId">The client identifier.</param>
         /// <param name="clientSecret">The client secret.</param>
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
-        /// <remarks>See https://familysearch.org/developers/docs/guides/oauth2 for more information.</remarks>
+        /// <remarks>See https://www.familysearch.org/developers/docs/guides/oauth2 for more information.</remarks>
         public virtual GedcomxApplicationState AuthenticateViaOAuth2Password(String username, String password, String clientId, String clientSecret)
         {
             IDictionary<String, String> formData = new Dictionary<String, String>();
@@ -522,7 +523,7 @@ namespace Gx.Rs.Api
         /// <param name="redirect">The redirect.</param>
         /// <param name="clientId">The client identifier.</param>
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
-        /// <remarks>See https://familysearch.org/developers/docs/guides/oauth2 for more information.</remarks>
+        /// <remarks>See https://www.familysearch.org/developers/docs/guides/oauth2 for more information.</remarks>
         public GedcomxApplicationState AuthenticateViaOAuth2AuthCode(String authCode, String redirect, String clientId)
         {
             return AuthenticateViaOAuth2Password(authCode, authCode, clientId, null);
@@ -536,7 +537,7 @@ namespace Gx.Rs.Api
         /// <param name="clientId">The client identifier.</param>
         /// <param name="clientSecret">The client secret.</param>
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
-        /// <remarks>See https://familysearch.org/developers/docs/guides/oauth2 for more information.</remarks>
+        /// <remarks>See https://www.familysearch.org/developers/docs/guides/oauth2 for more information.</remarks>
         public GedcomxApplicationState AuthenticateViaOAuth2AuthCode(String authCode, String redirect, String clientId, String clientSecret)
         {
             IDictionary<String, String> formData = new Dictionary<String, String>();
@@ -557,7 +558,7 @@ namespace Gx.Rs.Api
         /// <param name="clientId">The client identifier.</param>
         /// <param name="clientSecret">The client secret.</param>
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
-        /// <remarks>See https://familysearch.org/developers/docs/guides/oauth2 for more information.</remarks>
+        /// <remarks>See https://www.familysearch.org/developers/docs/guides/oauth2 for more information.</remarks>
         public GedcomxApplicationState AuthenticateViaOAuth2ClientCredentials(String clientId, String clientSecret)
         {
             IDictionary<String, String> formData = new Dictionary<String, String>();
@@ -577,7 +578,7 @@ namespace Gx.Rs.Api
         /// <param name="clientId">The client identifier.</param>
         /// <param name="clientSecret">The client secret.</param>
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
-        /// <remarks>See https://familysearch.org/developers/docs/guides/oauth2 for more information.</remarks>
+        /// <remarks>See https://www.familysearch.org/developers/docs/guides/oauth2 for more information.</remarks>
         public GedcomxApplicationState UnauthenticatedAccess(string ipAddress, string clientId, string clientSecret = null)
         {
             IDictionary<String, String> formData = new Dictionary<String, String>();

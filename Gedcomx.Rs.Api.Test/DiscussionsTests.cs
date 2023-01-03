@@ -1,14 +1,14 @@
-﻿using FamilySearch.Api;
-using FamilySearch.Api.Ft;
-using Gx.Fs.Discussions;
-using Gx.Rs.Api;
-using NUnit.Framework;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
+
+using FamilySearch.Api;
+using FamilySearch.Api.Ft;
+
+using Gx.Fs.Discussions;
+using Gx.Rs.Api;
+
+using NUnit.Framework;
 
 namespace Gedcomx.Rs.Api.Test
 {
@@ -43,7 +43,7 @@ namespace Gedcomx.Rs.Api.Test
             var state = discussion.AddComment(new Comment().SetText("Comment"));
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.Created, state.Response.StatusCode);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.Created));
         }
 
         [Test]
@@ -55,10 +55,10 @@ namespace Gedcomx.Rs.Api.Test
             var state = discussion.LoadComments();
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
-            Assert.IsNotNull(state.Discussion);
-            Assert.IsNotNull(state.Discussion.Comments);
-            Assert.Greater(state.Discussion.Comments.Count, 0);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            Assert.That(state.Discussion, Is.Not.Null);
+            Assert.That(state.Discussion.Comments, Is.Not.Null);
+            Assert.That(state.Discussion.Comments, Is.Not.Empty);
         }
 
         [Test]
@@ -72,7 +72,7 @@ namespace Gedcomx.Rs.Api.Test
             var state = discussion.UpdateComment(comment);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.NoContent));
         }
 
         [Test]
@@ -86,7 +86,7 @@ namespace Gedcomx.Rs.Api.Test
             var state = discussion.DeleteComment(comment);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.NoContent));
         }
 
         [Test]
@@ -96,7 +96,7 @@ namespace Gedcomx.Rs.Api.Test
             cleanup.Add(state);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.Created, state.Response.StatusCode);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.Created));
         }
 
         [Test]
@@ -106,7 +106,7 @@ namespace Gedcomx.Rs.Api.Test
             cleanup.Add(state);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
         }
 
         [Test]
@@ -117,17 +117,17 @@ namespace Gedcomx.Rs.Api.Test
             var state = discussion.Update(discussion.Discussion);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.NoContent));
         }
 
-        [Test]
+        [Test, Category("AccountNeeded")]
         public void TestDeleteDiscussion()
         {
             var discussion = (DiscussionState)tree.AddDiscussion(new Discussion().SetTitle("Comment").SetDetails("Comment")).Get();
             var state = discussion.Delete();
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.NoContent));
         }
     }
 }

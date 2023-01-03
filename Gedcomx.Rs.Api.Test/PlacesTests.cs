@@ -1,19 +1,16 @@
-﻿using FamilySearch.Api;
-using FamilySearch.Api.Ft;
-using Gx.Rs.Api;
+﻿using System.Linq;
+using System.Net;
+
+using FamilySearch.Api;
+
 using Gx.Rs.Api.Options;
 using Gx.Rs.Api.Util;
+
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Gedcomx.Rs.Api.Test
 {
-    [TestFixture]
+    [TestFixture, Category("AccountNeeded")]
     public class PlacesTests
     {
         private FamilySearchPlaces places;
@@ -35,10 +32,10 @@ namespace Gedcomx.Rs.Api.Test
             var state = description.ReadChildren();
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
-            Assert.IsNotNull(state.Entity);
-            Assert.IsNotNull(state.Entity.Places);
-            Assert.Greater(state.Entity.Places.Count, 0);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            Assert.That(state.Entity, Is.Not.Null);
+            Assert.That(state.Entity.Places, Is.Not.Null);
+            Assert.That(state.Entity.Places, Is.Not.Empty);
         }
 
         [Test]
@@ -48,8 +45,8 @@ namespace Gedcomx.Rs.Api.Test
             var vocab = state.GetVocabElement();
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
-            Assert.AreEqual("143", vocab.Id);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            Assert.That(vocab.Id, Is.EqualTo("143"));
         }
 
         [Test]
@@ -59,10 +56,10 @@ namespace Gedcomx.Rs.Api.Test
             var list = state.GetVocabElementList();
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
-            Assert.IsNotNull(list);
-            Assert.IsNotNull(list.Elements);
-            Assert.Greater(list.Elements.Count, 0);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            Assert.That(list, Is.Not.Null);
+            Assert.That(list.Elements, Is.Not.Null);
+            Assert.That(list.Elements, Is.Not.Empty);
         }
 
         [Test]
@@ -72,11 +69,11 @@ namespace Gedcomx.Rs.Api.Test
             var list = state.GetVocabElementList();
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
-            Assert.IsNotNull(list);
-            Assert.IsNotNull(list.Elements);
-            Assert.Greater(list.Elements.Count, 0);
-            Assert.AreEqual("1", list.Id);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            Assert.That(list, Is.Not.Null);
+            Assert.That(list.Elements, Is.Not.Null);
+            Assert.That(list.Elements, Is.Not.Empty);
+            Assert.That(list.Id, Is.EqualTo("1"));
         }
 
         [Test]
@@ -87,10 +84,10 @@ namespace Gedcomx.Rs.Api.Test
             var state = results.ReadPlaceDescription(results.Entity.Entries.First());
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
-            Assert.IsNotNull(state.Entity);
-            Assert.IsNotNull(state.Entity.Places);
-            Assert.Greater(state.Entity.Places.Count, 0);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            Assert.That(state.Entity, Is.Not.Null);
+            Assert.That(state.Entity.Places, Is.Not.Null);
+            Assert.That(state.Entity.Places, Is.Not.Empty);
         }
 
         [Test]
@@ -100,10 +97,10 @@ namespace Gedcomx.Rs.Api.Test
             var state = places.SearchForPlaces(query, QueryParameter.Count(30));
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
-            Assert.IsNotNull(state.Entity);
-            Assert.IsNotNull(state.Entity.Entries);
-            Assert.Greater(state.Entity.Entries.Count, 0);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            Assert.That(state.Entity, Is.Not.Null);
+            Assert.That(state.Entity.Entries, Is.Not.Null);
+            Assert.That(state.Entity.Entries, Is.Not.Empty);
         }
 
         [Test]
@@ -113,10 +110,10 @@ namespace Gedcomx.Rs.Api.Test
             var state = places.SearchForPlaces(query, QueryParameter.Count(30));
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
-            Assert.IsNotNull(state.Entity);
-            Assert.IsNotNull(state.Entity.Entries);
-            Assert.Greater(state.Entity.Entries.Count, 0);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            Assert.That(state.Entity, Is.Not.Null);
+            Assert.That(state.Entity.Entries, Is.Not.Null);
+            Assert.That(state.Entity.Entries, Is.Not.Empty);
         }
 
         [Test]
@@ -126,10 +123,10 @@ namespace Gedcomx.Rs.Api.Test
             var state = places.SearchForPlaces(query, QueryParameter.Count(30));
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
-            Assert.IsNotNull(state.Entity);
-            Assert.IsNotNull(state.Entity.Entries);
-            Assert.Greater(state.Entity.Entries.Count, 0);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            Assert.That(state.Entity, Is.Not.Null);
+            Assert.That(state.Entity.Entries, Is.Not.Null);
+            Assert.That(state.Entity.Entries, Is.Not.Empty);
         }
 
         [Test]
@@ -141,8 +138,8 @@ namespace Gedcomx.Rs.Api.Test
             var state = description.ReadPlace();
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
-            Assert.IsNotNull(state.Place);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            Assert.That(state.Place, Is.Not.Null);
         }
 
         [Test]
@@ -151,7 +148,7 @@ namespace Gedcomx.Rs.Api.Test
             var state = places.ReadPlaceTypes();
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
         }
 
         [Test]
@@ -160,9 +157,9 @@ namespace Gedcomx.Rs.Api.Test
             var state = places.ReadPlaceGroupById("30");
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
-            Assert.IsNotNull(state.PlaceGroup);
-            Assert.Greater(state.PlaceGroup.Count, 0);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            Assert.That(state.PlaceGroup, Is.Not.Null);
+            Assert.That(state.PlaceGroup, Is.Not.Empty);
         }
     }
 }

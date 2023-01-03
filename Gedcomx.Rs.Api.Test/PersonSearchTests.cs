@@ -1,18 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
+
 using Gx.Rs.Api;
 using Gx.Rs.Api.Util;
 
+using NUnit.Framework;
+
 namespace Gedcomx.Rs.Api.Test
 {
-    [TestFixture]
+    [TestFixture, Category("AccountNeeded")]
     public class PersonSearchTests
     {
-        private static readonly String INTEGRATION_URI = "https://integration.familysearch.org/platform/collections/tree";
+        private static readonly String INTEGRATION_URI = "https://api-integ.familysearch.org/platform/collections/tree";
         private CollectionState collection;
 
         [OneTimeSetUp]
@@ -21,9 +20,9 @@ namespace Gedcomx.Rs.Api.Test
             collection = new CollectionState(new Uri(INTEGRATION_URI));
             collection.AuthenticateViaOAuth2Password(Resources.TestUserName, Resources.TestPassword, Resources.TestClientId);
             Assert.DoesNotThrow(() => collection.IfSuccessful());
-            Assert.IsNotNull(collection.CurrentAccessToken);
-			Assert.IsNotEmpty(collection.CurrentAccessToken);
-		}
+            Assert.That(collection.CurrentAccessToken, Is.Not.Null);
+            Assert.That(collection.CurrentAccessToken, Is.Not.Empty);
+        }
 
         [Test]
         public void TestReadNextPageOfSearchResults()
@@ -39,7 +38,7 @@ namespace Gedcomx.Rs.Api.Test
             Assert.DoesNotThrow(() => state.IfSuccessful());
             PersonState person = state.ReadPerson(results.Results.Entries.FirstOrDefault());
 
-            Assert.IsNotNull(person);
+            Assert.That(person, Is.Not.Null);
             Assert.DoesNotThrow(() => person.IfSuccessful());
         }
 
@@ -66,7 +65,7 @@ namespace Gedcomx.Rs.Api.Test
                 .Param("givenNameMisspelled", "Israel");
             var state = collection.SearchForPersons(query);
 
-            Assert.IsTrue(state.Warnings.Count > 0);
+            Assert.That(state.Warnings.Count > 0, Is.True);
         }
     }
 }

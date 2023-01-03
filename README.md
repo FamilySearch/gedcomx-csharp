@@ -39,7 +39,7 @@ responsible for all API serialization.
 
 ## GEDCOM X Extensions
 
-The [`extensions`](./Gedcomx.Model.Fs/README.md) module provides a place for extensions to GEDCOM X. [FamilySearch](https://familysearch.org) has defined
+The [`extensions`](./Gedcomx.Model.Fs/README.md) module provides a place for extensions to GEDCOM X. [FamilySearch](https://www.familysearch.org) has defined
 a set of extensions to the GEDCOM X Conceptual Model and to the GEDCOM X RS specification that comprise the definition of 
 [the FamilySearch API](https://developer.familysearch.org/).
  

@@ -1,16 +1,15 @@
-﻿using FamilySearch.Api;
-using FamilySearch.Api.Ft;
-using Gx.Conclusion;
-using NUnit.Framework;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using FamilySearch.Api;
+
+using Gx.Conclusion;
+
+using NUnit.Framework;
 
 namespace Gedcomx.Rs.Api.Test
 {
-    [TestFixture]
+    [TestFixture, Category("AccountNeeded")]
     public class AuthoritiesTests
     {
         private FamilySearchCollectionState date;
@@ -18,7 +17,7 @@ namespace Gedcomx.Rs.Api.Test
         [OneTimeSetUp]
         public void Initialize()
         {
-            date = new FamilySearchCollectionState(new Uri("https://integration.familysearch.org/platform/collections/dates"));
+            date = new FamilySearchCollectionState(new Uri("https://api-integ.familysearch.org/platform/collections/dates"));
             date.AuthenticateViaOAuth2Password(Resources.TestUserName, Resources.TestPassword, Resources.TestClientId);
         }
 
@@ -26,8 +25,8 @@ namespace Gedcomx.Rs.Api.Test
         public void TestReadDate()
         {
             DateInfo state = date.NormalizeDate("17 Jul 1968");
-            Assert.AreEqual("gedcomx-date:+1968-07-17", state.Formal);
-            Assert.AreEqual("17 July 1968", state.NormalizedExtensions.First().Value);
+            Assert.That(state.Formal, Is.EqualTo("gedcomx-date:+1968-07-17"));
+            Assert.That(state.NormalizedExtensions.First().Value, Is.EqualTo("17 July 1968"));
         }
     }
 }

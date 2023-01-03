@@ -1,14 +1,13 @@
-﻿using FamilySearch.Api.Ft;
-using Gx.Conclusion;
-using Gx.Rs.Api;
-using Gx.Rs.Api.Options;
-using NUnit.Framework;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
+
+using FamilySearch.Api.Ft;
+
+using Gx.Rs.Api;
+using Gx.Rs.Api.Options;
+
+using NUnit.Framework;
 
 namespace Gedcomx.Rs.Api.Test
 {
@@ -49,10 +48,10 @@ namespace Gedcomx.Rs.Api.Test
             var state = relationship.ReadChangeHistory();
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
-            Assert.IsNotNull(state.Page);
-            Assert.IsNotNull(state.Page.Entries);
-            Assert.Greater(state.Page.Entries.Count, 0);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            Assert.That(state.Page, Is.Not.Null);
+            Assert.That(state.Page.Entries, Is.Not.Null);
+            Assert.That(state.Page.Entries, Is.Not.Empty);
         }
 
         [Test]
@@ -67,7 +66,7 @@ namespace Gedcomx.Rs.Api.Test
             var state = changes.RestoreChange(restore.Entry);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.NoContent));
         }
 
         [Test]
@@ -78,10 +77,10 @@ namespace Gedcomx.Rs.Api.Test
             var state = person.ReadChangeHistory();
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
-            Assert.IsNotNull(state.Page);
-            Assert.IsNotNull(state.Page.Entries);
-            Assert.Greater(state.Page.Entries.Count, 0);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            Assert.That(state.Page, Is.Not.Null);
+            Assert.That(state.Page.Entries, Is.Not.Null);
+            Assert.That(state.Page.Entries, Is.Not.Empty);
         }
 
         [Test]
@@ -92,13 +91,13 @@ namespace Gedcomx.Rs.Api.Test
             var state = person.ReadChangeHistory(QueryParameter.Count(10));
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
-            Assert.IsNotNull(state.Page);
-            Assert.IsNotNull(state.Page.Entries);
-            Assert.Greater(state.Page.Entries.Count, 0);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            Assert.That(state.Page, Is.Not.Null);
+            Assert.That(state.Page.Entries, Is.Not.Null);
+            Assert.That(state.Page.Entries, Is.Not.Empty);
         }
 
-        [Test]
+        [Test, Category("AccountNeeded")]
         public void TestReadChildAndParentsRelationshipChangeHistory()
         {
             var father = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
@@ -112,10 +111,10 @@ namespace Gedcomx.Rs.Api.Test
             var state = relationship.ReadChangeHistory();
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
-            Assert.IsNotNull(state.Entity);
-            Assert.IsNotNull(state.Entity.Entries);
-            Assert.Greater(state.Entity.Entries.Count, 0);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            Assert.That(state.Entity, Is.Not.Null);
+            Assert.That(state.Entity.Entries, Is.Not.Null);
+            Assert.That(state.Entity.Entries, Is.Not.Empty);
         }
     }
 }

@@ -1,21 +1,23 @@
-﻿using RestSharp;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Gx.Rs.Api.Util;
-using Gx.Rs.Api;
-using Gx.Types;
-using Gx.Conclusion;
-using Gx.Fs.Tree;
-using Gx.Common;
-using Gx.Links;
-using Gx.Fs;
-using FamilySearch.Api.Util;
-using Tavis.UriTemplates;
 using System.Net;
+
+using FamilySearch.Api.Util;
+
 using Gedcomx.Support;
+
+using Gx.Common;
+using Gx.Conclusion;
+using Gx.Fs;
+using Gx.Fs.Tree;
+using Gx.Links;
+using Gx.Rs.Api;
+using Gx.Rs.Api.Util;
+using Gx.Types;
+
+using RestSharp;
+
+using Tavis.UriTemplates;
 
 namespace FamilySearch.Api.Ft
 {
@@ -27,51 +29,51 @@ namespace FamilySearch.Api.Ft
         /// <summary>
         /// The default production environment URI for this collection.
         /// </summary>
-        public static readonly String URI = "https://familysearch.org/platform/collections/tree";
-		/// <summary>
-		/// The default integration environment URI for this collection.
-		/// </summary>
-		public static readonly String INTEGRATION_URI = "https://integration.familysearch.org/platform/collections/tree";
-		/// <summary>
-		/// The default beta environment URI for this collection.
-		/// </summary>
-		public static readonly String BETA_URI = "https://beta.familysearch.org/platform/collections/tree";
+        public static readonly String URI = "https://www.familysearch.org/platform/collections/tree";
+        /// <summary>
+        /// The default integration environment URI for this collection.
+        /// </summary>
+        public static readonly String INTEGRATION_URI = "https://api-integ.familysearch.org/platform/collections/tree";
+        /// <summary>
+        /// The default beta environment URI for this collection.
+        /// </summary>
+        public static readonly String BETA_URI = "https://apibeta.familysearch.org/platform/collections/tree";
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="FamilySearchFamilyTree"/> class using the production environment URI.
-		/// </summary>
-		public FamilySearchFamilyTree()
-            : this(false)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FamilySearchFamilyTree"/> class using the production environment URI.
+        /// </summary>
+        public FamilySearchFamilyTree()
+                : this(false)
         {
         }
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="FamilySearchFamilyTree"/> class.
-		/// </summary>
-		/// <param name="integration">If set to <c>true</c> this will use the integration environment URI; otherwise, it will use production.</param>
-		public FamilySearchFamilyTree(bool integration)
-            : this(new Uri(integration ? INTEGRATION_URI : URI))
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FamilySearchFamilyTree"/> class.
+        /// </summary>
+        /// <param name="integration">If set to <c>true</c> this will use the integration environment URI; otherwise, it will use production.</param>
+        public FamilySearchFamilyTree(bool integration)
+                : this(new Uri(integration ? INTEGRATION_URI : URI))
         {
         }
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="FamilySearchFamilyTree"/> class supporting the beta environment
-		/// </summary>
-		/// <param name="environment"></param>
-		public FamilySearchFamilyTree(EnvironmentEnum environment)
-			: this(new Uri(
-				environment == EnvironmentEnum.Integration ? INTEGRATION_URI :
-				environment == EnvironmentEnum.Beta ? BETA_URI :
-				URI))
-		{
-		}
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FamilySearchFamilyTree"/> class supporting the beta environment
+        /// </summary>
+        /// <param name="environment"></param>
+        public FamilySearchFamilyTree(EnvironmentEnum environment)
+          : this(new Uri(
+            environment == EnvironmentEnum.Integration ? INTEGRATION_URI :
+            environment == EnvironmentEnum.Beta ? BETA_URI :
+            URI))
+        {
+        }
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="FamilySearchFamilyTree"/> class.
-		/// </summary>
-		/// <param name="uri">The URI where the target collection resides.</param>
-		public FamilySearchFamilyTree(Uri uri)
-            : this(uri, new FamilyTreeStateFactory())
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FamilySearchFamilyTree"/> class.
+        /// </summary>
+        /// <param name="uri">The URI where the target collection resides.</param>
+        public FamilySearchFamilyTree(Uri uri)
+                : this(uri, new FamilyTreeStateFactory())
         {
         }
 
@@ -138,7 +140,7 @@ namespace FamilySearch.Api.Ft
         /// <param name="clientId">The client identifier.</param>
         /// <param name="ipAddress">The ip address.</param>
         /// <returns>A <see cref="FamilySearchFamilyTree"/> instance containing the REST API response.</returns>
-        /// <remarks>See https://familysearch.org/developers/docs/guides/oauth2 for more information.</remarks>
+        /// <remarks>See https://www.familysearch.org/developers/docs/guides/oauth2 for more information.</remarks>
         public FamilySearchFamilyTree AuthenticateViaUnauthenticatedAccess(String clientId, String ipAddress)
         {
             IDictionary<String, String> formData = new Dictionary<String, String>();

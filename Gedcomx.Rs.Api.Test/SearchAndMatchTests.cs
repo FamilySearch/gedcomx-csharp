@@ -1,19 +1,21 @@
-﻿using FamilySearch.Api.Ft;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Threading;
+
+using FamilySearch.Api.Ft;
 using FamilySearch.Api.Util;
+
 using Gx.Fs.Tree;
 using Gx.Rs.Api;
 using Gx.Rs.Api.Options;
 using Gx.Rs.Api.Util;
+
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Threading;
-using System.Linq;
 
 namespace Gedcomx.Rs.Api.Test
 {
-    [TestFixture]
+    [TestFixture, Category("AccountNeeded")]
     public class SearchAndMatchTests
     {
         private FamilySearchFamilyTree tree;
@@ -26,9 +28,9 @@ namespace Gedcomx.Rs.Api.Test
             tree.AuthenticateViaOAuth2Password(Resources.TestUserName, Resources.TestPassword, Resources.TestClientId);
             cleanup = new List<GedcomxApplicationState>();
             Assert.DoesNotThrow(() => tree.IfSuccessful());
-            Assert.IsNotNull(tree.CurrentAccessToken);
-			Assert.IsNotEmpty(tree.CurrentAccessToken);
-		}
+            Assert.That(tree.CurrentAccessToken, Is.Not.Null);
+            Assert.That(tree.CurrentAccessToken, Is.Not.Empty);
+        }
 
         [OneTimeTearDown]
         public void TearDown()
@@ -47,8 +49,8 @@ namespace Gedcomx.Rs.Api.Test
             var state = person.ReadMatches();
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
-            Assert.Greater(state.Results.Entries.Count, 0);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            Assert.That(state.Results.Entries, Is.Not.Empty);
         }
 
         [Test]
@@ -56,11 +58,11 @@ namespace Gedcomx.Rs.Api.Test
         {
             var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
             cleanup.Add(person);
-            var query = new QueryParameter("collection", "https://familysearch.org/platform/collections/records");
+            var query = new QueryParameter("collection", "https://www.familysearch.org/platform/collections/records");
             var state = person.ReadMatches(query);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.NoContent));
             Assert.IsNull(state.Results);
         }
 
@@ -73,8 +75,8 @@ namespace Gedcomx.Rs.Api.Test
             var state = person.ReadMatches(statuses);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
-            Assert.Greater(state.Results.Entries.Count, 0);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            Assert.That(state.Results.Entries, Is.Not.Empty);
         }
 
         [Test]
@@ -87,21 +89,21 @@ namespace Gedcomx.Rs.Api.Test
             var state = person.ReadMatches(statuses, confidence);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
-            Assert.Greater(state.Results.Entries.Count, 0);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            Assert.That(state.Results.Entries, Is.Not.Empty);
         }
 
         [Test]
         public void TestUpdateMatchStatusForPersonRecordMatches()
         {
-            var collection = FamilySearchOptions.Collection("https://familysearch.org/platform/collections/records");
+            var collection = FamilySearchOptions.Collection("https://www.familysearch.org/platform/collections/records");
             var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson());
             cleanup.Add(person);
             var matches = person.ReadMatches();
             var state = matches.UpdateMatchStatus(matches.Results.Entries[0], MatchStatus.Accepted, collection);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.NoContent, state.Response.StatusCode);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.NoContent));
         }
 
         [Test]
@@ -120,7 +122,7 @@ namespace Gedcomx.Rs.Api.Test
             var state = person2.ReadNonMatches();
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
         }
 
         [Test]
@@ -137,10 +139,10 @@ namespace Gedcomx.Rs.Api.Test
             var state = tree.SearchForPersonMatches(query);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.IsNotNull(state.Results);
-            Assert.IsNotNull(state.Results.Entries);
-            Assert.Greater(state.Results.Entries.Count, 0);
-            Assert.Greater(state.Results.Entries[0].Score, 0);
+            Assert.That(state.Results, Is.Not.Null);
+            Assert.That(state.Results.Entries, Is.Not.Null);
+            Assert.That(state.Results.Entries, Is.Not.Empty);
+            Assert.That(state.Results.Entries[0].Score, Is.GreaterThan(0));
         }
 
         [Test]
@@ -163,7 +165,7 @@ namespace Gedcomx.Rs.Api.Test
             var state = tree.SearchForPersonMatches(query);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
         }
     }
 }

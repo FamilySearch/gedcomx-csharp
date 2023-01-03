@@ -1,18 +1,18 @@
-﻿using FamilySearch.Api.Ft;
-using Gx.Rs.Api;
-using NUnit.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using FamilySearch.Api.Ft;
+
+using Gx.Rs.Api;
+
+using NUnit.Framework;
 
 namespace Gedcomx.Rs.Api.Test
 {
     [TestFixture]
     public class RelationshipTests
     {
-        private static readonly String INTEGRATION_URI = "https://integration.familysearch.org/platform/collections/tree";
+        private static readonly String INTEGRATION_URI = "https://api-integ.familysearch.org/platform/collections/tree";
         private CollectionState collection;
         private FamilySearchFamilyTree tree;
         private List<GedcomxApplicationState> cleanup;
@@ -26,9 +26,9 @@ namespace Gedcomx.Rs.Api.Test
             tree.AuthenticateWithAccessToken(collection.CurrentAccessToken);
             cleanup = new List<GedcomxApplicationState>();
             Assert.DoesNotThrow(() => collection.IfSuccessful());
-            Assert.IsNotNull(collection.CurrentAccessToken);
-			Assert.IsNotEmpty(collection.CurrentAccessToken);
-		}
+            Assert.That(collection.CurrentAccessToken, Is.Not.Null);
+            Assert.That(collection.CurrentAccessToken, Is.Not.Empty);
+        }
 
         [OneTimeTearDown]
         public void TearDown()
@@ -39,7 +39,7 @@ namespace Gedcomx.Rs.Api.Test
             }
         }
 
-        [Test]
+        [Test, Category("AccountNeeded")]
         public void TestCreateChildAndParentsRelationship()
         {
             var father = collection.AddPerson(TestBacking.GetCreateMalePerson());
@@ -50,7 +50,7 @@ namespace Gedcomx.Rs.Api.Test
             cleanup.Add(state);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(System.Net.HttpStatusCode.Created, state.Response.StatusCode);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(System.Net.HttpStatusCode.Created));
         }
 
         [Test]
@@ -64,7 +64,7 @@ namespace Gedcomx.Rs.Api.Test
             cleanup.Add(state);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.IsTrue(state.Response.StatusCode == System.Net.HttpStatusCode.Created);
+            Assert.That(state.Response.StatusCode == System.Net.HttpStatusCode.Created, Is.True);
         }
     }
 }

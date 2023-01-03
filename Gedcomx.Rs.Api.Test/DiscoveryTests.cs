@@ -1,12 +1,12 @@
-﻿using FamilySearch.Api;
-using Gx.Rs.Api;
-using NUnit.Framework;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
+
+using FamilySearch.Api;
+
+using Gx.Rs.Api;
+
+using NUnit.Framework;
 
 namespace Gedcomx.Rs.Api.Test
 {
@@ -20,7 +20,7 @@ namespace Gedcomx.Rs.Api.Test
         public void Initialize()
         {
             factory = new FamilySearchStateFactory();
-            collection = factory.NewCollectionState(new Uri("https://integration.familysearch.org/platform/collection"));
+            collection = factory.NewCollectionState(new Uri("https://api-integ.familysearch.org/platform/collection"));
             collection.AuthenticateViaOAuth2Password(Resources.TestUserName, Resources.TestPassword, Resources.TestClientId);
         }
 
@@ -30,10 +30,10 @@ namespace Gedcomx.Rs.Api.Test
             var state = collection.ReadSubcollections();
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
-            Assert.IsNotNull(state.Entity);
-            Assert.IsNotNull(state.Entity.Collections);
-            Assert.Greater(state.Entity.Collections.Count, 0);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            Assert.That(state.Entity, Is.Not.Null);
+            Assert.That(state.Entity.Collections, Is.Not.Null);
+            Assert.That(state.Entity.Collections, Is.Not.Empty);
         }
 
         [Test]
@@ -42,12 +42,12 @@ namespace Gedcomx.Rs.Api.Test
             var state = new CollectionState(new Uri(collection.GetLink("family-tree").Href));
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
-            Assert.IsNotNull(state.Links);
-            Assert.Greater(state.Links.Count, 0);
-            Assert.IsNotNull(state.Entity);
-            Assert.IsNotNull(state.Entity.Collections);
-            Assert.Greater(state.Entity.Collections.Count, 0);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            Assert.That(state.Links, Is.Not.Null);
+            Assert.That(state.Links, Is.Not.Empty);
+            Assert.That(state.Entity, Is.Not.Null);
+            Assert.That(state.Entity.Collections, Is.Not.Null);
+            Assert.That(state.Entity.Collections, Is.Not.Empty);
         }
 
         [Test]
@@ -57,24 +57,24 @@ namespace Gedcomx.Rs.Api.Test
             var state = factory.NewCollectionState(new Uri(subcollections.Collections.Single(x => x.Id == "FSDA").GetLink("self").Href));
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
-            Assert.IsNotNull(state.Links);
-            Assert.Greater(state.Links.Count, 0);
-            Assert.IsNotNull(state.Entity);
-            Assert.IsNotNull(state.Entity.Collections);
-            Assert.Greater(state.Entity.Collections.Count, 0);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            Assert.That(state.Links, Is.Not.Null);
+            Assert.That(state.Links, Is.Not.Empty);
+            Assert.That(state.Entity, Is.Not.Null);
+            Assert.That(state.Entity.Collections, Is.Not.Null);
+            Assert.That(state.Entity.Collections, Is.Not.Empty);
         }
 
         [Test]
         public void TestReadRootCollection()
         {
             Assert.DoesNotThrow(() => collection.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, collection.Response.StatusCode);
-            Assert.IsNotNull(collection.Links);
-            Assert.Greater(collection.Links.Count, 0);
-            Assert.IsNotNull(collection.Entity);
-            Assert.IsNotNull(collection.Entity.Collections);
-            Assert.Greater(collection.Entity.Collections.Count, 0);
+            Assert.That(collection.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            Assert.That(collection.Links, Is.Not.Null);
+            Assert.That(collection.Links, Is.Not.Empty);
+            Assert.That(collection.Entity, Is.Not.Null);
+            Assert.That(collection.Entity.Collections, Is.Not.Null);
+            Assert.That(collection.Entity.Collections, Is.Not.Empty);
         }
 
         [Test]
@@ -83,27 +83,27 @@ namespace Gedcomx.Rs.Api.Test
             var state = factory.NewCollectionState(new Uri(collection.GetLink("discussions").Href));
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
-            Assert.IsNotNull(state.Links);
-            Assert.Greater(state.Links.Count, 0);
-            Assert.IsNotNull(state.Entity);
-            Assert.IsNotNull(state.Entity.Collections);
-            Assert.Greater(state.Entity.Collections.Count, 0);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            Assert.That(state.Links, Is.Not.Null);
+            Assert.That(state.Links, Is.Not.Empty);
+            Assert.That(state.Entity, Is.Not.Null);
+            Assert.That(state.Entity.Collections, Is.Not.Null);
+            Assert.That(state.Entity.Collections, Is.Not.Empty);
         }
 
-        [Test]
+        [Test, Category("AccountNeeded")]
         public void TestReadFamilySearchHistoricalRecordsArchive()
         {
             var subcollections = collection.ReadSubcollections();
             var state = factory.NewCollectionState(new Uri(subcollections.Collections.Single(x => x.Id == "FSHRA").GetLink("self").Href));
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
-            Assert.IsNotNull(state.Links);
-            Assert.Greater(state.Links.Count, 0);
-            Assert.IsNotNull(state.Entity);
-            Assert.IsNotNull(state.Entity.Collections);
-            Assert.Greater(state.Entity.Collections.Count, 0);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            Assert.That(state.Links, Is.Not.Null);
+            Assert.That(state.Links, Is.Not.Empty);
+            Assert.That(state.Entity, Is.Not.Null);
+            Assert.That(state.Entity.Collections, Is.Not.Null);
+            Assert.That(state.Entity.Collections, Is.Not.Empty);
         }
 
         [Test]
@@ -112,12 +112,12 @@ namespace Gedcomx.Rs.Api.Test
             var state = factory.NewCollectionState(new Uri(collection.GetLink("memories").Href));
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
-            Assert.IsNotNull(state.Links);
-            Assert.Greater(state.Links.Count, 0);
-            Assert.IsNotNull(state.Entity);
-            Assert.IsNotNull(state.Entity.Collections);
-            Assert.Greater(state.Entity.Collections.Count, 0);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            Assert.That(state.Links, Is.Not.Null);
+            Assert.That(state.Links, Is.Not.Empty);
+            Assert.That(state.Entity, Is.Not.Null);
+            Assert.That(state.Entity.Collections, Is.Not.Null);
+            Assert.That(state.Entity.Collections, Is.Not.Empty);
         }
 
         [Test]
@@ -126,12 +126,12 @@ namespace Gedcomx.Rs.Api.Test
             var state = factory.NewCollectionState(new Uri(collection.GetLink("places").Href));
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
-            Assert.IsNotNull(state.Links);
-            Assert.Greater(state.Links.Count, 0);
-            Assert.IsNotNull(state.Entity);
-            Assert.IsNotNull(state.Entity.Collections);
-            Assert.Greater(state.Entity.Collections.Count, 0);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            Assert.That(state.Links, Is.Not.Null);
+            Assert.That(state.Links, Is.Not.Empty);
+            Assert.That(state.Entity, Is.Not.Null);
+            Assert.That(state.Entity.Collections, Is.Not.Null);
+            Assert.That(state.Entity.Collections, Is.Not.Empty);
         }
 
         [Test]
@@ -140,12 +140,12 @@ namespace Gedcomx.Rs.Api.Test
             var state = factory.NewCollectionState(new Uri(collection.GetLink("source-box").Href));
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
-            Assert.AreEqual(HttpStatusCode.OK, state.Response.StatusCode);
-            Assert.IsNotNull(state.Links);
-            Assert.Greater(state.Links.Count, 0);
-            Assert.IsNotNull(state.Entity);
-            Assert.IsNotNull(state.Entity.Collections);
-            Assert.Greater(state.Entity.Collections.Count, 0);
+            Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            Assert.That(state.Links, Is.Not.Null);
+            Assert.That(state.Links, Is.Not.Empty);
+            Assert.That(state.Entity, Is.Not.Null);
+            Assert.That(state.Entity.Collections, Is.Not.Null);
+            Assert.That(state.Entity.Collections, Is.Not.Empty);
         }
     }
 }

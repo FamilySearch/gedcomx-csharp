@@ -111,7 +111,7 @@ String username = "...";
 String password = "...";
 String developerKey = "...";
 
-String ark = ...; //e.g. "https://familysearch.org/ark:/61903/4:1:KW8W-RF8"
+String ark = ...; //e.g. "https://www.familysearch.org/ark:/61903/4:1:KW8W-RF8"
 FamilyTreePersonState person = new FamilyTreePersonState(new Uri(ark))
   .AuthenticateViaOAuth2Password(username, password, developerKey);
 ```

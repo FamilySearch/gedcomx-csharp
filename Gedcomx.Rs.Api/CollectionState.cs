@@ -1,4 +1,12 @@
-﻿using Gedcomx.Model;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+
+using Gedcomx.Model;
+using Gedcomx.Support;
+
 using Gx.Common;
 using Gx.Conclusion;
 using Gx.Links;
@@ -6,16 +14,11 @@ using Gx.Records;
 using Gx.Rs.Api.Util;
 using Gx.Source;
 using Gx.Types;
+
 using RestSharp;
-using RestSharp.Deserializers;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using Tavis.UriTemplates;
 using RestSharp.Extensions;
-using Gedcomx.Support;
+
+using Tavis.UriTemplates;
 
 namespace Gx.Rs.Api
 {
@@ -249,7 +252,7 @@ namespace Gx.Rs.Api
         /// <summary>
         /// Reads the person specified by the URI.
         /// </summary>
-        /// <param name="personUri">The person URI (e.g., https://integration.familysearch.org/platform/tree/persons/PPPP-PPP). </param>
+        /// <param name="personUri">The person URI (e.g., https://api-integ.familysearch.org/platform/tree/persons/PPPP-PPP). </param>
         /// <param name="options">The options to apply before executing the REST API call.</param>
         /// <returns>
         /// A <see cref="PersonState"/> instance containing the REST API response.
@@ -286,7 +289,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="PersonSearchResultsState"/> instance containing the REST API response.
         /// </returns>
-        /// <remarks>String query format and additional information can be reviewed at https://familysearch.org/developers/docs/api/tree/Person_Search_resource. </remarks>
+        /// <remarks>String query format and additional information can be reviewed at https://www.familysearch.org/developers/docs/api/tree/Person_Search_resource. </remarks>
         public PersonSearchResultsState SearchForPersons(String query, params IStateTransitionOption[] options)
         {
             Link link = this.GetLink(Rel.PERSON_SEARCH);
@@ -322,7 +325,7 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="PlaceSearchResultsState"/> instance containing the REST API response.
         /// </returns>
-        /// <remarks>String query format and additional information can be reviewed at https://familysearch.org/developers/docs/api/places/Places_Search_resource. </remarks>
+        /// <remarks>String query format and additional information can be reviewed at https://www.familysearch.org/developers/docs/api/places/Places_Search_resource. </remarks>
         public PlaceSearchResultsState SearchForPlaces(String query, params IStateTransitionOption[] options)
         {
             Link link = this.GetLink(Rel.PLACE_SEARCH);

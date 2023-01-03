@@ -1,17 +1,17 @@
-﻿using RestSharp;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Gx.Rs.Api.Util;
-using Gx.Conclusion;
-using Gx.Common;
-using Gx.Source;
-using Gx.Links;
-using Gx.Records;
+
 using Gedcomx.Model;
-using RestSharp.Extensions;
 using Gedcomx.Support;
+
+using Gx.Common;
+using Gx.Conclusion;
+using Gx.Links;
+using Gx.Rs.Api.Util;
+using Gx.Source;
+
+using RestSharp;
 
 namespace Gx.Rs.Api
 {
@@ -917,17 +917,17 @@ namespace Gx.Rs.Api
         /// </returns>
         public PersonState UpdateSourceReferences(Person person, params IStateTransitionOption[] options)
         {
-			Uri target = new Uri(GetSelfUri());
+            Uri target = new Uri(GetSelfUri());
 
-			// source reference is now part of person, simply update.
+            // source reference is now part of person, simply update.
 
-			//Link link = this.GetLink(Rel.SOURCE_REFERENCES);
-			//if (link != null && link.Href != null)
-			//{
-			//	target = new Uri(link.Href);
-			//}	
+            //Link link = this.GetLink(Rel.SOURCE_REFERENCES);
+            //if (link != null && link.Href != null)
+            //{
+            //	target = new Uri(link.Href);
+            //}	
 
-			Gedcomx gx = new Gedcomx();
+            Gedcomx gx = new Gedcomx();
             gx.Persons = new List<Person>() { person };
             IRestRequest request = CreateAuthenticatedGedcomxRequest().SetEntity(gx).Build(target, Method.POST);
             return this.stateFactory.NewPersonState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
@@ -1200,14 +1200,14 @@ namespace Gx.Rs.Api
         {
             Uri target = new Uri(GetSelfUri());
 
-			// https://familysearch.org/developers/docs/api/tree/Create_Person_Memory_Reference_(Starting_December_2016)_usecase
-			//Link link = this.GetLink(Rel.ARTIFACTS);
-			//if (link != null && link.Href != null)
-			//{
-			//    target = new Uri(link.Href);
-			//}
+            // https://www.familysearch.org/developers/docs/api/tree/Create_Person_Memory_Reference_(Starting_December_2016)_usecase
+            //Link link = this.GetLink(Rel.ARTIFACTS);
+            //if (link != null && link.Href != null)
+            //{
+            //    target = new Uri(link.Href);
+            //}
 
-			Gedcomx gx = new Gedcomx();
+            Gedcomx gx = new Gedcomx();
             gx.Persons = new List<Person>() { person };
             IRestRequest request = CreateAuthenticatedGedcomxRequest().SetEntity(gx).Build(target, Method.POST);
             return this.stateFactory.NewPersonState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
@@ -1521,7 +1521,7 @@ namespace Gx.Rs.Api
         public PersonState ReadSpouse(int index, params IStateTransitionOption[] options)
         {
             List<Relationship> spouseRelationships = GetSpouseRelationships();
-			if (spouseRelationships == null || spouseRelationships.Count <= index)
+            if (spouseRelationships == null || spouseRelationships.Count <= index)
             {
                 return null;
             }

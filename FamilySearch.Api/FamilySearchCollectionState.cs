@@ -1,19 +1,21 @@
-﻿using Gx.Rs.Api;
-using RestSharp;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Gx.Rs.Api.Util;
-using Gx.Links;
-using Tavis.UriTemplates;
-using Gx.Conclusion;
-using Gx.Common;
+
 using FamilySearch.Api.Util;
-using Gx.Fs.Discussions;
-using Gx.Fs;
+
 using Gedcomx.Support;
+
+using Gx.Common;
+using Gx.Conclusion;
+using Gx.Fs;
+using Gx.Fs.Discussions;
+using Gx.Links;
+using Gx.Rs.Api;
+using Gx.Rs.Api.Util;
+
+using RestSharp;
+
+using Tavis.UriTemplates;
 
 namespace FamilySearch.Api
 {
@@ -166,7 +168,7 @@ namespace FamilySearch.Api
         /// collection to determine possible causes. The most common issue is not supplying a sufficient number of search parameters, in which case too
         /// many search results could return.
         /// 
-        /// The query string syntax is documented here: https://familysearch.org/developers/docs/api/tree/Person_Search_resource
+        /// The query string syntax is documented here: https://www.familysearch.org/developers/docs/api/tree/Person_Search_resource
         /// </remarks>
         public PersonMatchResultsState SearchForPersonMatches(String query, params IStateTransitionOption[] options)
         {

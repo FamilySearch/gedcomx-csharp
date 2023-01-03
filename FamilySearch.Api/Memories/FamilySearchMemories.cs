@@ -1,13 +1,12 @@
-﻿using Gx.Rs.Api;
-using RestSharp;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Gx.Rs.Api.Util;
-using FamilySearch.Api.Ft;
+
 using Gedcomx.Support;
+
+using Gx.Rs.Api;
+using Gx.Rs.Api.Util;
+
+using RestSharp;
 
 namespace FamilySearch.Api.Memories
 {
@@ -19,11 +18,11 @@ namespace FamilySearch.Api.Memories
         /// <summary>
         /// The default production environment URI for this collection.
         /// </summary>
-        public static readonly String URI = "https://familysearch.org/platform/collections/memories";
-		/// <summary>
-		/// The default integration environment URI for this collection.
-		/// </summary>
-		public static readonly String INTEGRATION_URI = "https://integration.familysearch.org/platform/collections/memories";
+        public static readonly String URI = "https://www.familysearch.org/platform/collections/memories";
+        /// <summary>
+        /// The default integration environment URI for this collection.
+        /// </summary>
+        public static readonly String INTEGRATION_URI = "https://api-integ.familysearch.org/platform/collections/memories";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FamilySearchMemories"/> class using the production environment URI.
@@ -33,12 +32,12 @@ namespace FamilySearch.Api.Memories
         {
         }
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="FamilySearchMemories"/> class.
-		/// </summary>
-		/// <param name="integration">If set to <c>true</c> this will use the integration environment URI; otherwise, it will use production.</param>
-		public FamilySearchMemories(bool integration)
-            : this(new Uri(integration ? INTEGRATION_URI : URI))
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FamilySearchMemories"/> class.
+        /// </summary>
+        /// <param name="integration">If set to <c>true</c> this will use the integration environment URI; otherwise, it will use production.</param>
+        public FamilySearchMemories(bool integration)
+                : this(new Uri(integration ? INTEGRATION_URI : URI))
         {
         }
 
@@ -114,7 +113,7 @@ namespace FamilySearch.Api.Memories
         /// <param name="clientId">The client identifier.</param>
         /// <param name="ipAddress">The ip address.</param>
         /// <returns>A <see cref="FamilySearchMemories"/> instance containing the REST API response.</returns>
-        /// <remarks>See https://familysearch.org/developers/docs/guides/oauth2 for more information.</remarks>
+        /// <remarks>See https://www.familysearch.org/developers/docs/guides/oauth2 for more information.</remarks>
         public FamilySearchMemories AuthenticateViaUnauthenticatedAccess(String clientId, String ipAddress)
         {
             IDictionary<String, String> formData = new Dictionary<String, String>();

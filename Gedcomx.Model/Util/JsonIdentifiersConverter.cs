@@ -1,11 +1,11 @@
-﻿using Gx.Conclusion;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using Gx.Conclusion;
+
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Gedcomx.Model.Util
 {
@@ -23,9 +23,11 @@ namespace Gedcomx.Model.Util
 
             foreach (var key in jObject)
             {
-                var link = new Identifier();
-                link.Type = key.Key;
-                link.Value = key.Value.Select(x => ((JValue)x).Value as string).FirstOrDefault();
+                var link = new Identifier
+                {
+                    Type = key.Key,
+                    Value = key.Value.Select(x => ((JValue)x).Value as string).FirstOrDefault()
+                };
                 result.Add(link);
             }
 
@@ -34,19 +36,20 @@ namespace Gedcomx.Model.Util
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            IList<Identifier> links = value as IList<Identifier>;
-
-            writer.WriteStartObject();
-
-            foreach (var link in links)
+            if (value is IList<Identifier> links)
             {
-                writer.WritePropertyName(link.Type);
-                writer.WriteStartArray();
-                writer.WriteValue(link.Value);
-                writer.WriteEndArray();
-            }
+                writer.WriteStartObject();
 
-            writer.WriteEndObject();
+                foreach (var link in links)
+                {
+                    writer.WritePropertyName(link.Type);
+                    writer.WriteStartArray();
+                    writer.WriteValue(link.Value);
+                    writer.WriteEndArray();
+                }
+
+                writer.WriteEndObject();
+            }
         }
     }
 }

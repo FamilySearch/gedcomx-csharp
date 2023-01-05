@@ -316,7 +316,7 @@ namespace Gx.Agent
          */
         public void AddName(TextValue name)
         {
-            this._names.Add(name);
+            this.Names.Add(name);
         }
 
         /**
@@ -356,7 +356,7 @@ namespace Gx.Agent
          */
         public void AddPhone(ResourceReference phone)
         {
-            this._phones.Add(phone);
+            this.Phones.Add(phone);
         }
 
         /**

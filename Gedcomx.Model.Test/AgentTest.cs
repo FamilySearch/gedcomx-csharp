@@ -63,14 +63,14 @@ namespace Gedcomx.Model.Test
             Assert.That(result, Does.Contain("xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\""));
             Assert.That(result, Does.Contain("xmlns=\"http://gedcomx.org/v1/\""));
             Assert.That(result.Contains("id"), Is.EqualTo(sut.Id != null));
-            Assert.That(result.Contains("account"), Is.EqualTo(sut.ShouldSerializeAccounts()));
-            Assert.That(result.Contains("address"), Is.EqualTo(sut.ShouldSerializeAddresses()));
-            Assert.That(result.Contains("email"), Is.EqualTo(sut.ShouldSerializeEmails()));
-            Assert.That(result.Contains("homepage"), Is.EqualTo(sut.Homepage != null));
-            Assert.That(result.Contains("identifier"), Is.EqualTo(sut.ShouldSerializeIdentifiers()));
-            Assert.That(result.Contains("name"), Is.EqualTo(sut.ShouldSerializeNames()));
-            Assert.That(result.Contains("openid"), Is.EqualTo(sut.Openid != null));
-            Assert.That(result.Contains("phone"), Is.EqualTo(sut.ShouldSerializePhones()));
+            Assert.That(result.Contains("<account "), Is.EqualTo(sut.ShouldSerializeAccounts()));
+            Assert.That(result.Contains("<address "), Is.EqualTo(sut.ShouldSerializeAddresses()));
+            Assert.That(result.Contains("<email "), Is.EqualTo(sut.ShouldSerializeEmails()));
+            Assert.That(result.Contains("<homepage"), Is.EqualTo(sut.Homepage != null));
+            Assert.That(result.Contains("<identifier "), Is.EqualTo(sut.ShouldSerializeIdentifiers()));
+            Assert.That(result.Contains("<name "), Is.EqualTo(sut.ShouldSerializeNames()));
+            Assert.That(result.Contains("<openid"), Is.EqualTo(sut.Openid != null));
+            Assert.That(result.Contains("<phone "), Is.EqualTo(sut.ShouldSerializePhones()));
         }
 
         private static void VerifyJsonSerialization(Agent sut)

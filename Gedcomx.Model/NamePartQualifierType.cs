@@ -100,7 +100,7 @@ namespace Gx.Types
          * prepositions (of, from, aus, zu, op, etc.), initials (e.g. PhD, MD),
          * annotations (e.g. twin, wife of, infant, unknown),
          * comparators (e.g. Junior, Senior, younger, little), ordinals (e.g. III, eighth),
-         * and conjunctions (e.g. and, or, nee, ou, y, o, ne, &amp;).
+         * and conjunctions (e.g. and, or, nee, ou, y, o, ne, &).
          */
         [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Particle")]
         Particle,

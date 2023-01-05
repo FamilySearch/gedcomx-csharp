@@ -47,7 +47,7 @@ namespace Gx.Conclusion
             }
         }
         /// <summary>
-        ///  Whether this document has been identified as &quot;extracted&quot;.
+        ///  Whether this document has been identified as "extracted".
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "extracted")]
         [Newtonsoft.Json.JsonProperty("extracted")]

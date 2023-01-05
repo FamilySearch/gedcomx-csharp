@@ -15,14 +15,14 @@ namespace Gx.Atom
 {
 
     /// <remarks>
-    ///  &lt;p&gt;The Atom data formats provide a format for web content and metadata syndication. The XML media type is defined by
-    ///  &lt;a href=&quot;http://tools.ietf.org/html/rfc4287#section-4&quot;&gt;RFC 4287&lt;/a&gt;. The JSON data format is specific to GEDCOM X and is a
-    ///  translation to JSON from the XML.&lt;/p&gt;
+    ///  <p>The Atom data formats provide a format for web content and metadata syndication. The XML media type is defined by
+    ///  <a href="http://tools.ietf.org/html/rfc4287#section-4">RFC 4287</a>. The JSON data format is specific to GEDCOM X and is a
+    ///  translation to JSON from the XML.</p>
     /// </remarks>
     /// <summary>
-    ///  &lt;p&gt;The Atom data formats provide a format for web content and metadata syndication. The XML media type is defined by
-    ///  &lt;a href=&quot;http://tools.ietf.org/html/rfc4287#section-4&quot;&gt;RFC 4287&lt;/a&gt;. The JSON data format is specific to GEDCOM X and is a
-    ///  translation to JSON from the XML.&lt;/p&gt;
+    ///  <p>The Atom data formats provide a format for web content and metadata syndication. The XML media type is defined by
+    ///  <a href="http://tools.ietf.org/html/rfc4287#section-4">RFC 4287</a>. The JSON data format is specific to GEDCOM X and is a
+    ///  translation to JSON from the XML.</p>
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.w3.org/2005/Atom", TypeName = "Feed")]

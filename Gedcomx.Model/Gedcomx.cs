@@ -1,4 +1,4 @@
-using Gedcomx.Model.Rt;
+﻿using Gedcomx.Model.Rt;
 using Gx.Common;
 using Gx.Conclusion;
 using Gx.Links;
@@ -16,28 +16,28 @@ namespace Gx
 {
 
     /// <remarks>
-    ///  &lt;p&gt;The GEDCOM X data formats define the serialization formats of the GEDCOM X conceptual model. The canonical documentation
-    ///  is provided by the formal specification documents:&lt;/p&gt;
+    ///  <p>The GEDCOM X data formats define the serialization formats of the GEDCOM X conceptual model. The canonical documentation
+    ///  is provided by the formal specification documents:</p>
     ///  
-    ///  &lt;ul&gt;
-    ///  &lt;li&gt;&lt;a href=&quot;https://github.com/FamilySearch/gedcomx/blob/master/specifications/conceptual-model-specification.md&quot;&gt;The GEDCOM X Conceptual Model, Version 1.0&lt;/a&gt;&lt;/li&gt;
-    ///  &lt;li&gt;&lt;a href=&quot;https://github.com/FamilySearch/gedcomx/blob/master/specifications/json-format-specification.md&quot;&gt;The GEDCOM X JSON Format, Version 1.0&lt;/a&gt;&lt;/li&gt;
-    ///  &lt;li&gt;&lt;a href=&quot;https://github.com/FamilySearch/gedcomx/blob/master/specifications/xml-format-specification.md&quot;&gt;The GEDCOM X XML Format, Version 1.0&lt;/a&gt;&lt;/li&gt;
-    ///  &lt;/ul&gt;
+    ///  <ul>
+    ///  <li><a href="https://github.com/FamilySearch/gedcomx/blob/master/specifications/conceptual-model-specification.md">The GEDCOM X Conceptual Model, Version 1.0</a></li>
+    ///  <li><a href="https://github.com/FamilySearch/gedcomx/blob/master/specifications/json-format-specification.md">The GEDCOM X JSON Format, Version 1.0</a></li>
+    ///  <li><a href="https://github.com/FamilySearch/gedcomx/blob/master/specifications/xml-format-specification.md">The GEDCOM X XML Format, Version 1.0</a></li>
+    ///  </ul>
     ///  
-    ///  &lt;p&gt;This documentation is provided as a non-normative reference guide.&lt;/p&gt;
+    ///  <p>This documentation is provided as a non-normative reference guide.</p>
     /// </remarks>
     /// <summary>
-    ///  &lt;p&gt;The GEDCOM X data formats define the serialization formats of the GEDCOM X conceptual model. The canonical documentation
-    ///  is provided by the formal specification documents:&lt;/p&gt;
+    ///  <p>The GEDCOM X data formats define the serialization formats of the GEDCOM X conceptual model. The canonical documentation
+    ///  is provided by the formal specification documents:</p>
     ///  
-    ///  &lt;ul&gt;
-    ///  &lt;li&gt;&lt;a href=&quot;https://github.com/FamilySearch/gedcomx/blob/master/specifications/conceptual-model-specification.md&quot;&gt;The GEDCOM X Conceptual Model, Version 1.0&lt;/a&gt;&lt;/li&gt;
-    ///  &lt;li&gt;&lt;a href=&quot;https://github.com/FamilySearch/gedcomx/blob/master/specifications/json-format-specification.md&quot;&gt;The GEDCOM X JSON Format, Version 1.0&lt;/a&gt;&lt;/li&gt;
-    ///  &lt;li&gt;&lt;a href=&quot;https://github.com/FamilySearch/gedcomx/blob/master/specifications/xml-format-specification.md&quot;&gt;The GEDCOM X XML Format, Version 1.0&lt;/a&gt;&lt;/li&gt;
-    ///  &lt;/ul&gt;
+    ///  <ul>
+    ///  <li><a href="https://github.com/FamilySearch/gedcomx/blob/master/specifications/conceptual-model-specification.md">The GEDCOM X Conceptual Model, Version 1.0</a></li>
+    ///  <li><a href="https://github.com/FamilySearch/gedcomx/blob/master/specifications/json-format-specification.md">The GEDCOM X JSON Format, Version 1.0</a></li>
+    ///  <li><a href="https://github.com/FamilySearch/gedcomx/blob/master/specifications/xml-format-specification.md">The GEDCOM X XML Format, Version 1.0</a></li>
+    ///  </ul>
     ///  
-    ///  &lt;p&gt;This documentation is provided as a non-normative reference guide.&lt;/p&gt;
+    ///  <p>This documentation is provided as a non-normative reference guide.</p>
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Gedcomx")]

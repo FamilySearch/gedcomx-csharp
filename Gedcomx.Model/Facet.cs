@@ -11,10 +11,10 @@ namespace Gx.Records
 {
 
     /// <remarks>
-    ///  &lt;p&gt;A &lt;tt&gt;facet&lt;/tt&gt; is a logical grouping of resources by specific criteria, used for convenience in browsing a collection or a set of search results.&lt;/p&gt;
+    ///  <p>A <tt>facet</tt> is a logical grouping of resources by specific criteria, used for convenience in browsing a collection or a set of search results.</p>
     /// </remarks>
     /// <summary>
-    ///  &lt;p&gt;A &lt;tt&gt;facet&lt;/tt&gt; is a logical grouping of resources by specific criteria, used for convenience in browsing a collection or a set of search results.&lt;/p&gt;
+    ///  <p>A <tt>facet</tt> is a logical grouping of resources by specific criteria, used for convenience in browsing a collection or a set of search results.</p>
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Facet")]

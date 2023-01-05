@@ -14,16 +14,16 @@ namespace Gx.Conclusion
 {
 
     /// <remarks>
-    ///  The &lt;tt&gt;Subject&lt;/tt&gt; data type defines the abstract concept of a genealogical &lt;em&gt;subject&lt;/em&gt;. A &lt;em&gt;subject&lt;/em&gt; is something with a unique and
-    ///  intrinsic identity, e.g., a person, a location on the surface of the earth. We identify that &lt;em&gt;subject&lt;/em&gt; in time and space using various supporting
-    ///  &lt;em&gt;conclusions&lt;/em&gt;, e.g. for a person: things like name, birth date, age, address, etc. We aggregate these supporting &lt;em&gt;conclusions&lt;/em&gt; to form an
-    ///  apparently-unique identity by which we can distinguish our &lt;em&gt;subject&lt;/em&gt; from all other possible &lt;em&gt;subjects&lt;/em&gt;.
+    ///  The <tt>Subject</tt> data type defines the abstract concept of a genealogical <em>subject</em>. A <em>subject</em> is something with a unique and
+    ///  intrinsic identity, e.g., a person, a location on the surface of the earth. We identify that <em>subject</em> in time and space using various supporting
+    ///  <em>conclusions</em>, e.g. for a person: things like name, birth date, age, address, etc. We aggregate these supporting <em>conclusions</em> to form an
+    ///  apparently-unique identity by which we can distinguish our <em>subject</em> from all other possible <em>subjects</em>.
     /// </remarks>
     /// <summary>
-    ///  The &lt;tt&gt;Subject&lt;/tt&gt; data type defines the abstract concept of a genealogical &lt;em&gt;subject&lt;/em&gt;. A &lt;em&gt;subject&lt;/em&gt; is something with a unique and
-    ///  intrinsic identity, e.g., a person, a location on the surface of the earth. We identify that &lt;em&gt;subject&lt;/em&gt; in time and space using various supporting
-    ///  &lt;em&gt;conclusions&lt;/em&gt;, e.g. for a person: things like name, birth date, age, address, etc. We aggregate these supporting &lt;em&gt;conclusions&lt;/em&gt; to form an
-    ///  apparently-unique identity by which we can distinguish our &lt;em&gt;subject&lt;/em&gt; from all other possible &lt;em&gt;subjects&lt;/em&gt;.
+    ///  The <tt>Subject</tt> data type defines the abstract concept of a genealogical <em>subject</em>. A <em>subject</em> is something with a unique and
+    ///  intrinsic identity, e.g., a person, a location on the surface of the earth. We identify that <em>subject</em> in time and space using various supporting
+    ///  <em>conclusions</em>, e.g. for a person: things like name, birth date, age, address, etc. We aggregate these supporting <em>conclusions</em> to form an
+    ///  apparently-unique identity by which we can distinguish our <em>subject</em> from all other possible <em>subjects</em>.
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "Subject")]
@@ -36,7 +36,7 @@ namespace Gx.Conclusion
         private System.Collections.Generic.List<Gx.Source.SourceReference> _media;
         private System.Collections.Generic.List<Gx.Conclusion.Identifier> _identifiers;
         /// <summary>
-        ///  Whether this subject has been identified as &quot;extracted&quot;.
+        ///  Whether this subject has been identified as "extracted".
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "extracted")]
         [Newtonsoft.Json.JsonProperty("extracted")]

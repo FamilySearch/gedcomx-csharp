@@ -34,7 +34,7 @@ namespace Gx.Types {
     Female,
 
     /// <summary>
-    ///   Unknown. Note that this should be used strictly as &quot;unknown&quot; and not to
+    ///   Unknown. Note that this should be used strictly as "unknown" and not to
     ///   indicate a type that is not set or not understood.
     /// </summary>
     [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Unknown")]

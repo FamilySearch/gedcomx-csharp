@@ -15,10 +15,10 @@ namespace Gx.Atom
 {
 
     /// <remarks>
-    ///  The &quot;atom:entry&quot; element represents an individual entry, acting as a container for metadata and data associated with the entry.
+    ///  The "atom:entry" element represents an individual entry, acting as a container for metadata and data associated with the entry.
     /// </remarks>
     /// <summary>
-    ///  The &quot;atom:entry&quot; element represents an individual entry, acting as a container for metadata and data associated with the entry.
+    ///  The "atom:entry" element represents an individual entry, acting as a container for metadata and data associated with the entry.
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.w3.org/2005/Atom", TypeName = "Entry")]

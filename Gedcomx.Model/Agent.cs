@@ -5,6 +5,7 @@
 // </auto-generated>
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using Gedcomx.Model.Rt;
 using Gedcomx.Model.Util;
@@ -16,7 +17,6 @@ using Newtonsoft.Json;
 
 namespace Gx.Agent
 {
-
     /// <remarks>
     ///  An agent, e.g. person, organization, or group. In genealogical research, an agent often
     ///  takes the role of a contributor.
@@ -32,10 +32,10 @@ namespace Gx.Agent
     {
         private System.Collections.Generic.List<Gx.Agent.OnlineAccount> _accounts;
         private System.Collections.Generic.List<Gx.Agent.Address> _addresses;
-        private System.Collections.Generic.List<Gx.Common.ResourceReference> _emails;
+        private Gx.Model.Collections.Emails _emails;
         private Gx.Common.ResourceReference _homepage;
         private System.Collections.Generic.List<Gx.Conclusion.Identifier> _identifiers;
-        private System.Collections.Generic.List<Gx.Common.TextValue> _names;
+        private Gx.Model.Collections.TextValues _names;
         private Gx.Common.ResourceReference _openid;
         private System.Collections.Generic.List<Gx.Common.ResourceReference> _phones;
         /// <summary>
@@ -54,9 +54,10 @@ namespace Gx.Agent
                 this._accounts = value;
             }
         }
-        public bool ShouldSerializeAccounts()
+        public bool ShouldSerializeAccounts() => AnyAccounts();
+        public bool AnyAccounts()
         {
-            return _accounts != null && _accounts.Count > 0;
+            return _accounts?.Any() ?? false;
         }
         /// <summary>
         ///  The addresses that belong to this person or organization.
@@ -74,29 +75,31 @@ namespace Gx.Agent
                 this._addresses = value;
             }
         }
-        public bool ShouldSerializeAddresses()
+        public bool ShouldSerializeAddresses() => AnyAddresses();
+        public bool AnyAddresses()
         {
-            return _addresses != null && _addresses.Count > 0;
+            return _addresses?.Any() ?? false;
         }
         /// <summary>
         ///  The emails that belong to this person or organization.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "email", Namespace = "http://gedcomx.org/v1/")]
         [Newtonsoft.Json.JsonProperty("emails")]
-        public System.Collections.Generic.List<Gx.Common.ResourceReference> Emails
+        public Gx.Model.Collections.Emails Emails
         {
             get
             {
-                return this._emails ?? (_emails = new List<Gx.Common.ResourceReference>());
+                return this._emails ?? (_emails = new Gx.Model.Collections.Emails());
             }
             set
             {
-                this._emails = value;
+                this._emails = (Gx.Model.Collections.Emails)value;
             }
         }
-        public bool ShouldSerializeEmails()
+        public bool ShouldSerializeEmails() => AnyEmails();
+        public bool AnyEmails()
         {
-            return _emails != null && _emails.Count > 0;
+            return _emails?.Any() ?? false;
         }
         /// <summary>
         ///  The homepage.
@@ -131,29 +134,31 @@ namespace Gx.Agent
                 this._identifiers = value;
             }
         }
-        public bool ShouldSerializeIdentifiers()
+        public bool ShouldSerializeIdentifiers() => AnyIdentifiers();
+        public bool AnyIdentifiers()
         {
-            return _identifiers != null && _identifiers.Count > 0;
+            return _identifiers?.Any() ?? false;
         }
         /// <summary>
         ///  The list of names for the agent.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "name", Namespace = "http://gedcomx.org/v1/")]
         [Newtonsoft.Json.JsonProperty("names")]
-        public System.Collections.Generic.List<Gx.Common.TextValue> Names
+        public Gx.Model.Collections.TextValues Names
         {
             get
             {
-                return this._names ?? (_names = new List<Gx.Common.TextValue>());
+                return this._names ?? (_names = new Gx.Model.Collections.TextValues());
             }
             set
             {
                 this._names = value;
             }
         }
-        public bool ShouldSerializeNames()
+        public bool ShouldSerializeNames() => AnyNames();
+        public bool AnyNames()
         {
-            return _names != null && _names.Count > 0;
+            return _names?.Any() ?? false;
         }
         /// <summary>
         ///  The <a href="http://openid.net/">openid</a> of the person or organization.
@@ -180,16 +185,17 @@ namespace Gx.Agent
         {
             get
             {
-                return this._phones ?? (_phones = new List<Gx.Common.ResourceReference>());
+                return this._phones ?? (_phones = new System.Collections.Generic.List<Gx.Common.ResourceReference>());
             }
             set
             {
                 this._phones = value;
             }
         }
-        public bool ShouldSerializePhones()
+        public bool ShouldSerializePhones() => AnyPhones();
+        public bool AnyPhones()
         {
-            return _phones != null && _phones.Count > 0;
+            return _phones?.Any() ?? false;
         }
 
         /**
@@ -202,32 +208,49 @@ namespace Gx.Agent
             visitor.VisitAgent(this);
         }
 
-        public Agent SetName(String name)
-        {
-            return SetName(new TextValue(name));
-        }
-
         /**
-         * Build up this agent with a name.
-         * 
-         * @param name The name.
+         * Build up this agent with an online account.
+         * @param account The account.
          * @return this.
          */
-        public Agent SetName(TextValue name)
+        public Agent SetAccount(OnlineAccount account)
         {
-            AddName(name);
+            this.Accounts.Add(account);
             return this;
         }
 
         /**
-         * Build up this agent with an identifier.
-         * 
-         * @param identifier The identifier.
+         * Build up this agent with an address.
+         * @param address The address.
          * @return this.
          */
-        public Agent SetIdentifier(Identifier identifier)
+        public Agent SetAddress(Address address)
         {
-            AddIdentifier(identifier);
+            this.Addresses.Add(address);
+            return this;
+        }
+
+        /**
+         * Build up this agent with an email address.
+         *
+         * @param email The email address.
+         * @return this.
+         */
+        public Agent SetEmail(String email)
+        {
+            this.Emails.Add(email);
+            return this;
+        }
+
+        /**
+         * Build up this agent with an email address.
+         *
+         * @param email The email address.
+         * @return this.
+         */
+        public Agent SetEmail(ResourceReference email)
+        {
+            this.Emails.Add(email);
             return this;
         }
 
@@ -243,6 +266,42 @@ namespace Gx.Agent
         }
 
         /**
+         * Build up this agent with an identifier.
+         * 
+         * @param identifier The identifier.
+         * @return this.
+         */
+        public Agent SetIdentifier(Identifier identifier)
+        {
+            this.Identifiers.Add(identifier);
+            return this;
+        }
+
+        /**
+         * Build up this agent with a name.
+         * 
+         * @param name The name.
+         * @return this.
+         */
+        public Agent SetName(String name)
+        {
+            this.Names.Add(name);
+            return this;
+        }
+
+        /**
+         * Build up this agent with a name.
+         * 
+         * @param name The name.
+         * @return this.
+         */
+        public Agent SetName(TextValue name)
+        {
+            this.Names.Add(name);
+            return this;
+        }
+
+        /**
          * Build up this agent with a open id.
          * @param openid The open id of the agent.
          * @return this.
@@ -254,119 +313,14 @@ namespace Gx.Agent
         }
 
         /**
-         * Build up this agent with an online account.
-         * @param account The account.
-         * @return this.
-         */
-        public Agent SetAccount(OnlineAccount account)
-        {
-            AddAccount(account);
-            return this;
-        }
-
-        /**
-         * Build up this agent with an email address.
-         *
-         * @param email The email address.
-         * @return this.
-         */
-        public Agent SetEmail(String email)
-        {
-            return SetEmail(new ResourceReference("mailto:" + email));
-        }
-
-        /**
-         * Build up this agent with an email address.
-         *
-         * @param email The email address.
-         * @return this.
-         */
-        public Agent SetEmail(ResourceReference email)
-        {
-            AddEmail(email);
-            return this;
-        }
-
-        /**
          * Build up this agent with a phone number.
          * @param phone The phone number.
          * @return this.
          */
         public Agent SetPhone(ResourceReference phone)
         {
-            AddPhone(phone);
-            return this;
-        }
-
-        /**
-         * Build up this agent with an address.
-         * @param address The address.
-         * @return this.
-         */
-        public Agent SetAddress(Address address)
-        {
-            AddAddress(address);
-            return this;
-        }
-
-        /**
-         * Add a name.
-         * 
-         * param name The name.
-         */
-        public void AddName(TextValue name)
-        {
-            this.Names.Add(name);
-        }
-
-        /**
-         * Add an identifier.
-         * 
-         * @param identifier The identifier to add.
-         */
-        public void AddIdentifier(Identifier identifier)
-        {
-            this.Identifiers.Add(identifier);
-        }
-
-        /**
-         * Add an account.
-         *
-         * @param account The account to add.
-         */
-        public void AddAccount(OnlineAccount account)
-        {
-            this.Accounts.Add(account);
-        }
-
-        /**
-         * Add an email.
-         *
-         * @param email The email.
-         */
-        public void AddEmail(ResourceReference email)
-        {
-            this.Emails.Add(email);
-        }
-
-        /**
-         * Add a phone.
-         *
-         * @param phone The phone to add.
-         */
-        public void AddPhone(ResourceReference phone)
-        {
             this.Phones.Add(phone);
-        }
-
-        /**
-         * Add an address.
-         *
-         * @param address The address to add.
-         */
-        public void AddAddress(Address address)
-        {
-            this.Addresses.Add(address);
+            return this;
         }
     }
 }

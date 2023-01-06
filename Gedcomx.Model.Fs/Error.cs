@@ -26,7 +26,7 @@ namespace Gx.Fs
         private string _message;
         private string _stacktrace;
         /// <summary>
-        ///  The error code. Intepreted per &lt;a href=&quot;http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html&quot;&gt;RFC 2616, Section 10 (HTTP Status Code Definitions)&lt;/a&gt;.
+        ///  The error code. Intepreted per <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html">RFC 2616, Section 10 (HTTP Status Code Definitions)</a>.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "code", Namespace = "http://familysearch.org/v1/")]
         [Newtonsoft.Json.JsonProperty("code")]

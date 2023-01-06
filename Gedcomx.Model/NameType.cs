@@ -40,7 +40,7 @@ namespace Gx.Types {
     MarriedName,
 
     /// <summary>
-    ///   &quot;Also known as&quot; name.
+    ///   "Also known as" name.
     /// </summary>
     [System.Xml.Serialization.XmlEnum("http://gedcomx.org/AlsoKnownAs")]
     AlsoKnownAs,

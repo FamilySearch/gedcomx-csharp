@@ -168,7 +168,7 @@ namespace Gx.Rs.Api
         /// <param name="link">The link to execute.</param>
         /// <param name="entity">The entity which will embed the reponse data.</param>
         /// <param name="options">The options to apply before executing the REST API call.</param>
-        /// <exception cref="GedcomxApplicationException">Thrown when the server responds with HTTP status code >= 500 and &lt; 600.</exception>
+        /// <exception cref="GedcomxApplicationException">Thrown when the server responds with HTTP status code >= 500 and < 600.</exception>
         protected void Embed<T>(Link link, Gedcomx entity, params IStateTransitionOption[] options) where T : Gedcomx
         {
             if (link.Href != null)
@@ -306,7 +306,7 @@ namespace Gx.Rs.Api
         }
 
         /// <summary>
-        /// Determines whether this instance has error (server [code >= 500 and &lt; 600] or client [code >= 400 and &lt; 500]).
+        /// Determines whether this instance has error (server [code >= 500 and < 600] or client [code >= 400 and < 500]).
         /// </summary>
         /// <returns>True if a server or client error exists; otherwise, false.</returns>
         public bool HasError()

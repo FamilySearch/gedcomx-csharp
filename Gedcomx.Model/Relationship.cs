@@ -65,9 +65,9 @@ namespace Gx.Conclusion
             }
         }
         /// <summary>
-        ///  A reference to a person in the relationship. The name &quot;person1&quot; is used only to distinguish it from
+        ///  A reference to a person in the relationship. The name "person1" is used only to distinguish it from
         ///  the other person in this relationship and implies neither order nor role. When the relationship type
-        ///  implies direction, it goes from &quot;person1&quot; to &quot;person2&quot;.
+        ///  implies direction, it goes from "person1" to "person2".
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "person1", Namespace = "http://gedcomx.org/v1/")]
         [Newtonsoft.Json.JsonProperty("person1")]
@@ -83,9 +83,9 @@ namespace Gx.Conclusion
             }
         }
         /// <summary>
-        ///  A reference to a person in the relationship. The name &quot;person2&quot; is used only to distinguish it from
+        ///  A reference to a person in the relationship. The name "person2" is used only to distinguish it from
         ///  the other person in this relationship and implies neither order nor role. When the relationship type
-        ///  implies direction, it goes from &quot;person1&quot; to &quot;person2&quot;.
+        ///  implies direction, it goes from "person1" to "person2".
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "person2", Namespace = "http://gedcomx.org/v1/")]
         [Newtonsoft.Json.JsonProperty("person2")]

@@ -216,7 +216,7 @@ namespace Gx.Types
         Language,
 
         /// <summary>
-        ///   A fact of a record of a person's living for a specific period. This is designed to include &quot;flourish&quot;, defined to mean the time period
+        ///   A fact of a record of a person's living for a specific period. This is designed to include "flourish", defined to mean the time period
         ///   in an adult's life where he was most productive, perhaps as a writer or member of the state assembly. It does not reflect the person's birth and death dates.
         /// </summary>
         [System.Xml.Serialization.XmlEnum("http://gedcomx.org/Living")]

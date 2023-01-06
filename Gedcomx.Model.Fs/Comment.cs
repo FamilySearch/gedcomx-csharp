@@ -27,7 +27,7 @@ namespace Gx.Fs.Discussions
         private bool _createdSpecified;
         private Gx.Common.ResourceReference _contributor;
         /// <summary>
-        ///  The text or &quot;message body&quot; of the comment
+        ///  The text or "message body" of the comment
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "text", Namespace = "http://familysearch.org/v1/")]
         [Newtonsoft.Json.JsonProperty("text")]

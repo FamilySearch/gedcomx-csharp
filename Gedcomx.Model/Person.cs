@@ -38,7 +38,7 @@ namespace Gx.Conclusion
         private Gx.Conclusion.DisplayProperties _displayExtension;
 		private System.Collections.Generic.List<Gx.Source.DiscussionReference> _discussionreference;
 		/// <summary>
-		///  Whether this person is the &quot;principal&quot; person extracted from the record.
+		///  Whether this person is the "principal" person extracted from the record.
 		/// </summary>
 		[System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "principal")]
         [Newtonsoft.Json.JsonProperty("principal")]

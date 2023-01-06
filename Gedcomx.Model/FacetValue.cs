@@ -9,10 +9,10 @@ namespace Gx.Records
 {
 
     /// <remarks>
-    ///  &lt;p&gt;A facet value is the value that is used by a facet to group related resources.&lt;/p&gt;
+    ///  <p>A facet value is the value that is used by a facet to group related resources.</p>
     /// </remarks>
     /// <summary>
-    ///  &lt;p&gt;A facet value is the value that is used by a facet to group related resources.&lt;/p&gt;
+    ///  <p>A facet value is the value that is used by a facet to group related resources.</p>
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "FacetValue")]

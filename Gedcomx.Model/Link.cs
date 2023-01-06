@@ -47,7 +47,7 @@ namespace Gx.Links
         }
 
         /// <summary>
-        ///  A URI template per &lt;a href=&quot;http://tools.ietf.org/html/rfc6570&quot;&gt;RFC 6570&lt;/a&gt;, used to link to a range of
+        ///  A URI template per <a href="http://tools.ietf.org/html/rfc6570">RFC 6570</a>, used to link to a range of
         ///  URIs, such as for the purpose of linking to a query.
         /// </summary>
         [System.Xml.Serialization.XmlAttributeAttribute(AttributeName = "template")]

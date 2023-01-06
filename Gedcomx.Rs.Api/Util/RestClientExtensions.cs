@@ -160,11 +160,11 @@ namespace Gx.Rs.Api.Util
         }
 
         /// <summary>
-        /// Determines whether the server response status code indicates a client side error (status code >= 400 and &lt; 500).
+        /// Determines whether the server response status code indicates a client side error (status code >= 400 and < 500).
         /// </summary>
         /// <param name="this">The <see cref="IRestResponse"/> to evaluate.</param>
         /// <returns>
-        /// <c>true</c> if the response status code is >= 400 and &lt; 500; otherwise, <c>false</c>.
+        /// <c>true</c> if the response status code is >= 400 and < 500; otherwise, <c>false</c>.
         /// </returns>
         public static bool HasClientError(this IRestResponse @this)
         {
@@ -174,11 +174,11 @@ namespace Gx.Rs.Api.Util
         }
 
         /// <summary>
-        /// Determines whether the server response status code indicates a server side error (status code >= 500 and &lt; 600).
+        /// Determines whether the server response status code indicates a server side error (status code >= 500 and < 600).
         /// </summary>
         /// <param name="this">The <see cref="IRestResponse"/> to evaluate.</param>
         /// <returns>
-        /// <c>true</c> if the response status code is >= 500 and &lt; 600; otherwise, <c>false</c>.
+        /// <c>true</c> if the response status code is >= 500 and < 600; otherwise, <c>false</c>.
         /// </returns>
         public static bool HasServerError(this IRestResponse @this)
         {

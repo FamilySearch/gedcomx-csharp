@@ -11,13 +11,13 @@ namespace Gx.Common
 {
 
     /// <remarks>
-    ///  Attribution for genealogical information. Attribution is used to model &lt;strong&gt;who&lt;/strong&gt; is contributing/modifying
-    ///  information, &lt;strong&gt;when&lt;/strong&gt; they contributed it, and &lt;strong&gt;why&lt;/strong&gt; they are making the
+    ///  Attribution for genealogical information. Attribution is used to model <strong>who</strong> is contributing/modifying
+    ///  information, <strong>when</strong> they contributed it, and <strong>why</strong> they are making the
     ///  contribution/modification.
     /// </remarks>
     /// <summary>
-    ///  Attribution for genealogical information. Attribution is used to model &lt;strong&gt;who&lt;/strong&gt; is contributing/modifying
-    ///  information, &lt;strong&gt;when&lt;/strong&gt; they contributed it, and &lt;strong&gt;why&lt;/strong&gt; they are making the
+    ///  Attribution for genealogical information. Attribution is used to model <strong>who</strong> is contributing/modifying
+    ///  information, <strong>when</strong> they contributed it, and <strong>why</strong> they are making the
     ///  contribution/modification.
     /// </summary>
     [System.SerializableAttribute()]
@@ -84,7 +84,7 @@ namespace Gx.Common
         }
 
         /// <summary>
-        ///  The &quot;change message&quot; for the attributed data provided by the contributor.
+        ///  The "change message" for the attributed data provided by the contributor.
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "changeMessage", Namespace = "http://gedcomx.org/v1/")]
         [Newtonsoft.Json.JsonProperty("changeMessage")]

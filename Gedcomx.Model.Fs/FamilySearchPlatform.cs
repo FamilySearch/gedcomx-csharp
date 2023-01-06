@@ -14,14 +14,14 @@ namespace Gx.Fs
 {
 
     /// <remarks>
-    ///  &lt;p&gt;The FamilySearch data types define serialization formats that are specific the FamilySearch developer platform. These
-    ///  data formats are extensions of the &lt;a href=&quot;http://gedcomx.org&quot;&gt;GEDCOM X&lt;/a&gt; media types and provide concepts and data types
-    ///  that are specific to FamilySearch and therefore haven't been adopted into a formal, more general specification.&lt;/p&gt;
+    ///  <p>The FamilySearch data types define serialization formats that are specific the FamilySearch developer platform. These
+    ///  data formats are extensions of the <a href="http://gedcomx.org">GEDCOM X</a> media types and provide concepts and data types
+    ///  that are specific to FamilySearch and therefore haven't been adopted into a formal, more general specification.</p>
     /// </remarks>
     /// <summary>
-    ///  &lt;p&gt;The FamilySearch data types define serialization formats that are specific the FamilySearch developer platform. These
-    ///  data formats are extensions of the &lt;a href=&quot;http://gedcomx.org&quot;&gt;GEDCOM X&lt;/a&gt; media types and provide concepts and data types
-    ///  that are specific to FamilySearch and therefore haven't been adopted into a formal, more general specification.&lt;/p&gt;
+    ///  <p>The FamilySearch data types define serialization formats that are specific the FamilySearch developer platform. These
+    ///  data formats are extensions of the <a href="http://gedcomx.org">GEDCOM X</a> media types and provide concepts and data types
+    ///  that are specific to FamilySearch and therefore haven't been adopted into a formal, more general specification.</p>
     /// </summary>
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://familysearch.org/v1/", TypeName = "FamilySearch")]

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
 using Gx.Agent;
 using Gx.Common;
@@ -36,15 +31,18 @@ namespace Gedcomx.Model.Test
             var sut = new Agent
             {
                 Id = "O-1",
+                Names = { "Jane Doe" },
+                Emails = { "example@example.org" },
                 Homepage = new ResourceReference(),
                 Openid = new ResourceReference(),
             };
             sut.Accounts.Add(new OnlineAccount());
             sut.Addresses.Add(new Address());
-            sut.Emails.Add(new ResourceReference());
             sut.Identifiers.Add(new Identifier());
-            sut.Names.Add(new TextValue());
             sut.Phones.Add(new ResourceReference());
+
+            Assert.That(sut.Names[0].Value, Is.EqualTo("Jane Doe"));
+            Assert.That(sut.Emails[0].Resource, Is.EqualTo("mailto:example@example.org"));
 
             VerifyXmlSerialization(sut);
             VerifyJsonSerialization(sut);
@@ -63,14 +61,14 @@ namespace Gedcomx.Model.Test
             Assert.That(result, Does.Contain("xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\""));
             Assert.That(result, Does.Contain("xmlns=\"http://gedcomx.org/v1/\""));
             Assert.That(result.Contains("id"), Is.EqualTo(sut.Id != null));
-            Assert.That(result.Contains("account"), Is.EqualTo(sut.ShouldSerializeAccounts()));
-            Assert.That(result.Contains("address"), Is.EqualTo(sut.ShouldSerializeAddresses()));
-            Assert.That(result.Contains("email"), Is.EqualTo(sut.ShouldSerializeEmails()));
-            Assert.That(result.Contains("homepage"), Is.EqualTo(sut.Homepage != null));
-            Assert.That(result.Contains("identifier"), Is.EqualTo(sut.ShouldSerializeIdentifiers()));
-            Assert.That(result.Contains("name"), Is.EqualTo(sut.ShouldSerializeNames()));
-            Assert.That(result.Contains("openid"), Is.EqualTo(sut.Openid != null));
-            Assert.That(result.Contains("phone"), Is.EqualTo(sut.ShouldSerializePhones()));
+            Assert.That(result.Contains("<account"), Is.EqualTo(sut.AnyAccounts()));
+            Assert.That(result.Contains("<address"), Is.EqualTo(sut.AnyAddresses()));
+            Assert.That(result.Contains("<email"), Is.EqualTo(sut.AnyEmails()));
+            Assert.That(result.Contains("<homepage"), Is.EqualTo(sut.Homepage != null));
+            Assert.That(result.Contains("<identifier"), Is.EqualTo(sut.AnyIdentifiers()));
+            Assert.That(result.Contains("<name"), Is.EqualTo(sut.AnyNames()));
+            Assert.That(result.Contains("<openid"), Is.EqualTo(sut.Openid != null));
+            Assert.That(result.Contains("<phone"), Is.EqualTo(sut.AnyPhones()));
         }
 
         private static void VerifyJsonSerialization(Agent sut)

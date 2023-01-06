@@ -52,7 +52,7 @@ namespace Gx.Fs.Discussions
             }
         }
         /// <summary>
-        ///  The text or &quot;message body&quot; of the discussion
+        ///  The text or "message body" of the discussion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "details", Namespace = "http://familysearch.org/v1/")]
         [Newtonsoft.Json.JsonProperty("details")]

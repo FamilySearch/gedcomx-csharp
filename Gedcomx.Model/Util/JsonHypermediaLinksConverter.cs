@@ -1,10 +1,11 @@
-﻿using Gx.Links;
+﻿using System;
+using System.Collections.Generic;
+
+using Gx.Links;
+using Gx.Model.Collections;
+
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Gedcomx.Model.Util
 {
@@ -17,7 +18,7 @@ namespace Gedcomx.Model.Util
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            IList<Link> result = new List<Link>();
+            IList<Link> result = new Links();
             var jObject = JObject.Load(reader);
 
             foreach (var key in jObject)

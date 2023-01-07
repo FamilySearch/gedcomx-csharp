@@ -5,7 +5,7 @@ using Gx.Common;
 namespace Gx.Model.Collections
 {
     /// <summary>
-    ///  A list of reference to Emails resources.
+    ///  A list of <see cref="ResourceReference"/> to Emails.
     /// </summary>
     public class Emails : List<ResourceReference>
     {

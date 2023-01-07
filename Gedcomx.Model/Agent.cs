@@ -93,7 +93,7 @@ namespace Gx.Agent
             }
             set
             {
-                this._emails = (Gx.Model.Collections.Emails)value;
+                this._emails = value;
             }
         }
         public bool ShouldSerializeEmails() => AnyEmails();

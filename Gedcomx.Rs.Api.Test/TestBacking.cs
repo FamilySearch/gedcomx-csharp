@@ -17,7 +17,7 @@ namespace Gedcomx.Rs.Api.Test
 {
     public static class TestBacking
     {
-        private static Random random = new Random();
+        private static readonly Random random = new Random();
 
         public static Person GetPersonForDeepCompare()
         {
@@ -562,13 +562,7 @@ namespace Gedcomx.Rs.Api.Test
             return new SourceDescription()
             {
                 About = memoryUri,
-                Titles = new List<TextValue>()
-        {
-          new TextValue()
-          {
-            Value = "Grandpa's Birth Certificate",
-          }
-        },
+                Titles = { "Grandpa's Birth Certificate" },
                 Notes = new List<Note>()
         {
           new Note()

@@ -1,14 +1,11 @@
-﻿using Gx.Agent;
+﻿using System.Collections;
+using System.Collections.Generic;
+
+using Gx.Agent;
 using Gx.Common;
 using Gx.Conclusion;
 using Gx.Records;
 using Gx.Source;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Gedcomx.Model.Rt
 {
@@ -199,27 +196,27 @@ namespace Gedcomx.Model.Rt
         public virtual void VisitSourceDescription(SourceDescription sourceDescription)
         {
             this.contextStack.Push(sourceDescription);
-            List<SourceReference> sources = sourceDescription.Sources;
-            if (sources != null)
+            if (sourceDescription.AnySources())
             {
+                List<SourceReference> sources = sourceDescription.Sources;
                 foreach (SourceReference source in sources)
                 {
                     source.Accept(this);
                 }
             }
 
-            List<Note> notes = sourceDescription.Notes;
-            if (notes != null)
+            if (sourceDescription.AnyNotes())
             {
+                List<Note> notes = sourceDescription.Notes;
                 foreach (Note note in notes)
                 {
                     note.Accept(this);
                 }
             }
 
-            List<SourceCitation> citations = sourceDescription.Citations;
-            if (citations != null)
+            if (sourceDescription.AnyCitations())
             {
+                List<SourceCitation> citations = sourceDescription.Citations;
                 foreach (SourceCitation citation in citations)
                 {
                     citation.Accept(this);

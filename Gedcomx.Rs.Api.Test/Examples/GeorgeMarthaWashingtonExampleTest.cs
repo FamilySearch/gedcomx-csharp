@@ -1,15 +1,14 @@
-﻿using Gedcomx.File;
+﻿using System.Collections.Generic;
+
+using Gedcomx.File;
+
 using Gx.Agent;
 using Gx.Common;
 using Gx.Conclusion;
 using Gx.Source;
 using Gx.Types;
+
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Gedcomx.Rs.Api.Test.Examples
 {
@@ -209,8 +208,8 @@ namespace Gedcomx.Rs.Api.Test.Examples
         {
             Relationship relationship = new Relationship();
             relationship.SetId("DDD-DDDD");
-            relationship.SetPerson1(new ResourceReference("#" + george.Id));
-            relationship.SetPerson2(new ResourceReference("#" + martha.Id));
+            relationship.SetPerson1(new ResourceReference(Gx.Model.Util.HashId(george)));
+            relationship.SetPerson2(new ResourceReference(Gx.Model.Util.HashId(martha)));
             Fact marriage = new Fact();
             marriage.SetDate(new DateInfo());
             marriage.Date.SetOriginal("January 6, 1759");

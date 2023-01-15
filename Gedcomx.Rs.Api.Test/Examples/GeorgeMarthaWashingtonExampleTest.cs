@@ -1,15 +1,14 @@
-﻿using Gedcomx.File;
+﻿using System.Collections.Generic;
+
+using Gedcomx.File;
+
 using Gx.Agent;
 using Gx.Common;
 using Gx.Conclusion;
 using Gx.Source;
 using Gx.Types;
+
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Gedcomx.Rs.Api.Test.Examples
 {

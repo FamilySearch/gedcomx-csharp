@@ -6,7 +6,6 @@ root = true
 [*]
 indent_style = space
 
-
 # XML project files
 [*.{csproj,vbproj,vcxproj,vcxproj.filters,proj,projitems,shproj}]
 indent_size = 2
@@ -20,9 +19,17 @@ indent_size = 2
 indent_size = 4
 insert_final_newline = true
 charset = utf-8-bom
+
 ###############################
 # .NET Coding Conventions     #
 ###############################
 [*.{cs,vb}]
 # Organize usings
 dotnet_sort_system_directives_first = true
+
+###############################
+# .NUnit Coding Conventions   #
+###############################
+
+# NUnit2045: Use Assert.Multiple
+dotnet_diagnostic.NUnit2045.severity = silent

@@ -17,7 +17,7 @@ namespace Gedcomx.Rs.Api.Test
 {
     public static class TestBacking
     {
-        private static Random random = new Random();
+        private static readonly Random random = new Random();
 
         public static Person GetPersonForDeepCompare()
         {
@@ -30,7 +30,6 @@ namespace Gedcomx.Rs.Api.Test
                     Fields = new List<Gx.Records.Field>(),
                     Sources = new List<Gx.Source.SourceReference>(),
                     Notes = new List<Gx.Common.Note>(),
-                    Links = new List<Gx.Links.Link>(),
                     ExtensionElementsXml = new List<object>(),
                 },
                 Names = new List<Name>()
@@ -94,7 +93,6 @@ namespace Gedcomx.Rs.Api.Test
             Preferred = true,
             Sources = new List<Gx.Source.SourceReference>(),
             Notes = new List<Gx.Common.Note>(),
-            Links = new List<Gx.Links.Link>(),
             ExtensionElementsXml = new List<object>(),
           },
         },
@@ -121,7 +119,6 @@ namespace Gedcomx.Rs.Api.Test
             Fields = new List<Gx.Records.Field>(),
             Sources = new List<Gx.Source.SourceReference>(),
             Notes = new List<Gx.Common.Note>(),
-            Links = new List<Gx.Links.Link>(),
             ExtensionElementsXml = new List<object>(),
           },
           new Fact()
@@ -145,7 +142,6 @@ namespace Gedcomx.Rs.Api.Test
             Fields = new List<Gx.Records.Field>(),
             Sources = new List<Gx.Source.SourceReference>(),
             Notes = new List<Gx.Common.Note>(),
-            Links = new List<Gx.Links.Link>(),
             ExtensionElementsXml = new List<object>(),
           },
           new Fact()
@@ -169,7 +165,6 @@ namespace Gedcomx.Rs.Api.Test
             Fields = new List<Gx.Records.Field>(),
             Sources = new List<Gx.Source.SourceReference>(),
             Notes = new List<Gx.Common.Note>(),
-            Links = new List<Gx.Links.Link>(),
             ExtensionElementsXml = new List<object>(),
           },
           new Fact()
@@ -193,7 +188,6 @@ namespace Gedcomx.Rs.Api.Test
             Fields = new List<Gx.Records.Field>(),
             Sources = new List<Gx.Source.SourceReference>(),
             Notes = new List<Gx.Common.Note>(),
-            Links = new List<Gx.Links.Link>(),
             ExtensionElementsXml = new List<object>(),
           },
           new Fact()
@@ -217,7 +211,6 @@ namespace Gedcomx.Rs.Api.Test
             Fields = new List<Gx.Records.Field>(),
             Sources = new List<Gx.Source.SourceReference>(),
             Notes = new List<Gx.Common.Note>(),
-            Links = new List<Gx.Links.Link>(),
             ExtensionElementsXml = new List<object>(),
           }
         },
@@ -228,7 +221,6 @@ namespace Gedcomx.Rs.Api.Test
                 Identifiers = new List<Gx.Conclusion.Identifier>(),
                 Sources = new List<Gx.Source.SourceReference>(),
                 Notes = new List<Gx.Common.Note>(),
-                Links = new List<Gx.Links.Link>(),
                 DiscussionReferences = new List<DiscussionReference>(),
             };
         }
@@ -570,13 +562,7 @@ namespace Gedcomx.Rs.Api.Test
             return new SourceDescription()
             {
                 About = memoryUri,
-                Titles = new List<TextValue>()
-        {
-          new TextValue()
-          {
-            Value = "Grandpa's Birth Certificate",
-          }
-        },
+                Titles = { "Grandpa's Birth Certificate" },
                 Notes = new List<Note>()
         {
           new Note()
@@ -644,7 +630,6 @@ namespace Gedcomx.Rs.Api.Test
                 Collections = new List<Gx.Records.Collection>(),
                 Fields = new List<Gx.Records.Field>(),
                 RecordDescriptors = new List<Gx.Records.RecordDescriptor>(),
-                Links = new List<Gx.Links.Link>(),
                 ExtensionElementsXml = new List<object>(),
             };
         }

@@ -1,10 +1,11 @@
-﻿using Gx.Links;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+
 using Gedcomx.Model.Util;
+
+using Gx.Links;
+
+using Newtonsoft.Json;
 
 namespace Gedcomx.Model
 {
@@ -17,27 +18,13 @@ namespace Gedcomx.Model
         /// The list of hypermedia links. Links are not specified by GEDCOM X core, but as extension elements by GEDCOM X RS.
         /// </value>
         [JsonConverter(typeof(JsonHypermediaLinksConverter))]
-        List<Link> Links { get; set; }
+        Gx.Model.Collections.Links Links { get; set; }
 
         /// <summary>
-        /// Add a hypermedia link. Links are not specified by GEDCOM X core, but as extension elements by GEDCOM X RS.
+        /// Determines whether a sequence exists and contains any links.
         /// </summary>
-        /// <param name="link">The hypermedia link. Links are not specified by GEDCOM X core, but as extension elements by GEDCOM X RS.</param>
-        void AddLink(Link link);
-
-        /// <summary>
-        /// Add a hypermedia link.
-        /// </summary>
-        /// <param name="rel">The link rel.</param>
-        /// <param name="href">The target URI.</param>
-        void AddLink(String rel, Uri href);
-
-        /// <summary>
-        /// Add a templated link.
-        /// </summary>
-        /// <param name="rel">The link rel.</param>
-        /// <param name="template">The link template.</param>
-        void AddTemplatedLink(String rel, String template);
+        /// <returns></returns>
+        bool AnyLinks();
 
         /// <summary>
         /// Get a link by its rel. Links are not specified by GEDCOM X core, but as extension elements by GEDCOM X RS.

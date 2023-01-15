@@ -1,16 +1,19 @@
-﻿using System;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Xml.Serialization;
 
 using Newtonsoft.Json;
 
 using NUnit.Framework;
 
-namespace Genealogy.Model.Test;
+namespace Gedcomx.Model.Test;
 
+/// <summary>
+/// Test calss for serializeable classes.
+/// </summary>
+[TestFixture]
 public class SerializableTest
 {
-    private JsonSerializerSettings _jsonSettings = new()
+    private readonly JsonSerializerSettings _jsonSettings = new()
     {
         NullValueHandling = NullValueHandling.Ignore
     };
@@ -34,7 +37,6 @@ public class SerializableTest
 
         stream.Seek(0, SeekOrigin.Begin);
         var result = new StreamReader(stream).ReadToEnd();
-        //Assert.That(result, Does.Contain("<" + type.Name + " ").IgnoreCase);
         stream.Seek(0, SeekOrigin.Begin);
         Assert.DoesNotThrow(() => serializer.Deserialize(stream));
     }
@@ -51,6 +53,5 @@ public class SerializableTest
                     select t;
         return from type in types
                select new TestCaseData(type).SetName($"Serialize({type.Name})");
-        ;
     }
 }

@@ -1,13 +1,9 @@
-using System;
-using Gx;
-using Gx.Agent;
+﻿using System.Collections;
+
 using Gx.Common;
 using Gx.Conclusion;
-using Gx.Links;
 using Gx.Records;
 using Gx.Source;
-using Gx.Types;
-using System.Collections;
 
 namespace Gx.Util
 {
@@ -248,7 +244,7 @@ namespace Gx.Util
         public virtual void VisitSourceDescription(SourceDescription sourceDescription)
         {
             this.contextStack.Push(sourceDescription);
-            if (sourceDescription.Sources != null)
+            if (sourceDescription.AnySources())
             {
                 foreach (SourceReference source in sourceDescription.Sources)
                 {
@@ -256,7 +252,7 @@ namespace Gx.Util
                 }
             }
 
-            if (sourceDescription.Notes != null)
+            if (sourceDescription.AnyNotes())
             {
                 foreach (Note note in sourceDescription.Notes)
                 {
@@ -264,7 +260,7 @@ namespace Gx.Util
                 }
             }
 
-            if (sourceDescription.Citations != null)
+            if (sourceDescription.AnyCitations())
             {
                 foreach (SourceCitation citation in sourceDescription.Citations)
                 {

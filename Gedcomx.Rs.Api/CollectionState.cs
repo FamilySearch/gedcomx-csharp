@@ -540,7 +540,7 @@ namespace Gx.Rs.Api
                         request.AddFile("description", Encoding.UTF8.GetBytes(value.Value), null, MediaTypes.TEXT_PLAIN_TYPE);
                     }
                 }
-                if (description.Citations != null)
+                if (description.AnyCitations())
                 {
                     foreach (SourceCitation citation in description.Citations)
                     {

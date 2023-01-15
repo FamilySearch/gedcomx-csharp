@@ -15,6 +15,7 @@ using Gx.Common;
 using Gx.Conclusion;
 using Gx.Fs.Discussions;
 using Gx.Fs.Tree;
+using Gx.Model.Collections;
 using Gx.Rs.Api;
 using Gx.Rs.Api.Options;
 using Gx.Rs.Api.Util;
@@ -756,7 +757,7 @@ namespace Gedcomx.Rs.Api.Test
             var converter = new ImageConverter();
             var bytes = (Byte[])converter.ConvertTo(TestBacking.GetCreatePhoto(), typeof(Byte[]));
             var dataSource = new BasicDataSource(Guid.NewGuid().ToString("n") + ".jpg", "image/jpeg", bytes);
-            var state = person.AddArtifact(new SourceDescription() { Titles = new List<TextValue>() { new TextValue("PersonImage") }, Citations = new List<SourceCitation>() { new SourceCitation() { Value = "Citation for PersonImage" } } }, dataSource);
+            var state = person.AddArtifact(new SourceDescription() { Titles = new TextValues() { "PersonImage" }, Citations = new List<SourceCitation>() { new SourceCitation() { Value = "Citation for PersonImage" } } }, dataSource);
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.Created));

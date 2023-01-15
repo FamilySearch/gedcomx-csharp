@@ -93,7 +93,7 @@ namespace Gx.Agent
             }
             set
             {
-                this._emails = (Gx.Model.Collections.Emails)value;
+                this._emails = value;
             }
         }
         public bool ShouldSerializeEmails() => AnyEmails();
@@ -196,6 +196,20 @@ namespace Gx.Agent
         public bool AnyPhones()
         {
             return _phones?.Any() ?? false;
+        }
+
+        /// <summary>
+        /// Combine '#' and agent Id to be used with <see cref="Gx.Common.ResourceReference"/>
+        /// </summary>
+        /// <param name="agent">The agent.</param>
+        /// <exception cref="ArgumentException">If the person Id is null.</exception>
+        public static implicit operator Gx.Common.ResourceReference(Gx.Agent.Agent agent)
+        {
+            if (agent.Id == null)
+            {
+                throw new ArgumentException("Cannot reference agent as a contributor: no id.");
+            }
+            return new ResourceReference("#" + agent.Id);
         }
 
         /**

@@ -1,4 +1,4 @@
-using Gx.Conclusion;
+﻿using Gx.Conclusion;
 using Gx.Records;
 using Gx.Source;
 using Gx.Types;
@@ -99,7 +99,7 @@ namespace Gx.Util
                         {
                             if (id.Equals(source.Id))
                             {
-                                if (source.Coverage != null)
+                                if (source.AnyCoverage())
                                 {
                                     foreach (Coverage coverage in source.Coverage)
                                     {

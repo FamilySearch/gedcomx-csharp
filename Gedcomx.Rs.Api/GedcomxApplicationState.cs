@@ -894,7 +894,6 @@ namespace Gx.Rs.Api
         {
             this.Entity = LoadEntityConditionally(this.Response);
             List<Link> links = LoadLinks(this.Response, this.Entity, this.Request.RequestFormat);
-            this.Links = new List<Link>();
             this.Links.AddRange(links);
         }
 

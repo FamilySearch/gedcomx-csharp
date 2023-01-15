@@ -110,16 +110,6 @@ namespace Gx.Conclusion
          * @param person The person.
          * @return this.
          */
-        public EventRole SetPerson(Person person)
-        {
-            return SetPerson(new ResourceReference(Util.HashId(person)));
-        }
-
-        /**
-         * Build up this event role with a person.
-         * @param person The person.
-         * @return this.
-         */
         public EventRole SetPerson(ResourceReference person)
         {
             Person = person;

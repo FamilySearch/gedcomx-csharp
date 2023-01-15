@@ -272,17 +272,6 @@ namespace Gx.Conclusion
          * @param analysis The analysis.
          * @return this.
          */
-        public Conclusion SetAnalysis(Document analysis)
-        {
-            return SetAnalysis(new ResourceReference(Util.HashId(analysis)));
-        }
-
-        /**
-         * Add a reference to the analysis for this conclusion.
-         *
-         * @param analysis The analysis.
-         * @return this.
-         */
         public Conclusion SetAnalysis(ResourceReference analysis)
         {
             Analysis = analysis;

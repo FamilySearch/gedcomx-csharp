@@ -160,18 +160,6 @@ namespace Gx.Fs.Tree
         }
 
         /**
-         * Build out this relationship with a reference to the father.
-         *
-         * @param father the father.
-         * @return this.
-         */
-        public ChildAndParentsRelationship SetFather(Person father)
-        {
-            Father = new ResourceReference(Util.HashId(father, "father"));
-            return this;
-        }
-
-        /**
          * Build out this relationship with a reference to the mother.
          *
          * @param mother the mother.
@@ -184,18 +172,6 @@ namespace Gx.Fs.Tree
         }
 
         /**
-         * Build out this relationship with a reference to the mother.
-         *
-         * @param mother the mother.
-         * @return this.
-         */
-        public ChildAndParentsRelationship SetMother(Person mother)
-        {
-            Mother = new ResourceReference(Util.HashId(mother, "mother"));
-            return this;
-        }
-
-        /**
          * Build out this relationship with a reference to the child.
          *
          * @param child the child.
@@ -204,18 +180,6 @@ namespace Gx.Fs.Tree
         public ChildAndParentsRelationship SetChild(ResourceReference child)
         {
             Child = child;
-            return this;
-        }
-
-        /**
-         * Build out this relationship with a reference to the child.
-         *
-         * @param child the child.
-         * @return this.
-         */
-        public ChildAndParentsRelationship SetChild(Person child)
-        {
-            Child = new ResourceReference(Util.HashId(child, "child"));
             return this;
         }
 

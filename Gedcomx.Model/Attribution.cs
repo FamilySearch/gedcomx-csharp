@@ -107,17 +107,6 @@ namespace Gx.Common
         /**
          * Build up this attribution with a contributor.
          *
-         * @param agent The contributor.
-         * @return this.
-         */
-        public Attribution SetContributor(Gx.Agent.Agent agent)
-        {
-            return SetContributor(new ResourceReference(Util.HashId(agent)));
-        }
-
-        /**
-         * Build up this attribution with a contributor.
-         *
          * @param contributor The contributor.
          * @return this.
          */

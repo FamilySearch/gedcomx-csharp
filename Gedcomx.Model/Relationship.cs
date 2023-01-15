@@ -197,17 +197,6 @@ namespace Gx.Conclusion
         }
 
         /**
-         * Build out this relationship with a reference to person 1.
-         * 
-         * @param person1 person 1.
-         * @return this.
-         */
-        public Relationship SetPerson1(Person person1)
-        {
-            return SetPerson1(new ResourceReference(Util.HashId(person1, "person1")));
-        }
-
-        /**
          * Build out this relationship with a reference to person 2.
          *
          * @param person2 person 2.
@@ -217,17 +206,6 @@ namespace Gx.Conclusion
         {
             Person2 = person2;
             return this;
-        }
-
-        /**
-         * Build out this relationship with a reference to person 2.
-         *
-         * @param person2 person 2.
-         * @return this.
-         */
-        public Relationship SetPerson2(Person person2)
-        {
-            return SetPerson2(new ResourceReference(Util.HashId(person2, "person2")));
         }
 
         /**

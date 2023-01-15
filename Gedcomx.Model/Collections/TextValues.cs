@@ -10,9 +10,9 @@ namespace Gx.Model.Collections
     public class TextValues : List<TextValue>
     {
         /// <summary>
-        /// Add a name.
+        /// Add a value.
         /// </summary>
-        /// <param name="name">The name.</param>
-        public void Add(string name) => Add(new TextValue(name));
+        /// <param name="value">The value.</param>
+        public void Add(string value) => Add(new TextValue(value));
     }
 }

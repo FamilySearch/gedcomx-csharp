@@ -46,7 +46,7 @@ namespace Gx.Source
         private Gx.Common.TextValue _titleLabel;
         private System.Collections.Generic.List<Gx.Common.Note> _notes;
         private Gx.Common.Attribution _attribution;
-        private System.Collections.Generic.List<Gx.Common.TextValue> _descriptions;
+        private Gx.Model.Collections.TextValues _descriptions;
         private System.Collections.Generic.List<Gx.Conclusion.Identifier> _identifiers;
         private DateTime? _created;
         private bool _createdSpecified;
@@ -323,11 +323,11 @@ namespace Gx.Source
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "description", Namespace = "http://gedcomx.org/v1/")]
         [Newtonsoft.Json.JsonProperty("descriptions")]
-        public System.Collections.Generic.List<Gx.Common.TextValue> Descriptions
+        public Gx.Model.Collections.TextValues Descriptions
         {
             get
             {
-                return this._descriptions ?? (_descriptions = new System.Collections.Generic.List<Gx.Common.TextValue>());
+                return this._descriptions ?? (_descriptions = new Gx.Model.Collections.TextValues());
             }
             set
             {
@@ -832,17 +832,6 @@ namespace Gx.Source
                 this.Fields.Add(field);
             }
             return this;
-        }
-
-        /**
-         * Build out this source description with a repository.
-         *
-         * @param repository The repository.
-         * @return this.
-         */
-        public SourceDescription SetRepository(Gx.Agent.Agent repository)
-        {
-            return SetRepository(new ResourceReference(Util.HashId(repository, "repository")));
         }
 
         /**

@@ -208,8 +208,8 @@ namespace Gedcomx.Rs.Api.Test.Examples
         {
             Relationship relationship = new Relationship();
             relationship.SetId("DDD-DDDD");
-            relationship.SetPerson1(new ResourceReference(Gx.Model.Util.HashId(george)));
-            relationship.SetPerson2(new ResourceReference(Gx.Model.Util.HashId(martha)));
+            relationship.SetPerson1(new ResourceReference("#" + george.Id));
+            relationship.SetPerson2(new ResourceReference("#" + martha.Id));
             Fact marriage = new Fact();
             marriage.SetDate(new DateInfo());
             marriage.Date.SetOriginal("January 6, 1759");

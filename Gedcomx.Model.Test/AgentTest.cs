@@ -31,8 +31,11 @@ namespace Gedcomx.Model.Test
         {
             var sut = new Agent
             {
+                // ExtensibleData
                 Id = "A-1",
+                // HypermediaEnabledData
                 Links = { new Link(), { "rel", new Uri("https://www.familysearch.org/platform/collections/tree") }, { "rel", "template" } },
+                // Agent
                 Accounts = { new OnlineAccount() },
                 Addresses = { new Address() },
                 Emails = { "example@example.org" },

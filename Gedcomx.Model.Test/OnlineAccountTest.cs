@@ -1,5 +1,7 @@
 ﻿using System.Xml.Serialization;
 
+using Gx.Agent;
+
 using Newtonsoft.Json;
 
 using NUnit.Framework;
@@ -7,7 +9,7 @@ using NUnit.Framework;
 namespace Gedcomx.Model.Test
 {
     /// <summary>
-    /// Test calss for <see cref="Gx.Agent.OnlineAccount"/>
+    /// Test calss for <see cref="OnlineAccount"/>
     /// </summary>
     [TestFixture]
     public class OnlineAccountTest
@@ -15,7 +17,7 @@ namespace Gedcomx.Model.Test
         [Test]
         public void OnlineAccountEmpty()
         {
-            var sut = new Gx.Agent.OnlineAccount();
+            var sut = new OnlineAccount();
 
             VerifyXmlSerialization(sut);
             VerifyJsonSerialization(sut);
@@ -24,9 +26,11 @@ namespace Gedcomx.Model.Test
         [Test]
         public void OnlineAccountFilled()
         {
-            var sut = new Gx.Agent.OnlineAccount
+            var sut = new OnlineAccount
             {
+                // ExtensibleData
                 Id = "O-1",
+                // OnlineAccount
                 AccountName = "Peter Pan",
                 ServiceHomepage = new Gx.Common.ResourceReference()
             };
@@ -35,9 +39,9 @@ namespace Gedcomx.Model.Test
             VerifyJsonSerialization(sut);
         }
 
-        private static void VerifyXmlSerialization(Gx.Agent.OnlineAccount sut)
+        private static void VerifyXmlSerialization(OnlineAccount sut)
         {
-            var serializer = new XmlSerializer(typeof(Gx.Agent.OnlineAccount));
+            var serializer = new XmlSerializer(typeof(OnlineAccount));
             using var stream = new MemoryStream();
             serializer.Serialize(stream, sut);
 
@@ -46,14 +50,14 @@ namespace Gedcomx.Model.Test
             result.ShouldContain(sut);
         }
 
-        private static void VerifyJsonSerialization(Gx.Agent.OnlineAccount sut)
+        private static void VerifyJsonSerialization(OnlineAccount sut)
         {
             JsonSerializerSettings jsonSettings = new()
             {
                 NullValueHandling = NullValueHandling.Ignore
             };
 
-            Assert.DoesNotThrow(() => JsonConvert.DeserializeObject<Gx.Agent.OnlineAccount>(JsonConvert.SerializeObject(sut, jsonSettings), jsonSettings));
+            Assert.DoesNotThrow(() => JsonConvert.DeserializeObject<OnlineAccount>(JsonConvert.SerializeObject(sut, jsonSettings), jsonSettings));
         }
     }
 }

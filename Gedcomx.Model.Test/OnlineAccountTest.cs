@@ -43,12 +43,7 @@ namespace Gedcomx.Model.Test
 
             stream.Seek(0, SeekOrigin.Begin);
             var result = new StreamReader(stream).ReadToEnd();
-            Assert.That(result, Does.Contain("<OnlineAccount "));
-            Assert.That(result, Does.Contain("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""));
-            Assert.That(result, Does.Contain("xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\""));
-            Assert.That(result.Contains("id"), Is.EqualTo(sut.Id != null));
-            Assert.That(result.Contains("accountName"), Is.EqualTo(sut.AccountName != null));
-            Assert.That(result.Contains("serviceHomepage"), Is.EqualTo(sut.ServiceHomepage != null));
+            result.ShouldContain(sut);
         }
 
         private static void VerifyJsonSerialization(Gx.Agent.OnlineAccount sut)

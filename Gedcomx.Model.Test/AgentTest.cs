@@ -77,20 +77,7 @@ namespace Gedcomx.Model.Test
 
             stream.Seek(0, SeekOrigin.Begin);
             var result = new StreamReader(stream).ReadToEnd();
-            Assert.That(result, Does.Contain("<agent "));
-            Assert.That(result, Does.Contain("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""));
-            Assert.That(result, Does.Contain("xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\""));
-            Assert.That(result, Does.Contain("xmlns=\"http://gedcomx.org/v1/\""));
-            Assert.That(result.Contains("id"), Is.EqualTo(sut.Id != null));
-            Assert.That(result.Contains("<link"), Is.EqualTo(sut.AnyLinks()));
-            Assert.That(result.Contains("<account"), Is.EqualTo(sut.AnyAccounts()));
-            Assert.That(result.Contains("<address"), Is.EqualTo(sut.AnyAddresses()));
-            Assert.That(result.Contains("<email"), Is.EqualTo(sut.AnyEmails()));
-            Assert.That(result.Contains("<homepage"), Is.EqualTo(sut.Homepage != null));
-            Assert.That(result.Contains("<identifier"), Is.EqualTo(sut.AnyIdentifiers()));
-            Assert.That(result.Contains("<name"), Is.EqualTo(sut.AnyNames()));
-            Assert.That(result.Contains("<openid"), Is.EqualTo(sut.Openid != null));
-            Assert.That(result.Contains("<phone"), Is.EqualTo(sut.AnyPhones()));
+            result.ShouldContain(sut);
         }
 
         private static void VerifyJsonSerialization(Agent sut)

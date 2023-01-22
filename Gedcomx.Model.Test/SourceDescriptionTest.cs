@@ -67,26 +67,7 @@ namespace Gedcomx.Model.Test
 
             stream.Seek(0, SeekOrigin.Begin);
             var result = new StreamReader(stream).ReadToEnd();
-            Assert.That(result, Does.Contain("<sourceDescription "));
-            Assert.That(result.Contains("<link"), Is.EqualTo(sut.AnyLinks()));
-            Assert.That(result.Contains("about="), Is.EqualTo(sut.About != null));
-            Assert.That(result.Contains("lang="), Is.EqualTo(sut.Lang != null));
-            Assert.That(result.Contains("mediaType="), Is.EqualTo(sut.MediaType != null));
-            Assert.That(result.Contains("sortKey="), Is.EqualTo(sut.SortKey != null));
-            Assert.That(result.Contains("resourceType="), Is.EqualTo(sut.ResourceType != null));
-            Assert.That(result.Contains("<citation"), Is.EqualTo(sut.AnyCitations()));
-            Assert.That(result.Contains("<mediator"), Is.EqualTo(sut.Mediator != null));
-            Assert.That(result.Contains("<source "), Is.EqualTo(sut.AnySources()));
-            Assert.That(result.Contains("<analysis"), Is.EqualTo(sut.Analysis != null));
-            Assert.That(result.Contains("<componentOf "), Is.EqualTo(sut.ComponentOf != null));
-            Assert.That(result.Contains("<title>"), Is.EqualTo(sut.AnyTitles()));
-            Assert.That(result.Contains("<titleLabel"), Is.EqualTo(sut.TitleLabel != null));
-            Assert.That(result.Contains("<note"), Is.EqualTo(sut.AnyNotes()));
-            Assert.That(result.Contains("<description"), Is.EqualTo(sut.AnyDescriptions()));
-            Assert.That(result.Contains("<identifier"), Is.EqualTo(sut.AnyIdentifiers()));
-            Assert.That(result.Contains("<coverage"), Is.EqualTo(sut.AnyCoverage()));
-            Assert.That(result.Contains("<rights"), Is.EqualTo(sut.AnyRights()));
-            Assert.That(result.Contains("<field"), Is.EqualTo(sut.AnyFields()));
+            result.ShouldContain(sut);
         }
 
         private static void VerifyJsonSerialization(SourceDescription sut)

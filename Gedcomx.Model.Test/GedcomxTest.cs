@@ -56,10 +56,12 @@ namespace Gedcomx.Model.Test
                 Created = DateTime.Parse("1843-07-27"),
                 Repository = repository
             };
-            Fact birth = new Fact()
-            .SetType(FactType.Birth)
-            .SetDate(new DateInfo().SetOriginal("23 June 1843"))
-            .SetPlace(new PlaceReference().SetOriginal("Broadfield Bar, Abbeydale Road, Ecclesall-Bierlow, York, England, United Kingdom"));
+            Fact birth = new()
+            {
+                KnownType = FactType.Birth,
+                Date = new DateInfo().SetOriginal("23 June 1843"),
+                Place = new PlaceReference().SetOriginal("Broadfield Bar, Abbeydale Road, Ecclesall-Bierlow, York, England, United Kingdom")
+            };
             Person emma = (Person)new Person().SetName("Emma Bocock").SetGender(GenderType.Female).SetFact(birth).SetExtracted(true).SetSource(sourceDescription).SetId("P-1");
             Person father = (Person)new Person().SetName("William Bocock").SetFact(new Fact().SetType(FactType.Occupation).SetValue("Toll Collector")).SetExtracted(true).SetSource(sourceDescription).SetId("P-2");
             Person mother = (Person)new Person().SetName("Sarah Bocock formerly Brough").SetExtracted(true).SetSource(sourceDescription).SetId("P-3");
@@ -148,22 +150,28 @@ namespace Gedcomx.Model.Test
             };
 
             //the marriage fact.
-            Fact marriage = new Fact()
-              .SetType(FactType.Marriage)
-              .SetDate(new DateInfo().SetOriginal("3 November 1828").SetFormal("+1828-11-03"))
-              .SetPlace(new PlaceReference().SetOriginal("Wilton St George, Wilton, Somerset, England"));
+            Fact marriage = new()
+            {
+                KnownType = FactType.Marriage,
+                Date = new DateInfo().SetOriginal("3 November 1828").SetFormal("+1828-11-03"),
+                Place = new PlaceReference().SetOriginal("Wilton St George, Wilton, Somerset, England")
+            };
 
             //the groom's residence.
-            Fact samsResidence = new Fact()
-              .SetType(FactType.Residence)
-              .SetDate(new DateInfo().SetOriginal("3 November 1828").SetFormal("+1828-11-03"))
-              .SetPlace(new PlaceReference().SetOriginal("parish of Honiton, Devon, England"));
+            Fact samsResidence = new()
+            {
+                KnownType = FactType.Residence,
+                Date = new DateInfo().SetOriginal("3 November 1828").SetFormal("+1828-11-03"),
+                Place = new PlaceReference().SetOriginal("parish of Honiton, Devon, England")
+            };
 
             //the groom's residence.
-            Fact lizsResidence = new Fact()
-              .SetType(FactType.Residence)
-              .SetDate(new DateInfo().SetOriginal("3 November 1828").SetFormal("+1828-11-03"))
-              .SetPlace(new PlaceReference().SetOriginal("parish of Wilton, Somerset, England"));
+            Fact lizsResidence = new()
+            {
+                KnownType = FactType.Residence,
+                Date = new DateInfo().SetOriginal("3 November 1828").SetFormal("+1828-11-03"),
+                Place = new PlaceReference().SetOriginal("parish of Wilton, Somerset, England")
+            };
 
             //the groom
             Person sam = (Person)new Person().SetName("Samuel Ham").SetGender(GenderType.Male).SetFact(samsResidence).SetExtracted(true).SetSource(transcriptionDescription).SetId("P-1");
@@ -568,20 +576,26 @@ namespace Gedcomx.Model.Test
             };
 
             //the birth.
-            Fact birth = new Fact()
-              .SetType(FactType.Birth)
-              .SetDate(new DateInfo().SetOriginal("former Qing 1848 year 11th month 22nd day 23-1 hour").SetFormal("+1848-11-22"))
-              .SetPlace(new PlaceReference().SetOriginal("Pun Sha Village, See Dai Doo, Chung Shan, Guangdong, China"));
+            Fact birth = new()
+            {
+                KnownType = FactType.Birth,
+                Date = new DateInfo().SetOriginal("former Qing 1848 year 11th month 22nd day 23-1 hour").SetFormal("+1848-11-22"),
+                Place = new PlaceReference().SetOriginal("Pun Sha Village, See Dai Doo, Chung Shan, Guangdong, China")
+            };
 
             //the death.
-            Fact death = new Fact()
-              .SetType(FactType.Death)
-              .SetDate(new DateInfo().SetOriginal("Republic of China year 1920 year 7th mo. 12th day 11-13 hour").SetFormal("+1920-08-03"));
+            Fact death = new()
+            {
+                KnownType = FactType.Death,
+                Date = new DateInfo().SetOriginal("Republic of China year 1920 year 7th mo. 12th day 11-13 hour").SetFormal("+1920-08-03")
+            };
 
             //the burial.
-            Fact burial = new Fact()
-              .SetType(FactType.Burial)
-              .SetPlace(new PlaceReference().SetOriginal("Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii"));
+            Fact burial = new()
+            {
+                KnownType = FactType.Burial,
+                Place = new PlaceReference().SetOriginal("Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii")
+            };
 
             //the principal person
             Person aloiau = (Person)new Person().SetName("WONG Aloiau").SetGender(GenderType.Male).SetFact(birth).SetFact(death).SetFact(burial).SetExtracted(true).SetSource(translationDescription).SetId("P-1");
@@ -711,31 +725,23 @@ namespace Gedcomx.Model.Test
             Person person = new();
             person.SetGender(new Gender(GenderType.Male));
 
-            Fact fact = new();
-            fact.SetId("123");
-            fact.SetType(FactType.Birth);
-
-            fact.SetDate(new DateInfo());
-            fact.Date.SetOriginal("February 22, 1732");
-            fact.Date.SetFormal("+1732-02-22");
-
-            fact.SetPlace(new PlaceReference());
-            fact.Place.SetOriginal(birthPlace.Names[0].Value.ToLower());
-            fact.Place.DescriptionRef = "#" + birthPlace.Id;
+            Fact fact = new()
+            {
+                Id = "123",
+                KnownType = FactType.Birth,
+                Date = new DateInfo().SetOriginal("February 22, 1732").SetFormal("+1732-02-22"),
+                Place = new PlaceReference().SetOriginal(birthPlace.Names[0].Value.ToLower()).SetDescription(birthPlace)
+            };
 
             person.AddFact(fact);
 
-            fact = new Fact();
-            fact.SetId("456");
-            fact.SetType(FactType.Death);
-
-            fact.SetDate(new DateInfo());
-            fact.Date.SetOriginal("December 14, 1799");
-            fact.Date.SetFormal("+1799-12-14T22:00:00");
-
-            fact.SetPlace(new PlaceReference());
-            fact.Place.SetOriginal(deathPlace.Names[0].Value.ToLower());
-            fact.Place.DescriptionRef = "#" + deathPlace.Id;
+            fact = new()
+            {
+                Id = "456",
+                KnownType = FactType.Death,
+                Date = new DateInfo().SetOriginal("December 14, 1799").SetFormal("+1799-12-14T22:00:00"),
+                Place = new PlaceReference().SetOriginal(deathPlace.Names[0].Value.ToLower()).SetDescription(deathPlace)
+            };
 
             person.AddFact(fact);
 
@@ -768,31 +774,23 @@ namespace Gedcomx.Model.Test
             Person person = new();
             person.SetGender(new Gender(GenderType.Male));
 
-            Fact fact = new();
-            fact.SetId("321");
-            fact.SetType(FactType.Birth);
-
-            fact.SetDate(new DateInfo());
-            fact.Date.SetOriginal("June 2, 1731");
-            fact.Date.SetFormal("+1731-06-02");
-
-            fact.SetPlace(new PlaceReference());
-            fact.Place.SetOriginal(birthPlace.Names[0].Value.ToLower());
-            fact.Place.DescriptionRef = "#" + birthPlace.Id;
+            Fact fact = new()
+            {
+                Id = "321",
+                KnownType = FactType.Birth,
+                Date = new DateInfo().SetOriginal("June 2, 1731").SetFormal("+1731-06-02"),
+                Place = new PlaceReference().SetOriginal(birthPlace.Names[0].Value.ToLower()).SetDescription(birthPlace)
+            };
 
             person.AddFact(fact);
 
-            fact = new Fact();
-            fact.SetId("654");
-            fact.SetType(FactType.Death);
-
-            fact.SetDate(new DateInfo());
-            fact.Date.SetOriginal("May 22, 1802");
-            fact.Date.SetFormal("+1802-05-22");
-
-            fact.SetPlace(new PlaceReference());
-            fact.Place.SetOriginal(deathPlace.Names[0].Value.ToLower());
-            fact.Place.DescriptionRef = "#" + deathPlace.Id;
+            fact = new()
+            {
+                Id = "654",
+                KnownType = FactType.Death,
+                Date = new DateInfo().SetOriginal("May 22, 1802").SetFormal("+1802-05-22"),
+                Place = new PlaceReference().SetOriginal(deathPlace.Names[0].Value.ToLower()).SetDescription(deathPlace)
+            };
 
             person.AddFact(fact);
 

@@ -133,7 +133,7 @@ namespace Gedcomx.Rs.Api.Test
             var son = tree.AddPerson(TestBacking.GetCreateMalePerson());
             cleanup.Add(son);
             var temp = TestBacking.GetCreateChildAndParentsRelationship(father, mother, son);
-            temp.AddSource(TestBacking.GetPersonSourceReference());
+            temp.SetSource(TestBacking.GetPersonSourceReference());
             var relationship = (ChildAndParentsRelationshipState)tree.AddChildAndParentsRelationship(temp).Get();
             cleanup.Add(relationship);
             var state = relationship.LoadSourceReferences();
@@ -223,7 +223,7 @@ namespace Gedcomx.Rs.Api.Test
             var son = tree.AddPerson(TestBacking.GetCreateMalePerson());
             cleanup.Add(son);
             var temp = TestBacking.GetCreateChildAndParentsRelationship(father, mother, son);
-            temp.AddSource(TestBacking.GetPersonSourceReference());
+            temp.SetSource(TestBacking.GetPersonSourceReference());
             var relationship = (ChildAndParentsRelationshipState)tree.AddChildAndParentsRelationship(temp).Get();
             cleanup.Add(relationship);
 

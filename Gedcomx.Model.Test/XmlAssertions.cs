@@ -54,6 +54,34 @@ namespace Gedcomx.Model.Test
             result.ShouldContain(sourceDescription as HypermediaEnabledData);
         }
 
+        public static void ShouldContain(this string result, Fact fact)
+        {
+            Assert.That(result, Does.Contain("<fact "));
+            Assert.That(result, Does.Contain("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""));
+            Assert.That(result, Does.Contain("xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\""));
+            Assert.That(result, Does.Contain("xmlns=\"http://gedcomx.org/v1/\""));
+            Assert.That(result.Contains("primary="), Is.EqualTo(fact.PrimarySpecified));
+            Assert.That(result.Contains("type="), Is.EqualTo(fact.Type != null));
+            Assert.That(result.Contains("<date"), Is.EqualTo(fact.Date != null));
+            Assert.That(result.Contains("<place"), Is.EqualTo(fact.Place != null));
+            Assert.That(result.Contains("<value"), Is.EqualTo(fact.Value != null));
+            Assert.That(result.Contains("<qualifier"), Is.EqualTo(fact.AnyQualifiers()));
+            Assert.That(result.Contains("<field"), Is.EqualTo(fact.AnyFields()));
+            result.ShouldContain(fact as Conclusion);
+        }
+
+        public static void ShouldContain(this string result, Conclusion conclusion)
+        {
+            Assert.That(result.Contains("confidence="), Is.EqualTo(conclusion.Confidence != null));
+            Assert.That(result.Contains("sortKey="), Is.EqualTo(conclusion.SortKey != null));
+            Assert.That(result.Contains("lang="), Is.EqualTo(conclusion.Lang != null));
+            Assert.That(result.Contains("<attribution"), Is.EqualTo(conclusion.Attribution != null));
+            Assert.That(result.Contains("<source"), Is.EqualTo(conclusion.AnySources()));
+            Assert.That(result.Contains("<analysis"), Is.EqualTo(conclusion.Analysis != null));
+            Assert.That(result.Contains("<note"), Is.EqualTo(conclusion.AnyNotes()));
+            result.ShouldContain(conclusion as HypermediaEnabledData);
+        }
+
         public static void ShouldContain(this string result, HypermediaEnabledData hypermediaEnabledData)
         {
             Assert.That(result.Contains("<link"), Is.EqualTo(hypermediaEnabledData.AnyLinks()));

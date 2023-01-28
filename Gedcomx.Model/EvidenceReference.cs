@@ -23,11 +23,11 @@ namespace Gx.Common
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://gedcomx.org/v1/", ElementName = "evidenceReference")]
     public sealed partial class EvidenceReference : Gx.Links.HypermediaEnabledData, IAttributable
     {
-        private string _resourceId;
-        private string _resource;
-        private Gx.Common.Attribution _attribution;
-
-
+        /// <summary>
+        /// Combine '#' and person as evidence Id to be used with <see cref="Gx.Common.EvidenceReference"/>
+        /// </summary>
+        /// <param name="evidence">The person as evidence.</param>
+        /// <exception cref="ArgumentException">If the person Id is null.</exception>
         public static implicit operator EvidenceReference(Person evidence)
         {
             if (evidence.Id == null)
@@ -46,6 +46,10 @@ namespace Gx.Common
         {
             this.Resource = resource;
         }
+
+        private string _resourceId;
+        private string _resource;
+        private Gx.Common.Attribution _attribution;
 
         /// <summary>
         ///  The resource id of the resource being referenced.

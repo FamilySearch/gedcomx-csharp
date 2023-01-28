@@ -5,6 +5,7 @@
 // </auto-generated>
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using Gedcomx.Model.Rt;
 
@@ -33,11 +34,12 @@ namespace Gx.Conclusion
         private bool? _living;
         private bool _livingSpecified;
         private Gx.Conclusion.Gender _gender;
-        private System.Collections.Generic.List<Gx.Conclusion.Name> _names;
+        private Gx.Model.Collections.Names _names;
         private System.Collections.Generic.List<Gx.Conclusion.Fact> _facts;
         private System.Collections.Generic.List<Gx.Records.Field> _fields;
         private Gx.Conclusion.DisplayProperties _displayExtension;
         private System.Collections.Generic.List<Gx.Source.DiscussionReference> _discussionreference;
+
         /// <summary>
         ///  Whether this person is the "principal" person extracted from the record.
         /// </summary>
@@ -167,16 +169,21 @@ namespace Gx.Conclusion
         /// </summary>
         [System.Xml.Serialization.XmlElementAttribute(ElementName = "name", Namespace = "http://gedcomx.org/v1/")]
         [Newtonsoft.Json.JsonProperty("names")]
-        public System.Collections.Generic.List<Gx.Conclusion.Name> Names
+        public Gx.Model.Collections.Names Names
         {
             get
             {
-                return this._names;
+                return this._names ?? (_names = new Gx.Model.Collections.Names());
             }
             set
             {
                 this._names = value;
             }
+        }
+        public bool ShouldSerializeNames() => AnyNames();
+        public bool AnyNames()
+        {
+            return _names?.Any() ?? false;
         }
         /// <summary>
         ///  The fact conclusions for the person.
@@ -187,12 +194,17 @@ namespace Gx.Conclusion
         {
             get
             {
-                return this._facts;
+                return this._facts ?? (_facts = new System.Collections.Generic.List<Gx.Conclusion.Fact>());
             }
             set
             {
                 this._facts = value;
             }
+        }
+        public bool ShouldSerializeFacts() => AnyFacts();
+        public bool AnyFacts()
+        {
+            return _facts?.Any() ?? false;
         }
         /// <summary>
         ///  The references to the record fields being used as evidence.
@@ -203,12 +215,17 @@ namespace Gx.Conclusion
         {
             get
             {
-                return this._fields;
+                return this._fields ?? (_fields = new System.Collections.Generic.List<Gx.Records.Field>());
             }
             set
             {
                 this._fields = value;
             }
+        }
+        public bool ShouldSerializeFields() => AnyFields();
+        public bool AnyFields()
+        {
+            return _fields?.Any() ?? false;
         }
         /// <summary>
         ///  Display properties for the person. Display properties are not specified by GEDCOM X core, but as extension elements by GEDCOM X RS.
@@ -235,12 +252,17 @@ namespace Gx.Conclusion
         {
             get
             {
-                return this._discussionreference;
+                return this._discussionreference ?? (_discussionreference = new System.Collections.Generic.List<Gx.Source.DiscussionReference>());
             }
             set
             {
                 this._discussionreference = value;
             }
+        }
+        public bool ShouldSerializeDiscussionReferences() => AnyDiscussionReferences();
+        public bool AnyDiscussionReferences()
+        {
+            return _discussionreference?.Any() ?? false;
         }
 
         /// <summary>
@@ -277,18 +299,15 @@ namespace Gx.Conclusion
             }
             if (person._names != null)
             {
-                this._names = this._names == null ? new List<Name>() : this._names;
-                this._names.AddRange(person._names);
+                this.Names.AddRange(person._names);
             }
             if (person._facts != null)
             {
-                this._facts = this._facts == null ? new List<Fact>() : this._facts;
-                this._facts.AddRange(person._facts);
+                this.Facts.AddRange(person._facts);
             }
             if (person._fields != null)
             {
-                this._fields = this._fields == null ? new List<Field>() : this._fields;
-                this._fields.AddRange(person._fields);
+                this.Fields.AddRange(person._fields);
             }
             base.Embed(person);
         }
@@ -311,7 +330,7 @@ namespace Gx.Conclusion
          */
         public Subject SetPersonaReference(EvidenceReference persona)
         {
-            AddEvidence(persona);
+            SetEvidence(persona);
             return this;
         }
 
@@ -356,7 +375,7 @@ namespace Gx.Conclusion
          */
         public Person SetGender(GenderType gender)
         {
-            Gender = new Gender().SetType(gender);
+            Gender = new Gender(gender);
             return this;
         }
 
@@ -367,7 +386,10 @@ namespace Gx.Conclusion
          */
         public Person SetName(Name name)
         {
-            AddName(name);
+            if (name != null)
+            {
+                Names.Add(name);
+            }
             return this;
         }
 
@@ -378,8 +400,7 @@ namespace Gx.Conclusion
          */
         public Person SetName(String name)
         {
-            AddName(new Name().SetNameForm(new NameForm().SetFullText(name)));
-            return this;
+            return SetName(new Name(name));
         }
 
         /**
@@ -390,7 +411,10 @@ namespace Gx.Conclusion
          */
         public Person SetFact(Fact fact)
         {
-            AddFact(fact);
+            if (fact != null)
+            {
+                Facts.Add(fact);
+            }
             return this;
         }
 
@@ -413,69 +437,11 @@ namespace Gx.Conclusion
          */
         public Person SetField(Field field)
         {
-            AddField(field);
-            return this;
-        }
-
-        /**
-         * Add a name conclusion to the person.
-         *
-         * @param name The name conclusion to be added.
-         */
-        public void AddName(Name name)
-        {
-            if (name != null)
-            {
-                if (_names == null)
-                {
-                    _names = new List<Name>();
-                }
-                _names.Add(name);
-            }
-        }
-
-        /**
-         * Add a fact conclusion to the person.
-         *
-         * @param fact The fact conclusion to be added.
-         */
-        public void AddFact(Fact fact)
-        {
-            if (fact != null)
-            {
-                if (_facts == null)
-                {
-                    _facts = new List<Fact>();
-                }
-                _facts.Add(fact);
-            }
-        }
-
-        /**
-         * Add a reference to the record field values being used as evidence.
-         *
-         * @param field The field to be added.
-         */
-        public void AddField(Field field)
-        {
             if (field != null)
             {
-                if (_fields == null)
-                {
-                    _fields = new List<Field>();
-                }
-                _fields.Add(field);
+                Fields.Add(field);
             }
-        }
-
-        public Person SetEvidence(Person evidence)
-        {
-            if (evidence.Id == null)
-            {
-                throw new ArgumentException("Unable to add person as evidence: no id.");
-            }
-
-            return (Person)base.SetEvidence(new EvidenceReference("#" + evidence.Id));
+            return this;
         }
     }
 }

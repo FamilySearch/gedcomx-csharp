@@ -1,19 +1,22 @@
-﻿using Gx.Fs;
-using Gx.Rs.Api;
-using RestSharp;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Gx.Rs.Api.Util;
 using System.Net;
-using Gedcomx.Model;
-using Gx.Fs.Tree;
-using Gx.Conclusion;
-using Gx.Common;
-using Gx.Source;
-using Gx.Links;
+
 using FamilySearch.Api.Util;
+
+using Gedcomx.Model;
+
+using Gx.Common;
+using Gx.Conclusion;
+using Gx.Fs;
+using Gx.Fs.Tree;
+using Gx.Links;
+using Gx.Rs.Api;
+using Gx.Rs.Api.Util;
+using Gx.Source;
+
+using RestSharp;
 
 namespace FamilySearch.Api.Ft
 {
@@ -195,7 +198,7 @@ namespace FamilySearch.Api.Ft
             get
             {
                 ChildAndParentsRelationship relationship = Relationship;
-                return relationship == null ? null : relationship.Evidence == null ? null : relationship.Evidence.FirstOrDefault();
+                return relationship == null ? null : relationship.AnyEvidence() ? null : relationship.Evidence.FirstOrDefault();
             }
         }
 
@@ -210,7 +213,7 @@ namespace FamilySearch.Api.Ft
             get
             {
                 ChildAndParentsRelationship relationship = Relationship;
-                return relationship == null ? null : relationship.Media == null ? null : relationship.Media.FirstOrDefault();
+                return relationship == null ? null : relationship.AnyMedia() ? null : relationship.Media.FirstOrDefault();
             }
         }
 
@@ -604,14 +607,14 @@ namespace FamilySearch.Api.Ft
         protected ChildAndParentsRelationshipState UpdateSourceReferences(ChildAndParentsRelationship relationship, params IStateTransitionOption[] options)
         {
             String target = GetSelfUri() + "/" + Rel.SOURCE_REFERENCES;
-			//Link conclusionsLink = GetLink(Rel.SOURCE_REFERENCES);
-			//if (conclusionsLink != null && conclusionsLink.Href != null)
-			//{
-			//    target = conclusionsLink.Href;
-			//}
-			
+            //Link conclusionsLink = GetLink(Rel.SOURCE_REFERENCES);
+            //if (conclusionsLink != null && conclusionsLink.Href != null)
+            //{
+            //    target = conclusionsLink.Href;
+            //}
 
-			FamilySearchPlatform gx = new FamilySearchPlatform();
+
+            FamilySearchPlatform gx = new FamilySearchPlatform();
             gx.ChildAndParentsRelationships = new List<ChildAndParentsRelationship>() { relationship };
             IRestRequest request = RequestUtil.ApplyFamilySearchConneg(CreateAuthenticatedRequest()).SetEntity(gx).Build(target, Method.POST);
             return ((FamilyTreeStateFactory)this.stateFactory).NewChildAndParentsRelationshipState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);

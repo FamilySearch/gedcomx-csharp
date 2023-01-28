@@ -8,6 +8,7 @@ using Gedcomx.Support;
 using Gx.Common;
 using Gx.Conclusion;
 using Gx.Links;
+using Gx.Model.Collections;
 using Gx.Rs.Api.Util;
 using Gx.Source;
 
@@ -245,7 +246,7 @@ namespace Gx.Rs.Api
         public Name GetName()
         {
             Person person = (Person)MainDataElement;
-            return person == null ? null : person.Names == null ? null : person.Names.FirstOrDefault();
+            return person == null ? null : person.AnyNames() ? null : person.Names.FirstOrDefault();
         }
 
         /// <summary>
@@ -265,7 +266,7 @@ namespace Gx.Rs.Api
         public Fact GetFact()
         {
             Person person = (Person)MainDataElement;
-            return person == null ? null : person.Facts == null ? null : person.Facts.FirstOrDefault();
+            return person == null ? null : person.AnyFacts() ? null : person.Facts.FirstOrDefault();
         }
 
         /// <summary>
@@ -275,7 +276,7 @@ namespace Gx.Rs.Api
         public Note GetNote()
         {
             Person person = (Person)MainDataElement;
-            return person == null ? null : person.Notes == null ? null : person.Notes.FirstOrDefault();
+            return person == null ? null : person.AnyNotes() ? null : person.Notes.FirstOrDefault();
         }
 
         /// <summary>
@@ -285,7 +286,7 @@ namespace Gx.Rs.Api
         public SourceReference GetSourceReference()
         {
             Person person = (Person)MainDataElement;
-            return person == null ? null : person.Sources == null ? null : person.Sources.FirstOrDefault();
+            return person == null ? null : person.AnySources() ? null : person.Sources.FirstOrDefault();
         }
 
         /// <summary>
@@ -295,7 +296,7 @@ namespace Gx.Rs.Api
         public EvidenceReference GetEvidenceReference()
         {
             Person person = (Person)MainDataElement;
-            return person == null ? null : person.Evidence == null ? null : person.Evidence.FirstOrDefault();
+            return person == null ? null : person.AnyEvidence() ? null : person.Evidence.FirstOrDefault();
         }
 
         /// <summary>
@@ -314,7 +315,7 @@ namespace Gx.Rs.Api
         public SourceReference GetMediaReference()
         {
             Person person = (Person)MainDataElement;
-            return person == null ? null : person.Media == null ? null : person.Media.FirstOrDefault();
+            return person == null ? null : person.AnyMedia() ? null : person.Media.FirstOrDefault();
         }
 
         /// <summary>
@@ -550,27 +551,27 @@ namespace Gx.Rs.Api
         /// <returns>A <see cref="PersonState"/> instance containing the REST API response.</returns>
         public PersonState Update(Person person, params IStateTransitionOption[] options)
         {
-            if (this.GetLink(Rel.CONCLUSIONS) != null && (person.Names != null || person.Facts != null || person.Gender != null))
+            if (this.GetLink(Rel.CONCLUSIONS) != null && (person.AnyNames() || person.AnyFacts() || person.Gender != null))
             {
                 UpdateConclusions(person);
             }
 
-            if (this.GetLink(Rel.EVIDENCE_REFERENCES) != null && person.Evidence != null)
+            if (this.GetLink(Rel.EVIDENCE_REFERENCES) != null && person.AnyEvidence())
             {
                 UpdateEvidenceReferences(person);
             }
 
-            if (this.GetLink(Rel.MEDIA_REFERENCES) != null && person.Media != null)
+            if (this.GetLink(Rel.MEDIA_REFERENCES) != null && person.AnyMedia())
             {
                 UpdateMediaReferences(person);
             }
 
-            if (this.GetLink(Rel.SOURCE_REFERENCES) != null && person.Sources != null)
+            if (this.GetLink(Rel.SOURCE_REFERENCES) != null && person.AnySources())
             {
                 UpdateSourceReferences(person);
             }
 
-            if (this.GetLink(Rel.NOTES) != null && person.Notes != null)
+            if (this.GetLink(Rel.NOTES) != null && person.AnyNotes())
             {
                 UpdateNotes(person);
             }
@@ -606,7 +607,7 @@ namespace Gx.Rs.Api
         /// </returns>
         public PersonState AddName(Name name, params IStateTransitionOption[] options)
         {
-            return AddNames(new Name[] { name }, options);
+            return AddNames(new Names { name }, options);
         }
 
         /// <summary>
@@ -617,10 +618,10 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="PersonState"/> instance containing the REST API response.
         /// </returns>
-        public PersonState AddNames(Name[] names, params IStateTransitionOption[] options)
+        public PersonState AddNames(Names names, params IStateTransitionOption[] options)
         {
             Person person = CreateEmptySelf();
-            person.Names = names.ToList();
+            person.Names = names;
             return UpdateConclusions(person, options);
         }
 
@@ -677,7 +678,7 @@ namespace Gx.Rs.Api
         /// </returns>
         public PersonState UpdateName(Name name, params IStateTransitionOption[] options)
         {
-            return UpdateNames(new Name[] { name }, options);
+            return UpdateNames(new Names { name }, options);
         }
 
         /// <summary>
@@ -688,10 +689,10 @@ namespace Gx.Rs.Api
         /// <returns>
         /// A <see cref="PersonState"/> instance containing the REST API response.
         /// </returns>
-        public PersonState UpdateNames(Name[] names, params IStateTransitionOption[] options)
+        public PersonState UpdateNames(Names names, params IStateTransitionOption[] options)
         {
             Person person = CreateEmptySelf();
-            person.Names = names.ToList();
+            person.Names = names;
             return UpdateConclusions(person);
         }
 

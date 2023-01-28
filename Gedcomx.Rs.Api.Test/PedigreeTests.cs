@@ -93,9 +93,9 @@ namespace Gedcomx.Rs.Api.Test
             Assert.That(state.Tree.Root.Father.Person, Is.Not.Null);
             Assert.That(state.Tree.Root.Father.Father, Is.Not.Null);
             Assert.That(state.Tree.Root.Father.Father.Person, Is.Not.Null);
-            Assert.That(state.Tree.Root.Person.Facts, Is.Not.Null);
-            Assert.That(state.Tree.Root.Father.Person.Facts, Is.Not.Null);
-            Assert.That(state.Tree.Root.Father.Father.Person.Facts, Is.Not.Null);
+            Assert.That(state.Tree.Root.Person.AnyFacts(), Is.True);
+            Assert.That(state.Tree.Root.Father.Person.AnyFacts(), Is.True);
+            Assert.That(state.Tree.Root.Father.Father.Person.AnyFacts(), Is.True);
             Assert.That(state.Tree.Root.Father.Father.Person.GetLink("self").Href, Is.EqualTo(grandfather.GetSelfUri()));
             Assert.That(state.Tree.Root.Father.Person.GetLink("self").Href, Is.EqualTo(father.GetSelfUri()));
             Assert.That(state.Tree.Root.Person.GetLink("self").Href, Is.EqualTo(son.GetSelfUri()));
@@ -173,8 +173,8 @@ namespace Gedcomx.Rs.Api.Test
             Assert.That(state.Tree.Root.Father.Father.Person, Is.Not.Null);
             Assert.That(state.Tree.Root.Father.Father.Father, Is.Not.Null);
             Assert.That(state.Tree.Root.Father.Father.Father.Person, Is.Not.Null);
-            Assert.That(state.Tree.Root.Father.Person.Facts, Is.Not.Null);
-            Assert.That(state.Tree.Root.Mother.Person.Facts, Is.Not.Null);
+            Assert.That(state.Tree.Root.Father.Person.AnyFacts(), Is.True);
+            Assert.That(state.Tree.Root.Mother.Person.AnyFacts(), Is.True);
             Assert.That(state.Tree.Root.Father.Father.Father.Person.GetLink("self").Href, Is.EqualTo(grandfather.GetSelfUri()));
             Assert.That(state.Tree.Root.Father.Father.Person.GetLink("self").Href, Is.EqualTo(father.GetSelfUri()));
             Assert.That(state.Tree.Root.Father.Person.GetLink("self").Href, Is.EqualTo(husband.GetSelfUri()));
@@ -228,8 +228,8 @@ namespace Gedcomx.Rs.Api.Test
             Assert.That(state.Tree.Root.Children, Is.Not.Null);
             Assert.That(state.Tree.Root.Spouse.DisplayExtension, Is.Not.Null);
             Assert.That(state.Tree.Root.Spouse.DisplayExtension.MarriageDate, Is.Not.Null);
-            Assert.That(state.Tree.Root.Person.Facts, Is.Not.Null);
-            Assert.That(state.Tree.Root.Spouse.Facts, Is.Not.Null);
+            Assert.That(state.Tree.Root.Person.AnyFacts(), Is.True);
+            Assert.That(state.Tree.Root.Spouse.AnyFacts, Is.True);
             Assert.That(state.Tree.Root.Children, Has.Count.EqualTo(1));
             Assert.That(state.Tree.Root.Children[0].Person, Is.Not.Null);
             Assert.That(state.Tree.Root.Person.Id, Is.EqualTo(father.Person.Id));
@@ -290,8 +290,8 @@ namespace Gedcomx.Rs.Api.Test
             Assert.That(state.Tree.Root.Children, Is.Not.Null);
             Assert.That(state.Tree.Root.Spouse.DisplayExtension, Is.Not.Null);
             Assert.That(state.Tree.Root.Spouse.DisplayExtension.MarriageDate, Is.Not.Null);
-            Assert.That(state.Tree.Root.Person.Facts, Is.Not.Null);
-            Assert.That(state.Tree.Root.Spouse.Facts, Is.Not.Null);
+            Assert.That(state.Tree.Root.Person.AnyFacts(), Is.True);
+            Assert.That(state.Tree.Root.Spouse.AnyFacts, Is.True);
             Assert.That(state.Tree.Root.Children, Has.Count.EqualTo(1));
             Assert.That(state.Tree.Root.Children[0].Person, Is.Not.Null);
             Assert.That(state.Tree.Root.Person.Id, Is.EqualTo(father.Person.Id));

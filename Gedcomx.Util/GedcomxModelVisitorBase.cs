@@ -389,7 +389,7 @@ namespace Gx.Util
                 VisitGender(person.Gender);
             }
 
-            if (person.Names != null)
+            if (person.AnyNames())
             {
                 foreach (Name name in person.Names)
                 {
@@ -397,7 +397,7 @@ namespace Gx.Util
                 }
             }
 
-            if (person.Facts != null)
+            if (person.AnyFacts())
             {
                 foreach (Fact fact in person.Facts)
                 {
@@ -405,7 +405,7 @@ namespace Gx.Util
                 }
             }
 
-            if (person.Fields != null)
+            if (person.AnyFields())
             {
                 foreach (Field field in person.Fields)
                 {
@@ -433,7 +433,7 @@ namespace Gx.Util
                 VisitPlaceReference(fact.Place);
             }
 
-            if (fact.Fields != null)
+            if (fact.AnyFields())
             {
                 foreach (Field field in fact.Fields)
                 {
@@ -588,7 +588,7 @@ namespace Gx.Util
         {
             VisitConclusion(subject);
 
-            if (subject.Media != null)
+            if (subject.AnyMedia())
             {
                 foreach (SourceReference reference in subject.Media)
                 {
@@ -603,7 +603,7 @@ namespace Gx.Util
         /// <param name="conclusion">The conclusion to visit.</param>
         protected void VisitConclusion(Gx.Conclusion.Conclusion conclusion)
         {
-            if (conclusion.Sources != null)
+            if (conclusion.AnySources())
             {
                 foreach (SourceReference sourceReference in conclusion.Sources)
                 {
@@ -611,7 +611,7 @@ namespace Gx.Util
                 }
             }
 
-            if (conclusion.Notes != null)
+            if (conclusion.AnyNotes())
             {
                 foreach (Note note in conclusion.Notes)
                 {

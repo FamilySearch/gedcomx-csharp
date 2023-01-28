@@ -7,6 +7,7 @@ using System.Linq;
 using Gx.Common;
 using Gx.Conclusion;
 using Gx.Fs.Tree;
+using Gx.Model.Collections;
 using Gx.Rs.Api;
 using Gx.Source;
 using Gx.Types;
@@ -32,7 +33,7 @@ namespace Gedcomx.Rs.Api.Test
                     Notes = new List<Gx.Common.Note>(),
                     ExtensionElementsXml = new List<object>(),
                 },
-                Names = new List<Name>()
+                Names = new Names()
         {
           new Name()
           {
@@ -229,7 +230,7 @@ namespace Gedcomx.Rs.Api.Test
         {
             return new Person()
               .SetLiving(false)
-              .SetGender(new Gender().SetType(GenderType.Male))
+              .SetGender(new Gender(GenderType.Male))
               .SetName(new Name()
                 .SetType(NameType.BirthName)
                 .SetNameForm(new NameForm()
@@ -267,7 +268,7 @@ namespace Gedcomx.Rs.Api.Test
         {
             return new Person()
               .SetLiving(false)
-              .SetGender(new Gender().SetType(GenderType.Female))
+              .SetGender(new Gender(GenderType.Female))
               .SetName(new Name()
                 .SetType(NameType.BirthName)
                 .SetNameForm(new NameForm()
@@ -439,7 +440,7 @@ namespace Gedcomx.Rs.Api.Test
         {
             string result = null;
 
-            if (person != null && person.Facts != null)
+            if (person != null && person.AnyFacts())
             {
                 result = person.Facts.Where(x => x.Type == factType).Select(x => x.Id).FirstOrDefault();
             }

@@ -267,7 +267,7 @@ namespace Gedcomx.Rs.Api.Test
 
             // Confirm it is there.
             var state2 = tree.ReadPerson(new Uri(person.GetSelfUri()));
-            Assert.That(state2.Person.Evidence, Is.Not.Empty);
+            Assert.That(state2.Person.AnyEvidence(), Is.True);
 
             // Now delete it
             var state = state2.DeletePersonaReference(state2.Person.Evidence.Single());
@@ -313,7 +313,7 @@ namespace Gedcomx.Rs.Api.Test
 
             // Confirm it is there.
             var personas = tree.ReadPerson(new Uri(person.GetSelfUri()));
-            Assert.That(personas.Person.Evidence, Is.Not.Empty);
+            Assert.That(personas.Person.AnyEvidence(), Is.True);
 
             var state = personas.DeletePersonaReference(personas.GetPersonaReference());
 

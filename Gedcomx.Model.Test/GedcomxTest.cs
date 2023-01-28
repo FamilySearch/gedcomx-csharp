@@ -3,7 +3,7 @@
 using Gx.Agent;
 using Gx.Common;
 using Gx.Conclusion;
-using Gx.Records;
+using Gx.Model.Collections;
 using Gx.Source;
 using Gx.Types;
 
@@ -62,13 +62,39 @@ namespace Gedcomx.Model.Test
                 Date = new DateInfo().SetOriginal("23 June 1843"),
                 Place = new PlaceReference().SetOriginal("Broadfield Bar, Abbeydale Road, Ecclesall-Bierlow, York, England, United Kingdom")
             };
-            Person emma = (Person)new Person().SetName("Emma Bocock").SetGender(GenderType.Female).SetFact(birth).SetExtracted(true).SetSource(sourceDescription).SetId("P-1");
-            Person father = (Person)new Person().SetName("William Bocock").SetFact(new Fact().SetType(FactType.Occupation).SetValue("Toll Collector")).SetExtracted(true).SetSource(sourceDescription).SetId("P-2");
-            Person mother = (Person)new Person().SetName("Sarah Bocock formerly Brough").SetExtracted(true).SetSource(sourceDescription).SetId("P-3");
+            Person emma = new()
+            {
+                Id = "P-1",
+                Names = { "Emma Bocock" },
+                Gender = new Gender(GenderType.Female),
+                Facts = { birth },
+                Extracted = true,
+                Sources = { sourceDescription }
+            };
+            Person father = new()
+            {
+                Id = "P-2",
+                Names = { "William Bocock" },
+                Facts = { new Fact() { KnownType = FactType.Occupation, Value = "Toll Collector" } },
+                Extracted = true,
+                Sources = { sourceDescription }
+            };
+            Person mother = new()
+            {
+                Id = "P-3",
+                Names = { "Sarah Bocock formerly Brough" },
+                Extracted = true,
+                Sources = { sourceDescription }
+            };
             Relationship fatherRelationship = new Relationship().SetType(RelationshipType.ParentChild).SetPerson1(father).SetPerson2(emma);
             Relationship motherRelationship = new Relationship().SetType(RelationshipType.ParentChild).SetPerson1(mother).SetPerson2(emma);
             Document analysis = (Document)new Document().SetText("...Jane Doe's analysis document...").SetId("D-1");
-            Person emmaConclusion = (Person)new Person().SetEvidence(emma).SetAnalysis(analysis).SetId("C-1");
+            Person emmaConclusion = new()
+            {
+                Id = "C-1",
+                Evidence = { emma },
+                Analysis = analysis,
+            };
             Gx.Gedcomx gx = new Gx.Gedcomx()
             .SetAgent(contributor)
             .SetAgent(repository)
@@ -174,18 +200,56 @@ namespace Gedcomx.Model.Test
             };
 
             //the groom
-            Person sam = (Person)new Person().SetName("Samuel Ham").SetGender(GenderType.Male).SetFact(samsResidence).SetExtracted(true).SetSource(transcriptionDescription).SetId("P-1");
+            Person sam = new()
+            {
+                Id = "P-1",
+                Names = { "Samuel Ham" },
+                Facts = { samsResidence },
+                Extracted = true,
+                Sources = { transcriptionDescription }
+            };
 
             //the bride.
-            Person liz = (Person)new Person().SetName("Elizabeth Spiller").SetGender(GenderType.Female).SetFact(lizsResidence).SetExtracted(true).SetSource(transcriptionDescription).SetId("P-2");
+            Person liz = new()
+            {
+                Id = "P-2",
+                Names = { "Elizabeth Spiller" },
+                Facts = { lizsResidence },
+                Extracted = true,
+                Sources = { transcriptionDescription }
+            };
 
             //witnesses
-            Person witness1 = (Person)new Person().SetName("Jno. Pain").SetExtracted(true).SetSource(transcriptionDescription).SetId("P-3");
-            Person witness2 = (Person)new Person().SetName("R.G. Halls").SetExtracted(true).SetSource(transcriptionDescription).SetId("P-4");
-            Person witness3 = (Person)new Person().SetName("Peggy Hammet").SetExtracted(true).SetSource(transcriptionDescription).SetId("P-5");
+            Person witness1 = new()
+            {
+                Id = "P-3",
+                Names = { "Jno. Pain" },
+                Extracted = true,
+                Sources = { transcriptionDescription }
+            };
+            Person witness2 = new()
+            {
+                Id = "P-4",
+                Names = { "R.G. Halls" },
+                Extracted = true,
+                Sources = { transcriptionDescription }
+            };
+            Person witness3 = new()
+            {
+                Id = "P-5",
+                Names = { "Peggy Hammet" },
+                Extracted = true,
+                Sources = { transcriptionDescription }
+            };
 
             //officiator
-            Person officiator = (Person)new Person().SetName("David Smith Stone").SetExtracted(true).SetSource(transcriptionDescription).SetId("P-6");
+            Person officiator = new()
+            {
+                Id = "P-6",
+                Names = { "David Smith Stone" },
+                Extracted = true,
+                Sources = { transcriptionDescription }
+            };
 
             //the relationship.
             Relationship marriageRelationship = (Relationship)new Relationship().SetType(RelationshipType.Couple).SetPerson1(sam).SetPerson2(liz).SetFact(marriage).SetExtracted(true);
@@ -207,7 +271,12 @@ namespace Gedcomx.Model.Test
             Document analysis = (Document)new Document().SetText("...Jane Doe's analysis document...").SetId("D-2");
 
             //Jane Doe's conclusions about a person.
-            Person samConclusion = (Person)new Person().SetEvidence(sam).SetAnalysis(analysis).SetId("C-1");
+            Person samConclusion = new()
+            {
+                Id = "C-1",
+                Evidence = { sam },
+                Analysis = analysis,
+            };
 
             Gx.Gedcomx gx = new Gx.Gedcomx()
               .SetAgent(janeDoe)
@@ -569,7 +638,7 @@ namespace Gedcomx.Model.Test
                 Id = "S-4",
                 About = "#" + translation.Id,
                 Titles = { "Translation of Grave Marker of WONG Aloiau, Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii" },
-                Citations= { new SourceCitation().SetValue("WONG Aloiau gravestone, Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii; visited May 1975 by Jane Doe. Translation by HANYU Pinyin 王大年.") },
+                Citations = { new SourceCitation().SetValue("WONG Aloiau gravestone, Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii; visited May 1975 by Jane Doe. Translation by HANYU Pinyin 王大年.") },
                 Attribution = translationAttribution,
                 KnownResourceType = ResourceType.DigitalArtifact,
                 Sources = { new SourceReference().SetDescription(transcriptionDescription) }
@@ -598,10 +667,24 @@ namespace Gedcomx.Model.Test
             };
 
             //the principal person
-            Person aloiau = (Person)new Person().SetName("WONG Aloiau").SetGender(GenderType.Male).SetFact(birth).SetFact(death).SetFact(burial).SetExtracted(true).SetSource(translationDescription).SetId("P-1");
+            Person aloiau = new()
+            {
+                Id = "P-1",
+                Names = { "WONG Aloiau" },
+                Gender = new Gender(GenderType.Male),
+                Facts = { birth, death, burial },
+                Extracted = true,
+                Sources = { translationDescription }
+            };
 
             //the father of the principal (with an aka name).
-            Person father = (Person)new Person().SetName("Lo Yau").SetName(new Name().SetType(NameType.AlsoKnownAs).SetNameForm(new NameForm().SetFullText("Young Hong Wong"))).SetExtracted(true).SetSource(translationDescription).SetId("P-2");
+            Person father = new()
+            {
+                Id = "P-2",
+                Names = { "Lo Yau", new Name() { KnownType = NameType.AlsoKnownAs }.SetNameForm(new NameForm().SetFullText("Young Hong Wong")) },
+                Extracted = true,
+                Sources = { translationDescription }
+            };
 
             //the relationship.
             Relationship fatherRelationship = new Relationship().SetType(RelationshipType.ParentChild).SetPerson1(father).SetPerson2(aloiau);
@@ -610,7 +693,12 @@ namespace Gedcomx.Model.Test
             Document analysis = (Document)new Document().SetText("...Jane Doe's analysis document...").SetId("D-3");
 
             //Jane Doe's conclusions about a person.
-            Person aloiauConclusion = (Person)new Person().SetEvidence(aloiau).SetAnalysis(analysis).SetId("C-1");
+            Person aloiauConclusion = new()
+            {
+                Id = "C-1",
+                Evidence = { aloiau },
+                Analysis = analysis
+            };
 
             Gx.Gedcomx gx = new Gx.Gedcomx()
               .SetAgent(janeDoe)
@@ -733,7 +821,7 @@ namespace Gedcomx.Model.Test
                 Place = new PlaceReference().SetOriginal(birthPlace.Names[0].Value.ToLower()).SetDescription(birthPlace)
             };
 
-            person.AddFact(fact);
+            person.SetFact(fact);
 
             fact = new()
             {
@@ -743,9 +831,9 @@ namespace Gedcomx.Model.Test
                 Place = new PlaceReference().SetOriginal(deathPlace.Names[0].Value.ToLower()).SetDescription(deathPlace)
             };
 
-            person.AddFact(fact);
+            person.SetFact(fact);
 
-            List<Name> names = new();
+            Names names = new();
             Name name = new();
             NameForm nameForm = new();
             nameForm.SetFullText("George Washington");
@@ -782,7 +870,7 @@ namespace Gedcomx.Model.Test
                 Place = new PlaceReference().SetOriginal(birthPlace.Names[0].Value.ToLower()).SetDescription(birthPlace)
             };
 
-            person.AddFact(fact);
+            person.SetFact(fact);
 
             fact = new()
             {
@@ -792,9 +880,9 @@ namespace Gedcomx.Model.Test
                 Place = new PlaceReference().SetOriginal(deathPlace.Names[0].Value.ToLower()).SetDescription(deathPlace)
             };
 
-            person.AddFact(fact);
+            person.SetFact(fact);
 
-            List<Name> names = new();
+            Names names = new();
             Name name = new();
             NameForm nameForm = new();
             nameForm.SetFullText("Martha Dandridge Custis");

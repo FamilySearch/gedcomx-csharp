@@ -51,7 +51,7 @@ namespace Gedcomx.Model.Test
             {
                 Id = "S-1",
                 Titles = { "Birth Certificate of Emma Bocock, 23 July 1843, General Registry Office" },
-                Citations = { new SourceCitation().SetValue("England, birth certificate for Emma Bocock, born 23 July 1843; citing 1843 Birth in District and Sub-district of Ecclesall-Bierlow in the County of York, 303; General Registry Office, Southport.") },
+                Citations = { new SourceCitation() { Value = "England, birth certificate for Emma Bocock, born 23 July 1843; citing 1843 Birth in District and Sub-district of Ecclesall-Bierlow in the County of York, 303; General Registry Office, Southport." } },
                 KnownResourceType = ResourceType.PhysicalArtifact,
                 Created = DateTime.Parse("1843-07-27"),
                 Repository = repository
@@ -144,7 +144,7 @@ namespace Gedcomx.Model.Test
                 Id = "S-1",
                 Titles = { "Marriage entry for Samuel Ham and Elizabeth Spiller, Parish Register, Wilton, Somerset, England" },
                 Descriptions = { "Marriage entry for Samuel Ham and Elizabeth in a copy of the registers of the baptisms, marriages, and burials at the church of St. George in the parish of Wilton : adjoining Taunton, in the county of Somerset from A.D. 1558 to A.D. 1837." },
-                Citations = { new SourceCitation().SetValue("Joseph Houghton Spencer, transcriber, Church of England, Parish Church of Wilton (Somerset). <cite>A copy of the registers of the baptisms, marriages, and burials at the church of St. George in the parish of Wilton : adjoining Taunton, in the county of Somerset from A.D. 1558 to A.D. 1837</cite>; Marriage entry for Samuel Ham and Elizabeth Spiller (3 November 1828), (Taunton: Barnicott, 1890), p. 224, No. 86.") },
+                Citations = { new SourceCitation() { Value = "Joseph Houghton Spencer, transcriber, Church of England, Parish Church of Wilton (Somerset). <cite>A copy of the registers of the baptisms, marriages, and burials at the church of St. George in the parish of Wilton : adjoining Taunton, in the county of Somerset from A.D. 1558 to A.D. 1837</cite>; Marriage entry for Samuel Ham and Elizabeth Spiller (3 November 1828), (Taunton: Barnicott, 1890), p. 224, No. 86." } },
                 KnownResourceType = ResourceType.PhysicalArtifact,
                 Repository = fhl
             };
@@ -170,7 +170,7 @@ namespace Gedcomx.Model.Test
                 About = "#" + transcription.Id,
                 Titles = { "Transcription of marriage entry for Samuel Ham and Elizabeth Spiller, Parish Register, Wilton, Somerset, England" },
                 Descriptions = { "Transcription of marriage entry for Samuel Ham and Elizabeth in a copy of the registers of the baptisms, marriages, and burials at the church of St. George in the parish of Wilton : adjoining Taunton, in the county of Somerset from A.D. 1558 to A.D. 1837." },
-                Citations = { new SourceCitation().SetValue("Joseph Houghton Spencer, transcriber, Church of England, Parish Church of Wilton (Somerset). <cite>A copy of the registers of the baptisms, marriages, and burials at the church of St. George in the parish of Wilton : adjoining Taunton, in the county of Somerset from A.D. 1558 to A.D. 1837</cite>; Marriage entry for Samuel Ham and Elizabeth Spiller (3 November 1828), (Taunton: Barnicott, 1890), p. 224, No. 86.") },
+                Citations = { new SourceCitation() { Value = "Joseph Houghton Spencer, transcriber, Church of England, Parish Church of Wilton (Somerset). <cite>A copy of the registers of the baptisms, marriages, and burials at the church of St. George in the parish of Wilton : adjoining Taunton, in the county of Somerset from A.D. 1558 to A.D. 1837</cite>; Marriage entry for Samuel Ham and Elizabeth Spiller (3 November 1828), (Taunton: Barnicott, 1890), p. 224, No. 86." } },
                 KnownResourceType = ResourceType.DigitalArtifact,
                 Sources = { new SourceReference().SetDescription(recordDescription) }
             };
@@ -583,7 +583,7 @@ namespace Gedcomx.Model.Test
             {
                 Id = "S-1",
                 Titles = { "Grave Marker of WONG Aloiau, Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii" },
-                Citations = { new SourceCitation().SetValue("WONG Aloiau gravestone, Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii; visited May 1975 by Jane Doe.") },
+                Citations = { new SourceCitation() { Value = "WONG Aloiau gravestone, Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii; visited May 1975 by Jane Doe." } },
                 KnownResourceType = ResourceType.PhysicalArtifact,
                 Repository = cemetery
             };
@@ -593,7 +593,7 @@ namespace Gedcomx.Model.Test
             {
                 Id = "S-2",
                 Titles = { "Grave Marker of WONG Aloiau, Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii" },
-                Citations = { new SourceCitation().SetValue("WONG Aloiau gravestone (digital photograph), Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii; visited May 1975 by Jane Doe.") },
+                Citations = { new SourceCitation() { Value = "WONG Aloiau gravestone (digital photograph), Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii; visited May 1975 by Jane Doe." } },
                 KnownResourceType = ResourceType.DigitalArtifact,
                 Sources = { new SourceReference().SetDescription(gravestoneDescription) }
             };
@@ -616,7 +616,7 @@ namespace Gedcomx.Model.Test
                 Id = "S-3",
                 About = "#" + transcription.Id,
                 Titles = { "Transcription of Grave Marker of WONG Aloiau, Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii" },
-                Citations = { new SourceCitation().SetValue("WONG Aloiau gravestone (transcription), Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii; visited May 1975 by Jane Doe.") },
+                Citations = { new SourceCitation() { Value = "WONG Aloiau gravestone (transcription), Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii; visited May 1975 by Jane Doe." } },
                 KnownResourceType = ResourceType.DigitalArtifact,
                 Sources = { new SourceReference().SetDescription(gravestoneImageDescription) }
             };
@@ -638,7 +638,7 @@ namespace Gedcomx.Model.Test
                 Id = "S-4",
                 About = "#" + translation.Id,
                 Titles = { "Translation of Grave Marker of WONG Aloiau, Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii" },
-                Citations = { new SourceCitation().SetValue("WONG Aloiau gravestone, Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii; visited May 1975 by Jane Doe. Translation by HANYU Pinyin 王大年.") },
+                Citations = { new SourceCitation() { Value = "WONG Aloiau gravestone, Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii; visited May 1975 by Jane Doe. Translation by HANYU Pinyin 王大年." } },
                 Attribution = translationAttribution,
                 KnownResourceType = ResourceType.DigitalArtifact,
                 Sources = { new SourceReference().SetDescription(transcriptionDescription) }

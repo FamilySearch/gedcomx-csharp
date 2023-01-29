@@ -60,7 +60,7 @@ namespace Gedcomx.Model.Test
             {
                 KnownType = FactType.Birth,
                 Date = new DateInfo() { Original = "23 June 1843" },
-                Place = new PlaceReference().SetOriginal("Broadfield Bar, Abbeydale Road, Ecclesall-Bierlow, York, England, United Kingdom")
+                Place = new PlaceReference() { Original = "Broadfield Bar, Abbeydale Road, Ecclesall-Bierlow, York, England, United Kingdom" }
             };
             Person emma = new()
             {
@@ -180,7 +180,7 @@ namespace Gedcomx.Model.Test
             {
                 KnownType = FactType.Marriage,
                 Date = new DateInfo() { Original = "3 November 1828", Formal = "+1828-11-03" },
-                Place = new PlaceReference().SetOriginal("Wilton St George, Wilton, Somerset, England")
+                Place = new PlaceReference() { Original = "Wilton St George, Wilton, Somerset, England" }
             };
 
             //the groom's residence.
@@ -188,7 +188,7 @@ namespace Gedcomx.Model.Test
             {
                 KnownType = FactType.Residence,
                 Date = new DateInfo() { Original = "3 November 1828", Formal = "+1828-11-03" },
-                Place = new PlaceReference().SetOriginal("parish of Honiton, Devon, England")
+                Place = new PlaceReference() { Original = "parish of Honiton, Devon, England" }
             };
 
             //the groom's residence.
@@ -196,7 +196,7 @@ namespace Gedcomx.Model.Test
             {
                 KnownType = FactType.Residence,
                 Date = new DateInfo() { Original = "3 November 1828", Formal = "+1828-11-03" },
-                Place = new PlaceReference().SetOriginal("parish of Wilton, Somerset, England")
+                Place = new PlaceReference() { Original = "parish of Wilton, Somerset, England" }
             };
 
             //the groom
@@ -256,8 +256,8 @@ namespace Gedcomx.Model.Test
 
             //the marriage event
             Event marriageEvent = (Event)new Event(EventType.Marriage)
-              .SetDate(new DateInfo().SetOriginal("3 November 1828").SetFormal("+1828-11-03"))
-              .SetPlace(new PlaceReference().SetOriginal("Wilton St George, Wilton, Somerset, England"))
+              .SetDate(new DateInfo() { Original = "3 November 1828" }.SetFormal("+1828-11-03"))
+              .SetPlace(new PlaceReference() { Original = "Wilton St George, Wilton, Somerset, England" })
               .SetRole(new EventRole().SetPerson(sam).SetType(EventRoleType.Principal))
               .SetRole(new EventRole().SetPerson(liz).SetType(EventRoleType.Principal))
               .SetRole(new EventRole().SetPerson(witness1).SetType(EventRoleType.Witness))
@@ -402,7 +402,7 @@ namespace Gedcomx.Model.Test
         public void CustomFactTest()
         {
             Person person = new Person()
-              .SetFact(new Fact().SetType("data:,Eagle%20Scout").SetPlace(new PlaceReference().SetOriginal("...")).SetDate(new DateInfo().SetOriginal("...")));
+              .SetFact(new Fact().SetType("data:,Eagle%20Scout").SetPlace(new PlaceReference() { Original = "..." }).SetDate(new DateInfo() { Original = "..." }));
             Gx.Gedcomx gx = new Gx.Gedcomx().SetPerson(person);
 
             VerifyXmlSerialization(gx);
@@ -649,7 +649,7 @@ namespace Gedcomx.Model.Test
             {
                 KnownType = FactType.Birth,
                 Date = new DateInfo() { Original = "former Qing 1848 year 11th month 22nd day 23-1 hour", Formal = "+1848-11-22" },
-                Place = new PlaceReference().SetOriginal("Pun Sha Village, See Dai Doo, Chung Shan, Guangdong, China")
+                Place = new PlaceReference() { Original = "Pun Sha Village, See Dai Doo, Chung Shan, Guangdong, China" }
             };
 
             //the death.
@@ -663,7 +663,7 @@ namespace Gedcomx.Model.Test
             Fact burial = new()
             {
                 KnownType = FactType.Burial,
-                Place = new PlaceReference().SetOriginal("Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii")
+                Place = new PlaceReference() { Original = "Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii" }
             };
 
             //the principal person
@@ -818,7 +818,7 @@ namespace Gedcomx.Model.Test
                 Id = "123",
                 KnownType = FactType.Birth,
                 Date = new DateInfo() { Original = "February 22, 1732", Formal = "+1732-02-22" },
-                Place = new PlaceReference().SetOriginal(birthPlace.Names[0].Value.ToLower()).SetDescription(birthPlace)
+                Place = new PlaceReference() { Original = birthPlace.Names[0].Value.ToLower() }.SetDescription(birthPlace)
             };
 
             person.SetFact(fact);
@@ -828,7 +828,7 @@ namespace Gedcomx.Model.Test
                 Id = "456",
                 KnownType = FactType.Death,
                 Date = new DateInfo() { Original = "December 14, 1799", Formal = "+1799-12-14T22:00:00" },
-                Place = new PlaceReference().SetOriginal(deathPlace.Names[0].Value.ToLower()).SetDescription(deathPlace)
+                Place = new PlaceReference() { Original = deathPlace.Names[0].Value.ToLower() }.SetDescription(deathPlace)
             };
 
             person.SetFact(fact);
@@ -867,7 +867,7 @@ namespace Gedcomx.Model.Test
                 Id = "321",
                 KnownType = FactType.Birth,
                 Date = new DateInfo() { Original = "June 2, 1731", Formal = "+1731-06-02" },
-                Place = new PlaceReference().SetOriginal(birthPlace.Names[0].Value.ToLower()).SetDescription(birthPlace)
+                Place = new PlaceReference() { Original = birthPlace.Names[0].Value.ToLower() }.SetDescription(birthPlace)
             };
 
             person.SetFact(fact);
@@ -877,7 +877,7 @@ namespace Gedcomx.Model.Test
                 Id = "654",
                 KnownType = FactType.Death,
                 Date = new DateInfo() { Original = "May 22, 1802", Formal = "+1802-05-22" },
-                Place = new PlaceReference().SetOriginal(deathPlace.Names[0].Value.ToLower()).SetDescription(deathPlace)
+                Place = new PlaceReference() { Original = deathPlace.Names[0].Value.ToLower() }.SetDescription(deathPlace)
             };
 
             person.SetFact(fact);

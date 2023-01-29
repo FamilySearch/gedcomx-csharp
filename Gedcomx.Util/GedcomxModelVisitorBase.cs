@@ -451,7 +451,7 @@ namespace Gx.Util
         public virtual void VisitPlaceReference(PlaceReference place)
         {
             this.contextStack.Push(place);
-            if (place.Fields != null)
+            if (place.AnyFields())
             {
                 foreach (Field field in place.Fields)
                 {

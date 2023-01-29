@@ -468,7 +468,7 @@ namespace Gx.Util
         public virtual void VisitDate(DateInfo date)
         {
             this.contextStack.Push(date);
-            if (date.Fields != null)
+            if (date.AnyFields())
             {
                 foreach (Field field in date.Fields)
                 {

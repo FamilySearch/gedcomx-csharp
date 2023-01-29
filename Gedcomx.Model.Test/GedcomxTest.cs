@@ -59,7 +59,7 @@ namespace Gedcomx.Model.Test
             Fact birth = new()
             {
                 KnownType = FactType.Birth,
-                Date = new DateInfo().SetOriginal("23 June 1843"),
+                Date = new DateInfo() { Original = "23 June 1843" },
                 Place = new PlaceReference().SetOriginal("Broadfield Bar, Abbeydale Road, Ecclesall-Bierlow, York, England, United Kingdom")
             };
             Person emma = new()
@@ -179,7 +179,7 @@ namespace Gedcomx.Model.Test
             Fact marriage = new()
             {
                 KnownType = FactType.Marriage,
-                Date = new DateInfo().SetOriginal("3 November 1828").SetFormal("+1828-11-03"),
+                Date = new DateInfo() { Original = "3 November 1828", Formal = "+1828-11-03" },
                 Place = new PlaceReference().SetOriginal("Wilton St George, Wilton, Somerset, England")
             };
 
@@ -187,7 +187,7 @@ namespace Gedcomx.Model.Test
             Fact samsResidence = new()
             {
                 KnownType = FactType.Residence,
-                Date = new DateInfo().SetOriginal("3 November 1828").SetFormal("+1828-11-03"),
+                Date = new DateInfo() { Original = "3 November 1828", Formal = "+1828-11-03" },
                 Place = new PlaceReference().SetOriginal("parish of Honiton, Devon, England")
             };
 
@@ -195,7 +195,7 @@ namespace Gedcomx.Model.Test
             Fact lizsResidence = new()
             {
                 KnownType = FactType.Residence,
-                Date = new DateInfo().SetOriginal("3 November 1828").SetFormal("+1828-11-03"),
+                Date = new DateInfo() { Original = "3 November 1828", Formal = "+1828-11-03" },
                 Place = new PlaceReference().SetOriginal("parish of Wilton, Somerset, England")
             };
 
@@ -648,7 +648,7 @@ namespace Gedcomx.Model.Test
             Fact birth = new()
             {
                 KnownType = FactType.Birth,
-                Date = new DateInfo().SetOriginal("former Qing 1848 year 11th month 22nd day 23-1 hour").SetFormal("+1848-11-22"),
+                Date = new DateInfo() { Original = "former Qing 1848 year 11th month 22nd day 23-1 hour", Formal = "+1848-11-22" },
                 Place = new PlaceReference().SetOriginal("Pun Sha Village, See Dai Doo, Chung Shan, Guangdong, China")
             };
 
@@ -656,7 +656,7 @@ namespace Gedcomx.Model.Test
             Fact death = new()
             {
                 KnownType = FactType.Death,
-                Date = new DateInfo().SetOriginal("Republic of China year 1920 year 7th mo. 12th day 11-13 hour").SetFormal("+1920-08-03")
+                Date = new DateInfo() { Original = "Republic of China year 1920 year 7th mo. 12th day 11-13 hour", Formal = "+1920-08-03" }
             };
 
             //the burial.
@@ -817,7 +817,7 @@ namespace Gedcomx.Model.Test
             {
                 Id = "123",
                 KnownType = FactType.Birth,
-                Date = new DateInfo().SetOriginal("February 22, 1732").SetFormal("+1732-02-22"),
+                Date = new DateInfo() { Original = "February 22, 1732", Formal = "+1732-02-22" },
                 Place = new PlaceReference().SetOriginal(birthPlace.Names[0].Value.ToLower()).SetDescription(birthPlace)
             };
 
@@ -827,7 +827,7 @@ namespace Gedcomx.Model.Test
             {
                 Id = "456",
                 KnownType = FactType.Death,
-                Date = new DateInfo().SetOriginal("December 14, 1799").SetFormal("+1799-12-14T22:00:00"),
+                Date = new DateInfo() { Original = "December 14, 1799", Formal = "+1799-12-14T22:00:00" },
                 Place = new PlaceReference().SetOriginal(deathPlace.Names[0].Value.ToLower()).SetDescription(deathPlace)
             };
 
@@ -866,7 +866,7 @@ namespace Gedcomx.Model.Test
             {
                 Id = "321",
                 KnownType = FactType.Birth,
-                Date = new DateInfo().SetOriginal("June 2, 1731").SetFormal("+1731-06-02"),
+                Date = new DateInfo() { Original = "June 2, 1731", Formal = "+1731-06-02" },
                 Place = new PlaceReference().SetOriginal(birthPlace.Names[0].Value.ToLower()).SetDescription(birthPlace)
             };
 
@@ -876,7 +876,7 @@ namespace Gedcomx.Model.Test
             {
                 Id = "654",
                 KnownType = FactType.Death,
-                Date = new DateInfo().SetOriginal("May 22, 1802").SetFormal("+1802-05-22"),
+                Date = new DateInfo() { Original = "May 22, 1802", Formal = "+1802-05-22" },
                 Place = new PlaceReference().SetOriginal(deathPlace.Names[0].Value.ToLower()).SetDescription(deathPlace)
             };
 

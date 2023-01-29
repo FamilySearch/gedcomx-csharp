@@ -168,7 +168,7 @@ namespace FamilySearch.Api.Ft
             get
             {
                 ChildAndParentsRelationship relationship = Relationship;
-                return relationship == null ? null : relationship.Notes == null ? null : relationship.Notes.FirstOrDefault();
+                return relationship == null ? null : relationship.AnyNotes() ? null : relationship.Notes.FirstOrDefault();
             }
         }
 

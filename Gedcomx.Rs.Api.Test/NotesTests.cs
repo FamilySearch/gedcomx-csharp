@@ -45,8 +45,7 @@ namespace Gedcomx.Rs.Api.Test
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
             Assert.That(state.Person, Is.Not.Null);
-            Assert.That(state.Person.Notes, Is.Not.Null);
-            Assert.That(state.Person.Notes, Is.Not.Empty);
+            Assert.That(state.Person.AnyNotes(), Is.True);
         }
 
         [Test]

@@ -163,7 +163,7 @@ namespace Gedcomx.Rs.Api.Test
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
-            Assert.That(state.Relationship.Notes, Is.Not.Null);
+            Assert.That(state.Relationship.AnyNotes(), Is.True);
             Assert.That(state.Relationship.Notes, Has.Count.EqualTo(1));
         }
 

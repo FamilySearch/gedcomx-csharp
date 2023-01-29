@@ -389,7 +389,7 @@ namespace Gx.Rs.Api
             relationship.Person1 = new ResourceReference(person1.GetSelfUri());
             relationship.Person2 = new ResourceReference(person2.GetSelfUri());
             relationship.KnownType = RelationshipType.Couple;
-            relationship.AddFact(fact);
+            relationship.SetFact(fact);
             return AddRelationship(relationship, options);
         }
 
@@ -423,7 +423,7 @@ namespace Gx.Rs.Api
             relationship.Person1 = new ResourceReference(parent.GetSelfUri());
             relationship.Person2 = new ResourceReference(child.GetSelfUri());
             relationship.KnownType = RelationshipType.ParentChild;
-            relationship.AddFact(fact);
+            relationship.SetFact(fact);
             return AddRelationship(relationship, options);
         }
 

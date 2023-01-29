@@ -86,8 +86,8 @@ namespace Gedcomx.Model.Test
                 Extracted = true,
                 Sources = { sourceDescription }
             };
-            Relationship fatherRelationship = new Relationship().SetType(RelationshipType.ParentChild).SetPerson1(father).SetPerson2(emma);
-            Relationship motherRelationship = new Relationship().SetType(RelationshipType.ParentChild).SetPerson1(mother).SetPerson2(emma);
+            Relationship fatherRelationship = new() { KnownType = RelationshipType.ParentChild, Person1 = father, Person2 = emma };
+            Relationship motherRelationship = new() { KnownType = RelationshipType.ParentChild, Person1 = mother, Person2 = emma };
             Document analysis = (Document)new Document().SetText("...Jane Doe's analysis document...").SetId("D-1");
             Person emmaConclusion = new()
             {
@@ -252,7 +252,7 @@ namespace Gedcomx.Model.Test
             };
 
             //the relationship.
-            Relationship marriageRelationship = (Relationship)new Relationship().SetType(RelationshipType.Couple).SetPerson1(sam).SetPerson2(liz).SetFact(marriage).SetExtracted(true);
+            Relationship marriageRelationship = new() { KnownType = RelationshipType.Couple, Person1 = sam, Person2 = liz, Facts = { marriage }, Extracted = true };
 
             //the marriage event
             Event marriageEvent = (Event)new Event(EventType.Marriage)
@@ -412,23 +412,31 @@ namespace Gedcomx.Model.Test
         [Test]
         public void RelationshipFactsTest()
         {
-            Relationship couple = new Relationship()
-              .SetType(RelationshipType.Couple)
-              .SetFact(new Fact(FactType.CivilUnion, "...", "..."))
-              .SetFact(new Fact(FactType.DomesticPartnership, "...", "..."))
-              .SetFact(new Fact(FactType.Divorce, "...", "..."))
-              .SetFact(new Fact(FactType.Marriage, "...", "..."))
-              .SetFact(new Fact(FactType.MarriageBanns, "...", "..."))
-              .SetFact(new Fact(FactType.MarriageContract, "...", "..."))
-              .SetFact(new Fact(FactType.MarriageLicense, "...", "..."));
+            Relationship couple = new()
+            {
+                KnownType = RelationshipType.Couple,
+                Facts = {
+                    new Fact(FactType.CivilUnion, "...", "..."),
+                    new Fact(FactType.DomesticPartnership, "...", "..."),
+                    new Fact(FactType.Divorce, "...", "..."),
+                    new Fact(FactType.Marriage, "...", "..."),
+                    new Fact(FactType.MarriageBanns, "...", "..."),
+                    new Fact(FactType.MarriageContract, "...", "..."),
+                    new Fact(FactType.MarriageLicense, "...", "...")
+                }
+            };
 
-            Relationship parentChild = new Relationship()
-              .SetType(RelationshipType.ParentChild)
-              .SetFact(new Fact(FactType.AdoptiveParent, "...", "..."))
-              .SetFact(new Fact(FactType.BiologicalParent, "...", "..."))
-              .SetFact(new Fact(FactType.FosterParent, "...", "..."))
-              .SetFact(new Fact(FactType.GuardianParent, "...", "..."))
-              .SetFact(new Fact(FactType.StepParent, "...", "..."));
+            Relationship parentChild = new()
+            {
+                KnownType = RelationshipType.ParentChild,
+                Facts = {
+                    new Fact(FactType.AdoptiveParent, "...", "..."),
+                    new Fact(FactType.BiologicalParent, "...", "..."),
+                    new Fact(FactType.FosterParent, "...", "..."),
+                    new Fact(FactType.GuardianParent, "...", "..."),
+                    new Fact(FactType.StepParent, "...", "...")
+                }
+            };
 
             Gx.Gedcomx gx = new Gx.Gedcomx().SetRelationship(couple).SetRelationship(parentChild);
 
@@ -687,7 +695,7 @@ namespace Gedcomx.Model.Test
             };
 
             //the relationship.
-            Relationship fatherRelationship = new Relationship().SetType(RelationshipType.ParentChild).SetPerson1(father).SetPerson2(aloiau);
+            Relationship fatherRelationship = new() { KnownType = RelationshipType.ParentChild, Person1 = father, Person2 = aloiau };
 
             //Jane Doe's analysis.
             Document analysis = (Document)new Document().SetText("...Jane Doe's analysis document...").SetId("D-3");

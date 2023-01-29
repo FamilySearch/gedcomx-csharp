@@ -111,7 +111,7 @@ namespace Gx.Rs.Api
             get
             {
                 Relationship relationship = Relationship;
-                return relationship == null ? null : relationship.Facts == null ? null : relationship.Facts.FirstOrDefault();
+                return relationship == null ? null : relationship.AnyFacts() ? null : relationship.Facts.FirstOrDefault();
             }
         }
 
@@ -126,7 +126,7 @@ namespace Gx.Rs.Api
             get
             {
                 Relationship relationship = Relationship;
-                return relationship == null ? null : relationship.Notes == null ? null : relationship.Notes.FirstOrDefault();
+                return relationship == null ? null : relationship.AnyNotes() ? null : relationship.Notes.FirstOrDefault();
             }
         }
 

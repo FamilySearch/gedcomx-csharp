@@ -356,7 +356,7 @@ namespace Gx.Util
             this.contextStack.Push(relationship);
             VisitSubject(relationship);
 
-            if (relationship.Facts != null)
+            if (relationship.AnyFacts())
             {
                 foreach (Fact fact in relationship.Facts)
                 {
@@ -364,7 +364,7 @@ namespace Gx.Util
                 }
             }
 
-            if (relationship.Fields != null)
+            if (relationship.AnyFields())
             {
                 foreach (Field field in relationship.Fields)
                 {

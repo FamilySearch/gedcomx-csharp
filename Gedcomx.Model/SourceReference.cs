@@ -26,12 +26,6 @@ namespace Gx.Source
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://gedcomx.org/v1/", ElementName = "sourceReference")]
     public partial class SourceReference : Gx.Links.HypermediaEnabledData, IAttributable
     {
-
-        private string _descriptionRef;
-        private Gx.Common.Attribution _attribution;
-        private System.Collections.Generic.List<Gx.Common.Qualifier> _qualifiers;
-        private System.Collections.Generic.List<Gx.Source.Tag> _tags;
-
         /// <summary>
         /// Build up this source reference with a <see cref="SourceDescription"/> reference.
         /// </summary>
@@ -40,6 +34,11 @@ namespace Gx.Source
         {
             return new SourceReference().SetDescription(description);
         }
+
+        private string _descriptionRef;
+        private Gx.Common.Attribution _attribution;
+        private System.Collections.Generic.List<Gx.Common.Qualifier> _qualifiers;
+        private System.Collections.Generic.List<Gx.Source.Tag> _tags;
 
         /// <summary>
         ///  A reference to a description of the source being referenced.

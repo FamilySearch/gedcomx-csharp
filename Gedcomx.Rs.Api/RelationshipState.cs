@@ -1,14 +1,16 @@
-﻿using RestSharp;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Gx.Rs.Api.Util;
-using Gx.Conclusion;
+
 using Gedcomx.Model;
+
 using Gx.Common;
-using Gx.Source;
+using Gx.Conclusion;
 using Gx.Links;
+using Gx.Rs.Api.Util;
+using Gx.Source;
+
+using RestSharp;
 
 namespace Gx.Rs.Api
 {
@@ -109,7 +111,7 @@ namespace Gx.Rs.Api
             get
             {
                 Relationship relationship = Relationship;
-                return relationship == null ? null : relationship.Facts == null ? null : relationship.Facts.FirstOrDefault();
+                return relationship == null ? null : relationship.AnyFacts() ? null : relationship.Facts.FirstOrDefault();
             }
         }
 
@@ -124,7 +126,7 @@ namespace Gx.Rs.Api
             get
             {
                 Relationship relationship = Relationship;
-                return relationship == null ? null : relationship.Notes == null ? null : relationship.Notes.FirstOrDefault();
+                return relationship == null ? null : relationship.AnyNotes() ? null : relationship.Notes.FirstOrDefault();
             }
         }
 
@@ -154,7 +156,7 @@ namespace Gx.Rs.Api
             get
             {
                 Relationship relationship = Relationship;
-                return relationship == null ? null : relationship.Evidence == null ? null : relationship.Evidence.FirstOrDefault();
+                return relationship == null ? null : relationship.AnyEvidence() ? null : relationship.Evidence.FirstOrDefault();
             }
         }
 
@@ -169,7 +171,7 @@ namespace Gx.Rs.Api
             get
             {
                 Relationship relationship = Relationship;
-                return relationship == null ? null : relationship.Media == null ? null : relationship.Media.FirstOrDefault();
+                return relationship == null ? null : relationship.AnyMedia() ? null : relationship.Media.FirstOrDefault();
             }
         }
 

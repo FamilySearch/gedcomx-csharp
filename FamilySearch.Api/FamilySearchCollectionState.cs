@@ -110,7 +110,7 @@ namespace FamilySearch.Api
             IRestResponse response = Invoke(request, options);
             DateInfo dateValue = new DateInfo();
             dateValue.Original = date;
-            dateValue.AddNormalizedExtension(new TextValue(response.ToIRestResponse<String>().Data));
+            dateValue.SetNormalizedExtension(new TextValue(response.ToIRestResponse<String>().Data));
             if (response.Headers != null)
             {
                 dateValue.Formal = response.Headers.Where(x => x.Name == "Location").Select(x => x.Value as string).FirstOrDefault();

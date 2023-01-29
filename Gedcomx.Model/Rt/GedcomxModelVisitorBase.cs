@@ -313,18 +313,18 @@ namespace Gedcomx.Model.Rt
         {
             VisitConclusion(subject);
 
-            List<SourceReference> media = subject.Media;
-            if (media != null)
+            if (subject.AnyMedia())
             {
+                List<SourceReference> media = subject.Media;
                 foreach (SourceReference reference in media)
                 {
                     reference.Accept(this);
                 }
             }
 
-            List<EvidenceReference> evidence = subject.Evidence;
-            if (evidence != null)
+            if (subject.AnyEvidence())
             {
+                List<EvidenceReference> evidence = subject.Evidence;
                 foreach (EvidenceReference evidenceReference in evidence)
                 {
                     evidenceReference.Accept(this);

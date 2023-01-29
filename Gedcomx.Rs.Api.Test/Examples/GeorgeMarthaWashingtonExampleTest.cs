@@ -5,6 +5,7 @@ using Gedcomx.File;
 using Gx.Agent;
 using Gx.Common;
 using Gx.Conclusion;
+using Gx.Model.Collections;
 using Gx.Source;
 using Gx.Types;
 
@@ -52,7 +53,7 @@ namespace Gedcomx.Rs.Api.Test.Examples
             jsonSerializer.Deserialize<Gx.Gedcomx>(jsonSerializer.Serialize(gx));
         }
 
-        private PlaceDescription CreatePopesCreek()
+        private static PlaceDescription CreatePopesCreek()
         {
             PlaceDescription place = new PlaceDescription();
             place.SetId("888");
@@ -62,7 +63,7 @@ namespace Gedcomx.Rs.Api.Test.Examples
             return place;
         }
 
-        private PlaceDescription CreateMountVernon()
+        private static PlaceDescription CreateMountVernon()
         {
             PlaceDescription place = new PlaceDescription();
             place.SetId("999");
@@ -72,7 +73,7 @@ namespace Gedcomx.Rs.Api.Test.Examples
             return place;
         }
 
-        private PlaceDescription CreateChestnutGrove()
+        private static PlaceDescription CreateChestnutGrove()
         {
             PlaceDescription place = new PlaceDescription();
             place.SetId("KKK");
@@ -82,7 +83,7 @@ namespace Gedcomx.Rs.Api.Test.Examples
             return place;
         }
 
-        private Agent CreateContributor()
+        private static Agent CreateContributor()
         {
             Agent agent = new Agent();
             agent.SetId("GGG-GGGG");
@@ -90,7 +91,7 @@ namespace Gedcomx.Rs.Api.Test.Examples
             return agent;
         }
 
-        private Person CreateGeorge(PlaceDescription birthPlace, PlaceDescription deathPlace)
+        private static Person CreateGeorge(PlaceDescription birthPlace, PlaceDescription deathPlace)
         {
             Person person = new Person();
             person.SetGender(new Gender(GenderType.Male));
@@ -107,7 +108,7 @@ namespace Gedcomx.Rs.Api.Test.Examples
             fact.Place.SetOriginal(birthPlace.Names[0].Value.ToLower());
             fact.Place.DescriptionRef = "#" + birthPlace.Id;
 
-            person.AddFact(fact);
+            person.SetFact(fact);
 
             fact = new Fact();
             fact.SetId("456");
@@ -121,9 +122,9 @@ namespace Gedcomx.Rs.Api.Test.Examples
             fact.Place.SetOriginal(deathPlace.Names[0].Value.ToLower());
             fact.Place.DescriptionRef = "#" + deathPlace.Id;
 
-            person.AddFact(fact);
+            person.SetFact(fact);
 
-            List<Name> names = new List<Name>();
+            Names names = new Names();
             Name name = new Name();
             NameForm nameForm = new NameForm();
             nameForm.SetFullText("George Washington");
@@ -147,7 +148,7 @@ namespace Gedcomx.Rs.Api.Test.Examples
             return person;
         }
 
-        private Person CreateMartha(PlaceDescription birthPlace, PlaceDescription deathPlace)
+        private static Person CreateMartha(PlaceDescription birthPlace, PlaceDescription deathPlace)
         {
             Person person = new Person();
             person.SetGender(new Gender(GenderType.Male));
@@ -164,7 +165,7 @@ namespace Gedcomx.Rs.Api.Test.Examples
             fact.Place.SetOriginal(birthPlace.Names[0].Value.ToLower());
             fact.Place.DescriptionRef = "#" + birthPlace.Id;
 
-            person.AddFact(fact);
+            person.SetFact(fact);
 
             fact = new Fact();
             fact.SetId("654");
@@ -178,9 +179,9 @@ namespace Gedcomx.Rs.Api.Test.Examples
             fact.Place.SetOriginal(deathPlace.Names[0].Value.ToLower());
             fact.Place.DescriptionRef = "#" + deathPlace.Id;
 
-            person.AddFact(fact);
+            person.SetFact(fact);
 
-            List<Name> names = new List<Name>();
+            Names names = new Names();
             Name name = new Name();
             NameForm nameForm = new NameForm();
             nameForm.SetFullText("Martha Dandridge Custis");
@@ -204,7 +205,7 @@ namespace Gedcomx.Rs.Api.Test.Examples
             return person;
         }
 
-        private Relationship CreateMarriage(Person george, Person martha)
+        private static Relationship CreateMarriage(Person george, Person martha)
         {
             Relationship relationship = new Relationship();
             relationship.SetId("DDD-DDDD");
@@ -220,7 +221,7 @@ namespace Gedcomx.Rs.Api.Test.Examples
             return relationship;
         }
 
-        private List<SourceDescription> CiteGeorgeMarthaAndMarriage(Person george, Person martha, Relationship relationship)
+        private static List<SourceDescription> CiteGeorgeMarthaAndMarriage(Person george, Person martha, Relationship relationship)
         {
             SourceDescription georgeSource = new SourceDescription();
             georgeSource.SetId("EEE-EEEE");

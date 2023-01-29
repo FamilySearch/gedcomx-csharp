@@ -106,7 +106,7 @@ namespace Gedcomx.Rs.Api.Test
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.Created));
-            Assert.That(state2.Person.DiscussionReferences, Is.Not.Empty);
+            Assert.That(state2.Person.AnyDiscussionReferences(), Is.True);
         }
 
         [Test]
@@ -266,7 +266,7 @@ namespace Gedcomx.Rs.Api.Test
 
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
-            Assert.That(state.Person.DiscussionReferences, Is.Not.Empty);
+            Assert.That(state.Person.AnyDiscussionReferences(), Is.True);
         }
 
         [Test, Category("AccountNeeded")]
@@ -311,8 +311,7 @@ namespace Gedcomx.Rs.Api.Test
             var state2 = state.LoadNotes();
             Assert.DoesNotThrow(() => state2.IfSuccessful());
             Assert.That(state2.Person, Is.Not.Null);
-            Assert.That(state2.Person.Notes, Is.Not.Null);
-            Assert.That(state2.Person.Notes, Is.Not.Empty);
+            Assert.That(state2.Person.AnyNotes(), Is.True);
         }
 
         [Test, Category("AccountNeeded")]
@@ -867,7 +866,7 @@ namespace Gedcomx.Rs.Api.Test
             var state = person1.ReadMergeOptions(person2);
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
-            Assert.IsFalse(state.IsAllowed);
+            Assert.That(state.IsAllowed, Is.False);
         }
 
         [Test, Category("AccountNeeded")]

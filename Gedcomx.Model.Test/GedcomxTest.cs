@@ -3,7 +3,7 @@
 using Gx.Agent;
 using Gx.Common;
 using Gx.Conclusion;
-using Gx.Records;
+using Gx.Model.Collections;
 using Gx.Source;
 using Gx.Types;
 
@@ -51,7 +51,7 @@ namespace Gedcomx.Model.Test
             {
                 Id = "S-1",
                 Titles = { "Birth Certificate of Emma Bocock, 23 July 1843, General Registry Office" },
-                Citations = { new SourceCitation().SetValue("England, birth certificate for Emma Bocock, born 23 July 1843; citing 1843 Birth in District and Sub-district of Ecclesall-Bierlow in the County of York, 303; General Registry Office, Southport.") },
+                Citations = { new SourceCitation() { Value = "England, birth certificate for Emma Bocock, born 23 July 1843; citing 1843 Birth in District and Sub-district of Ecclesall-Bierlow in the County of York, 303; General Registry Office, Southport." } },
                 KnownResourceType = ResourceType.PhysicalArtifact,
                 Created = DateTime.Parse("1843-07-27"),
                 Repository = repository
@@ -59,16 +59,42 @@ namespace Gedcomx.Model.Test
             Fact birth = new()
             {
                 KnownType = FactType.Birth,
-                Date = new DateInfo().SetOriginal("23 June 1843"),
-                Place = new PlaceReference().SetOriginal("Broadfield Bar, Abbeydale Road, Ecclesall-Bierlow, York, England, United Kingdom")
+                Date = new DateInfo() { Original = "23 June 1843" },
+                Place = new PlaceReference() { Original = "Broadfield Bar, Abbeydale Road, Ecclesall-Bierlow, York, England, United Kingdom" }
             };
-            Person emma = (Person)new Person().SetName("Emma Bocock").SetGender(GenderType.Female).SetFact(birth).SetExtracted(true).SetSource(sourceDescription).SetId("P-1");
-            Person father = (Person)new Person().SetName("William Bocock").SetFact(new Fact().SetType(FactType.Occupation).SetValue("Toll Collector")).SetExtracted(true).SetSource(sourceDescription).SetId("P-2");
-            Person mother = (Person)new Person().SetName("Sarah Bocock formerly Brough").SetExtracted(true).SetSource(sourceDescription).SetId("P-3");
-            Relationship fatherRelationship = new Relationship().SetType(RelationshipType.ParentChild).SetPerson1(father).SetPerson2(emma);
-            Relationship motherRelationship = new Relationship().SetType(RelationshipType.ParentChild).SetPerson1(mother).SetPerson2(emma);
-            Document analysis = (Document)new Document().SetText("...Jane Doe's analysis document...").SetId("D-1");
-            Person emmaConclusion = (Person)new Person().SetEvidence(emma).SetAnalysis(analysis).SetId("C-1");
+            Person emma = new()
+            {
+                Id = "P-1",
+                Names = { "Emma Bocock" },
+                Gender = new Gender(GenderType.Female),
+                Facts = { birth },
+                Extracted = true,
+                Sources = { sourceDescription }
+            };
+            Person father = new()
+            {
+                Id = "P-2",
+                Names = { "William Bocock" },
+                Facts = { new Fact() { KnownType = FactType.Occupation, Value = "Toll Collector" } },
+                Extracted = true,
+                Sources = { sourceDescription }
+            };
+            Person mother = new()
+            {
+                Id = "P-3",
+                Names = { "Sarah Bocock formerly Brough" },
+                Extracted = true,
+                Sources = { sourceDescription }
+            };
+            Relationship fatherRelationship = new() { KnownType = RelationshipType.ParentChild, Person1 = father, Person2 = emma };
+            Relationship motherRelationship = new() { KnownType = RelationshipType.ParentChild, Person1 = mother, Person2 = emma };
+            Document analysis = new() { Id = "D-1", Text = "...Jane Doe's analysis document..." };
+            Person emmaConclusion = new()
+            {
+                Id = "C-1",
+                Evidence = { emma },
+                Analysis = analysis,
+            };
             Gx.Gedcomx gx = new Gx.Gedcomx()
             .SetAgent(contributor)
             .SetAgent(repository)
@@ -118,24 +144,25 @@ namespace Gedcomx.Model.Test
                 Id = "S-1",
                 Titles = { "Marriage entry for Samuel Ham and Elizabeth Spiller, Parish Register, Wilton, Somerset, England" },
                 Descriptions = { "Marriage entry for Samuel Ham and Elizabeth in a copy of the registers of the baptisms, marriages, and burials at the church of St. George in the parish of Wilton : adjoining Taunton, in the county of Somerset from A.D. 1558 to A.D. 1837." },
-                Citations = { new SourceCitation().SetValue("Joseph Houghton Spencer, transcriber, Church of England, Parish Church of Wilton (Somerset). <cite>A copy of the registers of the baptisms, marriages, and burials at the church of St. George in the parish of Wilton : adjoining Taunton, in the county of Somerset from A.D. 1558 to A.D. 1837</cite>; Marriage entry for Samuel Ham and Elizabeth Spiller (3 November 1828), (Taunton: Barnicott, 1890), p. 224, No. 86.") },
+                Citations = { new SourceCitation() { Value = "Joseph Houghton Spencer, transcriber, Church of England, Parish Church of Wilton (Somerset). <cite>A copy of the registers of the baptisms, marriages, and burials at the church of St. George in the parish of Wilton : adjoining Taunton, in the county of Somerset from A.D. 1558 to A.D. 1837</cite>; Marriage entry for Samuel Ham and Elizabeth Spiller (3 November 1828), (Taunton: Barnicott, 1890), p. 224, No. 86." } },
                 KnownResourceType = ResourceType.PhysicalArtifact,
                 Repository = fhl
             };
 
             //The transcription of the grave stone.
-            Document transcription = (Document)new Document()
-              .SetType(DocumentType.Transcription)
-              .SetText("Samuel Ham of the parish of Honiton and Elizabeth Spiller\n" +
+            Document transcription = new()
+            {
+                Id = "D-1",
+                Text = "Samuel Ham of the parish of Honiton and Elizabeth Spiller\n" +
                       "were married this 3rd day of November 1828 by David Smith\n" +
                       "Stone, Pl Curate,\n" +
                       "In the Presence of\n" +
                       "Jno Pain.\n" +
                       "R.G. Halls.  Peggy Hammet.\n" +
-                      "No. 86.")
-              .SetSource(recordDescription)
-              .SetLang("en")
-              .SetId("D-1");
+                      "No. 86.",
+                Sources = { recordDescription },
+                Lang = "en"
+            };
 
             //The transcription described as a source.
             SourceDescription transcriptionDescription = new()
@@ -144,7 +171,7 @@ namespace Gedcomx.Model.Test
                 About = "#" + transcription.Id,
                 Titles = { "Transcription of marriage entry for Samuel Ham and Elizabeth Spiller, Parish Register, Wilton, Somerset, England" },
                 Descriptions = { "Transcription of marriage entry for Samuel Ham and Elizabeth in a copy of the registers of the baptisms, marriages, and burials at the church of St. George in the parish of Wilton : adjoining Taunton, in the county of Somerset from A.D. 1558 to A.D. 1837." },
-                Citations = { new SourceCitation().SetValue("Joseph Houghton Spencer, transcriber, Church of England, Parish Church of Wilton (Somerset). <cite>A copy of the registers of the baptisms, marriages, and burials at the church of St. George in the parish of Wilton : adjoining Taunton, in the county of Somerset from A.D. 1558 to A.D. 1837</cite>; Marriage entry for Samuel Ham and Elizabeth Spiller (3 November 1828), (Taunton: Barnicott, 1890), p. 224, No. 86.") },
+                Citations = { new SourceCitation() { Value = "Joseph Houghton Spencer, transcriber, Church of England, Parish Church of Wilton (Somerset). <cite>A copy of the registers of the baptisms, marriages, and burials at the church of St. George in the parish of Wilton : adjoining Taunton, in the county of Somerset from A.D. 1558 to A.D. 1837</cite>; Marriage entry for Samuel Ham and Elizabeth Spiller (3 November 1828), (Taunton: Barnicott, 1890), p. 224, No. 86." } },
                 KnownResourceType = ResourceType.DigitalArtifact,
                 Sources = { new SourceReference().SetDescription(recordDescription) }
             };
@@ -153,47 +180,85 @@ namespace Gedcomx.Model.Test
             Fact marriage = new()
             {
                 KnownType = FactType.Marriage,
-                Date = new DateInfo().SetOriginal("3 November 1828").SetFormal("+1828-11-03"),
-                Place = new PlaceReference().SetOriginal("Wilton St George, Wilton, Somerset, England")
+                Date = new DateInfo() { Original = "3 November 1828", Formal = "+1828-11-03" },
+                Place = new PlaceReference() { Original = "Wilton St George, Wilton, Somerset, England" }
             };
 
             //the groom's residence.
             Fact samsResidence = new()
             {
                 KnownType = FactType.Residence,
-                Date = new DateInfo().SetOriginal("3 November 1828").SetFormal("+1828-11-03"),
-                Place = new PlaceReference().SetOriginal("parish of Honiton, Devon, England")
+                Date = new DateInfo() { Original = "3 November 1828", Formal = "+1828-11-03" },
+                Place = new PlaceReference() { Original = "parish of Honiton, Devon, England" }
             };
 
             //the groom's residence.
             Fact lizsResidence = new()
             {
                 KnownType = FactType.Residence,
-                Date = new DateInfo().SetOriginal("3 November 1828").SetFormal("+1828-11-03"),
-                Place = new PlaceReference().SetOriginal("parish of Wilton, Somerset, England")
+                Date = new DateInfo() { Original = "3 November 1828", Formal = "+1828-11-03" },
+                Place = new PlaceReference() { Original = "parish of Wilton, Somerset, England" }
             };
 
             //the groom
-            Person sam = (Person)new Person().SetName("Samuel Ham").SetGender(GenderType.Male).SetFact(samsResidence).SetExtracted(true).SetSource(transcriptionDescription).SetId("P-1");
+            Person sam = new()
+            {
+                Id = "P-1",
+                Names = { "Samuel Ham" },
+                Facts = { samsResidence },
+                Extracted = true,
+                Sources = { transcriptionDescription }
+            };
 
             //the bride.
-            Person liz = (Person)new Person().SetName("Elizabeth Spiller").SetGender(GenderType.Female).SetFact(lizsResidence).SetExtracted(true).SetSource(transcriptionDescription).SetId("P-2");
+            Person liz = new()
+            {
+                Id = "P-2",
+                Names = { "Elizabeth Spiller" },
+                Facts = { lizsResidence },
+                Extracted = true,
+                Sources = { transcriptionDescription }
+            };
 
             //witnesses
-            Person witness1 = (Person)new Person().SetName("Jno. Pain").SetExtracted(true).SetSource(transcriptionDescription).SetId("P-3");
-            Person witness2 = (Person)new Person().SetName("R.G. Halls").SetExtracted(true).SetSource(transcriptionDescription).SetId("P-4");
-            Person witness3 = (Person)new Person().SetName("Peggy Hammet").SetExtracted(true).SetSource(transcriptionDescription).SetId("P-5");
+            Person witness1 = new()
+            {
+                Id = "P-3",
+                Names = { "Jno. Pain" },
+                Extracted = true,
+                Sources = { transcriptionDescription }
+            };
+            Person witness2 = new()
+            {
+                Id = "P-4",
+                Names = { "R.G. Halls" },
+                Extracted = true,
+                Sources = { transcriptionDescription }
+            };
+            Person witness3 = new()
+            {
+                Id = "P-5",
+                Names = { "Peggy Hammet" },
+                Extracted = true,
+                Sources = { transcriptionDescription }
+            };
 
             //officiator
-            Person officiator = (Person)new Person().SetName("David Smith Stone").SetExtracted(true).SetSource(transcriptionDescription).SetId("P-6");
+            Person officiator = new()
+            {
+                Id = "P-6",
+                Names = { "David Smith Stone" },
+                Extracted = true,
+                Sources = { transcriptionDescription }
+            };
 
             //the relationship.
-            Relationship marriageRelationship = (Relationship)new Relationship().SetType(RelationshipType.Couple).SetPerson1(sam).SetPerson2(liz).SetFact(marriage).SetExtracted(true);
+            Relationship marriageRelationship = new() { KnownType = RelationshipType.Couple, Person1 = sam, Person2 = liz, Facts = { marriage }, Extracted = true };
 
             //the marriage event
             Event marriageEvent = (Event)new Event(EventType.Marriage)
-              .SetDate(new DateInfo().SetOriginal("3 November 1828").SetFormal("+1828-11-03"))
-              .SetPlace(new PlaceReference().SetOriginal("Wilton St George, Wilton, Somerset, England"))
+              .SetDate(new DateInfo() { Original = "3 November 1828" }.SetFormal("+1828-11-03"))
+              .SetPlace(new PlaceReference() { Original = "Wilton St George, Wilton, Somerset, England" })
               .SetRole(new EventRole().SetPerson(sam).SetType(EventRoleType.Principal))
               .SetRole(new EventRole().SetPerson(liz).SetType(EventRoleType.Principal))
               .SetRole(new EventRole().SetPerson(witness1).SetType(EventRoleType.Witness))
@@ -204,10 +269,15 @@ namespace Gedcomx.Model.Test
               .SetId("E-1");
 
             //Jane Doe's analysis.
-            Document analysis = (Document)new Document().SetText("...Jane Doe's analysis document...").SetId("D-2");
+            Document analysis = new() { Id = "D-2", Text = "...Jane Doe's analysis document..." };
 
             //Jane Doe's conclusions about a person.
-            Person samConclusion = (Person)new Person().SetEvidence(sam).SetAnalysis(analysis).SetId("C-1");
+            Person samConclusion = new()
+            {
+                Id = "C-1",
+                Evidence = { sam },
+                Analysis = analysis,
+            };
 
             Gx.Gedcomx gx = new Gx.Gedcomx()
               .SetAgent(janeDoe)
@@ -333,7 +403,7 @@ namespace Gedcomx.Model.Test
         public void CustomFactTest()
         {
             Person person = new Person()
-              .SetFact(new Fact().SetType("data:,Eagle%20Scout").SetPlace(new PlaceReference().SetOriginal("...")).SetDate(new DateInfo().SetOriginal("...")));
+              .SetFact(new Fact().SetType("data:,Eagle%20Scout").SetPlace(new PlaceReference() { Original = "..." }).SetDate(new DateInfo() { Original = "..." }));
             Gx.Gedcomx gx = new Gx.Gedcomx().SetPerson(person);
 
             VerifyXmlSerialization(gx);
@@ -343,23 +413,31 @@ namespace Gedcomx.Model.Test
         [Test]
         public void RelationshipFactsTest()
         {
-            Relationship couple = new Relationship()
-              .SetType(RelationshipType.Couple)
-              .SetFact(new Fact(FactType.CivilUnion, "...", "..."))
-              .SetFact(new Fact(FactType.DomesticPartnership, "...", "..."))
-              .SetFact(new Fact(FactType.Divorce, "...", "..."))
-              .SetFact(new Fact(FactType.Marriage, "...", "..."))
-              .SetFact(new Fact(FactType.MarriageBanns, "...", "..."))
-              .SetFact(new Fact(FactType.MarriageContract, "...", "..."))
-              .SetFact(new Fact(FactType.MarriageLicense, "...", "..."));
+            Relationship couple = new()
+            {
+                KnownType = RelationshipType.Couple,
+                Facts = {
+                    new Fact(FactType.CivilUnion, "...", "..."),
+                    new Fact(FactType.DomesticPartnership, "...", "..."),
+                    new Fact(FactType.Divorce, "...", "..."),
+                    new Fact(FactType.Marriage, "...", "..."),
+                    new Fact(FactType.MarriageBanns, "...", "..."),
+                    new Fact(FactType.MarriageContract, "...", "..."),
+                    new Fact(FactType.MarriageLicense, "...", "...")
+                }
+            };
 
-            Relationship parentChild = new Relationship()
-              .SetType(RelationshipType.ParentChild)
-              .SetFact(new Fact(FactType.AdoptiveParent, "...", "..."))
-              .SetFact(new Fact(FactType.BiologicalParent, "...", "..."))
-              .SetFact(new Fact(FactType.FosterParent, "...", "..."))
-              .SetFact(new Fact(FactType.GuardianParent, "...", "..."))
-              .SetFact(new Fact(FactType.StepParent, "...", "..."));
+            Relationship parentChild = new()
+            {
+                KnownType = RelationshipType.ParentChild,
+                Facts = {
+                    new Fact(FactType.AdoptiveParent, "...", "..."),
+                    new Fact(FactType.BiologicalParent, "...", "..."),
+                    new Fact(FactType.FosterParent, "...", "..."),
+                    new Fact(FactType.GuardianParent, "...", "..."),
+                    new Fact(FactType.StepParent, "...", "...")
+                }
+            };
 
             Gx.Gedcomx gx = new Gx.Gedcomx().SetRelationship(couple).SetRelationship(parentChild);
 
@@ -514,7 +592,7 @@ namespace Gedcomx.Model.Test
             {
                 Id = "S-1",
                 Titles = { "Grave Marker of WONG Aloiau, Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii" },
-                Citations = { new SourceCitation().SetValue("WONG Aloiau gravestone, Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii; visited May 1975 by Jane Doe.") },
+                Citations = { new SourceCitation() { Value = "WONG Aloiau gravestone, Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii; visited May 1975 by Jane Doe." } },
                 KnownResourceType = ResourceType.PhysicalArtifact,
                 Repository = cemetery
             };
@@ -524,22 +602,24 @@ namespace Gedcomx.Model.Test
             {
                 Id = "S-2",
                 Titles = { "Grave Marker of WONG Aloiau, Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii" },
-                Citations = { new SourceCitation().SetValue("WONG Aloiau gravestone (digital photograph), Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii; visited May 1975 by Jane Doe.") },
+                Citations = { new SourceCitation() { Value = "WONG Aloiau gravestone (digital photograph), Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii; visited May 1975 by Jane Doe." } },
                 KnownResourceType = ResourceType.DigitalArtifact,
                 Sources = { new SourceReference().SetDescription(gravestoneDescription) }
             };
 
             //The transcription of the grave stone.
-            Document transcription = (Document)new Document()
-              .SetText("WONG ALOIAU\n" +
+            Document transcription = new()
+            {
+                Id = "D-1",
+                Text = "WONG ALOIAU\n" +
                       "NOV. 22, 1848 – AUG. 3, 1920\n" +
                       "中山  大字都  泮沙鄉\n" +
                       "生  於  前  清 戊申 年 十一 月 廿二（日）子   時\n" +
                       "終  於  民國  庚申 年     七月    十二 (日)    午    時\n" +
-                      "先考  諱 羅有  字 容康 王 府 君 之 墓")
-              .SetSource(gravestoneImageDescription)
-              .SetLang("zh")
-              .SetId("D-1");
+                      "先考  諱 羅有  字 容康 王 府 君 之 墓",
+                Sources = { gravestoneImageDescription },
+                Lang = "zh",
+            };
 
             //The transcription described as a source.
             SourceDescription transcriptionDescription = new()
@@ -547,21 +627,23 @@ namespace Gedcomx.Model.Test
                 Id = "S-3",
                 About = "#" + transcription.Id,
                 Titles = { "Transcription of Grave Marker of WONG Aloiau, Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii" },
-                Citations = { new SourceCitation().SetValue("WONG Aloiau gravestone (transcription), Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii; visited May 1975 by Jane Doe.") },
+                Citations = { new SourceCitation() { Value = "WONG Aloiau gravestone (transcription), Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii; visited May 1975 by Jane Doe." } },
                 KnownResourceType = ResourceType.DigitalArtifact,
                 Sources = { new SourceReference().SetDescription(gravestoneImageDescription) }
             };
 
             //The translation of the grave stone.
-            Document translation = (Document)new Document()
-              .SetText("WONG ALOIAU\n" +
+            Document translation = new()
+            {
+                Id = "D-2",
+                Text = "WONG ALOIAU\n" +
                       "NOV. 22, 1848 – AUG. 3, 1920 [lunar dates]\n" +
                       "[Birthplace] [China, Guandong, ]Chung Shan, See Dai Doo, Pun Sha village\n" +
                       "[Date of birth] Born at former Qing 1848 year 11th month 22nd day 23-1 hour.\n" +
                       "[Life] ended at Republic of China year 1920 year 7th mo. 12th day 11-13 hour.\n" +
-                      "Deceased father avoid [mention of] Lo Yau also known as Young Hong Wong [noble]residence ruler’s grave.")
-              .SetSource(transcriptionDescription)
-              .SetId("D-2");
+                      "Deceased father avoid [mention of] Lo Yau also known as Young Hong Wong [noble]residence ruler’s grave.",
+                Sources = { transcriptionDescription }
+            };
 
             //The translation described as a source.
             SourceDescription translationDescription = new()
@@ -569,7 +651,7 @@ namespace Gedcomx.Model.Test
                 Id = "S-4",
                 About = "#" + translation.Id,
                 Titles = { "Translation of Grave Marker of WONG Aloiau, Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii" },
-                Citations= { new SourceCitation().SetValue("WONG Aloiau gravestone, Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii; visited May 1975 by Jane Doe. Translation by HANYU Pinyin 王大年.") },
+                Citations = { new SourceCitation() { Value = "WONG Aloiau gravestone, Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii; visited May 1975 by Jane Doe. Translation by HANYU Pinyin 王大年." } },
                 Attribution = translationAttribution,
                 KnownResourceType = ResourceType.DigitalArtifact,
                 Sources = { new SourceReference().SetDescription(transcriptionDescription) }
@@ -579,38 +661,57 @@ namespace Gedcomx.Model.Test
             Fact birth = new()
             {
                 KnownType = FactType.Birth,
-                Date = new DateInfo().SetOriginal("former Qing 1848 year 11th month 22nd day 23-1 hour").SetFormal("+1848-11-22"),
-                Place = new PlaceReference().SetOriginal("Pun Sha Village, See Dai Doo, Chung Shan, Guangdong, China")
+                Date = new DateInfo() { Original = "former Qing 1848 year 11th month 22nd day 23-1 hour", Formal = "+1848-11-22" },
+                Place = new PlaceReference() { Original = "Pun Sha Village, See Dai Doo, Chung Shan, Guangdong, China" }
             };
 
             //the death.
             Fact death = new()
             {
                 KnownType = FactType.Death,
-                Date = new DateInfo().SetOriginal("Republic of China year 1920 year 7th mo. 12th day 11-13 hour").SetFormal("+1920-08-03")
+                Date = new DateInfo() { Original = "Republic of China year 1920 year 7th mo. 12th day 11-13 hour", Formal = "+1920-08-03" }
             };
 
             //the burial.
             Fact burial = new()
             {
                 KnownType = FactType.Burial,
-                Place = new PlaceReference().SetOriginal("Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii")
+                Place = new PlaceReference() { Original = "Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii" }
             };
 
             //the principal person
-            Person aloiau = (Person)new Person().SetName("WONG Aloiau").SetGender(GenderType.Male).SetFact(birth).SetFact(death).SetFact(burial).SetExtracted(true).SetSource(translationDescription).SetId("P-1");
+            Person aloiau = new()
+            {
+                Id = "P-1",
+                Names = { "WONG Aloiau" },
+                Gender = new Gender(GenderType.Male),
+                Facts = { birth, death, burial },
+                Extracted = true,
+                Sources = { translationDescription }
+            };
 
             //the father of the principal (with an aka name).
-            Person father = (Person)new Person().SetName("Lo Yau").SetName(new Name().SetType(NameType.AlsoKnownAs).SetNameForm(new NameForm().SetFullText("Young Hong Wong"))).SetExtracted(true).SetSource(translationDescription).SetId("P-2");
+            Person father = new()
+            {
+                Id = "P-2",
+                Names = { "Lo Yau", new Name() { KnownType = NameType.AlsoKnownAs }.SetNameForm(new NameForm().SetFullText("Young Hong Wong")) },
+                Extracted = true,
+                Sources = { translationDescription }
+            };
 
             //the relationship.
-            Relationship fatherRelationship = new Relationship().SetType(RelationshipType.ParentChild).SetPerson1(father).SetPerson2(aloiau);
+            Relationship fatherRelationship = new() { KnownType = RelationshipType.ParentChild, Person1 = father, Person2 = aloiau };
 
             //Jane Doe's analysis.
-            Document analysis = (Document)new Document().SetText("...Jane Doe's analysis document...").SetId("D-3");
+            Document analysis = new() { Id = "D-3", Text = "...Jane Doe's analysis document..." };
 
             //Jane Doe's conclusions about a person.
-            Person aloiauConclusion = (Person)new Person().SetEvidence(aloiau).SetAnalysis(analysis).SetId("C-1");
+            Person aloiauConclusion = new()
+            {
+                Id = "C-1",
+                Evidence = { aloiau },
+                Analysis = analysis
+            };
 
             Gx.Gedcomx gx = new Gx.Gedcomx()
               .SetAgent(janeDoe)
@@ -729,23 +830,23 @@ namespace Gedcomx.Model.Test
             {
                 Id = "123",
                 KnownType = FactType.Birth,
-                Date = new DateInfo().SetOriginal("February 22, 1732").SetFormal("+1732-02-22"),
-                Place = new PlaceReference().SetOriginal(birthPlace.Names[0].Value.ToLower()).SetDescription(birthPlace)
+                Date = new DateInfo() { Original = "February 22, 1732", Formal = "+1732-02-22" },
+                Place = new PlaceReference() { Original = birthPlace.Names[0].Value.ToLower() }.SetDescription(birthPlace)
             };
 
-            person.AddFact(fact);
+            person.SetFact(fact);
 
             fact = new()
             {
                 Id = "456",
                 KnownType = FactType.Death,
-                Date = new DateInfo().SetOriginal("December 14, 1799").SetFormal("+1799-12-14T22:00:00"),
-                Place = new PlaceReference().SetOriginal(deathPlace.Names[0].Value.ToLower()).SetDescription(deathPlace)
+                Date = new DateInfo() { Original = "December 14, 1799", Formal = "+1799-12-14T22:00:00" },
+                Place = new PlaceReference() { Original = deathPlace.Names[0].Value.ToLower() }.SetDescription(deathPlace)
             };
 
-            person.AddFact(fact);
+            person.SetFact(fact);
 
-            List<Name> names = new();
+            Names names = new();
             Name name = new();
             NameForm nameForm = new();
             nameForm.SetFullText("George Washington");
@@ -778,23 +879,23 @@ namespace Gedcomx.Model.Test
             {
                 Id = "321",
                 KnownType = FactType.Birth,
-                Date = new DateInfo().SetOriginal("June 2, 1731").SetFormal("+1731-06-02"),
-                Place = new PlaceReference().SetOriginal(birthPlace.Names[0].Value.ToLower()).SetDescription(birthPlace)
+                Date = new DateInfo() { Original = "June 2, 1731", Formal = "+1731-06-02" },
+                Place = new PlaceReference() { Original = birthPlace.Names[0].Value.ToLower() }.SetDescription(birthPlace)
             };
 
-            person.AddFact(fact);
+            person.SetFact(fact);
 
             fact = new()
             {
                 Id = "654",
                 KnownType = FactType.Death,
-                Date = new DateInfo().SetOriginal("May 22, 1802").SetFormal("+1802-05-22"),
-                Place = new PlaceReference().SetOriginal(deathPlace.Names[0].Value.ToLower()).SetDescription(deathPlace)
+                Date = new DateInfo() { Original = "May 22, 1802", Formal = "+1802-05-22" },
+                Place = new PlaceReference() { Original = deathPlace.Names[0].Value.ToLower() }.SetDescription(deathPlace)
             };
 
-            person.AddFact(fact);
+            person.SetFact(fact);
 
-            List<Name> names = new();
+            Names names = new();
             Name name = new();
             NameForm nameForm = new();
             nameForm.SetFullText("Martha Dandridge Custis");

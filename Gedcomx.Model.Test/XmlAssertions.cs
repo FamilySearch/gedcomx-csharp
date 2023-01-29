@@ -27,6 +27,33 @@ namespace Gedcomx.Model.Test
             result.ShouldContain(agent as HypermediaEnabledData);
         }
 
+        public static void ShouldContain(this string result, Person person)
+        {
+            Assert.That(result, Does.Contain("<person "));
+            Assert.That(result, Does.Contain("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""));
+            Assert.That(result, Does.Contain("xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\""));
+            Assert.That(result, Does.Contain("xmlns=\"http://gedcomx.org/v1/\""));
+            Assert.That(result.Contains("principal="), Is.EqualTo(person.PrincipalSpecified == true));
+            Assert.That(result.Contains("private="), Is.EqualTo(person.PrivateSpecified == true));
+            Assert.That(result.Contains("<living"), Is.EqualTo(person.LivingSpecified == true));
+            Assert.That(result.Contains("<gender"), Is.EqualTo(person.Gender != null));
+            Assert.That(result.Contains("<name"), Is.EqualTo(person.AnyNames()));
+            Assert.That(result.Contains("<fact"), Is.EqualTo(person.AnyFacts()));
+            Assert.That(result.Contains("<field"), Is.EqualTo(person.AnyFields()));
+            Assert.That(result.Contains("<display"), Is.EqualTo(person.DisplayExtension != null));
+            Assert.That(result.Contains("<discussion-references"), Is.EqualTo(person.AnyDiscussionReferences()));
+            result.ShouldContain(person as Subject);
+        }
+
+        public static void ShouldContain(this string result, Subject subject)
+        {
+            Assert.That(result.Contains("extracted="), Is.EqualTo(subject.ExtractedSpecified == true));
+            Assert.That(result.Contains("<evidence"), Is.EqualTo(subject.AnyEvidence()));
+            Assert.That(result.Contains("<media"), Is.EqualTo(subject.AnyMedia()));
+            Assert.That(result.Contains("<identifier"), Is.EqualTo(subject.AnyIdentifiers()));
+            result.ShouldContain(subject as Conclusion);
+        }
+
         public static void ShouldContain(this string result, SourceDescription sourceDescription)
         {
             Assert.That(result, Does.Contain("<sourceDescription "));
@@ -52,6 +79,19 @@ namespace Gedcomx.Model.Test
             Assert.That(result.Contains("<rights"), Is.EqualTo(sourceDescription.AnyRights()));
             Assert.That(result.Contains("<field"), Is.EqualTo(sourceDescription.AnyFields()));
             result.ShouldContain(sourceDescription as HypermediaEnabledData);
+        }
+
+        public static void ShouldContain(this string result, Document document)
+        {
+            Assert.That(result, Does.Contain("<document "));
+            Assert.That(result, Does.Contain("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""));
+            Assert.That(result, Does.Contain("xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\""));
+            Assert.That(result, Does.Contain("xmlns=\"http://gedcomx.org/v1/\""));
+            Assert.That(result.Contains("textType="), Is.EqualTo(document.TextType != null));
+            Assert.That(result.Contains("extracted="), Is.EqualTo(document.ExtractedSpecified == true));
+            Assert.That(result.Contains("type="), Is.EqualTo(document.Type != null));
+            Assert.That(result.Contains("<text"), Is.EqualTo(document.Text != null));
+            result.ShouldContain(document as Conclusion);
         }
 
         public static void ShouldContain(this string result, Fact fact)

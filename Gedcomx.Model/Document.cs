@@ -134,20 +134,6 @@ namespace Gx.Conclusion
             }
         }
 
-        /// <summary>
-        /// Combine '#' and analysis Id to be used with <see cref="Gx.Common.ResourceReference"/>
-        /// </summary>
-        /// <param name="analysis">The analysis.</param>
-        /// <exception cref="ArgumentException">If the person Id is null.</exception>
-        public static implicit operator Gx.Common.ResourceReference(Gx.Conclusion.Document analysis)
-        {
-            if (analysis.Id == null)
-            {
-                throw new ArgumentException("Cannot reference analysis: no id.");
-            }
-            return new ResourceReference("#" + analysis.Id);
-        }
-
         /**
          * Accept a visitor.
          *

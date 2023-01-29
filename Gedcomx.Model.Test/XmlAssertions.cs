@@ -81,6 +81,19 @@ namespace Gedcomx.Model.Test
             result.ShouldContain(sourceDescription as HypermediaEnabledData);
         }
 
+        public static void ShouldContain(this string result, Document document)
+        {
+            Assert.That(result, Does.Contain("<document "));
+            Assert.That(result, Does.Contain("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""));
+            Assert.That(result, Does.Contain("xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\""));
+            Assert.That(result, Does.Contain("xmlns=\"http://gedcomx.org/v1/\""));
+            Assert.That(result.Contains("textType="), Is.EqualTo(document.TextType != null));
+            Assert.That(result.Contains("extracted="), Is.EqualTo(document.ExtractedSpecified == true));
+            Assert.That(result.Contains("type="), Is.EqualTo(document.Type != null));
+            Assert.That(result.Contains("<text"), Is.EqualTo(document.Text != null));
+            result.ShouldContain(document as Conclusion);
+        }
+
         public static void ShouldContain(this string result, Fact fact)
         {
             Assert.That(result, Does.Contain("<fact "));

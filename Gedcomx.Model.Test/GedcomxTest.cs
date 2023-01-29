@@ -88,7 +88,7 @@ namespace Gedcomx.Model.Test
             };
             Relationship fatherRelationship = new() { KnownType = RelationshipType.ParentChild, Person1 = father, Person2 = emma };
             Relationship motherRelationship = new() { KnownType = RelationshipType.ParentChild, Person1 = mother, Person2 = emma };
-            Document analysis = (Document)new Document().SetText("...Jane Doe's analysis document...").SetId("D-1");
+            Document analysis = new() { Id = "D-1", Text = "...Jane Doe's analysis document..." };
             Person emmaConclusion = new()
             {
                 Id = "C-1",
@@ -150,18 +150,19 @@ namespace Gedcomx.Model.Test
             };
 
             //The transcription of the grave stone.
-            Document transcription = (Document)new Document()
-              .SetType(DocumentType.Transcription)
-              .SetText("Samuel Ham of the parish of Honiton and Elizabeth Spiller\n" +
+            Document transcription = new()
+            {
+                Id = "D-1",
+                Text = "Samuel Ham of the parish of Honiton and Elizabeth Spiller\n" +
                       "were married this 3rd day of November 1828 by David Smith\n" +
                       "Stone, Pl Curate,\n" +
                       "In the Presence of\n" +
                       "Jno Pain.\n" +
                       "R.G. Halls.  Peggy Hammet.\n" +
-                      "No. 86.")
-              .SetSource(recordDescription)
-              .SetLang("en")
-              .SetId("D-1");
+                      "No. 86.",
+                Sources = { recordDescription },
+                Lang = "en"
+            };
 
             //The transcription described as a source.
             SourceDescription transcriptionDescription = new()
@@ -268,7 +269,7 @@ namespace Gedcomx.Model.Test
               .SetId("E-1");
 
             //Jane Doe's analysis.
-            Document analysis = (Document)new Document().SetText("...Jane Doe's analysis document...").SetId("D-2");
+            Document analysis = new() { Id = "D-2", Text = "...Jane Doe's analysis document..." };
 
             //Jane Doe's conclusions about a person.
             Person samConclusion = new()
@@ -607,16 +608,18 @@ namespace Gedcomx.Model.Test
             };
 
             //The transcription of the grave stone.
-            Document transcription = (Document)new Document()
-              .SetText("WONG ALOIAU\n" +
+            Document transcription = new()
+            {
+                Id = "D-1",
+                Text = "WONG ALOIAU\n" +
                       "NOV. 22, 1848 – AUG. 3, 1920\n" +
                       "中山  大字都  泮沙鄉\n" +
                       "生  於  前  清 戊申 年 十一 月 廿二（日）子   時\n" +
                       "終  於  民國  庚申 年     七月    十二 (日)    午    時\n" +
-                      "先考  諱 羅有  字 容康 王 府 君 之 墓")
-              .SetSource(gravestoneImageDescription)
-              .SetLang("zh")
-              .SetId("D-1");
+                      "先考  諱 羅有  字 容康 王 府 君 之 墓",
+                Sources = { gravestoneImageDescription },
+                Lang = "zh",
+            };
 
             //The transcription described as a source.
             SourceDescription transcriptionDescription = new()
@@ -630,15 +633,17 @@ namespace Gedcomx.Model.Test
             };
 
             //The translation of the grave stone.
-            Document translation = (Document)new Document()
-              .SetText("WONG ALOIAU\n" +
+            Document translation = new()
+            {
+                Id = "D-2",
+                Text = "WONG ALOIAU\n" +
                       "NOV. 22, 1848 – AUG. 3, 1920 [lunar dates]\n" +
                       "[Birthplace] [China, Guandong, ]Chung Shan, See Dai Doo, Pun Sha village\n" +
                       "[Date of birth] Born at former Qing 1848 year 11th month 22nd day 23-1 hour.\n" +
                       "[Life] ended at Republic of China year 1920 year 7th mo. 12th day 11-13 hour.\n" +
-                      "Deceased father avoid [mention of] Lo Yau also known as Young Hong Wong [noble]residence ruler’s grave.")
-              .SetSource(transcriptionDescription)
-              .SetId("D-2");
+                      "Deceased father avoid [mention of] Lo Yau also known as Young Hong Wong [noble]residence ruler’s grave.",
+                Sources = { transcriptionDescription }
+            };
 
             //The translation described as a source.
             SourceDescription translationDescription = new()
@@ -698,7 +703,7 @@ namespace Gedcomx.Model.Test
             Relationship fatherRelationship = new() { KnownType = RelationshipType.ParentChild, Person1 = father, Person2 = aloiau };
 
             //Jane Doe's analysis.
-            Document analysis = (Document)new Document().SetText("...Jane Doe's analysis document...").SetId("D-3");
+            Document analysis = new() { Id = "D-3", Text = "...Jane Doe's analysis document..." };
 
             //Jane Doe's conclusions about a person.
             Person aloiauConclusion = new()

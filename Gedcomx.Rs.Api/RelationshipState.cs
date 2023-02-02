@@ -141,7 +141,7 @@ namespace Gx.Rs.Api
             get
             {
                 Relationship relationship = Relationship;
-                return relationship == null ? null : relationship.Sources == null ? null : relationship.Sources.FirstOrDefault();
+                return relationship == null ? null : relationship.AnySources() ? relationship.Sources.FirstOrDefault() : null;
             }
         }
 

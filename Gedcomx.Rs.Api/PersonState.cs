@@ -246,7 +246,7 @@ namespace Gx.Rs.Api
         public Name GetName()
         {
             Person person = (Person)MainDataElement;
-            return person == null ? null : person.AnyNames() ? null : person.Names.FirstOrDefault();
+            return person == null ? null : person.AnyNames() ? person.Names.FirstOrDefault() : null;
         }
 
         /// <summary>
@@ -266,7 +266,7 @@ namespace Gx.Rs.Api
         public Fact GetFact()
         {
             Person person = (Person)MainDataElement;
-            return person == null ? null : person.AnyFacts() ? null : person.Facts.FirstOrDefault();
+            return person == null ? null : person.AnyFacts() ? person.Facts.FirstOrDefault() : null;
         }
 
         /// <summary>
@@ -276,7 +276,7 @@ namespace Gx.Rs.Api
         public Note GetNote()
         {
             Person person = (Person)MainDataElement;
-            return person == null ? null : person.AnyNotes() ? null : person.Notes.FirstOrDefault();
+            return person == null ? null : person.AnyNotes() ? person.Notes.FirstOrDefault() : null;
         }
 
         /// <summary>
@@ -286,7 +286,7 @@ namespace Gx.Rs.Api
         public SourceReference GetSourceReference()
         {
             Person person = (Person)MainDataElement;
-            return person == null ? null : person.AnySources() ? null : person.Sources.FirstOrDefault();
+            return person == null ? null : person.AnySources() ? person.Sources.FirstOrDefault() : null;
         }
 
         /// <summary>
@@ -296,7 +296,7 @@ namespace Gx.Rs.Api
         public EvidenceReference GetEvidenceReference()
         {
             Person person = (Person)MainDataElement;
-            return person == null ? null : person.AnyEvidence() ? null : person.Evidence.FirstOrDefault();
+            return person == null ? null : person.AnyEvidence() ? person.Evidence.FirstOrDefault() : null;
         }
 
         /// <summary>
@@ -315,7 +315,7 @@ namespace Gx.Rs.Api
         public SourceReference GetMediaReference()
         {
             Person person = (Person)MainDataElement;
-            return person == null ? null : person.AnyMedia() ? null : person.Media.FirstOrDefault();
+            return person == null ? null : person.AnyMedia() ? person.Media.FirstOrDefault() : null;
         }
 
         /// <summary>

@@ -111,7 +111,7 @@ namespace Gx.Rs.Api
             get
             {
                 Relationship relationship = Relationship;
-                return relationship == null ? null : relationship.AnyFacts() ? null : relationship.Facts.FirstOrDefault();
+                return relationship == null ? null : relationship.AnyFacts() ? relationship.Facts.FirstOrDefault() : null;
             }
         }
 
@@ -126,7 +126,7 @@ namespace Gx.Rs.Api
             get
             {
                 Relationship relationship = Relationship;
-                return relationship == null ? null : relationship.AnyNotes() ? null : relationship.Notes.FirstOrDefault();
+                return relationship == null ? null : relationship.AnyNotes() ? relationship.Notes.FirstOrDefault() : null;
             }
         }
 
@@ -141,7 +141,7 @@ namespace Gx.Rs.Api
             get
             {
                 Relationship relationship = Relationship;
-                return relationship == null ? null : relationship.Sources == null ? null : relationship.Sources.FirstOrDefault();
+                return relationship == null ? null : relationship.AnySources() ? relationship.Sources.FirstOrDefault() : null;
             }
         }
 
@@ -156,7 +156,7 @@ namespace Gx.Rs.Api
             get
             {
                 Relationship relationship = Relationship;
-                return relationship == null ? null : relationship.AnyEvidence() ? null : relationship.Evidence.FirstOrDefault();
+                return relationship == null ? null : relationship.AnyEvidence() ? relationship.Evidence.FirstOrDefault() : null;
             }
         }
 
@@ -171,7 +171,7 @@ namespace Gx.Rs.Api
             get
             {
                 Relationship relationship = Relationship;
-                return relationship == null ? null : relationship.AnyMedia() ? null : relationship.Media.FirstOrDefault();
+                return relationship == null ? null : relationship.AnyMedia() ? relationship.Media.FirstOrDefault() : null;
             }
         }
 

@@ -168,7 +168,7 @@ namespace FamilySearch.Api.Ft
             get
             {
                 ChildAndParentsRelationship relationship = Relationship;
-                return relationship == null ? null : relationship.AnyNotes() ? null : relationship.Notes.FirstOrDefault();
+                return relationship == null ? null : relationship.AnyNotes() ? relationship.Notes.FirstOrDefault() : null;
             }
         }
 
@@ -198,7 +198,7 @@ namespace FamilySearch.Api.Ft
             get
             {
                 ChildAndParentsRelationship relationship = Relationship;
-                return relationship == null ? null : relationship.AnyEvidence() ? null : relationship.Evidence.FirstOrDefault();
+                return relationship == null ? null : relationship.AnyEvidence() ? relationship.Evidence.FirstOrDefault() : null;
             }
         }
 
@@ -213,7 +213,7 @@ namespace FamilySearch.Api.Ft
             get
             {
                 ChildAndParentsRelationship relationship = Relationship;
-                return relationship == null ? null : relationship.AnyMedia() ? null : relationship.Media.FirstOrDefault();
+                return relationship == null ? null : relationship.AnyMedia() ? relationship.Media.FirstOrDefault() : null;
             }
         }
 

@@ -821,32 +821,35 @@ namespace Gedcomx.Model.Test
 
         private static PlaceDescription CreatePopesCreek()
         {
-            PlaceDescription place = new();
-            place.SetId("888");
-            place.SetLatitude(38.192353);
-            place.SetLongitude(-76.904069);
-            place.SetName("Pope's Creek, Westmoreland, Virginia, United States");
-            return place;
+            return new()
+            {
+                Id = "888",
+                Latitude = 38.192353,
+                Longitude = -76.904069,
+                Names = { "Pope's Creek, Westmoreland, Virginia, United States" }
+            };
         }
 
         private static PlaceDescription CreateMountVernon()
         {
-            PlaceDescription place = new();
-            place.SetId("999");
-            place.SetLatitude(38.721144);
-            place.SetLongitude(-77.109461);
-            place.SetName("Mount Vernon, Fairfax County, Virginia, United States");
-            return place;
+            return new()
+            {
+                Id = "999",
+                Latitude = 38.721144,
+                Longitude = -77.109461,
+                Names = { "Mount Vernon, Fairfax County, Virginia, United States" }
+            };
         }
 
         private static PlaceDescription CreateChestnutGrove()
         {
-            PlaceDescription place = new();
-            place.SetId("KKK");
-            place.SetLatitude(37.518304);
-            place.SetLongitude(-76.984148);
-            place.SetName("Chestnut Grove, New Kent, Virginia, United States");
-            return place;
+            return new()
+            {
+                Id = "KKK",
+                Latitude = 37.518304,
+                Longitude = -76.984148,
+                Names = { "Chestnut Grove, New Kent, Virginia, United States" }
+            };
         }
 
         private static Agent CreateContributor()

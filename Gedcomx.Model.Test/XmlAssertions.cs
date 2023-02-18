@@ -2,6 +2,7 @@
 using Gx.Common;
 using Gx.Conclusion;
 using Gx.Links;
+using Gx.Records;
 using Gx.Source;
 
 using NUnit.Framework;
@@ -66,6 +67,23 @@ namespace Gedcomx.Model.Test
             Assert.That(result.Contains("<display"), Is.EqualTo(person.DisplayExtension != null));
             Assert.That(result.Contains("<discussion-references"), Is.EqualTo(person.AnyDiscussionReferences()));
             result.ShouldContain(person as Subject);
+        }
+
+        public static void ShouldContain(this string result, PlaceDescription placeDescription)
+        {
+            Assert.That(result, Does.Contain("<PlaceDescription "));
+            Assert.That(result, Does.Contain("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""));
+            Assert.That(result, Does.Contain("xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\""));
+            Assert.That(result.Contains("type="), Is.EqualTo(placeDescription.Type != null));
+            Assert.That(result.Contains("<name"), Is.EqualTo(placeDescription.AnyNames()));
+            Assert.That(result.Contains("<temporalDescription"), Is.EqualTo(placeDescription.TemporalDescription != null));
+            Assert.That(result.Contains("<latitude"), Is.EqualTo(placeDescription.LatitudeSpecified));
+            Assert.That(result.Contains("<longitude"), Is.EqualTo(placeDescription.LongitudeSpecified));
+            Assert.That(result.Contains("<spatialDescription"), Is.EqualTo(placeDescription.SpatialDescription != null));
+            Assert.That(result.Contains("<place"), Is.EqualTo(placeDescription.Place != null));
+            Assert.That(result.Contains("<jurisdiction"), Is.EqualTo(placeDescription.Jurisdiction != null));
+            Assert.That(result.Contains("<display"), Is.EqualTo(placeDescription.DisplayExtension != null));
+            result.ShouldContain(placeDescription as Subject);
         }
 
         public static void ShouldContain(this string result, Subject subject)

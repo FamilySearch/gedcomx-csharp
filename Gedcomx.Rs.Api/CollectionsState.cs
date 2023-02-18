@@ -51,7 +51,7 @@ namespace Gx.Rs.Api
         {
             get
             {
-                return this.Entity == null ? null : this.Entity.Collections;
+                return Entity?.Collections;
             }
         }
 

@@ -32,7 +32,7 @@ namespace Gedcomx.Rs.Api.Test.Examples
               .SetFact(new Fact(FactType.MoveTo, "...", "..."))
               .SetFact(new Fact(FactType.MoveFrom, "...", "..."))
               .SetFact(new Fact(FactType.Residence, "...", "..."));
-            Gx.Gedcomx gx = new Gx.Gedcomx().SetPerson(person);
+            Gx.Gedcomx gx = new Gx.Gedcomx().AddPerson(person);
             xmlSerializer.Deserialize<Gx.Gedcomx>(xmlSerializer.Serialize(gx));
             jsonSerializer.Deserialize<Gx.Gedcomx>(jsonSerializer.Serialize(gx));
         }
@@ -46,7 +46,7 @@ namespace Gedcomx.Rs.Api.Test.Examples
               .SetFact(new Fact(FactType.MilitaryDraftRegistration, "...", "..."))
               .SetFact(new Fact(FactType.MilitaryInduction, "...", "..."))
               .SetFact(new Fact(FactType.MilitaryService, "...", "..."));
-            Gx.Gedcomx gx = new Gx.Gedcomx().SetPerson(person);
+            Gx.Gedcomx gx = new Gx.Gedcomx().AddPerson(person);
             xmlSerializer.Deserialize<Gx.Gedcomx>(xmlSerializer.Serialize(gx));
             jsonSerializer.Deserialize<Gx.Gedcomx>(jsonSerializer.Serialize(gx));
         }
@@ -59,7 +59,7 @@ namespace Gedcomx.Rs.Api.Test.Examples
               .SetFact(new Fact(FactType.Education, "...", "..."))
               .SetFact(new Fact(FactType.Occupation, "...", "..."))
               .SetFact(new Fact(FactType.Retirement, "...", "..."));
-            Gx.Gedcomx gx = new Gx.Gedcomx().SetPerson(person);
+            Gx.Gedcomx gx = new Gx.Gedcomx().AddPerson(person);
             xmlSerializer.Deserialize<Gx.Gedcomx>(xmlSerializer.Serialize(gx));
             jsonSerializer.Deserialize<Gx.Gedcomx>(jsonSerializer.Serialize(gx));
         }
@@ -83,7 +83,7 @@ namespace Gedcomx.Rs.Api.Test.Examples
               .SetFact(new Fact(FactType.Ordination, "...", "..."))
               .SetFact(new Fact(FactType.Religion, "...", "..."))
               .SetFact(new Fact(FactType.Yahrzeit, "...", "..."));
-            Gx.Gedcomx gx = new Gx.Gedcomx().SetPerson(person);
+            Gx.Gedcomx gx = new Gx.Gedcomx().AddPerson(person);
             xmlSerializer.Deserialize<Gx.Gedcomx>(xmlSerializer.Serialize(gx));
             jsonSerializer.Deserialize<Gx.Gedcomx>(jsonSerializer.Serialize(gx));
         }
@@ -95,7 +95,7 @@ namespace Gedcomx.Rs.Api.Test.Examples
               .SetFact(new Fact(FactType.Christening, "...", "...").SetQualifier(new Qualifier(FactQualifierType.Religion, "Catholic")))
               .SetFact(new Fact(FactType.Census, "...", "...").SetQualifier(new Qualifier(FactQualifierType.Age, "44")))
               .SetFact(new Fact(FactType.Death, "...", "...").SetQualifier(new Qualifier(FactQualifierType.Cause, "Heart failure")));
-            Gx.Gedcomx gx = new Gx.Gedcomx().SetPerson(person);
+            Gx.Gedcomx gx = new Gx.Gedcomx().AddPerson(person);
             xmlSerializer.Deserialize<Gx.Gedcomx>(xmlSerializer.Serialize(gx));
             jsonSerializer.Deserialize<Gx.Gedcomx>(jsonSerializer.Serialize(gx));
         }
@@ -105,7 +105,7 @@ namespace Gedcomx.Rs.Api.Test.Examples
         {
             Person person = new Person()
               .SetFact(new Fact().SetType("data:,Eagle%20Scout").SetPlace(new PlaceReference().SetOriginal("...")).SetDate(new DateInfo().SetOriginal("...")));
-            Gx.Gedcomx gx = new Gx.Gedcomx().SetPerson(person);
+            Gx.Gedcomx gx = new Gx.Gedcomx().AddPerson(person);
             xmlSerializer.Deserialize<Gx.Gedcomx>(xmlSerializer.Serialize(gx));
             jsonSerializer.Deserialize<Gx.Gedcomx>(jsonSerializer.Serialize(gx));
         }
@@ -131,7 +131,7 @@ namespace Gedcomx.Rs.Api.Test.Examples
               .SetFact(new Fact(FactType.GuardianParent, "...", "..."))
               .SetFact(new Fact(FactType.StepParent, "...", "..."));
 
-            Gx.Gedcomx gx = new Gx.Gedcomx().SetRelationship(couple).SetRelationship(parentChild);
+            Gx.Gedcomx gx = new Gx.Gedcomx().AddRelationship(couple).AddRelationship(parentChild);
             xmlSerializer.Deserialize<Gx.Gedcomx>(xmlSerializer.Serialize(gx));
             jsonSerializer.Deserialize<Gx.Gedcomx>(jsonSerializer.Serialize(gx));
         }

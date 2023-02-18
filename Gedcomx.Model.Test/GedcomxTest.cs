@@ -4,6 +4,7 @@ using Gx.Agent;
 using Gx.Common;
 using Gx.Conclusion;
 using Gx.Model.Collections;
+using Gx.Records;
 using Gx.Source;
 using Gx.Types;
 
@@ -22,7 +23,32 @@ namespace Gedcomx.Model.Test
         [Test]
         public void GedcomxEmpty()
         {
-            var sut = new Gx.Gedcomx();
+            Gx.Gedcomx sut = new();
+
+            VerifyXmlSerialization(sut);
+            VerifyJsonSerialization(sut);
+        }
+
+        [Test]
+        public void GedcomxFilled()
+        {
+            Gx.Gedcomx sut = new()
+            {
+                Lang = "en",
+                DescriptionRef = "description",
+                Profile = "profile",
+                Attribution = new Attribution(),
+                Persons = { new Person() },
+                Relationships = { new Relationship() },
+                SourceDescriptions = { new SourceDescription() },
+                Agents = { new Agent() },
+                Events = { new Event() },
+                Places = { new PlaceDescription() },
+                Documents = { new Document() },
+                Collections = { new Collection() },
+                Fields = { new Field() },
+                RecordDescriptors = { new RecordDescriptor() },
+            };
 
             VerifyXmlSerialization(sut);
             VerifyJsonSerialization(sut);
@@ -95,18 +121,15 @@ namespace Gedcomx.Model.Test
                 Evidence = { emma },
                 Analysis = analysis,
             };
-            Gx.Gedcomx gx = new Gx.Gedcomx()
-            .SetAgent(contributor)
-            .SetAgent(repository)
-            .SetAttribution(attribution)
-            .SetSourceDescription(sourceDescription)
-            .SetPerson(emma)
-            .SetPerson(father)
-            .SetPerson(mother)
-            .SetRelationship(fatherRelationship)
-            .SetRelationship(motherRelationship)
-            .SetDocument(analysis)
-            .SetPerson(emmaConclusion);
+            Gx.Gedcomx gx = new()
+            {
+                Attribution = attribution,
+                Persons = { emma, father, mother, emmaConclusion },
+                Relationships = { fatherRelationship, motherRelationship },
+                SourceDescriptions = { sourceDescription },
+                Agents = { contributor, repository },
+                Documents = { analysis }
+            };
 
             VerifyXmlSerialization(gx);
             VerifyJsonSerialization(gx);
@@ -279,23 +302,16 @@ namespace Gedcomx.Model.Test
                 Analysis = analysis,
             };
 
-            Gx.Gedcomx gx = new Gx.Gedcomx()
-              .SetAgent(janeDoe)
-              .SetAgent(fhl)
-              .SetAttribution(researchAttribution)
-              .SetSourceDescription(recordDescription)
-              .SetDocument(transcription)
-              .SetSourceDescription(transcriptionDescription)
-              .SetPerson(sam)
-              .SetPerson(liz)
-              .SetPerson(witness1)
-              .SetPerson(witness2)
-              .SetPerson(witness3)
-              .SetPerson(officiator)
-              .SetRelationship(marriageRelationship)
-              .SetEvent(marriageEvent)
-              .SetDocument(analysis)
-              .SetPerson(samConclusion);
+            Gx.Gedcomx gx = new()
+            {
+                Attribution = researchAttribution,
+                Persons = { sam, liz, witness1, witness2, witness3, officiator, samConclusion },
+                Relationships = { marriageRelationship },
+                SourceDescriptions = { recordDescription, transcriptionDescription },
+                Agents = { janeDoe, fhl },
+                Events = { marriageEvent },
+                Documents = { transcription, analysis },
+            };
 
             VerifyXmlSerialization(gx);
             VerifyJsonSerialization(gx);
@@ -314,15 +330,13 @@ namespace Gedcomx.Model.Test
             Agent contributor = CreateContributor();
             Gx.Gedcomx gx = new()
             {
-                Persons = new List<Person>() { george, martha }
+                Attribution = new Attribution() { Contributor = new ResourceReference() { Resource = "#" + contributor.Id } },
+                Persons = new List<Person>() { george, martha },
+                Relationships = { marriage },
+                SourceDescriptions = sources,
+                Agents = { contributor },
+                Places = { popesCreek, mountVernon, chestnutGrove }
             };
-            gx.SetRelationship(marriage);
-            gx.SourceDescriptions = sources;
-            gx.SetAgent(contributor);
-            gx.SetAttribution(new Attribution());
-            gx.Attribution.SetContributor(new ResourceReference());
-            gx.Attribution.Contributor.SetResource("#" + contributor.Id);
-            gx.Places = new List<PlaceDescription>() { popesCreek, mountVernon, chestnutGrove };
 
             VerifyXmlSerialization(gx);
             VerifyJsonSerialization(gx);
@@ -331,15 +345,21 @@ namespace Gedcomx.Model.Test
         [Test]
         public void CensusAndResidenceLikeFactsTest()
         {
-            Person person = new Person()
-              .SetFact(new Fact(FactType.Census, "...", "..."))
-              .SetFact(new Fact(FactType.Emigration, "...", "..."))
-              .SetFact(new Fact(FactType.Immigration, "...", "..."))
-              .SetFact(new Fact(FactType.LandTransaction, "...", "..."))
-              .SetFact(new Fact(FactType.MoveTo, "...", "..."))
-              .SetFact(new Fact(FactType.MoveFrom, "...", "..."))
-              .SetFact(new Fact(FactType.Residence, "...", "..."));
-            Gx.Gedcomx gx = new Gx.Gedcomx().SetPerson(person);
+            Person person = new()
+            {
+                Facts =
+                {
+                    new Fact(FactType.Census, "...", "..."),
+                    new Fact(FactType.Census, "...", "..."),
+                    new Fact(FactType.Emigration, "...", "..."),
+                    new Fact(FactType.Immigration, "...", "..."),
+                    new Fact(FactType.LandTransaction, "...", "..."),
+                    new Fact(FactType.MoveTo, "...", "..."),
+                    new Fact(FactType.MoveFrom, "...", "..."),
+                    new Fact(FactType.Residence, "...", "...")
+                }
+            };
+            Gx.Gedcomx gx = new() { Persons = { person } };
 
             VerifyXmlSerialization(gx);
             VerifyJsonSerialization(gx);
@@ -348,13 +368,18 @@ namespace Gedcomx.Model.Test
         [Test]
         public void MilitaryServiceFactsTest()
         {
-            Person person = new Person()
-              .SetFact(new Fact(FactType.MilitaryAward, "...", "..."))
-              .SetFact(new Fact(FactType.MilitaryDischarge, "...", "..."))
-              .SetFact(new Fact(FactType.MilitaryDraftRegistration, "...", "..."))
-              .SetFact(new Fact(FactType.MilitaryInduction, "...", "..."))
-              .SetFact(new Fact(FactType.MilitaryService, "...", "..."));
-            Gx.Gedcomx gx = new Gx.Gedcomx().SetPerson(person);
+            Person person = new()
+            {
+                Facts =
+                {
+                    new Fact(FactType.MilitaryAward, "...", "..."),
+                    new Fact(FactType.MilitaryDischarge, "...", "..."),
+                    new Fact(FactType.MilitaryDraftRegistration, "...", "..."),
+                    new Fact(FactType.MilitaryInduction, "...", "..."),
+                    new Fact(FactType.MilitaryService, "...", "...")
+                }
+            };
+            Gx.Gedcomx gx = new() { Persons = { person } };
 
             VerifyXmlSerialization(gx);
             VerifyJsonSerialization(gx);
@@ -363,12 +388,17 @@ namespace Gedcomx.Model.Test
         [Test]
         public void EducationAndOccupationFactsTest()
         {
-            Person person = new Person()
-              .SetFact(new Fact(FactType.Apprenticeship, "...", "..."))
-              .SetFact(new Fact(FactType.Education, "...", "..."))
-              .SetFact(new Fact(FactType.Occupation, "...", "..."))
-              .SetFact(new Fact(FactType.Retirement, "...", "..."));
-            Gx.Gedcomx gx = new Gx.Gedcomx().SetPerson(person);
+            Person person = new()
+            {
+                Facts =
+                {
+                    new Fact(FactType.Apprenticeship, "...", "..."),
+                    new Fact(FactType.Education, "...", "..."),
+                    new Fact(FactType.Occupation, "...", "..."),
+                    new Fact(FactType.Retirement, "...", "...")
+                }
+            };
+            Gx.Gedcomx gx = new() { Persons = { person } };
 
             VerifyXmlSerialization(gx);
             VerifyJsonSerialization(gx);
@@ -377,23 +407,28 @@ namespace Gedcomx.Model.Test
         [Test]
         public void ReligiousOrCulturalFactsTest()
         {
-            Person person = new Person()
-              .SetFact(new Fact(FactType.AdultChristening, "...", "..."))
-              .SetFact(new Fact(FactType.Baptism, "...", "..."))
-              .SetFact(new Fact(FactType.BarMitzvah, "...", "..."))
-              .SetFact(new Fact(FactType.BatMitzvah, "...", "..."))
-              .SetFact(new Fact(FactType.Caste, "...", "..."))
-              .SetFact(new Fact(FactType.Christening, "...", "..."))
-              .SetFact(new Fact(FactType.Circumcision, "...", "..."))
-              .SetFact(new Fact(FactType.Clan, "...", "..."))
-              .SetFact(new Fact(FactType.Confirmation, "...", "..."))
-              .SetFact(new Fact(FactType.Excommunication, "...", "..."))
-              .SetFact(new Fact(FactType.FirstCommunion, "...", "..."))
-              .SetFact(new Fact(FactType.Nationality, "...", "..."))
-              .SetFact(new Fact(FactType.Ordination, "...", "..."))
-              .SetFact(new Fact(FactType.Religion, "...", "..."))
-              .SetFact(new Fact(FactType.Yahrzeit, "...", "..."));
-            Gx.Gedcomx gx = new Gx.Gedcomx().SetPerson(person);
+            Person person = new()
+            {
+                Facts =
+                {
+                    new Fact(FactType.AdultChristening, "...", "..."),
+                    new Fact(FactType.Baptism, "...", "..."),
+                    new Fact(FactType.BarMitzvah, "...", "..."),
+                    new Fact(FactType.BatMitzvah, "...", "..."),
+                    new Fact(FactType.Caste, "...", "..."),
+                    new Fact(FactType.Christening, "...", "..."),
+                    new Fact(FactType.Circumcision, "...", "..."),
+                    new Fact(FactType.Clan, "...", "..."),
+                    new Fact(FactType.Confirmation, "...", "..."),
+                    new Fact(FactType.Excommunication, "...", "..."),
+                    new Fact(FactType.FirstCommunion, "...", "..."),
+                    new Fact(FactType.Nationality, "...", "..."),
+                    new Fact(FactType.Ordination, "...", "..."),
+                    new Fact(FactType.Religion, "...", "..."),
+                    new Fact(FactType.Yahrzeit, "...", "...")
+                }
+            };
+            Gx.Gedcomx gx = new() { Persons = { person } };
 
             VerifyXmlSerialization(gx);
             VerifyJsonSerialization(gx);
@@ -402,9 +437,11 @@ namespace Gedcomx.Model.Test
         [Test]
         public void CustomFactTest()
         {
-            Person person = new Person()
-              .SetFact(new Fact().SetType("data:,Eagle%20Scout").SetPlace(new PlaceReference() { Original = "..." }).SetDate(new DateInfo() { Original = "..." }));
-            Gx.Gedcomx gx = new Gx.Gedcomx().SetPerson(person);
+            Person person = new()
+            {
+                Facts = { new Fact() { Type = "data:,Eagle%20Scout", Place = new PlaceReference() { Original = "..." }, Date = new DateInfo() { Original = "..." } } }
+            };
+            Gx.Gedcomx gx = new() { Persons = { person } };
 
             VerifyXmlSerialization(gx);
             VerifyJsonSerialization(gx);
@@ -439,7 +476,10 @@ namespace Gedcomx.Model.Test
                 }
             };
 
-            Gx.Gedcomx gx = new Gx.Gedcomx().SetRelationship(couple).SetRelationship(parentChild);
+            Gx.Gedcomx gx = new()
+            {
+                Relationships = { couple, parentChild },
+            };
 
             VerifyXmlSerialization(gx);
             VerifyJsonSerialization(gx);
@@ -455,7 +495,10 @@ namespace Gedcomx.Model.Test
               .SetPart(NamePartType.Surname, "Kennedy");
             Name name = new Name().SetNameForm(nameForm);
 
-            Gx.Gedcomx gx = new Gx.Gedcomx().SetPerson(new Person().SetName(name));
+            Gx.Gedcomx gx = new()
+            {
+                Persons = { new Person().SetName(name) },
+            };
 
             VerifyXmlSerialization(gx);
             VerifyJsonSerialization(gx);
@@ -478,7 +521,10 @@ namespace Gedcomx.Model.Test
               .SetPart(NamePartType.Given, "Yamada");
             Name name = new Name().SetNameForm(kanji).SetNameForm(katakana).SetNameForm(romanized);
 
-            Gx.Gedcomx gx = new Gx.Gedcomx().SetPerson(new Person().SetName(name));
+            Gx.Gedcomx gx = new()
+            {
+                Persons = { new Person().SetName(name) },
+            };
 
             VerifyXmlSerialization(gx);
             VerifyJsonSerialization(gx);
@@ -493,7 +539,10 @@ namespace Gedcomx.Model.Test
               .SetPart(NamePartType.Surname, "Santos Tavares Melo Silva");
             Name name = new Name().SetNameForm(nameForm);
 
-            Gx.Gedcomx gx = new Gx.Gedcomx().SetPerson(new Person().SetName(name));
+            Gx.Gedcomx gx = new()
+            {
+                Persons = { new Person().SetName(name) },
+            };
 
             VerifyXmlSerialization(gx);
             VerifyJsonSerialization(gx);
@@ -512,7 +561,10 @@ namespace Gedcomx.Model.Test
               .SetPart(NamePartType.Surname, "Silva");
             Name name = new Name().SetNameForm(nameForm);
 
-            Gx.Gedcomx gx = new Gx.Gedcomx().SetPerson(new Person().SetName(name));
+            Gx.Gedcomx gx = new()
+            {
+                Persons = { new Person().SetName(name) },
+            };
 
             VerifyXmlSerialization(gx);
             VerifyJsonSerialization(gx);
@@ -527,7 +579,10 @@ namespace Gedcomx.Model.Test
               .SetPart(new NamePart().SetValue("Guðmundsdóttir").SetQualifier(new Qualifier(NamePartQualifierType.Patronymic)));
             Name name = new Name().SetNameForm(nameForm);
 
-            Gx.Gedcomx gx = new Gx.Gedcomx().SetPerson(new Person().SetName(name));
+            Gx.Gedcomx gx = new()
+            {
+                Persons = { new Person().SetName(name) },
+            };
 
             VerifyXmlSerialization(gx);
             VerifyJsonSerialization(gx);
@@ -536,11 +591,16 @@ namespace Gedcomx.Model.Test
         [Test]
         public void FactQualifiersTest()
         {
-            Person person = new Person()
-              .SetFact(new Fact(FactType.Christening, "...", "...").SetQualifier(new Qualifier(FactQualifierType.Religion, "Catholic")))
-              .SetFact(new Fact(FactType.Census, "...", "...").SetQualifier(new Qualifier(FactQualifierType.Age, "44")))
-              .SetFact(new Fact(FactType.Death, "...", "...").SetQualifier(new Qualifier(FactQualifierType.Cause, "Heart failure")));
-            Gx.Gedcomx gx = new Gx.Gedcomx().SetPerson(person);
+            Person person = new()
+            {
+                Facts =
+                {
+                    new Fact(FactType.Christening, "...", "...").SetQualifier(new Qualifier(FactQualifierType.Religion, "Catholic")),
+                    new Fact(FactType.Census, "...", "...").SetQualifier(new Qualifier(FactQualifierType.Age, "44")),
+                    new Fact(FactType.Death, "...", "...").SetQualifier(new Qualifier(FactQualifierType.Cause, "Heart failure"))
+                }
+            };
+            Gx.Gedcomx gx = new() { Persons = { person } };
 
             VerifyXmlSerialization(gx);
             VerifyJsonSerialization(gx);
@@ -713,22 +773,15 @@ namespace Gedcomx.Model.Test
                 Analysis = analysis
             };
 
-            Gx.Gedcomx gx = new Gx.Gedcomx()
-              .SetAgent(janeDoe)
-              .SetAgent(cemetery)
-              .SetAgent(hanyuPinyin)
-              .SetAttribution(researchAttribution)
-              .SetSourceDescription(gravestoneDescription)
-              .SetSourceDescription(gravestoneImageDescription)
-              .SetDocument(transcription)
-              .SetSourceDescription(transcriptionDescription)
-              .SetDocument(translation)
-              .SetSourceDescription(translationDescription)
-              .SetPerson(aloiau)
-              .SetPerson(father)
-              .SetRelationship(fatherRelationship)
-              .SetDocument(analysis)
-              .SetPerson(aloiauConclusion);
+            Gx.Gedcomx gx = new()
+            {
+                Attribution = researchAttribution,
+                Persons = { aloiau, father, aloiauConclusion },
+                Relationships = { fatherRelationship },
+                SourceDescriptions = { gravestoneDescription, gravestoneImageDescription, transcriptionDescription, translationDescription },
+                Agents = { janeDoe, cemetery, hanyuPinyin },
+                Documents = { transcription, translation, analysis }
+            };
 
             VerifyXmlSerialization(gx);
             VerifyJsonSerialization(gx);
@@ -737,10 +790,10 @@ namespace Gedcomx.Model.Test
         [Test]
         public void GedcomxWithRelationships()
         {
-            var sut = new Gx.Gedcomx
+            Gx.Gedcomx sut = new()
             {
-                Persons = new List<Person> { new Person() },
-                Relationships = new List<Relationship> { new Relationship() }
+                Persons = { new Person() },
+                Relationships = { new Relationship() }
             };
 
             VerifyXmlSerialization(sut);
@@ -755,24 +808,7 @@ namespace Gedcomx.Model.Test
 
             stream.Seek(0, SeekOrigin.Begin);
             var result = new StreamReader(stream).ReadToEnd();
-            Assert.That(result, Does.Contain("<gedcomx "));
-            Assert.That(result, Does.Contain("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""));
-            Assert.That(result, Does.Contain("xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\""));
-            Assert.That(result, Does.Contain("xmlns=\"http://gedcomx.org/v1/\""));
-            Assert.That(result.Contains("<lang "), Is.EqualTo(sut.Lang != null));
-            Assert.That(result.Contains("<description "), Is.EqualTo(sut.DescriptionRef != null));
-            Assert.That(result.Contains("<profile"), Is.EqualTo(sut.Profile != null));
-            Assert.That(result.Contains("<attribution"), Is.EqualTo(sut.Attribution != null));
-            Assert.That(result.Contains("<person"), Is.EqualTo(sut.Persons != null && sut.Persons.Count > 0));
-            Assert.That(result.Contains("<relationship "), Is.EqualTo(sut.Relationships != null && sut.Relationships.Count > 0));
-            Assert.That(result.Contains("<sourceDescription "), Is.EqualTo(sut.SourceDescriptions != null && sut.SourceDescriptions.Count > 0));
-            Assert.That(result.Contains("<agent "), Is.EqualTo(sut.Agents != null && sut.Agents.Count > 0));
-            Assert.That(result.Contains("<event "), Is.EqualTo(sut.Events != null && sut.Events.Count > 0));
-            Assert.That(result.Contains("<place "), Is.EqualTo(sut.Places != null && sut.Places.Count > 0));
-            Assert.That(result.Contains("<document "), Is.EqualTo(sut.Documents != null && sut.Documents.Count > 0));
-            Assert.That(result.Contains("<collection "), Is.EqualTo(sut.Collections != null && sut.Collections.Count > 0));
-            Assert.That(result.Contains("<field "), Is.EqualTo(sut.Fields != null && sut.Fields.Count > 0));
-            Assert.That(result.Contains("<recordDescriptor "), Is.EqualTo(sut.RecordDescriptors != null && sut.RecordDescriptors.Count > 0));
+            result.ShouldContain(sut);
         }
 
         private static void VerifyJsonSerialization(Gx.Gedcomx sut)
@@ -785,32 +821,35 @@ namespace Gedcomx.Model.Test
 
         private static PlaceDescription CreatePopesCreek()
         {
-            PlaceDescription place = new();
-            place.SetId("888");
-            place.SetLatitude(38.192353);
-            place.SetLongitude(-76.904069);
-            place.SetName("Pope's Creek, Westmoreland, Virginia, United States");
-            return place;
+            return new()
+            {
+                Id = "888",
+                Latitude = 38.192353,
+                Longitude = -76.904069,
+                Names = { "Pope's Creek, Westmoreland, Virginia, United States" }
+            };
         }
 
         private static PlaceDescription CreateMountVernon()
         {
-            PlaceDescription place = new();
-            place.SetId("999");
-            place.SetLatitude(38.721144);
-            place.SetLongitude(-77.109461);
-            place.SetName("Mount Vernon, Fairfax County, Virginia, United States");
-            return place;
+            return new()
+            {
+                Id = "999",
+                Latitude = 38.721144,
+                Longitude = -77.109461,
+                Names = { "Mount Vernon, Fairfax County, Virginia, United States" }
+            };
         }
 
         private static PlaceDescription CreateChestnutGrove()
         {
-            PlaceDescription place = new();
-            place.SetId("KKK");
-            place.SetLatitude(37.518304);
-            place.SetLongitude(-76.984148);
-            place.SetName("Chestnut Grove, New Kent, Virginia, United States");
-            return place;
+            return new()
+            {
+                Id = "KKK",
+                Latitude = 37.518304,
+                Longitude = -76.984148,
+                Names = { "Chestnut Grove, New Kent, Virginia, United States" }
+            };
         }
 
         private static Agent CreateContributor()

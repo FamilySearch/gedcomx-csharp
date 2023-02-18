@@ -104,7 +104,7 @@ namespace Gx.Rs.Api
         {
             get
             {
-                return Entity == null ? null : Entity.Collections == null ? null : Entity.Collections.FirstOrDefault();
+                return Entity == null ? null : Entity.AnyCollections() ? Entity.Collections.FirstOrDefault() : null;
             }
         }
 
@@ -118,7 +118,7 @@ namespace Gx.Rs.Api
         {
             get
             {
-                return Entity == null ? null : Entity.Collections == null ? null : Entity.Collections.FirstOrDefault();
+                return Entity == null ? null : Entity.AnyCollections() ? Entity.Collections.FirstOrDefault() : null;
             }
         }
 
@@ -706,7 +706,7 @@ namespace Gx.Rs.Api
         /// <returns>The <see cref="SourceDescription"/>s for the current <see cref="Gedcomx"/> entity.</returns>
         public List<SourceDescription> GetSourceDescriptions()
         {
-            return this.Entity == null ? null : this.Entity.SourceDescriptions;
+            return Entity?.SourceDescriptions;
         }
 
         /// <summary>

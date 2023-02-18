@@ -140,7 +140,7 @@ namespace FamilySearch.Api.Ft
         {
             get
             {
-                return Entity == null ? null : Entity.Persons;
+                return Entity == null ? null : Entity.AnyPersons() ? Entity.Persons : null;
             }
         }
 

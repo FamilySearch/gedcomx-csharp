@@ -1,11 +1,11 @@
-﻿using RestSharp;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+
+using Gx.Links;
 using Gx.Rs.Api.Util;
 using Gx.Source;
-using Gx.Links;
+
+using RestSharp;
 
 namespace Gx.Rs.Api
 {
@@ -49,7 +49,7 @@ namespace Gx.Rs.Api
         {
             get
             {
-                return Entity == null ? null : Entity.SourceDescriptions;
+                return Entity?.SourceDescriptions;
             }
         }
 

@@ -1,9 +1,9 @@
-﻿using Gx.Conclusion;
-using Gx.Links;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+
+using Gx.Conclusion;
+using Gx.Links;
 
 namespace Gx.Rs.Api.Util
 {
@@ -82,9 +82,9 @@ namespace Gx.Rs.Api.Util
             List<Link> embeddedLinks = new List<Link>();
             ISet<String> embeddedRels = EmbeddedLinkRels;
 
-            List<Person> persons = entity.Persons;
-            if (persons != null)
+            if (entity.AnyPersons())
             {
+                List<Person> persons = entity.Persons;
                 foreach (Person person in persons)
                 {
                     foreach (String embeddedRel in embeddedRels)
@@ -98,9 +98,9 @@ namespace Gx.Rs.Api.Util
                 }
             }
 
-            List<Relationship> relationships = entity.Relationships;
-            if (relationships != null)
+            if (entity.AnyRelationships())
             {
+                List<Relationship> relationships = entity.Relationships;
                 foreach (Relationship relationship in relationships)
                 {
                     foreach (String embeddedRel in embeddedRels)

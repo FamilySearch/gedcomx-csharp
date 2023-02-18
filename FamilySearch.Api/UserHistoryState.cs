@@ -1,13 +1,12 @@
-﻿using Gx.Rs.Api;
+﻿using System;
+using System.Collections.Generic;
+using System.Net;
+
+using Gx.Rs.Api;
 using Gx.Rs.Api.Util;
 using Gx.Source;
+
 using RestSharp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FamilySearch.Api
 {
@@ -61,7 +60,7 @@ namespace FamilySearch.Api
         {
             get
             {
-                return Entity == null ? null : Entity.SourceDescriptions;
+                return Entity?.SourceDescriptions;
             }
         }
     }

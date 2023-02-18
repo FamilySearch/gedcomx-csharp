@@ -133,21 +133,21 @@ namespace Gedcomx.Rs.Api.Test.Examples
             Person aloiauConclusion = (Person)new Person().SetEvidence(aloiau).SetAnalysis(analysis).SetId("C-1");
 
             Gx.Gedcomx gx = new Gx.Gedcomx()
-              .SetAgent(janeDoe)
-              .SetAgent(cemetery)
-              .SetAgent(hanyuPinyin)
+              .AddAgent(janeDoe)
+              .AddAgent(cemetery)
+              .AddAgent(hanyuPinyin)
               .SetAttribution(researchAttribution)
-              .SetSourceDescription(gravestoneDescription)
-              .SetSourceDescription(gravestoneImageDescription)
-              .SetDocument(transcription)
-              .SetSourceDescription(transcriptionDescription)
-              .SetDocument(translation)
-              .SetSourceDescription(translationDescription)
-              .SetPerson(aloiau)
-              .SetPerson(father)
-              .SetRelationship(fatherRelationship)
-              .SetDocument(analysis)
-              .SetPerson(aloiauConclusion);
+              .AddSourceDescription(gravestoneDescription)
+              .AddSourceDescription(gravestoneImageDescription)
+              .AddDocument(transcription)
+              .AddSourceDescription(transcriptionDescription)
+              .AddDocument(translation)
+              .AddSourceDescription(translationDescription)
+              .AddPerson(aloiau)
+              .AddPerson(father)
+              .AddRelationship(fatherRelationship)
+              .AddDocument(analysis)
+              .AddPerson(aloiauConclusion);
 
             xmlSerializer.Deserialize<Gx.Gedcomx>(xmlSerializer.Serialize(gx));
             jsonSerializer.Deserialize<Gx.Gedcomx>(jsonSerializer.Serialize(gx));

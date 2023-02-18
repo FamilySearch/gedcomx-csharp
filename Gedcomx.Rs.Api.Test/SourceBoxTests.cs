@@ -47,8 +47,7 @@ namespace Gedcomx.Rs.Api.Test
 
             Assert.DoesNotThrow(() => subcollection.IfSuccessful());
             Assert.That(subcollection.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
-            Assert.That(subcollection.Entity.Collections, Is.Not.Null);
-            Assert.That(subcollection.Entity.Collections, Is.Not.Empty);
+            Assert.That(subcollection.Entity.AnyCollections(), Is.True);
         }
 
         [Test]

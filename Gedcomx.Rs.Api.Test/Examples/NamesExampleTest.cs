@@ -31,7 +31,7 @@ namespace Gedcomx.Rs.Api.Test.Examples
               .SetPart(NamePartType.Surname, "Kennedy");
             Name name = new Name().SetNameForm(nameForm);
 
-            Gx.Gedcomx gx = new Gx.Gedcomx().SetPerson(new Person().SetName(name));
+            Gx.Gedcomx gx = new Gx.Gedcomx().AddPerson(new Person().SetName(name));
             xmlSerializer.Deserialize<Gx.Gedcomx>(xmlSerializer.Serialize(gx));
             jsonSerializer.Deserialize<Gx.Gedcomx>(jsonSerializer.Serialize(gx));
         }
@@ -53,7 +53,7 @@ namespace Gedcomx.Rs.Api.Test.Examples
               .SetPart(NamePartType.Given, "Yamada");
             Name name = new Name().SetNameForm(kanji).SetNameForm(katakana).SetNameForm(romanized);
 
-            Gx.Gedcomx gx = new Gx.Gedcomx().SetPerson(new Person().SetName(name));
+            Gx.Gedcomx gx = new Gx.Gedcomx().AddPerson(new Person().SetName(name));
             xmlSerializer.Deserialize<Gx.Gedcomx>(xmlSerializer.Serialize(gx));
             jsonSerializer.Deserialize<Gx.Gedcomx>(jsonSerializer.Serialize(gx));
         }
@@ -67,7 +67,7 @@ namespace Gedcomx.Rs.Api.Test.Examples
               .SetPart(NamePartType.Surname, "Santos Tavares Melo Silva");
             Name name = new Name().SetNameForm(nameForm);
 
-            Gx.Gedcomx gx = new Gx.Gedcomx().SetPerson(new Person().SetName(name));
+            Gx.Gedcomx gx = new Gx.Gedcomx().AddPerson(new Person().SetName(name));
             xmlSerializer.Deserialize<Gx.Gedcomx>(xmlSerializer.Serialize(gx));
             jsonSerializer.Deserialize<Gx.Gedcomx>(jsonSerializer.Serialize(gx));
         }
@@ -85,7 +85,7 @@ namespace Gedcomx.Rs.Api.Test.Examples
               .SetPart(NamePartType.Surname, "Silva");
             Name name = new Name().SetNameForm(nameForm);
 
-            Gx.Gedcomx gx = new Gx.Gedcomx().SetPerson(new Person().SetName(name));
+            Gx.Gedcomx gx = new Gx.Gedcomx().AddPerson(new Person().SetName(name));
             xmlSerializer.Deserialize<Gx.Gedcomx>(xmlSerializer.Serialize(gx));
             jsonSerializer.Deserialize<Gx.Gedcomx>(jsonSerializer.Serialize(gx));
         }
@@ -99,7 +99,7 @@ namespace Gedcomx.Rs.Api.Test.Examples
               .SetPart(new NamePart().SetValue("Guðmundsdóttir").SetQualifier(new Qualifier(NamePartQualifierType.Patronymic)));
             Name name = new Name().SetNameForm(nameForm);
 
-            Gx.Gedcomx gx = new Gx.Gedcomx().SetPerson(new Person().SetName(name));
+            Gx.Gedcomx gx = new Gx.Gedcomx().AddPerson(new Person().SetName(name));
             xmlSerializer.Deserialize<Gx.Gedcomx>(xmlSerializer.Serialize(gx));
             jsonSerializer.Deserialize<Gx.Gedcomx>(jsonSerializer.Serialize(gx));
         }

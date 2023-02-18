@@ -246,7 +246,7 @@ namespace Gedcomx.Rs.Api.Test
             var state2 = husband.LoadSpouseRelationships(FamilySearchOptions.IncludePersons());
             Assert.DoesNotThrow(() => state2.IfSuccessful());
             Assert.That(state2.Entity, Is.Not.Null);
-            Assert.That(state2.Entity.Persons, Is.Not.Null);
+            Assert.That(state2.Entity.AnyPersons(), Is.True);
             Assert.That(state2.Entity.Persons, Has.Count.EqualTo(2));
         }
 

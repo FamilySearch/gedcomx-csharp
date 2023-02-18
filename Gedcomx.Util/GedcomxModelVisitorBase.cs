@@ -48,7 +48,7 @@ namespace Gx.Util
         {
             this.contextStack.Push(gx);
 
-            if (gx.Persons != null)
+            if (gx.AnyPersons())
             {
                 foreach (Person person in gx.Persons)
                 {
@@ -59,7 +59,7 @@ namespace Gx.Util
                 }
             }
 
-            if (gx.Relationships != null)
+            if (gx.AnyRelationships())
             {
                 foreach (Relationship relationship in gx.Relationships)
                 {
@@ -70,7 +70,7 @@ namespace Gx.Util
                 }
             }
 
-            if (gx.SourceDescriptions != null)
+            if (gx.AnySourceDescriptions())
             {
                 foreach (SourceDescription sourceDescription in gx.SourceDescriptions)
                 {
@@ -81,7 +81,7 @@ namespace Gx.Util
                 }
             }
 
-            if (gx.Agents != null)
+            if (gx.AnyAgents())
             {
                 foreach (Gx.Agent.Agent agent in gx.Agents)
                 {
@@ -92,7 +92,7 @@ namespace Gx.Util
                 }
             }
 
-            if (gx.Events != null)
+            if (gx.AnyEvents())
             {
                 foreach (Event e in gx.Events)
                 {
@@ -103,7 +103,7 @@ namespace Gx.Util
                 }
             }
 
-            if (gx.Places != null)
+            if (gx.AnyPlaces())
             {
                 foreach (PlaceDescription place in gx.Places)
                 {
@@ -114,7 +114,7 @@ namespace Gx.Util
                 }
             }
 
-            if (gx.Documents != null)
+            if (gx.AnyDocuments())
             {
                 foreach (Document document in gx.Documents)
                 {
@@ -125,7 +125,7 @@ namespace Gx.Util
                 }
             }
 
-            if (gx.Fields != null)
+            if (gx.AnyFields())
             {
                 foreach (Field field in gx.Fields)
                 {
@@ -136,7 +136,7 @@ namespace Gx.Util
                 }
             }
 
-            if (gx.RecordDescriptors != null)
+            if (gx.AnyRecordDescriptors())
             {
                 foreach (RecordDescriptor rd in gx.RecordDescriptors)
                 {
@@ -147,7 +147,7 @@ namespace Gx.Util
                 }
             }
 
-            if (gx.Collections != null)
+            if (gx.AnyCollections())
             {
                 foreach (Collection collection in gx.Collections)
                 {

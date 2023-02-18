@@ -41,9 +41,9 @@ namespace Gedcomx.Rs.Api.Test.Examples
             {
                 Persons = new List<Person>() { george, martha }
             };
-            gx.SetRelationship(marriage);
+            gx.AddRelationship(marriage);
             gx.SourceDescriptions = sources;
-            gx.SetAgent(contributor);
+            gx.AddAgent(contributor);
             gx.SetAttribution(new Attribution());
             gx.Attribution.SetContributor(new ResourceReference());
             gx.Attribution.Contributor.SetResource("#" + contributor.Id);
@@ -59,7 +59,7 @@ namespace Gedcomx.Rs.Api.Test.Examples
             place.SetId("888");
             place.SetLatitude(38.192353);
             place.SetLongitude(-76.904069);
-            place.SetName("Pope's Creek, Westmoreland, Virginia, United States");
+            place.AddName("Pope's Creek, Westmoreland, Virginia, United States");
             return place;
         }
 
@@ -69,7 +69,7 @@ namespace Gedcomx.Rs.Api.Test.Examples
             place.SetId("999");
             place.SetLatitude(38.721144);
             place.SetLongitude(-77.109461);
-            place.SetName("Mount Vernon, Fairfax County, Virginia, United States");
+            place.AddName("Mount Vernon, Fairfax County, Virginia, United States");
             return place;
         }
 
@@ -79,7 +79,7 @@ namespace Gedcomx.Rs.Api.Test.Examples
             place.SetId("KKK");
             place.SetLatitude(37.518304);
             place.SetLongitude(-76.984148);
-            place.SetName("Chestnut Grove, New Kent, Virginia, United States");
+            place.AddName("Chestnut Grove, New Kent, Virginia, United States");
             return place;
         }
 

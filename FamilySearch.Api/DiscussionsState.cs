@@ -1,14 +1,15 @@
-﻿using Gx.Fs;
-using Gx.Rs.Api;
-using RestSharp;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Gx.Rs.Api.Util;
+
+using FamilySearch.Api.Util;
+
+using Gx.Fs;
 using Gx.Fs.Discussions;
 using Gx.Links;
-using FamilySearch.Api.Util;
+using Gx.Rs.Api;
+using Gx.Rs.Api.Util;
+
+using RestSharp;
 
 namespace FamilySearch.Api
 {
@@ -52,7 +53,7 @@ namespace FamilySearch.Api
         {
             get
             {
-                return Entity == null ? null : Entity.Discussions;
+                return Entity?.Discussions;
             }
         }
 

@@ -108,7 +108,7 @@ namespace FamilySearch.Api.Ft
         {
             get
             {
-                return Entity == null ? null : Entity.ChildAndParentsRelationships == null ? null : Entity.ChildAndParentsRelationships.FirstOrDefault();
+                return Entity?.ChildAndParentsRelationships == null ? null : Entity.ChildAndParentsRelationships.FirstOrDefault();
             }
         }
 
@@ -123,7 +123,7 @@ namespace FamilySearch.Api.Ft
         {
             get
             {
-                return FatherFact != null ? FatherFact : MotherFact != null ? MotherFact : null;
+                return FatherFact ?? (MotherFact ?? null);
             }
         }
 
@@ -183,7 +183,7 @@ namespace FamilySearch.Api.Ft
             get
             {
                 ChildAndParentsRelationship relationship = Relationship;
-                return relationship == null ? null : relationship.Sources == null ? null : relationship.Sources.FirstOrDefault();
+                return relationship == null ? null : !relationship.AnySources() ? null : relationship.Sources.FirstOrDefault();
             }
         }
 
@@ -364,7 +364,7 @@ namespace FamilySearch.Api.Ft
             get
             {
                 ChildAndParentsRelationship me = Relationship;
-                return me == null ? null : me.Id;
+                return me?.Id;
             }
         }
 

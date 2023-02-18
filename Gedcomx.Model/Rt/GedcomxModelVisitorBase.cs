@@ -17,123 +17,93 @@ namespace Gedcomx.Model.Rt
         {
             this.contextStack.Push(gx);
 
-            List<Person> persons = gx.Persons;
-            if (persons != null)
+            if (gx.AnyPersons())
             {
+                List<Person> persons = gx.Persons;
                 foreach (Person person in persons)
                 {
-                    if (person != null)
-                    {
-                        person.Accept(this);
-                    }
+                    person?.Accept(this);
                 }
             }
 
-            List<Relationship> relationships = gx.Relationships;
-            if (relationships != null)
+            if (gx.AnyRelationships())
             {
+                List<Relationship> relationships = gx.Relationships;
                 foreach (Relationship relationship in relationships)
                 {
-                    if (relationship != null)
-                    {
-                        relationship.Accept(this);
-                    }
+                    relationship?.Accept(this);
                 }
             }
 
-            List<SourceDescription> sourceDescriptions = gx.SourceDescriptions;
-            if (sourceDescriptions != null)
+            if (gx.AnySourceDescriptions())
             {
+                List<SourceDescription> sourceDescriptions = gx.SourceDescriptions;
                 foreach (SourceDescription sourceDescription in sourceDescriptions)
                 {
-                    if (sourceDescription != null)
-                    {
-                        sourceDescription.Accept(this);
-                    }
+                    sourceDescription?.Accept(this);
                 }
             }
 
-            List<Agent> agents = gx.Agents;
-            if (agents != null)
+            if (gx.AnyAgents())
             {
+                List<Agent> agents = gx.Agents;
                 foreach (Agent agent in agents)
                 {
-                    if (agent != null)
-                    {
-                        agent.Accept(this);
-                    }
+                    agent?.Accept(this);
                 }
             }
 
-            List<Event> events = gx.Events;
-            if (events != null)
+            if (gx.AnyEvents())
             {
+                List<Event> events = gx.Events;
                 foreach (Event @event in events)
                 {
-                    if (@event != null)
-                    {
-                        @event.Accept(this);
-                    }
+                    @event?.Accept(this);
                 }
             }
 
-            List<PlaceDescription> places = gx.Places;
-            if (places != null)
+            if (gx.AnyPlaces())
             {
+                List<PlaceDescription> places = gx.Places;
                 foreach (PlaceDescription place in places)
                 {
-                    if (place != null)
-                    {
-                        place.Accept(this);
-                    }
+                    place?.Accept(this);
                 }
             }
 
-            List<Document> documents = gx.Documents;
-            if (documents != null)
+            if (gx.AnyDocuments())
             {
+                List<Document> documents = gx.Documents;
                 foreach (Document document in documents)
                 {
-                    if (document != null)
-                    {
-                        document.Accept(this);
-                    }
+                    document?.Accept(this);
                 }
             }
 
-            List<Field> fields = gx.Fields;
-            if (fields != null)
+            if (gx.AnyFields())
             {
+                List<Field> fields = gx.Fields;
                 foreach (Field field in fields)
                 {
-                    if (field != null)
-                    {
-                        field.Accept(this);
-                    }
+                    field?.Accept(this);
                 }
             }
 
-            List<RecordDescriptor> recordDescriptors = gx.RecordDescriptors;
-            if (recordDescriptors != null)
+            if (gx.AnyRecordDescriptors())
             {
+                List<RecordDescriptor> recordDescriptors = gx.RecordDescriptors;
                 foreach (RecordDescriptor rd in recordDescriptors)
                 {
-                    if (rd != null)
-                    {
-                        rd.Accept(this);
-                    }
+                    rd?.Accept(this);
                 }
             }
 
-            List<Collection> collections = gx.Collections;
-            if (collections != null)
+            if (gx.AnyCollections())
             {
+                List<Collection> collections = gx.Collections;
                 foreach (Collection collection in collections)
                 {
-                    if (collection != null)
-                    {
-                        collection.Accept(this);
-                    }
+                    collection?.Accept(this);
                 }
             }
 

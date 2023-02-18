@@ -80,7 +80,7 @@ namespace Gx.Rs.Api
                 selfLink = ancestor.Person.GetLink(Rel.SELF);
             }
 
-            String personUri = selfLink == null || selfLink.Href == null ? null : selfLink.Href;
+            string personUri = selfLink == null || selfLink.Href == null ? null : selfLink.Href;
             if (personUri == null)
             {
                 return null;

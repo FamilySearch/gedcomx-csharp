@@ -31,7 +31,7 @@ namespace Gx.Rs.Api.Util
         protected List<Person> BuildArray(Gedcomx gx)
         {
             List<Person> ancestry = new List<Person>();
-            if (gx.Persons != null)
+            if (gx.AnyPersons())
             {
                 foreach (Person person in gx.Persons)
                 {

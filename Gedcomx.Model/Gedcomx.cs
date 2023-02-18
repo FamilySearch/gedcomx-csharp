@@ -5,6 +5,7 @@
 // </auto-generated>
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using Gedcomx.Model.Rt;
 
@@ -134,12 +135,17 @@ namespace Gx
         {
             get
             {
-                return this._persons;
+                return this._persons ?? (_persons = new System.Collections.Generic.List<Gx.Conclusion.Person>());
             }
             set
             {
                 this._persons = value;
             }
+        }
+        public bool ShouldSerializePersons() => AnyPersons();
+        public bool AnyPersons()
+        {
+            return _persons?.Any() ?? false;
         }
         /// <summary>
         ///  The relationships included in this genealogical data set.
@@ -150,12 +156,17 @@ namespace Gx
         {
             get
             {
-                return this._relationships;
+                return this._relationships ?? (_relationships = new System.Collections.Generic.List<Gx.Conclusion.Relationship>());
             }
             set
             {
                 this._relationships = value;
             }
+        }
+        public bool ShouldSerializeRelationships() => AnyRelationships();
+        public bool AnyRelationships()
+        {
+            return _relationships?.Any() ?? false;
         }
         /// <summary>
         ///  The descriptions of sources included in this genealogical data set.
@@ -166,12 +177,17 @@ namespace Gx
         {
             get
             {
-                return this._sourceDescriptions;
+                return this._sourceDescriptions ?? (_sourceDescriptions = new System.Collections.Generic.List<Gx.Source.SourceDescription>());
             }
             set
             {
                 this._sourceDescriptions = value;
             }
+        }
+        public bool ShouldSerializeSourceDescriptions() => AnySourceDescriptions();
+        public bool AnySourceDescriptions()
+        {
+            return _sourceDescriptions?.Any() ?? false;
         }
         /// <summary>
         ///  The agents included in this genealogical data set.
@@ -182,12 +198,17 @@ namespace Gx
         {
             get
             {
-                return this._agents;
+                return this._agents ?? (_agents = new System.Collections.Generic.List<Gx.Agent.Agent>());
             }
             set
             {
                 this._agents = value;
             }
+        }
+        public bool ShouldSerializeAgents() => AnyAgents();
+        public bool AnyAgents()
+        {
+            return _agents?.Any() ?? false;
         }
         /// <summary>
         ///  The events included in this genealogical data set.
@@ -198,12 +219,17 @@ namespace Gx
         {
             get
             {
-                return this._events;
+                return this._events ?? (_events = new System.Collections.Generic.List<Gx.Conclusion.Event>());
             }
             set
             {
                 this._events = value;
             }
+        }
+        public bool ShouldSerializeEvents() => AnyEvents();
+        public bool AnyEvents()
+        {
+            return _events?.Any() ?? false;
         }
         /// <summary>
         ///  The places included in this genealogical data set.
@@ -214,12 +240,17 @@ namespace Gx
         {
             get
             {
-                return this._places;
+                return this._places ?? (_places = new System.Collections.Generic.List<Gx.Conclusion.PlaceDescription>());
             }
             set
             {
                 this._places = value;
             }
+        }
+        public bool ShouldSerializePlaces() => AnyPlaces();
+        public bool AnyPlaces()
+        {
+            return _places?.Any() ?? false;
         }
         /// <summary>
         ///  The documents included in this genealogical data set.
@@ -230,12 +261,17 @@ namespace Gx
         {
             get
             {
-                return this._documents;
+                return this._documents ?? (_documents = new System.Collections.Generic.List<Gx.Conclusion.Document>());
             }
             set
             {
                 this._documents = value;
             }
+        }
+        public bool ShouldSerializeDocuments() => AnyDocuments();
+        public bool AnyDocuments()
+        {
+            return _documents?.Any() ?? false;
         }
         /// <summary>
         ///  The collections included in this genealogical data set.
@@ -246,12 +282,17 @@ namespace Gx
         {
             get
             {
-                return this._collections;
+                return this._collections ?? (_collections = new System.Collections.Generic.List<Gx.Records.Collection>());
             }
             set
             {
                 this._collections = value;
             }
+        }
+        public bool ShouldSerializeCollections() => AnyCollections();
+        public bool AnyCollections()
+        {
+            return _collections?.Any() ?? false;
         }
         /// <summary>
         ///  The extracted fields included in this genealogical data set.
@@ -262,12 +303,17 @@ namespace Gx
         {
             get
             {
-                return this._fields;
+                return this._fields ?? (_fields = new System.Collections.Generic.List<Gx.Records.Field>());
             }
             set
             {
                 this._fields = value;
             }
+        }
+        public bool ShouldSerializeFields() => AnyFields();
+        public bool AnyFields()
+        {
+            return _fields?.Any() ?? false;
         }
         /// <summary>
         ///  The record descriptors included in this genealogical data set.
@@ -278,153 +324,147 @@ namespace Gx
         {
             get
             {
-                return this._recordDescriptors;
+                return this._recordDescriptors ?? (_recordDescriptors = new System.Collections.Generic.List<Gx.Records.RecordDescriptor>());
             }
             set
             {
                 this._recordDescriptors = value;
             }
         }
-
-        public Gedcomx AddCollection(Collection collection)
+        public bool ShouldSerializeRecordDescriptors() => AnyRecordDescriptors();
+        public bool AnyRecordDescriptors()
         {
-            if (collection != null)
-            {
-                if (Collections == null)
-                {
-                    Collections = new List<Collection>();
-                }
-
-                Collections.Add(collection);
-            }
-
-            return this;
+            return _recordDescriptors?.Any() ?? false;
         }
 
-        public void AddPerson(Person person)
+        /// <summary>
+        /// Add a person to the data set.
+        /// </summary>
+        /// <param name="person">The person to be added.</param>
+        public Gedcomx AddPerson(Person person)
         {
             if (person != null)
             {
-                if (Persons == null)
-                {
-                    Persons = new List<Person>();
-                }
-
                 Persons.Add(person);
             }
+            return this;
         }
 
         /// <summary>
         /// Add a relationship to the data set.
         /// </summary>
         /// <param name="relationship">The relationship to be added.</param>
-        public void AddRelationship(Relationship relationship)
+        public Gedcomx AddRelationship(Relationship relationship)
         {
             if (relationship != null)
             {
-                if (Relationships == null)
-                    Relationships = new List<Relationship>();
                 Relationships.Add(relationship);
             }
+            return this;
         }
 
         /// <summary>
         /// Add a source description to the data set.
         /// </summary>
         /// <param name="sourceDescription">The source description to be added.</param>
-        public void AddSourceDescription(SourceDescription sourceDescription)
+        public Gedcomx AddSourceDescription(SourceDescription sourceDescription)
         {
             if (sourceDescription != null)
             {
-                if (SourceDescriptions == null)
-                    SourceDescriptions = new List<SourceDescription>();
                 SourceDescriptions.Add(sourceDescription);
             }
+            return this;
         }
 
         /// <summary>
         /// Add a agent to the data set.
         /// </summary>
         /// <param name="agent">The agent to be added.</param>
-        public void AddAgent(Gx.Agent.Agent agent)
+        public Gedcomx AddAgent(Gx.Agent.Agent agent)
         {
             if (agent != null)
             {
-                if (Agents == null)
-                    Agents = new List<Gx.Agent.Agent>();
                 Agents.Add(agent);
             }
+            return this;
         }
 
         /// <summary>
         /// Add a event to the data set.
         /// </summary>
         /// <param name="event">The event to be added.</param>
-        public void AddEvent(Event @event)
+        public Gedcomx AddEvent(Event @event)
         {
             if (@event != null)
             {
-                if (Events == null)
-                    Events = new List<Event>();
                 Events.Add(@event);
             }
+            return this;
         }
 
         /// <summary>
         /// Add a place to the data set.
         /// </summary>
         /// <param name="place">The place to be added.</param>
-        public void AddPlace(PlaceDescription place)
+        public Gedcomx AddPlace(PlaceDescription place)
         {
             if (place != null)
             {
-                if (Places == null)
-                    Places = new List<PlaceDescription>();
                 Places.Add(place);
             }
+            return this;
         }
 
         /// <summary>
         /// Add a document to the data set.
         /// </summary>
         /// <param name="document">The document to be added.</param>
-        public void AddDocument(Document document)
+        public Gedcomx AddDocument(Document document)
         {
             if (document != null)
             {
-                if (Documents == null)
-                    Documents = new List<Document>();
                 Documents.Add(document);
             }
+            return this;
+        }
+
+        /// <summary>
+        /// Add a collection to the data set.
+        /// </summary>
+        /// <param name="collection">The collection to be added.</param>
+        public Gedcomx AddCollection(Collection collection)
+        {
+            if (collection != null)
+            {
+                Collections.Add(collection);
+            }
+            return this;
         }
 
         /// <summary>
         /// Add a field to the data set.
         /// </summary>
         /// <param name="field">The field to be added.</param>
-        public void AddField(Field field)
+        public Gedcomx AddField(Field field)
         {
             if (field != null)
             {
-                if (Fields == null)
-                    Fields = new List<Field>();
                 Fields.Add(field);
             }
+            return this;
         }
 
-        /**
-         * Add a recordDescriptor to the data set.
-         *
-         * @param recordDescriptor The recordDescriptor to be added.
-         */
-        public void AddRecordDescriptor(RecordDescriptor recordDescriptor)
+        /// <summary>
+        /// Add a recordDescriptor to the data set.
+        /// </summary>
+        /// <param name="recordDescriptor">The recordDescriptor to be added.</param>
+        public Gedcomx AddRecordDescriptor(RecordDescriptor recordDescriptor)
         {
             if (recordDescriptor != null)
             {
-                if (RecordDescriptors == null)
-                    RecordDescriptors = new List<RecordDescriptor>();
                 RecordDescriptors.Add(recordDescriptor);
             }
+            return this;
         }
 
         public virtual void Embed(Gedcomx gedcomx)
@@ -457,15 +497,15 @@ namespace Gx
                 }
             }
 
-            List<Person> persons = gedcomx.Persons;
-            if (persons != null)
+            if (gedcomx.AnyPersons())
             {
+                List<Person> persons = gedcomx.Persons;
                 foreach (Person person in persons)
                 {
                     bool found = false;
                     if (person.Id != null)
                     {
-                        if (Persons != null)
+                        if (AnyPersons())
                         {
                             foreach (Person target in Persons)
                             {
@@ -486,15 +526,15 @@ namespace Gx
                 }
             }
 
-            List<Relationship> relationships = gedcomx.Relationships;
-            if (relationships != null)
+            if (gedcomx.AnyRelationships())
             {
+                List<Relationship> relationships = gedcomx.Relationships;
                 foreach (Relationship relationship in relationships)
                 {
                     bool found = false;
                     if (relationship.Id != null)
                     {
-                        if (Relationships != null)
+                        if (AnyRelationships())
                         {
                             foreach (Relationship target in Relationships)
                             {
@@ -515,15 +555,15 @@ namespace Gx
                 }
             }
 
-            List<SourceDescription> sourceDescriptions = gedcomx.SourceDescriptions;
-            if (sourceDescriptions != null)
+            if (gedcomx.AnySourceDescriptions())
             {
+                List<SourceDescription> sourceDescriptions = gedcomx.SourceDescriptions;
                 foreach (SourceDescription sourceDescription in sourceDescriptions)
                 {
                     bool found = false;
                     if (sourceDescription.Id != null)
                     {
-                        if (SourceDescriptions != null)
+                        if (AnySourceDescriptions())
                         {
                             foreach (SourceDescription target in SourceDescriptions)
                             {
@@ -544,15 +584,15 @@ namespace Gx
                 }
             }
 
-            List<Gx.Agent.Agent> agents = gedcomx.Agents;
-            if (agents != null)
+            if (gedcomx.AnyAgents())
             {
+                List<Gx.Agent.Agent> agents = gedcomx.Agents;
                 foreach (Gx.Agent.Agent agent in agents)
                 {
                     bool found = false;
                     if (agent.Id != null)
                     {
-                        if (Agents != null)
+                        if (AnyAgents())
                         {
                             foreach (Gx.Agent.Agent target in Agents)
                             {
@@ -573,15 +613,15 @@ namespace Gx
                 }
             }
 
-            List<Event> events = gedcomx.Events;
-            if (events != null)
+            if (gedcomx.AnyEvents())
             {
+                List<Event> events = gedcomx.Events;
                 foreach (Event @event in events)
                 {
                     bool found = false;
                     if (@event.Id != null)
                     {
-                        if (Events != null)
+                        if (AnyEvents())
                         {
                             foreach (Event target in Events)
                             {
@@ -602,15 +642,15 @@ namespace Gx
                 }
             }
 
-            List<PlaceDescription> placeDescriptions = gedcomx.Places;
-            if (placeDescriptions != null)
+            if (gedcomx.AnyPlaces())
             {
+                List<PlaceDescription> placeDescriptions = gedcomx.Places;
                 foreach (PlaceDescription placeDescription in placeDescriptions)
                 {
                     bool found = false;
                     if (placeDescription.Id != null)
                     {
-                        if (Places != null)
+                        if (AnyPlaces())
                         {
                             foreach (PlaceDescription target in Places)
                             {
@@ -631,15 +671,15 @@ namespace Gx
                 }
             }
 
-            List<Document> documents = gedcomx.Documents;
-            if (documents != null)
+            if (gedcomx.AnyDocuments())
             {
+                List<Document> documents = gedcomx.Documents;
                 foreach (Document document in documents)
                 {
                     bool found = false;
                     if (document.Id != null)
                     {
-                        if (Documents != null)
+                        if (AnyDocuments())
                         {
                             foreach (Document target in Documents)
                             {
@@ -660,15 +700,15 @@ namespace Gx
                 }
             }
 
-            List<Collection> collections = gedcomx.Collections;
-            if (collections != null)
+            if (gedcomx.AnyCollections())
             {
+                List<Collection> collections = gedcomx.Collections;
                 foreach (Collection collection in collections)
                 {
                     bool found = false;
                     if (collection.Id != null)
                     {
-                        if (Collections != null)
+                        if (AnyCollections())
                         {
                             foreach (Collection target in Collections)
                             {
@@ -689,15 +729,15 @@ namespace Gx
                 }
             }
 
-            List<Field> fields = gedcomx.Fields;
-            if (fields != null)
+            if (gedcomx.AnyFields())
             {
+                List<Field> fields = gedcomx.Fields;
                 foreach (Field field in fields)
                 {
                     bool found = false;
                     if (field.Id != null)
                     {
-                        if (Fields != null)
+                        if (AnyFields())
                         {
                             foreach (Field target in Fields)
                             {
@@ -717,15 +757,15 @@ namespace Gx
                 }
             }
 
-            List<RecordDescriptor> recordDescriptors = gedcomx.RecordDescriptors;
-            if (recordDescriptors != null)
+            if (gedcomx.AnyRecordDescriptors())
             {
+                List<RecordDescriptor> recordDescriptors = gedcomx.RecordDescriptors;
                 foreach (RecordDescriptor recordDescriptor in recordDescriptors)
                 {
                     bool found = false;
                     if (recordDescriptor.Id != null)
                     {
-                        if (RecordDescriptors != null)
+                        if (AnyRecordDescriptors())
                         {
                             foreach (RecordDescriptor target in RecordDescriptors)
                             {
@@ -791,117 +831,5 @@ namespace Gx
             Attribution = attribution;
             return this;
         }
-
-        /**
-         * Build this out with a person.
-         * @param person The person.
-         * @return this.
-         */
-        public Gedcomx SetPerson(Person person)
-        {
-            AddPerson(person);
-            return this;
-        }
-
-        /**
-         * Build this out with a relationship.
-         * @param relationship The relationship.
-         * @return this.
-         */
-        public Gedcomx SetRelationship(Relationship relationship)
-        {
-            AddRelationship(relationship);
-            return this;
-        }
-
-        /**
-         * Build this out with a source description.
-         * @param sourceDescription The source description.
-         * @return this.
-         */
-        public Gedcomx SetSourceDescription(SourceDescription sourceDescription)
-        {
-            AddSourceDescription(sourceDescription);
-            return this;
-        }
-
-        /**
-         * Build this out with a agent.
-         * @param agent The agent.
-         * @return this.
-         */
-        public Gedcomx SetAgent(Gx.Agent.Agent agent)
-        {
-            AddAgent(agent);
-            return this;
-        }
-
-        /**
-         * Build this out with a event.
-         * @param event The event.
-         * @return this.
-         */
-        public Gedcomx SetEvent(Event @event)
-        {
-            AddEvent(@event);
-            return this;
-        }
-
-        /**
-         * Build this out with a place.
-         * @param place The place.
-         * @return this.
-         */
-        public Gedcomx SetPlace(PlaceDescription place)
-        {
-            AddPlace(place);
-            return this;
-        }
-
-        /**
-         * Build this out with a document.
-         * @param document The document.
-         * @return this.
-         */
-        public Gedcomx SetDocument(Document document)
-        {
-            AddDocument(document);
-            return this;
-        }
-
-        /**
-         * Build this out with a collection.
-         * @param collection The collection.
-         * @return this.
-         */
-        public Gedcomx SetCollection(Collection collection)
-        {
-            AddCollection(collection);
-            return this;
-        }
-
-        /**
-         * Build this out with a field.
-         * @param field The field.
-         * @return this.
-         */
-        public Gedcomx SetField(Field field)
-        {
-            AddField(field);
-            return this;
-        }
-
-        /**
-         * Build this out with a record descriptor.
-         *
-         * @param recordDescriptor The record descriptor.
-         * @return this.
-         */
-        public Gedcomx SetRecordDescriptor(RecordDescriptor recordDescriptor)
-        {
-            AddRecordDescriptor(recordDescriptor);
-            return this;
-        }
-
     }
 }

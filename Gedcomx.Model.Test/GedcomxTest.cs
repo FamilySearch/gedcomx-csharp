@@ -792,8 +792,8 @@ namespace Gedcomx.Model.Test
         {
             Gx.Gedcomx sut = new()
             {
-                Persons = new List<Person> { new Person() },
-                Relationships = new List<Relationship> { new Relationship() }
+                Persons = { new Person() },
+                Relationships = { new Relationship() }
             };
 
             VerifyXmlSerialization(sut);

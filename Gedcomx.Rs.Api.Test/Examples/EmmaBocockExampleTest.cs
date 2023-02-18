@@ -50,17 +50,17 @@ namespace Gedcomx.Rs.Api.Test.Examples
             Document analysis = (Document)new Document().SetText("...Jane Doe's analysis document...").SetId("D-1");
             Person emmaConclusion = (Person)new Person().SetEvidence(emma).SetAnalysis(analysis).SetId("C-1");
             Gx.Gedcomx gx = new Gx.Gedcomx()
-            .SetAgent(contributor)
-            .SetAgent(repository)
+            .AddAgent(contributor)
+            .AddAgent(repository)
             .SetAttribution(attribution)
-            .SetSourceDescription(sourceDescription)
-            .SetPerson(emma)
-            .SetPerson(father)
-            .SetPerson(mother)
-            .SetRelationship(fatherRelationship)
-            .SetRelationship(motherRelationship)
-            .SetDocument(analysis)
-            .SetPerson(emmaConclusion);
+            .AddSourceDescription(sourceDescription)
+            .AddPerson(emma)
+            .AddPerson(father)
+            .AddPerson(mother)
+            .AddRelationship(fatherRelationship)
+            .AddRelationship(motherRelationship)
+            .AddDocument(analysis)
+            .AddPerson(emmaConclusion);
             xmlSerializer.Deserialize<Gx.Gedcomx>(xmlSerializer.Serialize(gx));
             jsonSerializer.Deserialize<Gx.Gedcomx>(jsonSerializer.Serialize(gx));
         }

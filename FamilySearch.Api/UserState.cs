@@ -1,14 +1,15 @@
-﻿using Gx.Fs;
-using Gx.Rs.Api;
-using RestSharp;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Text;
-using Gx.Rs.Api.Util;
 using System.Net;
+
 using Gedcomx.Model;
+
+using Gx.Fs;
 using Gx.Fs.Users;
+using Gx.Rs.Api;
+using Gx.Rs.Api.Util;
+
+using RestSharp;
 
 namespace FamilySearch.Api
 {
@@ -76,7 +77,7 @@ namespace FamilySearch.Api
         {
             get
             {
-                return Entity == null ? null : Entity.Users.FirstOrDefault();
+                return Entity?.Users.FirstOrDefault();
             }
         }
     }

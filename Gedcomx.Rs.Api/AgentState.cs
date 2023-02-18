@@ -1,10 +1,11 @@
-﻿using RestSharp;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Text;
-using Gx.Rs.Api.Util;
+
 using Gedcomx.Model;
+
+using Gx.Rs.Api.Util;
+
+using RestSharp;
 
 namespace Gx.Rs.Api
 {
@@ -76,7 +77,7 @@ namespace Gx.Rs.Api
         {
             get
             {
-                return Entity == null ? null : Entity.Agents == null ? null : Entity.Agents.FirstOrDefault();
+                return Entity == null ? null : Entity.AnyAgents() ? Entity.Agents.FirstOrDefault() : null;
             }
         }
     }

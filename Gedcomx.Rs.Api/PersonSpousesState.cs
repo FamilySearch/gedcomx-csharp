@@ -50,7 +50,7 @@ namespace Gx.Rs.Api
         {
             get
             {
-                return this.Entity == null ? null : this.Entity.Persons;
+                return this.Entity == null ? null : this.Entity.AnyPersons() ? this.Entity.Persons : null;
             }
         }
 

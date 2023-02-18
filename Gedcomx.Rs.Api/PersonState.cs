@@ -112,7 +112,7 @@ namespace Gx.Rs.Api
         {
             get
             {
-                return Entity == null ? null : Entity.Persons == null ? null : Entity.Persons.FirstOrDefault();
+                return Entity == null ? null : Entity.AnyPersons() ? Entity.Persons.FirstOrDefault() : null;
             }
         }
 

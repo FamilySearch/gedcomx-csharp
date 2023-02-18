@@ -1,17 +1,20 @@
-﻿using Flurl;
-using Gx.Rs.Api;
-using RestSharp;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Gx.Links;
-using Gx.Rs.Api.Util;
+
 using FamilySearch.Api.Util;
+
+using Flurl;
+
+using Gedcomx.Support;
+
 using Gx.Conclusion;
 using Gx.Fs.Tree;
+using Gx.Links;
+using Gx.Rs.Api;
+using Gx.Rs.Api.Util;
 using Gx.Types;
-using Gedcomx.Support;
+
+using RestSharp;
 
 namespace FamilySearch.Api
 {

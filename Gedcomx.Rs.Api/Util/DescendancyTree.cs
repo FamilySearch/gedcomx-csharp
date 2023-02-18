@@ -31,7 +31,7 @@ namespace Gx.Rs.Api.Util
         protected DescendancyNode BuildTree(Gedcomx gx)
         {
             DescendancyNode root = null;
-            if (gx.Persons != null && gx.Persons.Count > 0)
+            if (gx.AnyPersons())
             {
                 List<DescendancyNode> rootArray = new List<DescendancyNode>();
                 foreach (Person person in gx.Persons)

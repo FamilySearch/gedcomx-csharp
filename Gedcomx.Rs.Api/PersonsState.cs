@@ -70,7 +70,7 @@ namespace Gx.Rs.Api
             get
             {
                 Gedcomx entity = Entity;
-                return entity == null ? null : entity.Persons;
+                return entity == null ? null : entity.AnyPersons() ? entity.Persons : null;
             }
         }
 

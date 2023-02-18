@@ -10,6 +10,29 @@ namespace Gedcomx.Model.Test
 {
     public static class XmlAssertions
     {
+        public static void ShouldContain(this string result, Gx.Gedcomx gx)
+        {
+            Assert.That(result, Does.Contain("<gedcomx "));
+            Assert.That(result, Does.Contain("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""));
+            Assert.That(result, Does.Contain("xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\""));
+            Assert.That(result, Does.Contain("xmlns=\"http://gedcomx.org/v1/\""));
+            result.ShouldContainAttribute("lang", gx.Lang);
+            result.ShouldContainAttribute("description", gx.DescriptionRef);
+            result.ShouldContainAttribute("profile", gx.Profile);
+            result.ShouldContainElement("attribution", gx.Attribution);
+            Assert.That(result.Contains("<person"), Is.EqualTo(gx.AnyPersons()));
+            Assert.That(result.Contains("<relationship "), Is.EqualTo(gx.AnyRelationships()));
+            Assert.That(result.Contains("<sourceDescription "), Is.EqualTo(gx.AnySourceDescriptions()));
+            Assert.That(result.Contains("<agent "), Is.EqualTo(gx.AnyAgents()));
+            Assert.That(result.Contains("<event "), Is.EqualTo(gx.AnyEvents()));
+            Assert.That(result.Contains("<place "), Is.EqualTo(gx.AnyPlaces()));
+            Assert.That(result.Contains("<document "), Is.EqualTo(gx.AnyDocuments()));
+            Assert.That(result.Contains("<collection "), Is.EqualTo(gx.AnyCollections()));
+            Assert.That(result.Contains("<field "), Is.EqualTo(gx.AnyFields()));
+            Assert.That(result.Contains("<recordDescriptor "), Is.EqualTo(gx.AnyRecordDescriptors()));
+            result.ShouldContain(gx as HypermediaEnabledData);
+        }
+
         public static void ShouldContain(this string result, Agent agent)
         {
             Assert.That(result, Does.Contain("<agent "));
@@ -115,7 +138,7 @@ namespace Gedcomx.Model.Test
             Assert.That(result.Contains("confidence="), Is.EqualTo(conclusion.Confidence != null));
             Assert.That(result.Contains("sortKey="), Is.EqualTo(conclusion.SortKey != null));
             Assert.That(result.Contains("lang="), Is.EqualTo(conclusion.Lang != null));
-            Assert.That(result.Contains("<attribution"), Is.EqualTo(conclusion.Attribution != null));
+            result.ShouldContainElement("attribution", conclusion.Attribution);
             Assert.That(result.Contains("<source"), Is.EqualTo(conclusion.AnySources()));
             Assert.That(result.Contains("<analysis"), Is.EqualTo(conclusion.Analysis != null));
             Assert.That(result.Contains("<note"), Is.EqualTo(conclusion.AnyNotes()));
@@ -140,7 +163,63 @@ namespace Gedcomx.Model.Test
 
         public static void ShouldContain(this string result, ExtensibleData extensibleData)
         {
-            Assert.That(result.Contains("id"), Is.EqualTo(extensibleData.Id != null));
+            result.ShouldContainAttribute("id", extensibleData.Id);
+        }
+
+        public static void ShouldContainList(this string result, bool speified, List<Person> persons)
+        {
+            if (speified)
+            {
+                foreach (var person in persons)
+                {
+                    result.ShouldContain(person);
+                }
+            }
+        }
+
+        public static void ShouldContainElement(this string result, string name, Attribution? attribution)
+        {
+            if (attribution != null)
+            {
+                Assert.That(result, Does.Contain("<" + name));
+                result.ShouldContainElement("contributor", attribution.Contributor);
+                result.ShouldContainElement(attribution.ModifiedSpecified, "modified", attribution.Modified);
+                result.ShouldContainElement("changeMessage", attribution.ChangeMessage);
+            }
+        }
+
+        public static void ShouldContainElement(this string result, bool speified, string name, DateTime dateTime)
+        {
+            if (speified)
+            {
+                Assert.That(result, Does.Contain("<" + name + ">" + dateTime.ToString("yyyy-MM-ddTHH:mm:ss") + "</" + name + ">"));
+            }
+        }
+
+        public static void ShouldContainElement(this string result, string name, string? value)
+        {
+            if (value != null)
+            {
+                Assert.That(result, Does.Contain("<" + name + ">" + value + "</" + name + ">"));
+            }
+        }
+
+        public static void ShouldContainElement(this string result, string name, ResourceReference? resourceReference)
+        {
+            if (resourceReference != null)
+            {
+                Assert.That(result, Does.Contain("<" + name));
+                result.ShouldContainAttribute("resourceId", resourceReference.ResourceId);
+                result.ShouldContainAttribute("resource", resourceReference.Resource);
+            }
+        }
+
+        public static void ShouldContainAttribute(this string result, string name, string? value)
+        {
+            if (value != null)
+            {
+                Assert.That(result, Does.Contain(name + "=\"" + value + "\""));
+            }
         }
     }
 }

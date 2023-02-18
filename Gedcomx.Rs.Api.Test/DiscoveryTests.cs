@@ -32,8 +32,7 @@ namespace Gedcomx.Rs.Api.Test
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
             Assert.That(state.Entity, Is.Not.Null);
-            Assert.That(state.Entity.Collections, Is.Not.Null);
-            Assert.That(state.Entity.Collections, Is.Not.Empty);
+            Assert.That(state.Entity.AnyCollections(), Is.True);
         }
 
         [Test]
@@ -45,8 +44,7 @@ namespace Gedcomx.Rs.Api.Test
             Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
             Assert.That(state.AnyLinks, Is.True);
             Assert.That(state.Entity, Is.Not.Null);
-            Assert.That(state.Entity.Collections, Is.Not.Null);
-            Assert.That(state.Entity.Collections, Is.Not.Empty);
+            Assert.That(state.Entity.AnyCollections(), Is.True);
         }
 
         [Test]
@@ -59,8 +57,7 @@ namespace Gedcomx.Rs.Api.Test
             Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
             Assert.That(state.AnyLinks, Is.True);
             Assert.That(state.Entity, Is.Not.Null);
-            Assert.That(state.Entity.Collections, Is.Not.Null);
-            Assert.That(state.Entity.Collections, Is.Not.Empty);
+            Assert.That(state.Entity.AnyCollections(), Is.True);
         }
 
         [Test]
@@ -70,8 +67,7 @@ namespace Gedcomx.Rs.Api.Test
             Assert.That(collection.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
             Assert.That(collection.AnyLinks, Is.True);
             Assert.That(collection.Entity, Is.Not.Null);
-            Assert.That(collection.Entity.Collections, Is.Not.Null);
-            Assert.That(collection.Entity.Collections, Is.Not.Empty);
+            Assert.That(collection.Entity.AnyCollections(), Is.True);
         }
 
         [Test]
@@ -83,8 +79,7 @@ namespace Gedcomx.Rs.Api.Test
             Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
             Assert.That(state.AnyLinks, Is.True);
             Assert.That(state.Entity, Is.Not.Null);
-            Assert.That(state.Entity.Collections, Is.Not.Null);
-            Assert.That(state.Entity.Collections, Is.Not.Empty);
+            Assert.That(state.Entity.AnyCollections(), Is.True);
         }
 
         [Test, Category("AccountNeeded")]
@@ -97,8 +92,7 @@ namespace Gedcomx.Rs.Api.Test
             Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
             Assert.That(state.AnyLinks, Is.True);
             Assert.That(state.Entity, Is.Not.Null);
-            Assert.That(state.Entity.Collections, Is.Not.Null);
-            Assert.That(state.Entity.Collections, Is.Not.Empty);
+            Assert.That(state.Entity.AnyCollections(), Is.True);
         }
 
         [Test]
@@ -110,8 +104,7 @@ namespace Gedcomx.Rs.Api.Test
             Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
             Assert.That(state.AnyLinks, Is.True);
             Assert.That(state.Entity, Is.Not.Null);
-            Assert.That(state.Entity.Collections, Is.Not.Null);
-            Assert.That(state.Entity.Collections, Is.Not.Empty);
+            Assert.That(state.Entity.AnyCollections(), Is.True);
         }
 
         [Test]
@@ -123,8 +116,7 @@ namespace Gedcomx.Rs.Api.Test
             Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
             Assert.That(state.AnyLinks, Is.True);
             Assert.That(state.Entity, Is.Not.Null);
-            Assert.That(state.Entity.Collections, Is.Not.Null);
-            Assert.That(state.Entity.Collections, Is.Not.Empty);
+            Assert.That(state.Entity.AnyCollections(), Is.True);
         }
 
         [Test]
@@ -136,8 +128,7 @@ namespace Gedcomx.Rs.Api.Test
             Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
             Assert.That(state.AnyLinks, Is.True);
             Assert.That(state.Entity, Is.Not.Null);
-            Assert.That(state.Entity.Collections, Is.Not.Null);
-            Assert.That(state.Entity.Collections, Is.Not.Empty);
+            Assert.That(state.Entity.AnyCollections(), Is.True);
         }
     }
 }

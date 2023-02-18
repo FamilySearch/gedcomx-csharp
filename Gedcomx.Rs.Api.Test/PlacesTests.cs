@@ -34,8 +34,7 @@ namespace Gedcomx.Rs.Api.Test
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
             Assert.That(state.Entity, Is.Not.Null);
-            Assert.That(state.Entity.Places, Is.Not.Null);
-            Assert.That(state.Entity.Places, Is.Not.Empty);
+            Assert.That(state.Entity.AnyPlaces(), Is.True);
         }
 
         [Test]
@@ -86,8 +85,7 @@ namespace Gedcomx.Rs.Api.Test
             Assert.DoesNotThrow(() => state.IfSuccessful());
             Assert.That(state.Response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
             Assert.That(state.Entity, Is.Not.Null);
-            Assert.That(state.Entity.Places, Is.Not.Null);
-            Assert.That(state.Entity.Places, Is.Not.Empty);
+            Assert.That(state.Entity.AnyPlaces(), Is.True);
         }
 
         [Test]

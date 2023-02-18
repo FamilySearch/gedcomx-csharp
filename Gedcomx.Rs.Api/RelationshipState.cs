@@ -82,7 +82,7 @@ namespace Gx.Rs.Api
         {
             get
             {
-                return Entity == null ? null : Entity.Relationships == null ? null : Entity.Relationships.FirstOrDefault();
+                return Entity == null ? null : Entity.AnyRelationships() ? Entity.Relationships.FirstOrDefault() : null;
             }
         }
 

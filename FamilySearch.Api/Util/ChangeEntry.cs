@@ -108,7 +108,7 @@ namespace FamilySearch.Api.Util
         {
             get
             {
-                return changeInfo == null ? null : changeInfo.Reason;
+                return changeInfo?.Reason;
             }
         }
 

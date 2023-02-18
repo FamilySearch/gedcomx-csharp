@@ -1,12 +1,13 @@
-﻿using Gx.Conclusion;
-using Gx.Records;
-using Gx.Source;
-using Gx.Types;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
+
+using Gx.Conclusion;
+using Gx.Records;
+using Gx.Source;
+using Gx.Types;
 
 namespace Gx.Util
 {
@@ -93,7 +94,7 @@ namespace Gx.Util
                 if (hashIndex >= 0)
                 {
                     string id = uri.Substring(hashIndex);
-                    if (record.SourceDescriptions != null)
+                    if (record.AnySourceDescriptions())
                     {
                         foreach (SourceDescription source in record.SourceDescriptions)
                         {
@@ -204,12 +205,12 @@ namespace Gx.Util
                     _currentRecord["IMAGE_URI"] = sourceDescription.About;
                 }
 
-				if (sourceDescription.KnownResourceType == ResourceType.Record)
-				{
-					var identifyer = sourceDescription.Identifiers.Where(p => p.KnownType == IdentifierType.Persistent).FirstOrDefault();
-					_columnNames.Add("RECORD_IDENTIFER");
-					_currentRecord["RECORD_IDENTIFER"] = identifyer != null ? identifyer.Value : "";
-				}
+                if (sourceDescription.KnownResourceType == ResourceType.Record)
+                {
+                    var identifyer = sourceDescription.Identifiers.Where(p => p.KnownType == IdentifierType.Persistent).FirstOrDefault();
+                    _columnNames.Add("RECORD_IDENTIFER");
+                    _currentRecord["RECORD_IDENTIFER"] = identifyer != null ? identifyer.Value : "";
+                }
 
                 base.VisitSourceDescription(sourceDescription);
             }

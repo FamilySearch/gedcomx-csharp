@@ -125,22 +125,22 @@ namespace Gedcomx.Rs.Api.Test.Examples
             Person samConclusion = (Person)new Person().SetEvidence(sam).SetAnalysis(analysis).SetId("C-1");
 
             Gx.Gedcomx gx = new Gx.Gedcomx()
-              .AddAgent(janeDoe)
-              .AddAgent(fhl)
+              .SetAgent(janeDoe)
+              .SetAgent(fhl)
               .SetAttribution(researchAttribution)
-              .AddSourceDescription(recordDescription)
-              .AddDocument(transcription)
-              .AddSourceDescription(transcriptionDescription)
-              .AddPerson(sam)
-              .AddPerson(liz)
-              .AddPerson(witness1)
-              .AddPerson(witness2)
-              .AddPerson(witness3)
-              .AddPerson(officiator)
-              .AddRelationship(marriageRelationship)
-              .AddEvent(marriageEvent)
-              .AddDocument(analysis)
-              .AddPerson(samConclusion);
+              .SetSourceDescription(recordDescription)
+              .SetDocument(transcription)
+              .SetSourceDescription(transcriptionDescription)
+              .SetPerson(sam)
+              .SetPerson(liz)
+              .SetPerson(witness1)
+              .SetPerson(witness2)
+              .SetPerson(witness3)
+              .SetPerson(officiator)
+              .SetRelationship(marriageRelationship)
+              .SetEvent(marriageEvent)
+              .SetDocument(analysis)
+              .SetPerson(samConclusion);
 
             xmlSerializer.Deserialize<Gx.Gedcomx>(xmlSerializer.Serialize(gx));
             jsonSerializer.Deserialize<Gx.Gedcomx>(jsonSerializer.Serialize(gx));

@@ -64,7 +64,7 @@ namespace Gx.Rs.Api
         public SourceDescriptionState AddSourceDescription(SourceDescription source, params IStateTransitionOption[] options)
         {
             Gedcomx entity = new Gedcomx();
-            entity.AddSourceDescription(source);
+            entity.SetSourceDescription(source);
             IRestRequest request = CreateAuthenticatedGedcomxRequest().SetEntity(entity).Build(GetSelfUri(), Method.POST);
             return this.stateFactory.NewSourceDescriptionState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }

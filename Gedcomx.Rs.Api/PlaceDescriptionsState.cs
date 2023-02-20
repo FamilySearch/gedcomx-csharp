@@ -64,7 +64,7 @@ namespace Gx.Rs.Api
         public PlaceDescriptionState AddPlaceDescription(PlaceDescription place, params IStateTransitionOption[] options)
         {
             Gedcomx entity = new Gedcomx();
-            entity.AddPlace(place);
+            entity.SetPlace(place);
             IRestRequest request = CreateAuthenticatedGedcomxRequest().SetEntity(entity).Build(GetSelfUri(), Method.POST);
             return this.stateFactory.NewPlaceDescriptionState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }

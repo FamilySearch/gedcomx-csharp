@@ -337,136 +337,6 @@ namespace Gx
             return _recordDescriptors?.Any() ?? false;
         }
 
-        /// <summary>
-        /// Add a person to the data set.
-        /// </summary>
-        /// <param name="person">The person to be added.</param>
-        public Gedcomx AddPerson(Person person)
-        {
-            if (person != null)
-            {
-                Persons.Add(person);
-            }
-            return this;
-        }
-
-        /// <summary>
-        /// Add a relationship to the data set.
-        /// </summary>
-        /// <param name="relationship">The relationship to be added.</param>
-        public Gedcomx AddRelationship(Relationship relationship)
-        {
-            if (relationship != null)
-            {
-                Relationships.Add(relationship);
-            }
-            return this;
-        }
-
-        /// <summary>
-        /// Add a source description to the data set.
-        /// </summary>
-        /// <param name="sourceDescription">The source description to be added.</param>
-        public Gedcomx AddSourceDescription(SourceDescription sourceDescription)
-        {
-            if (sourceDescription != null)
-            {
-                SourceDescriptions.Add(sourceDescription);
-            }
-            return this;
-        }
-
-        /// <summary>
-        /// Add a agent to the data set.
-        /// </summary>
-        /// <param name="agent">The agent to be added.</param>
-        public Gedcomx AddAgent(Gx.Agent.Agent agent)
-        {
-            if (agent != null)
-            {
-                Agents.Add(agent);
-            }
-            return this;
-        }
-
-        /// <summary>
-        /// Add a event to the data set.
-        /// </summary>
-        /// <param name="event">The event to be added.</param>
-        public Gedcomx AddEvent(Event @event)
-        {
-            if (@event != null)
-            {
-                Events.Add(@event);
-            }
-            return this;
-        }
-
-        /// <summary>
-        /// Add a place to the data set.
-        /// </summary>
-        /// <param name="place">The place to be added.</param>
-        public Gedcomx AddPlace(PlaceDescription place)
-        {
-            if (place != null)
-            {
-                Places.Add(place);
-            }
-            return this;
-        }
-
-        /// <summary>
-        /// Add a document to the data set.
-        /// </summary>
-        /// <param name="document">The document to be added.</param>
-        public Gedcomx AddDocument(Document document)
-        {
-            if (document != null)
-            {
-                Documents.Add(document);
-            }
-            return this;
-        }
-
-        /// <summary>
-        /// Add a collection to the data set.
-        /// </summary>
-        /// <param name="collection">The collection to be added.</param>
-        public Gedcomx AddCollection(Collection collection)
-        {
-            if (collection != null)
-            {
-                Collections.Add(collection);
-            }
-            return this;
-        }
-
-        /// <summary>
-        /// Add a field to the data set.
-        /// </summary>
-        /// <param name="field">The field to be added.</param>
-        public Gedcomx AddField(Field field)
-        {
-            if (field != null)
-            {
-                Fields.Add(field);
-            }
-            return this;
-        }
-
-        /// <summary>
-        /// Add a recordDescriptor to the data set.
-        /// </summary>
-        /// <param name="recordDescriptor">The recordDescriptor to be added.</param>
-        public Gedcomx AddRecordDescriptor(RecordDescriptor recordDescriptor)
-        {
-            if (recordDescriptor != null)
-            {
-                RecordDescriptors.Add(recordDescriptor);
-            }
-            return this;
-        }
-
         public virtual void Embed(Gedcomx gedcomx)
         {
             if (gedcomx.AnyLinks())
@@ -521,7 +391,7 @@ namespace Gx
 
                     if (!found)
                     {
-                        AddPerson(person);
+                        SetPerson(person);
                     }
                 }
             }
@@ -550,7 +420,7 @@ namespace Gx
 
                     if (!found)
                     {
-                        AddRelationship(relationship);
+                        SetRelationship(relationship);
                     }
                 }
             }
@@ -579,7 +449,7 @@ namespace Gx
 
                     if (!found)
                     {
-                        AddSourceDescription(sourceDescription);
+                        SetSourceDescription(sourceDescription);
                     }
                 }
             }
@@ -608,7 +478,7 @@ namespace Gx
 
                     if (!found)
                     {
-                        AddAgent(agent);
+                        SetAgent(agent);
                     }
                 }
             }
@@ -637,7 +507,7 @@ namespace Gx
 
                     if (!found)
                     {
-                        AddEvent(@event);
+                        SetEvent(@event);
                     }
                 }
             }
@@ -666,7 +536,7 @@ namespace Gx
 
                     if (!found)
                     {
-                        AddPlace(placeDescription);
+                        SetPlace(placeDescription);
                     }
                 }
             }
@@ -695,7 +565,7 @@ namespace Gx
 
                     if (!found)
                     {
-                        AddDocument(document);
+                        SetDocument(document);
                     }
                 }
             }
@@ -724,7 +594,7 @@ namespace Gx
 
                     if (!found)
                     {
-                        AddCollection(collection);
+                        SetCollection(collection);
                     }
                 }
             }
@@ -752,7 +622,7 @@ namespace Gx
 
                     if (!found)
                     {
-                        AddField(field);
+                        SetField(field);
                     }
                 }
             }
@@ -781,7 +651,7 @@ namespace Gx
 
                     if (!found)
                     {
-                        AddRecordDescriptor(recordDescriptor);
+                        SetRecordDescriptor(recordDescriptor);
                     }
                 }
             }
@@ -797,38 +667,163 @@ namespace Gx
             visitor.VisitGedcomx(this);
         }
 
-        /**
-         * Build out this envelope with a lang.
-         * 
-         * @param lang The lang.
-         * @return this.
-         */
+        /// <summary>
+        /// Build out this envelope with a lang.
+        /// </summary>
+        /// <param name="lang">The lang.</param>
         public Gedcomx SetLang(String lang)
         {
             Lang = lang;
             return this;
         }
 
-        /**
-         * Build out this with a description ref.
-         * 
-         * @param descriptionRef The description ref.
-         * @return this.
-         */
+        /// <summary>
+        /// Build out this with a description ref.
+        /// </summary>
+        /// <param name="descriptionRef">The description ref.</param>
         public Gedcomx SetDescriptionRef(String descriptionRef)
         {
             DescriptionRef = descriptionRef;
             return this;
         }
 
-        /**
-         * Build this out with an attribution.
-         * @param attribution The attribution.
-         * @return this.
-         */
+        /// <summary>
+        /// Build this out with an attribution.
+        /// </summary>
+        /// <param name="attribution">The attribution.</param>
         public Gedcomx SetAttribution(Attribution attribution)
         {
             Attribution = attribution;
+            return this;
+        }
+
+        /// <summary>
+        /// Add a person to the data set.
+        /// </summary>
+        /// <param name="person">The person to be added.</param>
+        public Gedcomx SetPerson(Person person)
+        {
+            if (person != null)
+            {
+                Persons.Add(person);
+            }
+            return this;
+        }
+
+        /// <summary>
+        /// Add a relationship to the data set.
+        /// </summary>
+        /// <param name="relationship">The relationship to be added.</param>
+        public Gedcomx SetRelationship(Relationship relationship)
+        {
+            if (relationship != null)
+            {
+                Relationships.Add(relationship);
+            }
+            return this;
+        }
+
+        /// <summary>
+        /// Add a source description to the data set.
+        /// </summary>
+        /// <param name="sourceDescription">The source description to be added.</param>
+        public Gedcomx SetSourceDescription(SourceDescription sourceDescription)
+        {
+            if (sourceDescription != null)
+            {
+                SourceDescriptions.Add(sourceDescription);
+            }
+            return this;
+        }
+
+        /// <summary>
+        /// Add a agent to the data set.
+        /// </summary>
+        /// <param name="agent">The agent to be added.</param>
+        public Gedcomx SetAgent(Gx.Agent.Agent agent)
+        {
+            if (agent != null)
+            {
+                Agents.Add(agent);
+            }
+            return this;
+        }
+
+        /// <summary>
+        /// Add a event to the data set.
+        /// </summary>
+        /// <param name="event">The event to be added.</param>
+        public Gedcomx SetEvent(Event @event)
+        {
+            if (@event != null)
+            {
+                Events.Add(@event);
+            }
+            return this;
+        }
+
+        /// <summary>
+        /// Add a place to the data set.
+        /// </summary>
+        /// <param name="place">The place to be added.</param>
+        public Gedcomx SetPlace(PlaceDescription place)
+        {
+            if (place != null)
+            {
+                Places.Add(place);
+            }
+            return this;
+        }
+
+        /// <summary>
+        /// Add a document to the data set.
+        /// </summary>
+        /// <param name="document">The document to be added.</param>
+        public Gedcomx SetDocument(Document document)
+        {
+            if (document != null)
+            {
+                Documents.Add(document);
+            }
+            return this;
+        }
+
+        /// <summary>
+        /// Add a collection to the data set.
+        /// </summary>
+        /// <param name="collection">The collection to be added.</param>
+        public Gedcomx SetCollection(Collection collection)
+        {
+            if (collection != null)
+            {
+                Collections.Add(collection);
+            }
+            return this;
+        }
+
+        /// <summary>
+        /// Add a field to the data set.
+        /// </summary>
+        /// <param name="field">The field to be added.</param>
+        public Gedcomx SetField(Field field)
+        {
+            if (field != null)
+            {
+                Fields.Add(field);
+            }
+            return this;
+        }
+
+        /// <summary>
+        /// Add a recordDescriptor to the data set.
+        /// </summary>
+        /// <param name="recordDescriptor">The recordDescriptor to be added.</param>
+        public Gedcomx SetRecordDescriptor(RecordDescriptor recordDescriptor)
+        {
+            if (recordDescriptor != null)
+            {
+                RecordDescriptors.Add(recordDescriptor);
+            }
             return this;
         }
     }

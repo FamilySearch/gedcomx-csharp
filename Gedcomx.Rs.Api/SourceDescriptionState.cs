@@ -133,7 +133,7 @@ namespace Gx.Rs.Api
         public PersonState AddPersona(Person person, params IStateTransitionOption[] options)
         {
             Gedcomx entity = new Gedcomx();
-            entity.AddPerson(person);
+            entity.SetPerson(person);
             return AddPersona(entity, options);
         }
 

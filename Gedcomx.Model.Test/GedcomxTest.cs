@@ -70,9 +70,9 @@ namespace Gedcomx.Model.Test
             };
             Attribution attribution = new()
             {
-                Modified = DateTime.Parse("2014-03-07")
+                Modified = DateTime.Parse("2014-03-07"),
+                Contributor = contributor
             };
-            attribution.SetContributor(contributor);
             SourceDescription sourceDescription = new()
             {
                 Id = "S-1",
@@ -157,9 +157,9 @@ namespace Gedcomx.Model.Test
             //The attribution for this research.
             Attribution researchAttribution = new()
             {
-                Modified = DateTime.Parse("2014-04-25")
+                Modified = DateTime.Parse("2014-04-25"),
+                Contributor = janeDoe
             };
-            researchAttribution.SetContributor(janeDoe);
 
             //The parish register.
             SourceDescription recordDescription = new()
@@ -279,17 +279,22 @@ namespace Gedcomx.Model.Test
             Relationship marriageRelationship = new() { KnownType = RelationshipType.Couple, Person1 = sam, Person2 = liz, Facts = { marriage }, Extracted = true };
 
             //the marriage event
-            Event marriageEvent = (Event)new Event(EventType.Marriage)
-              .SetDate(new DateInfo() { Original = "3 November 1828" }.SetFormal("+1828-11-03"))
-              .SetPlace(new PlaceReference() { Original = "Wilton St George, Wilton, Somerset, England" })
-              .SetRole(new EventRole().SetPerson(sam).SetType(EventRoleType.Principal))
-              .SetRole(new EventRole().SetPerson(liz).SetType(EventRoleType.Principal))
-              .SetRole(new EventRole().SetPerson(witness1).SetType(EventRoleType.Witness))
-              .SetRole(new EventRole().SetPerson(witness2).SetType(EventRoleType.Witness))
-              .SetRole(new EventRole().SetPerson(witness3).SetType(EventRoleType.Witness))
-              .SetRole(new EventRole().SetPerson(officiator).SetType(EventRoleType.Official))
-              .SetExtracted(true)
-              .SetId("E-1");
+            Event marriageEvent = new()
+            {
+                Id = "E-1",
+                Date = new DateInfo() { Original = "3 November 1828" }.SetFormal("+1828-11-03"),
+                Place = new PlaceReference() { Original = "Wilton St George, Wilton, Somerset, England" },
+                Roles =
+                {
+                    new EventRole().SetPerson(sam).SetType(EventRoleType.Principal),
+                    new EventRole().SetPerson(liz).SetType(EventRoleType.Principal),
+                    new EventRole().SetPerson(witness1).SetType(EventRoleType.Witness),
+                    new EventRole().SetPerson(witness2).SetType(EventRoleType.Witness),
+                    new EventRole().SetPerson(witness3).SetType(EventRoleType.Witness),
+                    new EventRole().SetPerson(officiator).SetType(EventRoleType.Official)
+                },
+                Extracted = true
+            };
 
             //Jane Doe's analysis.
             Document analysis = new() { Id = "D-2", Text = "...Jane Doe's analysis document..." };

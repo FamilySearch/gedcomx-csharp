@@ -140,9 +140,9 @@ namespace Gedcomx.Model.Rt
                 place.Accept(this);
             }
 
-            List<EventRole> roles = @event.Roles;
-            if (roles != null)
+            if (@event.AnyRoles())
             {
+                List<EventRole> roles = @event.Roles;
                 foreach (EventRole role in roles)
                 {
                     role.Accept(this);

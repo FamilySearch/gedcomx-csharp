@@ -2,7 +2,6 @@
 using Gx.Common;
 using Gx.Conclusion;
 using Gx.Links;
-using Gx.Records;
 using Gx.Source;
 
 using NUnit.Framework;
@@ -84,6 +83,19 @@ namespace Gedcomx.Model.Test
             Assert.That(result.Contains("<jurisdiction"), Is.EqualTo(placeDescription.Jurisdiction != null));
             Assert.That(result.Contains("<display"), Is.EqualTo(placeDescription.DisplayExtension != null));
             result.ShouldContain(placeDescription as Subject);
+        }
+
+        public static void ShouldContain(this string result, Event @event)
+        {
+            Assert.That(result, Does.Contain("<event "));
+            Assert.That(result, Does.Contain("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""));
+            Assert.That(result, Does.Contain("xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\""));
+            Assert.That(result, Does.Contain("xmlns=\"http://gedcomx.org/v1/\""));
+            Assert.That(result.Contains("type="), Is.EqualTo(@event.Type != null));
+            Assert.That(result.Contains("<date"), Is.EqualTo(@event.Date != null));
+            Assert.That(result.Contains("<place"), Is.EqualTo(@event.Place != null));
+            Assert.That(result.Contains("<role"), Is.EqualTo(@event.AnyRoles()));
+            result.ShouldContain(@event as Subject);
         }
 
         public static void ShouldContain(this string result, Subject subject)

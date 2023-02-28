@@ -205,7 +205,7 @@ namespace Gx.Util
                 VisitPlaceReference(place);
             }
 
-            if (e.Roles != null)
+            if (e.AnyRoles())
             {
                 foreach (EventRole role in e.Roles)
                 {

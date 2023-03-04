@@ -191,6 +191,18 @@ namespace Gedcomx.Model.Test
             result.ShouldContain(onlineAccount as ExtensibleData);
         }
 
+        public static void ShouldContain(this string result, NameForm nameForm)
+        {
+            Assert.That(result, Does.Contain("<NameForm "));
+            Assert.That(result, Does.Contain("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""));
+            Assert.That(result, Does.Contain("xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\""));
+            Assert.That(result.Contains("lang"), Is.EqualTo(nameForm.Lang != null));
+            Assert.That(result.Contains("<fullText"), Is.EqualTo(nameForm.FullText != null));
+            Assert.That(result.Contains("part"), Is.EqualTo(nameForm.AnyParts()));
+            Assert.That(result.Contains("field"), Is.EqualTo(nameForm.AnyFields()));
+            result.ShouldContain(nameForm as ExtensibleData);
+        }
+
         public static void ShouldContain(this string result, ExtensibleData extensibleData)
         {
             result.ShouldContainAttribute("id", extensibleData.Id);

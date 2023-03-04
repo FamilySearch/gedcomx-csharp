@@ -198,9 +198,21 @@ namespace Gedcomx.Model.Test
             Assert.That(result, Does.Contain("xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\""));
             Assert.That(result.Contains("lang"), Is.EqualTo(nameForm.Lang != null));
             Assert.That(result.Contains("<fullText"), Is.EqualTo(nameForm.FullText != null));
-            Assert.That(result.Contains("part"), Is.EqualTo(nameForm.AnyParts()));
-            Assert.That(result.Contains("field"), Is.EqualTo(nameForm.AnyFields()));
+            Assert.That(result.Contains("<part"), Is.EqualTo(nameForm.AnyParts()));
+            Assert.That(result.Contains("<field"), Is.EqualTo(nameForm.AnyFields()));
             result.ShouldContain(nameForm as ExtensibleData);
+        }
+
+        public static void ShouldContain(this string result, NamePart namePart)
+        {
+            Assert.That(result, Does.Contain("<NamePart "));
+            Assert.That(result, Does.Contain("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""));
+            Assert.That(result, Does.Contain("xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\""));
+            Assert.That(result.Contains("value"), Is.EqualTo(namePart.Value != null));
+            Assert.That(result.Contains("type="), Is.EqualTo(namePart.Type != null));
+            Assert.That(result.Contains("<field"), Is.EqualTo(namePart.AnyFields()));
+            Assert.That(result.Contains("<qualifier"), Is.EqualTo(namePart.AnyQualifiers()));
+            result.ShouldContain(namePart as ExtensibleData);
         }
 
         public static void ShouldContain(this string result, ExtensibleData extensibleData)

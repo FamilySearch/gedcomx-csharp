@@ -439,9 +439,9 @@ namespace Gedcomx.Model.Rt
         public virtual void VisitNamePart(NamePart part)
         {
             this.contextStack.Push(part);
-            List<Field> fields = part.Fields;
-            if (fields != null)
+            if (part.AnyFields())
             {
+                List<Field> fields = part.Fields;
                 foreach (Field field in fields)
                 {
                     field.Accept(this);

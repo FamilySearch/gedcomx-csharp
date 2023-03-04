@@ -529,7 +529,7 @@ namespace Gx.Util
         public virtual void VisitNamePart(NamePart part)
         {
             this.contextStack.Push(part);
-            if (part.Fields != null)
+            if (part.AnyFields())
             {
                 foreach (Field field in part.Fields)
                 {

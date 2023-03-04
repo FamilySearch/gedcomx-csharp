@@ -163,6 +163,19 @@ namespace Gedcomx.Model.Test
             result.ShouldContain(fact as Conclusion);
         }
 
+        public static void ShouldContain(this string result, Name name)
+        {
+            Assert.That(result, Does.Contain("<name "));
+            Assert.That(result, Does.Contain("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""));
+            Assert.That(result, Does.Contain("xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\""));
+            Assert.That(result, Does.Contain("xmlns=\"http://gedcomx.org/v1/\""));
+            Assert.That(result.Contains("type="), Is.EqualTo(name.Type != null));
+            Assert.That(result.Contains("<preferred"), Is.EqualTo(name.PreferredSpecified));
+            Assert.That(result.Contains("<date"), Is.EqualTo(name.Date != null));
+            Assert.That(result.Contains("<nameForm"), Is.EqualTo(name.AnyNameForms()));
+            result.ShouldContain(name as Conclusion);
+        }
+
         public static void ShouldContain(this string result, Conclusion conclusion)
         {
             Assert.That(result.Contains("confidence="), Is.EqualTo(conclusion.Confidence != null));

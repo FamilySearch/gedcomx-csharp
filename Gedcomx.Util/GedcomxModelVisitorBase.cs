@@ -487,7 +487,7 @@ namespace Gx.Util
             this.contextStack.Push(name);
             VisitConclusion(name);
 
-            if (name.NameForms != null)
+            if (name.AnyNameForms())
             {
                 foreach (NameForm form in name.NameForms)
                 {

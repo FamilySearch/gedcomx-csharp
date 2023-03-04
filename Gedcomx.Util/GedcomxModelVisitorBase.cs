@@ -504,7 +504,7 @@ namespace Gx.Util
         public virtual void VisitNameForm(NameForm form)
         {
             this.contextStack.Push(form);
-            if (form.Parts != null)
+            if (form.AnyParts())
             {
                 foreach (NamePart part in form.Parts)
                 {
@@ -512,7 +512,7 @@ namespace Gx.Util
                 }
             }
 
-            if (form.Fields != null)
+            if (form.AnyFields())
             {
                 foreach (Field field in form.Fields)
                 {

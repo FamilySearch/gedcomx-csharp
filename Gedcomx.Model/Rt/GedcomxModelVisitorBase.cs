@@ -416,18 +416,18 @@ namespace Gedcomx.Model.Rt
         public virtual void VisitNameForm(NameForm form)
         {
             this.contextStack.Push(form);
-            List<NamePart> parts = form.Parts;
-            if (parts != null)
+            if (form.AnyParts())
             {
+                List<NamePart> parts = form.Parts;
                 foreach (NamePart part in parts)
                 {
                     part.Accept(this);
                 }
             }
 
-            List<Field> fields = form.Fields;
-            if (fields != null)
+            if (form.AnyFields())
             {
+                List<Field> fields = form.Fields;
                 foreach (Field field in fields)
                 {
                     field.Accept(this);

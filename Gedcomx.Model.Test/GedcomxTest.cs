@@ -151,7 +151,7 @@ namespace Gedcomx.Model.Test
             {
                 Id = "A-2",
                 Names = { "Family History Librarye" },
-                Addresses = { new Address().SetCity("Salt Lake City").SetStateOrProvince("Utah") }
+                Addresses = { new Address() { City = "Salt Lake City", StateOrProvince = "Utah" } }
             };
 
             //The attribution for this research.
@@ -196,7 +196,7 @@ namespace Gedcomx.Model.Test
                 Descriptions = { "Transcription of marriage entry for Samuel Ham and Elizabeth in a copy of the registers of the baptisms, marriages, and burials at the church of St. George in the parish of Wilton : adjoining Taunton, in the county of Somerset from A.D. 1558 to A.D. 1837." },
                 Citations = { new SourceCitation() { Value = "Joseph Houghton Spencer, transcriber, Church of England, Parish Church of Wilton (Somerset). <cite>A copy of the registers of the baptisms, marriages, and burials at the church of St. George in the parish of Wilton : adjoining Taunton, in the county of Somerset from A.D. 1558 to A.D. 1837</cite>; Marriage entry for Samuel Ham and Elizabeth Spiller (3 November 1828), (Taunton: Barnicott, 1890), p. 224, No. 86." } },
                 KnownResourceType = ResourceType.DigitalArtifact,
-                Sources = { new SourceReference().SetDescription(recordDescription) }
+                Sources = { recordDescription }
             };
 
             //the marriage fact.
@@ -282,16 +282,16 @@ namespace Gedcomx.Model.Test
             Event marriageEvent = new()
             {
                 Id = "E-1",
-                Date = new DateInfo() { Original = "3 November 1828" }.SetFormal("+1828-11-03"),
+                Date = new DateInfo() { Original = "3 November 1828", Formal = "+1828-11-03" },
                 Place = new PlaceReference() { Original = "Wilton St George, Wilton, Somerset, England" },
                 Roles =
                 {
-                    new EventRole().SetPerson(sam).SetType(EventRoleType.Principal),
-                    new EventRole().SetPerson(liz).SetType(EventRoleType.Principal),
-                    new EventRole().SetPerson(witness1).SetType(EventRoleType.Witness),
-                    new EventRole().SetPerson(witness2).SetType(EventRoleType.Witness),
-                    new EventRole().SetPerson(witness3).SetType(EventRoleType.Witness),
-                    new EventRole().SetPerson(officiator).SetType(EventRoleType.Official)
+                    new EventRole() { Person = sam, KnownType = EventRoleType.Principal },
+                    new EventRole() { Person = liz, KnownType = EventRoleType.Principal },
+                    new EventRole() { Person = witness1, KnownType = EventRoleType.Witness },
+                    new EventRole() { Person = witness2, KnownType = EventRoleType.Witness },
+                    new EventRole() { Person = witness3, KnownType = EventRoleType.Witness },
+                    new EventRole() { Person = officiator, KnownType = EventRoleType.Official }
                 },
                 Extracted = true
             };
@@ -493,11 +493,16 @@ namespace Gedcomx.Model.Test
         [Test]
         public void BasicWesternNameTest()
         {
-            NameForm nameForm = new NameForm("John Fitzgerald Kennedy")
-              .SetLang("en")
-              .SetPart(NamePartType.Given, "John")
-              .SetPart(NamePartType.Given, "Fitzgerald")
-              .SetPart(NamePartType.Surname, "Kennedy");
+            NameForm nameForm = new("John Fitzgerald Kennedy")
+            {
+                Lang = "en",
+                Parts = {
+                    new NamePart(NamePartType.Given, "John"),
+                    new NamePart(NamePartType.Given, "Fitzgerald"),
+                    new NamePart(NamePartType.Surname, "Kennedy")
+                }
+            };
+            //Name name = new() { NameForms = { nameForm } };
             Name name = new Name().SetNameForm(nameForm);
 
             Gx.Gedcomx gx = new()
@@ -512,18 +517,30 @@ namespace Gedcomx.Model.Test
         [Test]
         public void MultipleJapaneseFormsTest()
         {
-            NameForm kanji = new NameForm("山田太郎")
-              .SetLang("ja-Hani")
-              .SetPart(NamePartType.Surname, "山田")
-              .SetPart(NamePartType.Given, "太郎");
-            NameForm katakana = new NameForm("ヤマダタロー")
-              .SetLang("ja-Kana")
-              .SetPart(NamePartType.Surname, "ヤマダ")
-              .SetPart(NamePartType.Given, "タロー");
-            NameForm romanized = new NameForm("Yamada Tarō")
-              .SetLang("ja-Latn")
-              .SetPart(NamePartType.Surname, "Tarō")
-              .SetPart(NamePartType.Given, "Yamada");
+            NameForm kanji = new("山田太郎")
+            {
+                Lang = "ja-Hani",
+                Parts = {
+                    new NamePart(NamePartType.Surname, "山田"),
+                    new NamePart(NamePartType.Given, "太郎")
+                }
+            };
+            NameForm katakana = new("ヤマダタロー")
+            {
+                Lang = "ja-Kana",
+                Parts = {
+                    new NamePart(NamePartType.Surname, "ヤマダ"),
+                    new NamePart(NamePartType.Given, "タロー")
+                }
+            };
+            NameForm romanized = new("Yamada Tarō")
+            {
+                Lang = "ja-Kana",
+                Parts = {
+                    new NamePart(NamePartType.Surname, "Tarō"),
+                    new NamePart(NamePartType.Given, "Yamada")
+                }
+            };
             Name name = new Name().SetNameForm(kanji).SetNameForm(katakana).SetNameForm(romanized);
 
             Gx.Gedcomx gx = new()
@@ -538,10 +555,14 @@ namespace Gedcomx.Model.Test
         [Test]
         public void MultipleNamePartsOnePartPerTypeTest()
         {
-            NameForm nameForm = new NameForm("José Eduardo Santos Tavares Melo Silva")
-              .SetLang("pt-BR")
-              .SetPart(NamePartType.Given, "José Eduardo")
-              .SetPart(NamePartType.Surname, "Santos Tavares Melo Silva");
+            NameForm nameForm = new("José Eduardo Santos Tavares Melo Silva")
+            {
+                Lang = "pt-BR",
+                Parts = {
+                    new NamePart(NamePartType.Given, "José Eduardo"),
+                    new NamePart(NamePartType.Surname, "Santos Tavares Melo Silva")
+                }
+            };
             Name name = new Name().SetNameForm(nameForm);
 
             Gx.Gedcomx gx = new()
@@ -556,14 +577,18 @@ namespace Gedcomx.Model.Test
         [Test]
         public void MultipleNamePartsMultiplePartsPerTypeTest()
         {
-            NameForm nameForm = new NameForm("José Eduardo Santos Tavares Melo Silva")
-              .SetLang("pt-BR")
-              .SetPart(NamePartType.Given, "José")
-              .SetPart(NamePartType.Given, "Eduardo")
-              .SetPart(NamePartType.Surname, "Santos")
-              .SetPart(NamePartType.Surname, "Tavares")
-              .SetPart(NamePartType.Surname, "Melo")
-              .SetPart(NamePartType.Surname, "Silva");
+            NameForm nameForm = new("José Eduardo Santos Tavares Melo Silva")
+            {
+                Lang = "pt-BR",
+                Parts = {
+                    new NamePart(NamePartType.Given, "José"),
+                    new NamePart(NamePartType.Given, "Eduardo"),
+                    new NamePart(NamePartType.Surname, "Santos"),
+                    new NamePart(NamePartType.Surname, "Tavares"),
+                    new NamePart(NamePartType.Surname, "Melo"),
+                    new NamePart(NamePartType.Surname, "Silva")
+                }
+            };
             Name name = new Name().SetNameForm(nameForm);
 
             Gx.Gedcomx gx = new()
@@ -578,10 +603,13 @@ namespace Gedcomx.Model.Test
         [Test]
         public void PatronymicTest()
         {
-            NameForm nameForm = new NameForm("Björk Guðmundsdóttir")
-              .SetLang("is")
-              .SetPart(NamePartType.Given, "Björk")
-              .SetPart(new NamePart().SetValue("Guðmundsdóttir").SetQualifier(new Qualifier(NamePartQualifierType.Patronymic)));
+            NameForm nameForm = new("Björk Guðmundsdóttir")
+            {
+                Lang = "is",
+                Parts = {
+                    new NamePart().SetValue("Guðmundsdóttir").SetQualifier(new Qualifier(NamePartQualifierType.Patronymic))
+                }
+            };
             Name name = new Name().SetNameForm(nameForm);
 
             Gx.Gedcomx gx = new()
@@ -759,7 +787,7 @@ namespace Gedcomx.Model.Test
             Person father = new()
             {
                 Id = "P-2",
-                Names = { "Lo Yau", new Name() { KnownType = NameType.AlsoKnownAs }.SetNameForm(new NameForm().SetFullText("Young Hong Wong")) },
+                Names = { "Lo Yau", new Name() { KnownType = NameType.AlsoKnownAs }.SetNameForm( new() { FullText = "Young Hong Wong" }) },
                 Extracted = true,
                 Sources = { translationDescription }
             };
@@ -859,17 +887,15 @@ namespace Gedcomx.Model.Test
 
         private static Agent CreateContributor()
         {
-            Agent agent = new();
-            agent.SetId("GGG-GGGG");
-            agent.SetName("Ryan Heaton");
-            return agent;
+            return new()
+            {
+                Id = "GGG-GGGG",
+                Names = { "Ryan Heaton" }
+            };
         }
 
         private static Person CreateGeorge(PlaceDescription birthPlace, PlaceDescription deathPlace)
         {
-            Person person = new();
-            person.SetGender(new Gender(GenderType.Male));
-
             Fact fact = new()
             {
                 Id = "123",
@@ -878,7 +904,11 @@ namespace Gedcomx.Model.Test
                 Place = new PlaceReference() { Original = birthPlace.Names[0].Value.ToLower() }.SetDescription(birthPlace)
             };
 
-            person.SetFact(fact);
+            Person person = new()
+            {
+                Gender = new Gender(GenderType.Male),
+                Facts = { fact }
+            };
 
             fact = new()
             {

@@ -205,7 +205,7 @@ namespace Gx.Util
                 VisitPlaceReference(place);
             }
 
-            if (e.Roles != null)
+            if (e.AnyRoles())
             {
                 foreach (EventRole role in e.Roles)
                 {
@@ -487,7 +487,7 @@ namespace Gx.Util
             this.contextStack.Push(name);
             VisitConclusion(name);
 
-            if (name.NameForms != null)
+            if (name.AnyNameForms())
             {
                 foreach (NameForm form in name.NameForms)
                 {
@@ -504,7 +504,7 @@ namespace Gx.Util
         public virtual void VisitNameForm(NameForm form)
         {
             this.contextStack.Push(form);
-            if (form.Parts != null)
+            if (form.AnyParts())
             {
                 foreach (NamePart part in form.Parts)
                 {
@@ -512,7 +512,7 @@ namespace Gx.Util
                 }
             }
 
-            if (form.Fields != null)
+            if (form.AnyFields())
             {
                 foreach (Field field in form.Fields)
                 {
@@ -529,7 +529,7 @@ namespace Gx.Util
         public virtual void VisitNamePart(NamePart part)
         {
             this.contextStack.Push(part);
-            if (part.Fields != null)
+            if (part.AnyFields())
             {
                 foreach (Field field in part.Fields)
                 {

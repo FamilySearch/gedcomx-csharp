@@ -125,7 +125,7 @@ namespace Gx.Rs.Api
         public virtual RelationshipState AddRelationship(Relationship relationship, params IStateTransitionOption[] options)
         {
             Gedcomx entity = new Gedcomx();
-            entity.AddRelationship(relationship);
+            entity.SetRelationship(relationship);
             IRestRequest request = CreateAuthenticatedGedcomxRequest().SetEntity(entity).Build(GetSelfUri(), Method.POST);
             return this.stateFactory.NewRelationshipState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }

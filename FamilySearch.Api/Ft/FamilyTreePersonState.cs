@@ -614,7 +614,7 @@ namespace FamilySearch.Api.Ft
             }
 
             Gx.Gedcomx entity = new Gx.Gedcomx();
-            entity.AddPerson(person);
+            entity.SetPerson(person);
             IRestRequest request = RequestUtil.ApplyFamilySearchConneg(CreateAuthenticatedRequest()).SetEntity(entity).Build(link.Href, Method.POST);
             return ((FamilyTreeStateFactory)this.stateFactory).NewPersonNonMatchesState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }

@@ -132,7 +132,7 @@ namespace Gx.Rs.Api
         /// </returns>
         public CollectionState Update(Collection collection, params IStateTransitionOption[] options)
         {
-            return (CollectionState)Post(new Gedcomx().AddCollection(collection), options);
+            return (CollectionState)Post(new Gedcomx().SetCollection(collection), options);
         }
 
         /// <summary>
@@ -205,7 +205,7 @@ namespace Gx.Rs.Api
         public PersonState AddPerson(Person person, params IStateTransitionOption[] options)
         {
             Gedcomx entity = new Gedcomx();
-            entity.AddPerson(person);
+            entity.SetPerson(person);
             return AddPerson(entity, options);
         }
 
@@ -445,7 +445,7 @@ namespace Gx.Rs.Api
             }
 
             Gedcomx entity = new Gedcomx();
-            entity.AddRelationship(relationship);
+            entity.SetRelationship(relationship);
             IRestRequest request = CreateAuthenticatedGedcomxRequest().SetEntity(entity).Build(link.Href, Method.POST);
             return this.stateFactory.NewRelationshipState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
@@ -617,7 +617,7 @@ namespace Gx.Rs.Api
             }
 
             Gedcomx entity = new Gedcomx();
-            entity.AddSourceDescription(source);
+            entity.SetSourceDescription(source);
             IRestRequest request = CreateAuthenticatedGedcomxRequest().SetEntity(entity).Build(link.Href, Method.POST);
             return this.stateFactory.NewSourceDescriptionState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
@@ -677,7 +677,7 @@ namespace Gx.Rs.Api
                 throw new GedcomxApplicationException(String.Format("Collection at {0} doesn't support adding subcollections.", GetUri()));
             }
 
-            IRestRequest request = CreateAuthenticatedGedcomxRequest().SetEntity(new Gedcomx().AddCollection(collection)).Build(link.Href, Method.POST);
+            IRestRequest request = CreateAuthenticatedGedcomxRequest().SetEntity(new Gedcomx().SetCollection(collection)).Build(link.Href, Method.POST);
             return this.stateFactory.NewCollectionState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }
 

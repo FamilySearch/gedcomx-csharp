@@ -19,8 +19,7 @@ namespace Gedcomx.Model.Rt
 
             if (gx.AnyPersons())
             {
-                List<Person> persons = gx.Persons;
-                foreach (Person person in persons)
+                foreach (Person person in gx.Persons)
                 {
                     person?.Accept(this);
                 }
@@ -28,8 +27,7 @@ namespace Gedcomx.Model.Rt
 
             if (gx.AnyRelationships())
             {
-                List<Relationship> relationships = gx.Relationships;
-                foreach (Relationship relationship in relationships)
+                foreach (Relationship relationship in gx.Relationships)
                 {
                     relationship?.Accept(this);
                 }
@@ -37,8 +35,7 @@ namespace Gedcomx.Model.Rt
 
             if (gx.AnySourceDescriptions())
             {
-                List<SourceDescription> sourceDescriptions = gx.SourceDescriptions;
-                foreach (SourceDescription sourceDescription in sourceDescriptions)
+                foreach (SourceDescription sourceDescription in gx.SourceDescriptions)
                 {
                     sourceDescription?.Accept(this);
                 }
@@ -46,8 +43,7 @@ namespace Gedcomx.Model.Rt
 
             if (gx.AnyAgents())
             {
-                List<Agent> agents = gx.Agents;
-                foreach (Agent agent in agents)
+                foreach (Agent agent in gx.Agents)
                 {
                     agent?.Accept(this);
                 }
@@ -55,8 +51,7 @@ namespace Gedcomx.Model.Rt
 
             if (gx.AnyEvents())
             {
-                List<Event> events = gx.Events;
-                foreach (Event @event in events)
+                foreach (Event @event in gx.Events)
                 {
                     @event?.Accept(this);
                 }
@@ -64,8 +59,7 @@ namespace Gedcomx.Model.Rt
 
             if (gx.AnyPlaces())
             {
-                List<PlaceDescription> places = gx.Places;
-                foreach (PlaceDescription place in places)
+                foreach (PlaceDescription place in gx.Places)
                 {
                     place?.Accept(this);
                 }
@@ -73,8 +67,7 @@ namespace Gedcomx.Model.Rt
 
             if (gx.AnyDocuments())
             {
-                List<Document> documents = gx.Documents;
-                foreach (Document document in documents)
+                foreach (Document document in gx.Documents)
                 {
                     document?.Accept(this);
                 }
@@ -82,8 +75,7 @@ namespace Gedcomx.Model.Rt
 
             if (gx.AnyFields())
             {
-                List<Field> fields = gx.Fields;
-                foreach (Field field in fields)
+                foreach (Field field in gx.Fields)
                 {
                     field?.Accept(this);
                 }
@@ -91,8 +83,7 @@ namespace Gedcomx.Model.Rt
 
             if (gx.AnyRecordDescriptors())
             {
-                List<RecordDescriptor> recordDescriptors = gx.RecordDescriptors;
-                foreach (RecordDescriptor rd in recordDescriptors)
+                foreach (RecordDescriptor rd in gx.RecordDescriptors)
                 {
                     rd?.Accept(this);
                 }
@@ -100,8 +91,7 @@ namespace Gedcomx.Model.Rt
 
             if (gx.AnyCollections())
             {
-                List<Collection> collections = gx.Collections;
-                foreach (Collection collection in collections)
+                foreach (Collection collection in gx.Collections)
                 {
                     collection?.Accept(this);
                 }
@@ -128,22 +118,13 @@ namespace Gedcomx.Model.Rt
         {
             this.contextStack.Push(@event);
             VisitSubject(@event);
-            DateInfo date = @event.Date;
-            if (date != null)
-            {
-                date.Accept(this);
-            }
+            @event.Date?.Accept(this);
 
-            PlaceReference place = @event.Place;
-            if (place != null)
-            {
-                place.Accept(this);
-            }
+            @event.Place?.Accept(this);
 
-            List<EventRole> roles = @event.Roles;
-            if (roles != null)
+            if (@event.AnyRoles())
             {
-                foreach (EventRole role in roles)
+                foreach (EventRole role in @event.Roles)
                 {
                     role.Accept(this);
                 }
@@ -168,8 +149,7 @@ namespace Gedcomx.Model.Rt
             this.contextStack.Push(sourceDescription);
             if (sourceDescription.AnySources())
             {
-                List<SourceReference> sources = sourceDescription.Sources;
-                foreach (SourceReference source in sources)
+                foreach (SourceReference source in sourceDescription.Sources)
                 {
                     source.Accept(this);
                 }
@@ -177,8 +157,7 @@ namespace Gedcomx.Model.Rt
 
             if (sourceDescription.AnyNotes())
             {
-                List<Note> notes = sourceDescription.Notes;
-                foreach (Note note in notes)
+                foreach (Note note in sourceDescription.Notes)
                 {
                     note.Accept(this);
                 }
@@ -186,8 +165,7 @@ namespace Gedcomx.Model.Rt
 
             if (sourceDescription.AnyCitations())
             {
-                List<SourceCitation> citations = sourceDescription.Citations;
-                foreach (SourceCitation citation in citations)
+                foreach (SourceCitation citation in sourceDescription.Citations)
                 {
                     citation.Accept(this);
                 }
@@ -237,19 +215,17 @@ namespace Gedcomx.Model.Rt
             this.contextStack.Push(relationship);
             VisitSubject(relationship);
 
-            List<Fact> facts = relationship.Facts;
-            if (facts != null)
+            if (relationship.AnyFacts())
             {
-                foreach (Fact fact in facts)
+                foreach (Fact fact in relationship.Facts)
                 {
                     fact.Accept(this);
                 }
             }
 
-            List<Field> fields = relationship.Fields;
-            if (fields != null)
+            if (relationship.AnyFields())
             {
-                foreach (Field field in fields)
+                foreach (Field field in relationship.Fields)
                 {
                     field.Accept(this);
                 }
@@ -260,19 +236,17 @@ namespace Gedcomx.Model.Rt
 
         protected virtual void VisitConclusion(Conclusion conclusion)
         {
-            List<SourceReference> sourceReferences = conclusion.Sources;
-            if (sourceReferences != null)
+            if (conclusion.AnySources())
             {
-                foreach (SourceReference sourceReference in sourceReferences)
+                foreach (SourceReference sourceReference in conclusion.Sources)
                 {
                     sourceReference.Accept(this);
                 }
             }
 
-            List<Note> notes = conclusion.Notes;
-            if (notes != null)
+            if (conclusion.AnyNotes())
             {
-                foreach (Note note in notes)
+                foreach (Note note in conclusion.Notes)
                 {
                     note.Accept(this);
                 }
@@ -285,8 +259,7 @@ namespace Gedcomx.Model.Rt
 
             if (subject.AnyMedia())
             {
-                List<SourceReference> media = subject.Media;
-                foreach (SourceReference reference in media)
+                foreach (SourceReference reference in subject.Media)
                 {
                     reference.Accept(this);
                 }
@@ -294,8 +267,7 @@ namespace Gedcomx.Model.Rt
 
             if (subject.AnyEvidence())
             {
-                List<EvidenceReference> evidence = subject.Evidence;
-                foreach (EvidenceReference evidenceReference in evidence)
+                foreach (EvidenceReference evidenceReference in subject.Evidence)
                 {
                     evidenceReference.Accept(this);
                 }
@@ -307,33 +279,27 @@ namespace Gedcomx.Model.Rt
             this.contextStack.Push(person);
             VisitSubject(person);
 
-            if (person.Gender != null)
-            {
-                person.Gender.Accept(this);
-            }
+            person.Gender?.Accept(this);
 
-            List<Name> names = person.Names;
-            if (names != null)
+            if (person.AnyNames())
             {
-                foreach (Name name in names)
+                foreach (Name name in person.Names)
                 {
                     name.Accept(this);
                 }
             }
 
-            List<Fact> facts = person.Facts;
-            if (facts != null)
+            if (person.AnyFacts())
             {
-                foreach (Fact fact in facts)
+                foreach (Fact fact in person.Facts)
                 {
                     fact.Accept(this);
                 }
             }
 
-            List<Field> fields = person.Fields;
-            if (fields != null)
+            if (person.AnyFields())
             {
-                foreach (Field field in fields)
+                foreach (Field field in person.Fields)
                 {
                     field.Accept(this);
                 }
@@ -345,22 +311,13 @@ namespace Gedcomx.Model.Rt
         {
             this.contextStack.Push(fact);
             VisitConclusion(fact);
-            DateInfo date = fact.Date;
-            if (date != null)
-            {
-                date.Accept(this);
-            }
+            fact.Date?.Accept(this);
 
-            PlaceReference place = fact.Place;
-            if (place != null)
-            {
-                place.Accept(this);
-            }
+            fact.Place?.Accept(this);
 
-            List<Field> fields = fact.Fields;
-            if (fields != null)
+            if (fact.AnyFields())
             {
-                foreach (Field field in fields)
+                foreach (Field field in fact.Fields)
                 {
                     field.Accept(this);
                 }
@@ -372,10 +329,9 @@ namespace Gedcomx.Model.Rt
         public virtual void VisitPlaceReference(PlaceReference place)
         {
             this.contextStack.Push(place);
-            List<Field> fields = place.Fields;
-            if (fields != null)
+            if (place.AnyFields())
             {
-                foreach (Field field in fields)
+                foreach (Field field in place.Fields)
                 {
                     field.Accept(this);
                 }
@@ -386,10 +342,9 @@ namespace Gedcomx.Model.Rt
         public virtual void VisitDate(DateInfo date)
         {
             this.contextStack.Push(date);
-            List<Field> fields = date.Fields;
-            if (fields != null)
+            if (date.AnyFields())
             {
-                foreach (Field field in fields)
+                foreach (Field field in date.Fields)
                 {
                     field.Accept(this);
                 }
@@ -402,10 +357,9 @@ namespace Gedcomx.Model.Rt
             this.contextStack.Push(name);
             VisitConclusion(name);
 
-            List<NameForm> forms = name.NameForms;
-            if (forms != null)
+            if (name.AnyNameForms())
             {
-                foreach (NameForm form in forms)
+                foreach (NameForm form in name.NameForms)
                 {
                     form.Accept(this);
                 }
@@ -416,19 +370,17 @@ namespace Gedcomx.Model.Rt
         public virtual void VisitNameForm(NameForm form)
         {
             this.contextStack.Push(form);
-            List<NamePart> parts = form.Parts;
-            if (parts != null)
+            if (form.AnyParts())
             {
-                foreach (NamePart part in parts)
+                foreach (NamePart part in form.Parts)
                 {
                     part.Accept(this);
                 }
             }
 
-            List<Field> fields = form.Fields;
-            if (fields != null)
+            if (form.AnyFields())
             {
-                foreach (Field field in fields)
+                foreach (Field field in form.Fields)
                 {
                     field.Accept(this);
                 }
@@ -439,10 +391,9 @@ namespace Gedcomx.Model.Rt
         public virtual void VisitNamePart(NamePart part)
         {
             this.contextStack.Push(part);
-            List<Field> fields = part.Fields;
-            if (fields != null)
+            if (part.AnyFields())
             {
-                foreach (Field field in fields)
+                foreach (Field field in part.Fields)
                 {
                     field.Accept(this);
                 }

@@ -98,7 +98,7 @@ namespace FamilySearch.Api
             }
 
             Gx.Gedcomx gx = new Gx.Gedcomx();
-            gx.AddSourceDescription(new SourceDescription() { Id = me.Id });
+            gx.SetSourceDescription(new SourceDescription() { Id = me.Id });
             IRestRequest request = RequestUtil.ApplyFamilySearchConneg(CreateAuthenticatedRequest()).SetEntity(gx).Build(link.Href, Method.POST);
             return (FamilySearchSourceDescriptionState)((FamilySearchStateFactory)this.stateFactory).NewSourceDescriptionStateInt(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
         }

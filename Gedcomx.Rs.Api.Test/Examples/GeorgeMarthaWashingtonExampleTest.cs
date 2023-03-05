@@ -41,9 +41,9 @@ namespace Gedcomx.Rs.Api.Test.Examples
             {
                 Persons = new List<Person>() { george, martha }
             };
-            gx.AddRelationship(marriage);
+            gx.SetRelationship(marriage);
             gx.SourceDescriptions = sources;
-            gx.AddAgent(contributor);
+            gx.SetAgent(contributor);
             gx.SetAttribution(new Attribution());
             gx.Attribution.SetContributor(new ResourceReference());
             gx.Attribution.Contributor.SetResource("#" + contributor.Id);

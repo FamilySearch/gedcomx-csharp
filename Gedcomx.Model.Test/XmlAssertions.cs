@@ -2,6 +2,7 @@
 using Gx.Common;
 using Gx.Conclusion;
 using Gx.Links;
+using Gx.Records;
 using Gx.Source;
 
 using NUnit.Framework;
@@ -132,6 +133,20 @@ namespace Gedcomx.Model.Test
             Assert.That(result.Contains("<rights"), Is.EqualTo(sourceDescription.AnyRights()));
             Assert.That(result.Contains("<field"), Is.EqualTo(sourceDescription.AnyFields()));
             result.ShouldContain(sourceDescription as HypermediaEnabledData);
+        }
+
+        public static void ShouldContain(this string result, Collection collection)
+        {
+            Assert.That(result, Does.Contain("<collection "));
+            Assert.That(result, Does.Contain("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""));
+            Assert.That(result, Does.Contain("xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\""));
+            Assert.That(result, Does.Contain("xmlns=\"http://gedcomx.org/v1/\""));
+            result.ShouldContainAttribute("lang", collection.Lang);
+            result.ShouldContainElement("title", collection.Title);
+            Assert.That(result.Contains("<size"), Is.EqualTo(collection.SizeSpecified));
+            Assert.That(result.Contains("<content "), Is.EqualTo(collection.AnyContent()));
+            result.ShouldContainElement("attribution", collection.Attribution);
+            result.ShouldContain(collection as HypermediaEnabledData);
         }
 
         public static void ShouldContain(this string result, Document document)

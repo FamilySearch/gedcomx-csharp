@@ -325,9 +325,9 @@ namespace Gx.Util
         {
             this.contextStack.Push(field);
 
-            if (field.Values != null)
+            if (field.AnyValues())
             {
-                foreach (FieldValue v in field.Values)
+                foreach (var v in field.Values)
                 {
                     VisitFieldValue(v);
                 }

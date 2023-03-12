@@ -162,15 +162,27 @@ namespace Gedcomx.Model.Test
             result.ShouldContain(facet as HypermediaEnabledData);
         }
 
-        public static void ShouldContain(this string result, FieldDescriptor field)
+        public static void ShouldContain(this string result, FieldDescriptor fieldDescriptor)
         {
             Assert.That(result, Does.Contain("<FieldDescriptor "));
             Assert.That(result, Does.Contain("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""));
             Assert.That(result, Does.Contain("xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\""));
-            Assert.That(result.Contains("<originalLabel"), Is.EqualTo(field.OriginalLabel != null));
-            Assert.That(result.Contains("<description "), Is.EqualTo(field.AnyDescriptions()));
-            Assert.That(result.Contains("<value "), Is.EqualTo(field.AnyValues()));
-            result.ShouldContain(field as HypermediaEnabledData);
+            Assert.That(result.Contains("<originalLabel"), Is.EqualTo(fieldDescriptor.OriginalLabel != null));
+            Assert.That(result.Contains("<description "), Is.EqualTo(fieldDescriptor.AnyDescriptions()));
+            Assert.That(result.Contains("<value "), Is.EqualTo(fieldDescriptor.AnyValues()));
+            result.ShouldContain(fieldDescriptor as HypermediaEnabledData);
+        }
+
+        public static void ShouldContain(this string result, FieldValueDescriptor fieldValueDescriptor)
+        {
+            Assert.That(result, Does.Contain("<FieldValueDescriptor "));
+            Assert.That(result, Does.Contain("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""));
+            Assert.That(result, Does.Contain("xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\""));
+            Assert.That(result.Contains("optional="), Is.EqualTo(fieldValueDescriptor.OptionalSpecified));
+            Assert.That(result.Contains("type="), Is.EqualTo(fieldValueDescriptor.Type != null));
+            Assert.That(result.Contains("labelId="), Is.EqualTo(fieldValueDescriptor.LabelId != null));
+            Assert.That(result.Contains("<label "), Is.EqualTo(fieldValueDescriptor.AnyDisplayLabels()));
+            result.ShouldContain(fieldValueDescriptor as HypermediaEnabledData);
         }
 
         public static void ShouldContain(this string result, Field field)

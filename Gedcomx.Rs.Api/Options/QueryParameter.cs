@@ -1,11 +1,8 @@
-﻿using Flurl;
+﻿using System.Linq;
+
+using Flurl;
+
 using RestSharp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Tavis.UriTemplates;
 
 namespace Gx.Rs.Api.Options
 {
@@ -17,34 +14,34 @@ namespace Gx.Rs.Api.Options
         /// <summary>
         /// The access token query parameter.
         /// </summary>
-        public static readonly String ACCESS_TOKEN = "access_token";
+        public static readonly string ACCESS_TOKEN = "access_token";
         /// <summary>
         /// The count query parameter.
         /// </summary>
-        public static readonly String COUNT = "count";
+        public static readonly string COUNT = "count";
         /// <summary>
         /// The generations query parameter.
         /// </summary>
-        public static readonly String GENERATIONS = "generations";
+        public static readonly string GENERATIONS = "generations";
         /// <summary>
         /// The search query parameter.
         /// </summary>
-        public static readonly String SEARCH_QUERY = "q";
+        public static readonly string SEARCH_QUERY = "q";
         /// <summary>
         /// The start query parameter.
         /// </summary>
-        public static readonly String START = "start";
+        public static readonly string START = "start";
 
         private readonly bool replace;
-        private readonly String name;
-        private readonly String[] values;
+        private readonly string name;
+        private readonly string[] values;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="QueryParameter"/> class.
         /// </summary>
         /// <param name="name">The name of the query string parameter.</param>
         /// <param name="values">The string value to use in the new query parameter.</param>
-        public QueryParameter(String name, params String[] values)
+        public QueryParameter(string name, params string[] values)
             : this(false, name, values)
         {
         }
@@ -59,11 +56,11 @@ namespace Gx.Rs.Api.Options
         /// </param>
         /// <param name="name">The name of the query string parameter.</param>
         /// <param name="values">The string value to use in the new query parameter.</param>
-        public QueryParameter(bool replace, String name, params String[] values)
+        public QueryParameter(bool replace, string name, params string[] values)
         {
             this.replace = replace;
             this.name = name;
-            this.values = values.Length > 0 ? values : new String[] { };
+            this.values = values.Length > 0 ? values : new string[] { };
         }
 
         /// <summary>
@@ -85,7 +82,7 @@ namespace Gx.Rs.Api.Options
                 query.Add(this.name, value);
             }
 
-            request.Resource = url.Path + "?" + String.Join("&", query.Select(x => x.Name + "=" + x.Value));
+            request.Resource = url.Path + "?" + string.Join("&", query.Select(x => x.Name + "=" + x.Value));
         }
 
         /// <summary>
@@ -96,7 +93,7 @@ namespace Gx.Rs.Api.Options
         /// <remarks>
         /// This could be used, for example, to send an access token via the query string, rather than an authorization header in REST API requests.
         /// </remarks>
-        public static QueryParameter AccessToken(String value)
+        public static QueryParameter AccessToken(string value)
         {
             return new QueryParameter(true, ACCESS_TOKEN, value);
         }
@@ -136,7 +133,7 @@ namespace Gx.Rs.Api.Options
         /// This could be used, for example, to create a search request, such as what might be built by <see cref="Gx.Rs.Api.Util.GedcomxPersonSearchQueryBuilder"/>
         /// or <see cref="Gx.Rs.Api.Util.GedcomxPlaceSearchQueryBuilder"/>.
         /// </remarks>
-        public static QueryParameter SearchQuery(String value)
+        public static QueryParameter SearchQuery(string value)
         {
             return new QueryParameter(true, SEARCH_QUERY, value);
         }

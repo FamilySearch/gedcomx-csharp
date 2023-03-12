@@ -149,6 +149,19 @@ namespace Gedcomx.Model.Test
             result.ShouldContain(collection as HypermediaEnabledData);
         }
 
+        public static void ShouldContain(this string result, Facet facet)
+        {
+            Assert.That(result, Does.Contain("<Facet "));
+            Assert.That(result, Does.Contain("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""));
+            Assert.That(result, Does.Contain("xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\""));
+            Assert.That(result.Contains("type="), Is.EqualTo(facet.Type != null));
+            Assert.That(result.Contains("<title "), Is.EqualTo(facet.Title != null));
+            Assert.That(result.Contains("<key "), Is.EqualTo(facet.Key != null));
+            Assert.That(result.Contains("<facet "), Is.EqualTo(facet.AnyFacets()));
+            Assert.That(result.Contains("<value "), Is.EqualTo(facet.AnyValues()));
+            result.ShouldContain(facet as HypermediaEnabledData);
+        }
+
         public static void ShouldContain(this string result, Document document)
         {
             Assert.That(result, Does.Contain("<document "));

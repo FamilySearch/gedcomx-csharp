@@ -297,9 +297,9 @@ namespace Gx.Util
         public virtual void VisitFacet(Facet facet)
         {
             this.contextStack.Push(facet);
-            if (facet.Facets != null)
+            if (facet.AnyFacets())
             {
-                foreach (Facet f in facet.Facets)
+                foreach (var f in facet.Facets)
                 {
                     VisitFacet(f);
                 }

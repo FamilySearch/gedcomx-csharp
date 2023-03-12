@@ -3,7 +3,6 @@
 using Gx.Agent;
 using Gx.Common;
 using Gx.Conclusion;
-using Gx.Model.Collections;
 using Gx.Records;
 using Gx.Source;
 using Gx.Types;
@@ -37,17 +36,17 @@ namespace Gedcomx.Model.Test
                 Lang = "en",
                 DescriptionRef = "description",
                 Profile = "profile",
-                Attribution = new Attribution(),
-                Persons = { new Person() },
-                Relationships = { new Relationship() },
-                SourceDescriptions = { new SourceDescription() },
-                Agents = { new Agent() },
-                Events = { new Event() },
-                Places = { new PlaceDescription() },
-                Documents = { new Document() },
-                Collections = { new Collection() },
-                Fields = { new Field() },
-                RecordDescriptors = { new RecordDescriptor() },
+                Attribution = new(),
+                Persons = { new() },
+                Relationships = { new() },
+                SourceDescriptions = { new() },
+                Agents = { new() },
+                Events = { new() },
+                Places = { new() },
+                Documents = { new() },
+                Collections = { new() },
+                Fields = { new() },
+                RecordDescriptors = { new() },
             };
 
             VerifyXmlSerialization(sut);
@@ -77,7 +76,7 @@ namespace Gedcomx.Model.Test
             {
                 Id = "S-1",
                 Titles = { "Birth Certificate of Emma Bocock, 23 July 1843, General Registry Office" },
-                Citations = { new SourceCitation() { Value = "England, birth certificate for Emma Bocock, born 23 July 1843; citing 1843 Birth in District and Sub-district of Ecclesall-Bierlow in the County of York, 303; General Registry Office, Southport." } },
+                Citations = { new() { Value = "England, birth certificate for Emma Bocock, born 23 July 1843; citing 1843 Birth in District and Sub-district of Ecclesall-Bierlow in the County of York, 303; General Registry Office, Southport." } },
                 KnownResourceType = ResourceType.PhysicalArtifact,
                 Created = DateTime.Parse("1843-07-27"),
                 Repository = repository
@@ -85,14 +84,14 @@ namespace Gedcomx.Model.Test
             Fact birth = new()
             {
                 KnownType = FactType.Birth,
-                Date = new DateInfo() { Original = "23 June 1843" },
-                Place = new PlaceReference() { Original = "Broadfield Bar, Abbeydale Road, Ecclesall-Bierlow, York, England, United Kingdom" }
+                Date = new() { Original = "23 June 1843" },
+                Place = new() { Original = "Broadfield Bar, Abbeydale Road, Ecclesall-Bierlow, York, England, United Kingdom" }
             };
             Person emma = new()
             {
                 Id = "P-1",
                 Names = { "Emma Bocock" },
-                Gender = new Gender(GenderType.Female),
+                Gender = new(GenderType.Female),
                 Facts = { birth },
                 Extracted = true,
                 Sources = { sourceDescription }
@@ -101,7 +100,7 @@ namespace Gedcomx.Model.Test
             {
                 Id = "P-2",
                 Names = { "William Bocock" },
-                Facts = { new Fact() { KnownType = FactType.Occupation, Value = "Toll Collector" } },
+                Facts = { new() { KnownType = FactType.Occupation, Value = "Toll Collector" } },
                 Extracted = true,
                 Sources = { sourceDescription }
             };
@@ -151,7 +150,7 @@ namespace Gedcomx.Model.Test
             {
                 Id = "A-2",
                 Names = { "Family History Librarye" },
-                Addresses = { new Address() { City = "Salt Lake City", StateOrProvince = "Utah" } }
+                Addresses = { new() { City = "Salt Lake City", StateOrProvince = "Utah" } }
             };
 
             //The attribution for this research.
@@ -167,7 +166,7 @@ namespace Gedcomx.Model.Test
                 Id = "S-1",
                 Titles = { "Marriage entry for Samuel Ham and Elizabeth Spiller, Parish Register, Wilton, Somerset, England" },
                 Descriptions = { "Marriage entry for Samuel Ham and Elizabeth in a copy of the registers of the baptisms, marriages, and burials at the church of St. George in the parish of Wilton : adjoining Taunton, in the county of Somerset from A.D. 1558 to A.D. 1837." },
-                Citations = { new SourceCitation() { Value = "Joseph Houghton Spencer, transcriber, Church of England, Parish Church of Wilton (Somerset). <cite>A copy of the registers of the baptisms, marriages, and burials at the church of St. George in the parish of Wilton : adjoining Taunton, in the county of Somerset from A.D. 1558 to A.D. 1837</cite>; Marriage entry for Samuel Ham and Elizabeth Spiller (3 November 1828), (Taunton: Barnicott, 1890), p. 224, No. 86." } },
+                Citations = { new() { Value = "Joseph Houghton Spencer, transcriber, Church of England, Parish Church of Wilton (Somerset). <cite>A copy of the registers of the baptisms, marriages, and burials at the church of St. George in the parish of Wilton : adjoining Taunton, in the county of Somerset from A.D. 1558 to A.D. 1837</cite>; Marriage entry for Samuel Ham and Elizabeth Spiller (3 November 1828), (Taunton: Barnicott, 1890), p. 224, No. 86." } },
                 KnownResourceType = ResourceType.PhysicalArtifact,
                 Repository = fhl
             };
@@ -194,7 +193,7 @@ namespace Gedcomx.Model.Test
                 About = "#" + transcription.Id,
                 Titles = { "Transcription of marriage entry for Samuel Ham and Elizabeth Spiller, Parish Register, Wilton, Somerset, England" },
                 Descriptions = { "Transcription of marriage entry for Samuel Ham and Elizabeth in a copy of the registers of the baptisms, marriages, and burials at the church of St. George in the parish of Wilton : adjoining Taunton, in the county of Somerset from A.D. 1558 to A.D. 1837." },
-                Citations = { new SourceCitation() { Value = "Joseph Houghton Spencer, transcriber, Church of England, Parish Church of Wilton (Somerset). <cite>A copy of the registers of the baptisms, marriages, and burials at the church of St. George in the parish of Wilton : adjoining Taunton, in the county of Somerset from A.D. 1558 to A.D. 1837</cite>; Marriage entry for Samuel Ham and Elizabeth Spiller (3 November 1828), (Taunton: Barnicott, 1890), p. 224, No. 86." } },
+                Citations = { new() { Value = "Joseph Houghton Spencer, transcriber, Church of England, Parish Church of Wilton (Somerset). <cite>A copy of the registers of the baptisms, marriages, and burials at the church of St. George in the parish of Wilton : adjoining Taunton, in the county of Somerset from A.D. 1558 to A.D. 1837</cite>; Marriage entry for Samuel Ham and Elizabeth Spiller (3 November 1828), (Taunton: Barnicott, 1890), p. 224, No. 86." } },
                 KnownResourceType = ResourceType.DigitalArtifact,
                 Sources = { recordDescription }
             };
@@ -203,24 +202,24 @@ namespace Gedcomx.Model.Test
             Fact marriage = new()
             {
                 KnownType = FactType.Marriage,
-                Date = new DateInfo() { Original = "3 November 1828", Formal = "+1828-11-03" },
-                Place = new PlaceReference() { Original = "Wilton St George, Wilton, Somerset, England" }
+                Date = new() { Original = "3 November 1828", Formal = "+1828-11-03" },
+                Place = new() { Original = "Wilton St George, Wilton, Somerset, England" }
             };
 
             //the groom's residence.
             Fact samsResidence = new()
             {
                 KnownType = FactType.Residence,
-                Date = new DateInfo() { Original = "3 November 1828", Formal = "+1828-11-03" },
-                Place = new PlaceReference() { Original = "parish of Honiton, Devon, England" }
+                Date = new() { Original = "3 November 1828", Formal = "+1828-11-03" },
+                Place = new() { Original = "parish of Honiton, Devon, England" }
             };
 
             //the groom's residence.
             Fact lizsResidence = new()
             {
                 KnownType = FactType.Residence,
-                Date = new DateInfo() { Original = "3 November 1828", Formal = "+1828-11-03" },
-                Place = new PlaceReference() { Original = "parish of Wilton, Somerset, England" }
+                Date = new() { Original = "3 November 1828", Formal = "+1828-11-03" },
+                Place = new() { Original = "parish of Wilton, Somerset, England" }
             };
 
             //the groom
@@ -282,16 +281,16 @@ namespace Gedcomx.Model.Test
             Event marriageEvent = new()
             {
                 Id = "E-1",
-                Date = new DateInfo() { Original = "3 November 1828", Formal = "+1828-11-03" },
-                Place = new PlaceReference() { Original = "Wilton St George, Wilton, Somerset, England" },
+                Date = new() { Original = "3 November 1828", Formal = "+1828-11-03" },
+                Place = new() { Original = "Wilton St George, Wilton, Somerset, England" },
                 Roles =
                 {
-                    new EventRole() { Person = sam, KnownType = EventRoleType.Principal },
-                    new EventRole() { Person = liz, KnownType = EventRoleType.Principal },
-                    new EventRole() { Person = witness1, KnownType = EventRoleType.Witness },
-                    new EventRole() { Person = witness2, KnownType = EventRoleType.Witness },
-                    new EventRole() { Person = witness3, KnownType = EventRoleType.Witness },
-                    new EventRole() { Person = officiator, KnownType = EventRoleType.Official }
+                    new() { Person = sam, KnownType = EventRoleType.Principal },
+                    new() { Person = liz, KnownType = EventRoleType.Principal },
+                    new() { Person = witness1, KnownType = EventRoleType.Witness },
+                    new() { Person = witness2, KnownType = EventRoleType.Witness },
+                    new() { Person = witness3, KnownType = EventRoleType.Witness },
+                    new() { Person = officiator, KnownType = EventRoleType.Official }
                 },
                 Extracted = true
             };
@@ -325,18 +324,18 @@ namespace Gedcomx.Model.Test
         [Test]
         public void GeorgeMarthaWashingtonExampleTest()
         {
-            PlaceDescription popesCreek = CreatePopesCreek();
-            PlaceDescription mountVernon = CreateMountVernon();
-            PlaceDescription chestnutGrove = CreateChestnutGrove();
-            Person george = CreateGeorge(popesCreek, mountVernon);
-            Person martha = CreateMartha(chestnutGrove, mountVernon);
-            Relationship marriage = CreateMarriage(george, martha);
-            List<SourceDescription> sources = CiteGeorgeMarthaAndMarriage(george, martha, marriage);
-            Agent contributor = CreateContributor();
+            var popesCreek = CreatePopesCreek();
+            var mountVernon = CreateMountVernon();
+            var chestnutGrove = CreateChestnutGrove();
+            var george = CreateGeorge(popesCreek, mountVernon);
+            var martha = CreateMartha(chestnutGrove, mountVernon);
+            var marriage = CreateMarriage(george, martha);
+            var sources = CiteGeorgeMarthaAndMarriage(george, martha, marriage);
+            var contributor = CreateContributor();
             Gx.Gedcomx gx = new()
             {
-                Attribution = new Attribution() { Contributor = new ResourceReference() { Resource = "#" + contributor.Id } },
-                Persons = new List<Person>() { george, martha },
+                Attribution = new() { Contributor = new() { Resource = "#" + contributor.Id } },
+                Persons = new() { george, martha },
                 Relationships = { marriage },
                 SourceDescriptions = sources,
                 Agents = { contributor },
@@ -354,14 +353,14 @@ namespace Gedcomx.Model.Test
             {
                 Facts =
                 {
-                    new Fact(FactType.Census, "...", "..."),
-                    new Fact(FactType.Census, "...", "..."),
-                    new Fact(FactType.Emigration, "...", "..."),
-                    new Fact(FactType.Immigration, "...", "..."),
-                    new Fact(FactType.LandTransaction, "...", "..."),
-                    new Fact(FactType.MoveTo, "...", "..."),
-                    new Fact(FactType.MoveFrom, "...", "..."),
-                    new Fact(FactType.Residence, "...", "...")
+                    new(FactType.Census, "...", "..."),
+                    new(FactType.Census, "...", "..."),
+                    new(FactType.Emigration, "...", "..."),
+                    new(FactType.Immigration, "...", "..."),
+                    new(FactType.LandTransaction, "...", "..."),
+                    new(FactType.MoveTo, "...", "..."),
+                    new(FactType.MoveFrom, "...", "..."),
+                    new(FactType.Residence, "...", "...")
                 }
             };
             Gx.Gedcomx gx = new() { Persons = { person } };
@@ -377,11 +376,11 @@ namespace Gedcomx.Model.Test
             {
                 Facts =
                 {
-                    new Fact(FactType.MilitaryAward, "...", "..."),
-                    new Fact(FactType.MilitaryDischarge, "...", "..."),
-                    new Fact(FactType.MilitaryDraftRegistration, "...", "..."),
-                    new Fact(FactType.MilitaryInduction, "...", "..."),
-                    new Fact(FactType.MilitaryService, "...", "...")
+                    new(FactType.MilitaryAward, "...", "..."),
+                    new(FactType.MilitaryDischarge, "...", "..."),
+                    new(FactType.MilitaryDraftRegistration, "...", "..."),
+                    new(FactType.MilitaryInduction, "...", "..."),
+                    new(FactType.MilitaryService, "...", "...")
                 }
             };
             Gx.Gedcomx gx = new() { Persons = { person } };
@@ -397,10 +396,10 @@ namespace Gedcomx.Model.Test
             {
                 Facts =
                 {
-                    new Fact(FactType.Apprenticeship, "...", "..."),
-                    new Fact(FactType.Education, "...", "..."),
-                    new Fact(FactType.Occupation, "...", "..."),
-                    new Fact(FactType.Retirement, "...", "...")
+                    new(FactType.Apprenticeship, "...", "..."),
+                    new(FactType.Education, "...", "..."),
+                    new(FactType.Occupation, "...", "..."),
+                    new(FactType.Retirement, "...", "...")
                 }
             };
             Gx.Gedcomx gx = new() { Persons = { person } };
@@ -416,21 +415,21 @@ namespace Gedcomx.Model.Test
             {
                 Facts =
                 {
-                    new Fact(FactType.AdultChristening, "...", "..."),
-                    new Fact(FactType.Baptism, "...", "..."),
-                    new Fact(FactType.BarMitzvah, "...", "..."),
-                    new Fact(FactType.BatMitzvah, "...", "..."),
-                    new Fact(FactType.Caste, "...", "..."),
-                    new Fact(FactType.Christening, "...", "..."),
-                    new Fact(FactType.Circumcision, "...", "..."),
-                    new Fact(FactType.Clan, "...", "..."),
-                    new Fact(FactType.Confirmation, "...", "..."),
-                    new Fact(FactType.Excommunication, "...", "..."),
-                    new Fact(FactType.FirstCommunion, "...", "..."),
-                    new Fact(FactType.Nationality, "...", "..."),
-                    new Fact(FactType.Ordination, "...", "..."),
-                    new Fact(FactType.Religion, "...", "..."),
-                    new Fact(FactType.Yahrzeit, "...", "...")
+                    new(FactType.AdultChristening, "...", "..."),
+                    new(FactType.Baptism, "...", "..."),
+                    new(FactType.BarMitzvah, "...", "..."),
+                    new(FactType.BatMitzvah, "...", "..."),
+                    new(FactType.Caste, "...", "..."),
+                    new(FactType.Christening, "...", "..."),
+                    new(FactType.Circumcision, "...", "..."),
+                    new(FactType.Clan, "...", "..."),
+                    new(FactType.Confirmation, "...", "..."),
+                    new(FactType.Excommunication, "...", "..."),
+                    new(FactType.FirstCommunion, "...", "..."),
+                    new(FactType.Nationality, "...", "..."),
+                    new(FactType.Ordination, "...", "..."),
+                    new(FactType.Religion, "...", "..."),
+                    new(FactType.Yahrzeit, "...", "...")
                 }
             };
             Gx.Gedcomx gx = new() { Persons = { person } };
@@ -444,7 +443,7 @@ namespace Gedcomx.Model.Test
         {
             Person person = new()
             {
-                Facts = { new Fact() { Type = "data:,Eagle%20Scout", Place = new PlaceReference() { Original = "..." }, Date = new DateInfo() { Original = "..." } } }
+                Facts = { new() { Type = "data:,Eagle%20Scout", Place = new() { Original = "..." }, Date = new() { Original = "..." } } }
             };
             Gx.Gedcomx gx = new() { Persons = { person } };
 
@@ -459,13 +458,13 @@ namespace Gedcomx.Model.Test
             {
                 KnownType = RelationshipType.Couple,
                 Facts = {
-                    new Fact(FactType.CivilUnion, "...", "..."),
-                    new Fact(FactType.DomesticPartnership, "...", "..."),
-                    new Fact(FactType.Divorce, "...", "..."),
-                    new Fact(FactType.Marriage, "...", "..."),
-                    new Fact(FactType.MarriageBanns, "...", "..."),
-                    new Fact(FactType.MarriageContract, "...", "..."),
-                    new Fact(FactType.MarriageLicense, "...", "...")
+                    new(FactType.CivilUnion, "...", "..."),
+                    new(FactType.DomesticPartnership, "...", "..."),
+                    new(FactType.Divorce, "...", "..."),
+                    new(FactType.Marriage, "...", "..."),
+                    new(FactType.MarriageBanns, "...", "..."),
+                    new(FactType.MarriageContract, "...", "..."),
+                    new(FactType.MarriageLicense, "...", "...")
                 }
             };
 
@@ -473,11 +472,11 @@ namespace Gedcomx.Model.Test
             {
                 KnownType = RelationshipType.ParentChild,
                 Facts = {
-                    new Fact(FactType.AdoptiveParent, "...", "..."),
-                    new Fact(FactType.BiologicalParent, "...", "..."),
-                    new Fact(FactType.FosterParent, "...", "..."),
-                    new Fact(FactType.GuardianParent, "...", "..."),
-                    new Fact(FactType.StepParent, "...", "...")
+                    new(FactType.AdoptiveParent, "...", "..."),
+                    new(FactType.BiologicalParent, "...", "..."),
+                    new(FactType.FosterParent, "...", "..."),
+                    new(FactType.GuardianParent, "...", "..."),
+                    new(FactType.StepParent, "...", "...")
                 }
             };
 
@@ -497,17 +496,16 @@ namespace Gedcomx.Model.Test
             {
                 Lang = "en",
                 Parts = {
-                    new NamePart(NamePartType.Given, "John"),
-                    new NamePart(NamePartType.Given, "Fitzgerald"),
-                    new NamePart(NamePartType.Surname, "Kennedy")
+                    new(NamePartType.Given, "John"),
+                    new(NamePartType.Given, "Fitzgerald"),
+                    new(NamePartType.Surname, "Kennedy")
                 }
             };
-            //Name name = new() { NameForms = { nameForm } };
-            Name name = new Name().SetNameForm(nameForm);
+            Name name = new() { NameForms = { nameForm } };
 
             Gx.Gedcomx gx = new()
             {
-                Persons = { new Person().SetName(name) },
+                Persons = { new() { Names = { name } } }
             };
 
             VerifyXmlSerialization(gx);
@@ -521,31 +519,31 @@ namespace Gedcomx.Model.Test
             {
                 Lang = "ja-Hani",
                 Parts = {
-                    new NamePart(NamePartType.Surname, "山田"),
-                    new NamePart(NamePartType.Given, "太郎")
+                    new(NamePartType.Surname, "山田"),
+                    new(NamePartType.Given, "太郎")
                 }
             };
             NameForm katakana = new("ヤマダタロー")
             {
                 Lang = "ja-Kana",
                 Parts = {
-                    new NamePart(NamePartType.Surname, "ヤマダ"),
-                    new NamePart(NamePartType.Given, "タロー")
+                    new(NamePartType.Surname, "ヤマダ"),
+                    new(NamePartType.Given, "タロー")
                 }
             };
             NameForm romanized = new("Yamada Tarō")
             {
                 Lang = "ja-Kana",
                 Parts = {
-                    new NamePart(NamePartType.Surname, "Tarō"),
-                    new NamePart(NamePartType.Given, "Yamada")
+                    new(NamePartType.Surname, "Tarō"),
+                    new(NamePartType.Given, "Yamada")
                 }
             };
-            Name name = new Name().SetNameForm(kanji).SetNameForm(katakana).SetNameForm(romanized);
+            Name name = new() { NameForms = { kanji, katakana, romanized } };
 
             Gx.Gedcomx gx = new()
             {
-                Persons = { new Person().SetName(name) },
+                Persons = { new() { Names = { name } } }
             };
 
             VerifyXmlSerialization(gx);
@@ -559,15 +557,15 @@ namespace Gedcomx.Model.Test
             {
                 Lang = "pt-BR",
                 Parts = {
-                    new NamePart(NamePartType.Given, "José Eduardo"),
-                    new NamePart(NamePartType.Surname, "Santos Tavares Melo Silva")
+                    new(NamePartType.Given, "José Eduardo"),
+                    new(NamePartType.Surname, "Santos Tavares Melo Silva")
                 }
             };
-            Name name = new Name().SetNameForm(nameForm);
+            Name name = new() { NameForms = { nameForm } };
 
             Gx.Gedcomx gx = new()
             {
-                Persons = { new Person().SetName(name) },
+                Persons = { new() { Names = { name } } }
             };
 
             VerifyXmlSerialization(gx);
@@ -581,19 +579,19 @@ namespace Gedcomx.Model.Test
             {
                 Lang = "pt-BR",
                 Parts = {
-                    new NamePart(NamePartType.Given, "José"),
-                    new NamePart(NamePartType.Given, "Eduardo"),
-                    new NamePart(NamePartType.Surname, "Santos"),
-                    new NamePart(NamePartType.Surname, "Tavares"),
-                    new NamePart(NamePartType.Surname, "Melo"),
-                    new NamePart(NamePartType.Surname, "Silva")
+                    new(NamePartType.Given, "José"),
+                    new(NamePartType.Given, "Eduardo"),
+                    new(NamePartType.Surname, "Santos"),
+                    new(NamePartType.Surname, "Tavares"),
+                    new(NamePartType.Surname, "Melo"),
+                    new(NamePartType.Surname, "Silva")
                 }
             };
-            Name name = new Name().SetNameForm(nameForm);
+            Name name = new() { NameForms = { nameForm } };
 
             Gx.Gedcomx gx = new()
             {
-                Persons = { new Person().SetName(name) },
+                Persons = { new() { Names = { name } } }
             };
 
             VerifyXmlSerialization(gx);
@@ -606,15 +604,13 @@ namespace Gedcomx.Model.Test
             NameForm nameForm = new("Björk Guðmundsdóttir")
             {
                 Lang = "is",
-                Parts = {
-                    new NamePart().SetValue("Guðmundsdóttir").SetQualifier(new Qualifier(NamePartQualifierType.Patronymic))
-                }
+                Parts = { new() { Value = "Guðmundsdóttir", Qualifiers = { new(NamePartQualifierType.Patronymic) } } }
             };
-            Name name = new Name().SetNameForm(nameForm);
+            Name name = new() { NameForms = { nameForm } };
 
             Gx.Gedcomx gx = new()
             {
-                Persons = { new Person().SetName(name) },
+                Persons = { new() { Names = { name } } }
             };
 
             VerifyXmlSerialization(gx);
@@ -628,9 +624,9 @@ namespace Gedcomx.Model.Test
             {
                 Facts =
                 {
-                    new Fact(FactType.Christening, "...", "...").SetQualifier(new Qualifier(FactQualifierType.Religion, "Catholic")),
-                    new Fact(FactType.Census, "...", "...").SetQualifier(new Qualifier(FactQualifierType.Age, "44")),
-                    new Fact(FactType.Death, "...", "...").SetQualifier(new Qualifier(FactQualifierType.Cause, "Heart failure"))
+                    new(FactType.Christening, "...", "...") { Qualifiers = { new(FactQualifierType.Religion, "Catholic") } },
+                    new(FactType.Census, "...", "...") { Qualifiers = { new(FactQualifierType.Age, "44") } },
+                    new(FactType.Death, "...", "...") { Qualifiers = { new(FactQualifierType.Cause, "Heart failure") } }
                 }
             };
             Gx.Gedcomx gx = new() { Persons = { person } };
@@ -655,7 +651,7 @@ namespace Gedcomx.Model.Test
             {
                 Id = "A-2",
                 Names = { "Lin Yee Chung Cemetery" },
-                Addresses = { new Address().SetCity("Honolulu").SetStateOrProvince("Hawaii") }
+                Addresses = { new() { City = "Honolulu", StateOrProvince = "Hawaii" } }
             };
 
             //Hanyu Pinyin, the translator.
@@ -669,23 +665,23 @@ namespace Gedcomx.Model.Test
             //The attribution for this research.
             Attribution researchAttribution = new()
             {
-                Modified = DateTime.Parse("2014-03-27")
+                Modified = DateTime.Parse("2014-03-27"),
+                Contributor = janeDoe
             };
-            researchAttribution.SetContributor(janeDoe);
 
             //The attribution for the translation.
             Attribution translationAttribution = new()
             {
-                Modified = DateTime.Parse("2014-03-27")
+                Modified = DateTime.Parse("2014-03-27"),
+                Contributor = hanyuPinyin
             };
-            translationAttribution.SetContributor(hanyuPinyin);
 
             //The grave stone.
             SourceDescription gravestoneDescription = new()
             {
                 Id = "S-1",
                 Titles = { "Grave Marker of WONG Aloiau, Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii" },
-                Citations = { new SourceCitation() { Value = "WONG Aloiau gravestone, Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii; visited May 1975 by Jane Doe." } },
+                Citations = { new() { Value = "WONG Aloiau gravestone, Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii; visited May 1975 by Jane Doe." } },
                 KnownResourceType = ResourceType.PhysicalArtifact,
                 Repository = cemetery
             };
@@ -695,9 +691,9 @@ namespace Gedcomx.Model.Test
             {
                 Id = "S-2",
                 Titles = { "Grave Marker of WONG Aloiau, Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii" },
-                Citations = { new SourceCitation() { Value = "WONG Aloiau gravestone (digital photograph), Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii; visited May 1975 by Jane Doe." } },
+                Citations = { new() { Value = "WONG Aloiau gravestone (digital photograph), Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii; visited May 1975 by Jane Doe." } },
                 KnownResourceType = ResourceType.DigitalArtifact,
-                Sources = { new SourceReference().SetDescription(gravestoneDescription) }
+                Sources = { gravestoneDescription }
             };
 
             //The transcription of the grave stone.
@@ -720,9 +716,9 @@ namespace Gedcomx.Model.Test
                 Id = "S-3",
                 About = "#" + transcription.Id,
                 Titles = { "Transcription of Grave Marker of WONG Aloiau, Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii" },
-                Citations = { new SourceCitation() { Value = "WONG Aloiau gravestone (transcription), Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii; visited May 1975 by Jane Doe." } },
+                Citations = { new() { Value = "WONG Aloiau gravestone (transcription), Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii; visited May 1975 by Jane Doe." } },
                 KnownResourceType = ResourceType.DigitalArtifact,
-                Sources = { new SourceReference().SetDescription(gravestoneImageDescription) }
+                Sources = { gravestoneImageDescription }
             };
 
             //The translation of the grave stone.
@@ -744,32 +740,32 @@ namespace Gedcomx.Model.Test
                 Id = "S-4",
                 About = "#" + translation.Id,
                 Titles = { "Translation of Grave Marker of WONG Aloiau, Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii" },
-                Citations = { new SourceCitation() { Value = "WONG Aloiau gravestone, Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii; visited May 1975 by Jane Doe. Translation by HANYU Pinyin 王大年." } },
+                Citations = { new() { Value = "WONG Aloiau gravestone, Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii; visited May 1975 by Jane Doe. Translation by HANYU Pinyin 王大年." } },
                 Attribution = translationAttribution,
                 KnownResourceType = ResourceType.DigitalArtifact,
-                Sources = { new SourceReference().SetDescription(transcriptionDescription) }
+                Sources = { transcriptionDescription }
             };
 
             //the birth.
             Fact birth = new()
             {
                 KnownType = FactType.Birth,
-                Date = new DateInfo() { Original = "former Qing 1848 year 11th month 22nd day 23-1 hour", Formal = "+1848-11-22" },
-                Place = new PlaceReference() { Original = "Pun Sha Village, See Dai Doo, Chung Shan, Guangdong, China" }
+                Date = new() { Original = "former Qing 1848 year 11th month 22nd day 23-1 hour", Formal = "+1848-11-22" },
+                Place = new() { Original = "Pun Sha Village, See Dai Doo, Chung Shan, Guangdong, China" }
             };
 
             //the death.
             Fact death = new()
             {
                 KnownType = FactType.Death,
-                Date = new DateInfo() { Original = "Republic of China year 1920 year 7th mo. 12th day 11-13 hour", Formal = "+1920-08-03" }
+                Date = new() { Original = "Republic of China year 1920 year 7th mo. 12th day 11-13 hour", Formal = "+1920-08-03" }
             };
 
             //the burial.
             Fact burial = new()
             {
                 KnownType = FactType.Burial,
-                Place = new PlaceReference() { Original = "Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii" }
+                Place = new() { Original = "Lin Yee Chung Cemetery, Honolulu, Oahu, Hawaii" }
             };
 
             //the principal person
@@ -777,7 +773,7 @@ namespace Gedcomx.Model.Test
             {
                 Id = "P-1",
                 Names = { "WONG Aloiau" },
-                Gender = new Gender(GenderType.Male),
+                Gender = new(GenderType.Male),
                 Facts = { birth, death, burial },
                 Extracted = true,
                 Sources = { translationDescription }
@@ -787,7 +783,7 @@ namespace Gedcomx.Model.Test
             Person father = new()
             {
                 Id = "P-2",
-                Names = { "Lo Yau", new Name() { KnownType = NameType.AlsoKnownAs }.SetNameForm( new() { FullText = "Young Hong Wong" }) },
+                Names = { "Lo Yau", new Name() { KnownType = NameType.AlsoKnownAs, NameForms = { new("Young Hong Wong") } } },
                 Extracted = true,
                 Sources = { translationDescription }
             };
@@ -825,8 +821,8 @@ namespace Gedcomx.Model.Test
         {
             Gx.Gedcomx sut = new()
             {
-                Persons = { new Person() },
-                Relationships = { new Relationship() }
+                Persons = { new() },
+                Relationships = { new() }
             };
 
             VerifyXmlSerialization(sut);
@@ -835,8 +831,8 @@ namespace Gedcomx.Model.Test
 
         private static void VerifyXmlSerialization(Gx.Gedcomx sut)
         {
-            var serializer = new XmlSerializer(typeof(Gx.Gedcomx));
-            using var stream = new MemoryStream();
+            XmlSerializer serializer = new(typeof(Gx.Gedcomx));
+            using MemoryStream stream = new();
             serializer.Serialize(stream, sut);
 
             stream.Seek(0, SeekOrigin.Begin);
@@ -896,146 +892,118 @@ namespace Gedcomx.Model.Test
 
         private static Person CreateGeorge(PlaceDescription birthPlace, PlaceDescription deathPlace)
         {
-            Fact fact = new()
+            return new()
             {
-                Id = "123",
-                KnownType = FactType.Birth,
-                Date = new DateInfo() { Original = "February 22, 1732", Formal = "+1732-02-22" },
-                Place = new PlaceReference() { Original = birthPlace.Names[0].Value.ToLower() }.SetDescription(birthPlace)
+                Id = "BBB-BBBB",
+                Gender = new(GenderType.Male),
+                Facts =
+                {
+                    new()
+                    {
+                        Id = "123",
+                        KnownType = FactType.Birth,
+                        Date = new() { Original = "February 22, 1732", Formal = "+1732-02-22" },
+                        Place = new(birthPlace) { Original = birthPlace.Names[0].Value.ToLower() }
+                    },
+                    new()
+                    {
+                        Id = "456",
+                        KnownType = FactType.Death,
+                        Date = new() { Original = "December 14, 1799", Formal = "+1799-12-14T22:00:00" },
+                        Place = new(deathPlace) { Original = deathPlace.Names[0].Value.ToLower() }
+                    }
+                },
+                Names =
+                {
+                    new Name("George Washington", new(NamePartType.Given, "George"), new(NamePartType.Surname, "Washington") )
+                    {
+                        Id = "789",
+                    }
+                }
             };
-
-            Person person = new()
-            {
-                Gender = new Gender(GenderType.Male),
-                Facts = { fact }
-            };
-
-            fact = new()
-            {
-                Id = "456",
-                KnownType = FactType.Death,
-                Date = new DateInfo() { Original = "December 14, 1799", Formal = "+1799-12-14T22:00:00" },
-                Place = new PlaceReference() { Original = deathPlace.Names[0].Value.ToLower() }.SetDescription(deathPlace)
-            };
-
-            person.SetFact(fact);
-
-            Names names = new();
-            Name name = new();
-            NameForm nameForm = new();
-            nameForm.SetFullText("George Washington");
-            List<NamePart> parts = new();
-            NamePart part = new();
-            part.SetType(NamePartType.Given);
-            part.SetValue("George");
-            parts.Add(part);
-            part = new NamePart();
-            part.SetType(NamePartType.Surname);
-            part.SetValue("Washington");
-            parts.Add(part);
-            nameForm.Parts = parts;
-            name.SetNameForm(nameForm);
-            name.SetId("789");
-            names.Add(name);
-            person.Names = names;
-
-            person.SetId("BBB-BBBB");
-
-            return person;
         }
 
         private static Person CreateMartha(PlaceDescription birthPlace, PlaceDescription deathPlace)
         {
-            Person person = new();
-            person.SetGender(new Gender(GenderType.Male));
-
-            Fact fact = new()
+            return new()
             {
-                Id = "321",
-                KnownType = FactType.Birth,
-                Date = new DateInfo() { Original = "June 2, 1731", Formal = "+1731-06-02" },
-                Place = new PlaceReference() { Original = birthPlace.Names[0].Value.ToLower() }.SetDescription(birthPlace)
+                Id = "CCC-CCCC",
+                Gender = new(GenderType.Female),
+                Facts =
+                {
+                    new()
+                    {
+                        Id = "321",
+                        KnownType = FactType.Birth,
+                        Date = new() { Original = "June 2, 1731", Formal = "+1731-06-02" },
+                        Place = new(birthPlace) { Original = birthPlace.Names[0].Value.ToLower() }
+                    },
+                    new()
+                    {
+                        Id = "654",
+                        KnownType = FactType.Death,
+                        Date = new() { Original = "May 22, 1802", Formal = "+1802-05-22" },
+                        Place = new(deathPlace) { Original = deathPlace.Names[0].Value.ToLower() }
+                    }
+                },
+                Names =
+                {
+                    new Name("Martha Dandridge Custis", new(NamePartType.Given, "Martha Dandridge"), new(NamePartType.Surname, "Custis") )
+                    {
+                        Id = "987",
+                    }
+                }
             };
-
-            person.SetFact(fact);
-
-            fact = new()
-            {
-                Id = "654",
-                KnownType = FactType.Death,
-                Date = new DateInfo() { Original = "May 22, 1802", Formal = "+1802-05-22" },
-                Place = new PlaceReference() { Original = deathPlace.Names[0].Value.ToLower() }.SetDescription(deathPlace)
-            };
-
-            person.SetFact(fact);
-
-            Names names = new();
-            Name name = new();
-            NameForm nameForm = new();
-            nameForm.SetFullText("Martha Dandridge Custis");
-            List<NamePart> parts = new();
-            NamePart part = new();
-            part.SetType(NamePartType.Given);
-            part.SetValue("Martha Dandridge");
-            parts.Add(part);
-            part = new NamePart();
-            part.SetType(NamePartType.Surname);
-            part.SetValue("Custis");
-            parts.Add(part);
-            nameForm.Parts = parts;
-            name.SetNameForm(nameForm);
-            name.SetId("987");
-            names.Add(name);
-            person.Names = names;
-
-            person.SetId("CCC-CCCC");
-
-            return person;
         }
 
         private static Relationship CreateMarriage(Person george, Person martha)
         {
-            Relationship relationship = new();
-            relationship.SetId("DDD-DDDD");
-            relationship.SetPerson1(new ResourceReference("#" + george.Id));
-            relationship.SetPerson2(new ResourceReference("#" + martha.Id));
-            Fact marriage = new();
-            marriage.SetDate(new DateInfo());
-            marriage.Date.SetOriginal("January 6, 1759");
-            marriage.Date.SetFormal("+01-06-1759");
-            marriage.SetPlace(new PlaceReference());
-            marriage.Place.SetOriginal("White House Plantation");
-            relationship.SetFact(marriage);
-            return relationship;
+            Fact marriage = new()
+            {
+                Date = new() { Original = "January 6, 1759", Formal = "+01-06-1759" },
+                Place = new() { Original = "White House Plantation" }
+            };
+            return new()
+            {
+                Id = "DDD-DDDD",
+                Person1 = new("#" + george.Id),
+                Person2 = new("#" + martha.Id),
+                Facts = { marriage }
+            };
         }
 
         private static List<SourceDescription> CiteGeorgeMarthaAndMarriage(Person george, Person martha, Relationship relationship)
         {
-            SourceDescription georgeSource = new();
-            georgeSource.SetId("EEE-EEEE");
-            georgeSource.SetAbout("http://en.wikipedia.org/wiki/George_washington");
-            SourceCitation georgeCitation = new();
-            georgeCitation.SetValue("\"George Washington.\" Wikipedia, The Free Encyclopedia. Wikimedia Foundation, Inc. 24 October 2012.");
-            georgeSource.SetCitation(georgeCitation);
+            SourceCitation georgeCitation = new()
+            {
+                Value = "\"George Washington.\" Wikipedia, The Free Encyclopedia. Wikimedia Foundation, Inc. 24 October 2012.",
+            };
+            SourceDescription georgeSource = new()
+            {
+                Id = "EEE-EEEE",
+                About = "http://en.wikipedia.org/wiki/George_washington",
+                Citations = { georgeCitation }
+            };
 
-            SourceDescription marthaSource = new();
-            marthaSource.SetId("FFF-FFFF");
-            marthaSource.SetAbout("http://en.wikipedia.org/wiki/Martha_washington");
-            SourceCitation marthaCitation = new();
-            marthaCitation.SetValue("\"Martha Washington.\" Wikipedia, The Free Encyclopedia. Wikimedia Foundation, Inc. 24 October 2012.");
-            marthaSource.SetCitation(marthaCitation);
+            SourceCitation marthaCitation = new()
+            {
+                Value = "\"Martha Washington.\" Wikipedia, The Free Encyclopedia. Wikimedia Foundation, Inc. 24 October 2012."
+            };
+            SourceDescription marthaSource = new()
+            {
+                Id = "FFF-FFFF",
+                About = "http://en.wikipedia.org/wiki/Martha_washington",
+                Citations = { marthaCitation }
+            };
 
-            SourceReference reference = new();
-            reference.SetDescriptionRef("#" + georgeSource.Id);
-            george.SetSource(reference);
+            george.SetSource(georgeSource);
 
-            reference = new SourceReference();
-            reference.SetDescriptionRef("#" + marthaSource.Id);
+            SourceReference reference = marthaSource;
             martha.SetSource(reference);
 
             relationship.SetSource(reference);
 
-            return new List<SourceDescription>() { georgeSource, marthaSource };
+            return new() { georgeSource, marthaSource };
         }
     }
 }

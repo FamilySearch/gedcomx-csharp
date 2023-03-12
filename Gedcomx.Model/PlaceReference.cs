@@ -9,6 +9,7 @@ using System.Linq;
 using Gedcomx.Model.Rt;
 
 using Gx.Records;
+using Gx.Source;
 
 namespace Gx.Conclusion
 {
@@ -23,6 +24,30 @@ namespace Gx.Conclusion
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://gedcomx.org/v1/", TypeName = "PlaceReference")]
     public partial class PlaceReference : Gx.Common.ExtensibleData
     {
+        /// <summary>
+        /// Build up this source reference with a <see cref="PlaceDescription"/> reference.
+        /// </summary>
+        /// <param name="description">The place description being referenced.</param>
+        public static implicit operator PlaceReference(PlaceDescription description)
+        {
+            return new PlaceReference().SetDescription(description);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PlaceReference"/> class.
+        /// </summary>
+        public PlaceReference()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PlaceReference"/> class.
+        /// </summary>
+        /// /// <param name="description">The reference to the place description.</param>
+        public PlaceReference(PlaceDescription description)
+        {
+            SetDescription(description);
+        }
 
         private string _descriptionRef;
         private string _original;

@@ -7,8 +7,6 @@ using System;
 
 using Gedcomx.Model.Util;
 
-using Gx.Model;
-
 using Newtonsoft.Json;
 
 namespace Gx.Common

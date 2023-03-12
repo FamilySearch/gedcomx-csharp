@@ -191,10 +191,10 @@ namespace Gedcomx.Model.Rt
         {
             this.contextStack.Push(field);
 
-            List<FieldValue> values = field.Values;
-            if (values != null)
+            if (field.AnyValues())
             {
-                foreach (FieldValue value in values)
+                var values = field.Values;
+                foreach (var value in values)
                 {
                     value.Accept(this);
                 }

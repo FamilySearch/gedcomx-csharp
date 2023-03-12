@@ -2,6 +2,7 @@
 using Gx.Common;
 using Gx.Conclusion;
 using Gx.Links;
+using Gx.Records;
 using Gx.Source;
 
 using NUnit.Framework;
@@ -132,6 +133,66 @@ namespace Gedcomx.Model.Test
             Assert.That(result.Contains("<rights"), Is.EqualTo(sourceDescription.AnyRights()));
             Assert.That(result.Contains("<field"), Is.EqualTo(sourceDescription.AnyFields()));
             result.ShouldContain(sourceDescription as HypermediaEnabledData);
+        }
+
+        public static void ShouldContain(this string result, Collection collection)
+        {
+            Assert.That(result, Does.Contain("<collection "));
+            Assert.That(result, Does.Contain("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""));
+            Assert.That(result, Does.Contain("xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\""));
+            Assert.That(result, Does.Contain("xmlns=\"http://gedcomx.org/v1/\""));
+            result.ShouldContainAttribute("lang", collection.Lang);
+            result.ShouldContainElement("title", collection.Title);
+            Assert.That(result.Contains("<size"), Is.EqualTo(collection.SizeSpecified));
+            Assert.That(result.Contains("<content "), Is.EqualTo(collection.AnyContent()));
+            result.ShouldContainElement("attribution", collection.Attribution);
+            result.ShouldContain(collection as HypermediaEnabledData);
+        }
+
+        public static void ShouldContain(this string result, Facet facet)
+        {
+            Assert.That(result, Does.Contain("<Facet "));
+            Assert.That(result, Does.Contain("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""));
+            Assert.That(result, Does.Contain("xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\""));
+            Assert.That(result.Contains("type="), Is.EqualTo(facet.Type != null));
+            Assert.That(result.Contains("<title "), Is.EqualTo(facet.Title != null));
+            Assert.That(result.Contains("<key "), Is.EqualTo(facet.Key != null));
+            Assert.That(result.Contains("<facet "), Is.EqualTo(facet.AnyFacets()));
+            Assert.That(result.Contains("<value "), Is.EqualTo(facet.AnyValues()));
+            result.ShouldContain(facet as HypermediaEnabledData);
+        }
+
+        public static void ShouldContain(this string result, FieldDescriptor fieldDescriptor)
+        {
+            Assert.That(result, Does.Contain("<FieldDescriptor "));
+            Assert.That(result, Does.Contain("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""));
+            Assert.That(result, Does.Contain("xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\""));
+            Assert.That(result.Contains("<originalLabel"), Is.EqualTo(fieldDescriptor.OriginalLabel != null));
+            Assert.That(result.Contains("<description "), Is.EqualTo(fieldDescriptor.AnyDescriptions()));
+            Assert.That(result.Contains("<value "), Is.EqualTo(fieldDescriptor.AnyValues()));
+            result.ShouldContain(fieldDescriptor as HypermediaEnabledData);
+        }
+
+        public static void ShouldContain(this string result, FieldValueDescriptor fieldValueDescriptor)
+        {
+            Assert.That(result, Does.Contain("<FieldValueDescriptor "));
+            Assert.That(result, Does.Contain("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""));
+            Assert.That(result, Does.Contain("xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\""));
+            Assert.That(result.Contains("optional="), Is.EqualTo(fieldValueDescriptor.OptionalSpecified));
+            Assert.That(result.Contains("type="), Is.EqualTo(fieldValueDescriptor.Type != null));
+            Assert.That(result.Contains("labelId="), Is.EqualTo(fieldValueDescriptor.LabelId != null));
+            Assert.That(result.Contains("<label "), Is.EqualTo(fieldValueDescriptor.AnyDisplayLabels()));
+            result.ShouldContain(fieldValueDescriptor as HypermediaEnabledData);
+        }
+
+        public static void ShouldContain(this string result, Field field)
+        {
+            Assert.That(result, Does.Contain("<Field "));
+            Assert.That(result, Does.Contain("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""));
+            Assert.That(result, Does.Contain("xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\""));
+            Assert.That(result.Contains("type="), Is.EqualTo(field.Type != null));
+            Assert.That(result.Contains("<value "), Is.EqualTo(field.AnyValues()));
+            result.ShouldContain(field as HypermediaEnabledData);
         }
 
         public static void ShouldContain(this string result, Document document)

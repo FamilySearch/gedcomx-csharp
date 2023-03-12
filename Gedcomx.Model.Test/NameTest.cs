@@ -1,9 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-using Gx.Common;
 using Gx.Conclusion;
-using Gx.Records;
-using Gx.Source;
 using Gx.Types;
 
 using Newtonsoft.Json;
@@ -21,7 +18,7 @@ namespace Gedcomx.Model.Test
         [Test]
         public void NameEmpty()
         {
-            var sut = new Name();
+            Name sut = new();
 
             VerifyXmlSerialization(sut);
             VerifyJsonSerialization(sut);
@@ -38,15 +35,15 @@ namespace Gedcomx.Model.Test
                 KnownConfidence = ConfidenceLevel.Medium,
                 SortKey = "sort key",
                 Lang = "lang",
-                Attribution = new Attribution(),
-                Sources = { new SourceReference(), new SourceDescription() { Id = "S-1" } },
-                Analysis = new ResourceReference(),
-                Notes = { new Note() },
+                Attribution = new(),
+                Sources = { new(), new() { Id = "S-1" } },
+                Analysis = new(),
+                Notes = { new() },
                 // Name
                 KnownType = NameType.BirthName,
                 Preferred = true,
-                Date = new DateInfo(),
-                NameForms = { new NameForm() }
+                Date = new(),
+                NameForms = { new() }
             };
 
             VerifyXmlSerialization(sut);
@@ -55,8 +52,8 @@ namespace Gedcomx.Model.Test
 
         private static void VerifyXmlSerialization(Name sut)
         {
-            var serializer = new XmlSerializer(typeof(Name));
-            using var stream = new MemoryStream();
+            XmlSerializer serializer = new(typeof(Name));
+            using MemoryStream stream = new();
             serializer.Serialize(stream, sut);
 
             stream.Seek(0, SeekOrigin.Begin);

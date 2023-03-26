@@ -208,6 +208,17 @@ namespace Gedcomx.Model.Test
             result.ShouldContain(document as Conclusion);
         }
 
+        public static void ShouldContain(this string result, Gender gender)
+        {
+            Assert.That(result, Does.Contain("<gender "));
+            Assert.That(result, Does.Contain("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""));
+            Assert.That(result, Does.Contain("xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\""));
+            Assert.That(result, Does.Contain("xmlns=\"http://gedcomx.org/v1/\""));
+            Assert.That(result.Contains("type="), Is.EqualTo(gender.Type != null));
+            Assert.That(result.Contains("<field "), Is.EqualTo(gender.AnyFields()));
+            result.ShouldContain(gender as Conclusion);
+        }
+
         public static void ShouldContain(this string result, Fact fact)
         {
             Assert.That(result, Does.Contain("<fact "));

@@ -380,7 +380,7 @@ namespace Gedcomx.Model.Rt
 
             if (form.AnyFields())
             {
-                foreach (Field field in form.Fields)
+                foreach (var field in form.Fields)
                 {
                     field.Accept(this);
                 }
@@ -393,7 +393,7 @@ namespace Gedcomx.Model.Rt
             this.contextStack.Push(part);
             if (part.AnyFields())
             {
-                foreach (Field field in part.Fields)
+                foreach (var field in part.Fields)
                 {
                     field.Accept(this);
                 }
@@ -406,10 +406,9 @@ namespace Gedcomx.Model.Rt
             this.contextStack.Push(gender);
             VisitConclusion(gender);
 
-            List<Field> fields = gender.Fields;
-            if (fields != null)
+            if (gender.AnyFields())
             {
-                foreach (Field field in fields)
+                foreach (var field in gender.Fields)
                 {
                     field.Accept(this);
                 }

@@ -127,7 +127,7 @@ namespace Gx.Util
 
             if (gx.AnyFields())
             {
-                foreach (Field field in gx.Fields)
+                foreach (var field in gx.Fields)
                 {
                     if (field != null)
                     {
@@ -531,7 +531,7 @@ namespace Gx.Util
             this.contextStack.Push(part);
             if (part.AnyFields())
             {
-                foreach (Field field in part.Fields)
+                foreach (var field in part.Fields)
                 {
                     VisitField(field);
                 }
@@ -548,9 +548,9 @@ namespace Gx.Util
             this.contextStack.Push(gender);
             VisitConclusion(gender);
 
-            if (gender.Fields != null)
+            if (gender.AnyFields())
             {
-                foreach (Field field in gender.Fields)
+                foreach (var field in gender.Fields)
                 {
                     VisitField(field);
                 }

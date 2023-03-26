@@ -173,6 +173,16 @@ namespace Gedcomx.Model.Test
             result.ShouldContain(fieldDescriptor as HypermediaEnabledData);
         }
 
+        public static void ShouldContain(this string result, RecordDescriptor recordDescriptor)
+        {
+            Assert.That(result, Does.Contain("<RecordDescriptor "));
+            Assert.That(result, Does.Contain("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""));
+            Assert.That(result, Does.Contain("xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\""));
+            Assert.That(result.Contains("lang="), Is.EqualTo(recordDescriptor.Lang != null));
+            Assert.That(result.Contains("<field "), Is.EqualTo(recordDescriptor.AnyFields()));
+            result.ShouldContain(recordDescriptor as HypermediaEnabledData);
+        }
+
         public static void ShouldContain(this string result, FieldValueDescriptor fieldValueDescriptor)
         {
             Assert.That(result, Does.Contain("<FieldValueDescriptor "));

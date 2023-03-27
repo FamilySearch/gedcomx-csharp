@@ -12,7 +12,6 @@ using FamilySearch.Api.Util;
 using Gedcomx.Support;
 
 using Gx.Common;
-using Gx.Conclusion;
 using Gx.Fs.Discussions;
 using Gx.Fs.Tree;
 using Gx.Model.Collections;
@@ -81,7 +80,7 @@ namespace Gedcomx.Rs.Api.Test
         {
             var state = (PersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
             cleanup.Add(state);
-            Person conclusion = TestBacking.GetCreatePersonConclusion(state.Person.Id);
+            var conclusion = TestBacking.GetCreatePersonConclusion(state.Person.Id);
             var state2 = state.UpdateConclusions(conclusion);
             Assert.That(state2, Is.Not.Null);
             Assert.DoesNotThrow(() => state2.IfSuccessful());
@@ -363,8 +362,10 @@ namespace Gedcomx.Rs.Api.Test
             var state = (PersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
             cleanup.Add(state);
             var sr = TestBacking.GetPersonSourceReference();
-            sr.Tags = new List<Tag>();
-            sr.Tags.Add(new Tag(ChangeObjectType.Name));
+            sr.Tags = new List<Tag>
+            {
+                new Tag(ChangeObjectType.Name)
+            };
             state.AddSourceReference(sr);
             var state3 = tree.ReadPerson(new Uri(state.GetSelfUri()));
             var tag = state3.Person.Sources[0].Tags.First();
@@ -754,7 +755,7 @@ namespace Gedcomx.Rs.Api.Test
             var person = (FamilyTreePersonState)tree.AddPerson(TestBacking.GetCreateMalePerson()).Get();
             cleanup.Add(person);
             var converter = new ImageConverter();
-            var bytes = (Byte[])converter.ConvertTo(TestBacking.GetCreatePhoto(), typeof(Byte[]));
+            var bytes = (byte[])converter.ConvertTo(TestBacking.GetCreatePhoto(), typeof(byte[]));
             var dataSource = new BasicDataSource(Guid.NewGuid().ToString("n") + ".jpg", "image/jpeg", bytes);
             var state = person.AddArtifact(new SourceDescription() { Titles = new TextValues() { "PersonImage" }, Citations = new List<SourceCitation>() { new SourceCitation() { Value = "Citation for PersonImage" } } }, dataSource);
 

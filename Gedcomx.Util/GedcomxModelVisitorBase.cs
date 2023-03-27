@@ -24,9 +24,9 @@ namespace Gx.Util
         public virtual void VisitRecordSet(RecordSet rs)
         {
             this.contextStack.Push(rs);
-            if (rs.Records != null)
+            if (rs.AnyRecords())
             {
-                foreach (Gedcomx record in rs.Records)
+                foreach (var record in rs.Records)
                 {
                     VisitGedcomx(record);
                 }
@@ -50,7 +50,7 @@ namespace Gx.Util
 
             if (gx.AnyPersons())
             {
-                foreach (Person person in gx.Persons)
+                foreach (var person in gx.Persons)
                 {
                     if (person != null)
                     {
@@ -61,7 +61,7 @@ namespace Gx.Util
 
             if (gx.AnyRelationships())
             {
-                foreach (Relationship relationship in gx.Relationships)
+                foreach (var relationship in gx.Relationships)
                 {
                     if (relationship != null)
                     {
@@ -72,7 +72,7 @@ namespace Gx.Util
 
             if (gx.AnySourceDescriptions())
             {
-                foreach (SourceDescription sourceDescription in gx.SourceDescriptions)
+                foreach (var sourceDescription in gx.SourceDescriptions)
                 {
                     if (sourceDescription != null)
                     {
@@ -83,7 +83,7 @@ namespace Gx.Util
 
             if (gx.AnyAgents())
             {
-                foreach (Gx.Agent.Agent agent in gx.Agents)
+                foreach (var agent in gx.Agents)
                 {
                     if (agent != null)
                     {
@@ -94,7 +94,7 @@ namespace Gx.Util
 
             if (gx.AnyEvents())
             {
-                foreach (Event e in gx.Events)
+                foreach (var e in gx.Events)
                 {
                     if (e != null)
                     {
@@ -105,7 +105,7 @@ namespace Gx.Util
 
             if (gx.AnyPlaces())
             {
-                foreach (PlaceDescription place in gx.Places)
+                foreach (var place in gx.Places)
                 {
                     if (place != null)
                     {
@@ -116,7 +116,7 @@ namespace Gx.Util
 
             if (gx.AnyDocuments())
             {
-                foreach (Document document in gx.Documents)
+                foreach (var document in gx.Documents)
                 {
                     if (document != null)
                     {
@@ -138,7 +138,7 @@ namespace Gx.Util
 
             if (gx.AnyRecordDescriptors())
             {
-                foreach (RecordDescriptor rd in gx.RecordDescriptors)
+                foreach (var rd in gx.RecordDescriptors)
                 {
                     if (rd != null)
                     {
@@ -149,7 +149,7 @@ namespace Gx.Util
 
             if (gx.AnyCollections())
             {
-                foreach (Collection collection in gx.Collections)
+                foreach (var collection in gx.Collections)
                 {
                     if (collection != null)
                     {
@@ -193,13 +193,13 @@ namespace Gx.Util
 
             VisitSubject(e);
 
-            DateInfo date = e.Date;
+            var date = e.Date;
             if (date != null)
             {
                 VisitDate(date);
             }
 
-            PlaceReference place = e.Place;
+            var place = e.Place;
             if (place != null)
             {
                 VisitPlaceReference(place);
@@ -207,7 +207,7 @@ namespace Gx.Util
 
             if (e.AnyRoles())
             {
-                foreach (EventRole role in e.Roles)
+                foreach (var role in e.Roles)
                 {
                     VisitEventRole(role);
                 }
@@ -246,7 +246,7 @@ namespace Gx.Util
             this.contextStack.Push(sourceDescription);
             if (sourceDescription.AnySources())
             {
-                foreach (SourceReference source in sourceDescription.Sources)
+                foreach (var source in sourceDescription.Sources)
                 {
                     VisitSourceReference(source);
                 }
@@ -254,7 +254,7 @@ namespace Gx.Util
 
             if (sourceDescription.AnyNotes())
             {
-                foreach (Note note in sourceDescription.Notes)
+                foreach (var note in sourceDescription.Notes)
                 {
                     VisitNote(note);
                 }
@@ -262,7 +262,7 @@ namespace Gx.Util
 
             if (sourceDescription.AnyCitations())
             {
-                foreach (SourceCitation citation in sourceDescription.Citations)
+                foreach (var citation in sourceDescription.Citations)
                 {
                     VisitSourceCitation(citation);
                 }
@@ -358,7 +358,7 @@ namespace Gx.Util
 
             if (relationship.AnyFacts())
             {
-                foreach (Fact fact in relationship.Facts)
+                foreach (var fact in relationship.Facts)
                 {
                     VisitFact(fact);
                 }
@@ -366,7 +366,7 @@ namespace Gx.Util
 
             if (relationship.AnyFields())
             {
-                foreach (Field field in relationship.Fields)
+                foreach (var field in relationship.Fields)
                 {
                     VisitField(field);
                 }
@@ -391,7 +391,7 @@ namespace Gx.Util
 
             if (person.AnyNames())
             {
-                foreach (Name name in person.Names)
+                foreach (var name in person.Names)
                 {
                     VisitName(name);
                 }
@@ -399,7 +399,7 @@ namespace Gx.Util
 
             if (person.AnyFacts())
             {
-                foreach (Fact fact in person.Facts)
+                foreach (var fact in person.Facts)
                 {
                     VisitFact(fact);
                 }
@@ -407,7 +407,7 @@ namespace Gx.Util
 
             if (person.AnyFields())
             {
-                foreach (Field field in person.Fields)
+                foreach (var field in person.Fields)
                 {
                     VisitField(field);
                 }
@@ -435,7 +435,7 @@ namespace Gx.Util
 
             if (fact.AnyFields())
             {
-                foreach (Field field in fact.Fields)
+                foreach (var field in fact.Fields)
                 {
                     VisitField(field);
                 }
@@ -453,7 +453,7 @@ namespace Gx.Util
             this.contextStack.Push(place);
             if (place.AnyFields())
             {
-                foreach (Field field in place.Fields)
+                foreach (var field in place.Fields)
                 {
                     VisitField(field);
                 }
@@ -470,7 +470,7 @@ namespace Gx.Util
             this.contextStack.Push(date);
             if (date.AnyFields())
             {
-                foreach (Field field in date.Fields)
+                foreach (var field in date.Fields)
                 {
                     VisitField(field);
                 }
@@ -489,7 +489,7 @@ namespace Gx.Util
 
             if (name.AnyNameForms())
             {
-                foreach (NameForm form in name.NameForms)
+                foreach (var form in name.NameForms)
                 {
                     VisitNameForm(form);
                 }
@@ -506,7 +506,7 @@ namespace Gx.Util
             this.contextStack.Push(form);
             if (form.AnyParts())
             {
-                foreach (NamePart part in form.Parts)
+                foreach (var part in form.Parts)
                 {
                     VisitNamePart(part);
                 }
@@ -514,7 +514,7 @@ namespace Gx.Util
 
             if (form.AnyFields())
             {
-                foreach (Field field in form.Fields)
+                foreach (var field in form.Fields)
                 {
                     VisitField(field);
                 }
@@ -590,7 +590,7 @@ namespace Gx.Util
 
             if (subject.AnyMedia())
             {
-                foreach (SourceReference reference in subject.Media)
+                foreach (var reference in subject.Media)
                 {
                     VisitSourceReference(reference);
                 }
@@ -605,7 +605,7 @@ namespace Gx.Util
         {
             if (conclusion.AnySources())
             {
-                foreach (SourceReference sourceReference in conclusion.Sources)
+                foreach (var sourceReference in conclusion.Sources)
                 {
                     VisitSourceReference(sourceReference);
                 }
@@ -613,7 +613,7 @@ namespace Gx.Util
 
             if (conclusion.AnyNotes())
             {
-                foreach (Note note in conclusion.Notes)
+                foreach (var note in conclusion.Notes)
                 {
                     VisitNote(note);
                 }

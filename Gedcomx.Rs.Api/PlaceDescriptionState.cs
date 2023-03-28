@@ -1,10 +1,8 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 
 using Gedcomx.Model;
 
 using Gx.Conclusion;
-using Gx.Links;
 using Gx.Rs.Api.Util;
 
 using RestSharp;
@@ -24,7 +22,7 @@ namespace Gx.Rs.Api
         /// <param name="client">The REST API client to use for API calls.</param>
         /// <param name="accessToken">The access token to use for subsequent invocations of the REST API client.</param>
         /// <param name="stateFactory">The state factory to use for state instantiation.</param>
-        protected internal PlaceDescriptionState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken, StateFactory stateFactory)
+        protected internal PlaceDescriptionState(IRestRequest request, IRestResponse response, IFilterableRestClient client, string accessToken, StateFactory stateFactory)
             : base(request, response, client, accessToken, stateFactory)
         {
         }
@@ -35,7 +33,7 @@ namespace Gx.Rs.Api
         /// <value>
         /// The rel name for the current state instance
         /// </value>
-        public override String SelfRel
+        public override string SelfRel
         {
             get
             {
@@ -52,7 +50,7 @@ namespace Gx.Rs.Api
         /// <returns>A cloned instance of the current state instance.</returns>
         protected override GedcomxApplicationState Clone(IRestRequest request, IRestResponse response, IFilterableRestClient client)
         {
-            return new PlaceDescriptionState(request, response, client, this.CurrentAccessToken, this.stateFactory);
+            return new PlaceDescriptionState(request, response, client, CurrentAccessToken, stateFactory);
         }
 
         /// <summary>
@@ -92,14 +90,14 @@ namespace Gx.Rs.Api
         /// </returns>
         public PlaceDescriptionsState ReadChildren(params IStateTransitionOption[] options)
         {
-            Link link = GetLink(Rel.CHILDREN);
+            var link = GetLink(Rel.CHILDREN);
             if (link == null || link.Href == null)
             {
                 return null;
             }
 
-            IRestRequest request = CreateAuthenticatedGedcomxRequest().Build(link.Href, Method.GET);
-            return this.stateFactory.NewPlaceDescriptionsState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
+            var request = CreateAuthenticatedGedcomxRequest().Build(link.Href, Method.GET);
+            return stateFactory.NewPlaceDescriptionsState(request, Invoke(request, options), Client, CurrentAccessToken);
         }
     }
 }

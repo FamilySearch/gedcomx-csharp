@@ -30,7 +30,7 @@ namespace Gx.Rs.Api
         /// The default link loader for reading links from <see cref="Gx.Gedcomx"/> instances. Also see <seealso cref="Gx.Rs.Api.Util.EmbeddedLinkLoader.DEFAULT_EMBEDDED_LINK_RELS"/> for types of links that will be loaded.
         /// </summary>
         protected static readonly EmbeddedLinkLoader DEFAULT_EMBEDDED_LINK_LOADER = new EmbeddedLinkLoader();
-        private readonly String gzipSuffix = "-gzip";
+        private readonly string gzipSuffix = "-gzip";
         /// <summary>
         /// Gets or sets the main REST API client to use with all API calls.
         /// </summary>
@@ -44,7 +44,7 @@ namespace Gx.Rs.Api
         /// <value>
         /// The current access token (the OAuth2 token), see https://www.familysearch.org/developers/docs/api/authentication/Access_Token_resource.
         /// </value>
-        public String CurrentAccessToken { get; set; }
+        public string CurrentAccessToken { get; set; }
         /// <summary>
         /// The link factory for managing RFC 5988 compliant hypermedia links.
         /// </summary>
@@ -99,10 +99,10 @@ namespace Gx.Rs.Api
         {
             get
             {
-                var result = this.Response != null ? this.Response.Headers.Get("ETag").Select(x => x.Value.ToString()).FirstOrDefault() : null;
+                var result = Response?.Headers.Get("ETag").Select(x => x.Value.ToString()).FirstOrDefault();
                 if (result != null && result.IndexOf(gzipSuffix) != -1)
                 {
-                    result = result.Replace(gzipSuffix, String.Empty);
+                    result = result.Replace(gzipSuffix, string.Empty);
                 }
                 return result;
             }
@@ -118,7 +118,7 @@ namespace Gx.Rs.Api
         {
             get
             {
-                return this.Response != null ? this.Response.Headers.Get("Last-Modified").Select(x => (DateTime?)DateTime.Parse(x.Value.ToString())).FirstOrDefault() : null;
+                return Response?.Headers.Get("Last-Modified").Select(x => (DateTime?)DateTime.Parse(x.Value.ToString())).FirstOrDefault();
             }
         }
 
@@ -128,7 +128,7 @@ namespace Gx.Rs.Api
         /// <value>
         /// This always returns the default embedded link loader.
         /// </value>
-        protected EmbeddedLinkLoader EmbeddedLinkLoader
+        protected static EmbeddedLinkLoader EmbeddedLinkLoader
         {
             get
             {
@@ -150,14 +150,14 @@ namespace Gx.Rs.Api
         /// <summary>
         /// Initializes a new instance of the <see cref="GedcomxApplicationState{T}"/> class.
         /// </summary>
-        protected GedcomxApplicationState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken, StateFactory stateFactory)
+        protected GedcomxApplicationState(IRestRequest request, IRestResponse response, IFilterableRestClient client, string accessToken, StateFactory stateFactory)
         {
             linkFactory = new Tavis.LinkFactory();
             linkHeaderParser = new Tavis.LinkHeaderParser(linkFactory);
-            this.Request = request;
-            this.Response = response;
-            this.Client = client;
-            this.CurrentAccessToken = accessToken;
+            Request = request;
+            Response = response;
+            Client = client;
+            CurrentAccessToken = accessToken;
             this.stateFactory = stateFactory;
         }
 
@@ -181,7 +181,7 @@ namespace Gx.Rs.Api
                 }
                 else if (LastEmbeddedResponse.HasServerError())
                 {
-                    throw new GedcomxApplicationException(String.Format("Unable to load embedded resources: server says \"{0}\" at {1}.", LastEmbeddedResponse.StatusDescription, LastEmbeddedRequest.Resource), LastEmbeddedResponse);
+                    throw new GedcomxApplicationException(string.Format("Unable to load embedded resources: server says \"{0}\" at {1}.", LastEmbeddedResponse.StatusDescription, LastEmbeddedRequest.Resource), LastEmbeddedResponse);
                 }
                 else
                 {
@@ -195,7 +195,7 @@ namespace Gx.Rs.Api
         /// </summary>
         /// <param name="rel">This parameter is currently unused.</param>
         /// <returns>A REST API requeset (with appropriate authentication headers).</returns>
-        protected virtual IRestRequest CreateRequestForEmbeddedResource(String rel)
+        protected virtual IRestRequest CreateRequestForEmbeddedResource(string rel)
         {
             return CreateAuthenticatedGedcomxRequest();
         }
@@ -210,12 +210,12 @@ namespace Gx.Rs.Api
         {
             IRestResponse result;
 
-            foreach (IStateTransitionOption option in options)
+            foreach (var option in options)
             {
                 option.Apply(request);
             }
 
-            result = this.Client.Handle(request);
+            result = Client.Handle(request);
 
             Debug.WriteLine(string.Format("\nRequest: {0}", request.Resource));
             foreach (var header in request.Parameters)
@@ -253,10 +253,10 @@ namespace Gx.Rs.Api
         /// <returns>The REST API request with authentication.</returns>
         protected IRestRequest CreateAuthenticatedRequest()
         {
-            IRestRequest request = CreateRequest();
-            if (this.CurrentAccessToken != null)
+            var request = CreateRequest();
+            if (CurrentAccessToken != null)
             {
-                request = request.AddHeader("Authorization", "Bearer " + this.CurrentAccessToken);
+                request = request.AddHeader("Authorization", "Bearer " + CurrentAccessToken);
             }
             return request;
         }
@@ -265,7 +265,7 @@ namespace Gx.Rs.Api
         /// Creates a basic REST API request.
         /// </summary>
         /// <returns>A basic REST API request</returns>
-        protected IRestRequest CreateRequest()
+        protected static IRestRequest CreateRequest()
         {
             return new RedirectableRestRequest();
         }
@@ -290,7 +290,7 @@ namespace Gx.Rs.Api
         /// <param name="options">The options to apply before handling the REST API requests.</param>
         protected void Embed<T>(IEnumerable<Link> links, Gedcomx entity, params IStateTransitionOption[] options) where T : Gedcomx
         {
-            foreach (Link link in links)
+            foreach (var link in links)
             {
                 Embed<T>(link, entity, options);
             }
@@ -302,7 +302,7 @@ namespace Gx.Rs.Api
         /// <returns>The URI of the REST API request associated to this state instance.</returns>
         public string GetUri()
         {
-            return this.Client.BaseUrl + this.Request.Resource;
+            return Client.BaseUrl + Request.Resource;
         }
 
         /// <summary>
@@ -311,7 +311,7 @@ namespace Gx.Rs.Api
         /// <returns>True if a server or client error exists; otherwise, false.</returns>
         public bool HasError()
         {
-            return this.Response.HasClientError() || this.Response.HasServerError();
+            return Response.HasClientError() || Response.HasServerError();
         }
 
         /// <summary>
@@ -321,7 +321,7 @@ namespace Gx.Rs.Api
         /// <returns>True if the current REST API response has the specified status; otherwise, false.</returns>
         public bool HasStatus(HttpStatusCode status)
         {
-            return this.Response.StatusCode == status;
+            return Response.StatusCode == status;
         }
 
         /// <summary>
@@ -335,7 +335,7 @@ namespace Gx.Rs.Api
         {
             if (HasError())
             {
-                throw new GedcomxApplicationException(String.Format("Unsuccessful {0} to {1}", this.Request.Method, GetUri()), this.Response);
+                throw new GedcomxApplicationException(string.Format("Unsuccessful {0} to {1}", Request.Method, GetUri()), Response);
             }
             return this;
         }
@@ -347,15 +347,15 @@ namespace Gx.Rs.Api
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
         public virtual GedcomxApplicationState Head(params IStateTransitionOption[] options)
         {
-            IRestRequest request = CreateAuthenticatedRequest();
-            Parameter accept = this.Request.GetHeaders().Get("Accept").FirstOrDefault();
+            var request = CreateAuthenticatedRequest();
+            var accept = Request.GetHeaders().Get("Accept").FirstOrDefault();
             if (accept != null)
             {
                 request.Accept(accept.Value as string);
             }
 
             request.Build(GetSelfUri(), Method.HEAD);
-            return Clone(request, Invoke(request, options), this.Client);
+            return Clone(request, Invoke(request, options), Client);
         }
 
         /// <summary>
@@ -365,14 +365,14 @@ namespace Gx.Rs.Api
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
         public virtual GedcomxApplicationState Options(params IStateTransitionOption[] options)
         {
-            IRestRequest request = CreateAuthenticatedRequest();
-            Parameter accept = this.Request.GetHeaders().Get("Accept").FirstOrDefault();
+            var request = CreateAuthenticatedRequest();
+            var accept = Request.GetHeaders().Get("Accept").FirstOrDefault();
             if (accept != null)
             {
                 request.Accept(accept.Value as string);
             }
             request.Build(GetSelfUri(), Method.OPTIONS);
-            return Clone(request, Invoke(request, options), this.Client);
+            return Clone(request, Invoke(request, options), Client);
         }
 
         /// <summary>
@@ -382,16 +382,16 @@ namespace Gx.Rs.Api
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
         public virtual GedcomxApplicationState Get(params IStateTransitionOption[] options)
         {
-            IRestRequest request = CreateAuthenticatedRequest();
-            Parameter accept = this.Request.GetHeaders().Get("Accept").FirstOrDefault();
+            var request = CreateAuthenticatedRequest();
+            var accept = Request.GetHeaders().Get("Accept").FirstOrDefault();
             if (accept != null)
             {
                 request.Accept(accept.Value as string);
             }
 
             request.Build(GetSelfUri(), Method.GET);
-            IRestResponse response = Invoke(request, options);
-            return Clone(request, response, this.Client);
+            var response = Invoke(request, options);
+            return Clone(request, response, Client);
         }
 
         /// <summary>
@@ -401,14 +401,14 @@ namespace Gx.Rs.Api
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
         public virtual GedcomxApplicationState Delete(params IStateTransitionOption[] options)
         {
-            IRestRequest request = CreateAuthenticatedRequest();
-            Parameter accept = this.Request.GetHeaders().Get("Accept").FirstOrDefault();
+            var request = CreateAuthenticatedRequest();
+            var accept = Request.GetHeaders().Get("Accept").FirstOrDefault();
             if (accept != null)
             {
                 request.Accept(accept.Value as string);
             }
             request.Build(GetSelfUri(), Method.DELETE);
-            return Clone(request, Invoke(request, options), this.Client);
+            return Clone(request, Invoke(request, options), Client);
         }
 
         /// <summary>
@@ -419,9 +419,9 @@ namespace Gx.Rs.Api
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
         public virtual GedcomxApplicationState Put(object entity, params IStateTransitionOption[] options)
         {
-            IRestRequest request = CreateAuthenticatedRequest();
-            Parameter accept = this.Request.GetHeaders().Get("Accept").FirstOrDefault();
-            Parameter contentType = this.Request.GetHeaders().Get("Content-Type").FirstOrDefault();
+            var request = CreateAuthenticatedRequest();
+            var accept = Request.GetHeaders().Get("Accept").FirstOrDefault();
+            var contentType = Request.GetHeaders().Get("Content-Type").FirstOrDefault();
             if (accept != null)
             {
                 request.Accept(accept.Value as string);
@@ -431,7 +431,7 @@ namespace Gx.Rs.Api
                 request.ContentType(contentType.Value as string);
             }
             request.SetEntity(entity).Build(GetSelfUri(), Method.PUT);
-            return Clone(request, Invoke(request, options), this.Client);
+            return Clone(request, Invoke(request, options), Client);
         }
 
         /// <summary>
@@ -442,9 +442,9 @@ namespace Gx.Rs.Api
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
         public virtual GedcomxApplicationState Post(object entity, params IStateTransitionOption[] options)
         {
-            IRestRequest request = CreateAuthenticatedRequest();
-            Parameter accept = this.Request.GetHeaders().Get("Accept").FirstOrDefault();
-            Parameter contentType = this.Request.GetHeaders().Get("Content-Type").FirstOrDefault();
+            var request = CreateAuthenticatedRequest();
+            var accept = Request.GetHeaders().Get("Accept").FirstOrDefault();
+            var contentType = Request.GetHeaders().Get("Content-Type").FirstOrDefault();
             if (accept != null)
             {
                 request.Accept(accept.Value as string);
@@ -454,7 +454,7 @@ namespace Gx.Rs.Api
                 request.ContentType(contentType.Value as string);
             }
             request.SetEntity(entity).Build(GetSelfUri(), Method.POST);
-            return Clone(request, Invoke(request, options), this.Client);
+            return Clone(request, Invoke(request, options), Client);
         }
 
         /// <summary>
@@ -467,11 +467,11 @@ namespace Gx.Rs.Api
         {
             get
             {
-                List<HttpWarning> warnings = new List<HttpWarning>();
-                IEnumerable<Parameter> warningValues = this.Response.Headers.Get("Warning");
+                var warnings = new List<HttpWarning>();
+                var warningValues = Response.Headers.Get("Warning");
                 if (warningValues != null)
                 {
-                    foreach (Parameter warningValue in warningValues)
+                    foreach (var warningValue in warningValues)
                     {
                         warnings.AddRange(HttpWarning.Parse(warningValue));
                     }
@@ -488,7 +488,7 @@ namespace Gx.Rs.Api
         /// <param name="clientId">The client identifier.</param>
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
         /// <remarks>See https://www.familysearch.org/developers/docs/guides/oauth2 for more information.</remarks>
-        public virtual GedcomxApplicationState AuthenticateViaOAuth2Password(String username, String password, String clientId)
+        public virtual GedcomxApplicationState AuthenticateViaOAuth2Password(string username, string password, string clientId)
         {
             return AuthenticateViaOAuth2Password(username, password, clientId, null);
         }
@@ -502,13 +502,15 @@ namespace Gx.Rs.Api
         /// <param name="clientSecret">The client secret.</param>
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
         /// <remarks>See https://www.familysearch.org/developers/docs/guides/oauth2 for more information.</remarks>
-        public virtual GedcomxApplicationState AuthenticateViaOAuth2Password(String username, String password, String clientId, String clientSecret)
+        public virtual GedcomxApplicationState AuthenticateViaOAuth2Password(string username, string password, string clientId, string clientSecret)
         {
-            IDictionary<String, String> formData = new Dictionary<String, String>();
-            formData.Add("grant_type", "password");
-            formData.Add("username", username);
-            formData.Add("password", password);
-            formData.Add("client_id", clientId);
+            IDictionary<string, string> formData = new Dictionary<string, string>
+            {
+                { "grant_type", "password" },
+                { "username", username },
+                { "password", password },
+                { "client_id", clientId }
+            };
             if (clientSecret != null)
             {
                 formData.Add("client_secret", clientSecret);
@@ -520,11 +522,10 @@ namespace Gx.Rs.Api
         /// Authenticates this session via OAuth2 authentication code.
         /// </summary>
         /// <param name="authCode">The authentication code.</param>
-        /// <param name="redirect">The redirect.</param>
         /// <param name="clientId">The client identifier.</param>
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
         /// <remarks>See https://www.familysearch.org/developers/docs/guides/oauth2 for more information.</remarks>
-        public GedcomxApplicationState AuthenticateViaOAuth2AuthCode(String authCode, String redirect, String clientId)
+        public GedcomxApplicationState AuthenticateViaOAuth2AuthCode(string authCode, string clientId)
         {
             return AuthenticateViaOAuth2Password(authCode, authCode, clientId, null);
         }
@@ -538,13 +539,15 @@ namespace Gx.Rs.Api
         /// <param name="clientSecret">The client secret.</param>
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
         /// <remarks>See https://www.familysearch.org/developers/docs/guides/oauth2 for more information.</remarks>
-        public GedcomxApplicationState AuthenticateViaOAuth2AuthCode(String authCode, String redirect, String clientId, String clientSecret)
+        public GedcomxApplicationState AuthenticateViaOAuth2AuthCode(string authCode, string redirect, string clientId, string clientSecret)
         {
-            IDictionary<String, String> formData = new Dictionary<String, String>();
-            formData.Add("grant_type", "authorization_code");
-            formData.Add("code", authCode);
-            formData.Add("redirect_uri", redirect);
-            formData.Add("client_id", clientId);
+            IDictionary<string, string> formData = new Dictionary<string, string>
+            {
+                { "grant_type", "authorization_code" },
+                { "code", authCode },
+                { "redirect_uri", redirect },
+                { "client_id", clientId }
+            };
             if (clientSecret != null)
             {
                 formData.Add("client_secret", clientSecret);
@@ -559,11 +562,13 @@ namespace Gx.Rs.Api
         /// <param name="clientSecret">The client secret.</param>
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
         /// <remarks>See https://www.familysearch.org/developers/docs/guides/oauth2 for more information.</remarks>
-        public GedcomxApplicationState AuthenticateViaOAuth2ClientCredentials(String clientId, String clientSecret)
+        public GedcomxApplicationState AuthenticateViaOAuth2ClientCredentials(string clientId, string clientSecret)
         {
-            IDictionary<String, String> formData = new Dictionary<String, String>();
-            formData.Add("grant_type", "client_credentials");
-            formData.Add("client_id", clientId);
+            IDictionary<string, string> formData = new Dictionary<string, string>
+            {
+                { "grant_type", "client_credentials" },
+                { "client_id", clientId }
+            };
             if (clientSecret != null)
             {
                 formData.Add("client_secret", clientSecret);
@@ -581,10 +586,12 @@ namespace Gx.Rs.Api
         /// <remarks>See https://www.familysearch.org/developers/docs/guides/oauth2 for more information.</remarks>
         public GedcomxApplicationState UnauthenticatedAccess(string ipAddress, string clientId, string clientSecret = null)
         {
-            IDictionary<String, String> formData = new Dictionary<String, String>();
-            formData.Add("grant_type", "unauthenticated_session");
-            formData.Add("client_id", clientId);
-            formData.Add("ip_address", ipAddress);
+            IDictionary<string, string> formData = new Dictionary<string, string>
+            {
+                { "grant_type", "unauthenticated_session" },
+                { "client_id", clientId },
+                { "ip_address", ipAddress }
+            };
             if (clientSecret != null)
             {
                 formData.Add("client_secret", clientSecret);
@@ -597,9 +604,9 @@ namespace Gx.Rs.Api
         /// </summary>
         /// <param name="accessToken">The access token.</param>
         /// <returns>Returns this instance.</returns>
-        public GedcomxApplicationState AuthenticateWithAccessToken(String accessToken)
+        public GedcomxApplicationState AuthenticateWithAccessToken(string accessToken)
         {
-            this.CurrentAccessToken = accessToken;
+            CurrentAccessToken = accessToken;
             return this;
         }
 
@@ -614,34 +621,34 @@ namespace Gx.Rs.Api
         /// or
         /// Unable to obtain an access token.
         /// </exception>
-        public GedcomxApplicationState AuthenticateViaOAuth2(IDictionary<String, String> formData, params IStateTransitionOption[] options)
+        public GedcomxApplicationState AuthenticateViaOAuth2(IDictionary<string, string> formData, params IStateTransitionOption[] options)
         {
-            Link tokenLink = this.GetLink(Rel.OAUTH2_TOKEN);
+            var tokenLink = GetLink(Rel.OAUTH2_TOKEN);
             if (tokenLink == null || tokenLink.Href == null)
             {
-                throw new GedcomxApplicationException(String.Format("No OAuth2 token URI supplied for resource at {0}.", GetUri()));
+                throw new GedcomxApplicationException(string.Format("No OAuth2 token URI supplied for resource at {0}.", GetUri()));
             }
 
-            IRestRequest request = CreateRequest()
+            var request = CreateRequest()
                 .Accept(MediaTypes.APPLICATION_JSON_TYPE)
                 .ContentType(MediaTypes.APPLICATION_FORM_URLENCODED_TYPE)
                 .SetEntity(formData)
                 .Build(tokenLink.Href, Method.POST);
-            IRestResponse response = Invoke(request, options);
+            var response = Invoke(request, options);
 
             if ((int)response.StatusCode >= 200 && (int)response.StatusCode < 300)
             {
                 var accessToken = JsonConvert.DeserializeObject<IDictionary<string, object>>(response.Content);
-                String access_token = null;
+                string access_token = null;
 
-                if (accessToken.ContainsKey("access_token"))
+                if (accessToken.TryGetValue("access_token", out var value))
                 {
-                    access_token = accessToken["access_token"] as string;
+                    access_token = value as string;
                 }
-                if (access_token == null && accessToken.ContainsKey("token"))
+                if (access_token == null && accessToken.TryGetValue("token", out var token))
                 {
                     //workaround to accommodate providers that were built on an older version of the oauth2 specification.
-                    access_token = accessToken["token"] as string;
+                    access_token = token as string;
                 }
 
                 if (access_token == null)
@@ -663,17 +670,17 @@ namespace Gx.Rs.Api
         /// <param name="rel">The rel name to use when looking for the link.</param>
         /// <param name="options">The options to apply before executing the REST API call.</param>
         /// <returns>A <see cref="GedcomxApplicationState{T}"/> instance containing the REST API response.</returns>
-        public GedcomxApplicationState ReadPage(String rel, params IStateTransitionOption[] options)
+        public GedcomxApplicationState ReadPage(string rel, params IStateTransitionOption[] options)
         {
-            Link link = GetLink(rel);
+            var link = GetLink(rel);
             if (link == null || link.Href == null)
             {
                 return null;
             }
 
-            IRestRequest request = CreateAuthenticatedRequest();
-            Parameter accept = this.Request.GetHeaders().Get("Accept").FirstOrDefault();
-            Parameter contentType = this.Request.GetHeaders().Get("Content-Type").FirstOrDefault();
+            var request = CreateAuthenticatedRequest();
+            var accept = Request.GetHeaders().Get("Accept").FirstOrDefault();
+            var contentType = Request.GetHeaders().Get("Content-Type").FirstOrDefault();
             if (accept != null)
             {
                 request.Accept(accept.Value as string);
@@ -683,7 +690,7 @@ namespace Gx.Rs.Api
                 request.ContentType(contentType.Value as string);
             }
             request.Build(link.Href, Method.GET);
-            return Clone(request, Invoke(request, options), this.Client);
+            return Clone(request, Invoke(request, options), Client);
         }
 
         /// <summary>
@@ -747,9 +754,9 @@ namespace Gx.Rs.Api
         public AgentState ReadContributor(params IStateTransitionOption[] options)
         {
             var scope = MainDataElement;
-            if (scope is IAttributable)
+            if (scope is IAttributable attributable)
             {
-                return ReadContributor((IAttributable)scope, options);
+                return ReadContributor(attributable, options);
             }
             else
             {
@@ -765,7 +772,7 @@ namespace Gx.Rs.Api
         /// <returns>An <see cref="AgentState"/> instance containing the REST API response.</returns>
         public AgentState ReadContributor(IAttributable attributable, params IStateTransitionOption[] options)
         {
-            Attribution attribution = attributable.Attribution;
+            var attribution = attributable.Attribution;
             if (attribution == null)
             {
                 return null;
@@ -787,8 +794,8 @@ namespace Gx.Rs.Api
                 return null;
             }
 
-            IRestRequest request = CreateAuthenticatedGedcomxRequest().Build(contributor.Resource, Method.GET);
-            return this.stateFactory.NewAgentState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
+            var request = CreateAuthenticatedGedcomxRequest().Build(contributor.Resource, Method.GET);
+            return stateFactory.NewAgentState(request, Invoke(request, options), Client, CurrentAccessToken);
         }
 
         /// <summary>
@@ -811,15 +818,15 @@ namespace Gx.Rs.Api
         /// <returns>The URI representing this current state instance</returns>
         public string GetSelfUri()
         {
-            String selfRel = SelfRel;
+            var selfRel = SelfRel;
             Link link = null;
             if (selfRel != null)
             {
-                link = this.GetLink(selfRel);
+                link = GetLink(selfRel);
             }
-            link = link == null ? this.GetLink(Rel.SELF) : link;
-            String self = link == null ? null : link.Href == null ? null : link.Href;
-            return self == null ? GetUri() : self;
+            link = link ?? GetLink(Rel.SELF);
+            var self = link == null ? null : link.Href ?? null;
+            return self ?? GetUri();
         }
 
         /// <summary>
@@ -828,7 +835,7 @@ namespace Gx.Rs.Api
         /// <value>
         /// The rel name for the current state instance
         /// </value>
-        public virtual String SelfRel
+        public virtual string SelfRel
         {
             get
             {
@@ -889,12 +896,12 @@ namespace Gx.Rs.Api
         /// <param name="client">The REST API client.</param>
         /// <param name="accessToken">The access token.</param>
         /// <param name="stateFactory">The state factory.</param>
-        protected GedcomxApplicationState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken, StateFactory stateFactory)
+        protected GedcomxApplicationState(IRestRequest request, IRestResponse response, IFilterableRestClient client, string accessToken, StateFactory stateFactory)
             : base(request, response, client, accessToken, stateFactory)
         {
-            this.Entity = LoadEntityConditionally(this.Response);
-            List<Link> links = LoadLinks(this.Response, this.Entity, this.Request.RequestFormat);
-            this.Links.AddRange(links);
+            Entity = LoadEntityConditionally(Response);
+            var links = LoadLinks(Response, Entity);
+            Links.AddRange(links);
         }
 
         /// <summary>
@@ -922,7 +929,7 @@ namespace Gx.Rs.Api
         /// <returns>The state instance of the REST API response.</returns>
         public GedcomxApplicationState Inject(IRestRequest request)
         {
-            return Clone(request, Invoke(request), this.Client);
+            return Clone(request, Invoke(request), Client);
         }
 
         /// <summary>
@@ -930,11 +937,10 @@ namespace Gx.Rs.Api
         /// </summary>
         /// <param name="response">The REST API response.</param>
         /// <param name="entity">The entity to also consider for finding links.</param>
-        /// <param name="contentFormat">The content format (JSON or XML) of the REST API response data.</param>
         /// <returns>A list of all links discovered from the REST API response and entity object.</returns>
-        protected List<Link> LoadLinks(IRestResponse response, T entity, DataFormat contentFormat)
+        protected List<Link> LoadLinks(IRestResponse response, T entity)
         {
-            List<Link> links = new List<Link>();
+            var links = new List<Link>();
             var location = response.Headers.FirstOrDefault(x => x.Name == "Location");
 
             //if there's a location, we'll consider it a "self" link.
@@ -946,26 +952,29 @@ namespace Gx.Rs.Api
             //initialize links with link headers
             foreach (var header in response.Headers.Where(x => x.Name == "Link" && x.Value != null).SelectMany(x => linkHeaderParser.Parse(response.ResponseUri, x.Value.ToString())))
             {
-                Link link = new Link() { Rel = header.Relation, Href = header.Target.ToString() };
-                link.Template = header.LinkExtensions.Any(x => x.Key == "template") ? header.GetLinkExtension("template") : null;
-                link.Title = header.Title;
-                link.Accept = header.LinkExtensions.Any(x => x.Key == "accept") ? header.GetLinkExtension("accept") : null;
-                link.Allow = header.LinkExtensions.Any(x => x.Key == "allow") ? header.GetLinkExtension("allow") : null;
-                link.Hreflang = header.HrefLang.Select(x => x.Name).FirstOrDefault();
-                link.Type = header.LinkExtensions.Any(x => x.Key == "type") ? header.GetLinkExtension("type") : null;
+                var link = new Link
+                {
+                    Rel = header.Relation,
+                    Href = header.Target.ToString(),
+                    Template = header.LinkExtensions.Any(x => x.Key == "template") ? header.GetLinkExtension("template") : null,
+                    Title = header.Title,
+                    Accept = header.LinkExtensions.Any(x => x.Key == "accept") ? header.GetLinkExtension("accept") : null,
+                    Allow = header.LinkExtensions.Any(x => x.Key == "allow") ? header.GetLinkExtension("allow") : null,
+                    Hreflang = header.HrefLang.Select(x => x.Name).FirstOrDefault(),
+                    Type = header.LinkExtensions.Any(x => x.Key == "type") ? header.GetLinkExtension("type") : null
+                };
                 links.Add(link);
             }
 
             //load the links from the main data element
-            ISupportsLinks mainElement = MainDataElement;
+            var mainElement = MainDataElement;
             if (mainElement != null && mainElement.Links != null)
             {
                 links.AddRange(mainElement.Links);
             }
 
             //load links at the document level
-            var collection = entity as ISupportsLinks;
-            if (entity != mainElement && collection != null && collection.Links != null)
+            if (entity != mainElement && entity is ISupportsLinks collection && collection.Links != null)
             {
                 links.AddRange(collection.Links);
             }

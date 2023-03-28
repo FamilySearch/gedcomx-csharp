@@ -1,13 +1,11 @@
-﻿using RestSharp;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using RestSharp.Extensions;
-using Newtonsoft.Json;
-using Gedcomx.Model.Util;
-using System.IO;
+
 using Gedcomx.File;
+
+using RestSharp;
+using RestSharp.Extensions;
 
 namespace Gx.Rs.Api.Util
 {
@@ -16,10 +14,10 @@ namespace Gx.Rs.Api.Util
     /// </summary>
     public static class RestClientExtensions
     {
-        private static IGedcomxEntrySerializer XmlSerializer;
-        private static IGedcomxEntryDeserializer XmlDeserializer;
-        private static IGedcomxEntrySerializer JsonSerializer;
-        private static IGedcomxEntryDeserializer JsonDeserializer;
+        private static readonly IGedcomxEntrySerializer XmlSerializer;
+        private static readonly IGedcomxEntryDeserializer XmlDeserializer;
+        private static readonly IGedcomxEntrySerializer JsonSerializer;
+        private static readonly IGedcomxEntryDeserializer JsonDeserializer;
 
         static RestClientExtensions()
         {
@@ -86,13 +84,11 @@ namespace Gx.Rs.Api.Util
         /// </returns>
         public static IRestRequest Build(this IRestRequest @this, Uri uri, Method method)
         {
-            var redirectable = @this as RedirectableRestRequest;
-
             @this.RequestFormat = @this.GetDataFormat();
             @this.Resource = uri.PathAndQuery;
             @this.Method = method;
 
-            if (redirectable != null)
+            if (@this is RedirectableRestRequest redirectable)
             {
                 redirectable.BaseUrl = uri.GetLeftPart(UriPartial.Authority);
             }
@@ -113,13 +109,11 @@ namespace Gx.Rs.Api.Util
         /// </remarks>
         public static IRestRequest SetEntity(this IRestRequest @this, object entity)
         {
-            var dictionary = entity as System.Collections.IDictionary;
-
-            if (dictionary != null)
+            if (entity is System.Collections.IDictionary dictionary)
             {
                 foreach (var key in dictionary.Keys)
                 {
-                    String value = null;
+                    string value = null;
 
                     if (dictionary[key] != null)
                     {
@@ -135,8 +129,8 @@ namespace Gx.Rs.Api.Util
 
                 if (formatHeader != null && formatHeader.Value != null)
                 {
-                    DataFormat format = @this.GetDataFormat();
-                    String value = null;
+                    var format = @this.GetDataFormat();
+                    string value = null;
 
                     if (format == DataFormat.Json)
                     {
@@ -230,7 +224,7 @@ namespace Gx.Rs.Api.Util
         /// <param name="this">The collection of parameters to be evaluated.</param>
         /// <param name="name">The name of the parameter being sought.</param>
         /// <returns>The collection of parameters that satisfy the search condition.</returns>
-        public static IEnumerable<Parameter> Get(this IEnumerable<Parameter> @this, String name)
+        public static IEnumerable<Parameter> Get(this IEnumerable<Parameter> @this, string name)
         {
             return @this.Where(x => x.Name == name);
         }
@@ -247,7 +241,7 @@ namespace Gx.Rs.Api.Util
 
         private static DataFormat GetDataFormat(this IRestResponse @this)
         {
-            DataFormat result = default(DataFormat);
+            var result = default(DataFormat);
             var contentType = @this.Headers.FirstOrDefault(x => x.Name == "Content-Type");
 
             if (contentType != null && contentType.Value != null)
@@ -264,7 +258,7 @@ namespace Gx.Rs.Api.Util
 
         private static DataFormat GetDataFormat(this IRestRequest @this)
         {
-            DataFormat result = default(DataFormat);
+            var result = default(DataFormat);
             var contentType = @this.Parameters.FirstOrDefault(x => x.Name == "Content-Type" && x.Type == ParameterType.HttpHeader);
 
             if (contentType != null && contentType.Value != null)
@@ -275,9 +269,9 @@ namespace Gx.Rs.Api.Util
             return result;
         }
 
-        private static DataFormat GetDataFormat(String value, DataFormat @default)
+        private static DataFormat GetDataFormat(string value, DataFormat @default)
         {
-            DataFormat result = @default;
+            var result = @default;
 
             if (value.IndexOf("json", StringComparison.OrdinalIgnoreCase) != -1)
             {
@@ -300,7 +294,7 @@ namespace Gx.Rs.Api.Util
         /// <remarks>
         /// The accept language header will be updated if it already exists; otherwise, it will be added.
         /// </remarks>
-        public static IRestRequest AcceptLanguage(this IRestRequest @this, String value)
+        public static IRestRequest AcceptLanguage(this IRestRequest @this, string value)
         {
             var accept = new Parameter() { Name = "Accept-Language", Type = ParameterType.HttpHeader, Value = value };
             return @this.SetParameter(accept);

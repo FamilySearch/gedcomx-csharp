@@ -1,13 +1,14 @@
-﻿using Gedcomx.Model;
+﻿using System.Collections.Generic;
+using System.Linq;
+
+using Gedcomx.Model;
+
 using Gx.Rs.Api.Util;
+
 using JsonLD.Core;
 using JsonLD.Util;
-using Newtonsoft.Json.Linq;
+
 using RestSharp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Gx.Rs.Api
 {
@@ -18,12 +19,14 @@ namespace Gx.Rs.Api
     {
         private RDFDataset model;
         private IEnumerable<RDFDataset.Quad> defaultQuads;
-        private static JsonLdOptions options;
+        private static readonly JsonLdOptions options;
 
         static VocabElementListState()
         {
-            options = new JsonLdOptions();
-            options.useNamespaces = true;
+            options = new JsonLdOptions
+            {
+                useNamespaces = true
+            };
         }
 
 
@@ -35,7 +38,7 @@ namespace Gx.Rs.Api
         /// <param name="client">The REST API client to use for API calls.</param>
         /// <param name="accessToken">The access token to use for subsequent invocations of the REST API client.</param>
         /// <param name="stateFactory">The state factory to use for state instantiation.</param>
-        protected internal VocabElementListState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken, StateFactory stateFactory)
+        protected internal VocabElementListState(IRestRequest request, IRestResponse response, IFilterableRestClient client, string accessToken, StateFactory stateFactory)
             : base(request, response, client, accessToken, stateFactory)
         {
         }
@@ -46,7 +49,7 @@ namespace Gx.Rs.Api
         /// <value>
         /// The rel name for the current state instance
         /// </value>
-        public override String SelfRel
+        public override string SelfRel
         {
             get
             {
@@ -63,7 +66,7 @@ namespace Gx.Rs.Api
         /// <returns>A cloned instance of the current state instance.</returns>
         protected override GedcomxApplicationState Clone(IRestRequest request, IRestResponse response, IFilterableRestClient client)
         {
-            return new VocabElementListState(request, response, client, this.CurrentAccessToken, this.stateFactory);
+            return new VocabElementListState(request, response, client, CurrentAccessToken, stateFactory);
         }
 
         /// <summary>
@@ -72,10 +75,10 @@ namespace Gx.Rs.Api
         /// <returns>The vocab element list associated with this state instance</returns>
         public VocabElementList GetVocabElementList()
         {
-            var rootQuads = defaultQuads.GetSubjectQuads(this.Client.BuildUri(this.Request).ToString());
+            var rootQuads = defaultQuads.GetSubjectQuads(Client.BuildUri(Request).ToString());
 
             // Create and populate the vocabulary element list
-            VocabElementList vocabElementList = new VocabElementList();
+            var vocabElementList = new VocabElementList();
             var identifierProperty = VocabConstants.DC_NAMESPACE + "identifier";
             if (rootQuads.HasPredicateQuad(identifierProperty))
             {
@@ -134,13 +137,14 @@ namespace Gx.Rs.Api
         /// </summary>
         /// <param name="quads">The list of RDF Quads that represents a vocabulary element.</param>
         /// <returns>A GedcomX vocabulary element that corresponds to the given RDF Quads.</returns>
-        private VocabElement MapToVocabElement(IEnumerable<RDFDataset.Quad> quads)
+        private static VocabElement MapToVocabElement(IEnumerable<RDFDataset.Quad> quads)
         {
-            VocabElement vocabElement = new VocabElement();
-
-            // Map required attributes into the VocabElement
-            vocabElement.Id = quads.GetPredicateQuad(VocabConstants.DC_NAMESPACE + "identifier").GetObject().GetValue();
-            vocabElement.Uri = quads.First().GetSubject().GetValue();
+            var vocabElement = new VocabElement
+            {
+                // Map required attributes into the VocabElement
+                Id = quads.GetPredicateQuad(VocabConstants.DC_NAMESPACE + "identifier").GetObject().GetValue(),
+                Uri = quads.First().GetSubject().GetValue()
+            };
 
             var property = VocabConstants.RDFS_NAMESPACE + "subClassOf";
             if (quads.HasPredicateQuad(property))

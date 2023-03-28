@@ -1,13 +1,12 @@
-﻿using Gedcomx.Support;
-using Gx.Atom;
-using Gx.Links;
-using RestSharp;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
+
+using Gedcomx.Support;
+
+using Gx.Atom;
+
+using RestSharp;
 
 namespace Gx.Rs.Api.Util
 {
@@ -26,23 +25,17 @@ namespace Gx.Rs.Api.Util
         /// The default <see cref="WebResourceProvider"/> which simply sets the base URI on the REST API client
         /// and sets the resource on the REST API request.
         /// </summary>
-        public static IWebResourceProvider DEFAULT_WEB_RESOURCE_PROVIDER = new WebResourceProviderImpl();
+        private static readonly IWebResourceProvider DEFAULT_WEB_RESOURCE_PROVIDER = new WebResourceProviderImpl();
         private readonly List<IWebResourceBuilderExtension> extensions = new List<IWebResourceBuilderExtension>();
         private IFilterableRestClient client;
-        private IWebResourceProvider webResourceProvider = DEFAULT_WEB_RESOURCE_PROVIDER;
-        private String first = null;
-        private String last = null;
-        private String previous = null;
-        private String next = null;
-        private Feed current;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PagedFeedEnumerator"/> class.
         /// </summary>
         /// <param name="uri">The URI to use to get the paged feed.</param>
-        private PagedFeedEnumerator(String uri)
+        private PagedFeedEnumerator(string uri)
         {
-            next = uri;
+            NextHRef = uri;
         }
 
         private PagedFeedEnumerator(Feed feed)
@@ -62,7 +55,7 @@ namespace Gx.Rs.Api.Util
         /// <param name="uri">The URI to use to get the initial (next) paged feed document and from which future values of first, last, previous,
         /// and next hypertext references will be acquired.</param>
         /// <returns>A new <see cref="PagedFeedEnumerator"/>.</returns>
-        public static PagedFeedEnumerator FromUri(String uri)
+        public static PagedFeedEnumerator FromUri(string uri)
         {
             return new PagedFeedEnumerator(uri);
         }
@@ -83,10 +76,10 @@ namespace Gx.Rs.Api.Util
         /// <param name="feed">The source feed document.</param>
         /// <param name="rel">The desired rel link in the specified feed.</param>
         /// <returns>The hypertext reference, if it exists; otherwise <c>null</c>.</returns>
-        public static String GetLinkRelHref(Feed feed, String rel)
+        public static string GetLinkRelHref(Feed feed, string rel)
         {
-            Link link = feed.GetLink(rel);
-            return link == null ? null : link.Href;
+            var link = feed.GetLink(rel);
+            return link?.Href;
         }
 
         /// <summary>
@@ -188,17 +181,7 @@ namespace Gx.Rs.Api.Util
         /// <remarks>
         /// Upon instantiation, this defaults to <see cref="DEFAULT_WEB_RESOURCE_PROVIDER"/>.
         /// </remarks>
-        public IWebResourceProvider WebResourceProvider
-        {
-            get
-            {
-                return webResourceProvider;
-            }
-            set
-            {
-                webResourceProvider = value;
-            }
-        }
+        public IWebResourceProvider WebResourceProvider { get; set; } = DEFAULT_WEB_RESOURCE_PROVIDER;
 
         /// <summary>
         /// Sets the <see cref="WebResourceProvider"/> .
@@ -221,7 +204,7 @@ namespace Gx.Rs.Api.Util
         {
             get
             {
-                return first != null;
+                return FirstHRef != null;
             }
         }
 
@@ -231,13 +214,7 @@ namespace Gx.Rs.Api.Util
         /// <value>
         /// The FIRST link.
         /// </value>
-        public String FirstHRef
-        {
-            get
-            {
-                return first;
-            }
-        }
+        public string FirstHRef { get; private set; } = null;
 
         /// <summary>
         /// Gets the FIRST paged results, if available.
@@ -250,7 +227,7 @@ namespace Gx.Rs.Api.Util
             {
                 throw new InvalidOperationException();
             }
-            return GetFeed(first);
+            return GetFeed(FirstHRef);
         }
 
         /// <summary>
@@ -259,13 +236,7 @@ namespace Gx.Rs.Api.Util
         /// <value>
         /// The LAST link.
         /// </value>
-        public String LastHRef
-        {
-            get
-            {
-                return last;
-            }
-        }
+        public string LastHRef { get; private set; } = null;
 
         /// <summary>
         /// Gets a value indicating whether this instance has a LAST link.
@@ -277,7 +248,7 @@ namespace Gx.Rs.Api.Util
         {
             get
             {
-                return last != null;
+                return LastHRef != null;
             }
         }
 
@@ -292,7 +263,7 @@ namespace Gx.Rs.Api.Util
             {
                 throw new InvalidOperationException();
             }
-            return GetFeed(last);
+            return GetFeed(LastHRef);
         }
 
         /// <summary>
@@ -301,13 +272,7 @@ namespace Gx.Rs.Api.Util
         /// <value>
         /// The PREVIOUS link.
         /// </value>
-        public String PreviousHRef
-        {
-            get
-            {
-                return previous;
-            }
-        }
+        public string PreviousHRef { get; private set; } = null;
 
         /// <summary>
         /// Gets a value indicating whether this instance has a PREVIOUS link.
@@ -319,7 +284,7 @@ namespace Gx.Rs.Api.Util
         {
             get
             {
-                return previous != null;
+                return PreviousHRef != null;
             }
         }
 
@@ -334,7 +299,7 @@ namespace Gx.Rs.Api.Util
             {
                 throw new InvalidOperationException();
             }
-            return GetFeed(previous);
+            return GetFeed(PreviousHRef);
         }
 
         /// <summary>
@@ -343,13 +308,7 @@ namespace Gx.Rs.Api.Util
         /// <value>
         /// The NEXT link.
         /// </value>
-        public String NextHRef
-        {
-            get
-            {
-                return next;
-            }
-        }
+        public string NextHRef { get; private set; } = null;
 
         /// <summary>
         /// Gets a value indicating whether this instance has a NEXT link.
@@ -361,7 +320,7 @@ namespace Gx.Rs.Api.Util
         {
             get
             {
-                return next != null;
+                return NextHRef != null;
             }
         }
 
@@ -376,7 +335,7 @@ namespace Gx.Rs.Api.Util
             {
                 throw new InvalidOperationException();
             }
-            return GetFeed(next);
+            return GetFeed(NextHRef);
         }
 
         /// <summary>
@@ -385,27 +344,27 @@ namespace Gx.Rs.Api.Util
         /// <param name="feed">The feed from which links will be extracted.</param>
         private void LoadHRefsFromFeed(Feed feed)
         {
-            first = GetLinkRelHref(feed, "first");
-            last = GetLinkRelHref(feed, "last");
-            previous = GetLinkRelHref(feed, "previous");
-            next = GetLinkRelHref(feed, "next");
+            FirstHRef = GetLinkRelHref(feed, "first");
+            LastHRef = GetLinkRelHref(feed, "last");
+            PreviousHRef = GetLinkRelHref(feed, "previous");
+            NextHRef = GetLinkRelHref(feed, "next");
         }
 
-        private Feed GetFeed(String uri)
+        private Feed GetFeed(string uri)
         {
             Feed result = null;
-            IRestRequest request = webResourceProvider.Provide(Client, uri)
+            var request = WebResourceProvider.Provide(Client, uri)
                 .Accept(MediaTypes.APPLICATION_ATOM_XML_TYPE);
-            foreach (IWebResourceBuilderExtension extension in this.extensions)
+            foreach (var extension in this.extensions)
             {
                 extension.Extend(request);
             }
-            IRestResponse clientResponse = Client.Handle(request);
-            HttpStatusCode status = clientResponse.StatusCode;
+            var clientResponse = Client.Handle(request);
+            var status = clientResponse.StatusCode;
             switch (status)
             {
                 case HttpStatusCode.OK:
-                    Feed feed = clientResponse.ToIRestResponse<Feed>().Data;
+                    var feed = clientResponse.ToIRestResponse<Feed>().Data;
                     LoadHRefsFromFeed(feed);
                     result = feed;
                     break;
@@ -415,7 +374,7 @@ namespace Gx.Rs.Api.Util
                     throw new InvalidOperationException(clientResponse.StatusDescription);
             }
 
-            current = result;
+            Current = result;
 
             return result;
         }
@@ -431,7 +390,7 @@ namespace Gx.Rs.Api.Util
             /// <param name="client">The REST API client to use for API calls.</param>
             /// <param name="uri">The specified URI for the first, last, previous, and/or next paged feed document.</param>
             /// <returns>A <see cref="WebResourceProviderImpl"/> for acquiring the desired paged feed document.</returns>
-            IRestRequest Provide(IFilterableRestClient client, String uri);
+            IRestRequest Provide(IFilterableRestClient client, string uri);
         }
 
         /// <summary>
@@ -448,7 +407,7 @@ namespace Gx.Rs.Api.Util
             /// <returns>
             /// A <see cref="WebResourceProviderImpl" /> for acquiring the desired paged feed document.
             /// </returns>
-            public IRestRequest Provide(IFilterableRestClient client, String uri)
+            public IRestRequest Provide(IFilterableRestClient client, string uri)
             {
                 client.BaseUrl = new Uri(uri).GetBaseUrl();
                 return new RedirectableRestRequest(uri);
@@ -471,16 +430,14 @@ namespace Gx.Rs.Api.Util
         /// <summary>
         /// Gets the element in the collection at the current position of the enumerator.
         /// </summary>
-        public Feed Current
-        {
-            get { return current; }
-        }
+        public Feed Current { get; private set; }
 
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
         public void Dispose()
         {
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>
@@ -499,7 +456,7 @@ namespace Gx.Rs.Api.Util
         /// </returns>
         public bool MoveNext()
         {
-            bool result = HasNext;
+            var result = HasNext;
 
             if (result)
             {

@@ -1,9 +1,6 @@
-﻿using RestSharp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+
+using RestSharp;
 
 namespace Gx.Rs.Api.Util
 {
@@ -16,8 +13,8 @@ namespace Gx.Rs.Api.Util
     /// </remarks>
     public class FilterableRestClient : RestClient, IFilterableRestClient
     {
-        private List<IFilter> filters;
-        private object _lock = new object();
+        private readonly List<IFilter> filters;
+        private readonly object _lock = new object();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FilterableRestClient"/> class.
@@ -58,7 +55,6 @@ namespace Gx.Rs.Api.Util
         /// <returns></returns>
         public IRestResponse Handle(IRestRequest request)
         {
-            var redirectable = request as RedirectableRestRequest;
             string originalBaseUrl = null;
             IRestResponse result = null;
 
@@ -70,17 +66,17 @@ namespace Gx.Rs.Api.Util
             // Prevent parallel execution issues (per instance) since this is a destructive property pattern
             lock (_lock)
             {
-                if (redirectable != null && redirectable.BaseUrl != this.BaseUrl && !string.IsNullOrEmpty(redirectable.BaseUrl))
+                if (request is RedirectableRestRequest redirectable && redirectable.BaseUrl != BaseUrl && !string.IsNullOrEmpty(redirectable.BaseUrl))
                 {
-                    originalBaseUrl = this.BaseUrl;
-                    this.BaseUrl = redirectable.BaseUrl;
+                    originalBaseUrl = BaseUrl;
+                    BaseUrl = redirectable.BaseUrl;
                 }
 
-                result = this.Execute(request);
+                result = Execute(request);
 
                 if (originalBaseUrl != null)
                 {
-                    this.BaseUrl = originalBaseUrl;
+                    BaseUrl = originalBaseUrl;
                 }
             }
 

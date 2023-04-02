@@ -1,13 +1,13 @@
-﻿using Gx.Rs.Api;
-using RestSharp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Gx.Rs.Api.Util;
+﻿using System;
+
 using FamilySearch.Api.Util;
+
 using Gedcomx.Support;
+
+using Gx.Rs.Api;
+using Gx.Rs.Api.Util;
+
+using RestSharp;
 
 namespace FamilySearch.Api
 {
@@ -26,7 +26,7 @@ namespace FamilySearch.Api
         /// <returns>
         /// A <see cref="DiscussionsState"/> instance containing the REST API response.
         /// </returns>
-        protected internal DiscussionsState NewDiscussionsState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken)
+        protected internal DiscussionsState NewDiscussionsState(IRestRequest request, IRestResponse response, IFilterableRestClient client, string accessToken)
         {
             return new DiscussionsState(request, response, client, accessToken, this);
         }
@@ -41,7 +41,7 @@ namespace FamilySearch.Api
         /// <returns>
         /// A <see cref="DiscussionState"/> instance containing the REST API response.
         /// </returns>
-        protected internal DiscussionState NewDiscussionState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken)
+        protected internal DiscussionState NewDiscussionState(IRestRequest request, IRestResponse response, IFilterableRestClient client, string accessToken)
         {
             return new DiscussionState(request, response, client, accessToken, this);
         }
@@ -56,7 +56,7 @@ namespace FamilySearch.Api
         /// <returns>
         /// A <see cref="UserState"/> instance containing the REST API response.
         /// </returns>
-        protected internal UserState NewUserState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken)
+        protected internal UserState NewUserState(IRestRequest request, IRestResponse response, IFilterableRestClient client, string accessToken)
         {
             return new UserState(request, response, client, accessToken, this);
         }
@@ -71,7 +71,7 @@ namespace FamilySearch.Api
         /// <returns>
         /// A <see cref="PersonMergeState"/> instance containing the REST API response.
         /// </returns>
-        protected internal PersonMergeState NewPersonMergeState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken)
+        protected internal PersonMergeState NewPersonMergeState(IRestRequest request, IRestResponse response, IFilterableRestClient client, string accessToken)
         {
             return new PersonMergeState(request, response, client, accessToken, this);
         }
@@ -86,7 +86,7 @@ namespace FamilySearch.Api
         /// <returns>
         /// A <see cref="PersonMatchResultsState"/> instance containing the REST API response.
         /// </returns>
-        protected internal PersonMatchResultsState NewPersonMatchResultsState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken)
+        protected internal PersonMatchResultsState NewPersonMatchResultsState(IRestRequest request, IRestResponse response, IFilterableRestClient client, string accessToken)
         {
             return new PersonMatchResultsState(request, response, client, accessToken, this);
         }
@@ -127,7 +127,7 @@ namespace FamilySearch.Api
         /// </returns>
         public FamilySearchPlaces NewPlacesState(Uri discoveryUri, IFilterableRestClient client, Method method)
         {
-            IRestRequest request = new RedirectableRestRequest().Accept(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE).Build(discoveryUri, method);
+            var request = new RedirectableRestRequest().Accept(MediaTypes.GEDCOMX_JSON_MEDIA_TYPE).Build(discoveryUri, method);
             return NewPlacesState(request, client.Handle(request), client, null);
         }
 
@@ -141,7 +141,7 @@ namespace FamilySearch.Api
         /// <returns>
         /// A <see cref="FamilySearchPlaces"/> instance containing the REST API response.
         /// </returns>
-        protected internal FamilySearchPlaces NewPlacesState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken)
+        protected internal FamilySearchPlaces NewPlacesState(IRestRequest request, IRestResponse response, IFilterableRestClient client, string accessToken)
         {
             return new FamilySearchPlaces(request, response, client, accessToken, this);
         }
@@ -156,7 +156,7 @@ namespace FamilySearch.Api
         /// <returns>
         /// A <see cref="CollectionState"/> instance containing the REST API response.
         /// </returns>
-        protected override CollectionState NewCollectionState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken)
+        protected override CollectionState NewCollectionState(IRestRequest request, IRestResponse response, IFilterableRestClient client, string accessToken)
         {
             return new FamilySearchCollectionState(request, response, client, accessToken, this);
         }
@@ -171,9 +171,9 @@ namespace FamilySearch.Api
         /// <returns>
         /// A <see cref="CollectionState"/> instance containing the REST API response.
         /// </returns>
-        internal virtual CollectionState NewCollectionStateInt(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken)
+        internal virtual CollectionState NewCollectionStateInt(IRestRequest request, IRestResponse response, IFilterableRestClient client, string accessToken)
         {
-            return this.NewCollectionStateInt(request, response, client, accessToken);
+            return NewCollectionStateInt(request, response, client, accessToken);
         }
 
         /// <summary>
@@ -186,7 +186,7 @@ namespace FamilySearch.Api
         /// <returns>
         /// A <see cref="SourceDescriptionState"/> instance containing the REST API response.
         /// </returns>
-        protected override SourceDescriptionState NewSourceDescriptionState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken)
+        protected override SourceDescriptionState NewSourceDescriptionState(IRestRequest request, IRestResponse response, IFilterableRestClient client, string accessToken)
         {
             return new FamilySearchSourceDescriptionState(request, response, client, accessToken, this);
         }
@@ -201,9 +201,9 @@ namespace FamilySearch.Api
         /// <returns>
         /// A <see cref="SourceDescriptionState"/> instance containing the REST API response.
         /// </returns>
-        internal virtual SourceDescriptionState NewSourceDescriptionStateInt(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken)
+        internal virtual SourceDescriptionState NewSourceDescriptionStateInt(IRestRequest request, IRestResponse response, IFilterableRestClient client, string accessToken)
         {
-            return this.NewSourceDescriptionState(request, response, client, accessToken);
+            return NewSourceDescriptionState(request, response, client, accessToken);
         }
 
         /// <summary>
@@ -216,7 +216,7 @@ namespace FamilySearch.Api
         /// <returns>
         /// A <see cref="PersonState"/> instance containing the REST API response.
         /// </returns>
-        protected override PersonState NewPersonState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken)
+        protected override PersonState NewPersonState(IRestRequest request, IRestResponse response, IFilterableRestClient client, string accessToken)
         {
             return base.NewPersonState(request, response, client, accessToken);
         }
@@ -231,9 +231,9 @@ namespace FamilySearch.Api
         /// <returns>
         /// A <see cref="PersonState"/> instance containing the REST API response.
         /// </returns>
-        internal virtual PersonState NewPersonStateInt(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken)
+        internal virtual PersonState NewPersonStateInt(IRestRequest request, IRestResponse response, IFilterableRestClient client, string accessToken)
         {
-            return this.NewPersonState(request, response, client, accessToken);
+            return NewPersonState(request, response, client, accessToken);
         }
 
         /// <summary>
@@ -246,7 +246,7 @@ namespace FamilySearch.Api
         /// <returns>
         /// A <see cref="PersonNonMatchesState"/> instance containing the REST API response.
         /// </returns>
-        protected internal virtual PersonNonMatchesState NewPersonNonMatchesState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken)
+        protected internal virtual PersonNonMatchesState NewPersonNonMatchesState(IRestRequest request, IRestResponse response, IFilterableRestClient client, string accessToken)
         {
             return new PersonNonMatchesState(request, response, client, accessToken, this);
         }
@@ -261,7 +261,7 @@ namespace FamilySearch.Api
         /// <returns>
         /// A <see cref="FamilySearchPlaceState"/> instance containing the REST API response.
         /// </returns>
-        protected internal FamilySearchPlaceState NewPlaceState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken)
+        protected internal FamilySearchPlaceState NewPlaceState(IRestRequest request, IRestResponse response, IFilterableRestClient client, string accessToken)
         {
             return new FamilySearchPlaceState(request, response, client, accessToken, this);
         }
@@ -276,7 +276,7 @@ namespace FamilySearch.Api
         /// <returns>
         /// A <see cref="PlaceDescriptionState"/> instance containing the REST API response.
         /// </returns>
-        protected override PlaceDescriptionState NewPlaceDescriptionState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken)
+        protected override PlaceDescriptionState NewPlaceDescriptionState(IRestRequest request, IRestResponse response, IFilterableRestClient client, string accessToken)
         {
             return new FamilySearchPlaceDescriptionState(request, response, client, accessToken, this);
         }
@@ -323,7 +323,7 @@ namespace FamilySearch.Api
         /// </remarks>
         internal virtual IFilterableRestClient LoadDefaultClientInt(Uri uri)
         {
-            return this.LoadDefaultClient(uri);
+            return LoadDefaultClient(uri);
         }
     }
 }

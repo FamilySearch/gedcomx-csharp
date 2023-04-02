@@ -1,11 +1,6 @@
 ﻿using log4net;
-using log4net.Core;
+
 using RestSharp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Gx.Rs.Api.Util
 {
@@ -18,7 +13,7 @@ namespace Gx.Rs.Api.Util
     /// </remarks>
     public class Log4NetLoggingFilter : IFilter
     {
-        private ILog logger = LogManager.GetLogger(typeof(Log4NetLoggingFilter));
+        private readonly ILog logger = LogManager.GetLogger(typeof(Log4NetLoggingFilter));
 
         /// <summary>
         /// This method uses log4net to output a DEBUG string containing the HTTP method and fully qualified URI that will be executed.

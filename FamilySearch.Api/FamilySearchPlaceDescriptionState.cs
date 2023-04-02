@@ -1,11 +1,7 @@
 ﻿using Gx.Rs.Api;
-using RestSharp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Gx.Rs.Api.Util;
-using Gx.Links;
+
+using RestSharp;
 
 namespace FamilySearch.Api
 {
@@ -22,7 +18,7 @@ namespace FamilySearch.Api
         /// <param name="client">The REST API client to use for API calls.</param>
         /// <param name="accessToken">The access token to use for subsequent invocations of the REST API client.</param>
         /// <param name="stateFactory">The state factory to use for state instantiation.</param>
-        protected internal FamilySearchPlaceDescriptionState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken, FamilySearchStateFactory stateFactory)
+        protected internal FamilySearchPlaceDescriptionState(IRestRequest request, IRestResponse response, IFilterableRestClient client, string accessToken, FamilySearchStateFactory stateFactory)
             : base(request, response, client, accessToken, stateFactory)
         {
         }
@@ -36,7 +32,7 @@ namespace FamilySearch.Api
         /// <returns>A cloned instance of the current state instance.</returns>
         protected override GedcomxApplicationState Clone(IRestRequest request, IRestResponse response, IFilterableRestClient client)
         {
-            return new FamilySearchPlaceDescriptionState(request, response, client, this.CurrentAccessToken, (FamilySearchStateFactory)this.stateFactory);
+            return new FamilySearchPlaceDescriptionState(request, response, client, CurrentAccessToken, (FamilySearchStateFactory)stateFactory);
         }
 
         /// <summary>
@@ -48,15 +44,15 @@ namespace FamilySearch.Api
         /// </returns>
         public FamilySearchPlaceState ReadPlace(params IStateTransitionOption[] options)
         {
-            Link link = this.GetLink(Rel.PLACE);
-            link = link == null ? this.GetLink(Rel.SELF) : link;
+            var link = GetLink(Rel.PLACE);
+            link = link ?? GetLink(Rel.SELF);
             if (link == null || link.Href == null)
             {
                 return null;
             }
 
-            IRestRequest request = CreateAuthenticatedGedcomxRequest().Build(link.Href, Method.GET);
-            return ((FamilySearchStateFactory)this.stateFactory).NewPlaceState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
+            var request = CreateAuthenticatedGedcomxRequest().Build(link.Href, Method.GET);
+            return ((FamilySearchStateFactory)stateFactory).NewPlaceState(request, Invoke(request, options), Client, CurrentAccessToken);
         }
     }
 }

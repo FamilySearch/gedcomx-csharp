@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 
 using Gedcomx.Model;
 
@@ -24,7 +23,7 @@ namespace FamilySearch.Api
         /// <param name="client">The REST API client to use for API calls.</param>
         /// <param name="accessToken">The access token to use for subsequent invocations of the REST API client.</param>
         /// <param name="stateFactory">The state factory to use for state instantiation.</param>
-        protected internal FamilySearchPlaceState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken, StateFactory stateFactory)
+        protected internal FamilySearchPlaceState(IRestRequest request, IRestResponse response, IFilterableRestClient client, string accessToken, StateFactory stateFactory)
             : base(request, response, client, accessToken, stateFactory)
         {
         }
@@ -35,7 +34,7 @@ namespace FamilySearch.Api
         /// <value>
         /// The rel name for the current state instance
         /// </value>
-        public override String SelfRel
+        public override string SelfRel
         {
             get
             {
@@ -52,7 +51,7 @@ namespace FamilySearch.Api
         /// <returns>A cloned instance of the current state instance.</returns>
         protected override GedcomxApplicationState Clone(IRestRequest request, IRestResponse response, IFilterableRestClient client)
         {
-            return new FamilySearchPlaceState(request, response, client, this.CurrentAccessToken, this.stateFactory);
+            return new FamilySearchPlaceState(request, response, client, CurrentAccessToken, stateFactory);
         }
 
         /// <summary>

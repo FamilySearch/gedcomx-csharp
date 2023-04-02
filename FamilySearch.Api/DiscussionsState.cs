@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 using FamilySearch.Api.Util;
 
 using Gx.Fs;
 using Gx.Fs.Discussions;
-using Gx.Links;
 using Gx.Rs.Api;
 using Gx.Rs.Api.Util;
 
@@ -26,7 +24,7 @@ namespace FamilySearch.Api
         /// <param name="client">The REST API client to use for API calls.</param>
         /// <param name="accessToken">The access token to use for subsequent invocations of the REST API client.</param>
         /// <param name="stateFactory">The state factory to use for state instantiation.</param>
-        public DiscussionsState(IRestRequest request, IRestResponse response, IFilterableRestClient client, String accessToken, FamilySearchStateFactory stateFactory)
+        public DiscussionsState(IRestRequest request, IRestResponse response, IFilterableRestClient client, string accessToken, FamilySearchStateFactory stateFactory)
             : base(request, response, client, accessToken, stateFactory)
         {
         }
@@ -40,7 +38,7 @@ namespace FamilySearch.Api
         /// <returns>A cloned instance of the current state instance.</returns>
         protected override GedcomxApplicationState Clone(IRestRequest request, IRestResponse response, IFilterableRestClient client)
         {
-            return new DiscussionsState(request, response, client, this.CurrentAccessToken, (FamilySearchStateFactory)this.stateFactory);
+            return new DiscussionsState(request, response, client, CurrentAccessToken, (FamilySearchStateFactory)stateFactory);
         }
 
         /// <summary>
@@ -66,14 +64,14 @@ namespace FamilySearch.Api
         /// </returns>
         public CollectionState ReadCollection(params IStateTransitionOption[] options)
         {
-            Link link = GetLink(Rel.COLLECTION);
+            var link = GetLink(Rel.COLLECTION);
             if (link == null || link.Href == null)
             {
                 return null;
             }
 
-            IRestRequest request = CreateAuthenticatedGedcomxRequest().Build(link.Href, Method.GET);
-            return ((FamilySearchStateFactory)this.stateFactory).NewCollectionStateInt(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
+            var request = CreateAuthenticatedGedcomxRequest().Build(link.Href, Method.GET);
+            return ((FamilySearchStateFactory)stateFactory).NewCollectionStateInt(request, Invoke(request, options), Client, CurrentAccessToken);
         }
 
         /// <summary>
@@ -86,10 +84,10 @@ namespace FamilySearch.Api
         /// </returns>
         public DiscussionState AddDiscussion(Discussion discussion, params IStateTransitionOption[] options)
         {
-            FamilySearchPlatform entity = new FamilySearchPlatform();
+            var entity = new FamilySearchPlatform();
             entity.AddDiscussion(discussion);
-            IRestRequest request = RequestUtil.ApplyFamilySearchConneg(CreateAuthenticatedGedcomxRequest()).SetEntity(entity).Build(GetSelfUri(), Method.POST);
-            return ((FamilySearchStateFactory)this.stateFactory).NewDiscussionState(request, Invoke(request, options), this.Client, this.CurrentAccessToken);
+            var request = RequestUtil.ApplyFamilySearchConneg(CreateAuthenticatedGedcomxRequest()).SetEntity(entity).Build(GetSelfUri(), Method.POST);
+            return ((FamilySearchStateFactory)stateFactory).NewDiscussionState(request, Invoke(request, options), Client, CurrentAccessToken);
         }
     }
 }
